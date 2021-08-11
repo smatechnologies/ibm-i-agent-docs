@@ -1015,12 +1015,12 @@ Post-Installation Checklist
     e.  All the latest IBM i LSAM support resources, including the two
         PTF save files and the documents mentioned here, may be found at
         SMA's current ftp server that is accessed via the Support Portal
-        from the [SMA Technologies]{.GeneralCompanyName} web site. 
+        from the SMA Technologies web site. 
         i.  Currently, the ftp server may also be accessed directly from
             a browser or from a file transfer tool (such as FileZilla)
             at this URL: files.smasolutions.it.
 
-        ii. [SMA Technologies]{.GeneralCompanyName} intends to make             changes to its client support ftp server. If this document's
+        ii. SMA Technologies intends to make             changes to its client support ftp server. If this document's
             instructions appear incorrect, please contact SMA Support
             for assistance.
 

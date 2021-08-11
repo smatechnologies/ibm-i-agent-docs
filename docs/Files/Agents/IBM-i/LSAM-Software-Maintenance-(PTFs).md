@@ -151,21 +151,21 @@ determination.
 
 ### How to Obtain and Apply PTFs
 
-Based on many years of experience, [SMA Technologies]{.GeneralCompanyName} and its clients have adopted an
+Based on many years of experience, SMA Technologies and its clients have adopted an
 effective and simple \"fast path\" procedure for obtaining and
 installing the IBM i Agent (LSAM) PTFs.
 
  
 
-Clients of [SMA Technologies]{.GeneralCompanyName} are strongly recommended to refer to the latest available information about the LSAM
+Clients of SMA Technologies are strongly recommended to refer to the latest available information about the LSAM
 PTFs, which is available for download in one or more PDF documents,
-stored alongside of the LSAM PTF save files in the [SMA Technologies]{.GeneralCompanyName} secure ftp server. New clients may
+stored alongside of the LSAM PTF save files in the SMA Technologies secure ftp server. New clients may
 contact SMA Support for instructions and to obtain a user ID and
-password for accessing the [SMA Technologies]{.GeneralCompanyName} secure ftp server.
+password for accessing the SMA Technologies secure ftp server.
 
 #### How to Obtain the LSAM PTF Save Files
 
-As of the date of this publication, the starting directory in the [SMA Technologies]{.GeneralCompanyName} secure ftp server for this Agent\'s
+As of the date of this publication, the starting directory in the SMA Technologies secure ftp server for this Agent\'s
 software patches and enhancements is called \"/IBMiLSAMptf\". Please
 carefully note the sub-directories under this root location. It is
 important to select the sub-directory that matches the Version of the
@@ -190,16 +190,16 @@ presented only for orientation purposes.
 
  
 
-[SMA Technologies]{.GeneralCompanyName} reminds its clients that this entire process, including obtaining and applying PTFs, can be automated
+SMA Technologies reminds its clients that this entire process, including obtaining and applying PTFs, can be automated
 using OpCon. This may be especially important for clients who are
 operating many IBM i partitions. Please contact SMA Support, the
-client\'s [SMA Technologies]{.GeneralCompanyName} Consultant, or the client\'s SMA Sales representative to request assistance with
+client\'s SMA Technologies Consultant, or the client\'s SMA Sales representative to request assistance with
 configuring a fully-automated LSAM PTF distribution and installation
 process.
 
 #### How to Apply IBM i LSAM PTFs
 
-[SMA Technologies]{.GeneralCompanyName} reminds its clients that the \"PTFs\" for the IBM i Agent of OpCon are not the same as the \"PTFs\"
+SMA Technologies reminds its clients that the \"PTFs\" for the IBM i Agent of OpCon are not the same as the \"PTFs\"
 issued by IBM for the IBM i operating system. Except by coincidence,
 there is no direct relationship between the IBM i operating system PTFs
 and the OpCon Agent (LSAM) PTFs. If an IBM i OS PTF might be critical
@@ -237,12 +237,12 @@ to apply the LSAM PTFs.
         prompt screen that appears after option 2 is selected.
 
 4.  If any errors occur during the execution of the LSAM PTF Install
-    process, [SMA Technologies]{.GeneralCompanyName} strongly recommends     that clients immediately contact SMA Support for assistance, rather
+    process, SMA Technologies strongly recommends     that clients immediately contact SMA Support for assistance, rather
     than trying to guess about how to recover from the error.
 
     a.  An incorrect response to a failure of the PTF Install process
         can create a big mess that is difficult to repair.
-    b.  [SMA Technologies]{.GeneralCompanyName} will not charge         off-hours Support fees in case support is required for the
+    b.  SMA Technologies will not charge         off-hours Support fees in case support is required for the
         failure of the LSAM PTF install process.
 
 5.  Once the sub-menu option 2 is completed, [SMA     Technologies]{.GeneralCompanyName} recommends using LSAM sub-menu
@@ -860,8 +860,8 @@ utilities can now become a source of software execution errors.
  
 
 Clients using library QGPL to store LSAM software components are
-encouraged to contact their [SMA Technologies]{.GeneralCompanyName} Consultant or SMA Support for advice about converting their library
-utilization strategies. [SMA Technologies]{.GeneralCompanyName} can help the client to eliminate dependence upon the QGPL library. Separate
+encouraged to contact their SMA Technologies Consultant or SMA Support for advice about converting their library
+utilization strategies. SMA Technologies can help the client to eliminate dependence upon the QGPL library. Separate
 SMAGPL libraries should be used for each LSAM environment to fully
 isolate different copies of the LSAM software that are patched to
 different LSAM PTF levels.
@@ -1185,7 +1185,7 @@ is discussed above, among the operational guidance topics.
 
 Special attention is called to the first data entry field on this
 display: PTF Source. Although there are four different methods supported
-for distributing and installing LSAM PTFs, most clients of [SMA Technologies]{.GeneralCompanyName} are using the \"IFS\" method because
+for distributing and installing LSAM PTFs, most clients of SMA Technologies are using the \"IFS\" method because
 it does not require penetration of firewalls protecting the IBM i
 partition, and because this well-documented installation method is fast
 and easy to use. However, sites that operate a large number of IBM i

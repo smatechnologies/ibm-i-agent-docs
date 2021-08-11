@@ -1,18 +1,9 @@
----
-lang: en-us
-title: IBM i LSAM Configuration
-viewport: width=device-width, initial-scale=1.0
----
-
-#  []{#top}IBM i LSAM Configuration 
-## IBM i LSAM Configuration
+# IBM i LSAM Configuration
 
 The LSAM parameters screen contains settings for LSAM communication with
 SMANetCom and settings for optional features. After installation of the
 LSAM, review the configuration file before starting the LSAM server
 jobs.
-
- 
 
 [Run the LSAM Configuration Program]{.ul} 
 1.  In the command line, enter **SMAGPL/STRSMA**. For more information
@@ -204,9 +195,9 @@ control values (refer to IBM reference SC41-5302, Security Reference).
 3.  Repeat steps 1-2.
 4.  Press \<**Enter**\> to update the LSAM\'s configuration.
 
-  -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The update is stored immediately in the LSAM Parameters control file, however, any change in control values does not take effect in the LSAM server jobs until they are stopped and restarted.]
-  -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+The update is stored immediately in the LSAM Parameters control file, however, any change in control values does not take effect in the LSAM server jobs until they are stopped and restarted.
+:::
 
 ### Information Fields
 
@@ -2924,11 +2915,9 @@ should not be bypassed. There are many strategies that could be used
 instead of bypassing errors. Please contact SMA Support for advice
 before setting these bypass flags to Y=yes.
 
- 
-
-  ------------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White triangle icon on yellow circlular background](../../../Resources/Images/caution-icon(48x48).png "Caution icon")   **CAUTION:** [Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to incorrectly report the actual job status. It also creates an opportunity for the LSAM to report that a job has failed when it has actually completed normally. In order to prevent incorrect job failure messages the LSAM server program performance must be carefully tuned. Please review the discussion below about the Job message idle timer parameter and also Tuning LSAM performance.]
-  ------------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::caution
+Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to incorrectly report the actual job status. It also creates an opportunity for the LSAM to report that a job has failed when it has actually completed normally. In order to prevent incorrect job failure messages the LSAM server program performance must be carefully tuned. Please review the discussion below about the Job message idle timer parameter and also Tuning LSAM performance.
+:::
 
 +--------------+---------+--------------+--------------+--------------+
 | Job          |         |              |              |              |
@@ -4805,7 +4794,7 @@ the Digital Certificate guidelines, above.
 3.  Within General Settings for the IBM i LSAM machine record:
     a.  Enter the Fully Qualified Domain name, for example:
 
-        ![IBM i General         Settings](../../../Resources/Images/IBM-i/IBM-i-General-Settings.png "IBM i General Settings")
+        ![IBM i General         Settings](../Resources/Images/IBM-i/IBM-i-General-Settings.png "IBM i General Settings")
 4.  In Advanced Settings for the IBM i LSAM machine record, complete the
     following updates.
     a.  Under Communication Settings:
@@ -4824,7 +4813,7 @@ the Digital Certificate guidelines, above.
              so that OpCon can find its local copy of the certificate to
              authenticate the communication connection user.
 
-             ![Communication              Settings](../../../Resources/Images/IBM-i/Communication-Settings.png "Communication Settings")
+             ![Communication              Settings](../Resources/Images/IBM-i/Communication-Settings.png "Communication Settings")
 
     b.  Under SMA File Transfer Settings, it is usually recommended to
         start by allowing both TLS-secured and non-TLS connections to be
@@ -4855,7 +4844,7 @@ the Digital Certificate guidelines, above.
     c.  Be sure to use the Update and Save buttons to store the machine
         record changes.
 
-        ![File Transfer         Settings](../../../Resources/Images/IBM-i/File-Transfer-Settings.png "File Transfer Settings")
+        ![File Transfer         Settings](../Resources/Images/IBM-i/File-Transfer-Settings.png "File Transfer Settings")
 5.  Update the IBM i LSAM Parameters.
     a.  The LSAM green screen main menu is accessed, for example, by
         using the command SMAGPL/STRSMA. Select option 7 on the main
@@ -4922,17 +4911,13 @@ the Digital Certificate guidelines, above.
 The Keep Socket Open parameter controls the performance of the IBM i
 LSAM sockets communication program.
 
- 
+:::caution
+The setting of this parameter must match the equivalent parameter in the machine table of OpCon/xps Administration. When the advanced General values parameter for a machine has been set to: Close socket during synchronization = False, then the matching IBM i LSAM must be set to: Keep socket open = Y (yes), and vice versa. Failure to match these parameter values can cause a loss of data.
+:::
 
-  ------------------------------------------------------------------------------------------------------------------------------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White \"X\" icon on red circular background](../../../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [The setting of this parameter must match the equivalent parameter in the machine table of OpCon/xps Administration. When the advanced General values parameter for a machine has been set to: Close socket during synchronization = False, then the matching IBM i LSAM must be set to: Keep socket open = Y (yes), and vice versa. Failure to match these parameter values can cause a loss of data.]
-  ------------------------------------------------------------------------------------------------------------------------------ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [In most cases, set Keep Socket Open = Y. Do not change this value unless instructed to do so by SMA technical support. This value supports the highest possible rates of communications. However, if a communications link with an IBM i LSAM must be set to close the socket between each transaction, then some other performance parameters in the OpCon/xps machine table must be set to less aggressive values. These parameters and their settings are illustrated in the following table.]
-  -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+In most cases, set Keep Socket Open = Y. Do not change this value unless instructed to do so by SMA technical support. This value supports the highest possible rates of communications. However, if a communications link with an IBM i LSAM must be set to close the socket between each transaction, then some other performance parameters in the OpCon/xps machine table must be set to less aggressive values. These parameters and their settings are illustrated in the following table.
+:::
 
 +----------------+----------------+----------------+----------------+
 | Category       | Parameter      | With Keep      | With Close     |
@@ -5039,13 +5024,9 @@ status poll interval. After OpCon/xps sends a job status poll
 (transaction TX2) to the LSAM, the LSAM will be able to discover that
 the job is either not found or is in \*OUTQ (output queue) status.
 
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon/xps. The interval that controls how often OpCon/xps sends a job status request is set using the OpCon/xps **Administration function -\> Options table -\> Time Settings -\> Minutes between checking running jobs**.]
-  -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
- 
+:::note
+It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon/xps. The interval that controls how often OpCon/xps sends a job status request is set using the OpCon/xps **Administration function -\> Options table -\> Time Settings -\> Minutes between checking running jobs**.
+:::
 
 In previous versions of he IBM i LSAM software, it was possible for the
 server jobs to issue the error message ID SMA0097. If this error code
@@ -5073,7 +5054,7 @@ status:
 
 Bypassed Job Start Error SMA0008
 
-![Bypassed Job Start Error SMA0008](../../../Resources/Images/IBM-i/Bypassed-Job-Start-Error-SMA0008.png "Bypassed Job Start Error SMA0008")
+![Bypassed Job Start Error SMA0008](../Resources/Images/IBM-i/Bypassed-Job-Start-Error-SMA0008.png "Bypassed Job Start Error SMA0008")
 
  
 
@@ -5100,7 +5081,7 @@ job status will appear as in the following example:
 
 Job Status When Stuck In Job Queue
 
-![Job Status When Stuck In Job Queue](../../../Resources/Images/IBM-i/Job-Figure-Status-When-Stuck-In-Job-Queue.png "Job Status When Stuck In Job Queue")
+![Job Status When Stuck In Job Queue](../Resources/Images/IBM-i/Job-Figure-Status-When-Stuck-In-Job-Queue.png "Job Status When Stuck In Job Queue")
 
 As the OpCon/xps Schedule display above illustrates, a job that is still
 in the job queue and not actually started yet shows a status of \"Job
@@ -5190,13 +5171,9 @@ LSAM Feedback information (field code 5801) to OpCon, at the same time
 as the job status displayed in the Enterprise Manager is updated with
 the MSGW status.
 
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [LSAM Feedback support was added to the IBM i LSAM with PTF \# 403178. At the same time, depending on the OpCon version, it was also necessary to execute some SQL statements to update the SMALOOKUP control file in the OpCon database in order to add definitions for the field code 5801. Those SQL statements were documented in the IBM i LSAM PTF Post-Install Instructions. Newer versions of OpCon would already have this field code added.]
-  -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
- 
+:::note
+LSAM Feedback support was added to the IBM i LSAM with PTF \# 403178. At the same time, depending on the OpCon version, it was also necessary to execute some SQL statements to update the SMALOOKUP control file in the OpCon database in order to add definitions for the field code 5801. Those SQL statements were documented in the IBM i LSAM PTF Post-Install Instructions. Newer versions of OpCon would already have this field code added.
+:::
 
 There are two different ways to configure a response when a job is
 reported by the LSAM as stuck in the MSGW status. First, OpCon Event
@@ -5347,11 +5324,10 @@ tables that would more aptly serve a unique environment:
 The translation tables or CCSID character sets named here will affect
 all forms of communication between the LSAM and OpCon.
 
- 
 
-  ------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White \"X\" icon on red circular background](../../../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [Great caution must be exercised when selecting the translation tables or CCSIDs used by the LSAM. The translation must always support the existing OpCon transaction protocol rules; therefore, the reserved characters utilized by the OpCon transaction protocol must be understood. Standard XML protocol characters are among those that must be protected. SMA recommends that a test LSAM environment be used to fully prove a new translation table before attempting to use it for live operations. Please contact the SMA Support team if assistance is needed to adapt OpCon translation.]
-  ------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::warning
+Great caution must be exercised when selecting the translation tables or CCSIDs used by the LSAM. The translation must always support the existing OpCon transaction protocol rules; therefore, the reserved characters utilized by the OpCon transaction protocol must be understood. Standard XML protocol characters are among those that must be protected. SMA recommends that a test LSAM environment be used to fully prove a new translation table before attempting to use it for live operations. Please contact the SMA Support team if assistance is needed to adapt OpCon translation.
+:::
 
 #### OpCon/xps Event Command Characters
 
@@ -5367,13 +5343,9 @@ message, it might be useful to include some variable value in a
 notification message. A message sent to OpCon/xps from a Message
 Management Event might look something like this:
 
- 
-
-  --------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** [\$CONSOLE:DISPLAY,This message text is being sent on **\[\[\$DATE\]\]**,SYSTEM,MESSAGE]{.statement2}
-  --------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------
-
- 
+:::tip Example
+$CONSOLE:DISPLAY,This message text is being sent on **\[\[\$DATE\]\]**,SYSTEM,MESSAGE
+:::
 
 In the example above, the character sequence \[\[\$DATE\]\] will be replaced by the system date as soon as OpCon/xps receives this
 \$CONSOLE:DISPLAY event. This token appears in the OpCon/xps SMANetCom
@@ -5395,13 +5367,9 @@ characters {{ }} may be used as a substitute for the square brackets as
 Event Token field delimiters. In this case, the example above could be
 typed on a 5250 (emulated) workstation as follows:
 
- 
-
-  --------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** [\$CONSOLE:DISPLAY,This message text is being sent on **{{\$DATE}}**,SYSTEM,MESSAGE]{.statement2}
-  --------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------
-
- 
+:::tip Example
+$CONSOLE:DISPLAY,This message text is being sent on **{{\$DATE}}**,SYSTEM,MESSAGE
+:::
 
 It is possible that in some environments, the default translation tables
 involved in certain types of data exchange will prevent a correct
@@ -5409,11 +5377,9 @@ translation of the braces (curly brackets){ }. In this case, the ability
 to specify user-defined translation tables could be helpful. For more
 information about translation tables, refer to [Discussion of Translation Tables](#Discussi4).
 
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [Dynamic Variables, supported by the IBM i LSAM in places such as a job\'s call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.]
-  -------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+Dynamic Variables, supported by the IBM i LSAM in places such as a job\'s call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.
+:::
 
 ### Extending the IBM i Call Command with Special Parameters
 
@@ -5497,10 +5463,9 @@ Refer to the following Note to learn about ways to diagnose this special
 use of the SCANSPLF utility included with a Call command.
 
  
-
-  -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The details about the SCANSPLF command that was assigned to evaluate a job\'s completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this online help). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.]
-  -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+The details about the SCANSPLF command that was assigned to evaluate a job\'s completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this online help). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
+:::
 
 #### Setting an IBM i Job\'s LDA Value
 
@@ -5537,12 +5502,9 @@ Choose one of the following formats for the LDA keyword:
 
 **LDA(start_nbr_4.0:length_nbr_4.0:\'value string 1024.A\')**
 
- 
-
-  --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** [LDA(225:14:\'14-char string\')]{.statement2}
-  --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------
-
+:::tip Example
+LDA(225:14:\'14-char string\')
+:::
  
 
 The maximum length supported for each parameter of the LDA() keyword is
@@ -5559,23 +5521,17 @@ shown as part of the symbolic names, that is:
 
 **LDA(start_nbr_4.0:length_nbr_4.0:{DynVarNam1}{DynVarNam2}\...)**
 
- 
+:::tip Example
+LDA(225:14:{DYNVARNAM1})
+:::
 
-  --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** [LDA(225:14:{DYNVARNAM1})]{.statement2}
-  --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------
+:::note
+The special characters that denote a Dynamic Variable token {} may be different on your system, depending on the native character sets used in your workstation and in your IBM i operating system. The appearance of the character may vary, but the hexadecimal value is what is important. This value is controlled by the LSAM Job Tracking Configuration (menu 1, option 7).
+:::
 
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The special characters that denote a Dynamic Variable token {} may be different on your system, depending on the native character sets used in your workstation and in your IBM i operating system. The appearance of the character may vary, but the hexadecimal value is what is important. This value is controlled by the LSAM Job Tracking Configuration (menu 1, option 7).]
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
- 
-
-  ------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White triangle icon on yellow circlular background](../../../Resources/Images/caution-icon(48x48).png "Caution icon")   **CAUTION:** [Do not change this special character without assistance from a technical support person. It cannot be changed once Dynamic Variables are defined, unless a custom data conversion procedure is used.]
-  ------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::danger
+Do not change this special character without assistance from a technical support person. It cannot be changed once Dynamic Variables are defined, unless a custom data conversion procedure is used.
+:::
 
  
 
@@ -5592,13 +5548,9 @@ one Call command.
 
 **LDA(DynVarName)**
 
- 
-
-  --------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** [LDA(DYNVARNAM2)]{.statement2}
-  --------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------
-
- 
+:::tip Example
+LDA(DYNVARNAM2)
+:::
 
 Notice that this format for the LDA() keyword does not enclose
 DynVarName in the Special token characters (refer to above), because it
@@ -5625,14 +5577,7 @@ to the job that OpCon is starting.
 Here is an example of an OpCon job master record for an IBM i job,
 showing all three possible job definition extensions used at once:
 
- 
-
-  --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** [CALL PROGRAM\|CCSID(000297) LDA(215:9:\'new value\') SCANSPLF\
-                                                                                                                                    APP(APPID01) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)]{.statement2}
-
-  --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------
+:::tip Example
+CALL PROGRAM\|CCSID(000297) LDA(215:9:\'new value\') SCANSPLF\
+                                                                                                                                    APP(APPID01) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)]
 :::
-
- 
-
