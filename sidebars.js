@@ -29,5 +29,19 @@ module.exports = {
         'operations/tips',
       ], 
     },
+    {
+      type: 'category', 
+      label: 'Reference',
+      collapsed: true,
+      items: [
+        'reference/machine-messages',
+        'reference/function-keys',
+        'reference/multiple-environments',
+        'reference/programs-files',
+        'reference/copying-files',
+        'reference/performance',
+        'reference/jors',
+      ], 
+    },
   ],
 };

@@ -1,20 +1,10 @@
----
-lang: en-us
-title: Copy Files from Test to Production
-viewport: width=device-width, initial-scale=1.0
----
-
 # Copy Files from Test to Production
 
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **REVISION NOTE:** [Previously published versions of this Reference Information topic described manual procedures for copying database files between LSAM environments. That method is not recommended because it is no longer reliable. Instead, this topic documents how to use LSAM menu functions to easily engage complex programs that are able to transfer data reliably.]
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note Revision Note
+Previously published versions of this Reference Information topic described manual procedures for copying database files between LSAM environments. That method is not recommended because it is no longer reliable. Instead, this topic documents how to use LSAM menu functions to easily engage complex programs that are able to transfer data reliably.
+:::
 
- 
-
-Since LSAM version 18.1, it is important to note the two key fields of
-information that represent the software patch level of this Agent
-software, which are critical to successful Export/Import operations.
+Since LSAM version 18.1, it is important to note the two key fields of information that represent the software patch level of this Agent software, which are critical to successful Export/Import operations.
 
 -   PTF Level: This is the value that is used at the highest level to
     represent the actual patch level of the LSAM software. Although the
@@ -47,11 +37,10 @@ chart of the whole Export/Import process. It may also be helpful to
 refer to the Screens and Windows section later in this topic for more
 detail about each step in the procedure.
 
- 
+### Configure Export/Import options (one time)
 
-[Configure Export/Import options (one time)]{.ul} 
 1.  In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to [The STRSMA Command](Components-and-Operation.md#The).
 2.  Enter **3** to select the Events and Utilities sub-menu in the SMA
     Main Menu.
 3.  Enter **10** to choose the Data Export/Import Utilities Menu in the
@@ -84,7 +73,7 @@ detail about each step in the procedure.
     contact SMA Support if there are questions about using these
     Export/Import procedures between two different versions of IBM i.
 
-[Select LSAM primary master records for Export - using the LSAM menus]{.ul}
+### Select LSAM primary master records for Export - using the LSAM menus
 
 1.  Choose one of the LSAM features for data export in the SMA Main
     Menu. For example, enter **2** to choose the **Message management**
@@ -349,7 +338,7 @@ diagram that follows.
 
 Export/Import Process Flow
 
-![Export/Import Process Flow](../../../Resources/Images/IBM-i/Export-Import-Process-Flow.png "Export/Import Process Flow"){.flat}
+![Export/Import Process Flow](../Resources/Images/IBM-i/Export-Import-Process-Flow.png "Export/Import Process Flow"){.flat}
 
 The Work with Import Batches function uses the F6=Add function key to
 start a search for Import save files within the target IBM i partition.
@@ -2041,40 +2030,11 @@ possible to remove the imported data and restore the LSAM database to
 its previous state by using option 9=Rollback from the Work with Import
 Batches list display.
 
- 
+:::note
+It is possible to automate the data import process, for example by configuring IBM i jobs in an OpCon schedule, using the LSAM command LSAGETIMP, as documented below. Combined with the LSAM command LSAEXPDTA, plus an intermediate file transfer step, the whole process of exporting and importing data could be automated, that is, after records are manually selected from master files in the source LSAM environment.
 
-+----------------------------------+----------------------------------+
-| ![White pencil/paper icon on     | **NOTE:** [It is possible to     | | gray circular                    | automate the data import         |
-| background](../../.              | process, for example by          |
-| ./Resources/Images/note-icon(48x | configuring IBM i jobs in an     |
-| 48).png "Note icon") | OpCon schedule, using the LSAM   |
-|                                  | command LSAGETIMP, as documented |
-|                                  | below. Combined with the LSAM    |
-|                                  | command LSAEXPDTA, plus an       |
-|                                  | intermediate file transfer step, |
-|                                  | the whole process of exporting   |
-|                                  | and importing data could be      |
-|                                  | automated, that is, after        |
-|                                  | records are manually selected    |
-|                                  | from master files in the source  |
-|                                  | LSAM environment.]   |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | SMA may choose to utilize the    |
-|                                  | data Export/Import tools for the |
-|                                  | purpose of offering              |
-|                                  | pre-configured data that could   |
-|                                  | be inserted into an LSAM         |
-|                                  | database in order to facilitate  |
-|                                  | the process of configuring the   |
-|                                  | LSAM to automate certain         |
-|                                  | third-party applications. SMA    |
-|                                  | will notify clients about the    |
-|                                  | availability of pre-configured   |
-|                                  | data during the OpCon product    |
-|                                  | installation process.            |
-+----------------------------------+----------------------------------+
+SMA may choose to utilize the data Export/Import tools for the purpose of offering pre-configured data that could be inserted into an LSAM database in order to facilitate the process of configuring the LSAM to automate certain third-party applications. SMA will notify clients about the availability of pre-configured data during the OpCon product installation process.
+:::
 
 #### F6 = List Import Save Files (Add Data Import Control)
 
@@ -2933,44 +2893,13 @@ the imported data and restore the LSAM database to its prior condition
 using option **9=Rollback** from the Work with Import Batches list
 display.
 
- 
-
-+----------------------------------+----------------------------------+
-| ![White triangle icon on yellow  | **CAUTION:** [The Rollback       | | circlular                        | function should only be used     |
-| background](../../../Reso        | when no other Import process has |
-| urces/Images/caution-icon(48x48) | updated the same records in the  |
-| .png "Caution icon") | LSAM database after the batch    |
-|                                  | selected for rollback. Used out  |
-|                                  | of sequence, the Rollback can    |
-|                                  | corrupt the LSAM database. It is |
-|                                  | the user\'s responsibility to be |
-|                                  | aware of all Import data         |
-|                                  | batches, their contents and the  |
-|                                  | sequence of events. In case the  |
-|                                  | database becomes corrupted,      |
-|                                  | manual maintenance of the LSAM   |
-|                                  | master files is required to fix  |
-|                                  | the problems.]       |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | It is also required that the     |
-|                                  | current LSAM database PTF level  |
-|                                  | be equal to the PTF level stored |
-|                                  | in the Import batch control      |
-|                                  | record, otherwise the Rollback   |
-|                                  | option cannot be used.           |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | No automatic backup is performed |
-|                                  | during a rollback update,        |
-|                                  | therefore it might be a good     |
-|                                  | idea to backup the SMADTA        |
-|                                  | library before performing this   |
-|                                  | process.                         |
-+----------------------------------+----------------------------------+
-
+:::caution
+The Rollback function should only be used when no other Import process has updated the same records in the LSAM database after the batch selected for rollback. Used out of sequence, the Rollback can corrupt the LSAM database. It is the user's responsibility to be aware of all Import data batches, their contents and the sequence of events. In case the database becomes corrupted, manual maintenance of the LSAM master files is required to fix the problems.
+ 
+It is also required that the current LSAM database PTF level be equal to the PTF level stored in the Import batch control record, otherwise the Rollback option cannot be used.
+ 
+No automatic backup is performed during a rollback update, therefore it might be a good idea to backup the SMADTA library before performing this process.
+:::
  
 
 To start the rollback process, begin with the Export/Import menu option

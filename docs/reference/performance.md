@@ -1,55 +1,23 @@
----
-lang: en-us
-title: Tuning LSAM Performance
-viewport: width=device-width, initial-scale=1.0
----
-
 # Tuning LSAM Performance
 
-[]{#aanchor2} This topic provides hints and guidance about procedures and configuration settings that can be used to tune the performance of
-SMA\'s IBM i LSAM servers. This topic may be updated from time to time
-with additional information. It is not presented as a comprehensive
-guide to every possibility.
+This topic provides hints and guidance about procedures and configuration settings that can be used to tune the performance of SMA's IBM i LSAM servers. This topic may be updated from time to time with additional information. It is not presented as a comprehensive guide to every possibility.
 
- 
-
-  ------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White triangle icon on yellow circlular background](../../../Resources/Images/caution-icon(48x48).png "Caution icon")   **CAUTION:** [The procedures described in this topic should only be performed by experienced technical analysts who completely understand the LSAM configuration parameters and also the process of configuring IBM i work management. Incorrect settings can seriously impact the performance of the entire IBM i system and they can also cause the LSAM to report incorrect information about job status.]
-  ------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::caution
+The procedures described in this topic should only be performed by experienced technical analysts who completely understand the LSAM configuration parameters and also the process of configuring IBM i work management. Incorrect settings can seriously impact the performance of the entire IBM i system and they can also cause the LSAM to report incorrect information about job status.
+:::
 
 ## LSAM Parameters that Affect Performance
 
-There are certain IBM i LSAM Parameters that are made accessible for
-user maintenance in order make it possible to tune the LSAM server
-program performance. Among the LSAM functions that are subject to tuning
-are TCP/IP sockets communications and also LSAM monitoring of job
-completion status. There is not a single formula for tuning LSAM
-performance. The best settings for the LSAM Parameters will vary
-depending on the profile of the overall IBM i system work load, the
-level of IBM i system activity, the level of OpCon/xps job scheduling
-activity and the types of jobs being submitted by OpCon/xps, and finally
-also by the capacity of the IBM System i partition resources assigned to
-any one IBM i partition.
+There are certain IBM i LSAM Parameters that are made accessible for user maintenance in order make it possible to tune the LSAM server program performance. Among the LSAM functions that are subject to tuning are TCP/IP sockets communications and also LSAM monitoring of job completion status. There is not a single formula for tuning LSAM performance. The best settings for the LSAM Parameters will vary depending on the profile of the overall IBM i system work load, the level of IBM i system activity, the level of OpCon/xps job scheduling activity and the types of jobs being submitted by OpCon/xps, and finally also by the capacity of the IBM System i partition resources assigned to any one IBM i partition.
 
- 
+This online help includes detailed discussion about each LSAM Parameter, mostly in [IBM i LSAM Configuration](Configuration.md). This topic summarizes groups of parameters to help with the evaluation of how those parameters could be set.
 
-This online help includes detailed discussion about each LSAM Parameter,
-mostly in [IBM i LSAM Configuration](Configuration.md).
-This topic summarizes groups of parameters to help with the evaluation
-of how those parameters could be set.
-
- 
-
-There are presently three groups of LSAM performance parameters, all
-appearing on page 2 of the LSAM Parameters maintenance function (option
-7 on the LSAM main menu).
+There are presently three groups of LSAM performance parameters, all appearing on page 2 of the LSAM Parameters maintenance function (option 7 on the LSAM main menu).
 
 ### Job Scheduling Communications Performance Parameters
 
 Parameters in this group not discussed here are covered in detail in
 [IBM i LSAM Configuration](Configuration.md).
-
- 
 
 It is very important to note that the first parameter, Keep socket open,
 should always be set to Y = yes. This parameter is carried over from
@@ -66,15 +34,13 @@ conversation for a continuing, bi-directional flow of transactions. This
 parameter should never be changed without first consulting with SMA
 Support.
 
- 
-
 There are three parameters that directly affect the second-by-second
 performance of the LSAM job scheduling communications server job (job
 SKTCMN, program CMNSKTR00):
 
--   Control DTAQ wait
--   Control DTAQ frequency
--   Input wait timeout
+- Control DTAQ wait
+- Control DTAQ frequency
+- Input wait timeout
 
 This server job and program are responsible for communications between
 the IBM i LSAM and the SAM (schedule activity monitor) of OpCon/xps,
@@ -83,16 +49,12 @@ communications program uses its performance parameters to balance its
 ability to aggressively handle job scheduling transactions against the
 potential for adversely impacting IBM i system performance.
 
- 
-
 In general, all the LSAM server programs can be tuned for better
 responsiveness AND less impact on system performance by careful
 attention to the IBM i work management configuration, discussed below.
 But if the communication\'s program cycle is well understood, it may
 sometimes be desirable to change one or more of these three performance
 parameters.
-
- 
 
 All of the LSAM communications programs are designed so that they do not
 wait eternally for new transactions to arrive over the TCP/IP socket
@@ -101,8 +63,6 @@ checking for new incoming communications transactions from OpCon/xps,
 they also check for messages prepared by other LSAM server programs that
 need to be sent to OpCon/xps and they check for any operator control
 instructions that may arrive in each program\'s control data queue.
-
- 
 
 The input wait timeout parameter tells the program how long to stop and
 wait for a response from the system when checking for new socket
@@ -116,8 +76,6 @@ quietly, consuming almost no system resources, for as many seconds as
 are specified by this input wait timeout parameter. But this quiet wait
 time must be balanced against the two other tasks this program performs.
 
- 
-
 It is just as important for the LSAM job scheduler communications
 program to send out job status information and other transactions such
 as OpCon/xps Events that the LSAM can generate as it is for the program
@@ -126,13 +84,9 @@ long for socket communications input before it moves to the next step of
 checking the LSAM\'s outgoing transaction data queue (CMNOUTT00) for any
 new messages to send to OpCon/xps.
 
- 
-
 In between managing incoming and outgoing transactions, the LSAM job
 scheduler communications program should also periodically check for
 operator control instructions.
-
- 
 
 Operator control instructions may include a request to start or stop
 logging, or to completely shutdown the program. Obviously, the
@@ -147,8 +101,6 @@ Control DTAQ (control data queue) tell the program the frequency at
 which to check the control data queue, and then how long to pause while
 it waits for new operator instructions.
 
- 
-
 Traditionally, socket communications programs have used the wait time on
 a control data queue as a way to prevent the program from consuming too
 many computer CPU cycles with active data communications activity.
@@ -161,8 +113,6 @@ to zero seconds because the program will then insist on a default value
 of 5 seconds. Therefore, 1 second is the most aggressive setting and it
 is the recommended setting for best LSAM performance.
 
- 
-
 The control data queue frequency parameter tells the communications
 program how to behave during periods of active data communications. As
 long as there are transactions being sent and received, the program
@@ -170,8 +120,6 @@ should normally dedicate itself to data communications and not take time
 to check for less important operator control commands. However, as
 mentioned above, the control data queue should be checked often enough
 to allow an operator to start logging in the midst of unusual activity.
-
- 
 
 The frequency setting is the number of data communications transactions
 the program should handle before it interrupts that process to check for
@@ -184,8 +132,6 @@ conditions, it might make sense to increase this frequency count to a
 higher value in order to increase the volume of transactions per second
 that the LSAM job scheduling server can handle.
 
- 
-
 The default values supplied with the IBM i LSAM software suggest that a
 good starting point is to set both wait times to 1 second and the
 frequency count to 20. If the LSAM performance needs to be improved to
@@ -195,18 +141,14 @@ scheduling communications program seems to be utilizing too many CPU
 seconds, the input wait timeout value could be increased, one second at
 a time.
 
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [Changes made to LSAM performance parameters will only take effect if the LSAM server program(s) are stopped and restarted. It is possible to manually stop just one of the LSAM server programs and then cause it to be restarted by using the LSAM management menu (menu 6), option 1 to Start LSAM. The start-up process knows how to identify which server job needs to be restarted. However, in most cases it is preferred to use option 2 from this menu to stop all the LSAM server programs and then restart them. This method is preferred because it helps to assure that no transaction would be interrupted abnormally.]
-  -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+Changes made to LSAM performance parameters will only take effect if the LSAM server program(s) are stopped and restarted. It is possible to manually stop just one of the LSAM server programs and then cause it to be restarted by using the LSAM management menu (menu 6), option 1 to Start LSAM. The start-up process knows how to identify which server job needs to be restarted. However, in most cases it is preferred to use option 2 from this menu to stop all the LSAM server programs and then restart them. This method is preferred because it helps to assure that no transaction would be interrupted abnormally.
+:::
 
 ### JORS Communications Performance Parameters
 
 Parameters in this group not discussed here are covered in detail in
 [IBM i LSAM Configuration](Configuration.md).
-
- 
 
 JORS means job output retrieval system (or service). For the IBM i LSAM,
 JORS is the function that stores and later retrieves IBM i job log
@@ -214,23 +156,17 @@ reports when the OpCon/xps Schedule functions are used to \"view
 output\" of the job. JORS does not presently support retrieval of any
 other type of job output.
 
- 
-
 The JORS communications performance parameters work exactly the same as
 the job scheduling communications performance parameters. For details,
 please review the previous section of this document. However, the
 LSAM\'s JORS communications server program has a complete different work
 profile from the job scheduling server program.
 
- 
-
 Job scheduling involves a constant flow of transactions that govern the
 operation of many IBM i jobs all at once. Transactions from different
 jobs will overlap each other in the data communications flow. There is
 only the one communications server job handling the entire job
 scheduling activity flow.
-
- 
 
 In contrast, the JORS communications server program actually spawns a
 worker job to handle each JORS request. A single JORS request arriving
@@ -246,22 +182,16 @@ of data from IBM i to the OpCon/xps server. Fortunately, the LSAM JORS
 server sub-program uses data blocking to pump report data at a very
 rapid pace.
 
- 
-
 In general, the JORS server programs are not required to be as
 aggressive as the job scheduling server. Also, the JORS worker jobs tend
 to disappear very quickly from the IBM i system. Therefore, the JORS
 communications performance parameters are not as critical as the job
 scheduling parameters.
 
- 
-
 There are two sets of control data queue performance parameters for
 JORS. One set is for the main server job and the other set is used by
 each sub-job (the spawned worker job). However, at this time there is
 only one input wait timeout value that is shared by both jobs.
-
- 
 
 The default values supplied for the JORS server jobs are set to lazy
 values, the idea being that JORS is a low priority activity. That is,
@@ -281,16 +211,12 @@ Communications Performance Parameters. There is one actual performance
 parameter that governs how the LSAM job completion message monitor
 server program behaves.
 
- 
-
 The Job message idle timer parameter helps to maintain a balance between
 aggressive system activity monitoring and avoiding an adverse impact on
 system performance. Its value must be set low enough that the LSAM job
 completion message monitor program will always stay ahead of any
 OpCon/xps request for a job status report. This parameter is also
 discussed in two places in [IBM i LSAM Configuration](Configuration.md).
-
- 
 
 It is possible for the IBM i LSAM servers issue a false error message
 SMA0097. This can happen if the LSAM job completion message monitor job
@@ -315,8 +241,6 @@ entries and job descriptions. In general, the topic of IBM i work
 management must be well understood in order to take best advantage of
 the information offered in this section of the document.
 
- 
-
 The possible profiles of IBM i configuration and system work loads vary
 so widely that no attempt has been made by SMA to suggest what the best
 configuration is for optimal performance of the set of LSAM server jobs.
@@ -326,8 +250,6 @@ in order to make it easy to install and demonstrate the LSAM software.
 The default installation is also designed to make it very simple to
 remove the LSAM software from the IBM i environment without impacting
 the site\'s work management configuration.
-
- 
 
 However, the default LSAM work management configuration may not perform
 well in a busy system or partition running IBM i. This is because the
@@ -357,8 +279,6 @@ environment where the subsystem description resides will actually be
 able to start or stop the subsystem. The other environment will only be
 able to start or stop its own server jobs.
 
- 
-
 To assign a new subsystem description for use by an LSAM environment,
 enter the name of the subsystem description into that field on page 1 of
 the LSAM Parameters (LSAM main menu, option 7). Each LSAM environment
@@ -366,8 +286,6 @@ may have its own name for the library that takes the role of SMADTA, the
 database library. It is possible for a different job queue to be used by
 each LSAM environment. Refer to the discussion below about the LSAM job
 description for more information.
-
- 
 
 Be sure that subsystem assigned to an LSAM environment has a job queue
 entry for the SMALSAQ00 job queue that resides in the LSAM\'s SMADTA
@@ -378,8 +296,6 @@ some of the LSAM servers spawn additional sub-jobs. (When the SMA File
 Transfer capability is added to the IBM i LSAM, it may be necessary to
 review where those file transfer tasks are running and how many
 concurrently active jobs are anticipated.)
-
- 
 
 Regardless of what subsystem description is used, it is important to
 match the routing entries added to that subsystem description with the
@@ -400,8 +316,6 @@ LSAM server jobs. Please contact SMA Support if it appears that system
 performance would benefit from an ability to set distinct LSAM server
 jobs to different run-time attributes.
 
- 
-
 The SMALSAJ00 job description must reside in the LSAM environment
 library that corresponds to the SMADTA (database library) role. The
 default LSAM installation uses the actual name of SMADTA for this
@@ -410,16 +324,12 @@ different library names, but the LSAM tools for managing multiple
 environments require that one library in the LSAM\'s library list be
 assigned to the SMADTA role.
 
- 
-
 For the purposes of tuning system performance, it is the routing data
 parameter (RTGDTA) that is most important for associating the LSAM
 server jobs with the correct routing entry in the subsystem description
 used by the LSAM servers. The job description routing data must match
 the subsystem description routing entry that specifies the class object
 desired for optimal performance of the LSAM server jobs.
-
- 
 
 The LSAM software makes no assumptions about, and imposes no
 requirements on the SMALSAJ00 job description, other than the name of
@@ -428,8 +338,6 @@ hard-coded into the LSAM software. Also, both the job description and
 the job queue must reside in the SMADTA library of the LSAM environment.
 The SMADTA library name may vary, depending on how the LSAM environment
 was configured.
-
- 
 
 It is possible to share the LSAM server job description for other types
 of jobs, but keep in mind that this job description may be configured
@@ -444,8 +352,6 @@ performance of the LSAM server programs while they are active. Such a
 schedule might be executed at different times when the profile of work
 in the managed IBM i system is changing during a day.
 
- 
-
 A variety of strategies is possible. One simple example that seems
 apparent is the ability to execute a CHGJOB (change job) command that
 would alter the run priority or time slice allocated to one or more of
@@ -455,10 +361,4 @@ names of the LSAM server jobs and the purpose of each, starting with
 also IBM i commands that can be used to vary the allocation of system
 resources among IBM i subsystems.
 
- 
-
 Contact SMA support if further assistance is needed with this topic.
-:::
-
- 
-
