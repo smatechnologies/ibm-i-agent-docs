@@ -24,9 +24,6 @@ The spool file server program performance is controlled mostly by the IBM i job 
 
 The internal performance parameters are stored in a data area called LSAJOR in the SMADTA (or equivalent) library. This control data area is also used as a locking mechanism to prevent duplicate submission of the LSAJOR server job; therefore, the job must be stopped before the control data area can be updated with new values.
 
-Spool File Server Performance Parameters
-
-  ---------------------------------------------------------------------------
                                Display Data Area
                                         
                       Data area . . . . . . . :   LSAJOR
@@ -36,8 +33,8 @@ Spool File Server Performance Parameters
          Text  . . . . . . . . . :   LSAJOR job control & timing parms
                                         
                                           Value
-   Offset      \*\...+\....1\....+\....2\....+\....3\....+\....4\....+\....5
-                 0      \'[0000500015]{style="color: #000000;"}\'   ---------------------------------------------------------------------------
+         Offset      *...+....1....+....2....+....3....+....4....+....5
+                 0      '0000500015'   
 
 The contents of the LSAJOR control data area are defined in the following table.
 

@@ -31,6 +31,40 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'SMA File Transfer',
+      collapsed: true,
+      items: [
+        'file-transfer/overview',
+        'file-transfer/operations',
+        'file-transfer/menu',
+        'file-transfer/screens',
+      ], 
+    },
+    {
+      type: 'category', 
+      label: 'Security and Object Authority',
+      collapsed: true,
+      items: [
+        'security/strategy',
+        'security/work-management-authority',
+        'security/user-profiles',
+        'security/object-authority-matrix',
+        'security/vulnerable-features',
+        'security/screens',
+      ], 
+    },
+    {
+      type: 'category', 
+      label: 'Software Maintenance (PTFs)',
+      collapsed: true,
+      items: [
+        'maintenance/ptf',
+        'maintenance/process',
+        'maintenance/screens',
+      ], 
+    },
+    {
+      type: 'category', 
       label: 'Reference',
       collapsed: true,
       items: [
