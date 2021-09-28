@@ -31,6 +31,37 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'Log File and Database Management',
+      collapsed: true,
+      items: [
+        'logs-database/overview',
+        'logs-database/whats-new',
+        'logs-database/procedures',
+        'logs-database/locations',
+        'logs-database/management',
+        'logs-database/extracting',
+        'logs-database/database-maintenance',
+      ], 
+    },
+    {
+      type: 'category', 
+      label: 'Dynamic Variables',
+      collapsed: true,
+      items: [
+        'dynamic-variables/overview',
+        'dynamic-variables/using',
+        'dynamic-variables/numeric-vs-character',
+        'dynamic-variables/applying',
+        'dynamic-variables/user-defined-programs',
+        'dynamic-variables/function-codes',
+        'dynamic-variables/old-method',
+        'dynamic-variables/nesting',
+        'dynamic-variables/manipulation-commands',
+        'dynamic-variables/maintaining',
+      ], 
+    },
+    {
+      type: 'category', 
       label: 'Operator Replay Scripts',
       collapsed: true,
       items: [
