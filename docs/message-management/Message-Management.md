@@ -4,230 +4,9 @@ title: Message Management
 viewport: width=device-width, initial-scale=1.0
 ---
 
-# Message Management
 
-[]{#aanchor11} The Message Management feature, when enabled, allows the IBM i LSAM to respond to messages issued by jobs. The predefined IBM i
-LSAM responses can deliver answers to messages requiring a response as
-well as send events to SAM when a message appears. This same Message
-Management server function of the LSAM supports the job-specific message
-responses that may be defined for building IBM i job master records in
-the Enterprise Manager.
 
- 
 
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The LSAM Message Management function must be started in order for the job-specific message management defined in the OpCon/xps job master to take effect.]
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-## Message Management Menu
-
-Message Management Menu
-
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [SYSTEMNAME                  ]{style="color: #008000;"}MESSAGE MANAGEMENT MENU[                     00/00/00]{style="color: #008000;"}   USERNAME                                                                16:23:53
-   
-   Select one of the following:
-   
-   
-       1.[ Message management parameters]{style="color: #008000;"}        2.[ Message management logs]{style="color: #008000;"}
-       3.[ Start Message management (STRMSGMNG)]{style="color: #008000;"}        4.[ End Message management (ENDMSGMNG)]{style="color: #008000;"}
-       5.[ Check Message management status (TRPMSGSTS)]{style="color: #008000;"}        6.[ View job completion message table (DSPPFM LSAMSGF00)]{style="color: #008000;"}
-       7.[ Message Management Performance Parameters]{style="color: #008000;"}        8.[ Display Captured Message Data log]{style="color: #008000;"}
-       9.[ Display Data Capture Debug log (response rules log)]{style="color: #008000;"}       10.[ Work with Message Data Capture Definitions]{style="color: #008000;"}
-      11.[ Work with Captured Data Response Rules ]{style="color: #008000;"}    
-  Selection or command
-   ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-   F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
-   F13=Information Assistant   F16=System main menu
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-###### Menu Pathways
-
-Main Menu \> Message management menu (\#2)
-
-###### Options
-
-The options displayed on this menu are explained in the following
-sections of this document. Type an option number in the Selection or
-command line and press \<**Enter**\> to begin using any of the options.
-
-###### Functions
-
--   **F3=Exit**: Returns to the master menu.
--   **F4=Prompt**: Prompts for keywords for any command entered in the
-    Select or command line.
--   **F9=Retrieve**: Retrieves the previous command that was entered on
-    the Select or the command line. If it is pressed multiple times, the
-    system goes further and further back to previous commands.
--   **F12=Cancel**: Returns to the master menu.
--   **F13=Information Assistant**: Branches to the IBM i general help
-    screen.
--   **F16=System main menu**: This is always shown on any
-    system-generated menu screen. It branches to the general command
-    entry menu for IBM i. Return to the previous menu by pressing
-    \<**F3**\> or \<**F12**\>. This function is not commonly used and
-    can be restricted for certain user profiles.
-
-## Message Management Operations
-
-### Start Message Management (STRMSGMNG)
-
-The Start Message Management option tells the LSAM to monitor for
-messages. Message management can be started automatically whenever the
-LSAM servers are started. The automatic start option is documented below
-under the topic F22=Job Parms. The following procedure describes how to
-manually start message management when the automatic option is not being
-used.
-
- 
-
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [Please review the discussion below about Starting Message Management for important information about the warm or cold start mode.]
-  -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
- 
-
-[Turn On Message Management -- Using the LSAM Menu]{.ul} 
-1.  In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
-2.  Enter **2** to choose the **Message management** menu in the SMA
-    Main Menu.
-3.  Enter **3** to choose the **Start Message** management (STRMSGMNG)
-    option in the Message management menu.
-4.  Respond to the operator prompt about the start mode. Refer to
-    [Starting Message Management: Cold vs. Warm](#Starting){.MCXref
-    .xref} and [Maintain Message Management     Parameters](#Maintain) for more information.
-5.  The result of starting message management is that job TRPMSG is
-    submitted to the LSAM subsystem configured in the LSAM Parameters.
-    Confirm that message management is active by using the Check
-    function, as follows.
-6.  Enter **5** to choose the **Check Message management status
-    (TRPMSGSTS)** option. A status window will appear confirming the
-    server job status.
-
-[Turn On Message Management -- Using the LSAM Command]{.ul} 
-1.  In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) **-
-    or -**
-2.  From outside of the LSAM menu system, use the command SMASETLIBL to
-    set the job\'s library list to the LSAM environment library list.
-    For more information on the SMASETLIBL command refer to
-    [SMASETLIBL](LSAM-Environment-Management.md#SMASETLI){.MCXref
-    .xref}.
-3.  From a command entry line (or the CMD parameter of a SBMJOB
-    command), type the LSAM command **STRMSGMNG**. F4=Prompt may be used
-    to view the optional start mode parameter. Refer to [Starting     Message Management: Cold vs. Warm](#Starting) and
-    [Maintain Message Management Parameters](#Maintain)
-    for more information about the start mode.
-4.  The result of starting message management is that job TRPMSG is
-    submitted to the LSAM subsystem configured in the LSAM Parameters.
-    Confirm that message management is active by using the Check
-    function, as follows.
-5.  Enter the command **TRPMSGSTS** to view a window that reports the
-    server status.
-6.  When submitting a job (SBMJOB) to run command STRMSGMNG, the LSAM
-    library list must be in effect for the job to use the STRMSGMNG
-    command. Either specify a job description such as SMALSAJ00 that
-    uses this library list, or specify **INLLIBL(\*CURRENT)** to pass
-    the current job\'s library list to the submitted job.
-7.  The TRPMSGSTS command will not report that the server is active
-    until the submitted job completes normally.
-
-### End Message Management (ENDMSGMNG)
-
-The End Message Management option tells the LSAM discontinue monitoring
-for messages.
-
- 
-
-[Turn Off Message Management]{.ul} 
-1.  In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
-2.  Enter **2** to choose the **Message management menu** in the SMA
-    Main Menu.
-3.  Enter **4** to choose the **End Message management (ENDMSGMNG)**
-    option in the Message management menu.
-4.  The result of ending message management is that job TRPMSG is ended
-    from the LSAM subsystem configured in the LSAM Parameters. Confirm
-    that message management is no longer active by using the Check
-    function, as follows.
-5.  Enter **5** to choose the **Check Message management status
-    (TRPMSGSTS)** option. A status window will appear confirming the
-    server job status.
-
-### Starting Message Management: Cold vs. Warm
-
-The LSAM Message Management server offers a user-controlled option that
-determines the mode in which the server will start. This section
-describes the two start modes and it explains how the start mode may be
-managed using different methods to start the LSAM server job TRPMSG.
-
- 
-
-The default and normal mode of operation for the LSAM Message Management
-server is to use the warm start mode. But it is important to understand
-and carefully control how the server is started, especially if the
-server must be restarted after an unexpected interruption. Using an
-incorrect start mode will either cause important messages to be missed
-or it could cause duplicate Events to be initiated. Sometimes the
-decision about which start mode to select can be assisted by the DSPMSGQ
-tool, described below under Message Management Technical Support Tools.
-
- 
-
-The start mode option (COLDSTART) provided by the LSAM software is a
-switch that tells the Message Management server programs whether they
-should perform a cold start (option 1) or not (option 0). When the
-servers will not perform a cold start, this is referred to as a warm
-start. [A warm start is the normal and default mode of starting the LSAM Message Management server.]{.ul}
-
- 
-
-A cold start of the Message Management server is when the server
-programs start from the beginning of each message queue they will check.
-A warm start is when the server programs attempt to resume processing of
-each message queue from after the last message that was read.
-
- 
-
-If a warm start is requested but the Message Management server cannot
-find the last message processed, it will skip to the end of the message
-queue and process only new messages that arrive. The decision about
-which start mode is most appropriate may depend on how recently the
-Message Management server was last active.
-
- 
-
-A good general rule to follow is this: If the LSAM Message Management
-server was formerly active and it was stopped for only a very short
-time, then a warm start (option 0) would be preferred because it would
-prevent duplicate processing of messages. However, if the server has
-been stopped for a long time, then a cold start (option 1) could be used
-because the message key control file data is too old to be useful.
-Remember, though, that a cold start would process all the messages in
-each message queue. Some queues could contain messages that are too old
-to be useful.
-
- 
-
-There are some tools that can be used by technical support personnel to
-customize a one-time recovery/restart of the server. If a technical
-support person is not available in an emergency situation, perhaps the
-best decision would be to use a warm start. The Positive side effect of
-this decision would be that some messages might be skipped. However,
-this is probably better than processing the same message twice. But that
-decision would also depend on the types of message response rules
-typically used at a given site. Sometimes it is so critical that every
-message be detected, that it would be better to account for duplicate
-processing of one or more messages following a cold start of the server.
-
- 
-
-To understand the optional tools and methods that can be used by
-technical support personnel to create variations in the way the Message
-Management server will start, read How the LSAM Message Management
-Works.
 
 ## How the LSAM Message Management Works
 
@@ -252,10 +31,9 @@ checking message queues works well and the stored message keys are
 normally reliable.
 
  
-
-  -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The message keys that are stored by the LSAM Message Management server could become unreliable if messages are manually deleted from a monitored message queue before the server programs have processed that message and at least one more message that is newer than the message being manually deleted. Avoid manually deleting new messages from a monitored message queue.]
-  -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+The message keys that are stored by the LSAM Message Management server could become unreliable if messages are manually deleted from a monitored message queue before the server programs have processed that message and at least one more message that is newer than the message being manually deleted. Avoid manually deleting new messages from a monitored message queue.
+:::
 
  
 
@@ -757,10 +535,9 @@ One such tool is the LSAM utility command DSPMSGQ. Information about
 this tool is provided here as a hint to technical support personnel.
 
  
-
-  ------------------------------------------------------------------------------------------------------------------------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White \"X\" icon on red circular background](../../../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [Do not attempt to use the DSPMSGQ utility without instructions from SMA Support. This tool can cause unwanted events to occur, either in the LSAM or in OpCon/xps.]
-  ------------------------------------------------------------------------------------------------------------------------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::warning
+Do not attempt to use the DSPMSGQ utility without instructions from SMA Support. This tool can cause unwanted events to occur, either in the LSAM or in OpCon/xps.
+:::
 
  
 
@@ -1142,11 +919,10 @@ LSAM general message management or for the special application of
 message management rules to the LSAM\'s job completion message server
 program.
 
- 
 
-  -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The two alternate methods of computing a reply for inquiry messages are not available at this time for job-level message management, specified for IBM i job master records in the OpCon schedule. However, it is possible to create an LSAM Message Management Parameter record that applies only to a specific job name, achieving the same effect.]
-  -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::note
+The two alternate methods of computing a reply for inquiry messages are not available at this time for job-level message management, specified for IBM i job master records in the OpCon schedule. However, it is possible to create an LSAM Message Management Parameter record that applies only to a specific job name, achieving the same effect.
+:::
 
 #### LSAM Processing of Re-routed Inquiry Messages
 
@@ -1265,7 +1041,7 @@ messenger handler program are illustrated in the following diagram.
 
 User-defined Inquiry Message Handler Program \*ENTRY Parameters
 
-![User-defined Inquiry Message Handler Program \*ENTRY Parameters](../../../Resources/Images/IBM-i/User-defined-Inquiry-Message-Handler-Program-ENTRY-Parameters.png "User-defined Inquiry Message Handler Program *ENTRY Parameters"){.flat}
+![User-defined Inquiry Message Handler Program \*ENTRY Parameters](../Resources/Images/IBM-i/User-defined-Inquiry-Message-Handler-Program-ENTRY-Parameters.png "User-defined Inquiry Message Handler Program *ENTRY Parameters")
 
 For more information about the detailed fields that define an inquiry
 message, refer to the IBM documentation about the IBM i API called
@@ -1337,7 +1113,7 @@ command should be qualified by its library location name, such as:
  
 
   --------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** APPLIB/APPCMD KEYWORD1(value1) KEYWORD2(value2)
+  ![White pencil icon on green circular background](../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** APPLIB/APPCMD KEYWORD1(value1) KEYWORD2(value2)
   --------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------
 
  
@@ -1442,7 +1218,7 @@ would look:
  
 
   --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** \$CONSOLE:DISPLAY,QCMD:WRKJOB OUTPUT(\*PRINT)
+  ![White pencil icon on green circular background](../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** \$CONSOLE:DISPLAY,QCMD:WRKJOB OUTPUT(\*PRINT)
   --------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------
 
  
@@ -1471,7 +1247,7 @@ could be an LSAM Dynamic Variable token. Consider the following example:
  
 
   --------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------
-  ![White pencil icon on green circular background](../../../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** \$CONSOLE:DISPLAY,QCMD:{DYNVAR1}
+  ![White pencil icon on green circular background](../Resources/Images/example-icon(48x48).png "Example icon")   **EXAMPLE:** \$CONSOLE:DISPLAY,QCMD:{DYNVAR1}
   --------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------
 
  
@@ -3388,7 +3164,7 @@ formats.
     A display.
 
       -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-      ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [F10=\$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.]
+      ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [F10=\$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.]
       -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   **F10=Capt AppID (TRPMSGR2C)**: This function key causes a branch to
@@ -3410,7 +3186,7 @@ formats.
     display from any of the display formats.
 
       -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------
-      ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [Using the Enter key from display format 2C will commit all changes from all three display formats to the database.]
+      ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [Using the Enter key from display format 2C will commit all changes from all three display formats to the database.]
       -------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------
 
 -   **F20=Reset Thr**: Similar to the SETMSGTHR command, this function
@@ -3456,7 +3232,7 @@ message.
  
 
   -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The content of the \$MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of \$MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the \$MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.]
+  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The content of the \$MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of \$MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the \$MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.]
   -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  
@@ -3840,13 +3616,13 @@ records:
     not displayed because they are not used with Answer Type Q.
 
   -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It is possible for the F6=Add function and the option 2=Change function to be used to create or change an LSAM message management parameter record into a Monitor Queue type of record by typing a letter \"Q\" into the Answer Type field. In other words, it is not necessary to use F7=Add Queue to create this special type of record. However, once an LSAM Message Management Parameter record has been changed into this special type, it cannot be changed back to another Answer Type. It can only be deleted.]
+  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It is possible for the F6=Add function and the option 2=Change function to be used to create or change an LSAM message management parameter record into a Monitor Queue type of record by typing a letter \"Q\" into the Answer Type field. In other words, it is not necessary to use F7=Add Queue to create this special type of record. However, once an LSAM Message Management Parameter record has been changed into this special type, it cannot be changed back to another Answer Type. It can only be deleted.]
   -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  
 
   ------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White \"X\" icon on red circular background](../../../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [It is possible to use option 4=Delete to remove all records that name a message queue, leaving the LSAM message management server program with no reference to that message queue. If all the LSAM global message management records for a specific message queue are removed, use the F7=Add Queue function to replace them with at least one record for the message queue in order to enable job-level message management to look for messages in that queue. It is recommended that the F17=Subset function be used to verify the filtered list of all message queues that the LSAM may monitor.]
+  ![White \"X\" icon on red circular background](../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [It is possible to use option 4=Delete to remove all records that name a message queue, leaving the LSAM message management server program with no reference to that message queue. If all the LSAM global message management records for a specific message queue are removed, use the F7=Add Queue function to replace them with at least one record for the message queue in order to enable job-level message management to look for messages in that queue. It is recommended that the F17=Subset function be used to verify the filtered list of all message queues that the LSAM may monitor.]
   ------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Work with Message Data Capture Definitions
@@ -3864,7 +3640,7 @@ than one Message Management Parameters record.
  
 
   -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../../../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It may be easier to use the F10=Capture function key from the Message management parameters Create, Copy or Change screens when selecting an Application ID because this helps avoid keystroke errors when long IDs are used. As noted in Menu Pathways here, this same Work With function may be used via that F10 function key.]
+  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It may be easier to use the F10=Capture function key from the Message management parameters Create, Copy or Change screens when selecting an Application ID because this helps avoid keystroke errors when long IDs are used. As noted in Menu Pathways here, this same Work With function may be used via that F10 function key.]
   -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   **Screen Title**: Work with Message Data Capture Definitions

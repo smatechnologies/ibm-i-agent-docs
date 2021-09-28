@@ -31,6 +31,32 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'Events and Utilities',
+      collapsed: false,
+      items: [
+        'events-utilities/menu',
+        'events-utilities/events-operations',
+        'events-utilities/utilities-operations',
+        'events-utilities/lsam-utilities',
+        'events-utilities/events-screens',
+        'events-utilities/utilities-screens',
+        'events-utilities/email',
+      ], 
+    },
+    {
+      type: 'category', 
+      label: 'Restricted Mode and Multi-Step Jobs',
+      collapsed: false,
+      items: [
+        'restricted-mode/menu',
+        'restricted-mode/operations',
+        'restricted-mode/screens',
+        'restricted-mode/multi-step-scripting',
+        'restricted-mode/multi-step-screens',
+      ], 
+    },
+    {
+      type: 'category', 
       label: 'Commands and Utilities',
       collapsed: false,
       items: [
