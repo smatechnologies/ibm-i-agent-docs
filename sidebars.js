@@ -1,10 +1,11 @@
 module.exports = {
   mySidebar: [
     'index',
+    'release-notes',
     {
       type: 'category', 
       label: 'Install',
-      collapsed: false,
+      collapsed: true,
       items: [
         'installation/installation',
         'installation/uninstall',
@@ -13,7 +14,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'Configuration',
-      collapsed: false,
+      collapsed: true,
       items: [
         'configuration/configuration',
       ], 
@@ -21,7 +22,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'Operations',
-      collapsed: false,
+      collapsed: true,
       items: [
         'operations/components',
         'operations/lsam',
