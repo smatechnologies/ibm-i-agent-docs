@@ -3,7 +3,7 @@
 When a program is specified for a Dynamic Variable, the LSAM will call
 that program at run time during the process of replacing the Dynamic
 Variable token with its actual value (or when preparing the string to
-use for updating a job\'s LDA (local data area)). Consider the various
+use for updating a job's LDA (local data area)). Consider the various
 rules that affect how user-defined programs will be used, as described
 in the Fields table above under VALUE and also USRPGM.
 
@@ -13,7 +13,7 @@ input (\*ENTRY) parameters in the user-defined program to match:
 
 Eval UsrLibPgm = %trim(VUSRLIB)
 
-\+ \'/\' + %trim(VUSRPGM)
+\+ '/' + %trim(VUSRPGM)
 
 Call UsrLibPgm
 

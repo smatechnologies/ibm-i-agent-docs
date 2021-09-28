@@ -4,7 +4,7 @@ sidebar_label: 'Overview'
 
 # SMA File Transfer
 
-The IBM i Agent software includes programs and tools that support SMA\'s
+The IBM i Agent software includes programs and tools that support SMA's
 proprietary file transfer protocol. OpCon supports a unique job type
 just for file transfer jobs between systems, and the SMA file transfer
 protocol enables transfer of data between similar or dissimilar computer
@@ -117,7 +117,7 @@ Here are the steps that define the lifetime of one SMAFT job:
     OpCon SAM after all data and the end-of-transfer message have been
     received.
     a.  The method of cooperation between an SMAFT Agent task and the
-        LSAM\'s job scheduling functions may vary among the LSAMs
+        LSAM's job scheduling functions may vary among the LSAMs
         running under different operating systems.
     b.  The IBM i LSAM job scheduler is able to retrieve a list of
         information and/or error messages that the SMAFT Agent job has
@@ -160,7 +160,7 @@ Configuration menu available for each job on a Schedule (accessed, e.g.,
 from the right mouse context menu).
 
 The IBM i SMAFT programs may sometimes send important error messages to
-the IBM i operator\'s message queue (usually QSYSOPR), and they may also
+the IBM i operator's message queue (usually QSYSOPR), and they may also
 record information about errors in the SMAFT log files, when debug
 logging is turned on. But in all cases, an effort is made to communicate
 all SMAFT error conditions to OpCon/xps using XML field codes that allow
@@ -231,7 +231,7 @@ File Transfer jobs; otherwise the data could become corrupted by the IBM
 i CCSID translation functions.
 
 Due to the wide variety of international character sets supported by
-IBM\'s IBM i operating system, the IBM i SMA File Transfer
+IBM's IBM i operating system, the IBM i SMA File Transfer
 communications programs always attempt to discover and honor the CCSID
 that pertains to each SMAFT source or target file. For example, if a
 non-IBM remote SMAFT Server sends a text file with ASCII characters, the

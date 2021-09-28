@@ -8,9 +8,9 @@ Since LSAM version 18.1, it is important to note the two key fields of informati
 
 -   PTF Level: This is the value that is used at the highest level to
     represent the actual patch level of the LSAM software. Although the
-    \"PTF Name\" (also known as the \"PTF Number\" field, such as
+    "PTF Name" (also known as the "PTF Number" field, such as
     PTF181006) is still a unique key that may be used to refer to a
-    patch, SMA will request the \"PTF Level\" value from a client to
+    patch, SMA will request the "PTF Level" value from a client to
     determine that client's patch level for this Agent software.
 -   DB Level: The database level of the LSAM software indicates a
     cut-off point among the PTF Levels where database changes were made
@@ -53,7 +53,7 @@ detail about each step in the procedure.
     will be stored - these can be changed, but the SMALOG library
     benefits from automatic LSAM procedures to purge old save files.
 6.  When two LSAM environments exist in the same IBM i partition, it is
-    recommended that the \"Next Export Library number\" should be set to
+    recommended that the "Next Export Library number" should be set to
     start at some high range, such as 100001, in one of the
     environments. This will help prevent conflicting save file names in
     case data will be exported in both directions between two
@@ -64,7 +64,7 @@ detail about each step in the procedure.
     carefully consider the Target Release value that is used for the
     data export save file. There is a control field where a specific IBM
     i version code may be specified, if necessary. But the normal
-    default is \"\*OSDFT\" which means to use the version code of the
+    default is "\*OSDFT" which means to use the version code of the
     current system. This only needs to be changed if the destination
     partition for the import process is running an older version of
     IBM i. There is a similar TGTRLS option lower down in the control
@@ -121,7 +121,7 @@ detail about each step in the procedure.
     of the LSAM master records in the original Work with list for this
     LSAM feature.
 
-[Manage Export batches]{.ul} 
+[Manage Export batches] 
 1.  If function key F14 was used above to immediately close an Export
     batch and prepare the Export save file, then skip to step 8) below.
 2.  Enter **3** to select the Events and Utilities sub-menu in the SMA
@@ -137,14 +137,14 @@ detail about each step in the procedure.
 6.  Enter **1** to choose the **Message Management Parameters**
     maintenance function in the Message management menu.
 7.  Enter **8** (= Export) to choose one batch that has a status code of
-    \"**A**\" to begin the export process.
+    "**A**" to begin the export process.
 8.  The screen to Initiate Data Export Batch appears. This is the same
     screen that will appear if an immediate export was selected using
     function key \<**F14**\> above. Review the parameters that define
     how the export process will work. Refer to the Screens and Windows
     section of this topic, below, for detailed information about the
     fields on this screen.
-9.  [Take note of the export save file name]{.ul} and the library where     the export save file will be stored, then press \<**Enter**\> to
+9.  [Take note of the export save file name] and the library where     the export save file will be stored, then press \<**Enter**\> to
     start the export batch preparation process.
 10. The program edits the batch export control values, then presents the
     same display with a red instruction line that says to press
@@ -159,14 +159,14 @@ detail about each step in the procedure.
     file belonging to the current interactive job, or it may be found
     under the name of the job that was submitted to batch.
 
-[Manage Import batches]{.ul} 
-1.  []{#aanchor22} It is the user\'s responsibility to copy or move a     save file that is the export data batch to the correct library in
+[Manage Import batches] 
+1.  []{#aanchor22} It is the user's responsibility to copy or move a     save file that is the export data batch to the correct library in
     the correct IBM i partition where the data will be imported. If the
     target IBM i LSAM database exists within the same IBM i partition,
     then it is not necessary to move the export batch save file(s) -
     they may be imported from the same library (such as SMALOG).
 
-2.  It is also the user\'s responsibility to make a backup of the LSAM
+2.  It is also the user's responsibility to make a backup of the LSAM
     database library (default name is SMADTA) before performing any data
     import operation. There are rollback tools that can help if an error
     occurs, but the only way to guarantee protection of the database is
@@ -192,18 +192,18 @@ detail about each step in the procedure.
 8.  The display will show a list of save files that are not already
     imported in the default library (named in the Export/Import options
     configuration). If a different library should be searched, press the
-    \<**Shift+Tab**\> keys to move up to the \"Search new library\"
+    \<**Shift+Tab**\> keys to move up to the "Search new library"
     field and then press \<**Enter**\> to display a new list.
 
 9.  Type a **1** next to one save file that should be imported, then
     press \<**Enter**\> to being the Import process.
 
-10. The display shows the \"Add Import Batch\" control screen. If the
+10. The display shows the "Add Import Batch" control screen. If the
     import save file exists within the same IBM i partition as the
     export environment, warning messages and override options are
     offered. Refer to Screens and Windows later in this topic for
     detailed information about each field and option. In this case the
-    default option set suggests Replace option \"**A**\" to use an
+    default option set suggests Replace option "**A**" to use an
     existing export work library for the import process.
 
 11. When the selected save file has been accepted for import, the
@@ -220,7 +220,7 @@ detail about each step in the procedure.
 14. When the import is performed within the same IBM i partition as the
     export, a warning will appear on the display for Initiate Data
     Import Batch. In this case, choose an option for the field label
-    \"RSTLIB (1) or Skip (0)?\" Typically, option **0** is a good choice
+    "RSTLIB (1) or Skip (0)?" Typically, option **0** is a good choice
     because it avoids the unnecessary step of restoring the import work
     library from the save file, since that library already exists on the
     system. Type any other processing option changes, then press
@@ -259,9 +259,9 @@ as a live Production environment.
 Most of the IBM i LSAM menu-configured features are supported by complex
 sets of data that reside in more than one database file. It is necessary
 to copy all of the related data from each file whenever a primary master
-record should be copied between LSAM environments. The term \"primary
-master record\" refers to the main database file that defines each of
-the LSAM\'s features. In general, there is a separate LSAM sub-menu for
+record should be copied between LSAM environments. The term "primary
+master record" refers to the main database file that defines each of
+the LSAM's features. In general, there is a separate LSAM sub-menu for
 managing each of these features. Examples of the features, with
 corresponding menus, include Job Tracking, Message Management and
 Operator Replay scripting.
@@ -299,7 +299,7 @@ export data are separated according to the LSAM feature. That is, a
 batch of Message management records will only include records from that
 LSAM function, whereas a batch of Operator Replay scripts will only
 include Operator Replay script data. The term used by the Export/Import
-tools for each of these different LSAM functions is \"Group\", and each
+tools for each of these different LSAM functions is "Group", and each
 group has a unique Group ID.
 
  
@@ -460,7 +460,7 @@ data.
 
 It is possible that if an import batch is rolled back after some later
 batch was imported, the rollback could cause data in the LSAM database
-to become corrupted. It is the user\'s responsibility to know about the
+to become corrupted. It is the user's responsibility to know about the
 contents of each import data batch in order to prevent possible overlaps
 like this. If LSAM data does become corrupted after a rollback
 operation, manual maintenance using LSAM menu functions is the only
@@ -523,7 +523,7 @@ Utilities menu (\# 10) \> option 7
 ###### Usage Notes
 
 When two LSAM environments exist in the same IBM i partition, it is
-recommended that the \"Next Export Library number\" should be set to
+recommended that the "Next Export Library number" should be set to
 start at some high range, such as 100001, in one of the environments.
 This will help prevent conflicting save file names in case data will be
 exported in both directions between two environments. Use a similar, but
@@ -548,7 +548,7 @@ running interactively from the export or import request screens.
 
  
 
-On the next screen use the field \"Days to retain Ex/Imp data\" to
+On the next screen use the field "Days to retain Ex/Imp data" to
 indicated to the LSAM daily maintenance server job when Export/Import
 control data and the related working libraries should be deleted after
 their last use.
@@ -584,7 +584,7 @@ their last use.
 |                                  | preparing a batch of data for    |
 |                                  | export. Using the default value  |
 |                                  | of SMALOG makes it possible to   |
-|                                  | take advantage of the LSAM\'s    |
+|                                  | take advantage of the LSAM's    |
 |                                  | tools that can be used to        |
 |                                  | automatically purge aged save    |
 |                                  | files from this library.         |
@@ -808,7 +808,7 @@ is used to close out a batch and compress it into an IBM i save file.
     record and press \<**Enter**\> to proceed to the Work with Export
     Batch Details list display.
 -   **8=Export**: Type option 8 next to any export batch that shows a
-    status of \'**A**\' and press \<**Enter**\> to initiate the process
+    status of '**A**' and press \<**Enter**\> to initiate the process
     of closing out that batch and compressing the temporary export
     staging library to an IBM i save file.
 
@@ -831,7 +831,7 @@ is used to close out a batch and compress it into an IBM i save file.
 -   **F16=Search next**: Starts, or continues a search for the value
     that was typed in the Search argument field at the top, right of the
     display. When used to continue a search, the argument value used
-    appears in the \"Last search\" field at the top, right of the
+    appears in the "Last search" field at the top, right of the
     display, and the display will be positioned with the cursor on the
     Opt field next to the record that matches the search argument.
 -   **F18=Bottom**: Positions the list display to the last record that
@@ -981,7 +981,7 @@ Utilities menu (\# 10) \> option 1 \> option 4
 -   **F3=Exit**: Quits the Delete function and return to the LSAM
     sub-menu.
 -   **F12=Cancel**: Quits the Delete function and returns to the list
-    display, with any options \"4\" still showing.
+    display, with any options "4" still showing.
 -   **F14=Confirm**: Starts the delete process that actually updates the
     LSAM files and removes one or more batch save files and temporary
     batch assembly libraries.
@@ -1174,7 +1174,7 @@ single batch.
 Closing a batch means that the temporary library used to assemble the
 various files for export is saved to a single IBM i save file that has
 the same name as the temporary library. During this process, the control
-record for the export batch has its status changed to \'**Z**\' to
+record for the export batch has its status changed to '**Z**' to
 indicate the batch is closed and ready for transportation to another
 LSAM environment.
 
@@ -1592,9 +1592,9 @@ Utilities menu (\# 10) \> option 3
 |                | date) order.                                       |
 +----------------+----------------------------------------------------+
 | Type           | Use option 5=Entry detail to see a description for |
-|                | each entry type. For example, the value \"**I**\"  |
+|                | each entry type. For example, the value "**I**"  |
 |                | indicates a simple Information entry, but a type   |
-|                | of \"**E**\" marks an error.                       |
+|                | of "**E**" marks an error.                       |
 +----------------+----------------------------------------------------+
 | MM-DD-HH.MM    | From the complete time stamp of each log entry     |
 |                | (which is used to sort the list in Date sequence), |
@@ -1747,10 +1747,10 @@ Utilities menu (\# 10) \> option 4
     record and press \<**Enter**\> to proceed to the Work with Import
     Batch Details list display.
 -   **8=Import**: Type option 8 next to any import batch that shows a
-    status of \'**I**\' and press \<**Enter**\> to initiate the process
+    status of '**I**' and press \<**Enter**\> to initiate the process
     of posting the data to the LSAM database. (Refer to Import Batch
     Posting, below.)
--   **9=Rollback**: Batches showing a status of \'**D**\' are eligible
+-   **9=Rollback**: Batches showing a status of '**D**' are eligible
     for Rollback, in case the imported data produced undesirable
     results. Type a **9** next to the control record and press
     \<**Enter**\> to initiate the rollback process.
@@ -1777,7 +1777,7 @@ Utilities menu (\# 10) \> option 4
 -   **F16=Search next**: Starts, or continues a search for the value
     that was typed in the Search argument field at the top, right of the
     display. When used to continue a search, the argument value used
-    appears in the \"Last search\" field at the top, right of the
+    appears in the "Last search" field at the top, right of the
     display, and the display will be positioned with the cursor on the
     Opt field next to the record that matches the search argument.
 -   **F18=Bottom**: Positions the list display to the last record that
@@ -1893,7 +1893,7 @@ Utilities menu (\# 10) \> option 1 \> option 4
 -   **F3=Exit**: Quits the Delete function and return to the LSAM
     sub-menu.
 -   **F12=Cancel**: Quits the Delete function and returns to the list
-    display, with any options \"4\" still showing.
+    display, with any options "4" still showing.
 -   **F14=Confirm**: Starts the delete process that actually updates the
     LSAM files and removes one or more batch save files and temporary
     batch assembly libraries.
@@ -2906,8 +2906,8 @@ To start the rollback process, begin with the Export/Import menu option
 **4** - Work with Import Batches. When this list is first displayed, a
 subset rule is in effect limiting the display to only active batches
 that have not yet been posted. Press \<**F15**\> to change the Status
-subset rule. Choose either subset rule **5** for \"Done with import\" or
-rule **9** for \"Show all\" in order to find the Import batch that needs
+subset rule. Choose either subset rule **5** for "Done with import" or
+rule **9** for "Show all" in order to find the Import batch that needs
 to be rolled back.
 
  

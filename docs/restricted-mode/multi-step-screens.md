@@ -110,7 +110,7 @@ functions.
     library, file and source member where the Script Steps may be found.
     When the type is SCRMBR, the list of Script Steps will show the
     actual records found in this source file member. The screen prompts
-    recommend using the LSAM\'s source file DBFCMDSRC to contain script
+    recommend using the LSAM's source file DBFCMDSRC to contain script
     source CL members, since this file is well controlled and supported
     by the LSAM, but any IBM i source file can be used instead.
 - **Last maintenance user, timestamp**: Shows the IBM i user profile
@@ -156,7 +156,7 @@ Script Steps Flow Chart
   \|..              0020   SMASUBR SCRIPT(TEST3) RSTLABEL(LBL3A) JOBTYPE(T) /\* Co
   \|..           SMASUBR    Script: TEST3  Label: LBL3A
   \|..                         WARNING: Branch Label not found
-  \|..RESTART030    0030   SMADTA/DBFCMDSRC(MJSTEP1) = MJLBL01:   SNDMSG MSG(\'Tes
+  \|..RESTART030    0030   SMADTA/DBFCMDSRC(MJSTEP1) = MJLBL01:   SNDMSG MSG('Tes
   \|..              0040   SMAGOTO SCRIPT(TEST2) STEP(RESTART020)
   \|..           SMAGOTO    Script: TEST2  Label: RESTART020
   \|..           \-\--\>          (See analysis of GOTO target above/below)
@@ -240,7 +240,7 @@ Job Scripts \> Option 1 = Script Steps
     an external source library/file(member) instead of using the Command
     field on the step record itself. The contents of the external source
     member will be displayed, using one of the IBM i source file member
-    display tools that are available on a user\'s system. Use function
+    display tools that are available on a user's system. Use function
     key \<**F11**\> to vary the View of this list until the Command line
     and/or Library/File(Member) value is shown for each Step, in order
     to determine which Step lines can use option 6.
@@ -274,7 +274,7 @@ Job Scripts \> Option 1 = Script Steps
 
 - **F11=View**: This function key changes the content of the right
     side of the list display to show different parts of each Step
-    record. The current View is indicated by the \"View\" field that is
+    record. The current View is indicated by the "View" field that is
     on the right side of the column headers. Views include:
 
     1. Command Text or Source LIBRARY/FILE(MEMBER)
@@ -309,19 +309,19 @@ Job Scripts \> Option 1 = Script Steps
 - **Seq \#**: The sequence number assigned to each Script. Function
     key F7 can be used, when necessary, to automatically re-sequence all
     of the Steps in the current Script.
-- **S (Status)**: The status of a Step master record can be \"I\" =
+- **S (Status)**: The status of a Step master record can be "I" =
     Inactive (will not be considered during Script execution, except for
     a LABEL if it is not blank). Otherwise, if the status is blank or
-    \"A\", the Script Step is active.
+    "A", the Script Step is active.
 - **F (Fail/Ignore)**: The list uses this column to show the Step
-    record\'s \"Error Fail/Ignore\" field value. This flag tells the
+    record's "Error Fail/Ignore" field value. This flag tells the
     script driver what to do when the step command fails: either force
     the script job to Fail, or Ignore the error and allow the script to
     continue.
 - **Label**: The LABEL that is optionally assigned to a Script Step.
     Labels are used for Script restart logic, for branching controls,
     and for reporting Script job progress to OpCon.
-- **CNT**: This is a \"Continuation\" code field, reserved for future
+- **CNT**: This is a "Continuation" code field, reserved for future
     use when Script Step qualifier rules may be combined into a complex
     qualification formula. (This field is not currently supported.)
 - **Step Description/Command text/Qualifier/**: Depending on the
@@ -436,7 +436,7 @@ functions. For SRCMBR records, only option 5=Display is available.
     refer to an external source library/file(member) instead of using
     the Command field on the step record itself. The contents of the
     external source member will be displayed, using one of the IBM i
-    source file member display tools that are available on a user\'s
+    source file member display tools that are available on a user's
     system.
 
 - **F8=DynVar**: Requests a list of available Dynamic Variable token
@@ -490,16 +490,16 @@ functions. For SRCMBR records, only option 5=Display is available.
         the error response command should be changed.
   - ON_RESTART: This value marks an optional Step record that is
         only executed if a Script is restarted by the STRMLTJOB command
-        using a value other than \"\*FIRST\" in the RSTLABEL parameter,
+        using a value other than "\*FIRST" in the RSTLABEL parameter,
         before the Script resumes processing. This special label value
         can be used only once in a Script.
-- **Error Fail/Ignore**: Use a value of \"F\" = Fail to tell the
+- **Error Fail/Ignore**: Use a value of "F" = Fail to tell the
     script driver program that if the command in this step fails, the
     whole script job should stop and be marked failed. Otherwise, a
-    value of blank or \"I\" (Ignore) tells the script driver to ignore
+    value of blank or "I" (Ignore) tells the script driver to ignore
     errors and continue processing the next script step. If there is an
     ON_ERROR command registered, it will be executed even when the
-    failed step is marked \"I\" for Ignore. To avoid this behavior,
+    failed step is marked "I" for Ignore. To avoid this behavior,
     insert another ON_ERROR step that will change the currently
     registered ON_ERROR command to perform a command that has no
     important effect. The value of this field on a specially labeled
@@ -509,11 +509,11 @@ functions. For SRCMBR records, only option 5=Display is available.
     records that were marked F=Fail when their command has failed will
     already cause the Script job to fail, whether or not the ON_ERROR
     registered command was successful.)
-- **Status**: A value of \"I\" means inactive, and the Script Step
+- **Status**: A value of "I" means inactive, and the Script Step
     will be bypassed by the script driver program. However, LABELs on
     Inactive records will still be useful. To disable a LABEL on an
     Inactive record, remove the LABEL and update that field to blanks. A
-    value of blank or \"A\" means the Step record is active.
+    value of blank or "A" means the Step record is active.
 - **Description**: The description of the purpose of this Step record.
     (There is no description when a source member record is being
     displayed.)
@@ -656,7 +656,7 @@ The STRMLTJOB command, located in the SMAGPL library, is used to execute
 multi-step job scripts. It can be executed from OpCon using a simple IBM
 i batch job, and it can also be executed in test mode (not connected to
 OpCon) from an IBM i command line or from a submitted batch job by
-setting the JOBTYPE parameter to \"T\" for test mode.
+setting the JOBTYPE parameter to "T" for test mode.
 
 STRMLTJOB Command Prompt with Keywords
 
@@ -675,7 +675,7 @@ Script name  . . . . . . . . . . SCRIPT         [          
   ----------------------------------------------------------------------------------------------------
 
 Additional important information about the use and impact of the command
-parameters may be found in the \"More Information\...\" section above,
+parameters may be found in the "More Information\..." section above,
 in this part of the topic about Multi-Step Jobs.
 
 ##### Command Parameters
@@ -692,18 +692,18 @@ in this part of the topic about Multi-Step Jobs.
         parameter to specify a step by its sequence number, and numeric
         values can also be used to control the restart point with a
         Control Language source member. More information about restart
-        logic is provided above in the \"More Information\...\" section
+        logic is provided above in the "More Information\..." section
         of Multi-Step Job scripting.
   - Be aware that a script may contain a specially labeled
         ON_RESTART step which will always be executed before the script
         execution then branches to the step indicated in this parameter.
-- **JOBTYPE: Job type: T=test, O=OpCon**: The default value of \"O\"
+- **JOBTYPE: Job type: T=test, O=OpCon**: The default value of "O"
     indicates to the command driver program that it was started by OpCon
     and that it should communication step label progress messages and
     the overall job results back to OpCon.
   - When the command is started directly from an IBM i command line,
         or from an IBM i batch job not started by OpCon, set this
-        parameter to a value of \"T\" to indicate test mode, which
+        parameter to a value of "T" to indicate test mode, which
         really means that the command driver will not attempt to
         communicate job results to OpCon.
   - In OpCon mode, the script driver program sends important job
@@ -717,7 +717,7 @@ in this part of the topic about Multi-Step Jobs.
 - **JOBLOG: Write to job log: Y/N**: The script driver program always
     writes script execution messages to the LSAM Multi-Step Job log
     file. The entries in this file may be viewed using the LSAM sub-menu
-    5, option 6. Set this parameter to \"Y\" = yes to tell the script
+    5, option 6. Set this parameter to "Y" = yes to tell the script
     driver program to also write the log entries as messages added to
     the IBM i job log report.
   - It is often easiest to diagnose script failures when the job log
@@ -744,11 +744,11 @@ in this part of the topic about Multi-Step Jobs.
   - Many LSAM utility commands located in the SMAGPL library, like
         STRMLTJOB, have their PRDLIB command attribute set to match the
         name of the SMAGPL library where the command is located. The
-        PRDLIB value then controls a temporary change to the job\'s
+        PRDLIB value then controls a temporary change to the job's
         library list, if that is necessary, so that all objects and
         files required for script execution will be available to the
         job. This command parameter supports special-purpose internal
         operations. Normally the value of this parameter should be left
         set to \*DEFAULT, indicating that the LSAM environment
-        supporting the script execution is defined by the script job\'s
+        supporting the script execution is defined by the script job's
         library list.

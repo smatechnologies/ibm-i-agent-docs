@@ -120,7 +120,7 @@ SAVRSTD20W3
 |                 |           |          | the most commonly   |
 |                 |           |          | used Restricted     |
 |                 |           |          | Mode script be      |
-|                 |           |          | named \"\*DEFAULT\" |
+|                 |           |          | named "\*DEFAULT" |
 |                 |           |          | in order to support |
 |                 |           |          | the default action  |
 |                 |           |          | of the STRSAVRST    |
@@ -350,8 +350,8 @@ The same format of Options Detail screen is displayed for both option
 |                  |                  |          | [Optional        | |                  |                  |          | ON_ERROR Script  |
 |                  |                  |          | Action           |
 |                  |                  |          | Code](#O         |
-|                  |                  |          | ptional){.MCXref |
-|                  |                  |          | .xref} about the |
+|                  |                  |          | ptional) |
+|                  |                  |          |  about the |
 |                  |                  |          | special ON_ERROR |
 |                  |                  |          | Action code.\*   |
 +------------------+------------------+----------+------------------+
@@ -538,10 +538,10 @@ The same format of Options Detail screen is displayed for both option
 |                                  | would be assigned to an ON_ERROR |
 |                                  | Action is an OpCon/xps Event.    |
 |                                  | Refer to [Events and Utilities   | |                                  | Menu](Events-and               |
-|                                  | -Utilities-Menu.md){.MCXref |
-|                                  | .xref} and [Commands and         | |                                  | Utilities](Command               |
-|                                  | s-and-Utilities.md){.MCXref |
-|                                  | .xref} for more information      |
+|                                  | -Utilities-Menu.md) |
+|                                  |  and [Commands and         | |                                  | Utilities](Command               |
+|                                  | s-and-Utilities.md) |
+|                                  |  for more information      |
 |                                  | about the available OpCon/xps    |
 |                                  | Event commands that may be       |
 |                                  | specified. As with all           |
@@ -811,11 +811,11 @@ not be the same as the Restricted Mode environment itself, shown on the
 previous display format (above). This is because the environment name is
 only a label for the special library list which will be in effect during
 Restricted Mode operations. For more information, refer to
-[SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG){.MCXref
-.xref}. Regarding the discussion about Multiple Environment Management,
+[SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG)
+. Regarding the discussion about Multiple Environment Management,
 refer to [LSAM Environment Management](LSAM-Environment-Management.md#top) and
-[Installing Multiple Environments](Installing-Multiple-Environments.md#top){.MCXref
-.xref}.
+[Installing Multiple Environments](Installing-Multiple-Environments.md#top)
+.
 
 - **Screen Title**: Restricted Mode Update SMASAV
 - **Screen ID**: SAVRSTD21-2
@@ -948,7 +948,7 @@ key to view its details.
 ### Restricted Mode Activity History Detail
 
 Shows extended detail about the activity selected from the list of steps
-in a job\'s history.
+in a job's history.
 
 - **Screen Title**: Restricted Mode Activity History Detail
 - **Screen ID**: SAVRSTD05-5

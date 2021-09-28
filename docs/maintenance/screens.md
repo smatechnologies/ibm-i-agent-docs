@@ -67,13 +67,13 @@ is discussed above, among the operational guidance topics.
 
 Special attention is called to the first data entry field on this
 display: PTF Source. Although there are four different methods supported
-for distributing and installing LSAM PTFs, most clients of SMA Technologies are using the \"IFS\" method because
+for distributing and installing LSAM PTFs, most clients of SMA Technologies are using the "IFS" method because
 it does not require penetration of firewalls protecting the IBM i
 partition, and because this well-documented installation method is fast
 and easy to use. However, sites that operate a large number of IBM i
 partitions inside of a secured local network could take advantage of the
 fully automated distribution and installation method that is supported
-by the PTF source of \"FTP.\"
+by the PTF source of "FTP."
 
 ##### Menu Pathways
 
@@ -90,8 +90,8 @@ Main Menu \> PTF and Security menu (\#9) \> PTF options configuration
 |                                 | to the IBM i partition in four    |
 |                                 | different ways. SMA Technologies  |
 |                                 | recommends using the IFS method.  |
-|                                 | Refer to \"Options for PTF        |
-|                                 | Distribution\" in this section    |
+|                                 | Refer to "Options for PTF        |
+|                                 | Distribution" in this section    |
 |                                 | for an explanation of the         |
 |                                 | requirements for using any of     |
 |                                 | these options.                    |
@@ -119,7 +119,7 @@ Main Menu \> PTF and Security menu (\#9) \> PTF options configuration
 |                                 |     transferred by the LSAM       |
 |                                 |     administrator to a directory  |
 |                                 |     of the /root file system in   |
-|                                 |     the IBM i partition\'s        |
+|                                 |     the IBM i partition's        |
 |                                 |     Integrated File System (IFS), |
 |                                 |     before starting the LSAM PTF  |
 |                                 |     installation process.         |
@@ -141,12 +141,12 @@ Main Menu \> PTF and Security menu (\#9) \> PTF options configuration
 |                                 |     LSAM PTF installation         |
 |                                 |     process.                      |
 +---------------------------------+-----------------------------------+
-| SMA ftp user                    | For the PTF source \"FTP\" enter  |
+| SMA ftp user                    | For the PTF source "FTP" enter  |
 |                                 | the user ID required for the      |
 |                                 | client to log into the SMA        |
 |                                 | Technologies secure ftp server.   |
 +---------------------------------+-----------------------------------+
-| ftp password                    | For the PTF source \"FTP\" enter  |
+| ftp password                    | For the PTF source "FTP" enter  |
 |                                 | the password associated with the  |
 |                                 | ftp user into this hidden data    |
 |                                 | value field.                      |
@@ -158,7 +158,7 @@ Main Menu \> PTF and Security menu (\#9) \> PTF options configuration
 |                                 | field is what the user believes   |
 |                                 | was typed into the other field.   |
 +---------------------------------+-----------------------------------+
-| FTP URL or IP address           | For the PTF source \"FTP\" enter  |
+| FTP URL or IP address           | For the PTF source "FTP" enter  |
 |                                 | the URL or IP address of the [SMA | |                                 | T                                 |
 |                                 | echnologies]{.GeneralCompanyName} |
 |                                 | secured ftp server, or of a local |
@@ -173,8 +173,8 @@ Main Menu \> PTF and Security menu (\#9) \> PTF options configuration
 |                                 | the server address may have       |
 |                                 | changed.                          |
 +---------------------------------+-----------------------------------+
-| Source directory or path        | Refer to the \"Options for PTF    |
-|                                 | Distribution\" topic in this      |
+| Source directory or path        | Refer to the "Options for PTF    |
+|                                 | Distribution" topic in this      |
 |                                 | section for detailed instructions |
 |                                 | about the form of the directory   |
 |                                 | or path value that is required,   |
@@ -386,7 +386,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with LSAM PTFs (\#1)
 |                    | -   LSAM = the LSAM Name, known in OpCon as    |
 |                    |     the Machine Name                           |
 |                    | -   SMAGPL = the name of the DB2 library that  |
-|                    |     contains the Agent\'s convenience          |
+|                    |     contains the Agent's convenience          |
 |                    |     utilities; usually SMAGPL (or its          |
 |                    |     equivalent), some older sites had used     |
 |                    |     QGPL to hold these LSAM tools              |
@@ -468,7 +468,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with LSAM PTFs (\#1)
 |                    |     details)                                   |
 |                    | -   R = rolled back                            |
 +--------------------+------------------------------------------------+
-| Dwn                | Down: This column shows a value of \'1\' if    |
+| Dwn                | Down: This column shows a value of '1' if    |
 |                    | the PTF is marked as requiring that any of the |
 |                    | LSAM server jobs must be stopped while the PTF |
 |                    | is applied. Be sure to plan carefully for LSAM |
@@ -525,7 +525,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with LSAM PTFs (\#1)
     as using the LSAM menu single PTF application function.
 - **7=Details**: Select a PTF to view a list of the LSAM software
     objects affected by this PTF.
-- **8=Instr**: If a PTF shows a \'1\' in the PIn column, option 8 may
+- **8=Instr**: If a PTF shows a '1' in the PIn column, option 8 may
     be used to view the PTF source file member that contains the
     post-install instructions text.
 
@@ -702,7 +702,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                   | be used instead of the original rollback file.) |
 +-------------------+-------------------------------------------------+
 | Updt GPL/UTL/LSA  | -   These three indicators are each set to a    |
-|                   |     value of \'1\' to indicate when a PTF will  |
+|                   |     value of '1' to indicate when a PTF will  |
 |                   |     affect:                                     |
 |                   |     -   GPL = The SMAGPL library objects for    |
 |                   |         LSAM environment control, may be the    |
@@ -716,7 +716,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                   |     where a PTF affects only the GPL and/or UTL |
 |                   |     libraries, and not the LSAM libraries.      |
 +-------------------+-------------------------------------------------+
-| Post-Inst/DocRev  | These indicators are set to a value of \'1\'    |
+| Post-Inst/DocRev  | These indicators are set to a value of '1'    |
 |                   | if:                                             |
 |                   |                                                 |
 |                   | -   The PTF includes post-install procedures    |
@@ -729,9 +729,9 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                   |                                                 |
 |                   | -   Current status: blank=not applied,          |
 |                   |     A=applied, R=rolled back.                   |
-|                   | -   Ever applied: If \'1\', the last applied    |
+|                   | -   Ever applied: If '1', the last applied    |
 |                   |     date shows below this flag.                 |
-|                   | -   RBK eligible: If not set to \'1\', a PTF    |
+|                   | -   RBK eligible: If not set to '1', a PTF    |
 |                   |     may not be rolled back. This may imply that |
 |                   |     any previous PTFs with dependencies on this |
 |                   |     PTF may also not be rolled back. In an      |
@@ -743,10 +743,10 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                   |     problem would normally be another PTF to    |
 |                   |     fix the bad PTF.                            |
 |                   | -   Ever rollback: If this field is set to      |
-|                   |     \'1\', a last rollback date will appear     |
+|                   |     '1', a last rollback date will appear     |
 |                   |     below the flag. If a re-applied PTF must be |
 |                   |     rolled back a second time, the setting of   |
-|                   |     this flag at \'1\' would signal that a      |
+|                   |     this flag at '1' would signal that a      |
 |                   |     secondary rollback save file will be        |
 |                   |     created.                                    |
 +-------------------+-------------------------------------------------+
@@ -757,11 +757,11 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                   |     by groups so that, for example, it may not  |
 |                   |     be necessary to stop job scheduling if only |
 |                   |     the SMAFT server is affected.               |
-|                   | -   The \"Any function\" flag is an overall     |
+|                   | -   The "Any function" flag is an overall     |
 |                   |     indicator that also shows on the list of    |
-|                   |     PTFs. This flag will be set to \'1\' if any |
+|                   |     PTFs. This flag will be set to '1' if any |
 |                   |     of the other LSAM server sub-group flags    |
-|                   |     are set to \'1\'. If any PTF down time is   |
+|                   |     are set to '1'. If any PTF down time is   |
 |                   |     required, an analysis of these detailed     |
 |                   |     flags will help the site determine the      |
 |                   |     impact and planning of the required down    |
@@ -783,7 +783,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 +-------------------+-------------------------------------------------+
 | Environ           | The name of the LSAM environment that this PTF  |
 |                   | control record is assigned to. Unapplied PTFs   |
-|                   | will always show a value of \"SMAGPL\" in this  |
+|                   | will always show a value of "SMAGPL" in this  |
 |                   | field; applied PTFs will show the name of the   |
 |                   | current LSAM in this field.                     |
 +-------------------+-------------------------------------------------+
@@ -818,7 +818,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
     IBM i SEU utility display of the text of the post-install
     instructions source member.
 - **F22=Find conflicts**: This function key may be used to discover
-    any PTFs that would conflict with the current PTF\'s next possible
+    any PTFs that would conflict with the current PTF's next possible
     operation. If a PTF is unapplied or rolled back, the conflicts would
     be for any prior PTFs that are required. If a PTF is applied, then
     the conflicts would be for any future PTF already applied that would

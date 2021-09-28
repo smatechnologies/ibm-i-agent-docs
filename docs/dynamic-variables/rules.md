@@ -82,7 +82,7 @@ Dynamic Variables:
     job definitions would be to insert an OpCon property token into the
     command string where the SETDYNVAR VALUE parameter is specified.
     This would allow any property value computed by OpCon to be
-    transmitted to the LSAM, where it could then become part of a job\'s
+    transmitted to the LSAM, where it could then become part of a job's
     LDA content, used as a SBMJOB command parameter value or used to
     modify the Call command string of the job. Here are examples of how
     the command could be set up to utilize OpCon properties:

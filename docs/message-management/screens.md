@@ -37,7 +37,7 @@ performance parameters (\#7)
 |                      |                      | -   A smaller number |
 |                      |                      |     of seconds will  |
 |                      |                      |     improve the      |
-|                      |                      |     LSAM\'s ability  |
+|                      |                      |     LSAM's ability  |
 |                      |                      |     to manage        |
 |                      |                      |     messages from    |
 |                      |                      |     individual jobs  |
@@ -324,10 +324,10 @@ performance parameters (\#7)
 |                      |                      | Parameter per        |
 |                      |                      | message.             |
 +----------------------+----------------------+----------------------+
-| \$MSG handle single  | E(blank, B, E)       | An optional edit     |
+| $MSG handle single  | E(blank, B, E)       | An optional edit     |
 | quotes               |                      | that should be       |
 |                      |                      | performed whenever   |
-|                      |                      | the \$MSG special    |
+|                      |                      | the $MSG special    |
 |                      |                      | variable is used in  |
 |                      |                      | the Message          |
 |                      |                      | Management Command   |
@@ -342,12 +342,12 @@ performance parameters (\#7)
 |                      |                      | -   E = escape the   |
 |                      |                      |     single quote by  |
 |                      |                      |     doubling it      |
-|                      |                      |     (\'\')           |
+|                      |                      |     ('')           |
 +----------------------+----------------------+----------------------+
-| \$MSG handle comma   | B(blank, B)          | An optional edit     |
+| $MSG handle comma   | B(blank, B)          | An optional edit     |
 |                      |                      | that should be       |
 |                      |                      | performed whenever   |
-|                      |                      | the \$MSG special    |
+|                      |                      | the $MSG special    |
 |                      |                      | variable is used in  |
 |                      |                      | the Message          |
 |                      |                      | Management Command   |
@@ -468,14 +468,14 @@ parameters (\#1)
 
   Field                           Description
   ------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Status                          The \"Status\" sub-title appears when F15 is used to subset the display to only Inactive, or only Active records. There is no sub-title when all records are on display.
+  Status                          The "Status" sub-title appears when F15 is used to subset the display to only Inactive, or only Active records. There is no sub-title when all records are on display.
   Search content                  To quickly search for a particular message management definition, enter the known characters of any portion of the entry detail and press \<**Enter**\>. Any value that appears on the detail display may be searched for, even though not all values appear in the list display.
   Opt                             \<**Tab**\> to a row in the table and enter an option.
   Msg Queue                       The message queue to be examined for messages.
   MsgQ Lib (F10 Alt view 1)       The library in the DB2/400 database where the message queue is located.
   Msg ID                          The identifier of the message to be trapped.\*\*\*\*\*\*\*\*\*\* = no message is specified in this entry; this entry only names a message queue to monitor.
-  Job Name                        The IBM i job name that issued the message. A value of \*ALL allows the message manager to respond to a particular message ID regardless of the job name. Partial job names (JOB\*) are also supported. Specifying a particular job\'s name prevents the message manager from responding when other named jobs may issue the same message ID.
-  Job User                        The IBM i user name from the job that issued the message. A value of \*ALL allows the message manager to respond to a particular message ID regardless of the user name. Partial user names (USER\*) are also supported. Specifying a particular user\'s name prevents the message manager from responding when other users of the same job name may issue the same message ID.
+  Job Name                        The IBM i job name that issued the message. A value of \*ALL allows the message manager to respond to a particular message ID regardless of the job name. Partial job names (JOB\*) are also supported. Specifying a particular job's name prevents the message manager from responding when other named jobs may issue the same message ID.
+  Job User                        The IBM i user name from the job that issued the message. A value of \*ALL allows the message manager to respond to a particular message ID regardless of the user name. Partial user names (USER\*) are also supported. Specifying a particular user's name prevents the message manager from responding when other users of the same job name may issue the same message ID.
   Compare Text (F10 Alt view 2)   When F10 is pressed, or the Message Management Performance Parameters indicate View 2 should be the initial view, the headings change and the list shows the Compare Text field instead of the Message Queue Library. This view may be more useful when many message IDs are the same, or there are no message IDs and the Compare Text is critical to recognize different rules.
   SQ\# (F11 Alt view 1)           A sequence number is assigned to every Parameters record, but it is only important when two records share the same values for all the other profile fields appearing on this list display, in which case the sequence number supports unique association with log records and also controls the order in which Parameters records are processed.
   MmRecKey\# (F11 Alt view 2)     Press F11=Alt view to replace the SQ\# field with this Message Management Record Key Number. The MmRecKey\# field is important for matching Message Management Log entries with the Parameters record that caused the log activity. It can also be used with the command SETMSGTHR (set message threshold) as an easy way to identify the correct Parameters record.
@@ -504,7 +504,7 @@ parameters (\#1)
     Message Data Chart list display. A detailed explanation of the
     displays for the Capture Chart may be found in Operator Replay
     Scripts, within the Screens and Windows section, under the title
-    \"Operator Replay Capture Chart (opt 7).\"
+    "Operator Replay Capture Chart (opt 7)."
 -   **8=Export**: Select one or more Message Management Parameters that
     will be copied to a save file collection for exporting to a
     different LSAM environment. The Export option includes all related
@@ -658,8 +658,8 @@ formats.
 |                                  |     to A = active, using option  |
 |                                  |     2=Change.                    |
 |                                  | -   Refer to [Commands and       | |                                  |     Utilities](Command           |
-|                                  | s-and-Utilities.md){.MCXref |
-|                                  |     .xref} for a description of  |
+|                                  | s-and-Utilities.md) |
+|                                  |      for a description of  |
 |                                  |     the Agent utility command    |
 |                                  |     SMAMMPSTS. This command may  |
 |                                  |     be used to automate changing |
@@ -1043,7 +1043,7 @@ formats.
 |                                  |     \<**F8**\>, and \<**F10**\>  |
 |                                  |     as desired for assistance in |
 |                                  |     formatting the commands and  |
-|                                  |     Dynamic Variable or \$VAR    |
+|                                  |     Dynamic Variable or $VAR    |
 |                                  |     tokens that may be entered   |
 |                                  |     in this field.               |
 |                                  | -   To enter more command        |
@@ -1074,8 +1074,8 @@ formats.
 +----------------------------------+----------------------------------+
 | Effective start date             | This is an ISO-standard date     |
 |                                  | field. The default value for     |
-|                                  | this field which means \"not     |
-|                                  | used\" is 0001-01-01, where the  |
+|                                  | this field which means "not     |
+|                                  | used" is 0001-01-01, where the  |
 |                                  | digits are CCYY-MM-DD (century,  |
 |                                  | year, month, day). When the date |
 |                                  | is set to an actual value, a     |
@@ -1085,8 +1085,8 @@ formats.
 +----------------------------------+----------------------------------+
 | Effective end date               | This is an ISO-standard date     |
 |                                  | field. The default value for     |
-|                                  | this field which means \"not     |
-|                                  | used\" is 0001-01-01, where the  |
+|                                  | this field which means "not     |
+|                                  | used" is 0001-01-01, where the  |
 |                                  | digits are CCYY-MM-DD (century,  |
 |                                  | year, month, day). When the date |
 |                                  | is set to an actual value, a     |
@@ -1098,8 +1098,8 @@ formats.
 |                                  |     field is HH:MM:SS (hours,    |
 |                                  |     minutes, seconds), and the   |
 |                                  |     default value that means     |
-|                                  |     \"not used\" includes the    |
-|                                  |     colons, as \"00:00:00\". To  |
+|                                  |     "not used" includes the    |
+|                                  |     colons, as "00:00:00". To  |
 |                                  |     indicate midnight, use the   |
 |                                  |     value of 24:00:00.           |
 |                                  |                                  |
@@ -1145,8 +1145,8 @@ formats.
 |                                  |     field is HH:MM:SS (hours,    |
 |                                  |     minutes, seconds), and the   |
 |                                  |     default value that means     |
-|                                  |     \"not used\" includes the    |
-|                                  |     colons, as \"00:00:00\". To  |
+|                                  |     "not used" includes the    |
+|                                  |     colons, as "00:00:00". To  |
 |                                  |     indicate midnight, use the   |
 |                                  |     value of 24:00:00.           |
 |                                  |                                  |
@@ -1335,7 +1335,7 @@ formats.
 |                                  |     threshold count will be      |
 |                                  |     reset to zero following the  |
 |                                  |     execution of the             |
-|                                  |     Parameter\'s message         |
+|                                  |     Parameter's message         |
 |                                  |     responses. This means that a |
 |                                  |     repeat of the same message   |
 |                                  |     will be skipped in the       |
@@ -1494,15 +1494,15 @@ formats.
     add new Capture Definitions while branching with this function key,
     and then to select the new ID for use.
 
--   **F10=\$VAR (TRPMSGR2A, TRPMSGR6)**: When the cursor is positioned
-    within a field that supports the Agent\'s special \$VARIABLES, F10
-    causes a window of supported \$VARs to pop up. Position the cursor
-    over the desired \$VAR name and press Enter to insert that variable
+-   **F10=$VAR (TRPMSGR2A, TRPMSGR6)**: When the cursor is positioned
+    within a field that supports the Agent's special $VARIABLES, F10
+    causes a window of supported $VARs to pop up. Position the cursor
+    over the desired $VAR name and press Enter to insert that variable
     into the location where the cursor was located on the screen format
     A display.
 
       -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-      ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [F10=\$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.]
+      ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [F10=$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.]
       -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   **F10=Capt AppID (TRPMSGR2C)**: This function key causes a branch to
@@ -1519,7 +1519,7 @@ formats.
     (2A or 2B). Use the Enter key and F12 to move among the three
     display formats. However, F12 pressed from display format 2A will
     cause an exit from the maintenance function (without updating any
-    data) and the display returns to the \"Work with\" list display.
+    data) and the display returns to the "Work with" list display.
     F3=Exit can be used to cancel all updates and return to the list
     display from any of the display formats.
 
@@ -1533,44 +1533,44 @@ formats.
     count to zeros makes the dates of last activity have no meaning; the
     dates are only used when the threshold count is 1 or greater.
 
-##### \$Variables Supported in Event Commands
+##### $Variables Supported in Event Commands
 
 Event commands that are processed by Message Management may include many
 of the same token variables as are supported by OpCon/xps. However,
 there is a difference in the syntax. OpCon requires that variables begin
-with a dollar sign (\$) and that the whole variable name be enclosed in
-double square brackets, for example, \[\[\$JOB NAME\]\]. The IBM i green screen workstation does not support the square brackets, so they are not
+with a dollar sign ($) and that the whole variable name be enclosed in
+double square brackets, for example, \[\[$JOB NAME\]\]. The IBM i green screen workstation does not support the square brackets, so they are not
 required when inserting variables into the Event command, for example,
-\$JOB NAME. The following table lists the variables that the LSAM
+$JOB NAME. The following table lists the variables that the LSAM
 Message Management facility can detect and replace when responding to a
 message.
 
   Variable           Description
   ------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \$FREQUENCY NAME   The name of the OpCon/xps frequency table that was assigned to the job that issued the message.
-  \$IBM JOB ID       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
-  \$IBM JOB NAME     The IBM i current Job Name.
-  \$IBM JOB NBR      The IBM i current Job Number (always 6 digits, but handled as characters).
-  \$IBM JOB USER     The IBM i current job User Name (IBM i User Profile that started the job).
-  \$JOBID            The OpCon/xps job identifier, a 10-digit number.
-  \$JOBID CMP        The OpCon/xps job name and job identifier, joined into a single string with blanks compressed out.
-  \$JOBID LONG       The OpCon/xps job name followed by the job identifier, with all blanks retained in the string.
-  \$JOB NAME         The OpCon/xps job name.
-  \$JOB LONG NAME    The long format of the complete OpCon job name.
-  \$MACHINE NAME     The OpCon/xps name for the LSAM job scheduler, normally the same as the LSAM Name specified in the LSAM Parameters (but the value supplied by OpCon/xps with job start requests is used here).
-  \$MSG              The actual primary text from the message that was trapped. (Refer to note below about editing the content of the captured message text.)
-  \$MSGID            The IBM i message ID currently being processed, in a format like CPF1234.
-  \$MSGQ             The name of the message queue where the current message was found.
-  \$MSGQ LIB         The library location of the message queue.
-  \$SCHEDULE DATE    The date of the OpCon schedule under which the job that issued the message was started, in the (\*ISO0) format of CCYYMMDD.
-  \$SCHEDULE NAME    The name of the OpCon/xps schedule under which the job that issued a message was started.
+  $FREQUENCY NAME   The name of the OpCon/xps frequency table that was assigned to the job that issued the message.
+  $IBM JOB ID       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
+  $IBM JOB NAME     The IBM i current Job Name.
+  $IBM JOB NBR      The IBM i current Job Number (always 6 digits, but handled as characters).
+  $IBM JOB USER     The IBM i current job User Name (IBM i User Profile that started the job).
+  $JOBID            The OpCon/xps job identifier, a 10-digit number.
+  $JOBID CMP        The OpCon/xps job name and job identifier, joined into a single string with blanks compressed out.
+  $JOBID LONG       The OpCon/xps job name followed by the job identifier, with all blanks retained in the string.
+  $JOB NAME         The OpCon/xps job name.
+  $JOB LONG NAME    The long format of the complete OpCon job name.
+  $MACHINE NAME     The OpCon/xps name for the LSAM job scheduler, normally the same as the LSAM Name specified in the LSAM Parameters (but the value supplied by OpCon/xps with job start requests is used here).
+  $MSG              The actual primary text from the message that was trapped. (Refer to note below about editing the content of the captured message text.)
+  $MSGID            The IBM i message ID currently being processed, in a format like CPF1234.
+  $MSGQ             The name of the message queue where the current message was found.
+  $MSGQ LIB         The library location of the message queue.
+  $SCHEDULE DATE    The date of the OpCon schedule under which the job that issued the message was started, in the (\*ISO0) format of CCYYMMDD.
+  $SCHEDULE NAME    The name of the OpCon/xps schedule under which the job that issued a message was started.
 
-  : \$Variables Supported in Event Commands
+  : $Variables Supported in Event Commands
 
  
 
   -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The content of the \$MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of \$MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the \$MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.]
+  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [The content of the $MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of $MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the $MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.]
   -------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  
@@ -1599,7 +1599,7 @@ can manage use the braces (curly brackets) to surround the token name.
 | .png "Example icon") |                                  |
 |                                  |                                  |
 |                                  |                                  |
-|                                  | {{\$SCHEDULE DATE}}              |
+|                                  | {{$SCHEDULE DATE}}              |
 +----------------------------------+----------------------------------+
 
  
@@ -1608,9 +1608,9 @@ More information on Event parameters may be found in [Events and Utilities Menu]
 Important information about translation table support that might affect
 OpCon token variable name syntax may be found in [Commands and Utilities](Commands-and-Utilities.md#top). For
 additional information, refer to
-[Properties](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Properties.md){.MCXref
-.xref} in the **Concepts** online help and/or [Defining Events](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Defining-Events.md#Defining){.MCXref
-.xref} in the **OpCon Events** online help.
+[Properties](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Properties.md)
+ in the **Concepts** online help and/or [Defining Events](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Defining-Events.md#Defining)
+ in the **OpCon Events** online help.
 
 #### Windows
 
@@ -1700,8 +1700,8 @@ Event command. More information on Event parameters may be found in the
 topic on Event Management. There is also a table, above, of variables
 that may be embedded within an Event command. Additional Information can
 also be found in
-[Introduction](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Introduction.md#top){.MCXref
-.xref} in the **OpCon Events** online help.
+[Introduction](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Introduction.md#top)
+ in the **OpCon Events** online help.
 
 ###### Functions
 
@@ -1769,7 +1769,7 @@ characters.
 
 In the compressed example above, the CONDSP command prompt is used to
 enter message data that will become part of the OpCon/xps Event
-\$CONSOLE:DISPLAY. This command prompting screen limits the message data
+$CONSOLE:DISPLAY. This command prompting screen limits the message data
 to only 80 characters. (Since OpCon now allows much longer messages to
 be sent via OpCon Event command processing, command prompting will be
 revised accordingly.) When used for an LSAM Message Management Event
@@ -1820,15 +1820,15 @@ CPYTOMSGIN Event Selection Window
            Press F12 to return without a selection.
                                 
                     OpCon/xps Event Command
-   [\$CONSOLE:DISPLAY]{style="  background-color: #00ff00;"}                        \$JOB:ADD        
-                         \$JOB:ADDHLD
-                           \$JOB:BAD
-                         \$JOB:CANCEL
-                         \$JOB:DELETE
-                          \$JOB:GOOD
-                          \$JOB:HOLD
-                          \$JOB:KILL
-                         \$JOB:RELEASE
+   [$CONSOLE:DISPLAY]{style="  background-color: #00ff00;"}                        $JOB:ADD        
+                         $JOB:ADDHLD
+                           $JOB:BAD
+                         $JOB:CANCEL
+                         $JOB:DELETE
+                          $JOB:GOOD
+                          $JOB:HOLD
+                          $JOB:KILL
+                         $JOB:RELEASE
                            More\...
                           F12=Cancel
   -----------------------------------------------------------
@@ -1844,7 +1844,7 @@ Event Command Syntax Model
                                                                                 
                                                                    Type choices, press Enter.
                                                                                 
-   [ Message  . . . . . . . . . . . . \>]{style="color: #008000;"} [\'\$JOB:CANCEL,\<schedule date\>,\<schedule name\>]{style="text-decoration: underline;"}                                        ,\<job name\>\'                                                                    
+   [ Message  . . . . . . . . . . . . \>]{style="color: #008000;"} ['$JOB:CANCEL,\<schedule date\>,\<schedule name\>]{style="text-decoration: underline;"}                                        ,\<job name\>'                                                                    
                                                                                                                         
                                                                                                                         
                                                                                                                         
@@ -1948,19 +1948,19 @@ records:
 -   The Message ID, Message File, Job Name and Job User fields are
     filled by the system with asterisks, and the Sequence number is
     zeros.
--   The Answer Type is forced to \"Q\" to indicate that this record will
+-   The Answer Type is forced to "Q" to indicate that this record will
     cause no event or message response by itself.
 -   Other fields that further define LSAM generic message management are
     not displayed because they are not used with Answer Type Q.
 
   -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It is possible for the F6=Add function and the option 2=Change function to be used to create or change an LSAM message management parameter record into a Monitor Queue type of record by typing a letter \"Q\" into the Answer Type field. In other words, it is not necessary to use F7=Add Queue to create this special type of record. However, once an LSAM Message Management Parameter record has been changed into this special type, it cannot be changed back to another Answer Type. It can only be deleted.]
+  ![White pencil/paper icon on gray circular background](../Resources/Images/note-icon(48x48).png "Note icon")   **NOTE:** [It is possible for the F6=Add function and the option 2=Change function to be used to create or change an LSAM message management parameter record into a Monitor Queue type of record by typing a letter "Q" into the Answer Type field. In other words, it is not necessary to use F7=Add Queue to create this special type of record. However, once an LSAM Message Management Parameter record has been changed into this special type, it cannot be changed back to another Answer Type. It can only be deleted.]
   -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
  
 
   ------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![White \"X\" icon on red circular background](../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [It is possible to use option 4=Delete to remove all records that name a message queue, leaving the LSAM message management server program with no reference to that message queue. If all the LSAM global message management records for a specific message queue are removed, use the F7=Add Queue function to replace them with at least one record for the message queue in order to enable job-level message management to look for messages in that queue. It is recommended that the F17=Subset function be used to verify the filtered list of all message queues that the LSAM may monitor.]
+  ![White "X" icon on red circular background](../Resources/Images/warning-icon(48x48).png "Warning icon")   **WARNING:** [It is possible to use option 4=Delete to remove all records that name a message queue, leaving the LSAM message management server program with no reference to that message queue. If all the LSAM global message management records for a specific message queue are removed, use the F7=Add Queue function to replace them with at least one record for the message queue in order to enable job-level message management to look for messages in that queue. It is recommended that the F17=Subset function be used to verify the filtered list of all message queues that the LSAM may monitor.]
   ------------------------------------------------------------------------------------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Work with Message Data Capture Definitions
@@ -2064,7 +2064,7 @@ than one Message Management Parameters record.
     return that ID to the field on the source display.
 -   **2=Change**: To change an Application ID, type 2 next to the ID
     line and press \<**Enter**\> to proceed to the Change record screen.
--   **3=Copy**: To copy one Application ID record\'s definition to a new
+-   **3=Copy**: To copy one Application ID record's definition to a new
     Application ID, type 3 next to the ID line and press \<**Enter**\>
     to proceed to the Copy record screen. During the copy process, the
     program will display a pop-up window offering an option to also copy
@@ -2172,22 +2172,22 @@ Capture Definitions (\# 10) \> F6=Add *- or -* option 2=Change **- or
 |                        | **Note:** This field is required when the  |
 |                        | Scan Label is used, in order to determine  |
 |                        | how much data to capture, starting with    |
-|                        | the \"Data position from LBL.\"            |
+|                        | the "Data position from LBL."            |
 +------------------------+--------------------------------------------+
 | Scan label string      | -   A character string that will be used   |
 |                        |     as a Label to identify where data      |
 |                        |     capture should start. If this label is |
 |                        |     found, then the data capture will      |
-|                        |     begin from the \"Data position from    |
-|                        |     LBL\" and continue until the specified |
-|                        |     \"Length\" is reached.                 |
+|                        |     begin from the "Data position from    |
+|                        |     LBL" and continue until the specified |
+|                        |     "Length" is reached.                 |
 |                        | -   If the Scan Label is not found, no     |
 |                        |     data will be captured.                 |
 |                        | -   An LSAM Dynamic Variable token may be  |
 |                        |     used in this field (refer to **F6**).  |
 +------------------------+--------------------------------------------+
 | Scan label length      | Specifies the length of the character      |
-|                        | string entered in the \"Scanlabel string\" |
+|                        | string entered in the "Scanlabel string" |
 |                        | field. If this value is left at zero, the  |
 |                        | length of the label is assumed to be the   |
 |                        | last non-blank character in the Scan label |
@@ -2200,8 +2200,8 @@ Capture Definitions (\# 10) \> F6=Add *- or -* option 2=Change **- or
 |                        | Label String must be found before starting |
 |                        | the data capture. If the Scan Label is not |
 |                        | found this number of times, no data        |
-|                        | capture will be performed. The \"Data      |
-|                        | position from LBL\" is computed from this  |
+|                        | capture will be performed. The "Data      |
+|                        | position from LBL" is computed from this  |
 |                        | incidence of the Scan Label. If this field |
 |                        | is left at zeros, a value of 1 is assumed. |
 +------------------------+--------------------------------------------+
@@ -2223,7 +2223,7 @@ Capture Definitions (\# 10) \> F6=Add *- or -* option 2=Change **- or
 |                        |     capture may overlap the Scan Label     |
 |                        |     itself.                                |
 |                        | -   0 = Capture data beginning with the    |
-|                        |     \"Message data from pos.\" specified   |
+|                        |     "Message data from pos." specified   |
 |                        |     above. Using this value, it is         |
 |                        |     possible to let the Scan Label be used |
 |                        |     only as means of qualifying whether or |
@@ -2260,8 +2260,8 @@ Capture Definitions (\# 10) \> F6=Add *- or -* option 2=Change **- or
 |                        | Variable, having created the Dynamic       |
 |                        | Variable as a numeric field with a number  |
 |                        | of decimal places specified. (Refer to the |
-|                        | SETDYNVAR command or the \"Maintain        |
-|                        | dynamic variables\" function from LSAM     |
+|                        | SETDYNVAR command or the "Maintain        |
+|                        | dynamic variables" function from LSAM     |
 |                        | menus (on many LSAM menus) in Events and   |
 |                        | Utilities.)                                |
 +------------------------+--------------------------------------------+
@@ -2342,7 +2342,7 @@ restarted, if desired.)
 
 The Capture and Response Rules chart displays are explained in detail
 under Operator Replay Scripts, within the Screens and Windows section,
-under the title \"Operator Replay Capture Chart (opt 7).\"
+under the title "Operator Replay Capture Chart (opt 7)."
 
 Use this option to collect all related Capture Applications and Response
 Rules, plus show referenced Dynamic Variables, in a single list display.
@@ -2474,7 +2474,7 @@ these unique messages server only this special purpose, the message IDs
 in this table are not allowed for management by the LSAM Message
 Management facility. This means that when the LSAM Parameters (LSAM main
 menu, option 7) are set to use Message Management rules for messages
-arriving in the LSAM\'s dedicated job completion message file, SMAMSGF,
+arriving in the LSAM's dedicated job completion message file, SMAMSGF,
 the message IDs in this table cannot be specified for general message
 management. The responses to these messages must be managed from OpCon,
 according to the job status that each message may generate.
@@ -2508,8 +2508,8 @@ Job Completion Messages Control Table View
   --------------------------------------------------------------------------------------------------------
 
 In the table illustration above, notice that many message IDs, such as
-CPC1217, are followed by the characters JOBNOK. This symbol means \"job
-not OK\" and it indicates a message ID that signals an IBM i job
+CPC1217, are followed by the characters JOBNOK. This symbol means "job
+not OK" and it indicates a message ID that signals an IBM i job
 failure. In contrast, the message ID CPF1241 shows JOBOK and indicates a
 normally complete IBM i job.
 

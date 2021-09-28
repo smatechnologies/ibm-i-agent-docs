@@ -82,7 +82,7 @@ IBM i LSAM Commands
 |                |                |                | started the    |
 |                |                |                | job, the Agent |
 |                |                |                | will then send |
-|                |                |                | a \"Failed\"   |
+|                |                |                | a "Failed"   |
 |                |                |                | signal to      |
 |                |                |                | OpCon as the   |
 |                |                |                | final job      |
@@ -110,8 +110,8 @@ IBM i LSAM Commands
 |                |                | ment](Events%2 | processor      |
 |                | TOKSET         | 0and-Utiliti | program passes |
 |                |                | es-Menu.md# | the Event      |
-|                |                | Event){.MCXref | instruction to |
-|                |                | .xref}.        | the LSAM       |
+|                |                | Event) | instruction to |
+|                |                | .        | the LSAM       |
 |                |                |                | communications |
 |                |                |                | program for    |
 |                |                |                | forwarding to  |
@@ -123,8 +123,8 @@ IBM i LSAM Commands
 |                |                |                | Database-Man |
 |                |                |                | agement.md#Tu |
 |                |                |                | rn_On_Debug_Lo |
-|                |                |                | gging){.MCXref |
-|                |                |                | .xref} for     |
+|                |                |                | gging) |
+|                |                |                |  for     |
 |                |                |                | more           |
 |                |                |                | information.   |
 +----------------+----------------+----------------+----------------+
@@ -135,8 +135,8 @@ IBM i LSAM Commands
 |                |                |                | atabase-Mana |
 |                |                |                | gement.md#Tur |
 |                |                |                | n_Off_Debug_Lo |
-|                |                |                | gging){.MCXref |
-|                |                |                | .xref} for     |
+|                |                |                | gging) |
+|                |                |                |  for     |
 |                |                |                | more           |
 |                |                |                | information.   |
 +----------------+----------------+----------------+----------------+
@@ -378,8 +378,8 @@ IBM i LSAM Commands
 |                |                |                | 0File-and- |
 |                |                |                | Database-Man |
 |                |                |                | agement.md#Vi |
-|                |                |                | ewing){.MCXref |
-|                |                |                | .xref}. Also   |
+|                |                |                | ewing) |
+|                |                |                | . Also   |
 |                |                |                | refer to       |
 |                |                |                | SMARGZ, below. |
 +----------------+----------------+----------------+----------------+
@@ -416,7 +416,7 @@ IBM i LSAM Commands
 |                |                |                | configuration  |
 |                |                |                | steps.         |
 +----------------+----------------+----------------+----------------+
-|                | STRSMA         | \"Start SMA\"  | Logs on to the |
+|                | STRSMA         | "Start SMA"  | Logs on to the |
 |                |                | = Enter LSAM   | IBM i LSAM     |
 |                |                | menu system    | menus.         |
 |                |                |                | Required for   |
@@ -470,7 +470,7 @@ IBM i LSAM Commands
 |                |                |                | intercepted to |
 |                |                |                | capture jobs.  |
 +----------------+----------------+----------------+----------------+
-|                | STRSMA         | \"Start SMA\"  | Logs on to the |
+|                | STRSMA         | "Start SMA"  | Logs on to the |
 |                |                | = Enter LSAM   | IBM i LSAM     |
 |                |                | menu system    | menus.         |
 +----------------+----------------+----------------+----------------+
@@ -498,7 +498,7 @@ IBM i LSAM Commands
 |                |                |                | individual     |
 |                |                |                | jobs from the  |
 |                |                |                | display. The   |
-|                |                |                | job \"Groups\" |
+|                |                |                | job "Groups" |
 |                |                |                | in the list    |
 |                |                |                | display match  |
 |                |                |                | the PTF server |
@@ -531,8 +531,8 @@ IBM i LSAM Commands
 |                |                |                | Queuing](Job%2 |
 |                |                |                | 0Tracking-an |
 |                |                |                | d-Queuing.ht |
-|                |                |                | m#top){.MCXref |
-|                |                |                | .xref}.        |
+|                |                |                | m#top) |
+|                |                |                | .        |
 +----------------+----------------+----------------+----------------+
 | Multiple       | LSAINIT        | Initialize     | -   This       |
 | Environment    |                | LSAM           |     command is |
@@ -594,7 +594,7 @@ IBM i LSAM Commands
 |                |                |                | s](Installing% |
 |                |                |                | 20Multiple-E |
 |                |                |                | nvironments.ht |
-|                |                |                | m#top){.MCXref |
+|                |                |                | m#top) |
 |                |                |                |     .x         |
 |                |                |                | ref}Installing |
 |                |                |                |     Multiple   |
@@ -615,15 +615,15 @@ IBM i LSAM Commands
 |                |                |                | s](Installing% |
 |                |                |                | 20Multiple-E |
 |                |                |                | nvironments.ht |
-|                |                |                | m#top){.MCXref |
-|                |                |                | .xref} and     |
+|                |                |                | m#top) |
+|                |                |                |  and     |
 |                |                |                | [LSAM          | |                |                |                | Environment    |
 |                |                |                | Mana           |
 |                |                |                | gement](LSAM%2 |
 |                |                |                | 0Environment%2 |
 |                |                |                | 0Management.ht |
-|                |                |                | m#top){.MCXref |
-|                |                |                | .xref}. This   |
+|                |                |                | m#top) |
+|                |                |                | . This   |
 |                |                |                | command is not |
 |                |                |                | available and  |
 |                |                |                | is not used    |
@@ -732,8 +732,8 @@ IBM i LSAM Commands
 |                |                |                | command now    |
 |                |                |                | supports the   |
 |                |                |                | Enterprise     |
-|                |                |                | Manager \"File |
-|                |                |                | Arrival\" job  |
+|                |                |                | Manager "File |
+|                |                |                | Arrival" job  |
 |                |                |                | sub-type for   |
 |                |                |                | IBM i jobs,    |
 |                |                |                | when the file  |
@@ -770,8 +770,8 @@ IBM i LSAM Commands
 |                |                |                | command now    |
 |                |                |                | supports the   |
 |                |                |                | Enterprise     |
-|                |                |                | Manager \"File |
-|                |                |                | Arrival\" job  |
+|                |                |                | Manager "File |
+|                |                |                | Arrival" job  |
 |                |                |                | sub-type for   |
 |                |                |                | IBM i jobs,    |
 |                |                |                | when the file  |
@@ -867,7 +867,7 @@ IBM i LSAM Commands
 |                |                |                | native         |
 |                |                |                | commands       |
 |                |                |                | inside a       |
-|                |                |                | \"wrapper\" CL |
+|                |                |                | "wrapper" CL |
 |                |                |                | program that   |
 |                |                |                | intercepts any |
 |                |                |                | command        |
@@ -957,8 +957,8 @@ IBM i LSAM Commands
 |                |                |                | M-Security%2 |
 |                |                |                | 0and-Object% |
 |                |                |                | 20Authority.ht |
-|                |                |                | m#top){.MCXref |
-|                |                |                | .xref} for     |
+|                |                |                | m#top) |
+|                |                |                |  for     |
 |                |                |                | instructions   |
 |                |                |                | how to use     |
 |                |                |                | this command.  |
@@ -995,8 +995,8 @@ IBM i LSAM Commands
 |                |                |                | M-Security%2 |
 |                |                |                | 0and-Object% |
 |                |                |                | 20Authority.ht |
-|                |                |                | m#top){.MCXref |
-|                |                |                | .xref} for     |
+|                |                |                | m#top) |
+|                |                |                |  for     |
 |                |                |                | instructions   |
 |                |                |                | how to use     |
 |                |                |                | this command.  |
@@ -1182,8 +1182,8 @@ IBM i LSAM Commands
 |                |                | the [Dynamic   |                | |                |                | V              |                |
 |                |                | ariables](Dyna |                |
 |                |                | mic-Variable |                |
-|                |                | s.md){.MCXref |                |
-|                |                | .xref} section |                |
+|                |                | s.md) |                |
+|                |                |  section |                |
 |                |                | of this Agent  |                |
 |                |                | User Help.)    |                |
 +----------------+----------------+----------------+----------------+
@@ -1360,8 +1360,8 @@ IBM i LSAM Commands
 |                |                |                | ricted-Mode% |
 |                |                |                | 20and-Multi- |
 |                |                |                | Step-Jobs.ht |
-|                |                |                | m#top){.MCXref |
-|                |                |                | .xref}.        |
+|                |                |                | m#top) |
+|                |                |                | .        |
 +----------------+----------------+----------------+----------------+
 | Translation    | LSATBLTEST     | LSAM           | From within    |
 | Table Testing  |                | Translation    | the LSAM       |
@@ -1377,8 +1377,8 @@ IBM i LSAM Commands
 |                |                |                | table. Refer   |
 |                |                |                | to the section |
 |                |                |                | on [LSAM       | |                |                |                | Utilities](#   |
-|                |                |                | LSAM2){.MCXref |
-|                |                |                | .xref} for     |
+|                |                |                | LSAM2) |
+|                |                |                |  for     |
 |                |                |                | more           |
 |                |                |                | information    |
 |                |                |                | about          |
@@ -1398,8 +1398,8 @@ IBM i LSAM Commands
 |                |                |                | display. Refer |
 |                |                |                | to the section |
 |                |                |                | on [LSAM       | |                |                |                | Utilities](#   |
-|                |                |                | LSAM2){.MCXref |
-|                |                |                | .xref} for     |
+|                |                |                | LSAM2) |
+|                |                |                |  for     |
 |                |                |                | more           |
 |                |                |                | information    |
 |                |                |                | about          |
@@ -1492,8 +1492,8 @@ IBM i LSAM Commands
 | LSAM-Softwar |                |                | and then apply |
 | e-Maintenanc |                |                | the cumulative |
 | e-(PTFs).md |                |                | collection of  |
-| #PTF3){.MCXref |                |                | any PTFs not   |
-| .xref} for     |                |                | already        |
+| #PTF3) |                |                | any PTFs not   |
+|  for     |                |                | already        |
 | additional     |                |                | installed.     |
 | information.)  |                |                |                |
 +----------------+----------------+----------------+----------------+

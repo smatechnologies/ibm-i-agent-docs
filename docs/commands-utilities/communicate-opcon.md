@@ -35,7 +35,7 @@ linked to SCANSPLF Scan Rules, to Operator Replay Script steps or to
 Message Management Parameters. This command can also be executed from
 any other access to an IBM i command processor, as long as the job fits
 one of the following profiles. It is important to properly manage the
-JOB() parameter according to the job\'s environment.
+JOB() parameter according to the job's environment.
 
 - The job was started by OpCon or is tracked by OpCon: can use JOB(\*)
     for the current job, or use JOB(123456/USERID/JOBNAME) to reference
@@ -48,12 +48,12 @@ JOB() parameter according to the job\'s environment.
 - The job was not started by OpCon, and the job does not use the LSAM
     environment library list: use the LSAM command-hosting command
     SMAGPL/LSAMCMD and put the LFEEDBACK command into the hosting
-    command\'s CMD() parameter, and must provide a specific JOB ID,
+    command's CMD() parameter, and must provide a specific JOB ID,
     using the following representative syntax:
 
 When a job using this command was started or tracked by OpCon, then the
-command\'s JOB( ) parameter can be left set to its default value of (\*)
-which indicates \"use the current job.\" The command can also be used
+command's JOB( ) parameter can be left set to its default value of (\*)
+which indicates "use the current job." The command can also be used
 from outside of a job started or tracked by OpCon as long as the JOB( )
 parameter names a job that OpCon did start, or is tracking. Execution of
 this command from jobs outside of OpCon control will allow the LFEEDBACK
@@ -62,10 +62,10 @@ because it will not recognize the job. For unrecognized jobs, there will
 be no Event triggered by OpCon.
 
 Message Management Parameters can also use this command from the main
-Event command line if the command\'s JOB( ) parameter names an OpCon
+Event command line if the command's JOB( ) parameter names an OpCon
 job. The JOB() parameter can identify the job that issued the message by
-inserting the Message Management \$-Special variable for the Job ID,
-like this: JOB(\$IBM JOB ID). Similarly, Operator Replay Steps could
+inserting the Message Management $-Special variable for the Job ID,
+like this: JOB($IBM JOB ID). Similarly, Operator Replay Steps could
 execute the LFEEDBACK command from within the virtual workstation
 session, even though that secondary job is not the script driver job
 that OpCon directly started, but only if the JOB( ) parameter identifies
@@ -80,7 +80,7 @@ used only for test purposes.
 The syntax of the LFEEDBACK command is illustrated below, followed by an
 explanation of its keyword parameters:
 
-SMAPGM/LFEEDBACK TEXT(\'My feedback text\') MSGSEQ(0) STSMSGID(SMA0035)
+SMAPGM/LFEEDBACK TEXT('My feedback text') MSGSEQ(0) STSMSGID(SMA0035)
 JOB(123456/USERID/JOBNAME)
 
 ### Command Parameters
@@ -113,9 +113,9 @@ JOB(123456/USERID/JOBNAME)
     example of this is when the LSAM Message Management server wants to
     send LSAM Feedback about the job that issued the message it is
     currently processing. The LSAM Message Management server would use
-    the special \$-Variable named \$IBM JOB ID within this JOB( )
+    the special $-Variable named $IBM JOB ID within this JOB( )
     keyword to tell the Message Management server it must replace that
-    variable with the message\'s IBM i Job ID.
+    variable with the message's IBM i Job ID.
 
 ### Other Command Constraints
 
@@ -159,37 +159,37 @@ newer), the new LSAM Feedback option for user-defined text will not
 appear. It will be necessary to update the SMALOOKUP table in the OpCon
 database using some predefined SQL statements. These SQL statements are
 available to licensed users of the IBM i LSAM from the LSAM PTF
-resources at SMA\'s FTP server location. The SQL statements and
-installation instructions are also contained with the LSAM\'s PTF
+resources at SMA's FTP server location. The SQL statements and
+installation instructions are also contained with the LSAM's PTF
 post-install instructions, under PTFs 403177 and 403184. Please contact
 SMA Support if any assistance with this update is required.
 
 The separate purpose and implementation of these two forms of LSAM
 Feedback are described next.
 
-[SMA5801 Notification of Job MSGW Status and LSAM Feedback]{.ul}
+[SMA5801 Notification of Job MSGW Status and LSAM Feedback]
 
 The field code 5801 is fully described in the Configuration topic of
 this online help, under the topic with the title above, located under
-the heading of \"Extended Discussion of Parameters.\"
+the heading of "Extended Discussion of Parameters."
 
 In summary, when the LSAM Parameters (main menu, option 7) have
 designated a valid message queue for the SMA5801 option, then the LSAM
 will send predefined LSAM Feedback information whenever it detects that
 a job started or tracked by OpCon is stuck in the MSGW (message waiting
 for response) status. The OpCon job master record shows a special entry
-in the LSAM Feedback options just for this 5801 MSGW trigger: \"Active
-job in MSGW status\". The user can register any form of Event command to
+in the LSAM Feedback options just for this 5801 MSGW trigger: "Active
+job in MSGW status". The user can register any form of Event command to
 be triggered when this category of feedback is received. The Event
 triggered may vary, depending on the nature of the job.
 
-[5802 User-defined LSAM Feedback]{.ul}
+[5802 User-defined LSAM Feedback]
 
 When the LFEEDBACK command is used, it sends any text string that the
 user defines to OpCon for processing according to LSAM Feedback Triggers
 that were added to the OpCon job master record. For the command to work,
-the type of LSAM Feedback selected in OpCon must be: \"User-defined text
-from LFEEDBACK command\". In addition, the compare text assigned to each
+the type of LSAM Feedback selected in OpCon must be: "User-defined text
+from LFEEDBACK command". In addition, the compare text assigned to each
 Event definition must match all or a designated part of the TEXT value
 specified for the LFEEDBACK command. For more information about LSAM
 Feedback, please refer to the **Concepts** online help (scan for LSAM
@@ -202,7 +202,7 @@ to the Job Information of the designated job. Within Enterprise Manager,
 these Detailed Job Messages can be viewed by following this navigation
 path: start by using either (1) a double-left mouse click on the job
 name, or (2) a right mouse click on the job name and then a left mouse
-click in the context menu on the title \"Job Information.\" Next, click
+click in the context menu on the title "Job Information." Next, click
 on the following tabs and titles: (Job Information\... -\> Configuration
 -\> Operations Related\... -\> Detailed Job Messages).
 
@@ -220,24 +220,24 @@ for more information about posting exceptional job status information.)
 Here is an example of the command syntax, followed by a list explaining
 the command keywords:
 
-SMAJOBMSG TEXT(\'Transaction batch total: {AMTDYNVAR} \') MSGSEQ(0)
+SMAJOBMSG TEXT('Transaction batch total: {AMTDYNVAR} ') MSGSEQ(0)
 STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
 
 From Message Management, the trapped message could be forwarded to OpCon
 Detailed Job Messages using the following command syntax model, where
 the primary message text is automatically made available via the special
-variable \$MSG:
+variable $MSG:
 
-SMAJOBMSG TEXT(\'Found error \$MSGID : \$MSG\') MSGSEQ(0)
-STSMSGID(SMA0035) JOB(\$IBM JOB ID) FLDCOD(61)
+SMAJOBMSG TEXT('Found error $MSGID : $MSG') MSGSEQ(0)
+STSMSGID(SMA0035) JOB($IBM JOB ID) FLDCOD(61)
 
 Depending on another context, where the SMAJOBMSG command can be used,
-such as Multi-Step Job Scripts, the special variables \$ERRMSGID and
-\$ERRMSGTXT for a Step error could be sent to OpCon Detailed Job
+such as Multi-Step Job Scripts, the special variables $ERRMSGID and
+$ERRMSGTXT for a Step error could be sent to OpCon Detailed Job
 Messages from an ON_ERROR command using the following command syntax
 model:
 
-SMAJOBMSG TEXT(\'Found error \$ERRMSGID : \$ERRMSGTXT\') MSGSEQ(0)
+SMAJOBMSG TEXT('Found error $ERRMSGID : $ERRMSGTXT') MSGSEQ(0)
 STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
 
 ### Command Parameters
@@ -277,7 +277,7 @@ STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
     use this command parameter to identify the IBM i job that issued a
     message that is currently being handled. For Message Management, the
     value required in this keyword is easily represented by the special
-    variable: JOB(\$IBM JOB ID). For other automation tools that can
+    variable: JOB($IBM JOB ID). For other automation tools that can
     know a job was started by OpCon, the format of the Job ID is the
     same string as used by native IBM i commands:
     JOB(123456/USER/JOBNAME).
@@ -287,12 +287,12 @@ STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
     code 61 is used by the OpCon database and programs to identify
     Detailed Job Messages. The command prompt shows another field code
     64 that is used internally by Agent File Arrival programs to send a
-    path and file name to the OpCon system property called \$ARRIVED
+    path and file name to the OpCon system property called $ARRIVED
     FILE NAME. OpCon users should not attempt to use field code 64 or
     any other field code (unless this Agent documentation contains
     specific instructions about using a different code) because this can
     cause OpCon database corruption and the cost of a recovery would be
-    the user\'s responsibility. This FLDCOD parameter is documented for
+    the user's responsibility. This FLDCOD parameter is documented for
     the benefit of SMA Developers as they continue to produce automation
     enhancements.
 
@@ -300,7 +300,7 @@ STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
 
 In the command syntax examples above, notice that the default value for
 the JOB(\*) parameter is an asterisk, which represents that the current
-job\'s IBM i Job ID should be used. This imitates the behavior of older
+job's IBM i Job ID should be used. This imitates the behavior of older
 versions of the SMAJOBMSG command as it worked before the JOB keyword
 was added.
 
@@ -311,7 +311,7 @@ is used within the JOB() parameter, it will be replaced with the actual
 IBM i Job ID, resulting in a command syntax that resembles the following
 simplified example:
 
-SMAJOBMSG TEXT(\'Detail msg\') STSMSGID(SMA0035)
+SMAJOBMSG TEXT('Detail msg') STSMSGID(SMA0035)
 JOB(123456/USER/JOBNAME)
 
 This format for the JOB() parameter can be used anywhere that the IBM i
@@ -320,7 +320,7 @@ the LSAM environment, without the LSAM library list in effect, it is
 necessary to embed this command within the LSAM command-hosting command,
 like this:
 
-SMAGPL/LSAMCMD CMD(\'SMAJOBMSG \...
+SMAGPL/LSAMCMD CMD('SMAJOBMSG \...
 
 However, in some cases, such as within the LSAM Message Management
 server, the IBM i Job ID information would not be the same as the
@@ -331,21 +331,21 @@ job is not related to the actual IBM i Job IDs that generated the
 messages themselves.
 
 To make the IBM i Job ID associated with each individual message
-available, the IBM i LSAM defines some of its \$-Special variables,
+available, the IBM i LSAM defines some of its $-Special variables,
 representing the ability of the LSAM Message Management server to find
 and use the correct IBM i Job ID. The predefined LSAM variable named
-\$IBM JOB ID could be inserted into the JOB keyword value, and this
+$IBM JOB ID could be inserted into the JOB keyword value, and this
 particular predefined variable is already formatted as required by the
 JOB keyword. So, within a Message Management Event command field, or
 from a Captured Data Response Rule linked to a Message Management
 Parameter record, the command syntax would look like this:
 
-SMAJOBMSG TEXT(\'Detail msg\') STSMSGID(SMA0035) JOB(\$IBM JOB ID)
+SMAJOBMSG TEXT('Detail msg') STSMSGID(SMA0035) JOB($IBM JOB ID)
 
 Notice that the spaces within the predefined variable name are required
 and anticipated - it must be spelled exactly like this. There are also
-other LSAM \$-Special variable names that can be used to represent each
-part of an IBM i Job ID. Additional information about \$-Special
+other LSAM $-Special variable names that can be used to represent each
+part of an IBM i Job ID. Additional information about $-Special
 variables can be found within the LSAM documentation under the following
 headings:
 
@@ -372,7 +372,7 @@ started the job that is executing the script.
 Here is an example of the command syntax, followed by a table explaining
 the command keywords:
 
-SMASTATUS MESSAGE(\'Step=JOBSTEP01\')
+SMASTATUS MESSAGE('Step=JOBSTEP01')
 
 ### Command Parameters
 

@@ -22,16 +22,16 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
 |                                  | device modes is introduced by    |
 |                                  | the F1=Help text, and it is      |
 |                                  | fully explained in the [Managing | |                                  | Virtual                          |
-|                                  | Devices](#Managing){.MCXref      |
-|                                  | .xref} section near the end of   |
+|                                  | Devices](#Managing)      |
+|                                  |  section near the end of   |
 |                                  | the Operator Replay Scripts      |
 |                                  | chapter.                         |
 +----------------------------------+----------------------------------+
 | NOTE: MODEs 2-4                  | Use F1=Help to view an           |
 |                                  | introduction to the Telnet Exit  |
 |                                  | Program use and configuration.   |
-|                                  | See [Managing Virtual            | |                                  | Devices](#Managing){.MCXref      |
-|                                  | .xref} near the end of the       |
+|                                  | See [Managing Virtual            | |                                  | Devices](#Managing)      |
+|                                  |  near the end of the       |
 |                                  | Operator Replay Scripts chapter  |
 |                                  | for complete instructions.       |
 +----------------------------------+----------------------------------+
@@ -100,12 +100,12 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
-|                                  | Mode 3: Type \"\*USER\" into the |
+|                                  | Mode 3: Type "\*USER" into the |
 |                                  | device name field.               |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
-|                                  | Mode 4: Type \"\*CMD\" into the  |
+|                                  | Mode 4: Type "\*CMD" into the  |
 |                                  | device name field.               |
 |                                  |                                  |
 |                                  |                                  |
@@ -113,7 +113,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
 |                                  | **NOTE**: To allow command line  |
 |                                  | parameter overrides when in User |
 |                                  | mode, type both values into this |
-|                                  | field: \"\*USER \*CMD\"          |
+|                                  | field: "\*USER \*CMD"          |
 +----------------------------------+----------------------------------+
 | Telnet device exit program       | This is a protected display      |
 | number                           | field, showing the default exit  |
@@ -141,7 +141,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
 +----------------------------------+----------------------------------+
 | Script job logging               | Controls whether the interactive |
 |                                  | user emulation session will be   |
-|                                  | recorded in the LSAM\'s Operator |
+|                                  | recorded in the LSAM's Operator |
 |                                  | Replay log file. Use this        |
 |                                  | feature whenever a new script is |
 |                                  | added, or to diagnose suspected  |
@@ -344,8 +344,8 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
 |                                  | analysis of any translation      |
 |                                  | problems.                        |
 +----------------------------------+----------------------------------+
-| **\"Attempt to Recover           |                                  |
-| Interactive Job\" Display --     |                                  |
+| **"Attempt to Recover           |                                  |
+| Interactive Job" Display --     |                                  |
 | Local Language**                 |                                  |
 +----------------------------------+----------------------------------+
 | Instructions:                    | If an Operator Replay Script job |
@@ -422,7 +422,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
     isolate test data.
 
 :::note
-The LSAM automatic log file clear routines do not clear the Operator Replay debug log file. This is the responsibility of the technical support personnel who may have set the debug log flag to Y. The Operator Replay debug logging function must be set back to N=no after diagnostic work has been completed, in order to avoid the consumption of large amounts of the client\'s disk space. The debug log file should be cleared using F20 from this display after a copy of the file has been extracted. Refer to [Delivering the LSAM File Extract to SMA Technical Support](Log-File-and-Database-Management.md#Deliveri).
+The LSAM automatic log file clear routines do not clear the Operator Replay debug log file. This is the responsibility of the technical support personnel who may have set the debug log flag to Y. The Operator Replay debug logging function must be set back to N=no after diagnostic work has been completed, in order to avoid the consumption of large amounts of the client's disk space. The debug log file should be cleared using F20 from this display after a copy of the file has been extracted. Refer to [Delivering the LSAM File Extract to SMA Technical Support](Log-File-and-Database-Management.md#Deliveri).
 :::
 
 #### Displayed Data Translation
@@ -440,12 +440,12 @@ the various scripting tools that must test the content of the display.
 These tables should not be changed from their default values unless
 international language support requires it. Please contact SMA Support
 for assistance if it is believed that these table names might need to be
-changed. An SMA technical analyst should evaluate a special \"trace
-log\" of an Operator Replay session in order to help determine whether a
+changed. An SMA technical analyst should evaluate a special "trace
+log" of an Operator Replay session in order to help determine whether a
 change to the displayable text translation tables will be required.
 
 To specify a numeric CCSID character set in the Table field, type the
-special value of \"\*CCSID\" into the Library field. If one table uses a
+special value of "\*CCSID" into the Library field. If one table uses a
 CCSID number, then both tables must use a CCSID number. It is not
 allowed to mix a translation table name with a CCSID character set
 number.
@@ -466,7 +466,7 @@ files.
 
 #### Hex Character Conversion
 
-This screen appears whenever any of the three \"separator\" hex values
+This screen appears whenever any of the three "separator" hex values
 are changed. The instructions at the top of the display explain the
 warning and the available function key options. SMA recommends
 consulting SMA Support before attempting to change any of the separator
@@ -475,7 +475,7 @@ change are clearly understood.
 
 However, LSAM installations that were upgraded to version 04.00.03 from
 prior versions are advised to use this function to change the Cursor
-control separator characters to X\'A1\' and X\'79\' in order to avoid
+control separator characters to X'A1' and X'79' in order to avoid
 potential conflicts with LSAM Dynamic Variable tokens. These hexadecimal
 values are the new defaults for the LSAM as of version 04.00.03 and
 newer.
@@ -529,8 +529,8 @@ newer.
 |                                  | from prior versions are advised  |
 |                                  | to change the Cursor control     |
 |                                  | separator characters to the new  |
-|                                  | LSAM default values of X\'A1\'   |
-|                                  | and X\'79\'. Please contact SMA  |
+|                                  | LSAM default values of X'A1'   |
+|                                  | and X'79'. Please contact SMA  |
 |                                  | Support for more                 |
 |                                  | information].        |
 +----------------------------------+----------------------------------+
@@ -687,7 +687,7 @@ field added and the Name field cannot be changed.
 
 ###### Functions
 
-- **F3=Exit**: Quits the OR Script\'s maintenance function and returns
+- **F3=Exit**: Quits the OR Script's maintenance function and returns
     to the menu without completing the maintenance function (add,
     change, copy).
 - **F4=Prompt**: Prompts for User Names when the cursor is in the User
@@ -797,19 +797,19 @@ In View 4, for each Step there is a profile of the Top Control String.
 (View 5 shows the Bottom Control String.) The control string rules use
 these labels:
 
-- **CtlOpt** = control option: F=Fail if \"not\", S=Skip if \"not\"
+- **CtlOpt** = control option: F=Fail if "not", S=Skip if "not"
 - **TR** = top row
 - **TC** = top column
 - **TL** = top length
 - **not** = shows the Boolean comparison rule, such as EQ (equal) or
-    NE (not equal). \"not\" means that if the comparison is not true,
+    NE (not equal). "not" means that if the comparison is not true,
     then the CtlOpt action will be taken
 - **Str** = the reference character string that is compared to the
     screen content (may be blanks if the Length value is supplied)
 
 A list of the symbolic field labels used for each Step record is
-documented under View 4. In this view 5 the letter \"B\" refers to the
-Bottom Control String, instead of the \"T\" which is the Top Control
+documented under View 4. In this view 5 the letter "B" refers to the
+Bottom Control String, instead of the "T" which is the Top Control
 String that shows in view 4.
 
 ###### Menu Pathways
@@ -981,7 +981,7 @@ the delete action.
 - **Screen ID**: OPRRPYR10-4
 
 :::note
-[The screen][ denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal \"Rec ID\" does not appear in the Add or Copy modes.
+[The screen][ denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal "Rec ID" does not appear in the Add or Copy modes.
 :::
 
 ###### Menu Pathways
@@ -1151,7 +1151,7 @@ support Dynamic Variables)
 |                |                |               | **CAUTION**:   |
 |                |                |               | Using the      |
 |                |                |               | \*NOMAX value  |
-|                |                |               | of all 9\'s    |
+|                |                |               | of all 9's    |
 |                |                |               | might allow a  |
 |                |                |               | script driver  |
 |                |                |               | program to run |
@@ -1424,7 +1424,7 @@ support Dynamic Variables)
 |                |                |               |     format in  |
 |                |                |               |     the Script |
 |                |                |               |     execution  |
-|                |                |               |     program\'s |
+|                |                |               |     program's |
 |                |                |               |     buffer,    |
 |                |                |               |     otherwise  |
 |                |                |               |     the Script |
@@ -1815,14 +1815,14 @@ Fctn Selection
   ----------------------------------------------------------------
 
 :::note
-The special function key value ACK does not generate any data sent to the Host system. It is used to clear the script driver program\'s screen image buffer, typically after a \*STATUS message was received from the host. (Status messages do not require any response by a human operator, but the driver program may need to clear them in order to manage step timeouts.)
+The special function key value ACK does not generate any data sent to the Host system. It is used to clear the script driver program's screen image buffer, typically after a \*STATUS message was received from the host. (Status messages do not require any response by a human operator, but the driver program may need to clear them in order to manage step timeouts.)
 :::
 
 ###### Functions
 
 - **Cursor up/down**: Moves the cursor down or back up to select the
     function that is inserted into the Function to send field.
-- **Pageup/Pagedown**: When the window shows \"More...\" at the
+- **Pageup/Pagedown**: When the window shows "More..." at the
     bottom, right-hand corner, use the Paging keys to show other valid
     values from the entire list.
 - **Enter**: Returns the currently highlighted function and inserts it
@@ -1857,7 +1857,7 @@ Cur Ctl Sel
     cursor control operation that is inserted into the String to send
     field.
 
-- **Page Up/Page Down**: When the window shows \"More...\" at the
+- **Page Up/Page Down**: When the window shows "More..." at the
     bottom, right-hand corner, use the Paging keys to show other valid
     values from the entire list.
 
@@ -1890,7 +1890,7 @@ Variable/Token Selection Window
 
 - **Cursor up/down**: Moves the cursor down or back up to select the
     variable that should be inserted into the supported Step field.
-- **Page Up/Page Down**: When the window shows \"More...\" at the
+- **Page Up/Page Down**: When the window shows "More..." at the
     bottom, right-hand corner, use the Paging keys to show other valid
     values from the entire list.
 - **Enter**: Returns the currently highlighted variable as a token and
@@ -1929,7 +1929,7 @@ Dynamic Variable Selection Window
 
 - **Cursor up/down**: Moves the cursor down or back up to select the
     variable that should be inserted into the supported Step field.
-- **Page Up/Page Down**: When the window shows \"More...\" at the
+- **Page Up/Page Down**: When the window shows "More..." at the
     bottom, right-hand corner, use the Paging keys to show other valid
     values from the entire list.
 - **Enter**: Returns the currently highlighted variable as a token and
@@ -1985,7 +1985,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay logs (\#3)
   Time         The time when this Script was executed.
   Job Name     The name of the IBM i job that controlled the script execution.
   Job User     The name of the IBM i user that controlled the script execution.
-  Job Number   The number of the IBM i job that controlled the script execution (NOT the number of the script\'s emulated job).
+  Job Number   The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
 
   :  
 
@@ -2062,12 +2062,12 @@ option (\#5)
   Script name                  The name of the Script that was executed at each date and time.
   Replay job user name         The name of the IBM i User ID that was specified to run the script.
   Replay job return code       The code returned by the script control job. The interpretation of the code appears to the right of the code in pink text.
-  OPRLOGF10 data member name   For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter \"O\" followed by digits 2 through 10 of the SAM job name (if OpCon/xps executed the job in normal mode \"O\") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode \"A\").
+  OPRLOGF10 data member name   For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter "O" followed by digits 2 through 10 of the SAM job name (if OpCon/xps executed the job in normal mode "O") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode "A").
   Job date                     The date when this Script was executed.
   Job time                     The time when this Script was executed.
   IBM i control job name       The name of the IBM i job that controlled the script execution.
   IBM i control job user       The name of the IBM i user that controlled the script execution.
-  IBM i control job number     The number of the IBM i job that controlled the script execution (NOT the number of the script\'s emulated job).
+  IBM i control job number     The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
 
   :  
 
@@ -2152,7 +2152,7 @@ Replay variables may also be configured in advance, so they are readily
 available during maintenance of Script Steps, using the following
 procedure.
 
-[Add a Token/Variable]{.ul}
+[Add a Token/Variable]
 
 1. In the command line, enter **STRSMA**. For more information on
     STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
@@ -2233,7 +2233,7 @@ Delete Token Window
   ------------------------------------------------------------------------------------------------------------------------------------------
                                                            Delete Tokens/Variables
 
-[Token Name]{style="text-decoration: underline;"}   [        Token Description                ]{style="text-decoration: underline;"}                                                             \$TEST        Valeur de Test
+[Token Name]{style="text-decoration: underline;"}   [        Token Description                ]{style="text-decoration: underline;"}                                                             $TEST        Valeur de Test
                                                      MAXJOBS      Max Concurrent Jobs Token
 
                                                                    More\...
@@ -2276,8 +2276,8 @@ Operator Replay and report data capture for the SCANSPLF utility
 command. Some of the following description includes information that is
 useful in distinguishing between the two different types of data
 capture. Each actual data capture definition and the captured data
-record are labeled by their Type field, where \"C\" = screen capture and
-\"S\" = spool file capture.
+record are labeled by their Type field, where "C" = screen capture and
+"S" = spool file capture.
 
 Refer to the topic on Events and Utilities menu, for more information
 about ways to use data capture and captured data response rules.
@@ -2408,8 +2408,8 @@ capture for Operator Replay and report data capture for the SCANSPLF
 utility command. Some of the following description includes information
 that is useful in distinguishing between the two different types of data
 capture. Each actual data capture definition and the captured data
-record are labeled by their Type field, where \"C\" = screen capture and
-\"S\" = spool file capture.
+record are labeled by their Type field, where "C" = screen capture and
+"S" = spool file capture.
 
 Refer to the topic on Events and Utilities menu, for more information
 about ways to use data capture and captured data response rules,
@@ -2568,7 +2568,7 @@ variable fields.
 | Response sequence         | Response Sequence Number: The order in  |
 |                           | which each response rule will be        |
 |                           | executed. When changing an existing     |
-|                           | rule\'s sequence number, pay close      |
+|                           | rule's sequence number, pay close      |
 |                           | attention to the Continuation field     |
 |                           | value, because the order of records is  |
 |                           | critical when the Continuation field is |
@@ -2610,8 +2610,8 @@ variable fields.
 |                           | -   For more information on this field  |
 |                           |     and examples, refer to [Events and  | |                           |     Utilities                           |
 |                           |     Menu](Event                         |
-|                           | s-and-Utilities-Menu.md){.MCXref |
-|                           |     .xref}.                             |
+|                           | s-and-Utilities-Menu.md) |
+|                           |     .                             |
 +---------------------------+-----------------------------------------+
 | Compress numeric          | This flag field tells the LSAM data     |
 |                           | comparison rule engine how to handle    |
@@ -2696,8 +2696,8 @@ variable fields.
 |                           |     line syntax. For more information   |
 |                           |     about Dynamic Variables, refer to   |
 |                           |     [Dynamic                            | |                           |     Vari                                |
-|                           | ables](Dynamic-Variables.md){.MCXref |
-|                           |     .xref}.                             |
+|                           | ables](Dynamic-Variables.md) |
+|                           |     .                             |
 +---------------------------+-----------------------------------------+
 | Comp reference value      | -   The compare reference value is a    |
 |                           |     field containing a character string |
@@ -2716,7 +2716,7 @@ variable fields.
 |                           | -   DynVar = The LSAM Dynamic Variable  |
 |                           |     named in this field will be         |
 |                           |     compared to the Compare data. (Do   |
-|                           |     not type \'DynVar\' but instead     |
+|                           |     not type 'DynVar' but instead     |
 |                           |     type the name of a Dynamic          |
 |                           |     Variable. Use function key F8 to    |
 |                           |     select from a list of existing      |
@@ -2781,7 +2781,7 @@ variable fields.
 |                           |     characters are compared. That is,   |
 |                           |     field attributes such as color (and |
 |                           |     any EBCID character value less than |
-|                           |     X\'40\' ) will not be considered; a |
+|                           |     X'40' ) will not be considered; a |
 |                           |     space character is used in place of |
 |                           |     non-display values.                 |
 |                           | -   Special values may be typed into    |
@@ -2807,7 +2807,7 @@ variable fields.
 |                           |     indicates that one or more Dynamic  |
 |                           |     Variable tokens may be typed into   |
 |                           |     the Compare data lines. DO NOT TYPE |
-|                           |     \"DynVar\" into the Compare data.   |
+|                           |     "DynVar" into the Compare data.   |
 |                           |     Instead, type the Dynamic Variable  |
 |                           |     token syntax, which by default      |
 |                           |     looks like this:                    |
@@ -2828,8 +2828,8 @@ variable fields.
 |                           |     variable tokens are replaced. For   |
 |                           |     more information about Dynamic      |
 |                           |     Variables, refer to [Dynamic        | |                           |     Vari                                |
-|                           | ables](Dynamic-Variables.md){.MCXref |
-|                           |     .xref}.                             |
+|                           | ables](Dynamic-Variables.md) |
+|                           |     .                             |
 +---------------------------+-----------------------------------------+
 
 :  
@@ -2857,8 +2857,8 @@ variable fields.
     command also triggers a sub-menu window from which the appropriate
     OpCon command format syntax can be selected, and the syntax model
     can be updated after it is inserted into the Response cmd field.
-- **F10=\$Var**: When used in supported data entry fields, brings up a
-    list of \$-Special variables that are supported by the Operator
+- **F10=$Var**: When used in supported data entry fields, brings up a
+    list of $-Special variables that are supported by the Operator
     Replay -- Screen data capture function.
 - **F12=Cancel**: Return to the LSAM menu, or to the Screen Capture
     definition maintenance display.
@@ -2890,51 +2890,51 @@ embedded Dynamic Variable. This screen example also shows that the
 dynamic variable named DYNVAR1 would be updated by this same response
 rule. So the net effect of the example above is the same as if the
 Operator Replay token variable name (ORTOKEN) were entered in the
-capture response rule\'s Operator Replay variable name field. But the
+capture response rule's Operator Replay variable name field. But the
 command syntax illustrated is what is important to this discussion. This
 command syntax would be useful if a different Dynamic Variable were
 actually being used in the command, such as a Dynamic Variable that
 might have been updated by a different job that executed before the
 Operator Replay script job.
 
-### F10=\$VAR Pop-up Window Values
+### F10=$VAR Pop-up Window Values
 
 Display format OPRR50R2 supports function key F10 for selecting
-\$Variable tokens that can be inserted into various supported fields of
+$Variable tokens that can be inserted into various supported fields of
 the Captured Data Response Rules. These tokens do not require any
 special characters around them. Instead, they should be left inserted
-with the US dollar sign (\$) at the beginning, all capital letters and
+with the US dollar sign ($) at the beginning, all capital letters and
 spaces just where they are shown.
 
 The Operator Replay Script driver program will recognize exactly spelled
 tokens and then replace them with the values shown in the following
-table; however, the values for OpCon properties, such as \$SCHEDULE
+table; however, the values for OpCon properties, such as $SCHEDULE
 values, can only be replaced if the Script job was started by OpCon.
 They are not valid when Scripts are executed independently of OpCon, for
 example, if a Script is being executed in a test mode directly from a
 job started by the IBM i SBMJOB command, or if the STROPRRY command is
-executed from a user\'s interactive job command line.
+executed from a user's interactive job command line.
 
   ------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \$FREQUENCY NAME   The name of the OpCon Frequency assigned to the OpCon job that started the Script driver job (twhich is executing the Script (not the Job ID of the interactive workstation job),.
-  \$IBM JOB ID       The full IBM i job ID for the job which is executing the Script (not the Job ID of the interactive workstation job), in the format of 123456/USER/NAME.
-  \$IBM JOB NAME     The IBM i Job Name of the job which is executing the Script (not the Job ID of the interactive workstation job).
-  \$IBM JOB NBR      The IBM i Job Number of the job which is executing the Script (not the Job ID of the interactive workstation job).
-  \$IBM JOB USER     The IBM i User Profile that is part of the Job ID which is executing the Script (not the Job ID of the interactive workstation job).
-  \$JOBID            The OpCon job identified, a 10-digit number, of the OpCon job that started the Script job.
-  \$JOBID CMP        The OpCon job name and job identifier, joined into a single string with blanks compressed out, for the OpCon job that started the Script job.
-  \$JOBID LONG       The OpCon job name, followed by the job identifier, with all blanks retained in the string, for the OpCon job that started the Script job.
-  \$JOB NAME         The short format of the OpCon job name, for the job that started the Script job.
-  \$JOB LONG NAME    The long format of the complete OpCon job name, for the job that started the Script job.
-  \$MACHINE NAME     The OpCon name for the Agent (LSAM) machine in which the Script job is executing.
-  \$SCHEDULE DATE    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
-  \$SCHEDULE NAME    The name of the OpCon schedule under which the current job was started.
-  \$SCRIPT ID        The name of the Operator Replay Script. This combines with the \$STEP SEQ\# to uniquely identify a Step record in the Agent\'s database table.
-  \$SCRIPT USER      The name of the IBM i User Profile that was used to log into the green screen workstation session. Since this User name can be assigned from various sources, this variable is helpful for documenting this detail about the Script execution, and for finding jobs that were initiated by this User name.
-  \$STEP SEQ\#       The unique number assigned to a Step master record from the Operator Replay Script. This combines with the \$SCRIPT ID to uniquely identify a Step record in the Agent\'s database table.
+  $FREQUENCY NAME   The name of the OpCon Frequency assigned to the OpCon job that started the Script driver job (twhich is executing the Script (not the Job ID of the interactive workstation job),.
+  $IBM JOB ID       The full IBM i job ID for the job which is executing the Script (not the Job ID of the interactive workstation job), in the format of 123456/USER/NAME.
+  $IBM JOB NAME     The IBM i Job Name of the job which is executing the Script (not the Job ID of the interactive workstation job).
+  $IBM JOB NBR      The IBM i Job Number of the job which is executing the Script (not the Job ID of the interactive workstation job).
+  $IBM JOB USER     The IBM i User Profile that is part of the Job ID which is executing the Script (not the Job ID of the interactive workstation job).
+  $JOBID            The OpCon job identified, a 10-digit number, of the OpCon job that started the Script job.
+  $JOBID CMP        The OpCon job name and job identifier, joined into a single string with blanks compressed out, for the OpCon job that started the Script job.
+  $JOBID LONG       The OpCon job name, followed by the job identifier, with all blanks retained in the string, for the OpCon job that started the Script job.
+  $JOB NAME         The short format of the OpCon job name, for the job that started the Script job.
+  $JOB LONG NAME    The long format of the complete OpCon job name, for the job that started the Script job.
+  $MACHINE NAME     The OpCon name for the Agent (LSAM) machine in which the Script job is executing.
+  $SCHEDULE DATE    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
+  $SCHEDULE NAME    The name of the OpCon schedule under which the current job was started.
+  $SCRIPT ID        The name of the Operator Replay Script. This combines with the $STEP SEQ\# to uniquely identify a Step record in the Agent's database table.
+  $SCRIPT USER      The name of the IBM i User Profile that was used to log into the green screen workstation session. Since this User name can be assigned from various sources, this variable is helpful for documenting this detail about the Script execution, and for finding jobs that were initiated by this User name.
+  $STEP SEQ\#       The unique number assigned to a Step master record from the Operator Replay Script. This combines with the $SCRIPT ID to uniquely identify a Step record in the Agent's database table.
   ------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  : [F10=\$Var: \$-Special variables supported for Operator Replay   Response Rules]{style="font-family: 'Century Gothic';"}
+  : [F10=$Var: $-Special variables supported for Operator Replay   Response Rules]{style="font-family: 'Century Gothic';"}
 
 ### Display Captured Data Log
 
@@ -2952,8 +2952,8 @@ capture for Operator Replay and report data capture for the SCANSPLF
 utility command. Some of the following description includes information
 that is useful in distinguishing between the two different types of data
 capture. Each actual data capture definition and the captured data
-record are labeled by their Type field, where \"C\" = screen capture and
-\"S\" = spool file capture.
+record are labeled by their Type field, where "C" = screen capture and
+"S" = spool file capture.
 
 Refer to the topic on Events and Utilities menu, for more information
 about ways to use data capture and captured data response rules.
@@ -3147,8 +3147,8 @@ Replay script, or the SCANSPLF command that is causing trouble, use the
 SMASUP log file extract command to retrieve the debug log information
 and send the resulting save file from library SMALOG to SMA Support for
 assistance. For more information about how to use the SMASUP command,
-refer to [Extracting Log and Master Files](Log-File-and-Database-Management.md#Extracti){.MCXref
-.xref}.
+refer to [Extracting Log and Master Files](Log-File-and-Database-Management.md#Extracti)
+.
 
 Following is a table of Entry_Code values that may be observed in the
 list of debug log entries. These entry labels help to identify the

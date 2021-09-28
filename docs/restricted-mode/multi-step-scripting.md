@@ -7,7 +7,7 @@ and/or program calls, without requiring that Control Language programs
 be constructed and compiled. This feature also supports execution of
 Control Language commands from source members, in addition to its
 primary function of executing collections of Script Steps that are
-defined using the LSAM\'s data entry functions. IBM i source file
+defined using the LSAM's data entry functions. IBM i source file
 members can be used for individual script step commands or to contain
 the entire script that will be executed.
 
@@ -45,7 +45,7 @@ This feature is important to OpCon users for reasons that include:
 - Jobs controlled by the STRMLTJOB command have implied convenient
     access to any of the LSAM software commands included with the OpCon
     IBM i Agent product. This means that LSAM commands can be used in a
-    multi-step job without extra steps to manage the job\'s library
+    multi-step job without extra steps to manage the job's library
     list.
 
 ## Instructions for Configuring Multi-Step Jobs
@@ -84,7 +84,7 @@ script steps file are very powerful and they have no built-in authority
 constraints.
 
 :::danger
-It is solely the user\'s responsibility to properly manage the IBM i object authorities for this feature, and anyone using this feature accepts all risks and liability for its use.
+It is solely the user's responsibility to properly manage the IBM i object authorities for this feature, and anyone using this feature accepts all risks and liability for its use.
 :::
 
 #### Script Application Authority Requirements
@@ -132,16 +132,16 @@ SMAGPL/SMAMSGF (\*MSGF): \*USE authority
 Any QCLSRC (or other named) source file: Object \*USE authority and READ
 data authority.
 
-In addition to the STRMLTJOB command tool set, the job\'s user must have
+In addition to the STRMLTJOB command tool set, the job's user must have
 the usual authorities to the IBM i job description, job queue and output
-queue (if required) that are used to start and manage the job\'s
+queue (if required) that are used to start and manage the job's
 execution.
 
-The job\'s user must have authority to use any of the IBM i commands
+The job's user must have authority to use any of the IBM i commands
 that are included in script steps and/or source file members that
 contain commands to be executed by the STRMLTJOB script driver.
 
-Finally, the job\'s user must have authority to use any third-party
+Finally, the job's user must have authority to use any third-party
 software applications whose commands, programs, files and other objects
 will be used by the tasks initiated by script steps or by CL source
 member commands. This concept is usually assumed for any job that OpCon
@@ -173,7 +173,7 @@ involves the following simple steps:
 **- then -**
 
 1. *(Optional)* Add a predefined LDA (IBM i job Local
-    Data Area) image that will be used to set the script job\'s LDA
+    Data Area) image that will be used to set the script job's LDA
     content as the job starts. The whole 1024 characters of the initial
     LDA image can be configured using a function key from the Multi-Step
     Script maintenance program (refer to [Multi-Step Job Screens and     Windows](#Multi-St2) below).
@@ -207,7 +207,7 @@ script steps, in part to control the library list that will be in effect
 for the job.
 
 The STRMLTJOB command performs its own built-in management of adding the
-LSAM libraries to the end of the job\'s library list, at run time, so
+LSAM libraries to the end of the job's library list, at run time, so
 these libraries do not need special consideration in the job
 description.
 
@@ -216,7 +216,7 @@ description.
 When using the STRMLTJOB command in test mode, that is, when manually
 executing this command outside of the control of OpCon, be sure to
 change the JOBTYPE parameter of the STRMLTJOB command to a value of
-\"T\" which means \"Test.\" The default value is \"O\" which means that
+"T" which means "Test." The default value is "O" which means that
 OpCon is starting the command. This option prevents useless messages
 from being sent to the OpCon server.
 
@@ -282,7 +282,7 @@ of the STRMLTJOB command (using the RSTLABEL parameter).
 
 #### ON_RESTART Special Label
 
-A reserved name of \"ON_RESTART\" may be put into the LABEL field of one
+A reserved name of "ON_RESTART" may be put into the LABEL field of one
 step master record. When this special label value is used, it is good
 practice to place it as the first Step in a Script, before other labels,
 however, the Script driver program is able to locate this reserved label
@@ -348,7 +348,7 @@ viewed from the LSAM sub-menu option 6.
 
 The STRMLTJOB command parameter JOBLOG( ) is used to enable (Y) or
 disable (N) the function of writing status and error messages to the IBM
-i job log. When set to \"Y\" = Yes, this option makes script job details
+i job log. When set to "Y" = Yes, this option makes script job details
 visible in the OpCon Job Output Retrieval function (a view of the IBM i
 job log report).
 
@@ -395,7 +395,7 @@ Reference.
 |                                  | Compare Data.                    |
 +----------------------------------+----------------------------------+
 
-- The terms \"Reference\" and \"Data\" could be confusing, but the
+- The terms "Reference" and "Data" could be confusing, but the
     program works using a comparison model that matches the appearance
     of the script step maintenance screen, where the Reference field
     appears before the Boolean rule, and the Data field appears after
@@ -433,7 +433,7 @@ SMASUBR pseudo-command as the command to execute from a scrip step (or
 from a source member command line). Using this technique, there is no
 limit the level of nested scripts.
 
-- The STRMLTJOB command will always reset the job\'s LDA (IBM i Local
+- The STRMLTJOB command will always reset the job's LDA (IBM i Local
     Data Area) content if there is an LDA image registered with the
     SCRIPT name specified in the STRMLTJOB command. It also finds and
     applies any Type-L Dynamic Variable changes to the LDA after that
@@ -445,9 +445,9 @@ limit the level of nested scripts.
     used within the currently executing script. That is, it causes
     another script to execute, and then control is returned to the
     primary script steps. But the SMASUBR command does NOT affect the
-    content of the job\'s LDA. The SMASUBR pseudo-command is preferred
+    content of the job's LDA. The SMASUBR pseudo-command is preferred
     for implementing subroutine logic, unless it is specifically desired
-    to change the job\'s LDA, in which case the STRMLTJOB command can be
+    to change the job's LDA, in which case the STRMLTJOB command can be
     used, as described above.
 
 ##### Branching within a Script
@@ -463,7 +463,7 @@ can loop back to a previous LABEL or TAG.
     pause on an error message.
 - SMAGOTO: This pseudo-command is used in the command line of a script
     step to tell the script driver program that it should branch to the
-    specified script step LABEL. A value of \"\*CURRENT\" is used for
+    specified script step LABEL. A value of "\*CURRENT" is used for
     the SCRIPT parameter of the SMAGOTO command to limit the LABEL
     search to anywhere in the current script.
 - CL GOTO: In a Control Language source member, the IBM i GOTO command
@@ -493,17 +493,17 @@ abandon the current script.
 #### Script Step Fail-Option Flag
 
 A flag field on the Step master record tells the script driver program
-how to react if the step\'s command execution fails.
+how to react if the step's command execution fails.
 
-A value of \"F\" indicates that the script job should be forced to fail,
+A value of "F" indicates that the script job should be forced to fail,
 so that it will also show as a failed job on the OpCon schedule. An
 error code of MLT0101 indicates this type of forced failure. When a
-script job fails, if the JOBLOG parameter was set to \"Y\", then
+script job fails, if the JOBLOG parameter was set to "Y", then
 detailed information messages from the script driver program can be
 viewed in the job log report using the OpCon Job Output Retrieval
 function.
 
-A value of \"I\" indicates that the script driver should ignore the
+A value of "I" indicates that the script driver should ignore the
 error and continue processing the next script step. The ON_ERROR
 registered command (if any) is still executed when a step command error
 is ignored, since this makes it possible to trigger some external
@@ -512,9 +512,9 @@ action, even if the script is allowed to continue.
 #### Step Active/Inactive Flag
 
 A flag field on the step master record can be used to temporarily
-disable any step record. When this flag is set to a value of \"I\", the
+disable any step record. When this flag is set to a value of "I", the
 script step record will be ignored by the script driver program. The
-flag must be left blank or set to a value of \"A\" to mark the step
+flag must be left blank or set to a value of "A" to mark the step
 master record as active.
 
 An inactive step master record will not be used for any purpose, except
@@ -525,7 +525,7 @@ the LABEL field.
 
 #### ON_ERROR Special Label
 
-A reserved name of \"ON_ERROR\" may be put into the LABEL field of a
+A reserved name of "ON_ERROR" may be put into the LABEL field of a
 step master record. When the script driver encounters this LABEL value,
 it stores the command, any qualifying rules, and the Fail-option flag
 for this command into a program register. As indicated above, whenever a
@@ -545,7 +545,7 @@ script driver to any command error, depending on the phase or progress
 of the job.
 
 When the last registered ON_ERROR command value should be disabled, the
-special value of \"\*NONE\" can be placed in the Command field of a new
+special value of "\*NONE" can be placed in the Command field of a new
 Step record that has the ON_ERROR step label. This technique prevents a
 customized recovery procedure from being executed for a different step.
 However, it may be better practice to replace that custom recovery

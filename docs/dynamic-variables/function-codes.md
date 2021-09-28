@@ -1,13 +1,13 @@
 # Dynamic Variable Function Codes
 
-## What is a \"Function Code\" for LSAM Dynamic Variables?
+## What is a "Function Code" for LSAM Dynamic Variables?
 
-The \"Value calc pgm\" field of an LSAM Dynamic Variable master record
+The "Value calc pgm" field of an LSAM Dynamic Variable master record
 is also used by the LSAM to support special values that govern how the
 value for a Dynamic Variable will be prepared when it will replace a
 Dynamic Variable {TOKEN}. The Value Calc Pgm field label shows its
-alternative purpose by this label: \"/Fn Code.\" This means \"Function
-Code,\" and it refers to the unique functions of Dynamic Variable value
+alternative purpose by this label: "/Fn Code." This means "Function
+Code," and it refers to the unique functions of Dynamic Variable value
 replacement whenever a special value beginning with an asterisk (\*) is
 entered into this field.
 
@@ -73,7 +73,7 @@ field include:
 
 Dynamic Variables that store date values can be transformed into many
 different edited or unedited formats using the \*DATE option supported
-by the Dynamic Variable master record field called [Value Calculator Program Name]{.ul}.
+by the Dynamic Variable master record field called [Value Calculator Program Name].
 
 :::caution
 \*DATE reformatting can only be performed if a Dynamic Variable is defined in advance using green screen maintenance.
@@ -112,7 +112,7 @@ Boolean comparisons.
 
 - If the captured date was in punctuated ISO format (for example,
     2017-05-04), then it is not necessary (nor possible) to use \*DATE
-    reformatting. Instead, just specify the \"compress numeric\" option
+    reformatting. Instead, just specify the "compress numeric" option
     when storing the date value, either in the SETDYNVAR command or when
     configuring a Response Rule.
 - The \*DATE reformatting cannot be specified for a numeric Dynamic
@@ -135,10 +135,10 @@ Boolean comparisons.
     ```
   - If the original, punctuated date is captured data, use a Capture
         Data Response Rule to store the captured value into the numeric
-        Dynamic Variable by specifying a value of \"Y\" in the Response
-        Rule \"CompNum\" field.
+        Dynamic Variable by specifying a value of "Y" in the Response
+        Rule "CompNum" field.
 - It is possible to specify only the 1=FROM value to indicate what is
-    the format of the current date in the variable\'s VALUE field, and
+    the format of the current date in the variable's VALUE field, and
     not use the 2=TO reformatting option. Using this configuration is a
     way to isolate the dynamic variable so that date math can
     (optionally) still be used on the VALUE as it was originally stored,
@@ -151,15 +151,15 @@ Boolean comparisons.
 - Date formatting characters can be removed from a date value without
     being forced to change the order and size of the date elements.
     Instead of relying on the FMT0 option of the Dynamic Variable date
-    conversion, use the \"compress numeric\" function of the SETDYNVAR
+    conversion, use the "compress numeric" function of the SETDYNVAR
     command parameter, called CMPNUM. It is also possible to specify
-    \"compress numeric\" in Captured Data Response Rules, which governs
+    "compress numeric" in Captured Data Response Rules, which governs
     how a captured data element will be stored into a Dynamic Variable.
 - Remember that the date math function depends on an accurate
     specification of the 1=FROM (current) date format for the VALUE
     stored in the Dynamic Variable table. If a date value was stored
     without formatting characters, then the 1=FROM date format must also
-    be followed by a '0\' typed under the \'FMT\' column on page 2 of
+    be followed by a '0' typed under the 'FMT' column on page 2 of
     the Dynamic Variable Maintenance screen.
 - Since Dynamic Variable date formatting rules can only be specified
     using the LSAM green screen maintenance program, it is necessary to
@@ -182,8 +182,8 @@ Boolean comparisons.
     \*ISO0 format is often the best format to use for comparing date
     values (in Captured Data Response Rules, or in Step qualification
     rules within either Operator Replay Scripts or Multi-Step Job
-    Scripts). Refer to the \"Use Case for Nested Dynamic Variable
-    Tokens\" (below) for additional perspective on the application of
+    Scripts). Refer to the "Use Case for Nested Dynamic Variable
+    Tokens" (below) for additional perspective on the application of
     multiple date Dynamic Variables.
 
 ## \*TIME Function Code
@@ -254,14 +254,14 @@ segments, such as 4 hours and 20 minutes, the adjustment can be made by
 either pre-calculating the total number of minutes, or by executing the
 SETDYNVAR command twice - once for each value to be changed.
 
-SETDYNVAR   \...    VALUE(\'+M20\')
+SETDYNVAR   \...    VALUE('+M20')
 
 Notice that the VALUE string must be enclosed in single quotes.
 
 It is possible to use a Dynamic Variable {TOKEN} for any or all parts of
 a Data or Time math setting, for example:
 
-SETDYNVAR \... VALUE(\'+M{NBROFMONTHS}\'
+SETDYNVAR \... VALUE('+M{NBROFMONTHS}'
 
 ## \*SYSVAL Function Code
 
@@ -271,7 +271,7 @@ presented in place of the {TOKEN}.
 
 Examples of System Value names include QDATE (the current system date),
 which is often used to feed another Dynamic Variable with a Function
-Code of \*DATE, so that the IBM i partition\'s system date can be
+Code of \*DATE, so that the IBM i partition's system date can be
 reformatted.
 
 Refer to the topic about nested Dynamic Variable tokens, below, for an
@@ -312,13 +312,13 @@ appearance of email messages by adding blank lines between paragraphs of
 the email message text.
 
 \*HEX Dynamic Variables are restricted to accept only new values
-specified in the format X\'hh\', where \'h\' is a valid character used
+specified in the format X'hh', where 'h' is a valid character used
 to represent a nibble (half byte) of a character in the computer data
 format of the hexadecimal numbering system.
 
-Characters representing hex values are limited to \'0 - 9\' and/or \'A -
-F\'. For example, the Carriage Return control character is represented
-in this EBCDIC data format: X\'0D\'.
+Characters representing hex values are limited to '0 - 9' and/or 'A -
+F'. For example, the Carriage Return control character is represented
+in this EBCDIC data format: X'0D'.
 
 ## \*DTAARA Function Code
 
@@ -379,8 +379,8 @@ When experimenting with the \*DB2 function code, view the contents of
 the LSAM general purpose log file LSALOGF30 to find images of SQL
 statements and any error messages that explain why an SQL statement did
 not work. The LSAM sub-menu 6, option 5, log viewer 4 can be used to
-view this log. Log entries marked \"DQ:\" will show the SQL statement
-that was constructed, and entries marked \"DE:\" show any error messages
+view this log. Log entries marked "DQ:" will show the SQL statement
+that was constructed, and entries marked "DE:" show any error messages
 that will usually explain what was wrong with the SQL statement.
 
 #### Management of Dynamic Variable Auxiliary Data
@@ -470,13 +470,13 @@ Since the SQL query result will be placed into a 128-character host
 program field, any selection of numeric, date or time values must be
 modified by the SQL CHAR( ) keyword, so that the non-character data can
 be placed into a character field. The LSAM maintenance program puts the
-prompt of \"CHAR(numeric/date/time)\" into the field/col field when
+prompt of "CHAR(numeric/date/time)" into the field/col field when
 display format R6 is offered in its Create (Add) mode, as a reminder of
 this constraint.
 
 \*WHERE special value:
 
-The SELECT field/col field supports a special value of \"\*WHERE\" that
+The SELECT field/col field supports a special value of "\*WHERE" that
 tells the LSAM Dynamic Variable value calculators to ignore all the
 field/col, library and file/table values. This special value indicates
 that the \*DB2 SQL query will be entirely contained within the large
@@ -490,7 +490,7 @@ Except for \*WHERE rules, type the name of the IBM i library where the
 file/table is located. This field can be left blank, but that tells the
 SQL query engine to find the file/table in the library list of the
 current job. Keep in mind that frequently, the current job will be an
-LSAM server job, so that job\'s library list will be limited to the LSAM
+LSAM server job, so that job's library list will be limited to the LSAM
 environment library list (plus the SYS library list values). So the best
 practice is to always specify a library name or a Dynamic Variable token
 in this field.
@@ -509,7 +509,7 @@ This is the field for typing in SQL clauses. If the special value of
 query statement must be typed into this field. Otherwise, the more
 common use might be to specify the field/col, library and file/table
 values, and in that case this WHERE\... field would start with the SQL
-keyword \"WHERE\" in order to specify the selection rules that will
+keyword "WHERE" in order to specify the selection rules that will
 isolate the specific row in a table that should produce the desired
 field/column value.
 
@@ -545,8 +545,8 @@ Whenever the desired value for a \*DB2 Access Definition does not
 produce the desired value, or it produces an error code, more
 information about the SQL statement that was produced and any error
 messages can be easily displayed from the LSAM log file LSALOGF30, as
-described above. Log entries marked \"DQ:\" will show the SQL statement
-that was constructed, and entries marked \"DE:\" show any error messages
+described above. Log entries marked "DQ:" will show the SQL statement
+that was constructed, and entries marked "DE:" show any error messages
 that will usually explain what was wrong with the SQL statement.
 
 ##### *Preset Dynamic Variable Values When Using \*DB2 Access Definitions*
@@ -564,7 +564,7 @@ record will be provided instead.
 This suggests that the best practice is to store an initializing value
 into the Dynamic Variable master record before the {TOKEN} of that
 variable will be replaced by some subsequent use of the token. A value
-such as \"Not Found\" or \"SQL error\" could be stored in the record, so
+such as "Not Found" or "SQL error" could be stored in the record, so
 that when there is a failure of the SQL query, the value used to replace
 the {TOKEN} will be the predefined error message which is easily
 recognized. The DSPDYNVAR test command can be used to demonstrate this
@@ -575,7 +575,7 @@ prevent an unfortunate operation during subsequent automated steps.
 
 ### How Numeric Compression Is Managed for \*DB2
 
-The concept of \"numeric compression\" in the IBM i LSAM means that a
+The concept of "numeric compression" in the IBM i LSAM means that a
 value string will be cleared of all characters except for numeric
 digits, and then the digits will be compressed to remove blank space, so
 that the final result is a numeric string that can be used, for example,
@@ -586,7 +586,7 @@ Variable master record).
 For Dynamic Variables that are marked as numeric, the LSAM module that
 manages the SQL queries of \*DB2 Access Definitions will always perform
 the numeric compression subroutine before returning a value in place of
-that Variable\'s token. This protects the LSAM programs from failure to
+that Variable's token. This protects the LSAM programs from failure to
 operate as expected when Dynamic Variables, and possibly Captured Data
 Response Rules are performing mathematical operations.
 

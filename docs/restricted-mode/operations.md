@@ -2,7 +2,7 @@
 
 ## Setup for Restricted Mode
 
-[Setup Steps to Prepare for Restricted Mode]{.ul}
+[Setup Steps to Prepare for Restricted Mode]
 
 1. Enable the SMASAV user profile using the following command:
     **CHGUSRPRF USRPRF(SMASAV) STATUS(\*ENABLED)**.
@@ -58,8 +58,8 @@
     a.  If no environment has been created for use with Restricted Mode,
         press \<**F12**\> to return to the main setup screen, and then
         press \<**F6**\> (Add/maint env) to create and environment and
-        build a library list. Refer to [LSAM Environment         Management](LSAM-Environment-Management.md#top){.MCXref
-        .xref}. Then repeat steps 15 and 16.
+        build a library list. Refer to [LSAM Environment         Management](LSAM-Environment-Management.md#top)
+        . Then repeat steps 15 and 16.
 
 17. Enter the number of seconds that are required by the system to fully
     restore the TCP servers after IBM i first starts all subsystems.
@@ -210,8 +210,8 @@ Following are details about how each reserved Action code works.
     [SMASETLIBL     ENV(\<my_LSAM_environment\>)]{style="font-family: 'Courier New';"}\
     \
     \<my_LSAM_environment\> is a different LSAM environment name than
-    the one being used. Refer to [Installing Multiple     Environments](Installing-Multiple-Environments.md#top){.MCXref
-    .xref} and [LSAM Environment     Management](LSAM-Environment-Management.md#top)
+    the one being used. Refer to [Installing Multiple     Environments](Installing-Multiple-Environments.md#top)
+     and [LSAM Environment     Management](LSAM-Environment-Management.md#top)
     for more information on this option.\
     \
     Do not use the command SMASETLIBL without an ENV parameter because
@@ -243,7 +243,7 @@ Mode Script is ended, after restarting the LSAM server jobs and
 communication with OpCon.
 
 :::note
-For IBM i 6.1 (formerly known as IBM i V6R1) or a newer version of the operating system, the PWRDWNSYS command supports a new function where F16=Confirm must be pressed at the console display device in order to allow the system to power down. This feature must be suppressed in order for the Restricted Mode script to use the PWRDWN Action code, otherwise an operator must be present to respond to the console display. The F16=Confirm function may be suppressed by using the keyword and value CONFIRM(\*NO) with the PWRDWNSYS command, or it may also be suppressed by setting the environment variable QIBM_PWRDWNSYS_CONFIRM to \'\*NO\'.
+For IBM i 6.1 (formerly known as IBM i V6R1) or a newer version of the operating system, the PWRDWNSYS command supports a new function where F16=Confirm must be pressed at the console display device in order to allow the system to power down. This feature must be suppressed in order for the Restricted Mode script to use the PWRDWN Action code, otherwise an operator must be present to respond to the console display. The F16=Confirm function may be suppressed by using the keyword and value CONFIRM(\*NO) with the PWRDWNSYS command, or it may also be suppressed by setting the environment variable QIBM_PWRDWNSYS_CONFIRM to '\*NO'.
 :::
 
 This document includes an excerpt from IBM documentation, following, as
@@ -299,8 +299,8 @@ program will recover from a failed Script.
 One type of command that could be assigned to an ON_ERROR Action is an
 OpCon Event. For more information about the available OpCon Event
 commands that may be specified, refer to [Events and Utilities Menu](Events-and-Utilities-Menu.md#top) and
-[Commands and Utilities](Commands-and-Utilities.md#top){.MCXref
-.xref}. As with all Restricted Mode Action commands, the OpCon Event
+[Commands and Utilities](Commands-and-Utilities.md#top)
+. As with all Restricted Mode Action commands, the OpCon Event
 commands may also be prompted using \<**F4**\> from the Restricted Mode
 Options Detail screen (refer to [Restricted Mode Screens and Windows](#Restrict3) for more information).
 
@@ -334,7 +334,7 @@ and the error reported to OpCon/xps:
 2. Delays the program for the number of seconds specified in the
     Restricted Mode Setup maintenance program, giving IBM i sufficient
     time to restore the TCP communications services.
-3. Sets the Restricted Mode program\'s library list to the list of the
+3. Sets the Restricted Mode program's library list to the list of the
     controlling LSAM environment using the SMASETLIBL utility command.
     The name of the environment used to control Restricted Mode
     operations is set using the Setup Environment function from the
@@ -351,7 +351,7 @@ and the error reported to OpCon/xps:
 7. Stores the job logs of the failing Restricted Mode process and of
     the job that signaled Restricted Mode to start (the name of the job
     being tracked in OpCon/xps for Restricted Mode operations control).
-    These job logs can be viewed from the LSAM environment\'s command
+    These job logs can be viewed from the LSAM environment's command
     entry line using the LSADSPLOG utility command.
 8. Ends the Restricted Mode program and forces the console interactive
     job to end by producing a job log and signing off the SMASAV user
@@ -389,12 +389,12 @@ perform a Save operation to that save file.
 ## Running a Restricted Mode Process
 
 IBM i now supports executing restricted mode operations from other
-sources besides just the DSP01 console device. It\'s possible to use a
-different interactive display device, and it\'s also possible to run in
+sources besides just the DSP01 console device. It's possible to use a
+different interactive display device, and it's also possible to run in
 batch mode without any display device. The LSAM setup for Restricted
 Mode script processing supports choosing any of these three methods.
 
-[Run a Restricted Mode Process in Batch Mode]{.ul}
+[Run a Restricted Mode Process in Batch Mode]
 
 1. Ensure that the LSAM is communicating with SAM and supporting
     services (SAM-SS).
@@ -407,17 +407,17 @@ Mode script processing supports choosing any of these three methods.
     normal system operations are the same as when a display device is
     used. The steps performed by the Restricted Mode Script and any
     error information can be viewed using the LSAM sub-menu option to
-    display \"Restricted mode history\" (previously called \"History of
-    the last use\").
+    display "Restricted mode history" (previously called "History of
+    the last use").
 
-[Run a Restricted Mode Process Using the Console or an Alternate Display Device]{.ul}
+[Run a Restricted Mode Process Using the Console or an Alternate Display Device]
 
 1. Ensure that the LSAM is communicating with SAM and supporting
     services (SAM-SS).
 2. Log in to the IBM i console or an alternate display device as
     **SMASAV**.
-3. Wait for a message on the display device stating, \"Restricted mode
-    operation ready to start ...\"
+3. Wait for a message on the display device stating, "Restricted mode
+    operation ready to start ..."
 4. Start the OpCon/xps job through the Enterprise Manager.
 5. Regardless of the steps that will run, the following screen will be
     displayed after the restricted mode operation is started. The status

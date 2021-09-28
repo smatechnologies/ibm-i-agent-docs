@@ -18,9 +18,9 @@ provided by the File Watcher that are still being replaced as the
 Windows job sub-type model evolves.
 
 Now the OpCon (version 17.1 and newer) IBM i job master record supports
-a separate job sub-type called \"File Arrival\" which makes it easier to
-configure file watching for IBM i, instead of using the IBM i \"Batch
-Job\" sub-type and typing in all the CHK\* command parameters. The new
+a separate job sub-type called "File Arrival" which makes it easier to
+configure file watching for IBM i, instead of using the IBM i "Batch
+Job" sub-type and typing in all the CHK\* command parameters. The new
 Enterprise Manager (EM) panel that appears for File Arrival jobs makes
 it easy to configure this type of job with many different options. The
 EM panel is actually supported by the IBM i Agent using its native
@@ -61,12 +61,12 @@ also support an ongoing File Watcher strategy.
 - Support for the OpCon File Arrival Job Sub-type
 
 Starting with OpCon version 17.1, the IBM i job master record offers a
-new job sub-type called \"File Arrival.\" (The sub-type of jobs for the
-IBM i Agent is supported by a \"Job type\" field within the lower EM
+new job sub-type called "File Arrival." (The sub-type of jobs for the
+IBM i Agent is supported by a "Job type" field within the lower EM
 panel that contains job master data specific to this Agent.) The File
 Arrival job sub-type supports a data entry panel that makes it easier to
 define File Arrival job parameters. This technique replaces the former
-strategy of using the IBM i \"Batch Job\" sub-type and entering raw
+strategy of using the IBM i "Batch Job" sub-type and entering raw
 command line text with many optional command keywords. But, behind the
 scenes, the Agent is still using the same CHKFILE and CHKIFSFIL commands
 as are documented here. The following information helps to decide on
@@ -75,9 +75,9 @@ appropriate settings for the File Arrival job definition.
 - Extended List of Command Completion Codes
 
 The Agent File Arrival commands support an extended range of completion
-codes. These completion codes can be sent to a local Agent\'s Dynamic
+codes. These completion codes can be sent to a local Agent's Dynamic
 Variable, so that they can be tested when the CHKFILE or CHKIFSFIL
-commands are used from within the Agent\'s local automation tools, such
+commands are used from within the Agent's local automation tools, such
 as the Multi-Step Job Scripting tool.
 
 When an OpCon Schedule submits a File Arrival job, the completion code
@@ -96,50 +96,50 @@ triggered by the OpCon job.
 
 - New Options to Control the Final Job Status
 
-A combination of the Agent\'s File Arrival command parameters with a
+A combination of the Agent's File Arrival command parameters with a
 drop-down list of Failure Conditions in the OpCon EM job definition
 panel allows the user to decide whether the Agent will report a final
 job status of Finished OK or Failed, depending on a variety of different
 circumstances. These options allow the File Arrival job to adapt to the
-requirements of a software application or of the user\'s surrounding
+requirements of a software application or of the user's surrounding
 OpCon Schedule dependencies.
 
 The higher level decision about Finished OK versus Failed can be further
-refined by using the OpCon job\'s Events tab to respond to any of the
+refined by using the OpCon job's Events tab to respond to any of the
 completion codes expected from the IBM i Agent.
 
-- New \$@ Agent Variable Names Support Command Keywords
+- New $@ Agent Variable Names Support Command Keywords
 
 As the OpCon general standards for File Arrival jobs evolve, the full
 capabilities that are unique to the IBM i Agent File Arrival commands
 can be engaged by setting any command keyword value from the Variables
 Tab of an OpCon job. This makes it possible to engage any of this
-Agent\'s capabilities that are not already supported by the OpCon EM job
+Agent's capabilities that are not already supported by the OpCon EM job
 definition panel.
 
 :::note
-The two variable prefix characters \"\$@\" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of \"\$@\". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the chapter about [Utilities Screens and Windows](Events-and-Utilities-Menu.md#Utilitie2) for more information about changing the prefix characters.
+The two variable prefix characters "$@" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of "$@". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the chapter about [Utilities Screens and Windows](Events-and-Utilities-Menu.md#Utilitie2) for more information about changing the prefix characters.
 :::
 
 The IBM i Agent now supports a system-reserved naming convention for
 variables that can be added to the OpCon job Variables tab, where any
-command keyword can be prefixed with the characters \'\$@\' to designate
+command keyword can be prefixed with the characters '$@' to designate
 that the Variable Name is referring to a command keyword. For example,
-this Agent\'s command keyword \"JOBENDTIME\" can have a value set by
-adding a variable named \$\@JOBENDTIME to the OpCon job\'s Variables
+this Agent's command keyword "JOBENDTIME" can have a value set by
+adding a variable named $\@JOBENDTIME to the OpCon job's Variables
 tab. The value provided for this type of variable name must exactly
 match the format and type of value that is supported by either
-command\'s JOBENDTIME() keyword.
+command's JOBENDTIME() keyword.
 
-The \$@ command keyword convention is supported by this Agent for any
+The $@ command keyword convention is supported by this Agent for any
 IBM i job. However, it should only be used for circumstances documented
 in this IBM i Agent user help, otherwise unpredictable results could
 occur. As a general rule, this type of command keyword will be inserted
-only within the IBM i job\'s CMD() line, which is a parameter of the IBM
-i SBMJOB command. Thus, the \$@ variable names cannot be used (at this
+only within the IBM i job's CMD() line, which is a parameter of the IBM
+i SBMJOB command. Thus, the $@ variable names cannot be used (at this
 time) to extend the parameters of the SBMJOB command itself.
 
-The \$@ command keyword variables can be used with IBM i Batch Jobs that
+The $@ command keyword variables can be used with IBM i Batch Jobs that
 are executing the CHK\* commands. These Variable tab entries may support
 greater flexibility in the format of value data entry, as compared to
 using the raw CHKFILE or CHKIFSFIL command keywords in an IBM i Batch
@@ -153,7 +153,7 @@ day).
 As of PTF \# 181047, the sub-programs that search the IFS stream file
 directories no longer use the QTEMP library to report their search
 results and errors. Instead, they use a temporary work library named
-\'CKF\' plus the IBM i Job Number where the CKFIFSFIL command executes.
+'CKF' plus the IBM i Job Number where the CKFIFSFIL command executes.
 
 The temporary work library will be retained in case the CHKIFSFIL
 command reports a failure, unless a command parameter says to ignore
@@ -161,7 +161,7 @@ failures. When the command completes normally or ignores errors, then
 the work library will be deleted at the end of the command processing.
 
 To perform debugging operations when the command completes normally, set
-the new command parameter KEEPWRKLIB(Y) to the value of \'Y\' = yes.
+the new command parameter KEEPWRKLIB(Y) to the value of 'Y' = yes.
 
 ## Change to the management of the CHK-command job library list
 
@@ -181,15 +181,15 @@ ENV = the LSAM environment name (defaults to the current LSAM).
 GPL = the name of the SMAGPL library in this LSAM environment.
 
 When these two parameters are set to existing values, and not left set
-to their default values of \'\*DEFAULT\', the CHK\* commands can be
+to their default values of '\*DEFAULT', the CHK\* commands can be
 executed from anywhere within the IBM i partition without
 
-requiring that the job\'s initial (or current) library list be set to
+requiring that the job's initial (or current) library list be set to
 the LSAM environment library list.
 
 When the ENV and GPL values are set to represent an existing LSAM
 environment, the CHK\* command driver programs will add the LSAM
-environment libraries temporarily to the job\'s library list, so that
+environment libraries temporarily to the job's library list, so that
 the command can interact as required with tables in the LSAM database.
 
 Prior to LSAM PTF \# 181047, the File Arrival jobs or the stand-alone
@@ -247,13 +247,13 @@ If both the Job End Time and the Create End Time are zeros/blanks, but the Re-ch
 ## Using the Agent Commands in File Arrival Jobs
 
 The recommended method for configuring File Arrival jobs in OpCon
-Schedules is to select the IBM i job sub-type of \"File Arrival\" and
+Schedules is to select the IBM i job sub-type of "File Arrival" and
 then fill in the unique job definition panel. The Variables tab of the
 IBM i job can also be used to set additional command parameters using
-the \$@ Agent variable naming convention to represent any given command
+the $@ Agent variable naming convention to represent any given command
 parameter keyword. The File Arrival job sub-type will cause the Agent to
 format and submit the CHKFILE or CHKIFSFIL command, with any optional
-\$\@VARIABLE parameters, as the File Arrival job.
+$\@VARIABLE parameters, as the File Arrival job.
 
 Before the OpCon File Arrival job definition panel was supported for IBM
 i jobs, the job sub-type of Batch Job was used and the CHKFILE or
@@ -273,8 +273,8 @@ the command parameter OPCONJOB is set to a value of (N), (T), or (A),
 where both of those values refer to Test mode (offline from OpCon).
 Second, a clear understanding of the native command parameters may be
 required to complete more complex File Arrival job definitions,
-especially when using the \$@ variable names for setting command
-parameter keyword values from an OpCon job\'s Variables tab.
+especially when using the $@ variable names for setting command
+parameter keyword values from an OpCon job's Variables tab.
 
 ### Formatting the File Arrival Command Line
 
@@ -287,7 +287,7 @@ pasted.
 
 When logged on to a green screen workstation, it is very helpful to use
 the full screen command entry mode. This is the best way to capture
-longer command lines so they can be pasted into an OpCon job\'s Call
+longer command lines so they can be pasted into an OpCon job's Call
 command box.
 
 To enter the full screen mode for IBM i commands, type the following
@@ -308,7 +308,7 @@ following options will support prompting the commands:
     CALL QCMD before attempting to prompt, format, cancel and retrieve
     the command line.
 - From any IBM i command line, the Agent commands SMAGPL/SMASETLIBL or
-    SMAGPL/SMAADDLIBL can be used to replace or amplify the job\'s
+    SMAGPL/SMAADDLIBL can be used to replace or amplify the job's
     library list with the complete set of Agent libraries. Then it is
     only necessary to type the command name before pressing F4=Prompt.
 
@@ -340,7 +340,7 @@ PATHNAME parameter (for this CHKIFSFIL command), or the FILE parameter
 for the CHKFILE command.
 
 All new File Arrival jobs in OpCon (version 17.1 and newer) should be
-configured using the newer \"File Arrival\" job sub-type for IBM i jobs.
+configured using the newer "File Arrival" job sub-type for IBM i jobs.
 
 ## Purpose of CHKFILE versus CHKIFSFIL
 
@@ -353,12 +353,12 @@ some other \*FILE objects can also be checked.
 
 The CHKIFSFIL command can be used with any file system supported by the
 IBM i operating system. Perhaps the most common use of this command
-would be to watch for files arriving in the \'/\' (root) file system,
+would be to watch for files arriving in the '/' (root) file system,
 which, like the basic Windows disk system, can contain nested
 directories and it is not case sensitive.
 
 :::warning
-Although the \'/\' (root) file system is not case sensitive, the CHKIFSFIL command may use some UNIX-style APIs which are case sensitive. Therefore, the PATHNAME parameter must be managed as case sensitive.
+Although the '/' (root) file system is not case sensitive, the CHKIFSFIL command may use some UNIX-style APIs which are case sensitive. Therefore, the PATHNAME parameter must be managed as case sensitive.
 :::
 
 The CHKIFSFIL command can be used with other of the Integrated File
@@ -369,15 +369,15 @@ although this poorly performing file system is no longer recommended for
 use.
 
 CHKIFSFIL can also be used with the DB2 database file system, since it
-also exists within the operating system\'s generalized IFS file system,
+also exists within the operating system's generalized IFS file system,
 but the format for addressing DB2 tables from the IFS file system
 perspective must be configured like this:
 
-\'/QSYS.LIB/MYLIBRARY.LIB/MYFILE.FILE\'
+'/QSYS.LIB/MYLIBRARY.LIB/MYFILE.FILE'
 
 **-or-**
 
-\'/QSYS.LIB/MYLIBRARY.LIB/MYFILE.FILE/MYDATA.MBR\'
+'/QSYS.LIB/MYLIBRARY.LIB/MYFILE.FILE/MYDATA.MBR'
 
 In most cases, it is probably better to use the CHKFILE command for DB2
 tables, especially since the CHKIFSFIL command will re-route any DB2
@@ -405,22 +405,22 @@ performance overall.
 The File Name field of an IBM i File Arrival job sub-type in the OpCon
 EM is checked by the Agent to determine whether the file exists in the
 DB2 database, or whether it is located outside of DB2 in another IFS
-file system, such as the root \'/\' file system. It is the leading
-forward slash character \'/\' that designates an IFS file outside of
+file system, such as the root '/' file system. It is the leading
+forward slash character '/' that designates an IFS file outside of
 DB2. Without the leading slash, the Agent attempts to hand the File Name
 string in the DB2 format of LIBRARY/FILENAME or
 LIBRARY/FILENAME(MEMBER). When a DB2 format will be processed, the Agent
-uses the EM job definition panel fields to compose the Agent\'s CHKFILE
+uses the EM job definition panel fields to compose the Agent's CHKFILE
 command for execution in an IBM i batch job.
 
 The CHKFILE command can also be used in stand-alone mode, either inside
 of OpCon using the IBM I job sub-type of Batch Job, or outside of direct
-control by OpCon, from some of the Agent\'s local automation tools such
+control by OpCon, from some of the Agent's local automation tools such
 as a Multi-Step Job Script, or as a command in a Captured Data Response
 Rule. To use this command off line from OpCon, it is necessary to
 specify the command parameter OPCONJOB() with a value of N=no, or T or
-A, where either value indicates \"test mode\" for the command. In fact,
-\"No\" or the test mode turns off any attempt to send job information
+A, where either value indicates "test mode" for the command. In fact,
+"No" or the test mode turns off any attempt to send job information
 and completion codes to OpCon. The optional parameters for sending
 values to OpCon Properties are also not supported in the local test
 mode; but in this case, there are Dynamic Variable names that can be
@@ -665,9 +665,9 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       |                       |
 |                   |                       | -   Batch Jobs can    |
 |                   |                       |     use the OpCon     |
-|                   |                       |     job\'s Variables  |
+|                   |                       |     job's Variables  |
 |                   |                       |     Tab to load       |
-|                   |                       |     \$\@CRTSTRTIME    |
+|                   |                       |     $\@CRTSTRTIME    |
 |                   |                       |     with a format of  |
 |                   |                       |     hhhhh:mm (+/-     |
 |                   |                       |     hours and         |
@@ -697,9 +697,9 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       |                       |
 |                   |                       | -   Batch Jobs can    |
 |                   |                       |     use the OpCon     |
-|                   |                       |     job\'s Variables  |
+|                   |                       |     job's Variables  |
 |                   |                       |     Tab to load       |
-|                   |                       |     \$\@CRTENDTIME    |
+|                   |                       |     $\@CRTENDTIME    |
 |                   |                       |     with a format of  |
 |                   |                       |     hhhhh:mm (+/-     |
 |                   |                       |     hours and         |
@@ -755,7 +755,7 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       | to put the desired    |
 |                   |                       | Value into the        |
 |                   |                       | variable              |
-|                   |                       | \$\@CRTREFDATE.       |
+|                   |                       | $\@CRTREFDATE.       |
 +-------------------+-----------------------+-----------------------+
 | JOBENDTIME        | -   0 (zero)          | The Job End Time,     |
 |                   |                       | when specified,       |
@@ -784,9 +784,9 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       |                       |
 |                   |                       | EM File Arrival or    |
 |                   |                       | Batch Jobs can use    |
-|                   |                       | the OpCon job\'s      |
+|                   |                       | the OpCon job's      |
 |                   |                       | Variables Tab to load |
-|                   |                       | \$\@JOBENDTIME with a |
+|                   |                       | $\@JOBENDTIME with a |
 |                   |                       | format of hhhhh:mm    |
 |                   |                       | (+/- hours and        |
 |                   |                       | minutes or using a    |
@@ -846,7 +846,7 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       | to put the desired    |
 |                   |                       | Value into the        |
 |                   |                       | variable              |
-|                   |                       | \$\@JOBREFDATE.       |
+|                   |                       | $\@JOBREFDATE.       |
 +-------------------+-----------------------+-----------------------+
 | RECHKFREQ         | -   0 (zero)          | Frequency to re-check |
 |                   |                       | for file existence:   |
@@ -1019,10 +1019,10 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       | can be specified for  |
 |                   |                       | DB2 tables using the  |
 |                   |                       | Value column of the   |
-|                   |                       | job\'s Variables      |
+|                   |                       | job's Variables      |
 |                   |                       | table, specifying a   |
 |                   |                       | variable name of      |
-|                   |                       | \$\@AUT. Otherwise,   |
+|                   |                       | $\@AUT. Otherwise,   |
 |                   |                       | the authority for DB2 |
 |                   |                       | tables will be set to |
 |                   |                       | approximate the READ, |
@@ -1056,7 +1056,7 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       | -   A = a French      |
 |                   |                       |     indication for    |
 |                   |                       |     test mode, same   |
-|                   |                       |     as \'T\'.         |
+|                   |                       |     as 'T'.         |
 +-------------------+-----------------------+-----------------------+
 | FAILONERR         | -   Y                 | Report Job Status as  |
 |                   |                       | failed when file      |
@@ -1118,11 +1118,11 @@ together can vary the outcome of the command, as discussed below.
 |                   |                       | FAILIFZERO option in  |
 |                   |                       | an EM File Arrival    |
 |                   |                       | job by adding the     |
-|                   |                       | \$\@FAILIFZERO        |
+|                   |                       | $\@FAILIFZERO        |
 |                   |                       | variable name to the  |
-|                   |                       | job\'s Variables tab  |
+|                   |                       | job's Variables tab  |
 |                   |                       | and specifying that   |
-|                   |                       | parameter\'s Value.   |
+|                   |                       | parameter's Value.   |
 |                   |                       |                       |
 |                   |                       |                       |
 |                   |                       |                       |
@@ -1157,19 +1157,19 @@ together can vary the outcome of the command, as discussed below.
 The File Name field of an IBM i File Arrival job sub-type in the OpCon
 EM is checked by the Agent to determine whether the file exists in the
 DB2 database, or whether it is located outside of DB2 in another IFS
-file system, such as the root \'/\' file system. It is the leading
-forward slash character \'/\' that designates an IFS file outside of
+file system, such as the root '/' file system. It is the leading
+forward slash character '/' that designates an IFS file outside of
 DB2. When a non-DB2 IFS format will be processed, the Agent uses the EM
-job definition panel fields to compose the Agent\'s CHKIFSFIL command
+job definition panel fields to compose the Agent's CHKIFSFIL command
 for execution in an IBM i batch job.
 
 The CHKIFSFIL command can also be used in stand-alone mode, outside of
-direct control by OpCon, from some of the Agent\'s local automation
+direct control by OpCon, from some of the Agent's local automation
 tools such as a Multi-Step Job Script, or as a command in a Captured
 Data Response Rule. To use this command off line from OpCon, it is
 necessary to specify a value of (N), (T), or (A) for the command
 parameter OPCONJOB(), where (N) = not an OpCon job and either value (T)
-or (A) indicates \"test mode\" for the command. In fact, the test mode
+or (A) indicates "test mode" for the command. In fact, the test mode
 turns off any attempt to send job information and completion codes to
 OpCon. The optional parameters for sending values to OpCon Properties
 are also not supported in the local test mode; but in this case, there
@@ -1180,7 +1180,7 @@ default values for all parameters (where applicable):
 
 CHKIFSFIL
 
-PATHNAME(\'/dir/subdir/file.ext\')
+PATHNAME('/dir/subdir/file.ext')
 
 READ(\*NO)
 
@@ -1529,9 +1529,9 @@ together can vary the outcome of the command, as discussed below.
 |                     |                      |                      |
 |                     |                      | -   Batch Jobs can   |
 |                     |                      |     use the OpCon    |
-|                     |                      |     job\'s Variables |
+|                     |                      |     job's Variables |
 |                     |                      |     Tab to load      |
-|                     |                      |     \$\@CRTSTRTIME   |
+|                     |                      |     $\@CRTSTRTIME   |
 |                     |                      |     with a format of |
 |                     |                      |     hhhhh:mm (+/-    |
 |                     |                      |     hours and        |
@@ -1561,9 +1561,9 @@ together can vary the outcome of the command, as discussed below.
 |                     |                      |                      |
 |                     |                      | -   Batch Jobs can   |
 |                     |                      |     use the OpCon    |
-|                     |                      |     job\'s Variables |
+|                     |                      |     job's Variables |
 |                     |                      |     Tab to load      |
-|                     |                      |     \$\@CRTENDTIME   |
+|                     |                      |     $\@CRTENDTIME   |
 |                     |                      |     with a format of |
 |                     |                      |     hhhhh:mm (+/-    |
 |                     |                      |     hours and        |
@@ -1624,7 +1624,7 @@ together can vary the outcome of the command, as discussed below.
 |                     |                      |     desired Value    |
 |                     |                      |     into the         |
 |                     |                      |     variable         |
-|                     |                      |     \$\@CRTREFDATE.  |
+|                     |                      |     $\@CRTREFDATE.  |
 +---------------------+----------------------+----------------------+
 | JOBENDTIME          | -   0 (zero)         | The Job End Time,    |
 |                     |                      | when specified,      |
@@ -1657,9 +1657,9 @@ together can vary the outcome of the command, as discussed below.
 |                     |                      |                      |
 |                     |                      | EM File Arrival or   |
 |                     |                      | Batch Jobs can use   |
-|                     |                      | the OpCon job\'s     |
+|                     |                      | the OpCon job's     |
 |                     |                      | Variables Tab to     |
-|                     |                      | load \$\@JOBENDTIME  |
+|                     |                      | load $\@JOBENDTIME  |
 |                     |                      | with a format of     |
 |                     |                      | hhhhh:mm (+/- hours  |
 |                     |                      | and minutes or using |
@@ -1720,7 +1720,7 @@ together can vary the outcome of the command, as discussed below.
 |                     |                      | to put the desired   |
 |                     |                      | Value into the       |
 |                     |                      | variable             |
-|                     |                      | \$\@JOBREFDATE.      |
+|                     |                      | $\@JOBREFDATE.      |
 +---------------------+----------------------+----------------------+
 | RECHKFREQ           | -   0 (zero)         | Frequency to         |
 |                     |                      | re-check for file    |
@@ -1820,7 +1820,7 @@ together can vary the outcome of the command, as discussed below.
 |                     |                      | -   A = a French     |
 |                     |                      |     indication for   |
 |                     |                      |     test mode, same  |
-|                     |                      |     as \'T\'.        |
+|                     |                      |     as 'T'.        |
 +---------------------+----------------------+----------------------+
 | FAILONERR           | -   Y                | Report Job Status as |
 |                     |                      | failed when file     |
@@ -1996,11 +1996,11 @@ Both commands process their parameters in the following order.
 8. Just before the command ends, it generates data value communication
     for OpCon jobs:
 
-    a.  The \$ARRIVED FILE NAME system property is set (using the OpCon
+    a.  The $ARRIVED FILE NAME system property is set (using the OpCon
         Field Code 64), as the very first step of closing out the job.
         Sending this value before any other data transmissions, such as
         the OpCon Properties named here, usually allows enough time for
-        OpCon to store and process the \$ARRIVED FILE NAME into its
+        OpCon to store and process the $ARRIVED FILE NAME into its
         parts (as supported by OpCon version 17.1 and newer), so that
         these OpCon system properties could be utilized in the Events
         processed at the end of the same OpCon job, if desired.
@@ -2018,7 +2018,7 @@ Both commands process their parameters in the following order.
           -------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------
 
     c.  One or more Detailed Job Messages are posted to the OpCon Job
-        Information (accessed under the \"Configuration\" tab after Job
+        Information (accessed under the "Configuration" tab after Job
         Information is selected from the OpCon Job context (right mouse
         click) menu, or by simply using a left mouse double click on the
         job icon).
@@ -2041,7 +2041,7 @@ marked as completed normally even when there is an error, but the job
 completion status (termination code) will show the actual message ID
 reported by the command. The description of unique job failure codes may
 appear among the OpCon Detailed Job Messages (at: Job Information -\>
-Configuration -\> Detailed Job Messages). The job\'s response to the
+Configuration -\> Detailed Job Messages). The job's response to the
 actual completion code can be managed by the Events tab of the OpCon
 job, using either the Exit Description or the LSAM Feedback.
 
@@ -2052,7 +2052,7 @@ appear to end normally (if FAILONERR = No), even if the command final
 status code indicates no file was found or a found file did not qualify.
 
 The FAILONERR parameter supports one unique value that changes its
-effect on the job. A value of \"T\" means that when no file is found by
+effect on the job. A value of "T" means that when no file is found by
 the End Job Time, the job should still end normally (that is, the user
 does not care if no file is found on any given day). However, any other
 error would cause the job to end abnormally, since the FAILONERR
@@ -2083,14 +2083,14 @@ processing may behave.
     times. The first matching name that was created within the Start/End
     times causes the job to end normally (and that file name is provided
     in the optional OpCon Property and/or LSAM Dynamic Variable, as well
-    as being reported to the \$ARRIVED FILE NAME for OpCon jobs).
+    as being reported to the $ARRIVED FILE NAME for OpCon jobs).
 
 3. When no matching file name was created within the Start/End times, a
     File Arrival job with a non-zero RECHKFREQ value will enter a
     monitor routine that will continue to check for a new file that is
     created within the Start/End time.
 
-    a.  The \"Re-check frequency\" can be left set to zero. A zero value
+    a.  The "Re-check frequency" can be left set to zero. A zero value
         will mean that a matching file name must be found on the first
         check, and any matching file name must have a Create time stamp
         that falls within the Start/End times (assuming they are not
@@ -2155,14 +2155,14 @@ When the Start or End times are used, the value that must be provided
 for these parameters is a decimal number that refers to the hours either
 before or after midnight.
 
-\"Midnight\" refers to the very start of the day designated by the
-midnight date. Therefore, if today\'s date is derived as Midnight, then
+"Midnight" refers to the very start of the day designated by the
+midnight date. Therefore, if today's date is derived as Midnight, then
 a value of (15) or (+15) will refer to 3:00 PM today. A value of (-15)
 will refer to 9:00 AM yesterday. Similarly, a value of 14.5 will refer
 to 2:30 today (that is, 14 hours and 30 minutes after Midnight).
 
 :::note
-For OpCon jobs, whether for the EM File Arrival job or a simple IBM i Batch Job, the Variables tab can optionally support a format of +/- hhhhh:mm, where +14:30 would mean 14 hours and 30 minutes after Midnight. It is also possible to specify decimal values (as above) in the Variables tab Values column, but this is not necessary since the times can be specified with decimal values in the Batch Job command line, or by using the easily managed user interface of the newer EM File Arrival job. For OpCon jobs when the EM File Arrival job is being used, the only way to specify the CRTREFDATE is to use the Variables tab and specify one of the valid date values in the Value column for the variable named \$\@CRTREFDATE.
+For OpCon jobs, whether for the EM File Arrival job or a simple IBM i Batch Job, the Variables tab can optionally support a format of +/- hhhhh:mm, where +14:30 would mean 14 hours and 30 minutes after Midnight. It is also possible to specify decimal values (as above) in the Variables tab Values column, but this is not necessary since the times can be specified with decimal values in the Batch Job command line, or by using the easily managed user interface of the newer EM File Arrival job. For OpCon jobs when the EM File Arrival job is being used, the only way to specify the CRTREFDATE is to use the Variables tab and specify one of the valid date values in the Value column for the variable named $\@CRTREFDATE.
 :::
 
 The CRTREFDATE parameter can be used to control which date is used as
@@ -2171,18 +2171,18 @@ above for the various ways that midnight can be designated, or what it
 means when this parameter is not specified and will use its \*DEFAULT
 value. Specific values that are supported include \*SCHED (= the
 Schedule Date for an OpCon job) and \*JOB (= the IBM i Job Date), in
-addition to either an actual date specified in the format \'CCYYMMDD\'
+addition to either an actual date specified in the format 'CCYYMMDD'
 (including the single quotes). It is also possible to put an LSAM
 Dynamic Variable token into this command parameter (surrounded by single
 quotes).
 
 :::note
-For OpCon jobs when the EM File Arrival job is being used, the only way to specify the CRTREFDATE is to use the Variables tab and specify one of the valid date values in the Value column for the variable named \$\@CRTREFDATE.]
+For OpCon jobs when the EM File Arrival job is being used, the only way to specify the CRTREFDATE is to use the Variables tab and specify one of the valid date values in the Value column for the variable named $\@CRTREFDATE.]
 :::
 
 The concept of using decimal numbers to designate hours is required to
 keep these IBM i commands compatible with the previously established
-OpCon Windows \"File Arrival\" Job Action type, because this is how
+OpCon Windows "File Arrival" Job Action type, because this is how
 OpCon sends the time values to an Agent (LSAM) for processing: as
 positive or negative values where up to 5 whole numbers can be used to
 specify the number of hours, and the minutes are optionally specified by
@@ -2199,8 +2199,8 @@ commands are describe in the previous two sections of this document.
 The JOBENDTIME and JOBREFDATE are processed in exactly the same manner
 as the File Create Start/End Times. But for EM File Arrival jobs, these
 two parameters can only be specified by providing Values under the
-Variables tab for the two parameter names \$\@JOBENDTIME and
-\$\@JOBREFDATE.
+Variables tab for the two parameter names $\@JOBENDTIME and
+$\@JOBREFDATE.
 
 :::tip
 Within the IBM i system, if a file was created during Standard Time, but then the File Arrival job executes during Daylight Saving Time, the green screen display of the Creation Date/Time will differ by one hour from the Create time supplied by the API services utilized by the File Arrival job. (The same holds true for the opposite case, that the file was created during Daylight Saving Time but the File Arrival job executes during Standard Time.) In other words, the API services compensate for the time differences, but the user view from the green screen commands can confuse the user about what would be the correct time to specify for a File Create Start/End Time value.
@@ -2222,7 +2222,7 @@ of (\*NO) allows the command job to end normally (as long as no other
 circumstances are forcing a failure), even if the byte or record count
 is zeros.
 
-Both commands will always report the message ID \'CKF0005\' whenever
+Both commands will always report the message ID 'CKF0005' whenever
 zero bytes or zero records are detected (as the command ends). This
 reference code will be sent to both the OpCon Detailed Job Messages and
 also as LSAM Feedback.
@@ -2235,10 +2235,10 @@ configured with an automatic response to zero data by adding an Event
 for the LSAM Feedback.
 
 LSAM Feedback response is defined under the Events tab of an OpCon job.
-Click the +Add button and then select the \"LSAM Feedback\" radio
+Click the +Add button and then select the "LSAM Feedback" radio
 button. In the Trigger Details panel, click the arrow to drop down the
-list of available LSAM Feedback types. Click on \"User defined text from
-LFEEDBACK command\". In the String to Match box, type: %CKF0005% then
+list of available LSAM Feedback types. Click on "User defined text from
+LFEEDBACK command". In the String to Match box, type: %CKF0005% then
 click Next. Complete the Event command selection and configuration, then
 click Finish to store the new Event rule with the job master record.
 
@@ -2301,7 +2301,7 @@ The command completion codes are reported in four ways:
     or CKF0006:CHKIFSFIL.
 
 - The commands send Detailed Job Messages to OpCon, where they can be
-    viewed under the \"Configuration\" tab that appears after using the
+    viewed under the "Configuration" tab that appears after using the
     right mouse click context menu to choose Job Information. (Job
     Information can also be accessed by using a left mouse double click
     on the job icon.)
@@ -2331,7 +2331,7 @@ text:
 
   : CHKFILE/CHKIFSFIL informational messages
 
-Remember to use the \"View Output\" function for OpCon jobs as a
+Remember to use the "View Output" function for OpCon jobs as a
 convenient way to quickly access the IBM i job log report for
 discovering these additional information messages.
 
@@ -2340,10 +2340,10 @@ discovering these additional information messages.
 The CHKFILE and CHKIFSFIL commands always send LSAM Feedback to OpCon,
 when the job was started by OpCon. (LSAM Feedback cannot be processed
 outside of the OpCon server, so it is not generated when the OPCONJOB
-flag is set to \'N\' = No.)
+flag is set to 'N' = No.)
 
 The LSAM Feedback generated by these commands will always be type 5802 =
-\"User-defined feedback from the LFEEDBACK command.\" (This is one of
+"User-defined feedback from the LFEEDBACK command." (This is one of
 the LSAM Feedback types that appears on the drop-down list for IBM i
 jobs.) This makes it possible to define one or more Events to be
 triggered, based on the varying content of the LSAM feedback message. A
@@ -2452,7 +2452,7 @@ properly formatted tokens into the command parameter keyword locations.
 Here are examples of an OpCon Property token being used to supply the
 actual file name that will be checked:
 
-CHKIFSFIL  PATHNAME(\'/dir/subdir/\[\[CurrentFileName\]\]\') OPCONJOB(O)
+CHKIFSFIL  PATHNAME('/dir/subdir/\[\[CurrentFileName\]\]') OPCONJOB(O)
 CHKFILE    FILE(QGPL/\[\[SI.SchedFileName\]\]) OPCONJOB(O)
 
 In the examples above, the property names shown are not predefined OpCon

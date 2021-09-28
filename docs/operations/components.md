@@ -78,7 +78,7 @@ flags, set in various LSAM menu functions.
 |         |     allows this server job to always be started whenever  |
 |         |     the other LSAM server jobs are started.               |
 +---------+-----------------------------------------------------------+
-| SMAFTS  | -   When specified in the LSAM\'s SMA File Transfer       |
+| SMAFTS  | -   When specified in the LSAM's SMA File Transfer       |
 |         |     control options, this server job is automatically     |
 |         |     started to listen for file transfer requests. SMA     |
 |         |     File Transfer jobs start when OpCon submits a job to  |

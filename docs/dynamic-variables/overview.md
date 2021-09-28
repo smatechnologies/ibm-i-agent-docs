@@ -19,7 +19,7 @@ and queued jobs or the captured job ID of captured jobs.
 Dynamic variable values are always applied to a job at the last moment
 before the LSAM submits the job for execution. When the LSAM debug
 logging function is turned on, the submitted job log file (option 4 in
-the LSAM\'s log file viewer menu) will report on actions performed by
+the LSAM's log file viewer menu) will report on actions performed by
 dynamic variables. It is possible to see in that log file the updated
 LDA content and also the before- and after-versions of the SBMJOB
 command string.
@@ -34,12 +34,12 @@ comparison rule that allows a Captured Data Response to be executed, and
 they can also comprise all or part of the command that is executed.
 
 Regardless of the purpose of the dynamic variable, the value inserted to
-replace the LSAM\'s dynamic variable can be either a fixed value that is
+replace the LSAM's dynamic variable can be either a fixed value that is
 stored in the dynamic variables master file record or it can be a value
 produced by a user-defined program that has been registered in the
-dynamic variable\'s master record. When the fixed value approach is
+dynamic variable's master record. When the fixed value approach is
 used, that fixed value may actually be updated at any time by the
-LSAM\'s SETDYNVAR or SETCAPVAR commands. These commands present some
+LSAM's SETDYNVAR or SETCAPVAR commands. These commands present some
 interesting possibilities.
 
 It is possible, for example, to use a separately scheduled OpCon job or
@@ -72,22 +72,22 @@ is, by using OpCon job master records or by using the Capture Job
 function and maintenance), it is possible all command parameters may be
 optionally included, or just the values of single command parameter may
 be updated. It is also possible to modify the content of the submitted
-job\'s command line using type V dynamic variables.
+job's command line using type V dynamic variables.
 
 To use type V dynamic variables, the Variable Name value is enclosed
 within a pair of designated control characters to form a token. This
-token is inserted anywhere in the submitted job\'s command line. At the
+token is inserted anywhere in the submitted job's command line. At the
 point where the LSAM has assembled the total SBMJOB command, it performs
 a scan for any dynamic variable tokens and then replaces those tokens
 with the value produced by the dynamic variable. (The processing of
 dynamic variables used with Capture Data Response Rules is described in
-[Operator Replay Scripts](Operator-Replay-Scripts.md#top){.MCXref
-.xref}, in [Message Management](Message-Management.md#top){.MCXref
-.xref}, and elsewhere in this Events and Utilities menu in relation to
+[Operator Replay Scripts](Operator-Replay-Scripts.md#top)
+, in [Message Management](Message-Management.md#top)
+, and elsewhere in this Events and Utilities menu in relation to
 the SCANSPLF command.)
 
 The special characters used to make tokens out of type V dynamic
-variables are specified in the LSAM\'s Job Tracking configuration
+variables are specified in the LSAM's Job Tracking configuration
 function, from the LSAM menu system. In most cases, it should not be
 necessary to modify these characters. A single pair of curly brackets {}
 have been chosen as the default control characters for dynamic variable

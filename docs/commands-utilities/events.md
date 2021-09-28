@@ -24,13 +24,13 @@ This command is typically used without specifying its parameters.
     other commands) only to locate the SMAMSGF message file, so that the
     SMA0992 message ID can be retrieved to format the escape message.
     When the SMAFAILJOB is used within the Agent (LSAM) environment,
-    that is, when the job\'s library list includes the LSAM libraries,
+    that is, when the job's library list includes the LSAM libraries,
     then it is not necessary to specify this parameter. However, this
     parameter makes it possible to use the command from outside of the
     LSAM environment, as long as the command name is qualified, as in
     this example:
 
-The SMAFAILJOB command is especially useful for the Agent\'s Multi-Step
+The SMAFAILJOB command is especially useful for the Agent's Multi-Step
 Script jobs, and it can be used in the Captured Data Response Rules for
 these Agent automation features: Message Management, Operator Replay,
 and the SCANSPLF command. In SCANSPLF applications, the SMAFAILJOB can
@@ -60,12 +60,12 @@ to end in case the next command step should fail.
 +----------------------------------+----------------------------------+
 
 Actually, a simpler way to force the Script to fail would be to mark
-Step \# 50 with the flag that indicates \"force script failure if this
-step fails.\"
+Step \# 50 with the flag that indicates "force script failure if this
+step fails."
 
 Despite the simplicity of the example above, in many cases, the ON_ERROR
 Step would prove useful because it might also included a step
-qualification rule where, for example, the special variable \$ERRMSGID
+qualification rule where, for example, the special variable $ERRMSGID
 could be compared to a known possible message ID value that is
 recognized by the Script author as a fatal error. Similarly, the
 ON_ERROR step could use the SMAGOTO command to turn job control over to
@@ -102,7 +102,7 @@ actual Event command line.
 
 The syntax for Event commands that are not represented by individual IBM
 i LSAM commands may be viewed when the CPYTOMSGIN command is selected
-from the LSAM\'s menu-driven Event Management function (LSAM menu 3,
+from the LSAM's menu-driven Event Management function (LSAM menu 3,
 option 1). The automatic prompting of Event command syntax that occurs
 when CPYTOMSGIN is selected and a sub-menu of available commands appears
 results in a final command prompting screen that will contain the model
@@ -124,7 +124,7 @@ program.
 |                                  |                                  |
 |                                  |                                  |
 |                                  | *00020 SMAGPL/CPYTOMSGIN         |
-|                                  | CPYMSGIN*(\$NOTIFY:LOG,\<Sev     |
+|                                  | CPYMSGIN*($NOTIFY:LOG,\<Sev     |
 |                                  | erity\>,\<EventID\>,\<Message\>) |
 |                                  |                                  |
 |                                  |                                  |
@@ -143,7 +143,7 @@ the field in that position.
 
 ## Application Example: Sending IBM i values to OpCon Properties
 
-IBM i values can be sent to OpCon Properties using the \$PROPERTY:SET
+IBM i values can be sent to OpCon Properties using the $PROPERTY:SET
 Event command from anywhere that the IBM i LSAM supports OpCon Events.
 OpCon Property tokens can then be used to reference these IBM i values
 as part of OpCon automation, wherever Property tokens are supported.
@@ -154,17 +154,17 @@ OpCon Property. When the CPYTOMSGIN command is used, the command driver
 program will scan the entire external event command string looking for
 any IBM i LSAM Dynamic Variable tokens that might be replaced. It is
 very common to put an LSAM Dynamic Variable token into the value
-parameter of the OpCon \$PROPERTY:SET command, so that any value
+parameter of the OpCon $PROPERTY:SET command, so that any value
 retrieved by, or stored in a Dynamic Variable can be sent up to the
 OpCon server and stored into an OpCon Property.
 
 Remember that OpCon Property names could be global properties, or they
 could be instance-qualified properties, possibly qualified to a specific
-schedule name or an OpCon job name within a schedule. It\'s possible to
+schedule name or an OpCon job name within a schedule. It's possible to
 use Dynamic Variables to represent the OpCon schedule or job names. As
 well, within the LSAM Message Management Parameters, or their attached
 Response Rules, it is also possible to use one of the available
-\$-property values identified in the first table under Message
+$-property values identified in the first table under Message
 Management Screens and Windows, within the Message Management topic of
 the **IBM i LSAM** online help.
 
@@ -178,8 +178,8 @@ Variable up to an OpCon global property:
 | .png "Example icon") |                                  |
 |                                  |                                  |
 |                                  | CPYTOMSGIN                       |
-|                                  | CPYMSGIN(\'\$PROPERTY:SET,m      |
-|                                  | y_opcon_property,{DISKPERCNT}\') |
+|                                  | CPYMSGIN('$PROPERTY:SET,m      |
+|                                  | y_opcon_property,{DISKPERCNT}') |
 +----------------------------------+----------------------------------+
 
 The example above assumes that the Dynamic Variable DISKPERCNT would
@@ -188,8 +188,8 @@ percentage, as would be possible from an Operator Replay script using a
 screen data Capture Application, linked to a Response Rule that stored
 the captured data into the Dynamic Variable.
 
-Dynamic Variables are called \"dynamic\" because they can do more than
-just store static values. It\'s possible to assign a user-defined
+Dynamic Variables are called "dynamic" because they can do more than
+just store static values. It's possible to assign a user-defined
 program to a Dynamic Variable master record that can perform any kind of
 calculation at run-time and return the value that will be used to
 replace the Dynamic Variable token.
@@ -208,7 +208,7 @@ value from an IBM i DB2 data area.
 In order to allow the LSAM to send valid events to the SAM-SS, a valid
 User ID and password must be defined to the LSAM.
 
-[Define a Valid Event User ID and Password]{.ul}
+[Define a Valid Event User ID and Password]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
     on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
@@ -218,9 +218,9 @@ User ID and password must be defined to the LSAM.
     Event Management Menu.
 4. On the External Event Pass Word screen, **\<Tab\>** to the following
     fields and enter the following data:
-    a.  **User Name**: type a [valid OpCon/xps user name.]{.ul}     b.  **Password**: type a [valid external event password]{.ul} for
+    a.  **User Name**: type a [valid OpCon/xps user name.]     b.  **Password**: type a [valid external event password] for
         the User Name above.
-    c.  **Password**: type a [valid external event password]{.ul} again         to verify the password.
+    c.  **Password**: type a [valid external event password] again         to verify the password.
 
 ## Direct Event Commands
 
@@ -234,8 +234,8 @@ use because each Event command can be prompted pressing \<**F4**\>
 during program edit operations. When the command prompting is completed
 by pressing \<**Enter**\>, the correct syntax for the command and its
 parameters is returned to the program source line. A complete list and
-explanation of the available event commands may be found in [\$Variables Supported in Event Commands](Message-Management.md#Event){.MCXref
-.xref}. More information about Events may be found in the OpCon
+explanation of the available event commands may be found in [$Variables Supported in Event Commands](Message-Management.md#Event)
+. More information about Events may be found in the OpCon
 documentation.
 
 However, SMA generally recommends using the CPYTOMSGIN command because

@@ -276,10 +276,10 @@ LSAM Menu Functions
 |                      | Parameters           |                      |
 +----------------------+----------------------+----------------------+
 | 8\.                  | Display Captured     | CALL OPRLOGR40       |
-|                      | Message Data log     | PARM(\'M\')          |
+|                      | Message Data log     | PARM('M')          |
 +----------------------+----------------------+----------------------+
 | 9\.                  | Display Data Capture | CALL CAPLOGR10       |
-|                      | Debug log (response  | PARM(\'M\')          |
+|                      | Debug log (response  | PARM('M')          |
 |                      | rules log)           |                      |
 +----------------------+----------------------+----------------------+
 | 10\.                 | Work with Message    | CALL TRPMSGR30       |
@@ -287,7 +287,7 @@ LSAM Menu Functions
 |                      | Definitions          |                      |
 +----------------------+----------------------+----------------------+
 | 11\.                 | Work with Captured   | CALL OPRRPYR50       |
-|                      | Data Response Rules  | PARM(\'M\')          |
+|                      | Data Response Rules  | PARM('M')          |
 +----------------------+----------------------+----------------------+
 | 12\.                 | Maintain Dynamic     | CALL LSAVARR00       |
 |                      | Variables            |                      |
@@ -337,7 +337,7 @@ LSAM Menu Functions
 |                      | (LSAEXPDTA)          |                      |
 +----------------------+----------------------+----------------------+
 | 3\.                  | Display Export       | CALL EXILOGR00       |
-|                      | Activity/Error Log   | PARM(\'E\')          |
+|                      | Activity/Error Log   | PARM('E')          |
 +----------------------+----------------------+----------------------+
 | 4\.                  | Work with Import     | CALL EXIIMPR00       |
 |                      | batches              |                      |
@@ -346,7 +346,7 @@ LSAM Menu Functions
 |                      | (LSAIMPDTA)          |                      |
 +----------------------+----------------------+----------------------+
 | 6\.                  | Display Import       | CALL EXILOGR00       |
-|                      | Activity/Error Log   | PARM(\'I\')          |
+|                      | Activity/Error Log   | PARM('I')          |
 +----------------------+----------------------+----------------------+
 | 7\.                  | Export/Import        | CALL EXICFGR30       |
 |                      | options              |                      |
@@ -364,7 +364,7 @@ LSAM Menu Functions
 |                      |                      | LE(\*LIBL/EMLTXTSRC) |
 +----------------------+----------------------+----------------------+
 | 3\.                  | Generate eMail       | ?GENEMLREQ           |
-|                      | Request (GENEMLREQ)  | ??OPCONJOB(\'0\')    |
+|                      | Request (GENEMLREQ)  | ??OPCONJOB('0')    |
 +----------------------+----------------------+----------------------+
 | 4\.                  | Display eMail        | CALL EMLLOGR00       |
 |                      | Activity Logs        |                      |
@@ -451,10 +451,10 @@ LSAM Menu Functions
 |                      | status               |                      |
 +----------------------+----------------------+----------------------+
 | 4\.                  | Manage LSAM logging  | CALL SMAMNGLOGR      |
-|                      |                      | PARM(\'MANAGE\')     |
+|                      |                      | PARM('MANAGE')     |
 +----------------------+----------------------+----------------------+
 | 5\.                  | View LSAM logs       | CALL SMAMNGLOGR      |
-|                      |                      | PARM(\'VIEW\')       |
+|                      |                      | PARM('VIEW')       |
 +----------------------+----------------------+----------------------+
 | 6\.                  | Work with LSAM       | WRKSMASVR            |
 |                      | Servers (WRKSMASVR)  |                      |
@@ -503,13 +503,13 @@ LSAM Menu Functions
 |                      | (WRKSFTJOB)          |                      |
 +----------------------+----------------------+----------------------+
 | 4\.                  | Manage SMAFT logging | CALL SFTMNGLOGR      |
-|                      |                      | PARM(\'MANAGE\')     |
+|                      |                      | PARM('MANAGE')     |
 +----------------------+----------------------+----------------------+
 | 5\.                  | View LSAM logs       | CALL SMAMNGLOGR      |
-|                      |                      | PARM(\'VIEW\')       |
+|                      |                      | PARM('VIEW')       |
 +----------------------+----------------------+----------------------+
 | 6\.                  | View SMAFT logs      | CALL SFTMNGLOGR      |
-|                      |                      | PARM(\'VIEW\')       |
+|                      |                      | PARM('VIEW')       |
 +----------------------+----------------------+----------------------+
 | 7\.                  | SMAFT Parameters     | CALL SFTPARR00       |
 +----------------------+----------------------+----------------------+
@@ -575,7 +575,7 @@ set to the library list of an existing LSAM environment. This means the
 REFFLOW command can be used from the command entry line of the LSAM Menu
 system (if the user is not restricted from command line usage). From
 outside of the LSAM menu system, this command can only be used if the
-interactive job\'s library list was previously set equal to an LSAM
+interactive job's library list was previously set equal to an LSAM
 environment. The interactive job library list can be set (outside of the
 LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL
 (refer to [Commands and Utilities](Commands-and-Utilities.md#top) for more
@@ -664,7 +664,7 @@ appear in the analysis of the LSAM function for User Management. These
 kinds of expected exceptions in the LSAM object reference analysis will
 become evident when the newly authorized user attempts to use a new
 function for the first time. It might be necessary for a system support
-technician to analyze the user\'s job log in order to determine which
+technician to analyze the user's job log in order to determine which
 authorities are still required to fully enable an LSAM function for a
 new or restricted user profile.
 
@@ -686,7 +686,7 @@ set to the library list of an existing LSAM environment. This means the
 DSPOBJWU command can be used from the command entry line of the LSAM
 Menu system (if the user is not restricted from command line usage).
 From outside of the LSAM menu system, this command can only be used if
-the interactive job\'s library list was previously set equal to an LSAM
+the interactive job's library list was previously set equal to an LSAM
 environment. The interactive job library list can be set (outside of the
 LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL
 (refer to [Commands and Utilities](Commands-and-Utilities.md#top) for more

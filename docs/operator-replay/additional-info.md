@@ -79,7 +79,7 @@
 |                                  | suspends the screen dialog that  |
 |                                  | was in progress. It interrupts   |
 |                                  | screen dialog by presenting      |
-|                                  | another screen\'s format that    |
+|                                  | another screen's format that    |
 |                                  | would not have been part of the  |
 |                                  | defined dialog. Attention keys   |
 |                                  | have a default action provided   |
@@ -133,76 +133,76 @@
 | are listed in Function Keys.     |                                  |
 +----------------------------------+----------------------------------+
 | F1                               | Command/function key F1 (aid     |
-|                                  | byte hexadecimal value \'31\')   |
+|                                  | byte hexadecimal value '31')   |
 +----------------------------------+----------------------------------+
 | F2                               | Command/function key F2 (aid     |
-|                                  | byte hexadecimal value \'3C\')   |
+|                                  | byte hexadecimal value '3C')   |
 +----------------------------------+----------------------------------+
 | F3                               | Command/function key F3 (aid     |
-|                                  | byte hexadecimal value \'31\')   |
+|                                  | byte hexadecimal value '31')   |
 +----------------------------------+----------------------------------+
 | F4                               | Command/function key F4 (aid     |
-|                                  | byte hexadecimal value \'32\')   |
+|                                  | byte hexadecimal value '32')   |
 +----------------------------------+----------------------------------+
 | F5                               | Command/function key F5 (aid     |
-|                                  | byte hexadecimal value \'33\')   |
+|                                  | byte hexadecimal value '33')   |
 +----------------------------------+----------------------------------+
 | F6                               | Command/function key F6 (aid     |
-|                                  | byte hexadecimal value \'34\')   |
+|                                  | byte hexadecimal value '34')   |
 +----------------------------------+----------------------------------+
 | F7                               | Command/function key F7 (aid     |
-|                                  | byte hexadecimal value \'35\')   |
+|                                  | byte hexadecimal value '35')   |
 +----------------------------------+----------------------------------+
 | F8                               | Command/function key F8 (aid     |
-|                                  | byte hexadecimal value \'36\')   |
+|                                  | byte hexadecimal value '36')   |
 +----------------------------------+----------------------------------+
 | F9                               | Command/function key F9 (aid     |
-|                                  | byte hexadecimal value \'37\')   |
+|                                  | byte hexadecimal value '37')   |
 +----------------------------------+----------------------------------+
 | F10                              | Command/function key F10 (aid    |
-|                                  | byte hexadecimal value \'38\')   |
+|                                  | byte hexadecimal value '38')   |
 +----------------------------------+----------------------------------+
 | F11                              | Command/function key F11 (aid    |
-|                                  | byte hexadecimal value \'39\')   |
+|                                  | byte hexadecimal value '39')   |
 +----------------------------------+----------------------------------+
 | F12                              | Command/function key F12 (aid    |
-|                                  | byte hexadecimal value \'3A\')   |
+|                                  | byte hexadecimal value '3A')   |
 +----------------------------------+----------------------------------+
 | F13                              | Command/function key F13 (aid    |
-|                                  | byte hexadecimal value \'3B\')   |
+|                                  | byte hexadecimal value '3B')   |
 +----------------------------------+----------------------------------+
 | F14                              | Command/function key F14 (aid    |
-|                                  | byte hexadecimal value \'3C\')   |
+|                                  | byte hexadecimal value '3C')   |
 +----------------------------------+----------------------------------+
 | F15                              | Command/function key F15 (aid    |
-|                                  | byte hexadecimal value \'B1\')   |
+|                                  | byte hexadecimal value 'B1')   |
 +----------------------------------+----------------------------------+
 | F16                              | Command/function key F16 (aid    |
-|                                  | byte hexadecimal value \'B2\')   |
+|                                  | byte hexadecimal value 'B2')   |
 +----------------------------------+----------------------------------+
 | F17                              | Command/function key F17 (aid    |
-|                                  | byte hexadecimal value \'B3\')   |
+|                                  | byte hexadecimal value 'B3')   |
 +----------------------------------+----------------------------------+
 | F18                              | Command/function key F18 (aid    |
-|                                  | byte hexadecimal value \'B6\')   |
+|                                  | byte hexadecimal value 'B6')   |
 +----------------------------------+----------------------------------+
 | F19                              | Command/function key F19 (aid    |
-|                                  | byte hexadecimal value \'B7\')   |
+|                                  | byte hexadecimal value 'B7')   |
 +----------------------------------+----------------------------------+
 | F20                              | Command/function key F20 (aid    |
-|                                  | byte hexadecimal value \'B8\')   |
+|                                  | byte hexadecimal value 'B8')   |
 +----------------------------------+----------------------------------+
 | F21                              | Command/function key F21 (aid    |
-|                                  | byte hexadecimal value \'B9\')   |
+|                                  | byte hexadecimal value 'B9')   |
 +----------------------------------+----------------------------------+
 | F22                              | Command/function key F22 (aid    |
-|                                  | byte hexadecimal value \'BA\')   |
+|                                  | byte hexadecimal value 'BA')   |
 +----------------------------------+----------------------------------+
 | F23                              | Command/function key F23 (aid    |
-|                                  | byte hexadecimal value \'BB\')   |
+|                                  | byte hexadecimal value 'BB')   |
 +----------------------------------+----------------------------------+
 | F24                              | Command/function key F24 (aid    |
-|                                  | byte hexadecimal value \'BC\')   |
+|                                  | byte hexadecimal value 'BC')   |
 +----------------------------------+----------------------------------+
 | HOME                             | The Home function key may be     |
 |                                  | user-assigned to a specific      |
@@ -220,7 +220,7 @@
 |                                  | next available page of           |
 |                                  | information available for a list |
 |                                  | that is on the screen (aid byte  |
-|                                  | hexadecimal value \'F5\').       |
+|                                  | hexadecimal value 'F5').       |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
@@ -238,7 +238,7 @@
 |                                  | previous available page of       |
 |                                  | information available for a list |
 |                                  | that is on the screen (aid byte  |
-|                                  | hexadecimal value \'F4\').       |
+|                                  | hexadecimal value 'F4').       |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
@@ -294,7 +294,7 @@ Schedule view of the job status.
   SMA0108       Invalid script name
   SMA0109       Script has no step records
   SMA010A       Operator Replay failed: Technical failure at startup, see driver job loG
-  SMA010B       Operator Replay failed: STROPRRPY command incorrect DEVICE or IPADDR. Both must either specify a user-selected value, or both must be left set to \'\*DEFAULT\'.
+  SMA010B       Operator Replay failed: STROPRRPY command incorrect DEVICE or IPADDR. Both must either specify a user-selected value, or both must be left set to '\*DEFAULT'.
   SMA010C       Operator Replay failed: OpCon job master not found
   SMA010D       Operator Replay failed: Script user not provided to driver program
   SMA010E       Operator Replay failed: Dynamic variable replacement error, see script log.

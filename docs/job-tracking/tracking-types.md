@@ -11,8 +11,8 @@ commonly used technique is supported by the IBM i exit program register
 WRKREGINF). This technique registers an LSAM program as the exit program
 that is called any time the IBM i SBMJOB (Submit Job) command from
 library QSYS is used, anywhere in the system. The other technique is
-supported by registering a data queue that will receive trigger or \"job
-notify\" transactions from the IBM i system any time a job enters a
+supported by registering a data queue that will receive trigger or "job
+notify" transactions from the IBM i system any time a job enters a
 designated IBM i job queue, and/or whenever a job from the designated
 job queue ends its processing.
 
@@ -45,12 +45,12 @@ background information and technical details are offered in [How LSAM Job Tracki
 Using the SBMJOB exit program technique, the LSAM uses user-supplied
 values that are registered in an LSAM database file to filter out the
 desired jobs from every job that would be started by the SBMJOB command.
-Jobs that are marked for this specific \"Tracking\" method are sent to
+Jobs that are marked for this specific "Tracking" method are sent to
 OpCon by means of the $JOB:TRACK external event command. The command
 uses the LSAM database file parameters to specify which OpCon Schedule
 will show the job.
 
-Jobs of type \"Tracked\" (that are not marked for \"Automatic\"
+Jobs of type "Tracked" (that are not marked for "Automatic"
 processing - refer to below) require that an OpCon job master record
 must exist on the Schedule named by the LSAM parameters. This tracking
 type cannot have its job parameters overridden by the OpCon job master
@@ -88,7 +88,7 @@ The detailed description for Job Tracking, above, also applies to Job
 Queuing, except that the OpCon external event command used for this type
 is $JOB:QUEUE. The one important difference of the Queuing type is
 noted in attribute 6: The OpCon job master details can be used to
-override the original submitter\'s job definition. Similarly, OpCon job
+override the original submitter's job definition. Similarly, OpCon job
 dependencies can control when the IBM i job will be released by the LSAM
 for processing.
 
@@ -159,7 +159,7 @@ process.
 The Automatic Job Tracking type is a hybrid, since it is a tracking
 method that can be based on either the Job Tracking type or the True
 Passive Job Tracking type (but not the Job Queuing type). The term
-\"automatic\" refers to the absence of an OpCon job master record. When
+"automatic" refers to the absence of an OpCon job master record. When
 the SAM in OpCon receives a $JOB:TRACK event command and there is no
 matching job master record on the OpCon schedule named by the command, a
 new daily (only) job record will be added to the OpCon database. This

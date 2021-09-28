@@ -49,7 +49,7 @@ as documented below.
 
 The output from the GENEMLREQ command is designed specifically for use
 with the SMASendMail utility. Currently, the SMASendMail utility is a
-manually installed utility that can be downloaded from SMA\'s Support
+manually installed utility that can be downloaded from SMA's Support
 Portal, under the content library called Automation Toolkit. However,
 this process is expected to change soon, so please contact SMA Support
 to request this utility.
@@ -88,14 +88,14 @@ elements is used.
     installed, so that the installation path can be registered in the
     LSAM eMail Management control data.
 3. If not already done, update the IBM i LSAM (agent) version 04.00.03
-    software in the IBM i partition using the LSAM\'s PTF tools. Verify
+    software in the IBM i partition using the LSAM's PTF tools. Verify
     that PTFs 403067 - 403069 have been installed.
-4. Manually create a directory structure (using command \'mkdir\')
+4. Manually create a directory structure (using command 'mkdir')
     within the IBM i IFS (Integrated File System) disk space, where the
     message text temporary files will be constructed. The recommended
     IFS path would be one of these two alternatives, depending on the
-    site standards for IFS organization: \'/SMA/ClientMail/\' or
-    \'/home/SMA/ClientMail/\'.
+    site standards for IFS organization: '/SMA/ClientMail/' or
+    '/home/SMA/ClientMail/'.
 
 ## How to Configure an eMail Task
 
@@ -118,7 +118,7 @@ will be easy to repeat this model for many different applications.
         screen, for descriptions and recommendations about the names of
         the four Schedule Instance Properties that will be required to
         complete this Schedule. Use OpCon Schedule maintenance to add
-        these four Properties to a single \"instance\" line within the
+        these four Properties to a single "instance" line within the
         Schedule definition. That is, all four properties are registered
         in a single instance, separated by a semi-colon. The initial
         value of each property can be a symbolic value, one that will
@@ -198,7 +198,7 @@ will be easy to repeat this model for many different applications.
     create tokens is a pair of curly brackets, such as in this example
     where the registered Dynamic Variable name is DYNVAR1: {DYNVAR1}
 5. The final step in preparing for execution of the GENEMLREQ command
-    is to determine the proper settings for each of the command\'s many
+    is to determine the proper settings for each of the command's many
     parameter keywords. These are fully documented in the next section
     of this document. It is helpful to pay close attention to the
     following possible sources for many of these parameters, where the
@@ -259,7 +259,7 @@ of the command parameters support long strings, up to 128 characters,
 which prevents the IBM i command prompter from showing the command value
 prompts.
 
-GENEMLREQ SUBJECT(\'Subject text string\')
+GENEMLREQ SUBJECT('Subject text string')
 
 ACRONYM(\*CMD) SEQ(0) USECODE(\*NONE) MSGMBR(\*ACRONYM)
 
@@ -272,7 +272,7 @@ PARMFILE(\*DEFAULT) RMDYNVAR(EMLPRMVAR)
 EMLPRMPROI(\*DEFAULT) EMLPRMPROP(\*DEFAULT) FILEPATH(\*DEFAULT)
 EMLUSER(\*EXTERNAL) EMLPWDPATH(\*EXTERNAL) EMLSVRURL(\*DEFAULT)
 EMLSVRPORT(587) EMLSECURE(\*DFT) FROMADDR(\*DEFAULT) TOADDR(\*DEFAULT)
-CCADDR(\*NONE) BCCADDR(\*NONE) OPCONJOB(\'1\')
+CCADDR(\*NONE) BCCADDR(\*NONE) OPCONJOB('1')
 
 The command syntax illustrated above is not a working example of this
 command, since some of the default values are in conflict with each
@@ -348,7 +348,7 @@ The name of the temporary file that will contain the formatted message
 content text.
 
 \*DEFAULT = a name will be automatically constructed starting with the
-capital letter \"M\" followed by DDHHMMSSm, where:
+capital letter "M" followed by DDHHMMSSm, where:
 
 - DD = 2-digit day of month
 
@@ -367,7 +367,7 @@ than once by two different jobs, the content of the file will be
 overlaid by the latter job.
 
 :::note
-The actual name of the temporary file created in the IBM i IFS disk space, and after transferring the file to a MS Windows computer, will include a suffix of \'.txt\'. Only the 10-character root name of the file is specified in this field, as if the file were being created in the DB2 database. (The file is composed using an ASCII stream file in the IFS in order to provide the best support for line and paragraph formatting of the message content.)
+The actual name of the temporary file created in the IBM i IFS disk space, and after transferring the file to a MS Windows computer, will include a suffix of '.txt'. Only the 10-character root name of the file is specified in this field, as if the file were being created in the DB2 database. (The file is composed using an ASCII stream file in the IFS in order to provide the best support for line and paragraph formatting of the message content.)
 :::
 
 The file will be located in the IFS path specified in the IBM i Client
@@ -391,7 +391,7 @@ This is the only parameter of this command that supports translation of a Dynami
 :::
 
 **MSGDYNVAR**: User-specified Dynamic Variable name **- or -** the
-default of \'EMLMSGVAR\'.
+default of 'EMLMSGVAR'.
 
 A value must be provided for this parameter. This is the name of the
 LSAM Dynamic Variable where the 10-character root name of the message
@@ -428,7 +428,7 @@ The name of the temporary file that will contain the task definition
 values for the SMASendMail utility.
 
 \*DEFAULT = a name will be automatically constructed starting with the
-capital letter \"P\" followed by DDHHMMSSm, where:
+capital letter "P" followed by DDHHMMSSm, where:
 
 - DD = 2-digit day of month
 - HH = 2-digit hour of the day
@@ -497,13 +497,13 @@ it will be specified on the command line where the SMASendMail.exe
 program is executed.
 
 **EMLPWDPATH**: \*EXTERNAL **- or -** MS Windows \\path\\file where the
-encrypted mail server user\'s password was stored.
+encrypted mail server user's password was stored.
 
 The full MS Windows directory path and actual file name where the mail
-server user\'s password was stored. The password must be stored using
+server user's password was stored. The password must be stored using
 the utility SMAEncryptPassword.exe (located in the directory
-\\OpConxps\\Email Monitor\\, as documented in [Encrypting Passwords](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Encrypting-Passwords.md#top){.MCXref
-.xref} in the **Enterprise Manager** online help).
+\\OpConxps\\Email Monitor\\, as documented in [Encrypting Passwords](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Encrypting-Passwords.md#top)
+ in the **Enterprise Manager** online help).
 
 \*EXTERNAL = Do not include this value in the mail task parameters file,
 it will be specified on the command line where the SMASendMail.exe
@@ -512,7 +512,7 @@ program is executed.
 **EMLSRVURL**: \*DEFAULT **- or -** URL where the e-mail server is
 contacted.
 
-The URL string, such as \"smtp.gmail.com\", where the e-mail server is
+The URL string, such as "smtp.gmail.com", where the e-mail server is
 contacted by the program SMASendMail.
 
 \*DEFAULT = use the value specified in the IBM i Client eMail
@@ -591,18 +591,18 @@ execution.
 
 **OPCONJOB**:
 
-- \'1\' = yes, the default.
-- \'0\' = no.
+- '1' = yes, the default.
+- '0' = no.
 
 This flag controls the extended actions of the GENEMLREQ command.
 
-\'1\' = the command is executed as part of a job started by OpCon, and
-the command process should include generation of the \$PROPERTY:SET
+'1' = the command is executed as part of a job started by OpCon, and
+the command process should include generation of the $PROPERTY:SET
 event commands that will push the four Schedule Instance Property values
 up to OpCon. (The job must have been started by OpCon in order to obtain
 the values required for the event commands.)
 
-\'0\' = the command will not execute the \$PROPERTY:SET event commands.
+'0' = the command will not execute the $PROPERTY:SET event commands.
 The command will still generate the two temporary files and all log
 entries, but any use of the temporary files must be controlled by an
 external or manual process.
@@ -613,13 +613,13 @@ The command GETCLTEML (Get Client eMail Address) is a special purpose
 command just for the purpose of retrieving the e-mail address field from
 one Client Acronym master record and storing it into an LSAM Dynamic
 Variable. This function would be useful for the purpose of assembling an
-OpCon event command such as \$NOTIFY:EMAIL from a Captured Data Response
+OpCon event command such as $NOTIFY:EMAIL from a Captured Data Response
 Rule, where the Dynamic Variable token can be included as the event
 command parameter where any of the e-mail address values is specified
 (to, cc. or bcc.).
 
 :::note
-The GENEMLREQ command is often preferred over the \$NOTIFY:EMAIL event command because event commands do not allow commas (as may be desired in the message text) and because the mail messages generated by the event command will also include some internal technical data at the start of the message.
+The GENEMLREQ command is often preferred over the $NOTIFY:EMAIL event command because event commands do not allow commas (as may be desired in the message text) and because the mail messages generated by the event command will also include some internal technical data at the start of the message.
 :::
 
 #### Command Syntax
@@ -663,8 +663,8 @@ A sequence number that uniquely identifies each record belonging to a
 single Acronym value. Zeros is a valid value for a sequence number.
 
 When the USECODE is not blank, then zeros in this sequence number field
-has the special meaning of \"find the lowest sequence number of a record
-that matches the Use Code.\"
+has the special meaning of "find the lowest sequence number of a record
+that matches the Use Code."
 
 **USECODE**: 1 to 10 characters
 
@@ -742,9 +742,9 @@ Client eMail Management Menu
 
 ##### Menu Pathways
 
-- \"Main Menu \> Events and Utilities Menu (\#3) \> Client eMail Menu
+- "Main Menu \> Events and Utilities Menu (\#3) \> Client eMail Menu
     (\# 11) \> option 1
-- \"Main Menu \> Operator Replay Menu (\#4) \> Client eMail Menu
+- "Main Menu \> Operator Replay Menu (\#4) \> Client eMail Menu
     (\# 11) \> option 1
 
 ##### Fields
@@ -767,7 +767,7 @@ Client eMail Management Menu
 - **F11 = Change View**: Use this function key to replace the data
     shown to the right of the Sequence number field.
 
-[View 1]{.ul}
+[View 1]
 
 - **eMail Address (partial)**: A partial, or full 128-character string
     of one or more email addresses, where a semi-colon is used to
@@ -777,7 +777,7 @@ Client eMail Management Menu
   - Option 5=Display can also be used to show the full e-mail
         address list per record.
 
-[View 2]{.ul}
+[View 2]
 
 - **Use Code**: A code used to create sub-groups of records within a
     single Acronym, such as when there are different e-mail addresses
@@ -789,7 +789,7 @@ Client eMail Management Menu
     documentation. (The Use Codes are not a normalized in the database
     at this time.)
 
-[View 3]{.ul}
+[View 3]
 
 - **MsgSrcMbr**: The name of the source physical file member in file
     MSGTXTSRC that contains the message content. For records that may be
@@ -1011,7 +1011,7 @@ logic in order to achieve the desired final format of the message:
 1. GENEMLREQ will replace LSAM Dynamic Variable tokens.
 2. Leave a source member line blank to insert a Carriage Return + Line
     Feed.\
-    One \"New Line\" function will be inserted into the message text for
+    One "New Line" function will be inserted into the message text for
     each blank source line, marking the end of a paragraph. Leave two
     (or more) lines blank in order to force a blank line between
     paragraphs in the final message format. When it is desired to have
@@ -1028,7 +1028,7 @@ Email Message Example
 
   -----------------------------------------------------------------------
 
-Verify that the Dyn Var name DVAR is translated here: \$12,345.00
+Verify that the Dyn Var name DVAR is translated here: $12,345.00
 
   Two blank lines above result in one blank line in the final formatted
   e-mail message. A single blank line results in a new paragraph but no
@@ -1053,9 +1053,9 @@ appear except when using menu option 5.
 
 ##### Menu Pathways
 
-- \"Main Menu \> Events and Utilities Menu (\#3) \> Client eMail Menu
+- "Main Menu \> Events and Utilities Menu (\#3) \> Client eMail Menu
     (\# 11) \> option 4
-- \"Main Menu \> Operator Replay Menu (\#4) \> Client eMail Menu
+- "Main Menu \> Operator Replay Menu (\#4) \> Client eMail Menu
     (\# 11) \> option 4
 
 ##### Fields
@@ -1106,7 +1106,7 @@ appear except when using menu option 5.
 - **Status**: A value displays when any error code or other
     exceptional (perhaps non-fatal) status code is reported as the
     completion code by the GENEMLREQ command processor program. If the
-    TP (type of log record) is value \"E\", then the TP code and the
+    TP (type of log record) is value "E", then the TP code and the
     status code are displayed in red. Use option 5=Display to see more
     information about the reason for a failed job. (Also refer to the
     discussion elsewhere in this section about tools that can be used to
@@ -1156,14 +1156,14 @@ appear except when using menu option 5.
 
 ##### Menu Pathways
 
-- \"Main Menu \> Events and Utilities Menu (\#3) \> Client eMail Menu
+- "Main Menu \> Events and Utilities Menu (\#3) \> Client eMail Menu
     (\# 11) \> option 4 \> 5
-- \"Main Menu \> Operator Replay Menu (\#4) \> Client eMail Menu
+- "Main Menu \> Operator Replay Menu (\#4) \> Client eMail Menu
     (\# 11) \> option 4 \> 5
 
 ##### Fields
 
-[Common header fields]{.ul}
+[Common header fields]
 
 (Also apply to formats B, C and D)
 
@@ -1171,7 +1171,7 @@ appear except when using menu option 5.
     written
 - **Rec ID**: The type of log entry - refer to the Fields table for
     the Activity Log list display, above.
-- **OpCon Job**: \'1\' = Yes, \'0\' = No (refer to the GENEMLREQ
+- **OpCon Job**: '1' = Yes, '0' = No (refer to the GENEMLREQ
     parameters explanation).
 - **Prim key**: A numeric primary key assigned to this Activity Log
     record.
@@ -1214,13 +1214,13 @@ appear except when using menu option 5.
     above, for more information.)
 - **Msg Text DB2 OpCon Prop**: The full name of the OpCon Schedule
     Instance property where the path and name of the message text
-    temporary file is stored by a \$PROPERTY:SET event command that the
+    temporary file is stored by a $PROPERTY:SET event command that the
     GENEMLREQ program executes. This SI.Property is required by the file
     transfer jobs in order to know the path and name of the source file
     to be transferred.
 - **Msg Text OpCon Proprty**: The full name of the OpCon Schedule
     Instance property where the path and name of the message text
-    temporary file is stored by a \$PROPERTY:SET event command that the
+    temporary file is stored by a $PROPERTY:SET event command that the
     GENEMLREQ program executes. This SI.Property is required by the file
     transfer jobs in order to know the path and name of the target file
     in the MS Windows system that will receive the message text to be
@@ -1273,13 +1273,13 @@ Fields that are unique to this format
         storage.
 - **Parm DB2 OpCon Proprty**: The full name of the OpCon Schedule
     Instance property where the path and name of the mail task
-    parameters temporary file is stored by a \$PROPERTY:SET event
+    parameters temporary file is stored by a $PROPERTY:SET event
     command that the GENEMLREQ program executes. This SI.Property is
     required by the file transfer jobs in order to know the path and
     name of the source file to be transferred.
 - **Parm File OpCon Proprt**: The full name of the OpCon Schedule
     Instance property where the path and name of the mail task
-    parameters temporary file is stored by a \$PROPERTY:SET event
+    parameters temporary file is stored by a $PROPERTY:SET event
     command that the GENEMLREQ program executes. This SI.Property is
     required by the file transfer jobs in order to know the path and
     name of the target file in the MS Windows system that will receive

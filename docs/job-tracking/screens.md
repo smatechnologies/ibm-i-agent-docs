@@ -74,7 +74,7 @@ the list of Job Track Parameters.
 When option 4=Delete is used, the list of records selected for deletion
 will appear in whichever format was in effect when the option code was
 entered. Accordingly, pressing \<**F11**\> to alter the view will erase
-the program\'s record of any previous option codes that were entered,
+the program's record of any previous option codes that were entered,
 including any records selected for deletion (that were not yet confirmed
 for deletion). Thus, function key \<**F11**\> has the same effect as
 function key \<**F5**\> = Refresh, in addition to changing the displayed
@@ -216,8 +216,8 @@ does not allow data input. The screen example appears on the next page.
 +====================+:=====================:+=======================+
 | Job Name           | IBM i Name Rules      | The name portion of   |
 |                    | (Refer to [IBM i Name | an IBM i job. The IBM | |                    | Rules](Configurat     | i full job names (per |
-|                    | ion.md#IBM2){.MCXref | instance of a job)    |
-|                    | .xref}.)              | include the name, the |
+|                    | ion.md#IBM2) | instance of a job)    |
+|                    | .)              | include the name, the |
 |                    |                       | submitting user name, |
 |                    |                       | and a unique job      |
 |                    |                       | number. The name      |
@@ -292,7 +292,7 @@ does not allow data input. The screen example appears on the next page.
 |                    | **Note:** If this     | such as when a        |
 |                    | field is left blank,  | yesterday schedule    |
 |                    | OpCon assumes         | remains incomplete    |
-|                    | CURRENT.              | after today\'s        |
+|                    | CURRENT.              | after today's        |
 |                    |                       | schedule is already   |
 |                    |                       | active. Various       |
 |                    |                       | values may be used in |
@@ -443,7 +443,7 @@ above.
 - Main Menu \> Job track menu (\#1) \> Job track logs (\#2)
 - **From Command Entry, enter the command WRKTRKJOB.** This command
     may be entered from any command entry line, as long as the library
-    QGPL is in the interactive job\'s library list. It is not necessary
+    QGPL is in the interactive job's library list. It is not necessary
     to set the library list to an LSAM environment, or to enter the LSAM
     menu system, because this command is able to detect which LSAM
     environment has control over job tracking. (When there are multiple
@@ -479,8 +479,8 @@ above.
 | Job Name            | IBM i Name Rules     | -   The name portion |
 |                     | (Refer to [IBM i     |     of an IBM i job. | |                     | Name                 |     The IBM i full   |
 |                     | Rules](Configurati   |     job names (per   |
-|                     | on.md#IBM2){.MCXref |     instance of a    |
-|                     | .xref}.)             |     job) include the |
+|                     | on.md#IBM2) |     instance of a    |
+|                     | .)             |     job) include the |
 |                     |                      |     name, the        |
 |                     |                      |     submitting user  |
 |                     |                      |     name, and a      |
@@ -499,7 +499,7 @@ above.
 |                     |                      |     same job name to |
 |                     |                      |     be executed      |
 |                     |                      |     concurrently.    |
-|                     |                      | -   [Sort            | |                     |                      |     name]{.ul}: When |
+|                     |                      | -   [Sort            | |                     |                      |     name]: When |
 |                     |                      |     F11 is used to   |
 |                     |                      |     change the sort  |
 |                     |                      |     order of the     |
@@ -539,7 +539,7 @@ above.
 |                     |                      |     the job          |
 |                     |                      |     executed, or     |
 |                     |                      |     will execute.    |
-|                     |                      | -   [Sort            | |                     |                      |     date]{.ul}: When |
+|                     |                      | -   [Sort            | |                     |                      |     date]: When |
 |                     |                      |     F11 is used to   |
 |                     |                      |     change the sort  |
 |                     |                      |     order of the     |
@@ -704,7 +704,7 @@ detail
 |                        |                 | Message ID. In this    |
 |                        |                 | case, the reported     |
 |                        |                 | Message ID will be     |
-|                        |                 | \"(text)\".            |
+|                        |                 | "(text)".            |
 +------------------------+-----------------+------------------------+
 | IBM i                  | Job name        | The name portion of an |
 |                        |                 | IBM i job. The IBM i   |
@@ -922,7 +922,7 @@ detail
   F         TX1-FAILED                                                                                                                               Indicates the LSAM was unable to process the OpCon job start request. Refer to the LSAM diagnostic tools for jobs that fail to start, described in Components and Operation.
   I       SAM_QUEUED_TI1                                                                                                                                                     OpCon/xps has received a job queuing request, and has responded with SAM job information. (Does not apply to type Tracked.)                                                                                                                                                     Release job, Cancel job
   K       USER_CANCELLED                                                                                                                          Option 4=Cancel job was used to permanently prevent this tracked job from being released. (Cancelled jobs cannot be recovered. The requested task must be submitted as a new job.)                                                                                                                         None
-  M         MANUAL_RLS     Option 6=Release job was used to manually submit the job to IBM i for processing. Manually released jobs may not be able to take advantage of any OpCon/xps job master options, such as job-specific message management or spool file management, if a job was released while it was in status \"I\". Jobs that were at status \"E\" would not receive any support from OpCon/xps because they were not recognized by OpCon/xps.  None
+  M         MANUAL_RLS     Option 6=Release job was used to manually submit the job to IBM i for processing. Manually released jobs may not be able to take advantage of any OpCon/xps job master options, such as job-specific message management or spool file management, if a job was released while it was in status "I". Jobs that were at status "E" would not receive any support from OpCon/xps because they were not recognized by OpCon/xps.  None
   P       PASSIVE_TRACK                                                                                                                                                                                Indicates this job was processed using the True Passive tracking method.
   R        LSAM_RLS_TX1                                                                                                                                                                  The LSAM has released the job to IBM i upon receiving a start job transaction (TX1) from OpCon/xps.                                                                                                                                                                 None
   T       LSAM_TRACKING                                                                                                                                                          The LSAM has recognized the job and stored it for tracking, but a response has not yet been received from OpCon/xps.                                                                                                                                                        Release job, Cancel job
@@ -941,7 +941,7 @@ detail
 - **F14=More LIBL**: Press \<F14\>, when it is available, to view an
     extended display of the Library List.
 - **F15=View LDA**: Press \<F15\>, when it is available, to view the
-    content of the job\'s captured local data area (LDA).
+    content of the job's captured local data area (LDA).
 - **F21=WRKJOB**: Press \<F21\>, when it is available, to go to the
     IBM i Work with Job menu display. After exiting the Work with Job
     menu or any of its functions, the system will return to this log
@@ -1025,7 +1025,7 @@ details \> PageDown
 |               | Job priority     | The priority of the job in the  |
 |               |                  | job queue.                      |
 +---------------+------------------+---------------------------------+
-|               | Log Lv/Sv/Txt    | The job\'s logging control      |
+|               | Log Lv/Sv/Txt    | The job's logging control      |
 |               |                  | values: Level, Severity and     |
 |               |                  | message text.                   |
 +---------------+------------------+---------------------------------+
@@ -1119,7 +1119,7 @@ details \> PageDown
 - **F14=View LIBL**: Press \<F14\>, when it is available, to view an
     extended display of the Library List.
 - **F15=View LDA**: Press \<F15\>, when it is available, to view the
-    content of the job\'s captured local data area (LDA).
+    content of the job's captured local data area (LDA).
 - **F21=WRKJOB**: Press \<F21\>, when it is available, to go to the
     IBM i Work with Job menu display. After exiting the Work with Job
     menu or any of its functions, the system will return to this log
@@ -1160,13 +1160,13 @@ RLSJOB Attributes
 
 ##### Fields
 
-**HOLD (Y/N)?**: Type a \'Y\' = yes and press \<Enter\> to cause the job
+**HOLD (Y/N)?**: Type a 'Y' = yes and press \<Enter\> to cause the job
 to be submitted in a released state under IBM i, so that it will run
-immediately. When \'N\' = no is typed and \<Enter\> is pressed, the job
+immediately. When 'N' = no is typed and \<Enter\> is pressed, the job
 will be submitted, but it will be held by IBM i in the specified job
 queue, and the job must be manually released from the IBM i job queue.
 Choose the option to HOLD the job in order to modify any parameter of
-the job\'s definition under IBM i before it is released to run.
+the job's definition under IBM i before it is released to run.
 
 ##### Functions
 
@@ -1219,7 +1219,7 @@ fit in the primary detail summary display.
 
 - The fields appearing on this display are the same as explained above
     for the summary display of Job Track Log Detail.
-- **Initial LIBL**: If the job\'s initial library list is very long,
+- **Initial LIBL**: If the job's initial library list is very long,
     the PageDown function key appears on the first page of this extended
     display at the same time as a plus sign (+) appears at the lower
     right corner. If PageDown has been used, this same screen shows a
@@ -1241,9 +1241,9 @@ fit in the primary detail summary display.
 #### Job Track Log Detail -- View LDA
 
 Pressing \<**F15**\> from the Job Track Log Detail display provides
-access to a display of the captured job\'s local data area (LDA)
+access to a display of the captured job's local data area (LDA)
 content. This screen is a list of the 15 lines (1024 character) of the
-LDA content, but the screen may show a \"no records\" message if the LDA
+LDA content, but the screen may show a "no records" message if the LDA
 was either not captured or is completely blank. Function key \<F10\> may
 be used to toggle the display between a character-only mode that shows
 the whole LDA on one screen (but non-display characters in the LDA will
@@ -1271,7 +1271,7 @@ for each LDA byte position in over/under mode.
     returns to the Job Track Log Detail summary display.
 - **PageUp**: (not shown) May be used if PageDown was previously used
     to show more lines while in Hex display mode.
-- **Page Down**: (Not shown) May be used if \"More\...\" appears at
+- **Page Down**: (Not shown) May be used if "More\..." appears at
     the bottom of the display while in Hex display mode.
 
 ## Start Job Track (STRJOBTRK)
@@ -1283,7 +1283,7 @@ IBM i. The exit program is run whenever anyone uses the SBMJOB (submit
 job) command from the IBM i system library QSYS.
 
 +----------------------------------+----------------------------------+
-| ![White \"X\" icon on red        | **WARNING:** [When using         | | circular                         | multiple LSAM environments, it   |
+| ![White "X" icon on red        | **WARNING:** [When using         | | circular                         | multiple LSAM environments, it   |
 | background](../../../Reso        | is only possible to start job    |
 | urces/Images/warning-icon(48x48) | tracking from one environment at |
 | .png "Warning icon") | a time.]             |
@@ -1333,7 +1333,7 @@ information about what error has occurred may be available from your
 interactive job log. The job log can be viewed using the following
 procedure.
 
-[View Interactive Job Log]{.ul}
+[View Interactive Job Log]
 
 1. Enter the command **WRKJOB** in the command entry line.
 2. Select option 10=Display job log.
@@ -1373,7 +1373,7 @@ When this error occurs, contact SMA Support for assistance. Additional
 information about what error has occurred may be available from the
 interactive job log. View the job log using the following procedure.
 
-[View Interactive Job Log]{.ul}
+[View Interactive Job Log]
 
 1. Enter the command **WRKJOB** in the command entry line.
 2. Select option 10=Display job log.
@@ -1508,7 +1508,7 @@ The required procedure for changing the exit program number is to first stop job
 |                 |                 |            | character that  |
 |                 |                 |            | marks the       |
 |                 |                 |            | division of     |
-|                 |                 |            | this LSAM\'s    |
+|                 |                 |            | this LSAM's    |
 |                 |                 |            | Job Tracking ID |
 |                 |                 |            | information     |
 |                 |                 |            | fields that are |
@@ -1520,7 +1520,7 @@ The required procedure for changing the exit program number is to first stop job
 |                 |                 |            | OpCon sends job |
 |                 |                 |            | control         |
 |                 |                 |            | transactions    |
-|                 |                 |            | after a \$JOB   |
+|                 |                 |            | after a $JOB   |
 |                 |                 |            | event command   |
 |                 |                 |            | initiates       |
 |                 |                 |            | cooperative job |
@@ -1528,7 +1528,7 @@ The required procedure for changing the exit program number is to first stop job
 |                 |                 |            | default value   |
 |                 |                 |            | of a vertical   |
 |                 |                 |            | bar, or         |
-|                 |                 |            | \"pipe\"        |
+|                 |                 |            | "pipe"        |
 |                 |                 |            | character is    |
 |                 |                 |            | strongly        |
 |                 |                 |            | recommended     |
@@ -1583,7 +1583,7 @@ The required procedure for changing the exit program number is to first stop job
 |                 |                 |            | qualify for job |
 |                 |                 |            | tracking. When  |
 |                 |                 |            | the option is   |
-|                 |                 |            | set to \'1\' =  |
+|                 |                 |            | set to '1' =  |
 |                 |                 |            | Yes, the LSAM   |
 |                 |                 |            | will provide    |
 |                 |                 |            | improved        |
@@ -1600,7 +1600,7 @@ The required procedure for changing the exit program number is to first stop job
 |                 |                 |            | new option      |
 |                 |                 |            | should be       |
 |                 |                 |            | turned off (set |
-|                 |                 |            | to \'0\'=No) in |
+|                 |                 |            | to '0'=No) in |
 |                 |                 |            | environments    |
 |                 |                 |            | where request   |
 |                 |                 |            | message         |
@@ -1665,10 +1665,10 @@ The required procedure for changing the exit program number is to first stop job
 |                 |                 |            | is described    |
 |                 |                 |            | above in this   |
 |                 |                 |            | topic, under    |
-|                 |                 |            | \"How Job       |
+|                 |                 |            | "How Job       |
 |                 |                 |            | Tracking Works  |
 |                 |                 |            | -\> Automatic   |
-|                 |                 |            | Job Tracking.\" |
+|                 |                 |            | Job Tracking." |
 +-----------------+-----------------+------------+-----------------+
 | Expand          | 0=No,           | 0          | -   This option |
 | JOBD/JOBQ obj   |                 |            |     tells the   |
@@ -2035,7 +2035,7 @@ Main Menu \> Job track menu (\#1) \> Display captured jobs (DSPCAPJOB)
   Search content   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The \<**Enter**\> key or \<**F16**\> may be used to start a search, and \<**F16**\> is used to continue the search from the last record found.
   Capture ID       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
   Job name         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
-  CMD line...      The first several characters of the job\'s command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
+  CMD line...      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
 
   :  
 
@@ -2177,7 +2177,7 @@ Main Menu \> Job track menu (\#1) \> Display captured jobs (DSPCAPJOB)
 #### F15 = View LDA
 
 Pressing \<**F15**\> from the Display Captured Job Detail display
-provides access to a display of the captured job\'s local data area
+provides access to a display of the captured job's local data area
 (LDA) content. This screen is a list of the 15 lines (1024 characters)
 of the LDA content, but the screen may show completely blank content.
 Function key \<F10\> may be used to toggle the display between a
@@ -2208,12 +2208,12 @@ over/under mode.
     character and hexadecimal.
 - **PageUp**: (not shown) May be used if PageDown was previously used
     to show more lines while in Hex display mode.
-- **PageDown**: (not shown) May be used if \"More...\" appears at the
+- **PageDown**: (not shown) May be used if "More..." appears at the
     bottom of the display while in Hex display mode.
 
 ## Work with Captured Jobs (WRKCAPJOB)
 
-The \"Work with\" function allows data of captured job information to be
+The "Work with" function allows data of captured job information to be
 accessed for update. This function, driven by the WRKCAPJOB command,
 should probably be restricted to a limited number of user profiles. It
 may not be appropriate for as wide group of user profiles as the
@@ -2251,7 +2251,7 @@ Main Menu \> Job track menu (\#1) \> Work with captured jobs (WRKCAPJOB)
   Search content   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The \<**Enter**\> key or \<**F16**\> may be used to start a search, and \<**F16**\> is used to continue the search from the last record found.
   Capture ID       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
   Job name         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
-  CMD line...      The first several characters of the job\'s command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
+  CMD line...      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
 
   :  
 
@@ -2368,7 +2368,7 @@ Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever v
     contents may be viewed and updated using this function key.
 
 - **F21=CHKJOB**: Press \<**F21**\> to request an edit from IBM i of
-    the job\'s parameters. Any error messages returned by IBM i will
+    the job's parameters. Any error messages returned by IBM i will
     display at the bottom of the screen. Data entry made on this screen
     is NOT edited when \<**Enter**\> is pressed to update the record.
     \<**F21**\> must be used before the \<**Enter**\> key is pressed in
@@ -2386,7 +2386,7 @@ Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever v
     line is stored.
 
 :::note
-The SEU edit screen is not documented in this online help. Refer to IBM documentation for information about how to perform source member editing with SEU. The LSAM permits any other form of IBM i source physical file member editing to be used, including WebSphere from a PC workstation. The field value for CMD SrcMbr names the member in file SMADTA/DBFCMDSRC that can be edited in order to update the captured job\'s command line. (The SMADTA library may have a different name if an alternate LSAM environment is being used.)
+The SEU edit screen is not documented in this online help. Refer to IBM documentation for information about how to perform source member editing with SEU. The LSAM permits any other form of IBM i source physical file member editing to be used, including WebSphere from a PC workstation. The field value for CMD SrcMbr names the member in file SMADTA/DBFCMDSRC that can be edited in order to update the captured job's command line. (The SMADTA library may have a different name if an alternate LSAM environment is being used.)
 :::
 
 #### F14 = Edit LIBL
@@ -2412,7 +2412,7 @@ Main Menu \> Job track menu (\#1) \> Work with captured jobs (WRKCAPJOB)
   ----------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Capture ID        The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so duplicate copies of the same job name can be stored with different job parameters.
   Sequence number   10 -- 2500, similar to the IBM i EDTLIBL display. Different values can be typed into this field to cause the order of libraries in the list to change. The sequence number field is renumbered by tens every time the \<**Enter**\> key is pressed, after the library names have been sorted into the requested order.
-  Library           The name of any library that should be in the job\'s initial library list. For the Capture Job application (unlike the IBM i EDTLIBL command), a single value of \*JOBD, or any other value permitted by the INLLIBL parameter of the SBMJOB command, may be used instead of actual library names.
+  Library           The name of any library that should be in the job's initial library list. For the Capture Job application (unlike the IBM i EDTLIBL command), a single value of \*JOBD, or any other value permitted by the INLLIBL parameter of the SBMJOB command, may be used instead of actual library names.
 
   :  
 
@@ -2429,7 +2429,7 @@ Main Menu \> Job track menu (\#1) \> Work with captured jobs (WRKCAPJOB)
 #### F15 = Change LDA
 
 Pressing \<**F15**\> from the Change Captured Job Detail display
-provides access to a display of the captured job\'s local data area
+provides access to a display of the captured job's local data area
 (LDA) content. This screen is a list of the 15 lines (1024 characters)
 of the LDA content. Function key \<F10\> may be used to toggle the
 display between a character-only mode that shows the whole LDA on one
@@ -2511,7 +2511,7 @@ Main Menu \> Job track menu (\#1) \> Work with captured jobs (WRKCAPJOB)
     (Refer to example, below.)
 - **PageUp**: (not shown) May be used if PageDown was previously used
     to show more lines while in Hex display mode.
-- **PageDown**: (not shown) May be used if \"More...\" appears at the
+- **PageDown**: (not shown) May be used if "More..." appears at the
     bottom of the display while in Hex display mode.
 
 #### F19 = Rollback
@@ -2662,7 +2662,7 @@ it provides additional notes about some fields.
     contents may be viewed and updated using this function key.
 
 - **F21=CHKJOB**: Press \<**F21**\> to request an edit from IBM i of
-    the job\'s parameters. Any error messages returned by IBM i will
+    the job's parameters. Any error messages returned by IBM i will
     display at the bottom of the screen. Data entry made on this screen
     is NOT edited when \<**Enter**\> is pressed to update the record.
     \<**F21**\> must be used before the \<**Enter**\> key is pressed in

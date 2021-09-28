@@ -59,19 +59,19 @@ Main Menu \> SMA File Transfer menu (\#8)
 
 ## Start SMAFT Server (STRSMAFT)
 
-The Start SMAFT Server option starts the IBM i LSAM\'s SMA File Transfer
+The Start SMAFT Server option starts the IBM i LSAM's SMA File Transfer
 listener job named SMAFTS in the LSAM subsystem (default name SMASBS).
-Use the LSAM management function \"work with SMAFT jobs\" or \"Check
-LSAM subsystem status\" to verify that the server job has been started.
+Use the LSAM management function "work with SMAFT jobs" or "Check
+LSAM subsystem status" to verify that the server job has been started.
 Refer to [SMAFT Parameters -- Critical Configuration Settings](#SMAFT) for a setting that causes the SMAFT
 server to be started automatically with the other LSAM server jobs.
 
 ## End SMAFT Server (ENDSMAFT)
 
-The End SMAFT Server option stops only the IBM i LSAM\'s SMA File
+The End SMAFT Server option stops only the IBM i LSAM's SMA File
 Transfer listener job (SMAFTS) that is running in the LSAM subsystem.
-Use the LSAM management function \"Work with SMAFT jobs\" or \"Check
-LSAM subsystem status\" to verify that job SMAFTS is no longer active in
+Use the LSAM management function "Work with SMAFT jobs" or "Check
+LSAM subsystem status" to verify that job SMAFTS is no longer active in
 the subsystem. The SMAFTS server job will also be stopped automatically
 whenever the End LSAM function terminates all the LSAM server jobs.
 
@@ -125,8 +125,8 @@ Main Menu \> SMA File Transfer menu (\#8) \> Work with SMAFT jobs (\#3)
 The IBM i LSAM supports active control over SMAFT logging capabilities.
 Logging is a local function useful to system administrators, programmers
 and support technicians. For a complete description of how to use the
-logging features in general, refer to [Log File and Database Management](Log-File-and-Database-Management.md#top){.MCXref
-.xref}. The SMAFT logging control function is described below, under SMA
+logging features in general, refer to [Log File and Database Management](Log-File-and-Database-Management.md#top)
+. The SMAFT logging control function is described below, under SMA
 File Transfer Screens and Windows.
 
 ### View LSAM Logs
@@ -136,15 +136,15 @@ log viewers. This is the same function that is available from the LSAM
 Management menu option \# 5. It is reproduced here for the convenience
 of technical support personnel who may be diagnosing SMA File Transfer
 jobs. For more information about how to use the log views, refer to
-[Viewing the LSAM Log Files](Log-File-and-Database-Management.md#Viewing){.MCXref
-.xref}.
+[Viewing the LSAM Log Files](Log-File-and-Database-Management.md#Viewing)
+.
 
 ### View SMAFT Logs
 
 This menu option provides direct access to the list of available SMA
 File Transfer log viewers. For general information about how to use the
-log views, refer to [Viewing the SMAFT Log Files](#Viewing){.MCXref
-.xref}. Specific information about the SMA File Transfer log views is
+log views, refer to [Viewing the SMAFT Log Files](#Viewing)
+. Specific information about the SMA File Transfer log views is
 available below, under SMA File Transfer Screens and Windows.
 
 ## SMAFT Parameters

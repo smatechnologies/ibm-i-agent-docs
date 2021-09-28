@@ -69,7 +69,7 @@ Event Management Options
 |                 |                 |            |     enter an    |
 |                 |                 |            |     existing    |
 |                 |                 |            |     OpCon/xps   |
-|                 |                 |            |     Schedule\'s |
+|                 |                 |            |     Schedule's |
 |                 |                 |            |     name and    |
 |                 |                 |            |     date.       |
 |                 |                 |            | -   The default |
@@ -82,7 +82,7 @@ Event Management Options
 |                 |                 |            |     Hold, enter |
 |                 |                 |            |     an existing |
 |                 |                 |            |     OpCon/xps   |
-|                 |                 |            |     Schedule\'s |
+|                 |                 |            |     Schedule's |
 |                 |                 |            |     name and    |
 |                 |                 |            |     date.       |
 |                 |                 |            | -   The default |
@@ -95,7 +95,7 @@ Event Management Options
 |                 |                 |            |     enter an    |
 |                 |                 |            |     existing    |
 |                 |                 |            |     OpCon/xps   |
-|                 |                 |            |     Schedule\'s |
+|                 |                 |            |     Schedule's |
 |                 |                 |            |     name and    |
 |                 |                 |            |     date.       |
 |                 |                 |            | -   The default |
@@ -108,7 +108,7 @@ Event Management Options
 |                 |                 |            |     enter an    |
 |                 |                 |            |     existing    |
 |                 |                 |            |     OpCon/xps   |
-|                 |                 |            |     Schedule\'s |
+|                 |                 |            |     Schedule's |
 |                 |                 |            |     name and    |
 |                 |                 |            |     date.       |
 |                 |                 |            | -   The default |
@@ -128,8 +128,8 @@ Event Management Options
 |                 |                 |            | opcon/core/late |
 |                 |                 |            | st/Files/Concep |
 |                 |                 |            | ts/Thresholds.h |
-|                 |                 |            | tm#top){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | tm#top) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **Concepts**    |
 |                 |                 |            | online help.    |
 +-----------------+-----------------+------------+-----------------+
@@ -145,8 +145,8 @@ Event Management Options
 |                 |                 |            | /opcon/core/lat |
 |                 |                 |            | est/Files/Conce |
 |                 |                 |            | pts/Resources.h |
-|                 |                 |            | tm#top){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | tm#top) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **Concepts**    |
 |                 |                 |            | online help.    |
 +-----------------+-----------------+------------+-----------------+
@@ -159,8 +159,8 @@ Event Management Options
 |                 |                 |            | com/opcon/core/ |
 |                 |                 |            | latest/Files/Co |
 |                 |                 |            | ncepts/Properti |
-|                 |                 |            | es.md){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | es.md) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **Concepts**    |
 |                 |                 |            | online help.    |
 +-----------------+-----------------+------------+-----------------+
@@ -173,8 +173,8 @@ Event Management Options
 |                 |                 |            | com/opcon/core/ |
 |                 |                 |            | latest/Files/Co |
 |                 |                 |            | ncepts/Properti |
-|                 |                 |            | es.md){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | es.md) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **Concepts**    |
 |                 |                 |            | online help.    |
 +-----------------+-----------------+------------+-----------------+
@@ -187,8 +187,8 @@ Event Management Options
 |                 |                 |            | com/opcon/core/ |
 |                 |                 |            | latest/Files/Co |
 |                 |                 |            | ncepts/Properti |
-|                 |                 |            | es.md){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | es.md) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **Concepts**    |
 |                 |                 |            | online help.    |
 +-----------------+-----------------+------------+-----------------+
@@ -204,8 +204,8 @@ Event Management Options
 |                 |                 |            | Files/OpCon-E |
 |                 |                 |            | vents/Defining% |
 |                 |                 |            | 20Events.md#Ex |
-|                 |                 |            | ternal){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | ternal) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **OpCon         |
 |                 |                 |            | Events** online |
 |                 |                 |            | help.           |
@@ -250,8 +250,8 @@ Event Management Options
 |                 |                 |            | est/Files/OpCon |
 |                 |                 |            | -Events/Event |
 |                 |                 |            | -Types.md#No |
-|                 |                 |            | tifica){.MCXref |
-|                 |                 |            | .xref} in the   |
+|                 |                 |            | tifica) |
+|                 |                 |            |  in the   |
 |                 |                 |            | **OpCon         |
 |                 |                 |            | Events** online |
 |                 |                 |            | help.           |
@@ -518,7 +518,7 @@ Event Management Options
 |                 |                 |            |     CURRENT.    |
 +-----------------+-----------------+------------+-----------------+
 | Machine         | Machine Status  | MACSTS     | -   To change a |
-|                 |                 |            |     machine\'s  |
+|                 |                 |            |     machine's  |
 |                 |                 |            |     status,     |
 |                 |                 |            |     enter an    |
 |                 |                 |            |     existing    |
@@ -655,15 +655,15 @@ CPYTOMSGIN Event Selection Window
                                
                    OpCon/xps Event Command
 
-[\$CONSOLE:DISPLAY]{style="background-color: #00ff00;"}                       \$JOB:ADD
-                        \$JOB:ADDHLD
-                          \$JOB:BAD
-                        \$JOB:CANCEL
-                        \$JOB:DELETE
-                         \$JOB:GOOD
-                         \$JOB:HOLD
-                         \$JOB:KILL
-                        \$JOB:RELEASE
+[$CONSOLE:DISPLAY]{style="background-color: #00ff00;"}                       $JOB:ADD
+                        $JOB:ADDHLD
+                          $JOB:BAD
+                        $JOB:CANCEL
+                        $JOB:DELETE
+                         $JOB:GOOD
+                         $JOB:HOLD
+                         $JOB:KILL
+                        $JOB:RELEASE
                           More\...
                          F12=Cancel
   ---------------------------------------------------------
@@ -680,7 +680,7 @@ Event Command Syntax Model
                                                                                
                                                                   Type choices, press Enter.
 
-[ Message . . . . . . . . . . . . \>]{style="color: #008000;"} [\'\$JOB:CANCEL,\<schedule date\>,\<schedule name\>]{style="text-decoration: underline;"}                                       ,\<job name\>\'
+[ Message . . . . . . . . . . . . \>]{style="color: #008000;"} ['$JOB:CANCEL,\<schedule date\>,\<schedule name\>]{style="text-decoration: underline;"}                                       ,\<job name\>'
 
          [                                                                     ]{style="text-decoration: underline;"} [\...]{style="color: #0000ff;"}
 

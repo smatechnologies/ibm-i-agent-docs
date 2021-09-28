@@ -4,8 +4,8 @@ sidebar_label: 'Screens and Windows'
 
 # Object Authority Screens and Windows
 
-The LSAM menu 9: PTF and Security menu, is documented in [LSAM Software Maintenance (PTFs)](LSAM-Software-Maintenance-(PTFs).md){.MCXref
-.xref}. This section documents menu 9, option 8: Work with object
+The LSAM menu 9: PTF and Security menu, is documented in [LSAM Software Maintenance (PTFs)](LSAM-Software-Maintenance-(PTFs).md)
+. This section documents menu 9, option 8: Work with object
 authority.
 
 ## Work with Object Authority
@@ -37,9 +37,9 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
   Type             The abbreviation for the IBM i operating system object type.
   Attribute        The abbreviation for the IBM i operating system object sub-type, such as the type of source code used to compile a program (for example, RPGLE = ILE RPG program).
   GPL              An indicator that marks an object for location outside of the LSAM environment libraries, SMADTA or SMAPGM. An object marked with a 1 or a 2 is installed, by default, in the LSAM utility library SMAGPL, but objects of type 1 may optionally be relocated to the IBM i library QGPL.
-  CMD              An indicator (\'1\') that enables an object to be linked to additional, specialized object authority commands. An object must have this indicator set to \'1\' before external object authority commands may be entered to extend the definition of the object\'s authority.
+  CMD              An indicator ('1') that enables an object to be linked to additional, specialized object authority commands. An object must have this indicator set to '1' before external object authority commands may be entered to extend the definition of the object's authority.
   Owner            The name of the user profile that is the owner of the object. Most LSAM objects are owned by the LSAM server user profile, SMANET, but some objects may be owned by QSECOFR in order that the USRPRF field can be set to \*OWNER, enabling a program to execute with security officer authority.
-  USRPRF           The User Profile attribute assigned to objects of type \*PGM (program). When this field is set to the value of \*OWNER, a program will execute using the object owner\'s authority, rather than the calling user\'s authority. This technique is required in order for the LSAM to perform certain system control functions without requiring that the authorized user have extended authority.
+  USRPRF           The User Profile attribute assigned to objects of type \*PGM (program). When this field is set to the value of \*OWNER, a program will execute using the object owner's authority, rather than the calling user's authority. This technique is required in order for the LSAM to perform certain system control functions without requiring that the authorized user have extended authority.
   Public Aut       The authority assigned to the \*PUBLIC user profile category.
 
   :  
@@ -56,14 +56,14 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 - **5=Display**: Display all the details of the object authority
     profile (except not the external commands - refer to option 7).
 - **7=Commands**: Allowed only for objects that have the CMD flag set
-    to \'1\', this option branches to the Work with external object
+    to '1', this option branches to the Work with external object
     authority commands function, where additional commands may be
     registered to customize the authority of a given object.
 - **8/9=Copy cmds fr/to**: These two options are used as a pair to
     select one object as 8=from and another object as 9=to, in order to
     copy all the external commands from one object to another. These
     options may only be used when both objects have the CMD option flag
-    set to \'1\'. Be sure to use option 2=Change to set on the CMD
+    set to '1'. Be sure to use option 2=Change to set on the CMD
     option for the To-object before attempting to copy commands to it
     from another object that already has a set of external commands.
 
@@ -153,7 +153,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                 |                     |     LSAM environment       |
 |                 |                     |     management utilities.  |
 |                 |                     | -   2 = Object located in  |
-|                 |                     |     the \"SMAUTL\"         |
+|                 |                     |     the "SMAUTL"         |
 |                 |                     |     (SMAGPL) library, such |
 |                 |                     |     as PTF utilities.      |
 +-----------------+---------------------+----------------------------+
@@ -345,7 +345,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 +----------------------+----------------------+----------------------+
 | Use ext command      | 0 = No               | This flag field must |
 |                      |                      | be manually set to   |
-|                      |                      | \'1\' = Yes to allow |
+|                      |                      | '1' = Yes to allow |
 |                      |                      | entry of external    |
 |                      |                      | authority commands   |
 |                      |                      | as an extension to   |
@@ -361,7 +361,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                      |                      | objects are          |
 |                      |                      | designated as owned  |
 |                      |                      | by QSECOFR so that   |
-|                      |                      | the owner\'s         |
+|                      |                      | the owner's         |
 |                      |                      | authority can be     |
 |                      |                      | used to complete     |
 |                      |                      | restricted system    |
@@ -418,7 +418,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 |                      |                      | F15=Subset and enter |
 |                      |                      | \*PUBLIC in the User |
 |                      |                      | subset option: 6.    |
-|                      |                      | User: [\*PUBLIC      | |                      |                      | \_]{.ul} .           |
+|                      |                      | User: [\*PUBLIC      | |                      |                      | \_] .           |
 +----------------------+----------------------+----------------------+
 | SMANET Authority     | \*ALL                | All LSAM objects are |
 |                      |                      | owned by user        |
@@ -651,7 +651,7 @@ Main Menu \> PTF and Security menu (\#9) \> Work with object authority
 
 The option to work with object authority (external) commands is only
 available for objects that have the EXT flag field set to a value of
-\'1\'. This screen is used to add, change, copy or delete any number of
+'1'. This screen is used to add, change, copy or delete any number of
 commands that will be executed every time an LSAM utility is request to
 set the authority of the named object. A separate LSAM database file
 keyed by the object name, type and attribute is used to store all the
@@ -778,7 +778,7 @@ Object Authority Backup/Restore Menu
        1. [Display SMA defaults (BASE)]{style="color: #008000;"}
        2. [Restore SMA defaults ]{style="color: #008000;"}            Replace live master file content with original default definitions
            of object authority. Current file content will be backed up to
-           files named \'AyMMddhhmm\' and \'ByMMddhhmm\' where \'yMMddhhmm\' is a
+           files named 'AyMMddhhmm' and 'ByMMddhhmm' where 'yMMddhhmm' is a
            time stamp of year, month, day, hours and minutes.
 
        3. [Backup current definitions]{style="color: #008000;"}            Copy the contents of the current live LSAM object authority master

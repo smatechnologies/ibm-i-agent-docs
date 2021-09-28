@@ -1,7 +1,7 @@
 # Numeric versus Character Dynamic Variables
 
 By default, when a new Dynamic Variable is added to the master table of
-the IBM i Agent\'s DB2 database, its name and {TOKEN} are considered to
+the IBM i Agent's DB2 database, its name and {TOKEN} are considered to
 represent a simple character string of up to 128 characters in length.
 Also by default, the value that replaces a token is considered to occupy
 only the length from position 1 through the last non-blank character
@@ -14,7 +14,7 @@ special configuration effort is required to define a variable.
 However, Dynamic Variables can be adapted to a broad array of
 applications by manually defining the Dynamic Variable master record
 master record in advance of its use. This can be best completed by using
-the Agent\'s green screen menu system and using the Work with Dynamic
+the Agent's green screen menu system and using the Work with Dynamic
 Variable function that appears on almost every Agent sub-menu.
 
 The Dynamic Variable definition attributes (master record fields) can
@@ -50,8 +50,8 @@ below.
 
 ## Using Numeric Compression with Dynamic Variables
 
-The SETDYNVAR command supports a parameter labeled CMPNUM (\"compress
-numeric\") that tells the SETDYNVAR command program to store only
+The SETDYNVAR command supports a parameter labeled CMPNUM ("compress
+numeric") that tells the SETDYNVAR command program to store only
 numeric digits, or integers (0 - 9) that are contained in the VALUE
 parameter. This CMPNUM parameter is used only during the process of
 storing the VALUE that is provided as the SETDYNVAR command is executed.
@@ -60,8 +60,8 @@ that is stored with the Dynamic Variable definition, although the actual
 value stored shows the effect of numeric compression.
 
 It is the CMPNUM parameter of the SETDYNVAR command that is utilized by
-the LSAM\'s Captured Data Response Rules, that is, whenever a Dynamic
-Variable name was specified for the \"Store to \--\>\" field on a
+the LSAM's Captured Data Response Rules, that is, whenever a Dynamic
+Variable name was specified for the "Store to \--\>" field on a
 Response Rule master record. As the Response Rule is executing the
 process to store a captured value to the indicated Dynamic Variable, the
 LSAM routine checks for the Compress Numeric parameter on the Response
@@ -104,7 +104,7 @@ field must be eliminated before that value could be included in some
 message Event command that is sent to OpCon SAM for distribution.
 
 Consider the example where the initial value of the Dynamic Variable is
-being set to a US\$ monetary amount, as: \$123,456.78. Numeric
+being set to a US$ monetary amount, as: $123,456.78. Numeric
 compression is used so that only the integers 12345678 are stored as the
 value of the Dynamic Variable. Thus, when the Dynamic Variable token is
 replaced during construction of an email notification about a monetary
@@ -115,9 +115,9 @@ Related to the compression of numeric data, consider that it would be
 difficult for the email reader to interpret what is the actual monetary
 value that appears in the email text. In this case, the Dynamic Variable
 master record parameters could be defined to re-edit the numeric value
-upon retrieval and insert only the \$-sign and the decimal point, so
+upon retrieval and insert only the $-sign and the decimal point, so
 that the final string returned to replace the Dynamic Variable token
-would look like this: \$123456.78
+would look like this: $123456.78
 
 In some countries, it would also make sense to insert a period (or other
 character allowed by OpCon Event commands) where the comma was

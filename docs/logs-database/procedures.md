@@ -11,20 +11,20 @@ Logging, below.
 It is not necessary to stop and restart the LSAM server programs when starting or stopping the debug logging features for the main job scheduling server programs.
 :::
 
-The term \"debug/audit\" implies that a certain group of LSAM log files
+The term "debug/audit" implies that a certain group of LSAM log files
 are not required for daily operation of the LSAM features. However,
 these optional logging functions should be considered a requirement
 during the early weeks and months when the LSAM is first used because
 they provide information that is necessary to diagnose problems with the
 configuration of LSAM automation features, and with job scheduling by
-the LSAM for OpCon. This is the \"debug\" purpose of these files.
+the LSAM for OpCon. This is the "debug" purpose of these files.
 
 At the same time, these logging options may be permanently useful to
-sites for the \"audit\" purpose, since they provide evidence of the LSAM
+sites for the "audit" purpose, since they provide evidence of the LSAM
 automation that might be required by auditors of data center operations.
 Therefore, SMA recommends that most sites should plan on leaving the
-debug/audit logging options turned on (except do NOT turn on the \"trace
-logging\" options, as explained below). The current set of LSAM
+debug/audit logging options turned on (except do NOT turn on the "trace
+logging" options, as explained below). The current set of LSAM
 automatic database management programs can be tuned by LSAM Parameters
 so that disk space utilization can be kept at acceptably low levels.
 
@@ -37,8 +37,8 @@ so that disk space utilization can be kept at acceptably low levels.
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
 4. Enter **4** to choose Manage LSAM logging in the Operator Replay
     Menu.
-5. Type a \"**1**\" (= Start) next to one or more logging features.
-    a.  It is possible to type \"**1**\" next to logging functions one
+5. Type a "**1**" (= Start) next to one or more logging features.
+    a.  It is possible to type "**1**" next to logging functions one
         at a time, then press \<**Enter**\> to update the Pending
         status, until the correct logging profile is shown. Pressing
         \<**Enter**\> does not initiate any Start or End actions.
@@ -58,8 +58,8 @@ so that disk space utilization can be kept at acceptably low levels.
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
 4. Enter **4** to choose Manage LSAM logging in the Operator Replay
     Menu.
-5. Type a \"**4**\" (= End) next to one or more logging features.
-    a.  It is possible to type \"**4**\" next to logging functions one
+5. Type a "**4**" (= End) next to one or more logging features.
+    a.  It is possible to type "**4**" next to logging functions one
         at a time, then press \<**Enter**\> to update the Pending
         status, until the correct logging profile is shown. Pressing
         \<**Enter**\> does not initiate any Start or End action.
@@ -82,7 +82,7 @@ so that disk space utilization can be kept at acceptably low levels.
     list in effect), or by pressing \<**F15**\> from log viewer screens
     that support this function key, as documented below.
 4. To view any of the physical log files in the table below:
-    a.  To view the physical log file\'s raw file data:
+    a.  To view the physical log file's raw file data:
         i.  In the command line, enter **DSPPFM** *\<physical file
             name\>*.
     b.  The formatted viewers available from the LSAM menu system
@@ -93,7 +93,7 @@ so that disk space utilization can be kept at acceptably low levels.
   Type of Log                                                                                          LSAM viewer command       Physical file name
   --------------------------------------------------------------------------------------------------- --------------------- -----------------------------
   Job scheduling communications trace log                                                                   LSACMNLOG                 CMNLOGF00
-  Job Sched comm transaction log (today\'s data) [1]{style="font-size: 80%;vertical-align: super;"}      LSATXNLOG TODAY              CMNLOGF10   Job Sched comm transaction log (yesterday\'s) [1]{style="font-size: 80%;vertical-align: super;"}     LSATXNLOG YESTERDAY           CMNLOGF10B
+  Job Sched comm transaction log (today's data) [1]{style="font-size: 80%;vertical-align: super;"}      LSATXNLOG TODAY              CMNLOGF10   Job Sched comm transaction log (yesterday's) [1]{style="font-size: 80%;vertical-align: super;"}     LSATXNLOG YESTERDAY           CMNLOGF10B
   LSAM transaction log                                                                                      LSAINPLOG                 LSALOGF40
   LSAM submit job log (contains readable text)                                                          DSPPFM LSALOGF30              LSALOGF30
   LSAM job status management file                                                                           DSPJOBSTS                 LSAJOBF00
@@ -125,10 +125,10 @@ options.
   1 : 2 : Job Track Logs                                                                                         WRKTRKJOB                         LSALOGF00 (activity log)TRKJOBF00 (tracked job definitions)
   2 : 2 : 1 : Display message management activity log                                                         (call trpmsgr03)                                              LSALOGF10
   2 : 2 : 2 : Display OpCon/xps (IBM i) job-level message management log                                      (call trpmsgr03)                                              TRPMSGF20
-  3 : 8 : Display captured data log (SCANSPLF)                                                           CALL OPRLOGR40 PARM(\'S\')                                         OPRLOGF40
-  3 : 9 : Display data capture debug log (SCANSPLF)                                                      CALL CAPLOGR10 PARM(\'S\')                                         CAPLOGF10
+  3 : 8 : Display captured data log (SCANSPLF)                                                           CALL OPRLOGR40 PARM('S')                                         OPRLOGF40
+  3 : 9 : Display data capture debug log (SCANSPLF)                                                      CALL CAPLOGR10 PARM('S')                                         CAPLOGF10
   4 : 2 : Operator Replay logs (session log)                                                                  (call oprlogr00)                                              OPRLOGF00
   4 : 2 : Operator Replay logs (trace screen formats and response strings/function keys)    (call oprlogr10, requires parameters from oprlogr00)                            OPRLOGF10
-  4 : 8 : Display captured data log (Screens: Operator Replay)                                           CALL OPRLOGR40 PARM(\'C\')                                         OPRLOGF40
-  4 : 9 : Display data capture debug log (Screens: Operator Replay)                                      CALL CAPLOGR10 PARM(\'C\')                                         CAPLOGF10
+  4 : 8 : Display captured data log (Screens: Operator Replay)                                           CALL OPRLOGR40 PARM('C')                                         OPRLOGF40
+  4 : 9 : Display data capture debug log (Screens: Operator Replay)                                      CALL CAPLOGR10 PARM('C')                                         CAPLOGF10
   5 : 3 : Restricted mode - history of last use                                                                  SAVRSTR05                                                  SAVLOGF00

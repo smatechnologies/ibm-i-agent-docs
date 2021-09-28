@@ -29,7 +29,7 @@ settings, under the File Transfer Settings tab, for this IBM i system:
 - TCP/IP Address: The LSAM will send the value from the IBM i LSAM
     SMAFT Parameters automatically whenever the LSAM first connects to
     the OpCon server.
-- File Transfer Settings: File Transfer Role = set this to \"Both\"
+- File Transfer Settings: File Transfer Role = set this to "Both"
     because the IBM i LSAM supports both the PUSH and PULL file transfer
     methods (that is, the file transfer job can be started on the Source
     machine or the Target machine, as specified in the OpCon job master
@@ -109,7 +109,7 @@ option is documented below under the topic SMAFT Parameters. The
 following procedure describes how to manually start the SMAFT Server
 when the automatic option is not being used.
 
-[Start SMAFT Server]{.ul}
+[Start SMAFT Server]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information,
     refer to [The STRSMA     Command](Components-and-Operation.md#The).
@@ -132,7 +132,7 @@ when the automatic option is not being used.
 The End SMAFT Server option tells the LSAM to discontinue listening for
 SMA File Transfer requests.
 
-[End SMAFT Server]{.ul}
+[End SMAFT Server]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information,
     refer to [The STRSMA     Command](Components-and-Operation.md#The).
@@ -169,7 +169,7 @@ unique to IBM i. Most DB2 UDB database files, and all SQL tables have
 only one (implied) data member, so it is usually not necessary to
 specify the member name. The exception is when data is read from, or
 written to a source physical file, such as program source files that
-store multiple members for each program\'s source code.
+store multiple members for each program's source code.
 
 Consider the following application notes when SMA File Transfer is used
 with files controlled by IBM i:

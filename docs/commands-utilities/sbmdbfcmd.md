@@ -51,13 +51,13 @@ in the OpCon/xps EM Call field.
 Following are some variations on the command syntax that are all
 acceptable:
 
-SBMDBFCMD FILE(\'MYLIB/MYFILE(MYMEMBER)\')
+SBMDBFCMD FILE('MYLIB/MYFILE(MYMEMBER)')
 
-sbmdbfcmd file(\'mylib/myfile(mymember)\')
+sbmdbfcmd file('mylib/myfile(mymember)')
 
-SBMDBFCMD (\'MYLIB/MYFILE(MYMEMBER)\')
+SBMDBFCMD ('MYLIB/MYFILE(MYMEMBER)')
 
-sbmdbfcmd \'mylib/myfile(mymember)\'
+sbmdbfcmd 'mylib/myfile(mymember)'
 
 It is possible to experiment with this command and its syntax from a
 command entry line within the LSAM menu system. A documentary version of
@@ -139,7 +139,7 @@ convention in OpCon/xps jobs for IBM i:
 
 Both of these strategies depend on IBM i object authority. The first and
 most important line of defense is the authority to use the actual IBM i
-command object, SBMDBFCMD, which is stored in the LSAM\'s program object
+command object, SBMDBFCMD, which is stored in the LSAM's program object
 libraries. (The default names of those libraries. When subsequent LSAM
 release upgrades are installed, this command will be relocated to the
 base programs library, default name SMAPGM. Other library names may be

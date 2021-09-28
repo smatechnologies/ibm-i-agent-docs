@@ -14,8 +14,8 @@ provided by SMA called DYNVARSQLC.
 The model CL program is documented in an example box, below. Licensed
 users of the IBM i Agent software are permitted to copy and adapt this
 model program as necessary. The model program illustrates the program
-parameters required to use this program as the \"User value calculator
-program\" specified in a Dynamic Variable master record. (This strategy
+parameters required to use this program as the "User value calculator
+program" specified in a Dynamic Variable master record. (This strategy
 of engaging the user-defined program method was an interim solution for
 fetching DB2 values, until SMA implemented the newer \*DB2 Function Code
 as part of the Dynamic Variable master file record.)
@@ -24,7 +24,7 @@ The model CL program contains two different examples for fetching data
 from the DB2 database. The first example shows how to configure the
 parameters required by the database file reading utility program,
 DYNVARSQLR. This model is used to get one field value from any file in
-any DB2 library, using an SQL \"WHERE\" clause to specify the record
+any DB2 library, using an SQL "WHERE" clause to specify the record
 selection criteria. The second example shows how to use the CL program
 itself for the simpler operation of fetching data from a DB2 data area.
 Both examples also illustrate how to extract a sub-string (a limited
@@ -61,7 +61,7 @@ initial value.
 ## Using Numeric Compression with Database Values
 
 Note that both examples in the model CL program also illustrate how to,
-optionally, engage \"numeric compression\" whenever a numeric value is
+optionally, engage "numeric compression" whenever a numeric value is
 retrieved from a database file or a data area. Numeric compression
 removes all characters except the digits. The Dynamic Variable
 formatting rules for numeric data can then be applied to the fetched
@@ -95,7 +95,7 @@ than 128 characters, the first 128 characters will be used by default
 unless the Start and Length parameters sent to program DYNVARSQLR are
 used to define the portion of the field value that should be returned.
 
-The 256-byte SQL \"WHERE\" clause parameter is intended to deliver the
+The 256-byte SQL "WHERE" clause parameter is intended to deliver the
 file record selection logic to the utility program. However, this field
 may also contain any other SQL clauses that are allowed to be used with
 a standard SELECT operation (as illustrated below). Other clauses may be
@@ -390,7 +390,7 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  | /\*   &DVVALUEX (129) = The      |
 |                                  | 128-character value followed by  |
-|                                  | \'X\'.  \*/                      |
+|                                  | 'X'.  \*/                      |
 |                                  |                                  |
 |                                  | /\*   &DVNAME (12) = The Dynamic |
 |                                  | Variable name asking for a       |
@@ -406,7 +406,7 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  | /\*                       Also   |
 |                                  | supports special value           |
-|                                  | \'\*COMPRESS\' \*/               |
+|                                  | '\*COMPRESS' \*/               |
 |                                  |                                  |
 |                                  | /\*                       that   |
 |                                  | is used for numeric compression  |
@@ -421,7 +421,7 @@ without any change to its initial value.
 |                                  | SQL.  \*/                        |
 |                                  |                                  |
 |                                  | /\*   &DVWHEREX (257) = An SQL   |
-|                                  | WHERE clause followed by \'X\'.  |
+|                                  | WHERE clause followed by 'X'.  |
 |                                  | The  \*/                         |
 |                                  |                                  |
 |                                  | /\*                     WHERE    |
@@ -462,12 +462,12 @@ without any change to its initial value.
 |                                  | values.    \*/                   |
 |                                  |                                  |
 |                                  | /\*                              |
-|                                  |                    VALUES: \'Y\' |
+|                                  |                    VALUES: 'Y' |
 |                                  | = Yes, compress to digits        |
 |                                  | only.\*/                         |
 |                                  |                                  |
 |                                  | /\*                    blank /   |
-|                                  | \'N\' = No, perform no           |
+|                                  | 'N' = No, perform no           |
 |                                  | compression.  \*/                |
 |                                  |                                  |
 |                                  | /\*                              |
@@ -568,7 +568,7 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          DCL      VAR(&QQCMPNUM) |
-|                                  | TYPE(\*CHAR) LEN(1) VALUE(\'N\') |
+|                                  | TYPE(\*CHAR) LEN(1) VALUE('N') |
 |                                  |                                  |
 |                                  |           DCL      VAR(&QQERROR) |
 |                                  | TYPE(\*CHAR) LEN(7)              |
@@ -645,25 +645,25 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          WHEN     COND(&DVNAME   |
-|                                  | \*EQ \'LSAMAXJOB\') THEN(DO)     |
+|                                  | \*EQ 'LSAMAXJOB') THEN(DO)     |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          CHGVAR   VAR(&DVVALUEX) |
-|                                  | VALUE(&DVVALUE \*CAT \'X\')      |
+|                                  | VALUE(&DVVALUE \*CAT 'X')      |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |           CHGVAR   VAR(&DVWHERE) |
-|                                  | VALUE(\'WHERE LSAPAR1 = +        |
+|                                  | VALUE('WHERE LSAPAR1 = +        |
 |                                  |                                  |
 |                                  |                                  |
-|                                  |             \'\'LSAMAXJOB\'\'\') |
+|                                  |             ''LSAMAXJOB''') |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          CHGVAR   VAR(&DVWHEREX) |
-|                                  | VALUE(&DVWHERE \*CAT \'X\')      |
+|                                  | VALUE(&DVWHERE \*CAT 'X')      |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
@@ -672,14 +672,14 @@ without any change to its initial value.
 |                                  | digits,    \*/                   |
 |                                  |                                  |
 |                                  | /\*  change the &QQCMPNUM        |
-|                                  | variable to a value of \'Y\' (=  |
+|                                  | variable to a value of 'Y' (=  |
 |                                  | Yes).    \*/                     |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          CHGVAR   VAR(&QQCMPNUM) |
-|                                  | VALUE(\'Y\')                     |
+|                                  | VALUE('Y')                     |
 |                                  |                                  |
 |                                  | /\* If LIBRRARY will rely on     |
 |                                  | \*LIBL, pass blanks to RPG       |
@@ -688,29 +688,29 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |            CALL DYNVARSQLR       |
-|                                  | PARM(&DVVALUEX &DVNAME \' \' +   |
+|                                  | PARM(&DVVALUEX &DVNAME ' ' +   |
 |                                  |                                  |
-|                                  |             \'LSAPARF00\'        |
-|                                  | \'LSAPAR2\' &DVWHEREX &QQCMPNUM  |
+|                                  |             'LSAPARF00'        |
+|                                  | 'LSAPAR2' &DVWHEREX &QQCMPNUM  |
 |                                  | &QQERROR)                        |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          IF        COND(&QQERROR |
-|                                  | \*NE \'       \') THEN(DO)       |
+|                                  | \*NE '       ') THEN(DO)       |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |           CHGVAR    VAR(&MSGDTA) |
-|                                  | VALUE(\'DYNVARSQLC received +    |
+|                                  | VALUE('DYNVARSQLC received +    |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                            error |
-|                                  | code \' \*CAT &QQERROR \*CAT +   |
+|                                  | code ' \*CAT &QQERROR \*CAT +   |
 |                                  |                                  |
-|                                  |                             \'   |
+|                                  |                             '   |
 |                                  | from DB retriever program        |
-|                                  | DYNVARSLQR\'                     |
+|                                  | DYNVARSLQR'                     |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |        SNDPGMMSG  MSGID(CPF9898) |
@@ -776,7 +776,7 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          WHEN       COND(&DVNAME |
-|                                  | \*EQ \'LSAMNG\') THEN(DO)        |
+|                                  | \*EQ 'LSAMNG') THEN(DO)        |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
@@ -821,14 +821,14 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |           CHGVAR    VAR(&MSGDTA) |
-|                                  | VALUE(\'DYNVARSQLC received      |
+|                                  | VALUE('DYNVARSQLC received      |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                            error |
-|                                  | code \' \*CAT &MSGID \*CAT +     |
+|                                  | code ' \*CAT &MSGID \*CAT +     |
 |                                  |                                  |
-|                                  |                             \'   |
-|                                  | from RTVDTAARA command\'         |
+|                                  |                             '   |
+|                                  | from RTVDTAARA command'         |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |        SNDPGMMSG  MSGID(CPF9898) |
@@ -861,7 +861,7 @@ without any change to its initial value.
 |                                  | variable to   \*/                |
 |                                  |                                  |
 |                                  | /\* the special value of         |
-|                                  | \'\*COMPRESS\', then call        |
+|                                  | '\*COMPRESS', then call        |
 |                                  | DYNVARSQLR. After\*/             |
 |                                  |                                  |
 |                                  | /\* the program returns, if      |
@@ -876,7 +876,7 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |          CHGVAR   VAR(&DVVALUEX) |
-|                                  | VALUE(&DVVALUE \*CAT \'X\')      |
+|                                  | VALUE(&DVVALUE \*CAT 'X')      |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
@@ -887,27 +887,27 @@ without any change to its initial value.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |               CALL DYNVARSQLR    |
-|                                  | PARM(&DVVALUEX &DVNAME \' \' +   |
+|                                  | PARM(&DVVALUEX &DVNAME ' ' +   |
 |                                  |                                  |
-|                                  |                \'\*COMPRESS\' \' |
-|                                  | \' &DVWHEREX &QQCMPNUM &QQERROR) |
+|                                  |                '\*COMPRESS' ' |
+|                                  | ' &DVWHEREX &QQCMPNUM &QQERROR) |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |         IF         COND(&QQERROR |
-|                                  | \*NE \'       \') THEN(DO)       |
+|                                  | \*NE '       ') THEN(DO)       |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |           CHGVAR    VAR(&MSGDTA) |
-|                                  | VALUE(\'DYNVARSQLC received +    |
+|                                  | VALUE('DYNVARSQLC received +    |
 |                                  |                                  |
 |                                  |                          error   |
-|                                  | code \' \*CAT &QQERROR \*CAT +   |
+|                                  | code ' \*CAT &QQERROR \*CAT +   |
 |                                  |                                  |
-|                                  |                          \' from |
+|                                  |                          ' from |
 |                                  | DB retriever program             |
-|                                  | DYNVARSLQR\'                     |
+|                                  | DYNVARSLQR'                     |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |        SNDPGMMSG  MSGID(CPF9898) |

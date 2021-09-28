@@ -73,7 +73,7 @@ Main Menu \> SMA File Transfer menu (\#8) \> SMAFT Parameters (\#4)
 |                      |                      | specify an IP        |
 |                      |                      | Address that can be  |
 |                      |                      | directly accessed    |
-|                      |                      | \"internally\" by    |
+|                      |                      | "internally" by    |
 |                      |                      | the virtual, client  |
 |                      |                      | partition, in order  |
 |                      |                      | to support the Bind  |
@@ -109,7 +109,7 @@ Main Menu \> SMA File Transfer menu (\#8) \> SMAFT Parameters (\#4)
 |                      |                      | Virtual LAN address) |
 |                      |                      | will be used to      |
 |                      |                      | support the OpCon    |
-|                      |                      | server\'s connection |
+|                      |                      | server's connection |
 |                      |                      | to the designated    |
 |                      |                      | External IP.         |
 +----------------------+----------------------+----------------------+
@@ -134,7 +134,7 @@ Main Menu \> SMA File Transfer menu (\#8) \> SMAFT Parameters (\#4)
 |                      |                      | i LSAM when it       |
 |                      |                      | starts an SMAFT      |
 |                      |                      | Agent job. The       |
-|                      |                      | Agent\'s port number |
+|                      |                      | Agent's port number |
 |                      |                      | is used to form a    |
 |                      |                      | socket connection    |
 |                      |                      | with a remote SMAFT  |
@@ -427,11 +427,11 @@ Main Menu \> SMA File Transfer menu (\#8) \> SMAFT Parameters (\#4)
 [SMA File Transfer SSL/TLS Security Options]{style="font-family: Arial; font-size: 9pt; font-weight: bold;"}
 
 The setting of the TLS Security options can match the same parameters as
-described for the Agent\'s Job Scheduler and JORS communications
-settings, as described in the Configuration section of this Agent\'s
+described for the Agent's Job Scheduler and JORS communications
+settings, as described in the Configuration section of this Agent's
 User Help. The Extended Discussion of Parameters under that topic
 includes additional details and instructions about implementing TLS
-Security for any of this Agent\'s communication services.
+Security for any of this Agent's communication services.
 
 One notable difference for SMA File Transfer is that this Agent uses two
 additional Digital Certificate Applications in the IBM i Digital
@@ -439,7 +439,7 @@ Certificate Manager Store which are separate from the LSAM Job Scheduler
 Application names. This means that all three Applications must be
 assigned a digital certificate, but they may all use the same digital
 certificate, depending on the preferences and requirements of the local
-site\'s security policies.
+site's security policies.
 
 Remember when configuring the TLS Security options for SMA File Transfer
 that these affect the TCP/IP socket connection with another OpCon Agent.
@@ -451,8 +451,8 @@ that is started whenever OpCon tells this Agent that it must connect
 with another OpCon Agent (LSAM) to perform a file transfer. The SMAFT
 Server takes the TLS Security Server role, while the SMAFT Agent takes
 the TLS Client role. Accordingly, the following table of parameters
-shows a \"Server App\" and a \"Client App\" that must be assigned to the
-correct IBM Digital Certificate Manager Store\'s Application(s).
+shows a "Server App" and a "Client App" that must be assigned to the
+correct IBM Digital Certificate Manager Store's Application(s).
 
 Field
 :::
@@ -514,7 +514,7 @@ N
 This field supports a description of the Digital Certificate Manager
 application, for information purposes only.
 
-The \"Server App\" is for the SMAFT Server, acting as the TLS Server.
+The "Server App" is for the SMAFT Server, acting as the TLS Server.
 
 TLS DCM Server App Application ID
 
@@ -526,7 +526,7 @@ Y
 
 This Digital Certificate Manager Application ID must match the
 Application ID that was registered in the local IBM i Certificate Store
-for this Agent\'s certificate. The Agent uses this key value to request
+for this Agent's certificate. The Agent uses this key value to request
 the digital certificate data that it needs to complete a TLS Security
 handshake with the SMAFT transfer job remote system.
 
@@ -541,7 +541,7 @@ N
 This field supports a description of the Digital Certificate Manager
 application, for information purposes only.
 
-The \"Client App\" is for the SMAFT Agent, acting as the TLS Client.
+The "Client App" is for the SMAFT Agent, acting as the TLS Client.
 
 TLS DCM Client App Application ID
 
@@ -553,29 +553,29 @@ Y
 
 This Digital Certificate Manager Application ID must match the
 Application ID that was registered in the local IBM i Certificate Store
-for this Agent\'s certificate. The Agent uses this key value to request
+for this Agent's certificate. The Agent uses this key value to request
 the digital certificate data that it needs to complete a TLS Security
 handshake with the SMAFT transfer job remote system.
 
   Field                     Default  Description
   ------------------------ --------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Process Idle Timeout        300    These performance parameters are discussed in detail under the section on LSAM Parameters. The use of each parameter is the same, except that these parameters apply to the SMAFT Agent jobs.
-  Input wait timeout           1     \"
-  Control DTAQ wait            1     \"
-  Control DTAQ frequency      20     \"
-  Closed socket linger        10     \"
-  ACK pending timeout         60     \"
+  Input wait timeout           1     "
+  Control DTAQ wait            1     "
+  Control DTAQ frequency      20     "
+  Closed socket linger        10     "
+  ACK pending timeout         60     "
 
   : SMAFT Agent Communications Performance Parameters
 
   Field                     Default  Description
   ------------------------ --------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   Port Idle Timeout           300    The remaining performance parameters in this table are discussed in detail under the section on LSAM Parameters. The use of each parameter is the same, except that these parameters apply to the SMAFT Server jobs.
-  Input wait timeout           1     \"
-  Control DTAQ wait            1     \"
-  Control DTAQ frequency      20     \"
-  Closed socket linger        10     \"
-  ACK pending timeout         60     \"
+  Input wait timeout           1     "
+  Control DTAQ wait            1     "
+  Control DTAQ frequency      20     "
+  Closed socket linger        10     "
+  ACK pending timeout         60     "
 
   : SMAFT Server Communications Performance Parameters
 
@@ -686,8 +686,8 @@ Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT Logging (\#5)
 - **F7=STRSSFTLOG**: Refer to a full description of the STRSFTLOG
     command below.
 - **F8=ENDSFTALOG**: Refer to a full description of the ENDSFTLOG
-    command in [ENDSFTLOG -- End SMAFT Logging](#ENDSFTLO){.MCXref
-    .xref}.
+    command in [ENDSFTLOG -- End SMAFT Logging](#ENDSFTLO)
+    .
 - **F9=View logs**: Refer to a full description of the View SMAFT logs
     function in [View SMAFT Logs](#View2).
 - **F12=Cancel**: Return to the menu.
@@ -887,8 +887,8 @@ It is only possible to choose the CLEAR (\*YES) option for a log file if that lo
 |                         |                | [Turn Off Debug         | |                         |                | Logging](Log-F        |
 |                         |                | ile-and-Database- |
 |                         |                | Management.md#Turn_Off |
-|                         |                |_Debug_Logging){.MCXref |
-|                         |                | .xref}. There is no     |
+|                         |                |_Debug_Logging) |
+|                         |                | . There is no     |
 |                         |                | control that may be     |
 |                         |                | used to stop the detail |
 |                         |                | logging function        |
@@ -1036,8 +1036,8 @@ It is only possible to choose the CLEAR (\*YES) option for a log file if that lo
 |                         |                | [Turn Off Debug         | |                         |                | Logging](Log-F        |
 |                         |                | ile-and-Database- |
 |                         |                | Management.md#Turn_Off |
-|                         |                | _Debug_Logging){.MCXref |
-|                         |                | .xref}. There is no     |
+|                         |                | _Debug_Logging) |
+|                         |                | . There is no     |
 |                         |                | control that may be     |
 |                         |                | used to stop the detail |
 |                         |                | logging function        |

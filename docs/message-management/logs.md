@@ -84,8 +84,8 @@ Main Menu \> Message management menu (\#2) \> Message management logs
 +------------------+------------------------+------------------------+
 | IBM i Job Name   | IBM i Name Rules       | The name portion of an |
 |                  | (Refer to [IBM i Name  | IBM i job. The IBM i   | |                  | Rules](Configura       | full job names (per    |
-|                  | tion.md#IBM2){.MCXref | instance of a job)     |
-|                  | .xref})                | include the name, the  |
+|                  | tion.md#IBM2) | instance of a job)     |
+|                  | )                | include the name, the  |
 |                  |                        | submitting user name,  |
 |                  |                        | and a unique job       |
 |                  |                        | number. The name       |
@@ -145,7 +145,7 @@ Main Menu \> Message management menu (\#2) \> Message management logs
 |                  |                        | -   LSAMtrap = a       |
 |                  |                        |     message trap       |
 |                  |                        |     defined by the     |
-|                  |                        |     LSAM\'s on message |
+|                  |                        |     LSAM's on message |
 |                  |                        |     management table.  |
 |                  |                        | -   OpConJob = a       |
 |                  |                        |     job-specific       |
@@ -290,7 +290,7 @@ log, although the content of the fields will vary.
 | Message queue              | A system object that stores messages   |
 |                            | (text included) that have been         |
 |                            | delivered by various jobs. The message |
-|                            | queue where this job\'s message ID was |
+|                            | queue where this job's message ID was |
 |                            | found.                                 |
 +----------------------------+----------------------------------------+
 | Message queue library      | The DB2/400 library where the message  |
@@ -457,17 +457,17 @@ log, although the content of the fields will vary.
 |                            | is used to determine whether the count |
 |                            | is stale, according to the Duration,   |
 |                            | when the Threshold Control value is    |
-|                            | set to \"M\".                          |
+|                            | set to "M".                          |
 +----------------------------+----------------------------------------+
-| V: (timestamp)             | The Dynamic Variable module\'s         |
+| V: (timestamp)             | The Dynamic Variable module's         |
 |                            | timestamp as of the last previous      |
 |                            | activity that changed the Variable     |
-|                            | being used to hold this message\'s     |
+|                            | being used to hold this message's     |
 |                            | incidence count. This value is used to |
 |                            | determine whether the count is stale,  |
 |                            | according to the Duration, when the    |
 |                            | Threshold Control value is set to      |
-|                            | \"V\".                                 |
+|                            | "V".                                 |
 +----------------------------+----------------------------------------+
 | Event command text,        | -   Event command text = The actual    |
 |                            |     text of the IBM i command or OpCon |
@@ -595,7 +595,7 @@ Display Captured Data Log Detail
 |                | message text buffer where the captured data was    |
 |                | found.                                             |
 +----------------+----------------------------------------------------+
-| TrpMsg\#       | \"Trapped Message number\" = this is the sequence  |
+| TrpMsg\#       | "Trapped Message number" = this is the sequence  |
 |                | number assigned to the Message Management          |
 |                | Parameters record which pointed to the capture     |
 |                | Application ID. This number combines with the      |
@@ -630,8 +630,8 @@ Display Captured Data Log Detail
 |                | **Note:** The remaining fields on this display are |
 |                | the same as documented for the SCANSPLF utility in |
 |                | [Events and Utilities                              | |                | Menu                                               |
-|                | ](Events-and-Utilities-Menu.md#top){.MCXref |
-|                | .xref}.                                            |
+|                | ](Events-and-Utilities-Menu.md#top) |
+|                | .                                            |
 +----------------+----------------------------------------------------+
 
 :  

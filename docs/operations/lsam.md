@@ -6,7 +6,7 @@ There are two commands that can be used to enter the LSAM green screen
 workstation menus: STRSMA and LSAMENU.
 
 The STRSMA command may be used when the LSAM environment library list is
-not in effect because it will set the interactive job\'s library list
+not in effect because it will set the interactive job's library list
 before the LSAM menu is displayed. Depending on how the SMAGPL utility
 library support has been configured, it may be necessary to qualify the
 STRSMA command with the library name: SMAGPL/STRSMA. This requirement
@@ -82,7 +82,7 @@ below.
 
 #### Syntax
 
-SMAGPL/LSAMENU ENV(my_environment_name) MENUNBR([0]{.ul}) 
+SMAGPL/LSAMENU ENV(my_environment_name) MENUNBR([0]) 
  
 
 -   **ENV**: This parameter is the LSAM Environment name. This parameter
@@ -91,7 +91,7 @@ SMAGPL/LSAMENU ENV(my_environment_name) MENUNBR([0]{.ul})
         the current job already has its library list set to the LSAM
         environment, the command driver program will assume that the
         request for an LSAM menu applies to the environment indicated by
-        the job\'s library list. If this default value is used with the
+        the job's library list. If this default value is used with the
         LSAMENU command in a batch job, it will be replaced by the
         special value \*DEFAULT, therefore, it may be better to specify
         an LSAM environment name when using the LSAMENU command in a
@@ -138,7 +138,7 @@ SMAGPL/LSAMENU
 When no menu number is specified, the LSAM Main Menu will be shown. It is not necessary to use the SMAGPL/ library qualifier if the current library list includes the LSAM libraries.
 :::
 
-[Start the LSAM Interactive Menu System]{.ul} 
+[Start the LSAM Interactive Menu System] 
 1.  In the command line, enter **SMAGPL/STRSMA**. The LSAM Menu system
     welcome screen appears.
 
@@ -196,7 +196,7 @@ two following methods:
 
  
 
-[Option One: Start the LSAM through SMA Menus]{.ul} 
+[Option One: Start the LSAM through SMA Menus] 
 1.  Log in to the IBM i as **QSYSOPR** or a user profile with privileges
     to access the LSAM menu and to use the LSAM startup program.
 2.  Start the LSAM through the menu system with the following steps.
@@ -208,10 +208,10 @@ two following methods:
     a.  Enter **6** to choose the **LSAM management menu**.
     b.  Enter **1** to choose the **Start LSAM (STRSMASYS)** option.
 
-[Option Two: Start the LSAM Manually]{.ul} 
+[Option Two: Start the LSAM Manually] 
 1.  To start the LSAM manually, enter **SMAGPL/STRSMASYS** in the
     command line. Optionally, specify the name of the LSAM environment
-    in the ENV parameter. If ENV is specified, the job\'s library list
+    in the ENV parameter. If ENV is specified, the job's library list
     does not matter.
 2.  The optional ENV parameter enables the copy of the command in
     library SMAGPL to be used from the IBM iSeries Navigator to start
@@ -225,7 +225,7 @@ Stop the LSAM using either of the methods below.
 For either option, please verify the Subsystem SMASBS has ended. Do this by using the IBM i command WRKSBSJOB, using the correct name for the LSAM subsystem (the default name is SMASBS), or by using the LSAM menu function. Refer to [Check LSAM Subsystem Status](#Check) described below.
 :::
 
-[Option One: Stop the LSAM through SMA Menus]{.ul} 
+[Option One: Stop the LSAM through SMA Menus] 
 1.  Log in to the IBM i as **QSYSOPR** or a user profile with equal
     privileges.
 2.  Stop the LSAM through SMA menus with the following steps.
@@ -237,10 +237,10 @@ For either option, please verify the Subsystem SMASBS has ended. Do this by usin
     a.  Enter **6** to choose the **LSAM management** menu.
     b.  Enter **2** to choose the **End LSAM (ENDSMASYS)** option.
 
-[Option Two: Stop the LSAM Manually]{.ul} 
+[Option Two: Stop the LSAM Manually] 
 1.  To end the LSAM manually, enter **SMAGPL/ENDSMASYS** in the command
     line. Optionally, specify the name of the LSAM environment in the
-    ENV parameter. If ENV is specified, the job\'s library list does not
+    ENV parameter. If ENV is specified, the job's library list does not
     matter.
 2.  The ENDSMASYS command supports an optional parameter that may be
     used to specify the LSAM environment name. This parameter enables
@@ -358,13 +358,13 @@ command line and press \<**Enter**\> to begin using any of the options.
 
 The Start LSAM option starts the IBM i LSAM subsystem (default name
 SMASBS) and the LSAM server programs. Use the LSAM management function
-\"Check LSAM subsystem status\" to verify the results.
+"Check LSAM subsystem status" to verify the results.
 
 ### End LSAM (ENDSMASYS)
 
 The End LSAM option stops the IBM i LSAM server programs and the LSAM
-subsystem. Use the LSAM management function \"Check LSAM susbsystem
-status\" to verify the results.
+subsystem. Use the LSAM management function "Check LSAM susbsystem
+status" to verify the results.
 
 ### Check LSAM Subsystem Status
 
@@ -416,15 +416,15 @@ The IBM i LSAM supports active control over its logging capabilities.
 Logging is a local function useful to system administrators, IT
 auditors, programmers and support technicians. For a complete
 description of how to use the logging features, refer to [Log File and Database
-Management](Log-File-and-Database-Management.md#top){.MCXref
-.xref}.
+Management](Log-File-and-Database-Management.md#top)
+.
 
 ### View LSAM Logs
 
 This menu option provides direct access to the list of available LSAM
 log viewers. For more information about how to use the log views, refer
-to [Log File and Database Management](Log-File-and-Database-Management.md#top){.MCXref
-.xref}. This menu function supports viewing the general debug log files
+to [Log File and Database Management](Log-File-and-Database-Management.md#top)
+. This menu function supports viewing the general debug log files
 associated with most types of jobs that the LSAM controls. However,
 there are certain specialized debug log file viewers that do not appear
 on this menu, but are supported from other LSAM sub-menus because they
@@ -557,8 +557,8 @@ the IBM i Job End message to the LSAM job completion message queue.
 
  
 
-More information about Passive Job Tracking may be found in [Job Tracking and Queuing](Job-Tracking-and-Queuing.md#top){.MCXref
-.xref}.
+More information about Passive Job Tracking may be found in [Job Tracking and Queuing](Job-Tracking-and-Queuing.md#top)
+.
 
 #### Flow Chart of Alternate Job Notify Processing
 
@@ -581,7 +581,7 @@ permission.
 
  
 
-[Procedure to Add Job Notify Subsystem Records]{.ul} 
+[Procedure to Add Job Notify Subsystem Records] 
 1.  Navigate to the IBM i LSAM sub-menu 6: LSAM Management menu, then
     select option 8: Alternate Job Notify menu.
 2.  Execute option 7: Job notify configuration, to set the control
@@ -655,10 +655,10 @@ permission.
     Notify message log will be automatically purged at the same time as
     the LSAM job status master records.
 
-[Procedure to Change Job Notify Subsystem Records]{.ul} 
+[Procedure to Change Job Notify Subsystem Records] 
 All the general rules for the Add procedure, above, still apply. But to
 change the control values for any subsystem, this is the order in which
-steps must be executed. References to \"options\" are from the Work with
+steps must be executed. References to "options" are from the Work with
 Job Notify Subsystems list display.
 
 1.  Remove the exit program entry (option 9).
@@ -748,7 +748,7 @@ Type an option number in the Selection or command line and press
 
 ###### Fields
 
-[Selection or command]{.ul} 
+[Selection or command] 
  
 
 Type the menu item number and press \<**Enter**\> to start the function.
@@ -778,11 +778,11 @@ Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu
     -   VALUES: Y = yes, N = no, T=Tracked only
     -   This control flag does not affect the IBM i exit point register
         and it does not affect the operation of IBM i subsystems.
-    -   Option \"T\" will limit the operation of these server jobs to
+    -   Option "T" will limit the operation of these server jobs to
         only those jobs classified as Passive Tracked Jobs in the LSAM
-        Job Tracking master file. Option \"Y\" will generate signals via
+        Job Tracking master file. Option "Y" will generate signals via
         the LSAM to OpCon for all jobs that are registered in the
-        LSAM\'s OpCon Job Master log file, including support for Passive
+        LSAM's OpCon Job Master log file, including support for Passive
         Job Tracking.
 -   **Default notify data queue/library**: The name of the data queue
     and the library location of that data queue which will be registered

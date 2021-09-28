@@ -173,7 +173,7 @@ Work with Active Jobs                    [SYSTEMNAME]{style=
         message, and it may also identify the line of the program where
         the message event occurred.
   - If an operator must respond to an error message, and there are
-        no other instructions applying to the error, an answer of \"D\"
+        no other instructions applying to the error, an answer of "D"
         = dump may produce a helpful formatted program dump report among
         the printed output of the job that issued the message. Attempt
         to locate and save the dump report. The first page of the dump

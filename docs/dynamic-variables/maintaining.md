@@ -48,7 +48,7 @@ Main Menu \> Job track menu (\#1) \> Maintain dynamic variables (\#6)
   Search content   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The \<**Enter**\> key or \<**F16**\> may be used to start a search, and \<**F16**\> is used to continue the search from the last record found.
   Variable Name    The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
   Seq              This record sequence number may be zeros for records of type V because it has no meaning for this record type. For records of type L, this sequence number is used to create unique records keys when there is more than one dynamic variable assigned to the same Variable Name (there may be multiple updates specified for the LDA content of a single job).
-  Typ              The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job\'s call command line.
+  Typ              The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.
   Description      Any text used to describe the dynamic variable. This text is useful mostly for this list of variables, so that each can be easily identified. When the command SETDYNVAR is used to add a new dynamic variable, the Description will be the IBM i job ID (number/user/name) of the job that executed the SETDYNVAR command.
 
 ##### Functions
@@ -173,7 +173,7 @@ record details.
 |                |                |                | can be         |
 |                |                |                | inserted into  |
 |                |                |                | job parameters |
-|                |                |                | or the job\'s  |
+|                |                |                | or the job's  |
 |                |                |                | call command   |
 |                |                |                | line.          |
 +----------------+----------------+----------------+----------------+
@@ -188,7 +188,7 @@ record details.
 |                |                |                | (1-1024) where |
 |                |                |                | substitution   |
 |                |                |                | of the dynamic |
-|                |                |                | variable\'s    |
+|                |                |                | variable's    |
 |                |                |                | value will     |
 |                |                |                | begin in the   |
 |                |                |                | image of the   |
@@ -237,7 +237,7 @@ record details.
 |                |                |                | the user that  |
 |                |                |                | will calculate |
 |                |                |                | the dynamic    |
-|                |                |                | variable\'s    |
+|                |                |                | variable's    |
 |                |                |                | value at the   |
 |                |                |                | moment just    |
 |                |                |                | before the     |
@@ -494,7 +494,7 @@ record details.
 |                |                |                |     3 digits   |
 |                |                |                |     each. A    |
 |                |                |                |     value of   |
-|                |                |                |     \'B\'      |
+|                |                |                |     'B'      |
 |                |                |                |     means      |
 |                |                |                |     there will |
 |                |                |                |     be no      |
@@ -521,18 +521,18 @@ record details.
 |                |                |                |     replace    |
 |                |                |                |     any comma  |
 |                |                |                |     (,)        |
-|                |                |                |     X\'6B\'    |
+|                |                |                |     X'6B'    |
 |                |                |                |     with a     |
 |                |                |                |     space      |
-|                |                |                |     (X\'40\')  |
+|                |                |                |     (X'40')  |
 |                |                |                | -   Q =        |
 |                |                |                |     replace    |
 |                |                |                |     any single |
-|                |                |                |     quote (\') |
-|                |                |                |     X\'7D\'    |
+|                |                |                |     quote (') |
+|                |                |                |     X'7D'    |
 |                |                |                |     with a     |
 |                |                |                |     space      |
-|                |                |                |     (X\'40\')  |
+|                |                |                |     (X'40')  |
 |                |                |                | -   D =        |
 |                |                |                |     replace    |
 |                |                |                |     both a     |
@@ -604,7 +604,7 @@ record details.
 | symbol         |                |                | is not blank   |
 |                |                |                | or set to the  |
 |                |                |                | special value  |
-|                |                |                | of \'B\', then |
+|                |                |                | of 'B', then |
 |                |                |                | the characters |
 |                |                |                | typed into     |
 |                |                |                | this field     |
@@ -668,7 +668,7 @@ record details.
 | symbol         |                |                | is not blank   |
 |                |                |                | or set to the  |
 |                |                |                | special value  |
-|                |                |                | of \'B\', then |
+|                |                |                | of 'B', then |
 |                |                |                | the characters |
 |                |                |                | typed into     |
 |                |                |                | this field     |
@@ -728,7 +728,7 @@ record details.
 |                |                |                | next to the    |
 |                |                |                | number.        |
 +----------------+----------------+----------------+----------------+
-| Currency       | any            | \$             | For numeric    |
+| Currency       | any            | $             | For numeric    |
 | symbol         |                |                | variables, a   |
 |                |                |                | non-blank      |
 |                |                |                | value in this  |
@@ -909,7 +909,7 @@ record details.
     the master file of LDA Content, and each unique LDA Key value is
     included in the window list. The LDA Key values are the Captured Job
     IDs. This list is offered as a convenience to make it easy to match
-    type L dynamic variables to any existing captured job\'s LDA
+    type L dynamic variables to any existing captured job's LDA
     content.
 - **F5=Refresh**: Reload the with data from the master file.
 - **F12=Cancel**: Quits the display without update (unless an update
@@ -999,7 +999,7 @@ F6=Add \> F4=Prompt
 - Refer to field description table for option F6=Add, above.
 - When copying a record, the source record Variable Name and Sequence
     Number are displayed under the screen heading. New values must be
-    specified for both fields in the \"To:\" input fields under the
+    specified for both fields in the "To:" input fields under the
     headings, except that type L dynamic variables may use the same
     Variable Name as long as a new sequence number is assigned.
 
@@ -1011,7 +1011,7 @@ F6=Add \> F4=Prompt
     the master file of LDA Content, and each unique LDA Key value is
     included in the window list. The LDA Key values are the Captured Job
     IDs. This list is offered as a convenience to make it easy to match
-    type L dynamic variables to any existing captured job\'s LDA
+    type L dynamic variables to any existing captured job's LDA
     content. (Refer to example of prompt window above, under F6=Add.)
 - **F5=Refresh**: Reload the with data from the master file.
 - **F12=Cancel**: Quits the display without update (unless an update

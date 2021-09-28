@@ -122,8 +122,8 @@ Main Menu \> Events and Utilities (\#3) \> LSAM Utilities configuration
 |                            |          | This special purpose use   |
 |                            |          | for the SCANSPLF command   |
 |                            |          | (as described in           |
-|                            |          | \"Extended Discussion of   |
-|                            |          | Parameters\" under Chapter |
+|                            |          | "Extended Discussion of   |
+|                            |          | Parameters" under Chapter |
 |                            |          | 3: IBM I LSAM              |
 |                            |          | Configuration) would       |
 |                            |          | usually not need to add a  |
@@ -190,8 +190,8 @@ Main Menu \> Events and Utilities (\#3) \> LSAM Utilities configuration
 |                            |          |     Character, above.      |
 +----------------------------+----------+----------------------------+
 |                            |          | **OpCon File Arrival       |
-|                            |          | \$\@Variables (replace     |
-|                            |          | \$@)**                     |
+|                            |          | $\@Variables (replace     |
+|                            |          | $@)**                     |
 |                            |          |                            |
 |                            |          |                            |
 |                            |          |                            |
@@ -247,14 +247,14 @@ Main Menu \> Events and Utilities (\#3) \> LSAM Utilities configuration
 |                            |          |                            |
 |                            |          |                            |
 |                            |          |                            |
-|                            |          | \$\@CRTREFDATE,            |
-|                            |          | \$\@JOBENDTIME,            |
-|                            |          | \$\@RECHKFREQ              |
+|                            |          | $\@CRTREFDATE,            |
+|                            |          | $\@JOBENDTIME,            |
+|                            |          | $\@RECHKFREQ              |
 |                            |          |                            |
 |                            |          |                            |
 |                            |          |                            |
 |                            |          | However, the special       |
-|                            |          | characters \$ and @ are    |
+|                            |          | characters $ and @ are    |
 |                            |          | not always well supported  |
 |                            |          | by IBM i partitions that   |
 |                            |          | do not use the CCSID(37) = |
@@ -270,17 +270,17 @@ Main Menu \> Events and Utilities (\#3) \> LSAM Utilities configuration
 |                            |          | regular LSAM Dynamic       |
 |                            |          | Variable settings.         |
 +----------------------------+----------+----------------------------+
-| File Arrival parm ID       | X\'5B\'  | Hexadecimal value X\'5B\'  |
+| File Arrival parm ID       | X'5B'  | Hexadecimal value X'5B'  |
 | character 1                |          | represents the US dollar   |
-|                            |          | sign (\$). Type a pair of  |
+|                            |          | sign ($). Type a pair of  |
 |                            |          | characters that are the    |
 |                            |          | hexadecimal value of a     |
 |                            |          | different special          |
 |                            |          | character to be used by    |
 |                            |          | the local IBM i site.      |
 +----------------------------+----------+----------------------------+
-| File Arrival parm ID       | X\'7C\'  | Hexadecimal value X\'7C\'  |
-| character 2                |          | represents an \"at sign\"  |
+| File Arrival parm ID       | X'7C'  | Hexadecimal value X'7C'  |
+| character 2                |          | represents an "at sign"  |
 |                            |          | (@). Type a pair of        |
 |                            |          | characters that are the    |
 |                            |          | hexadecimal value of a     |
@@ -300,7 +300,7 @@ Main Menu \> Events and Utilities (\#3) \> LSAM Utilities configuration
 |                            |          | variable name example      |
 |                            |          | would be:                  |
 |                            |          |                            |
-|                            |          | \$\$RECHKFREQ              |
+|                            |          | $$RECHKFREQ              |
 +----------------------------+----------+----------------------------+
 | [DynVar external start     | 4A       | The EBCDIC character, in   | | character]{.TableText}     |          | hexadecimal format, that   |
 |                            |          | will result when an        |
@@ -443,7 +443,7 @@ Applications (\#3) \> Option 3=Copy
   Field              Description
   ------------------ ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   From Application   The From Application field only appears when option 3=Copy has been used.
-  (to) Application   If option 3=Copy was used, the \"to Application\" input field is shown, otherwise, a simple \"Application\" field appears on the next line. Enter the new Application ID that will be used. The Application ID may remain the same, as long as any one of the other three fields will be changed to create a new record. The Application ID field is used for coordinating with Captured Data Response Rules.
+  (to) Application   If option 3=Copy was used, the "to Application" input field is shown, otherwise, a simple "Application" field appears on the next line. Enter the new Application ID that will be used. The Application ID may remain the same, as long as any one of the other three fields will be changed to create a new record. The Application ID field is used for coordinating with Captured Data Response Rules.
 
   :  
 
@@ -521,7 +521,7 @@ restarted, if desired.)
 
 The Capture and Response Rules chart displays are explained in detail
 under Operator Replay, within the Screens and Windows section, under the
-title \"Operator Replay Capture Chart (opt 7).\"
+title "Operator Replay Capture Chart (opt 7)."
 
 ### Export Message Management Parameters (option 8)
 
@@ -711,9 +711,9 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     limited to one or more       |
 |                                  |     specific pages of a report.  |
 |                                  |     The special value \*STR      |
-|                                  |     means \"from the start,\"    |
+|                                  |     means "from the start,"    |
 |                                  |     and the special value \*END  |
-|                                  |     means \"to the end.\"        |
+|                                  |     means "to the end."        |
 |                                  | -   The special value \*END may  |
 |                                  |     be used in the From-page     |
 |                                  |     field to cause the SCANSPLF  |
@@ -895,8 +895,8 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     report. For example, this    |
 |                                  |     type of rule can be used to  |
 |                                  |     find a flag in a financial   |
-|                                  |     report that may say \"OUT OF |
-|                                  |     BALANCE\" in order to cause  |
+|                                  |     report that may say "OUT OF |
+|                                  |     BALANCE" in order to cause  |
 |                                  |     the SCANSPLF command to      |
 |                                  |     fail, so that the OpCon/xps  |
 |                                  |     job that executed the        |
@@ -980,9 +980,9 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     Variable with other text     |
 |                                  |     that is entered directly     |
 |                                  |     into the scan value field,   |
-|                                  |     for example: \'Leading       |
+|                                  |     for example: 'Leading       |
 |                                  |     characters {var_nam}         |
-|                                  |     trailing text\'. When the    |
+|                                  |     trailing text'. When the    |
 |                                  |     scan rule is executed, the   |
 |                                  |     scan program will replace    |
 |                                  |     the Dynamic Variable with    |
@@ -991,7 +991,7 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     execution. A Dynamic         |
 |                                  |     Variable value may have just |
 |                                  |     been set by a preceding scan |
-|                                  |     rule\'s Captured Data        |
+|                                  |     rule's Captured Data        |
 |                                  |     Response rule.               |
 +----------------------------------+----------------------------------+
 | Scan value length                | When the scan value length is    |
@@ -1030,7 +1030,7 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     rule. For example, if a scan |
 |                                  |     value is entered with two    |
 |                                  |     leading blank characters,    |
-|                                  |     as: \'VALUE\', then the      |
+|                                  |     as: 'VALUE', then the      |
 |                                  |     default trimmed length of    |
 |                                  |     this scan value used by the  |
 |                                  |     scan program would be 7 (2   |
@@ -1060,7 +1060,7 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     scan values. The scan        |
 |                                  |     program first replaces a     |
 |                                  |     Dynamic Variable token with  |
-|                                  |     the variable\'s value at run |
+|                                  |     the variable's value at run |
 |                                  |     time, then it subjects the   |
 |                                  |     scan value to the scan value |
 |                                  |     length, as described above   |
@@ -1069,7 +1069,7 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     zero to allow the scan       |
 |                                  |     program to adapt to the      |
 |                                  |     actual length of the Dynamic |
-|                                  |     Variable\'s value at run     |
+|                                  |     Variable's value at run     |
 |                                  |     time. If a scan value length |
 |                                  |     is specified, then the       |
 |                                  |     possible values of the       |
@@ -1113,9 +1113,9 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  | command assembly routine, then   |
 |                                  | that routine is allowed to       |
 |                                  | insert a place-holder value that |
-|                                  | indicates, \"this value is not   |
+|                                  | indicates, "this value is not   |
 |                                  | supplied today - ignore this     |
-|                                  | parameter position.\" An example |
+|                                  | parameter position." An example |
 |                                  | of such a value might be         |
 |                                  | \*empty\*. In this case, the     |
 |                                  | Bypass parm value should be set  |
@@ -1195,7 +1195,7 @@ The order of the fields listed in the table below will vary, depending on the se
 |                                  |     keyword. The scan program    |
 |                                  |     itself keeps track of all    |
 |                                  |     rules that have their        |
-|                                  |     \"Required rule\" field set  |
+|                                  |     "Required rule" field set  |
 |                                  |     to Y=yes. At the end of the  |
 |                                  |     scan job, if all required    |
 |                                  |     rules were matched, then the |
@@ -1272,8 +1272,8 @@ capture for Operator Replay and report data capture for the SCANSPLF
 utility command. Some of the following description includes information
 that is useful in distinguishing between the two different types of data
 capture. Each actual data capture definition and the captured data
-record are labeled by their Type field, where \"C\" = screen capture and
-\"S\" = spool file capture. The list column headings will change
+record are labeled by their Type field, where "C" = screen capture and
+"S" = spool file capture. The list column headings will change
 depending on the subset rule that is currently in effect.
 
  
@@ -1480,7 +1480,7 @@ option 3=Copy.
 | Response sequence                | Response Sequence Number: The    |
 |                                  | order in which each response     |
 |                                  | rule will be executed. When      |
-|                                  | changing an existing rule\'s     |
+|                                  | changing an existing rule's     |
 |                                  | sequence number, pay close       |
 |                                  | attention to the Continuation    |
 |                                  | field value, because the order   |
@@ -1615,7 +1615,7 @@ option 3=Copy.
 |                                  |     variable in the LSAM table.  |
 |                                  | -   When Captured Data Response  |
 |                                  |     Rules are associated with an |
-|                                  |     Operator Replay script\'s    |
+|                                  |     Operator Replay script's    |
 |                                  |     Screen Capture Rule, the     |
 |                                  |     setting of the Operator      |
 |                                  |     Replay token variable value  |
@@ -1627,7 +1627,7 @@ option 3=Copy.
 |                                  |     set the variable and the     |
 |                                  |     same variable name can then  |
 |                                  |     be used in the command line  |
-|                                  |     of the script step\'s        |
+|                                  |     of the script step's        |
 |                                  |     response to the screen       |
 |                                  |     format.                      |
 +----------------------------------+----------------------------------+
@@ -1695,7 +1695,7 @@ option 3=Copy.
 |                                  |     Variable named in this field |
 |                                  |     will be compared to the      |
 |                                  |     Compare data. (Do not type   |
-|                                  |     \'DynVar\' but instead type  |
+|                                  |     'DynVar' but instead type  |
 |                                  |     the name of a Dynamic        |
 |                                  |     Variable. Use function key   |
 |                                  |     F8 to select from a list of  |
@@ -1778,7 +1778,7 @@ option 3=Copy.
 |                                  |     That is, field attributes    |
 |                                  |     such as color (and any EBCID |
 |                                  |     character value less than    |
-|                                  |     X\'40\') will not be         |
+|                                  |     X'40') will not be         |
 |                                  |     considered; a space          |
 |                                  |     character is used in place   |
 |                                  |     of non-display values.       |
@@ -1809,7 +1809,7 @@ option 3=Copy.
 |                                  |     more Dynamic Variable tokens |
 |                                  |     may be typed into the        |
 |                                  |     Compare data lines. DO NOT   |
-|                                  |     TYPE \"DynVar\" into the     |
+|                                  |     TYPE "DynVar" into the     |
 |                                  |     Compare data. Instead, type  |
 |                                  |     the Dynamic Variable token   |
 |                                  |     syntax, which by default     |
@@ -1836,8 +1836,8 @@ option 3=Copy.
 |                                  |     more information about       |
 |                                  |     Dynamic Variables, refer to  |
 |                                  |     [Job Tracking and            | |                                  |     Queuing](Job-Tracking%     |
-|                                  | 20and-Queuing.md#top){.MCXref |
-|                                  |     .xref}.)                     |
+|                                  | 20and-Queuing.md#top) |
+|                                  |     .)                     |
 +----------------------------------+----------------------------------+
 
 :  
@@ -1913,8 +1913,8 @@ capture for Operator Replay and report data capture for the SCANSPLF
 utility command. Some of the following description includes information
 that is useful in distinguishing between the two different types of data
 capture. Each actual data capture definition and the captured data
-record are labeled by their Type field, where \"C\" = screen capture,
-\"S\" = spool file capture and \'M\' = Message data.
+record are labeled by their Type field, where "C" = screen capture,
+"S" = spool file capture and 'M' = Message data.
 
  
 
@@ -2064,7 +2064,7 @@ log (\#8) \> option 5=Display.
 |                        | special purpose of evaluating an           |
 |                        | OpCon-requested job completion status,     |
 |                        | this field will show a value of            |
-|                        | \'\*JORS.\'                                |
+|                        | '\*JORS.'                                |
 +------------------------+--------------------------------------------+
 | Numeric                | Y = yes, N = No: Indicates whether numeric |
 |                        | data compression was specified for the     |
@@ -2168,7 +2168,7 @@ the log entry will appear red in color.
 |                 | of the array where the input scan values are      |
 |                 | divided into even-spaced locations.               |
 +-----------------+---------------------------------------------------+
-| SCANSPLFOC      | A separate \"occurrence\" or group of Scan Rules  |
+| SCANSPLFOC      | A separate "occurrence" or group of Scan Rules  |
 |                 | is set up for each unique SPLF + Job Name + SPLF  |
 |                 | Number found among the rules under a single       |
 |                 | Application code. This log entry documents each   |
@@ -2221,7 +2221,7 @@ the log entry will appear red in color.
 |                 | -   If this failure was unexpected, the abnormal  |
 |                 |     termination code is found in the log entry    |
 |                 |     details.                                      |
-|                 | -   This entry may also reflect the program\'s    |
+|                 | -   This entry may also reflect the program's    |
 |                 |     intentional forced abnormal termination due   |
 |                 |     to the combination of the FAILOPT command     |
 |                 |     parameter and the set of required Scan Rules  |

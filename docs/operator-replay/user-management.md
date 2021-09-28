@@ -22,7 +22,7 @@ versions of the EM for Operator Replay jobs).
 Unlike various other job types defined by the OpCon/xps EM, Operator
 Replay jobs use a different strategy to manage job user authority. Once
 an Operator Replay job has been started by the LSAM server programs
-under control of the LSAM\'s own, privileged user profile, SMANET, the
+under control of the LSAM's own, privileged user profile, SMANET, the
 Operator Replay script execution control program has been compiled to
 run with security officer authority. This permits the LSAM to retrieve
 and store job control data required for Operator Replay jobs. The user
@@ -40,7 +40,7 @@ The authority of the Operator Replay Script User also applies to the
 virtual workstation that must be used for an Operator Replay job. The
 user profile assigned within the LSAM to the Script must have authority
 to use whichever virtual workstation will be assigned to the job that
-the LSAM\'s Operator Replay control job will start. Refer to additional
+the LSAM's Operator Replay control job will start. Refer to additional
 discussion of this topic under the section about [Managing Virtual Devices](#Managing), where the optional Telnet exit
 program is described. The Telnet exit program is used for managing
 restrictions on which user can use a device, and for eliminating
@@ -116,8 +116,8 @@ Add User Fields table (below) as new data is typed.
 |                 | (Refer to [IBM i |          |     Name         | |                 | Name             |          |     specified    |
 |                 | Rules]           |          |     does not     |
 |                 | (Configuration.h |          |     have to      |
-|                 | tm#IBM2){.MCXref |          |     exist when   |
-|                 | .xref})          |          |     it is        |
+|                 | tm#IBM2) |          |     exist when   |
+|                 | )          |          |     it is        |
 |                 |                  |          |     entered in   |
 |                 |                  |          |     the          |
 |                 |                  |          |     maintenance  |
@@ -155,8 +155,8 @@ Add User Fields table (below) as new data is typed.
 |                 | (Refer to [IBM i |          | restricted to 10 | |                 | Name             |          | characters as a  |
 |                 | Rules]           |          | user password.   |
 |                 | (Configuration.h |          | The first        |
-|                 | tm#IBM2){.MCXref |          | character must   |
-|                 | .xref})          |          | be alphabetic,   |
+|                 | tm#IBM2) |          | character must   |
+|                 | )          |          | be alphabetic,   |
 |                 |                  |          | and the          |
 |                 |                  |          | remaining        |
 |                 |                  |          | characters must  |
@@ -228,7 +228,7 @@ Add User Fields table (below) as new data is typed.
 |                 |                  |          | display device   |
 |                 |                  |          | is available for |
 |                 |                  |          | allocation to    |
-|                 |                  |          | this user\'s     |
+|                 |                  |          | this user's     |
 |                 |                  |          | job.             |
 |                 |                  |          |                  |
 |                 |                  |          |                  |
@@ -236,8 +236,8 @@ Add User Fields table (below) as new data is typed.
 |                 |                  |          | Please refer to  |
 |                 |                  |          | [Managing        | |                 |                  |          | Virtual          |
 |                 |                  |          | Devices](#M      |
-|                 |                  |          | anaging){.MCXref |
-|                 |                  |          | .xref} near the  |
+|                 |                  |          | anaging) |
+|                 |                  |          |  near the  |
 |                 |                  |          | end of the       |
 |                 |                  |          | Operator Replay  |
 |                 |                  |          | Scripts section  |
@@ -312,8 +312,8 @@ Add User Fields table (below) as new data is typed.
 |                 |                  |          | Please refer to  |
 |                 |                  |          | [Managing        | |                 |                  |          | Virtual          |
 |                 |                  |          | Devices](#M      |
-|                 |                  |          | anaging){.MCXref |
-|                 |                  |          | .xref} near the  |
+|                 |                  |          | anaging) |
+|                 |                  |          |  near the  |
 |                 |                  |          | end of the       |
 |                 |                  |          | Operator Replay  |
 |                 |                  |          | Scripts section  |

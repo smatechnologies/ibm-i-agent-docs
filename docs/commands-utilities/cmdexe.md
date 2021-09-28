@@ -24,7 +24,7 @@ Here is the command syntax:
 CMDEXE CMD('IBMCMD KEWORD1(''value 1'') KEYWORD2(1234)')
 ```
 
-### Command Parameters: There is Only the One \"CMD\" Parameter
+### Command Parameters: There is Only the One "CMD" Parameter
 
 Notice that the CMD() keyword of the CMDEXE command must enclose the native IBM i command inside a pair of single quotes. This means that any of the native command parameters requiring single quotes must double the single quotes, as shown above for the KEYWORD1() command parameter. By comparison, the KEYWORD2() command parameter is apparently a numeric value that does not require any single quotes.
 

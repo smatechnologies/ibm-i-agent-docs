@@ -6,10 +6,10 @@ The Job Tracking and Queuing feature allows external (user-submitted) jobs to be
 - Second, it provides support for managing IBM i job features, such as the local data area (LDA) associated with a job, that cannot easily be managed directly by OpCon from outside of the IBM i operating system.
 - Third, the same underlying tools support capturing complete IBM i job definitions so that they can be adapted and reused later, possibly many times, by direct OpCon job start requests.
 
-For all jobs started in the IBM i system, one of two techniques may be used to check if jobs should be intercepted by the LSAM and reported to OpCon. Jobs are qualified for different types of job tracking, as defined next in this topic. As jobs are intercepted, the LSAM preserves the job\'s attributes, including the command line and the local data area (LDA) contents, in LSAM master files. IBM i LSAM Dynamic Variables may be used to modify the content of any job\'s LDA or to modify any other job parameter. Dynamic Variables are especially useful for captured job definitions.
+For all jobs started in the IBM i system, one of two techniques may be used to check if jobs should be intercepted by the LSAM and reported to OpCon. Jobs are qualified for different types of job tracking, as defined next in this topic. As jobs are intercepted, the LSAM preserves the job's attributes, including the command line and the local data area (LDA) contents, in LSAM master files. IBM i LSAM Dynamic Variables may be used to modify the content of any job's LDA or to modify any other job parameter. Dynamic Variables are especially useful for captured job definitions.
 
 - Prepare OpCon to track external jobs by addressing the following topics, as discussed in this topic:
-  - Configuring the LSAM\'s job tracking control information.
+  - Configuring the LSAM's job tracking control information.
   - Configuring predefined jobs in the IBM i LSAM for External Job Tracking (if required).
   - Identifying the External Job(s) in the OpCon Enterprise Manager by adding them to the special AdHoc schedule, or to any other named schedule (if required).
 - Prepare OpCon to capture jobs that are predefined by third party software by addressing the following topics, as discussed in this topic:

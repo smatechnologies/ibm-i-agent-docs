@@ -118,11 +118,11 @@ The successful operation of the LSAM environment depends on correct specificatio
     complete adding it to the master file. When executed, the command
     starts by presenting the user with a list of existing environment
     names. It is possible to define up to 250 new environments, and the
-    PageDown key (available as long as the indicator \"More...\" appears
+    PageDown key (available as long as the indicator "More..." appears
     at the lower, right corner of the screen) continues to display
     subsequent pages of input-capable rows until the
-    250[th]{style="font-size: 80%;vertical-align: super;"} row is on     display (at which point the \"More...\" indicator changes to display
-    \"Bottom\").
+    250[th]{style="font-size: 80%;vertical-align: super;"} row is on     display (at which point the "More..." indicator changes to display
+    "Bottom").
 3. This maintenance function builds and maintains two physical files
     that are stored in the LSAM utility library SMAGPL:
     - SMALIBF00 = Environment master file (maintained from screen
@@ -276,7 +276,7 @@ The successful operation of the LSAM environment depends on correct specificatio
     '**Enter**\> needs to be pressed again for the data to be
     committed.
 - More\... **PageDown/PageUp**: Not shown on the display (but implied
-    by the presence of the \"More...\" and \"Bottom\" indicators at the
+    by the presence of the "More..." and "Bottom" indicators at the
     bottom-hand right corner of the screen) are the subfile paging
     function keys. The subfile paging function keys do not return
     control to the program. They can be pressed whenever the system
@@ -464,8 +464,8 @@ Library lists that are being created for use during Restricted Mode operations d
 +-------------+--------------------------+--------------------------+
 | Library     | The name of an IBM i     | IBM i Name Rules (Refer  |
 |             | Library.                 | to [IBM i Name           | |             |                          | Rules](Configu           |
-|             |                          | ration.md#IBM2){.MCXref |
-|             |                          | .xref}). Libraries named |
+|             |                          | ration.md#IBM2) |
+|             |                          | ). Libraries named |
 |             |                          | here do not have to      |
 |             |                          | exist when they are      |
 |             |                          | added to the list;       |
@@ -560,7 +560,7 @@ Library lists that are being created for use during Restricted Mode operations d
     of Return while the data entry confirmation display (illustrated in
     diagram 5) is on the screen.
 - **PageDown/PageUp**: Not shown on the display (but implied by the
-    presence of the \"More...\" and \"Bottom\" indicators at the
+    presence of the "More..." and "Bottom" indicators at the
     bottom-hand right corner of the screen) are the subfile paging
     function keys. The subfile paging function keys do not return
     control to the program. It is allowed to press them whenever the

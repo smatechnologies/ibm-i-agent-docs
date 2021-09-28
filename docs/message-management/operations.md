@@ -37,7 +37,7 @@ Please review the discussion below about Starting Message Management for importa
     on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) **-
     or -**
 2. From outside of the LSAM menu system, use the command SMASETLIBL to
-    set the job\'s library list to the LSAM environment library list.
+    set the job's library list to the LSAM environment library list.
     For more information on the SMASETLIBL command refer to
     [SMASETLIBL](LSAM-Environment-Management.md#SMASETLI)
 3. From a command entry line (or the CMD parameter of a SBMJOB
@@ -55,7 +55,7 @@ Please review the discussion below about Starting Message Management for importa
     library list must be in effect for the job to use the STRMSGMNG
     command. Either specify a job description such as SMALSAJ00 that
     uses this library list, or specify **INLLIBL(\*CURRENT)** to pass
-    the current job\'s library list to the submitted job.
+    the current job's library list to the submitted job.
 7. The TRPMSGSTS command will not report that the server is active
     until the submitted job completes normally.
 

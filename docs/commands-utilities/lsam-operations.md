@@ -7,13 +7,13 @@ list, as long as the command is qualified by its library location, for
 example, SMAGPL/STRSMA (replace SMAGPL with a different name, if the
 default LSAM utility library is not the installation default name).
 STRSMA supports specification of an LSAM environment name in one of its
-parameters, and the command will set the job\'s library list
+parameters, and the command will set the job's library list
 appropriately.
 
 In cases where the LSAM environment library list will already be set, it
 is typically more convenient to use the LSAMENU command. This alternate
 command bypasses the LSAM menu system splash display, saving time and
-keystrokes. It\'s also possible to specify an LSAM sub-menu number with
+keystrokes. It's also possible to specify an LSAM sub-menu number with
 the LSAMENU command, so this command might be useful in configuring
 links between another menu system and the LSAM menu system. The LSAMENU
 command can be useful in Operator Replay scripts. The LSAMENU command
@@ -28,7 +28,7 @@ The command STRSMA logs a user into the IBM i LSAM menu system. It was
 designed for use with IBM i interactive workstation jobs. To enter the
 LSAM environment in a batch job use the SMASETLIBL command, described
 next in this topic. After exiting the LSAM menu system in an interactive
-job, the STRSMA command restores the interactive job\'s original library
+job, the STRSMA command restores the interactive job's original library
 list as its last step before returning control to the IBM i command
 entry line.
 
@@ -50,9 +50,9 @@ management of multiple LSAM environments have all been designed to
 automatically manage the library list of the job where they are
 executed. This means that when the STRSMA command is used, it will
 respond to the ENV parameter where the LSAM environment is named by
-first setting the job\'s library list. After the LSAM environment has
+first setting the job's library list. After the LSAM environment has
 been established, the STRSMA command will complete its other functions,
-primarily logging the user into the LSAM\'s green screen workstation
+primarily logging the user into the LSAM's green screen workstation
 menu system.
 
 ### IBM i LSAM Interactive Menu
@@ -91,8 +91,8 @@ Environment name . . . . . . . .   [\*SELECT]{style="text-decoration: underli
 |                           |           |     command               |
 |                           |           |     [SMALIBMGT](LSA       |
 |                           |           | M-Environment-Managem |
-|                           |           | ent.md#SMALIBMG){.MCXref |
-|                           |           |     .xref}).              |
+|                           |           | ent.md#SMALIBMG) |
+|                           |           |     ).              |
 |                           |           | -   As distributed by     |
 |                           |           |     SMA, the default      |
 |                           |           |     environment flag has  |
@@ -235,12 +235,12 @@ Environment name . . . . . . . .   [\*SELECT   ]{style="text-decoration: u
 \*SELECT may not be used in a batch job. The default operation of the STRSMA and SMASETLIBL commands substitutes a value of \*SELECT for the environment parameter if a valid value is not supplied. If this happens in a batch job, it would cause the batch job to end abnormally when the subprograms attempt to display the environment selection screen.
 :::
 
-The SMASETLIBL command simply replaces any job\'s library list with the
+The SMASETLIBL command simply replaces any job's library list with the
 library list specified in the LSAM control files (stored in library
 QGPL) for the named LSAM environment. When the SMASETLIBL command
 completes it leaves the job library list set to the LSAM environment.
 The COMPMSG parameter may be useful if it is desired to prevent logging
-of the command\'s normal completion message that would log the new
+of the command's normal completion message that would log the new
 library list in the form of the CHGLIBL command syntax.
 
 ### STRSMA Splash Display
@@ -326,7 +326,7 @@ Environment name . . . . . . . .   [\*CURRENT  ]{style="text-decoration: un
 | ENV                       | \*CURRENT | -   **\*CURRENT**: This   |
 |                           |           |     value can only be     |
 | (Environment name)        |           |     used if the           |
-|                           |           |     interactive job\'s    |
+|                           |           |     interactive job's    |
 |                           |           |     current library list  |
 |                           |           |     includes all the      |
 |                           |           |     libraries required to |
@@ -334,7 +334,7 @@ Environment name . . . . . . . .   [\*CURRENT  ]{style="text-decoration: un
 |                           |           |     environment. If an    |
 |                           |           |     LSAM environment is   |
 |                           |           |     not discovered in the |
-|                           |           |     job\'s current        |
+|                           |           |     job's current        |
 |                           |           |     library list, the     |
 |                           |           |     LSAMENU command       |
 |                           |           |     routes to the         |
@@ -350,8 +350,8 @@ Environment name . . . . . . . .   [\*CURRENT  ]{style="text-decoration: un
 |                           |           |     command               |
 |                           |           |     [SMALIBMGT](LSA       |
 |                           |           | M-Environment-Managem |
-|                           |           | ent.md#SMALIBMG){.MCXref |
-|                           |           |     .xref}).              |
+|                           |           | ent.md#SMALIBMG) |
+|                           |           |     ).              |
 |                           |           | -   As distributed by     |
 |                           |           |     SMA, the default      |
 |                           |           |     environment flag has  |
@@ -436,7 +436,7 @@ being entered. Use the STRSMA command processor program to cause a
 splash display to appear first, or the LSAMENU command processor program
 to go directly to the LSAM menu system without a splash display.
 
-The actual STRSMA or LSAMENU command, or either command\'s processor
+The actual STRSMA or LSAMENU command, or either command's processor
 program, could also be used to link directly into the LSAM menu system
 from another menu system.
 

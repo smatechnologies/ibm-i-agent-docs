@@ -8,7 +8,7 @@ with an IBM i job, or it can be a type V that is a general purpose
 variable represented by a token. The token is the name of the Dynamic
 Variable enclosed within a pair of curly brackets {} (or another
 reserved value, as specified in the LSAM Utilities configuration at LSAM
-sub-menu 3, option 7). For example, a Dynamic Variable named \"SCANVAL\"
+sub-menu 3, option 7). For example, a Dynamic Variable named "SCANVAL"
 would be represented by the token {SCANVAL}.
 
 Dynamic Variables are discussed in detail in this topic. There is also
@@ -56,7 +56,7 @@ name.
 
 Dynamic Variable tokens can be used in some of the parameter fields of
 the SCANSPLF and SCANOUTQ commands (for fields that support Dynamic
-Variables -- the IBM i command prompting includes \"DVar\" in the list
+Variables -- the IBM i command prompting includes "DVar" in the list
 of values for most of these parameters). It is necessary that the full
 {TOKEN} fits into the space allowed for each parameter keyword. Two
 positions must be reserved for the Dynamic Variable token special
@@ -89,7 +89,7 @@ record could be used in the response command in order to include the
 value of the data captured by the associated automation tool.
 
 :::note
-Older versions of the IBM i LSAM (before October of 2012) used to evaluate the Compare and Reference data values before deciding if captured data should be stored into an optionally named Dynamic Variable. However, this logic was changed using the Agent\'s software patching tools due to the overwhelming user response that the captured data should be available from a Dynamic Variable {TOKEN} to be used effectively for a majority of response rule use cases. This change also improved the forensic evidence in the Agent\'s log files that proves the outcome of an automated decision.
+Older versions of the IBM i LSAM (before October of 2012) used to evaluate the Compare and Reference data values before deciding if captured data should be stored into an optionally named Dynamic Variable. However, this logic was changed using the Agent's software patching tools due to the overwhelming user response that the captured data should be available from a Dynamic Variable {TOKEN} to be used effectively for a majority of response rule use cases. This change also improved the forensic evidence in the Agent's log files that proves the outcome of an automated decision.
 :::
 
 ## Dynamic Variables with Message Management
@@ -133,7 +133,7 @@ common places where the variable tokens can be inserted. Some of the
 other job master record fields can also be specified by using Dynamic
 Variable tokens.
 
-Whenever the IBM i Agent\'s Job Scheduling server spots a Dynamic
+Whenever the IBM i Agent's Job Scheduling server spots a Dynamic
 Variable {TOKEN} anywhere within the incoming job start request, it will
 perform the following actions before using the job request data to
 assemble an IBM I SBMJOB request:
@@ -155,7 +155,7 @@ the Agent sub-menu 3, option 7. Before making this change, SMA
 encourages users to contact SMA Support for a consulting session, so
 that SMA technical experts can help assure that the decision to change
 and the new token characters chosen can be used successfully. The
-Agent\'s specification of the default character translation tables (or
+Agent's specification of the default character translation tables (or
 CCSID values) for EBCDIC and ASCII characters can figure into the final
 choice of characters, depending on where Dynamic Variable tokens will be
 used in the job start requests.

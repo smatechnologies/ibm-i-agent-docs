@@ -21,13 +21,13 @@ emulate an IBM i workstation).
 By default, the IBM i Telnet server listens at the well-known TCP/IP
 port number 23. Typically, the IBM i system value QUAUTOCFG is set on,
 supporting automatic creation of virtual devices as necessary, up to the
-maximum number of devices set in the QAUTOVRT system value. SMA\'s IBM i
+maximum number of devices set in the QAUTOVRT system value. SMA's IBM i
 LSAM is installed with default values that match this configuration of
 IBM i.
 
 The IBM i LSAM menu options for configuring Operator Replay features
 refer to their support for automatic creation of virtual devices as the
-\"Mode 1\" method of managing virtual devices. Mode 1, in general, is
+"Mode 1" method of managing virtual devices. Mode 1, in general, is
 the passive mode that supports relying on IBM i to select and assign a
 virtual display device. This is the initial default configuration for
 Operator Replay management of virtual display devices.
@@ -42,7 +42,7 @@ described in this section.
 
 The IBM i LSAM menu options for configuring Operator Replay features
 support four methods for managing virtual devices when automatic
-creation has been disabled. These methods are referred to as \"Modes\"
+creation has been disabled. These methods are referred to as "Modes"
 that are explained below. All of these different modes depend on
 manually creating virtual display devices, or letting the system
 automatically create a limited number of virtual devices and then
@@ -94,11 +94,11 @@ have been considered.
     assign a virtual display device and a \*LOOPBACK IP address to one
     or more User Profiles.
 6. From the Operator Replay Configuration main display pages (1 or 2),
-    use function key F22 to configure and then register the Agent\'s
+    use function key F22 to configure and then register the Agent's
     Telnet Exit program.
 
 :::warning
-Expect a short interruption and disconnect of all Telnet-based devices (printers and most display devices, except for the designated partition console display) while the system Telnet Server is stopped and restarted. This suspension of Telnet services is required to activate any change (Add or Remove) to the registered Telnet Exit Program. Although the Agent\'s exit program activation function is designed to automatically restore Telnet services after the activation has completed, SMA recommends using the partition\'s console device to perform this action, since the console device will NOT be suspended when the Telnet server is suspended.
+Expect a short interruption and disconnect of all Telnet-based devices (printers and most display devices, except for the designated partition console display) while the system Telnet Server is stopped and restarted. This suspension of Telnet services is required to activate any change (Add or Remove) to the registered Telnet Exit Program. Although the Agent's exit program activation function is designed to automatically restore Telnet services after the activation has completed, SMA recommends using the partition's console device to perform this action, since the console device will NOT be suspended when the Telnet server is suspended.
 :::
 
 When performing the configuration steps above, consider how the
@@ -151,11 +151,11 @@ interactive job where the script steps will be performed.
         parameters DEVICE( ) and IPADDR( ) of the expanded STROPRRPY
         command, when \*CMD Mode 4 is allowed.
 
-Modes 2, 3 and 4 require that the Agent\'s Telnet Exit Program be added
+Modes 2, 3 and 4 require that the Agent's Telnet Exit Program be added
 to the system exit point registry, and this type of exit program also
-requires that the system\'s Telnet Server be stopped and restarted.
+requires that the system's Telnet Server be stopped and restarted.
 Stopping the Telnet Server will cause virtual devices to be temporarily
-disconnected from the system. But using the Agent\'s function to
+disconnected from the system. But using the Agent's function to
 register and activate the exit program will automatically restart the
 Telnet Server, and then it is only necessary to manually reconnect or
 reactivate virtual devices such as displays and (virtual) printers.
@@ -180,17 +180,17 @@ can be used only once within the User Management function.
 #### Interactive Job User Name
 
 All user profiles for Operator Replay jobs must be registered in the
-Agent\'s User Management.
+Agent's User Management.
 
 The original method of assigning the User to the Script Master record
-within the Agent\'s Operator Relay Script master record maintenance will
+within the Agent's Operator Relay Script master record maintenance will
 remain the first priority for selecting the interactive job user. That
 is, if the Script Master record specifies a Job User name instead of the
-newer \"\*JOB\" option, then this will override the specification of the
+newer "\*JOB" option, then this will override the specification of the
 Job User in the OpCon job master record.
 
 The job user name can be the user selected in the OpCon job master
-record if \"\*JOB\" is assigned to the Script Master record. This method
+record if "\*JOB" is assigned to the Script Master record. This method
 requires that the user name be registered in OpCon as a Batch User with
 permission to use the IBM i machine in which the script job will
 execute. This is the same rule as applies to general IBM i Batch Jobs.
@@ -203,11 +203,11 @@ earlier versions of the Agent software.
 
 The restriction that multiple scripts in a single job must have the same
 User Name is removed. This makes it possible to build utility
-sub-scripts in the Agent\'s script master file that can be called by any
+sub-scripts in the Agent's script master file that can be called by any
 Job User Name. If there is a User Name assigned to a sub-script, it will
 be ignored by the newer versions of the Agent software. However, SMA
 recommends that these sub-scripts should be assigned a User Name of
-\"\*JOB\" as the preferred standard.
+"\*JOB" as the preferred standard.
 
 #### Script Name
 
@@ -240,13 +240,13 @@ file to find the correct Telnet port number.
 However, depending on the Operator Replay Virtual Device Control Mode
 chosen (from four options listed below), it might be necessary to
 briefly stop and restart the Telnet Server. This would be required only
-if the Agent\'s Telnet Exit Program is being activated or deactivated,
+if the Agent's Telnet Exit Program is being activated or deactivated,
 as explained below.
 
 ## Using Operator Replay Without Automatic Virtual Devices
 
 The IBM i LSAM Operator Replay facility requires the use of a virtual
-display device to emulate an interactive user\'s job. However, IBM i
+display device to emulate an interactive user's job. However, IBM i
 system administrators may have chosen to disable automatic creation of
 virtual devices as a measure to improve system security.
 
@@ -370,7 +370,7 @@ WRKOBJ OBJ(QSYS/QPADEV\*) OBJTYPE(\*DEVD)
 
 For each virtual device identified, the following two commands will
 revoke public authority and grant the private authority required for an
-Operator Replay Script user (represented by the value \"RPYUSER\" in
+Operator Replay Script user (represented by the value "RPYUSER" in
 these examples):
 
 RVKOBJAUT OBJ(QSYS/LASOPRRPY) OBJTYPE(\*DEVD) USER(\*PUBLIC) AUT(\*ALL)
@@ -424,7 +424,7 @@ sub-menu 4, menu option
 +----------------------------------------------------------------------+
 |                                                                      |
 +----------------------------------------------------------------------+
-| [TCP/IP and Device configuration]{.ul}                               | |                                                                      |
+| [TCP/IP and Device configuration]                               | |                                                                      |
 | Telnet device: MODE 1 = \*DFT (QAUTOCFG)  MODE 2 = \*CTL (IP Addr +  |
 | DevNam)                                                              |
 |                                                                      |
@@ -433,16 +433,16 @@ sub-menu 4, menu option
 | [NOTE: MODEs 2-4 require Telnet Exit Pgm and stop/restart Telnet     | | server. See F1.]{style="font-weight: normal; color: #ff0000;"}       |
 |                                                                      |
 | [ IP Address (See F1, F23) :                                         | |  [127.0.0.2                                                          |
-|                                ]{.ul} ]{style="color: #000000;font-w |
+|                                ] ]{style="color: #000000;font-w |
 | eight: normal;"}[(F4)]{style="color: #0070C0; font-weight: normal;"} | +----------------------------------------------------------------------+
 | [ Telnet port number  . . . :                                        | | ]{style="color: #000000;font-weight: normal;"}[[00                   |
-| 023]{.ul}]{style="color: #000000;font-weight: normal;"}       [usual | | default value = 23]{style="color: #0070C0;font-weight: normal;"}     |
+| 023]]{style="color: #000000;font-weight: normal;"}       [usual | | default value = 23]{style="color: #0070C0;font-weight: normal;"}     |
 +----------------------------------------------------------------------+
 | [ Telnet device name  . . . :                                        | | ]{style="color: #000000;font-weight: normal;"}[[MY                   |
-| VRTDEV01]{.ul}]{style="color: #000000;font-weight: normal;"}  [NAME, | | \*USER\_\*CMD, blank=QPADEV00nn.                                     |
+| VRTDEV01]]{style="color: #000000;font-weight: normal;"}  [NAME, | | \*USER\_\*CMD, blank=QPADEV00nn.                                     |
 | (F1)]{style="color: #0070C0;font-weight: normal;"}                   |
 +----------------------------------------------------------------------+
-| [ Telnet device exit pgm nbr: [2147483443]{.ul}  [required for MODE  | | 2,3,4    (F13=Unlock)]{st                                            |
+| [ Telnet device exit pgm nbr: [2147483443]  [required for MODE  | | 2,3,4    (F13=Unlock)]{st                                            |
 | yle="color: #0070C0;"}]{style="color: #000000;font-weight: normal;"} |
 +----------------------------------------------------------------------+
 |                                                                      |
@@ -471,11 +471,11 @@ require creating a line description, but only to add and activate an
 Interface using the CFGTCP command or the System i Navigator. The OpCon
 IBM i Agent - Operator Replay - User Management provides the F23
 function key to access a convenient prompting screen where the IP
-Address Interface can be created by this Agent\'s programs.
+Address Interface can be created by this Agent's programs.
 
 ### Choosing and Configuring Operator Replay Virtual Device Modes
 
-The LSAM\'s Operator Replay feature can be configured to cooperate with
+The LSAM's Operator Replay feature can be configured to cooperate with
 the virtual display device strategy that has been implemented by the
 procedures described above. There are four modes of virtual device
 management supported by Operator Replay. But keep in mind that there are
@@ -498,7 +498,7 @@ below. This is a summary of what each mode implies.
     QAUTOCFG and QAUTOVRT) or because a sufficient number of virtual
     display devices was created manually in advance. This mode relies
     entirely on the IBM i system to select and allocate virtual devices.
-    It does not use the Agent\'s Telnet Exit program.
+    It does not use the Agent's Telnet Exit program.
 - Mode 2 (\*CTL): Useful when there will be low-volume activity for
     Operator Replay scripts, a single Device Name and IP Address can be
     registered using the Operator Replay Configuration menu option. This
@@ -547,7 +547,7 @@ implementing the three Modes of virtual device management.
 
 Choose Mode 1 when depending on the IBM i system to choose and assign
 virtual display devices to the script driver program, as it requests
-access to the system\'s Telnet service.
+access to the system's Telnet service.
 
 Telnet Exit Program:
 
@@ -623,7 +623,7 @@ Replay Mode 3 configuration to work, but that was the original purpose
 of supporting Mode 3.
 
 When device descriptions should be restricted to just one user, it is
-the site administrator\'s responsibility to set the IBM i object
+the site administrator's responsibility to set the IBM i object
 authority values for each virtual display device description. This LSAM
 software, while it can help with creating virtual display device
 description objects, does not actually set the object authority. One way
@@ -652,7 +652,7 @@ Operator Replay Configuration:
 
 - IP Address = this field value is ignored when Mode 3 is in effect.
 - Telnet port number = match the system value setting.
-- Telnet device name = must be set to \'\*USER\' to tell the Operator
+- Telnet device name = must be set to '\*USER' to tell the Operator
     Replay functions and the Telnet Exit program to use the LSAM User
     Management master file to obtain and assign a virtual display device
     name and its associated IP address.
@@ -683,12 +683,12 @@ used internally by the IBM i Agent to execute an OpCon job for IBM i
 that specifies the job sub-type of Operator Replay.
 
 The \*CMD Mode 4 of operation allows that the DEVICE( ) and/or IPADDR( )
-keywords from the Agent\'s STROPRRPY command can be added after the name
+keywords from the Agent's STROPRRPY command can be added after the name
 of the Script that will be executed. To use these keywords in the OpCon
-job, be sure that the Agent\'s Operator Replay Configuration has
+job, be sure that the Agent's Operator Replay Configuration has
 specified \*CMD in the Configuration Telnet Device Name field (either by
 itself, or optionally along with the \*USER mode). If the Agent does not
-allow the \*CMD mode, then any parameters added after the OpCon job\'s
+allow the \*CMD mode, then any parameters added after the OpCon job's
 Script name will be ignored.
 
 One strategy that could be enabled by the \*CMD Mode 4 would be to
@@ -699,10 +699,10 @@ with the network that the OpCon server controls, prior to the start of
 the Operator Replay job. The OpCon SAM server will replace those
 Property tokens before it sends the job start request to the Agent.
 
-When both the \*CMD and \*USER mode are allowed by the Agent\'s Operator
+When both the \*CMD and \*USER mode are allowed by the Agent's Operator
 Replay Configuration settings, then the \*USER parameters will be
 retrieved first. After that, either or both (or none) of the DEVICE( )
-and/or IPADDR( ) command keywords could be added after the OpCon job\'s
+and/or IPADDR( ) command keywords could be added after the OpCon job's
 Script name in order to override the \*USER configuration at run time
 for just the one job.
 
@@ -724,14 +724,14 @@ Operator Replay Configuration:
   - The IP address should be specified by the IPADDR( ) added after
         the Script name in the OpCon job master record.
 - Telnet port number = match the system value setting.
-- Telnet device name = must be set to \'\*CMD\' to tell the Operator
+- Telnet device name = must be set to '\*CMD' to tell the Operator
     Replay functions and the Telnet Exit program to store the OpCon
     command line DEVICE and IPADDR options into a special temporary
-    master record stored in the Agent\'s User Management master file.
+    master record stored in the Agent's User Management master file.
 
 When configuring an Operator Replay job in an OpCon job master record,
 first type the Script name into the command line box that is labeled
-\"Script\" and then type the special separate character that is set in
+"Script" and then type the special separate character that is set in
 the LSAM global Configuration options (LSAM Main menu, option 7). The
 default value for the separator character is a pipe (or vertical bar).
 After the separator, type each command keyword and include a value, as
@@ -742,12 +742,12 @@ illustrated in the following example.
 | background](../../../Reso        |                                  |
 | urces/Images/example-icon(48x48) |                                  |
 | .png "Example icon") | Set the OpCon IBM i job sub-type |
-|                                  | to \"Operator Replay.\"          |
+|                                  | to "Operator Replay."          |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
 |                                  | The command line entry box label |
-|                                  | changes to \"Script.\"           |
+|                                  | changes to "Script."           |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
@@ -761,11 +761,11 @@ illustrated in the following example.
 |                                  |                                  |
 |                                  |                                  |
 |                                  |  MYSCRIPT DEVICE(DSP02)          |
-|                                  | IPADDR(\'127.0.0.2\')            |
+|                                  | IPADDR('127.0.0.2')            |
 |                                  |                                  |
 |                                  |                                  |
 |                                  |                                  |
-|                                  | **NOTE**: When the Agent\'s      |
+|                                  | **NOTE**: When the Agent's      |
 |                                  | Operator Replay Configuration    |
 |                                  | mode is 4, allowing only the     |
 |                                  | \*CMD option, then BOTH of the   |
@@ -789,18 +789,18 @@ illustrated in the following example.
 
 The command line DEVICE and IPADDR parameters provided by the OpCon job
 start request (from the Script box parameters) are stored as temporary
-additions to the Agent\'s User Management master file using a record
-type of \'T\' (Temporary). Once these records have been used for the
+additions to the Agent's User Management master file using a record
+type of 'T' (Temporary). Once these records have been used for the
 specific one-time job by the Telnet Exit Program they are immediately
-changed to type \'H\' (History) records.
+changed to type 'H' (History) records.
 
 The Operator Replay Logs function supports an alternate view using
 function key F10 to show the Device and IP Address that were assigned
-each Replay record. It is the type \'H\' records in the User Management
-master file that provide this Log view support data. Type \'H\' records
-are deleted by the LSAM\'s daily log file purge server job (LSAMNG)
+each Replay record. It is the type 'H' records in the User Management
+master file that provide this Log view support data. Type 'H' records
+are deleted by the LSAM's daily log file purge server job (LSAMNG)
 according to the LSAM Parameters daily log file retention period. The
-collection of Type \'H\' and type \'T\' (if any are active) records can
+collection of Type 'H' and type 'T' (if any are active) records can
 also be viewed for each user by using function key F13=Use History from
 the User Management list display (LSAM sub-menu 4, menu option 1).
 
@@ -841,7 +841,7 @@ sub-menu 4, menu option 1, list option
 +----------------------------------------------------------------------+
 |                                                                      |
 |                                                                      |
-| [User Name . . . . . :]{style="font-weight: normal;color: #000000;"} | |  [SCRIPTUSER                                       ]{.ul}            |
+| [User Name . . . . . :]{style="font-weight: normal;color: #000000;"} | |  [SCRIPTUSER                                       ]            |
 |                                                                      |
 | [\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\                         | | _\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\ |
 |_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_]{style="font-weight: normal;"} |
@@ -854,7 +854,7 @@ sub-menu 4, menu option 1, list option
 |                                                                      |
 |                                                                      |
 |                                                                      |
-| Description . . . . :  [Operator Replay User assigned to             | | Device]{.ul}                                                         |
+| Description . . . . :  [Operator Replay User assigned to             | | Device]                                                         |
 |                                                                      |
 |                                                                      |
 |                                                                      |
@@ -874,9 +874,9 @@ sub-menu 4, menu option 1, list option
 | [ Operator Replay Device per IP Address   See                        | | F1=Instructions.]{style="font-weight: normal;color: #000000;"}       |
 |                                                                      |
 |    [Device name]{style="font-weight: normal;color: #000000;"} . . .  | | . :                                                                  |
-| [**[MYVRTDEV01]{.ul}**]{style="boldface: normal;color: #000000;"}    | |                                                                      |
+| [**[MYVRTDEV01]**]{style="boldface: normal;color: #000000;"}    | |                                                                      |
 |    [IP Address]{style="font-weight: normal;color: #000000;"}  . . .  | | . :                                                                  |
-| [**[127.0.0.2                                                        | |                  ]{.ul}**]{style="boldface: normal;color: #000000;"} |
+| [**[127.0.0.2                                                        | |                  ]**]{style="boldface: normal;color: #000000;"} |
 |                                                                      |
 |                          [F4=IP Address List (\*LOOPBACK example:    | | 127.0.0.2)]{style="font-weight: normal;color: #000000;"}             |
 |                                                                      |
@@ -889,13 +889,13 @@ sub-menu 4, menu option 1, list option
 |  [**F1=Dev/IpAddr instructions   **F3=Exit  F5=Refresh  F12=Cancel   | |  F24=More keys]{style="font-weight: normal;color: #000000;"}         |
 +----------------------------------------------------------------------+
 
-The F1=Dev/IpAddr instructions below (adapted from this screen format\'s
+The F1=Dev/IpAddr instructions below (adapted from this screen format's
 Help text) describe how the Telnet exit program uses this configuration.
 
 This display format is used only to register a device name and an IP
 address. This display function does not create either a virtual device
 description or an IP address interface. Those can be created manually or
-with the assistance of the Agent\'s configuration prompts, accessed from
+with the assistance of the Agent's configuration prompts, accessed from
 the Operator Replay Configuration function, as described below. These
 objects do not have to exist when they are registered in the User
 Management function, but they must exist before this type of User
@@ -957,16 +957,16 @@ Interface using the CFGTCP command or the System i Navigator.
 
 This User Management feature provides the F23 function key to access a
 convenient prompting screen where the IP Address Interface can be
-created and activated by the OpCon Agent\'s programs. At the same time,
+created and activated by the OpCon Agent's programs. At the same time,
 the designated virtual device can be created and activated.
 
 ### F13 = User Management Temporary Use History
 
 Function key F13 from the User Management list display shows a view of
 temporary User Management records that have a record type of T or H.
-(Permanent User records of type of \'O\' are not shown in this list.
-Records of type \'T\' do not last long, since they are quickly changed
-to type \'H\' as soon as they are used.)
+(Permanent User records of type of 'O' are not shown in this list.
+Records of type 'T' do not last long, since they are quickly changed
+to type 'H' as soon as they are used.)
 
 Whenever an Operator Replay Script job is prepared for execution, and
 the device selection Mode is 4 (\*CMD), there is no way for the Operator
@@ -974,10 +974,10 @@ Replay script driver programs to directly notify the Telnet Exit Program
 about the Device and IP Address that have been selected for the job.
 However, the Telnet Exit program is able to access the User Management
 master file, as it does for \*USER Mode 3, so temporary records of type
-\'T\' (Temporary) are added to this file to record the command line
+'T' (Temporary) are added to this file to record the command line
 parameter values that specify the DEVICE and/or IPADDR values. When the
 Telnet Exit program uses a temporary record, it immediately sets the
-record type to \'H\' (History).
+record type to 'H' (History).
 
 Using F13 from the main User Management list display presents a new
 display of the temporary history records that are not yet purged from
@@ -1065,7 +1065,7 @@ History]{style="font-family: 'Courier New'; font-size: 9pt;"}
   Opt             \<**Tab**\> to a row in the table and type an option next to one or more lines, and press \<**Enter**\> to perform each option entered.
   IP Address      The IP Address used by each Operator Replay job (or attempt to start a job)
   Device (Name)   The virtual display device that was selected according to the Operator Replay device selection mode that was in effect when the job was initiated.
-  User Name       The IBM i user profile name assigned to the interactive job that was intended to use the virtual display device. This is usually not the same name as the Operator Replay script driver job name (Job ID requesting device), since the driver jobs started by OpCon run under control of the Agent\'s restricted, powerful SMANET user profile.
+  User Name       The IBM i user profile name assigned to the interactive job that was intended to use the virtual display device. This is usually not the same name as the Operator Replay script driver job name (Job ID requesting device), since the driver jobs started by OpCon run under control of the Agent's restricted, powerful SMANET user profile.
   Job ID          Job ID Requesting Device: This is the complete IBM i Job ID of the Operator Replay script driver job, even if the job was not successful in obtaining a virtual display device or in starting or completing the interactive job that was supposed to be driven by the Script.
   DD-HH.MM        The day, hours and minutes when the Operator Replay job initiation was attempted. Use option 5=Display to view the complete time stamp.
 
@@ -1162,20 +1162,20 @@ IP]{style="font-family: 'Courier New'; font-size: 9pt;"}
 |                                                                      |
 | [   Create options . . . . CRTDEVDSP? **0**   ADDTCPIFC? **0**       | | 0=No, 1=Yes]{style="font-weight: normal;color: #000000;"}            |
 |                                                                      |
-| [   Virtual                                                          | | dev/controller **[USERDEV001]{.ul}**                                 |
-|   **[QVIRCD001]{.ul}**]{style="font-weight: normal;color: #000000;"} | |                                                                      |
+| [   Virtual                                                          | | dev/controller **[USERDEV001]**                                 |
+|   **[QVIRCD001]**]{style="font-weight: normal;color: #000000;"} | |                                                                      |
 |    [Internet address . . .                                           | | **[127.0.0.2                                                         |
-|               ]{.ul}**]{style="font-weight: normal;color: #000000;"} |
+|               ]**]{style="font-weight: normal;color: #000000;"} |
 |                                                                      |
 |    [Line description . . . \*LOOPBACK    LOOPBACK IP Address example | | 127.0.0.2]{style="font-weight: normal;color: #000000;"}              |
 |                                                                      |
 |    [Subnet mask]{style="font-weight: normal;color: #000000;"}  . . . | | . . [255.0.0.0]{style="font-weight: normal;color: #000000;"}         |
 |                                                                      |
-|    [Alias name (or \*NONE)                                           | | **[LOCALHOST2              ]{.ul}**                                  |
+|    [Alias name (or \*NONE)                                           | | **[LOCALHOST2              ]**                                  |
 |              ]{style="font-weight: normal;color: #000000;"}[Example: | | LOCALHOST2]{style="font-weight: normal;color: #000000;"}             |
 |                                                                      |
 |    [Text (description) . . **[For SMA Telnet Exit                    | | program                                                              |
-|               ]{.ul}**]{style="font-weight: normal;color: #000000;"} |
+|               ]**]{style="font-weight: normal;color: #000000;"} |
 +----------------------------------------------------------------------+
 | [ ]{style="font-weight: normal;color: #000000;"}                     | |                                                                      |
 |  [F3=Exit   Enter/F12=Return                                         | | **F14=                                                               |
@@ -1219,16 +1219,16 @@ configuration action.
 |                    | the display.                                   |
 +--------------------+------------------------------------------------+
 | Create options     | For each use cycle of this display, type a     |
-|                    | \'0\' or \'1\' into the two command name flag  |
+|                    | '0' or '1' into the two command name flag  |
 |                    | fields to select which commands will be        |
 |                    | prompted when F14 is pressed.                  |
 |                    |                                                |
 |                    |                                                |
 |                    |                                                |
-|                    | VALUES:       \'0\' = No, do not prompt this   |
+|                    | VALUES:       '0' = No, do not prompt this   |
 |                    | command.                                       |
 |                    |                                                |
-|                    |                      \'1\' = Yes, do prompt    |
+|                    |                      '1' = Yes, do prompt    |
 |                    | this command.                                  |
 |                    |                                                |
 |                    |                                                |
@@ -1344,7 +1344,7 @@ configuration action.
 
 - **F14=CRTDEVDSP/ADDTCPIFC:** Press \<**F14**\> to proceed to the
     prompt of the IBM i command(s) that were selected using the command
-    option \'1\'.
+    option '1'.
 
 ### Activating the Telnet Exit Program
 
@@ -1358,7 +1358,7 @@ required to implement virtual device selection for Modes 2, 3 and 4. The
 script driver program accepts the User Name that will log on to the
 virtual display device, and it uses that name to find the IP Address
 configured in this User table. When the script driver sends a request
-for a virtual device to the Telnet server, the LSAM\'s Telnet Exit
+for a virtual device to the Telnet server, the LSAM's Telnet Exit
 program uses the IP Address specified by the script driver to look up
 the correct device name from the User master file. The Telnet Exit
 Program does not know yet which user will attempt to log on, but it is
@@ -1378,7 +1378,7 @@ device will be used. The device name makes it easier to identify the
 virtual display device job when using branch inquiry to WRKJOB from the
 Operator Replay Log displays.
 
-Implementing the Agent\'s Telnet Exit Program requires two steps. First,
+Implementing the Agent's Telnet Exit Program requires two steps. First,
 the exit program must be registered, just as with any other IBM i exit
 program. This registration step could be performed manually using the
 IBM i command WRKREGINF, or ADDEXITPGM. However, SMA recommends only
@@ -1391,7 +1391,7 @@ correct LSAM environment.
 #### Operator Replay Configuration: F22=SMATELSVR Manage Telnet Exit Program
 
 From the Operator Replay Configuration main display pages (1 or 2), use
-function key F22 to configure and then register the Agent\'s Telnet Exit
+function key F22 to configure and then register the Agent's Telnet Exit
 program.
 
 - **Screen Title**: Manage SMA Telnet Exit Program
@@ -1439,9 +1439,9 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay Configuration
 | [ SMATELSVB command                                                  | | parameters]{style="font-weight: normal;color: #000000;"}             |
 |                                                                      |
 |    [\*ADD/\*REMOVE Exit pgm entry? . .                               | | **[\*NONE                                                            |
-|   ]{.ul}**]{style="font-weight: normal;color: #000000;"}    [\*NONE, | | \*ADD, \*REMOVE]{style="font-weight: normal;color: #000000;"}        |
+|   ]**]{style="font-weight: normal;color: #000000;"}    [\*NONE, | | \*ADD, \*REMOVE]{style="font-weight: normal;color: #000000;"}        |
 |                                                                      |
-|    [END & STRTCPSVR (\*TELNET)? . . .                                | | **[0]{.ul}*                                                          |
+|    [END & STRTCPSVR (\*TELNET)? . . .                                | | **[0]*                                                          |
 | *]{style="font-weight: normal;color: #000000;"}           [ACTIVATE: | | 0=No, 1=Yes]{style="font-weight: normal;color: #000000;"}            |
 |                                                                      |
 |    [Delay between END/STRTCPSVR  .                                   | | .**[ 10]{.                                                          |
@@ -1515,17 +1515,17 @@ display, following the table of display fields.
 |                                |                                    |
 |                                |                                    |
 |                                |                                    |
-|                                | \'0\' = No, do not end/restart the |
+|                                | '0' = No, do not end/restart the |
 |                                | Telnet server.                     |
 |                                |                                    |
 |                                |                                    |
 |                                |                                    |
-|                                | \'1\' = Yes, do end/restart the    |
+|                                | '1' = Yes, do end/restart the    |
 |                                | Telnet server immediately after    |
 |                                | updating the exit program          |
 |                                | registry.                          |
 +--------------------------------+------------------------------------+
-| Delay between END/STRTCPSVR    | If the END & STR option is \'1\' = |
+| Delay between END/STRTCPSVR    | If the END & STR option is '1' = |
 |                                | Yes, then this value determines    |
 |                                | how many seconds the submitted     |
 |                                | batch job should wait between      |
@@ -1535,7 +1535,7 @@ display, following the table of display fields.
 |                                | of the processor and also how busy |
 |                                | the machine may be. A value of 10  |
 |                                | seconds is suggested, but if the   |
-|                                | submitted job\'s log shows that    |
+|                                | submitted job's log shows that    |
 |                                | the restart action failed, use a   |
 |                                | longer time when retrying this     |
 |                                | action.                            |
@@ -1545,7 +1545,7 @@ display, following the table of display fields.
 |                                | If there has been a failure to     |
 |                                | restart the Telnet server, it is   |
 |                                | possible to use either the IBM i   |
-|                                | partition\'s console or create and |
+|                                | partition's console or create and |
 |                                | execute an immediate OpCon batch   |
 |                                | job for IBM i, executing this      |
 |                                | command:                           |
@@ -1571,7 +1571,7 @@ display, following the table of display fields.
 |                                | job user. The requirement for the  |
 |                                | submitted job is that the Job User |
 |                                | must have authority to execute the |
-|                                | LSAM\'s SMATESVB command (and the  |
+|                                | LSAM's SMATESVB command (and the  |
 |                                | command driver program), and it    |
 |                                | must also have authority to use    |
 |                                | these IBM i commands: ADDEXITPGM,  |
@@ -1651,7 +1651,7 @@ add or remove the exit program entry, and then optionally end and
 restart the Telnet server.
 
 :::warning
-Expect a short interruption and disconnect of all Telnet-based devices (printers and most display devices, except for the designated partition console display) while the system Telnet Server is stopped and restarted. This suspension of Telnet services is required to activate any change (Add or Remove) to the registered Telnet Exit Program. Although the Agent\'s exit program activation function is designed to automatically restore Telnet services after the activation has completed, SMA recommends using the partition\'s console device to perform this action, since the console device will NOT be suspended when the Telnet server is suspended.
+Expect a short interruption and disconnect of all Telnet-based devices (printers and most display devices, except for the designated partition console display) while the system Telnet Server is stopped and restarted. This suspension of Telnet services is required to activate any change (Add or Remove) to the registered Telnet Exit Program. Although the Agent's exit program activation function is designed to automatically restore Telnet services after the activation has completed, SMA recommends using the partition's console device to perform this action, since the console device will NOT be suspended when the Telnet server is suspended.
 :::
 
 ##### SMATELR1 Display Use Instructions
@@ -1670,7 +1670,7 @@ environments with high Telnet device activity levels.)
 
 The action of adding an exit program to the registry could be performed
 by using the IBM i command ADDEXITPGM, however, the Agent software
-depends on a very exact configuration of the exit program entry\'s
+depends on a very exact configuration of the exit program entry's
 description text. This means that the only reliable way to add the exit
 program entry is to use this F22 Agent function.
 
@@ -1683,19 +1683,19 @@ could be accomplished in two different ways:
     window of time during which the IBM i partition can tolerate an
     interruption of the Telnet server.
 
-2. On the screen format, set the END & START - ACTIVATE option to \'1\'
+2. On the screen format, set the END & START - ACTIVATE option to '1'
     = Yes. Choose an appropriate delay time between the End and
     (Re-)Start actions, and then as the prompt of the IBM i SBMJOB
     command appears, optionally specify a Job Start Date and Time (or,
-    allow the job to submit immediately because \"right now\" is a good
+    allow the job to submit immediately because "right now" is a good
     time to suspend the Telnet server).
 
 When setting the END & START -- ACTIVATE option, remember that the term
-\"activate\" means to make effective the latest change that is just
+"activate" means to make effective the latest change that is just
 about to be made to the IBM i exit point registry. Whether the exit
 point was added (\*ADD) or removed (\*REMOVE), that change to the
 registry is not effective until the Telnet server is stopped and
-restarted. So the term \"activate\" is referring to the Telnet server
+restarted. So the term "activate" is referring to the Telnet server
 end/restart action in either case, and it is not confined to just adding
 a new exit program entry.
 
@@ -1704,7 +1704,7 @@ a new exit program entry.
 ### How Virtual Devices May Cause Operator Replay Script Failures
 
 The IBM i LSAM Operator Replay facility requires the use of a virtual
-device to emulate an interactive user\'s job. One or more virtual
+device to emulate an interactive user's job. One or more virtual
 devices and their controller(s) must be in a varied on state and the
 devices must have authority granted to both the Telnet server user
 profile QTCP and to each of the Operator Replay Script user profiles.
@@ -1736,10 +1736,10 @@ symptoms might be observed:
 
 - A message will be sent to the IBM i operator message queue (QSYSOPR)
 - The Operator Replay job status in the OpCon/xps Schedule will show
-    \"Failed -- SMA0106\"
+    "Failed -- SMA0106"
 - The IBM i LSAM Operator Replay Log Entry, under function 3: Operator
     Replay Logs, will show a job completion code of 6
-- There will usually be no data in the LSAM\'s Operator Replay log
+- There will usually be no data in the LSAM's Operator Replay log
     detail
 
 When an Operator Replay control job has failed to log the Script User on
@@ -1755,22 +1755,22 @@ execution.
 However, technical support personnel may gain additional diagnostic
 information about a failing Operator Replay job if the Operator Replay
 Configuration parameter for Script job debug logging had previously been
-set to \"Y\" (= yes). In this case, function key \<**F17**\> from the
+set to "Y" (= yes). In this case, function key \<**F17**\> from the
 Operator Replay Configuration display may be used to view the debug log
 file content. This log file can only be understood with knowledge of the
-source code of SMA\'s IBM i LSAM Operator Replay execution program.
+source code of SMA's IBM i LSAM Operator Replay execution program.
 
 ### How Operator Replay Selects Virtual Devices Per Mode
 
 In Mode 1 the script driver program simply initiates a connection
-request to the system\'s Telnet port number using the IP address
+request to the system's Telnet port number using the IP address
 registered in the Operator Replay Configuration data. Then it assumes
 that the IBM i operating system will select or create a virtual display
 device and assign that device as if it were the end point for the
 connection to the Telnet server.
 
 In Mode 2 the script driver program starts the same way as Mode 1 by
-initiating a connection request to the system\'s Telnet port number
+initiating a connection request to the system's Telnet port number
 using the IP address registered in the Operator Replay Configuration
 data. But Mode 2 requires that the SMA LSAM Telnet Exit Program be
 activated, so that the device name designated in the Operator Replay

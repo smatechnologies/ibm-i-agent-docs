@@ -30,11 +30,11 @@ about the Dynamic Variable Function Codes (FN) as documented elsewhere
 in this section.
 
 First, a Dynamic Variable of type \*SYSVAL will have the name of QDATE
-so that its token will return the IBM i partition\'s current system
+so that its token will return the IBM i partition's current system
 date.
 
 :::note
-The IBM i system value of QDATETIME might be more useful for the application described in this Use Case. However, the system value of QDATE is used to illustrate some additional capabilities of Dynamic Variables and also the warning that the IBM i command DSPSYSVAL often returns value strings that are formatted differently than when the Agent\'s Dynamic Variable token replacement module is using IBM APIs to retrieve system values.
+The IBM i system value of QDATETIME might be more useful for the application described in this Use Case. However, the system value of QDATE is used to illustrate some additional capabilities of Dynamic Variables and also the warning that the IBM i command DSPSYSVAL often returns value strings that are formatted differently than when the Agent's Dynamic Variable token replacement module is using IBM APIs to retrieve system values.
 :::
 
 Refer to the following discussion about how the IBM i system date must
@@ -81,6 +81,6 @@ Using these page 2 definitions for the \*DATE Dynamic Variable called
 PURGEDATE, if the system value returned is 171108 (November 8, 2017)
 then final result for the PURGEDATE Dynamic Variable will be 201711.
 
-The LSAM\'s DSPDYNVAR command (same as option 6=DSPDYNVAR from the list
+The LSAM's DSPDYNVAR command (same as option 6=DSPDYNVAR from the list
 of Dynamic Variables) is an important tool to prove that nested tokens
 are producing expected results.

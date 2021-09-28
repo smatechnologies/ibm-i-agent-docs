@@ -68,7 +68,7 @@ determination.
 ### How to Obtain and Apply PTFs
 
 Based on many years of experience, SMA Technologies and its clients have adopted an
-effective and simple \"fast path\" procedure for obtaining and
+effective and simple "fast path" procedure for obtaining and
 installing the IBM i Agent (LSAM) PTFs.
 
 Clients of SMA Technologies are strongly recommended to refer to the latest available information about the LSAM
@@ -80,19 +80,19 @@ password for accessing the SMA Technologies secure ftp server.
 #### How to Obtain the LSAM PTF Save Files
 
 As of the date of this publication, the starting directory in the SMA Technologies secure ftp server for this Agent's
-software patches and enhancements is called \"/IBMiLSAMptf\". Please
+software patches and enhancements is called "/IBMiLSAMptf". Please
 carefully note the sub-directories under this root location. It is
 important to select the sub-directory that matches the Version of the
 IBM i LSAM in use at the client site.
 
-Right under the Version sub-directory, there is a \"Readme\" document
+Right under the Version sub-directory, there is a "Readme" document
 that lists all the available software fixes and enhancements for that
 LSAM Version. This document may include important, sometimes CRITICAL
 instructions that must be followed to effectively install the latest
 PTFs.
 
 There is also a PDF document that outlines the exact steps to perform
-for this \"fast path\" PTF installation method. Please examine that PDF
+for this "fast path" PTF installation method. Please examine that PDF
 document and do not rely solely on this documentation here, since that
 PDF document may contain more recently published instructions. Those
 instructions are more helpful than the following summary, which is
@@ -107,14 +107,14 @@ process.
 
 #### How to Apply IBM i LSAM PTFs
 
-SMA Technologies reminds its clients that the \"PTFs\" for the IBM i Agent of OpCon are not the same as the \"PTFs\"
+SMA Technologies reminds its clients that the "PTFs" for the IBM i Agent of OpCon are not the same as the "PTFs"
 issued by IBM for the IBM i operating system. Except by coincidence,
 there is no direct relationship between the IBM i operating system PTFs
 and the OpCon Agent (LSAM) PTFs. If an IBM i OS PTF might be critical
 for correct operation of the LSAM, the LSAM PTF Readme document will
 explain this requirement.
 
-For orientation purposes, here is a summary of the \"fast path\" steps
+For orientation purposes, here is a summary of the "fast path" steps
 to apply the LSAM PTFs.
 
 1. Use the LSAM sub-menu 9, option 7, to confirm or update the LSAM PTF
@@ -127,8 +127,8 @@ to apply the LSAM PTFs.
         (a collection of all the available PTF save files for each
         numbered PTF).
     b.  When an LSAM version matures, the LSCUMPTF save file will be
-        divided into management segments, called \"partial PTF save
-        files.\" There is a separate sub-sub-directory at the [SMA         Technologies]{.GeneralCompanyName} secure ftp server for these
+        divided into management segments, called "partial PTF save
+        files." There is a separate sub-sub-directory at the [SMA         Technologies]{.GeneralCompanyName} secure ftp server for these
         partial PTF save file, along with a PDF document of instructions
         that explains how to use these smaller collections.
 
@@ -197,7 +197,7 @@ by studying the individual steps of PTF application that follow.
 When using the SMAPTFINS command, only user profile QSECOFR may perform this function because the PTF application steps may periodically require QSECOFR authority. In some cases, it might be acceptable for an LSAM Administrator with \*ALLOBJ authority to apply PTFs.
 :::
 
-[Configure LSAM PTF options]{.ul}
+[Configure LSAM PTF options]
 
 1. To use the automatic on-line PTF request feature (FTP mode), obtain
     from SMA the following information:
@@ -218,14 +218,14 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
 5. Enter **7** to choose **PTF options configuration** in the PTF and
     Security Menu.
 6. <**Tab**\> to the following fields and type data for each
-    a.  In the **PTF source** field, type \"FTP\" to select the
+    a.  In the **PTF source** field, type "FTP" to select the
         automatic PTF service provided by SMA. (This FTP option is only
         useful at sites where firewall rules allow the IBM i partition
         to access an outside connection to the internet. Or, it may be
         used when sites will import the PTF save files to a Windows or
         UNIX ftp server within the firewall of the site LAN.) Other
         options for this field are discussed in the next section of this
-        document; [the IFS method is recommended for clients]{.ul}.     b.  In the **SMA ftp user** field, type the user profile name
+        document; [the IFS method is recommended for clients].     b.  In the **SMA ftp user** field, type the user profile name
         provided by SMA (or an alternate source) for its ftp server.
     c.  In the **Password** and the **Confirm Pwrd** fields, type the
         FTP server user profile's password that was provided by SMA (or
@@ -270,7 +270,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
             needs to stop the LSAM subsystem, such as QBATCH.
 7. Press <**Enter**\> to update the PTF configuration options.
 
-[Request a List of Available PTFs]{.ul}
+[Request a List of Available PTFs]
 
 1. Log on to an IBM i interactive workstation session as either QSECOFR
     or an LSAM Administrator with privileges to update LSAM PTF control
@@ -340,7 +340,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
     information that has been loaded into the LSAM database for this
     LSAM environment.
 
-[Review PTF Status and Instructions]{.ul}
+[Review PTF Status and Instructions]
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF
 control database, the next step should be to examine the updated list of
 unapplied PTFs for the following exceptional conditions:
@@ -370,7 +370,7 @@ unapplied PTFs for the following exceptional conditions:
 9. Review the list for any lines that show a '1' under the column
     **PIn**. If there are any entries in this column this means there
     are Post-Install Instructions that must be reviewed before the PTF
-    application should be executed. Sometimes the \"post-install\"
+    application should be executed. Sometimes the "post-install"
     instructions could actually include some pre-install requirements.
     It might also be necessary to complete the post-install instruction
     of one PTF before attempting to apply any other PTFs. In this case,
@@ -391,7 +391,7 @@ unapplied PTFs for the following exceptional conditions:
     the PTF application job has completed normally. At that point,
     normal OpCon/xps schedule operations for the LSAM may resume.
 
-[Apply Cumulative PTF (SMAPTFCUM)]{.ul}
+[Apply Cumulative PTF (SMAPTFCUM)]
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF
 control database, and the review of unapplied PTFs has been completed,
 the normal procedure would be to apply all unapplied PTFs in a single
@@ -428,10 +428,10 @@ PTF application process are essentially similar.
     PTF application process, the LSAM servers are automatically
     restarted as soon as the PTF application process.
 11. The cumulative PTF procedure completes by displaying a message on
-    the workstation screen, \"Cumulative PTF application to LSAM:
-    <*LSAM_name*\> completed normally.\"
+    the workstation screen, "Cumulative PTF application to LSAM:
+    <*LSAM_name*\> completed normally."
 
-[Configuration for the \"IFS\" method of obtaining PTFs]{.ul}
+[Configuration for the "IFS" method of obtaining PTFs]
 When site firewall rules prohibit the direct connection of the IBM i
 partition to any outside server (by automatic means), change the PTF
 Configuration options to use the IFS method. This method supports
@@ -445,14 +445,14 @@ configure the LSAM PTF application tools for the IFS method:
 1. From LSAM sub-menu **9**, enter **7** to choose **PTF options
     configuration**.
 2. <**Tab**\> to the following fields and type data for each:
-    a.  In the **PTF source** field, type \"IFS\".
+    a.  In the **PTF source** field, type "IFS".
     b.  The **SMA ftp user** field, the **Password** and the **Confirm
         Pwrd** fields, and the **FTP URL or IP address** field, are not
         used by this method. They may be ignored.
     c.  In the **Source directory or path** field, type the path name of
         the IFS directory that was created for this specific purpose.
         For example, if the IFS root directory is used/allowed, the path
-        name might be '\\SMA\\IBMiLSAMptf\\'. Note that the trailing
+        name might be '\\SMA\\IBMiLSAMptf\'. Note that the trailing
         slash character must be typed.
     d.  Press <**Enter**\> to commit the changes to the LSAM Parameters
         control file.

@@ -18,10 +18,10 @@ control functions to:
     LSAM sockets communications program.
 - Engage a secondary level of highly detailed trace logging, on a
     limited basis, to debug complex problems. (CAUTION: Do not use
-    \"trace logging\" unless requested by SMA Support, to avoid excess
+    "trace logging" unless requested by SMA Support, to avoid excess
     disk utilization and possible impacts on system performance.)
 
-The setting of log controls by the start and end commands is \"sticky.\"
+The setting of log controls by the start and end commands is "sticky."
 This means that after logging is set on it remains on even after the IBM
 i LSAM functions have been stopped and restarted. The same is true for
 ending logging. Once logging has been ended for a function, it does not
@@ -136,7 +136,7 @@ Logging
 
 This summary screen shows the options for each control field to the
 right, in the blue prompting text. There is also a column of pink values
-under the \"Dft\" heading that shows the setting that SMA recommends for
+under the "Dft" heading that shows the setting that SMA recommends for
 normal operations.
 
 ##### Fields
@@ -146,7 +146,7 @@ normal operations.
     that new value in the LSAM Parameters control file.
 - **DFT (default)**: The default value is displayed as the typical
     standard setting that SMA recommends. This helps to avoid setting on
-    a \"trace logging\" function by accident.
+    a "trace logging" function by accident.
 
 ##### Functions
 
@@ -205,8 +205,8 @@ in most cases they offer well-labeled formatting of each type of
 transaction that may appear in the detail display of a given log entry.
 
 For more information about the log files displayed by each viewer
-utility, refer to the [Viewing the LSAM Log Files](#Viewing){.MCXref
-.xref} display. There is a helpful flow chart that shows the location of
+utility, refer to the [Viewing the LSAM Log Files](#Viewing)
+ display. There is a helpful flow chart that shows the location of
 many log files in the overall LSAM transaction management process. Refer
 to [Strategic Location of Log Files](#Strategi).
 

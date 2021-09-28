@@ -54,7 +54,7 @@ messages to SAM and also the processing of OpCon Event commands, are all
 controlled by the two translation tables specified in the LSAM
 Parameters control function (LSAM main menu, option 7). The OpCon
 initial request to start an SMA File Transfer (SMAFT) jobs also falls
-into this category of work that is managed by the LSAM\'s Job Scheduling
+into this category of work that is managed by the LSAM's Job Scheduling
 server, although the details about the file transfer are managed in a
 different data communications link once the SMA File Transfer job has
 been started.
@@ -64,7 +64,7 @@ to exchange file transfer control information with other LSAMs, after
 OpCon SAM gets a file transfer job started at one of the participating
 LSAMs. But the translation of the SMAFT control transactions is managed
 according to an (optionally) different set of translation tables
-specified in the LSAM\'s SMAFT Parameters control function \*LSAM
+specified in the LSAM's SMAFT Parameters control function \*LSAM
 sub-menu 8, option 7).
 
 In most cases, the translation between EBCDIC and ASCII for SMAFT
@@ -86,7 +86,7 @@ the transfer could be ASCII and/or EBCDIC).
 
 The character translation function for SMAFT file content can optionally
 be managed on a per-job basis, depending on the LSAMs that are connected
-for the transfer and on the capabilities of each LSAM\'s native
+for the transfer and on the capabilities of each LSAM's native
 database. For example, the IBM i LSAM and the IBM z/OS LSAM are capable
 of detecting the native CCSID of the source data and then sending that
 information to each other so that the original file content may be
@@ -98,7 +98,7 @@ SMA File Transfer.
 But in cases where the SMA File Transfer job does not deliver
 instructions to the IBM i LSAM SMAFT programs, and no existing file
 definition information can be found to determine the correct CCSID for
-the data, the LSAM will use the default CCSID specified in the LSAM\'s
+the data, the LSAM will use the default CCSID specified in the LSAM's
 SMAFT control parameters.
 
 The LSAM translation testing tools support both translation tables and
@@ -150,7 +150,7 @@ LSATBLTEST Utility Command Display (F11-EBCDIC Mode)
 
   Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.
   To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT(\'any ASCII character\')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
+   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
            NOTE: Send uses these translation options, not LSAM routines.
   Use Table or CCSID . : [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       SMAFT ASCII CCSID : [00819]{style="color: #00ffff;text-decoration: underline;"}   EBCDIC-to-ASCII table: [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                SMAFT EBCDIC CCSID: [00037]{style="color: #00ffff;text-decoration: underline;"}
     Library  . . . . . :   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              Job default CCSID\*: [00037]{style="color: #00ffff;text-decoration: underline;"}   ASCII-to-EBCDIC table: [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                Alt ASCII CCSID . : [00000]{style="color: #ffcc00;text-decoration: underline;"}
@@ -175,7 +175,7 @@ LSATBLTEST Utility Command Display (F11-ASCII Mode)
 
   Type any options and ASCII hex, then press Enter for local translation.
   To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT(\'any ASCII character\')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
+   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
 
   [Use Table or CCSID . :]{style="color: #008000;"} [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       [SMAFT ASCII CCSID :]{style="color: #008000;"} [00819]{style="color: #00ffff;text-decoration: underline;"}   [EBCDIC-to-ASCII table:]{style="color: #008000;"} [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                [SMAFT EBCDIC CCSID:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Job default CCSID :]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}   [ASCII-to-EBCDIC table:]{style="color: #008000;"} [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                [Alt ASCII CCSID . :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}
@@ -377,7 +377,7 @@ Main Menu \> Selection or command line \> type LSATBLTEST and press
 |                      |                      | represent an EBCDIC  |
 |                      |                      | text string that is  |
 |                      |                      | manually typed into  |
-|                      |                      | this display\'s      |
+|                      |                      | this display's      |
 |                      |                      | input field, such as |
 |                      |                      | before testing a     |
 |                      |                      | local translation or |
@@ -470,7 +470,7 @@ Main Menu \> Selection or command line \> type LSATBLTEST and press
 |                      |                      | used by an OpCon     |
 |                      |                      | job.                 |
 +----------------------+----------------------+----------------------+
-| EBCDIC hex character | X\'00\'              | -   Under the        |
+| EBCDIC hex character | X'00'              | -   Under the        |
 | lines                |                      |     input/output     |
 |                      |                      |     character line,  |
 |                      |                      |     a string of      |
@@ -559,7 +559,7 @@ Main Menu \> Selection or command line \> type LSATBLTEST and press
 |                      |                      |     failure of the   |
 |                      |                      |     test command.    |
 +----------------------+----------------------+----------------------+
-| ASCII hex character  | X\'00\'              | -   Printable or     |
+| ASCII hex character  | X'00'              | -   Printable or     |
 | lines                |                      |                      |
 |                      |                      | displayable/keyboard |
 |                      |                      |     characters from  |
@@ -637,7 +637,7 @@ Main Menu \> Selection or command line \> type LSATBLTEST and press
     LSATBLTEST command was entered.
 - **F14=Send msg**: After a value has been typed in the EBCDIC
     character or hex entry fields, pressing function key \<F14\> causes
-    the utility program to create a \$CONSOLE:DISPLAY event and send it
+    the utility program to create a $CONSOLE:DISPLAY event and send it
     to the OpCon SAM Log through the active LSAM server communications
     programs. Use the OpCon SAM Log display function to see this
     message. It will not be changed by the interface, but will be
@@ -680,7 +680,7 @@ was actually received by the LSATBLTESTdisplay tool, documented above.
 
 ##### Command Syntax
 
-TESTLSATBL TEXT(\'any ASCII text or special character\')
+TESTLSATBL TEXT('any ASCII text or special character')
 
 The name of the command should be followed by the parameter keyword
 value TEXT. Although IBM i command parameter rules would allow just the
@@ -690,10 +690,10 @@ to recognize the test character string that will receive special
 handling.
 
 The TEXT parameter must be enclosed by a pair of parentheses ( ) and
-also by a pair of single quote marks \' \' inside of the parentheses.
-The LSAM server programs check for the reserved text string of TEXT(\'
+also by a pair of single quote marks ' ' inside of the parentheses.
+The LSAM server programs check for the reserved text string of TEXT('
 to mark the beginning of the test character string, and they test for a
-single quote followed by a right parenthesis \') to mark the end of the
+single quote followed by a right parenthesis ') to mark the end of the
 test character string. Therefore, it is not allowed to include a single
 quote followed immediately by a right parenthesis inside of the test
 character string. However, each of these characters may be included
@@ -741,7 +741,7 @@ The LSAM sockets communications program generates an immediate and
 direct normal job completion message that it routes back to OpCon. This
 means that the test job in the OpCon schedule should always show a
 normal completion, and that normal completion status does not reflect
-whether the test message was received and processed by the LSAM\'s local
+whether the test message was received and processed by the LSAM's local
 translation test display tool, documented above.
 
 :::caution
@@ -756,7 +756,7 @@ translation tables and/or pairs of CCSID codes. These tools can also be
 used to test a proposed user-defined translation table in a test LSAM
 environment before that translation table is used in a live production
 environment. This section offers some details about how the LSAM
-[translation table]{.ul} testing utilities will behave, specific to the task of developing user-defined translation tables.
+[translation table] testing utilities will behave, specific to the task of developing user-defined translation tables.
 
 ##### Creating User-defined Translation Tables
 
@@ -787,7 +787,7 @@ called QASCII from library QSYS. Using the WRKTBL command to view this
 table in a list, option 5=Display may then be entered to view the
 contents of the table. The following example shows the view of the
 table, paged down to the position where the braces (curly brackets)
-character occurs in the EBCDIC character set (X\'D0\').
+character occurs in the EBCDIC character set (X'D0').
 
 ##### QSYS/QASCII Table View
 
@@ -814,10 +814,10 @@ QSYS/QASCII Display Conversion Table
                                                                                                             More\...
                                            [F3=Exit   F12=Cancel   F17=Position to]{style="color: #0000ff;"}   ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-Notice that the X\'D0\' translation has been highlighted in red, near
+Notice that the X'D0' translation has been highlighted in red, near
 the bottom of the middle column. The original IBM-supplied translation
-table (according to US CCSID 37 standards) translates to ASCII X\'7D\'.
-For our example, we wish to have X\'D0\' translate into ASCII X\'5D\'.
+table (according to US CCSID 37 standards) translates to ASCII X'7D'.
+For our example, we wish to have X'D0' translate into ASCII X'5D'.
 
 We use the IBM i command RTVTBLSRC (retrieve table to source file
 member) to extract the data from the existing IBM QASCII table. In the
@@ -825,7 +825,7 @@ following example, we have instructed the command to put the source
 member into a library we created called SMAUTILITY, and we had also
 created in advance a source file called QTBLSRC (duplicated from the
 model IBM provides in the QGPL library). Notice where the target
-translation character of X\'7D\' occurs, highlighted in red at display
+translation character of X'7D' occurs, highlighted in red at display
 columns 33-34 in source member line 0000.07.
 
 QSYS/QASCII Table Source Member
@@ -848,7 +848,7 @@ Columns . . . :    1  71           Browse           
 Before we modify this source member, we copy it to a new source member
 name, TSTASCII. The new source member TSTASCII is then modified at
 columns 33-34 of line 7. The following example shows that the prior
-value of \'7D\' has been replaced by the new value \'5D\'.
+value of '7D' has been replaced by the new value '5D'.
 
 Modified TSTASCII Table Source Member
 
@@ -876,8 +876,8 @@ of the LSAM.
 The new table is viewed by using the IBM i command WRKTBL and entering
 option 5=Display next to the table name. The following example shows
 that the PageDown key has been pressed to reveal the portion of the
-table where we made a change. Now the table shows that an EBCDIC X\'D0\'
-will be translated into an ASCII X\'5D\'.
+table where we made a change. Now the table shows that an EBCDIC X'D0'
+will be translated into an ASCII X'5D'.
 
 We will use this example of a translation table modification in the
 following illustration of how the IBM i LSAM translation table testing
@@ -916,7 +916,7 @@ Continuing with the example of a translation table explained above, we
 start by testing the existing configuration of the IBM i LSAM. As the
 LSATBLTEST example below shows, the default translation table
 QSYS/QASCII has translated EBCDIC right braces (curly brackets) from
-X\'D0\' into ASCII X\'7D\'. (The red highlights of the hexadecimal
+X'D0' into ASCII X'7D'. (The red highlights of the hexadecimal
 characters in the following example do not appear on the real display,
 they are for this document only.)
 
@@ -928,12 +928,12 @@ LSATBLTEST Displays Default Translation Results
 
   Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.
   To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT(\'any ASCII character\')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
+   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
            NOTE: Send uses these translation options, not LSAM routines.
   [Use Table or CCSID . :]{style="color: #008000;"} [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       [SMAFT ASCII CCSID :]{style="color: #008000;"} [00819]{style="color: #00ffff;text-decoration: underline;"}   [EBCDIC-to-ASCII table:]{style="color: #008000;"} [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                [SMAFT EBCDIC CCSID:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Job default CCSID\*:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}   [ASCII-to-EBCDIC table:]{style="color: #008000;"} [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                [Alt ASCII CCSID . :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Alt EBCDIC CCSID  :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}     \* NOTE: Job default CCSID used for EBCDIC char. Use F10=Hex for other CCSID.
-  [F2=CLR  ]{style="color: #0000ff;"}1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [Sending a message at date: {{\$DATE}}]{style="color: #ffcc00;text-decoration: underline;"}
+  [F2=CLR  ]{style="color: #0000ff;"}1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [Sending a message at date: {{$DATE}}]{style="color: #ffcc00;text-decoration: underline;"}
   [        E89889848498AA88848A488A874CC5CCEC]{style="color: #008000;"}[DD]{style="color: #ff0000;"}   [        2554957010452217501304135A000B4135]{style="color: #008000;"}[00]{style="color: #ff0000;"}
 
   [ASCII:  5666666262667766626726676327724454]{style="color: #008000;"}[77]{style="color: #ff0000;"}   [        35E49E7010D53317501404145A0BB44145]{style="color: #008000;"}[DD]{style="color: #ff0000;"}
@@ -953,7 +953,7 @@ Default Translation Table Test Message Arrives at OpCon
 
 In the example above, the test message appears in the SMANetCom Trace
 Log display in its raw form. The message was translated to ASCII by the
-LSAM test message generator program (LSATBLTEST), but the \$DATE token
+LSAM test message generator program (LSATBLTEST), but the $DATE token
 has not yet been analyzed and replaced. We can see from this example
 that the braces (curly brackets) have been carried in tact, as would be
 expected. Next, consider the following SAM Log results:
@@ -965,11 +965,11 @@ Default Translation Table Test Message Token Translation by OpCon
 Before we experiment with changes to the translation table, take note of
 a special behavior that has been programmed into OpCon handling of Token
 field replacement. Due to translation table problems between MS Windows
-Server environments and environments like IBM\'s i OS and IBM\'s
+Server environments and environments like IBM's i OS and IBM's
 mainframes, SMA has allowed that braces (curly brackets) {{ }} can be
 used to designated Token fields in the same way as the OpCon standard
-square brackets \[\[ \]\] are used. As expected, the {{\$DATE}} token in the example above was translated into the current MS Windows Server
-system date just as \[\[\$DATE\]\] would be.
+square brackets \[\[ \]\] are used. As expected, the {{$DATE}} token in the example above was translated into the current MS Windows Server
+system date just as \[\[$DATE\]\] would be.
 
 To prove the results of the modified TSTASCII translation table, we can
 go back to the LSATBLTEST utility program display and type in some new
@@ -986,12 +986,12 @@ LSAM Translation Table Test of Default QASCII Table
 
   Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.
   To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT(\'any ASCII character\')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
+   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
            NOTE: Send uses these translation options, not LSAM routines.
   [Use Table or CCSID . :]{style="color: #008000;"} [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       [SMAFT ASCII CCSID :]{style="color: #008000;"} [00819]{style="color: #00ffff;text-decoration: underline;"}   [EBCDIC-to-ASCII table:]{style="color: #008000;"} [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                [SMAFT EBCDIC CCSID:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Job default CCSID\*:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}   [ASCII-to-EBCDIC table:]{style="color: #008000;"} [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                [Alt ASCII CCSID . :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Alt EBCDIC CCSID  :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}     \* NOTE: Job default CCSID used for EBCDIC char. Use F10=Hex for other CCSID.
-  [F2=CLR  ]{style="color: #0000ff;"}1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [{{\$DATE}}]{style="color: #ffcc00;text-decoration: underline;"}
+  [F2=CLR  ]{style="color: #0000ff;"}1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [{{$DATE}}]{style="color: #ffcc00;text-decoration: underline;"}
   [        CC5CCEC]{style="color: #008000;"}[DD]{style="color: #ff0000;"}   [        00B4135]{style="color: #008000;"}[00]{style="color: #ff0000;"}
 
   [ASCII:  7724454]{style="color: #008000;"}[77]{style="color: #ff0000;"}   [        BB44145]{style="color: #008000;"}[DD]{style="color: #ff0000;"}
@@ -1010,7 +1010,7 @@ translation table and the library where our test table is located. Then
 we can press the \<**F20**\> function key to retest translation of the
 same test character string without having to type the data a second
 time. As the results show in the illustration below, the braces (curly
-brackets) have now been translated into ASCII X\'5D\'.
+brackets) have now been translated into ASCII X'5D'.
 
 LSAM Translation Table Test of Modified TSTQASCII Table
 
@@ -1020,12 +1020,12 @@ LSAM Translation Table Test of Modified TSTQASCII Table
 
   Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.
   To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT(\'any ASCII character\')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
+   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
            NOTE: Send uses these translation options, not LSAM routines.
   [Use Table or CCSID . :]{style="color: #008000;"} [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       [SMAFT ASCII CCSID :]{style="color: #008000;"} [00819]{style="color: #00ffff;text-decoration: underline;"}   [EBCDIC-to-ASCII table:]{style="color: #008000;"} [TSTQASCII ]{style="color: #ffcc00;text-decoration: underline;"}                [SMAFT EBCDIC CCSID:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [TSTSMADTA ]{style="color: #ffcc00;text-decoration: underline;"}              [Job default CCSID\*:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}   [ASCII-to-EBCDIC table:]{style="color: #008000;"} [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                [Alt ASCII CCSID . :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Alt EBCDIC CCSID  :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}     \* NOTE: Job default CCSID used for EBCDIC char. Use F10=Hex for other CCSID.
-  [F2=CLR  ]{style="color: #0000ff;"}1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [{{\$DATE}}]{style="color: #ffcc00;text-decoration: underline;"}
+  [F2=CLR  ]{style="color: #0000ff;"}1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [{{$DATE}}]{style="color: #ffcc00;text-decoration: underline;"}
   [        CC5CCEC]{style="color: #008000;"}[DD]{style="color: #ff0000;"}   [        00B4135]{style="color: #008000;"}[00]{style="color: #ff0000;"}
 
   [ASCII:  7724454]{style="color: #008000;"}[55]{style="color: #ff0000;"}   [        BB44145]{style="color: #008000;"}[DD]{style="color: #ff0000;"}
@@ -1101,7 +1101,7 @@ command line has been transmitted to the IBM i LSAM in the same form as
 it was typed. This can be confirmed by looking for field code 05022.
 Notice in the example above that a field code is contained within the
 XML tag characters \< and \>. In this case, the field code itself is
-displayed in the value I=\"05022\". The data that follows the greater
+displayed in the value I="05022". The data that follows the greater
 than sign \> is the actual Call command string. The end of this string
 is marked by the XML end field tag \</F\>. We see in the example above
 that OpCon has transmitted exactly what was typed in the job master
@@ -1121,7 +1121,7 @@ exactly the ASCII character string that was received from OpCon/xps. The
 special translation table testing protocol implemented by the LSAM
 prevents the LSAM server programs from touching the test character
 string. It is sent in tact so that we can experiment with different
-translation tables while using the LSAM\'s LSATBLTEST utility display.
+translation tables while using the LSAM's LSATBLTEST utility display.
 
 IBM i LSAM LSATBLTEST Command Shows Results from TESTLSATBL Job
 
@@ -1131,7 +1131,7 @@ IBM i LSAM LSATBLTEST Command Shows Results from TESTLSATBL Job
 
   Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.
   To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT(\'any ASCII character\')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
+   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
            NOTE: Send uses these translation options, not LSAM routines.
   [Use Table or CCSID . :]{style="color: #008000;"} [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       [SMAFT ASCII CCSID :]{style="color: #008000;"} [00819]{style="color: #00ffff;text-decoration: underline;"}   [EBCDIC-to-ASCII table:]{style="color: #008000;"} [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                [SMAFT EBCDIC CCSID:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}
     [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Job default CCSID\*:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}   [ASCII-to-EBCDIC table:]{style="color: #008000;"} [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                [Alt ASCII CCSID . :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}

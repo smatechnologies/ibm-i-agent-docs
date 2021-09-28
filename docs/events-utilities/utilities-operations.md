@@ -91,12 +91,12 @@ After a SPLF Scan Rule has been created, use the LSAM Menu 3, function
 5: Work with Captured Data Response Rules, to add or modify captured
 data response rule records.
 
-[Adding a Data Capture Rule from the LSAM Menu System]{.ul}
+[Adding a Data Capture Rule from the LSAM Menu System]
 
 1. In the command line, enter **STRSMA** or **LSAMENU**. For more
     information on command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) and
-    [The LSAMENU Command](Components-and-Operation.md#The2){.MCXref
-    .xref}.
+    [The LSAMENU Command](Components-and-Operation.md#The2)
+    .
 2. Enter **3** to choose the **Events and Utilities menu** in the SMA
     Main Menu.
 3. Enter **5** to choose **Work with Captured Data Response Rules** in
@@ -110,7 +110,7 @@ data response rule records.
     Function key <**F4**\> may be used to select a valid Application ID
     and Sequence number from a list window, as long as the Type field
     value has first been set to a value of "S" (= SCANSPLF data).
-7. Type a value of \'S\' (= SCANSPLF capture data) for the Type field.
+7. Type a value of 'S' (= SCANSPLF capture data) for the Type field.
     The setting of this field controls what data will appear in the
     prompt window when <**F4**\> is pressed from either the Capture
     Identifier or the Capture Sequence number field.
@@ -118,8 +118,8 @@ data response rule records.
     order of the sequence number determines which response rule will be
     executed first.
 9. Type a value for the Compare rule (refer to more information under
-    [Add/Change/Copy Capture Response Rules](#Add/Chan2){.MCXref
-    .xref}). A simple value set that allows a response rule to always
+    [Add/Change/Copy Capture Response Rules](#Add/Chan2)
+    ). A simple value set that allows a response rule to always
     execute is "EQ" (equal) to the compare data special value of
     \*ANY.
 10. Type a Continuation field value if more than one comparison rule

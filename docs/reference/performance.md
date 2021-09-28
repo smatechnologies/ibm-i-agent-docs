@@ -52,7 +52,7 @@ potential for adversely impacting IBM i system performance.
 In general, all the LSAM server programs can be tuned for better
 responsiveness AND less impact on system performance by careful
 attention to the IBM i work management configuration, discussed below.
-But if the communication\'s program cycle is well understood, it may
+But if the communication's program cycle is well understood, it may
 sometimes be desirable to change one or more of these three performance
 parameters.
 
@@ -62,7 +62,7 @@ connection. Instead, these programs rotate among three tasks. Besides
 checking for new incoming communications transactions from OpCon/xps,
 they also check for messages prepared by other LSAM server programs that
 need to be sent to OpCon/xps and they check for any operator control
-instructions that may arrive in each program\'s control data queue.
+instructions that may arrive in each program's control data queue.
 
 The input wait timeout parameter tells the program how long to stop and
 wait for a response from the system when checking for new socket
@@ -81,7 +81,7 @@ program to send out job status information and other transactions such
 as OpCon/xps Events that the LSAM can generate as it is for the program
 to receive transactions from OpCon/xps. So the program must not wait too
 long for socket communications input before it moves to the next step of
-checking the LSAM\'s outgoing transaction data queue (CMNOUTT00) for any
+checking the LSAM's outgoing transaction data queue (CMNOUTT00) for any
 new messages to send to OpCon/xps.
 
 In between managing incoming and outgoing transactions, the LSAM job
@@ -90,13 +90,13 @@ operator control instructions.
 
 Operator control instructions may include a request to start or stop
 logging, or to completely shutdown the program. Obviously, the
-communications program\'s primary responsibility is to handle data
+communications program's primary responsibility is to handle data
 communications, so it is not necessary for it to check for operator
 commands very frequently or wait very long to see if there are any new
 operator instructions. On the other hand, in case there is an unusual
 circumstance, it is very beneficial for the communications program to be
 able to respond quickly, in the midst of heavy communications flow, to
-an operator\'s request to start logging. The two parameters called
+an operator's request to start logging. The two parameters called
 Control DTAQ (control data queue) tell the program the frequency at
 which to check the control data queue, and then how long to pause while
 it waits for new operator instructions.
@@ -152,14 +152,14 @@ Parameters in this group not discussed here are covered in detail in
 
 JORS means job output retrieval system (or service). For the IBM i LSAM,
 JORS is the function that stores and later retrieves IBM i job log
-reports when the OpCon/xps Schedule functions are used to \"view
-output\" of the job. JORS does not presently support retrieval of any
+reports when the OpCon/xps Schedule functions are used to "view
+output" of the job. JORS does not presently support retrieval of any
 other type of job output.
 
 The JORS communications performance parameters work exactly the same as
 the job scheduling communications performance parameters. For details,
 please review the previous section of this document. However, the
-LSAM\'s JORS communications server program has a complete different work
+LSAM's JORS communications server program has a complete different work
 profile from the job scheduling server program.
 
 Job scheduling involves a constant flow of transactions that govern the
@@ -249,7 +249,7 @@ passively share the usual set of IBM i default work management objects
 in order to make it easy to install and demonstrate the LSAM software.
 The default installation is also designed to make it very simple to
 remove the LSAM software from the IBM i environment without impacting
-the site\'s work management configuration.
+the site's work management configuration.
 
 However, the default LSAM work management configuration may not perform
 well in a busy system or partition running IBM i. This is because the
@@ -288,7 +288,7 @@ each LSAM environment. Refer to the discussion below about the LSAM job
 description for more information.
 
 Be sure that subsystem assigned to an LSAM environment has a job queue
-entry for the SMALSAQ00 job queue that resides in the LSAM\'s SMADTA
+entry for the SMALSAQ00 job queue that resides in the LSAM's SMADTA
 library and that the job queue entry allows a sufficient maximum number
 of active jobs. This number of active jobs will vary, depending on how
 the LSAM services are used. There may be 6 -- 8 basic server jobs, but
@@ -321,7 +321,7 @@ library that corresponds to the SMADTA (database library) role. The
 default LSAM installation uses the actual name of SMADTA for this
 database library. Alternate LSAM environments may be configured to use
 different library names, but the LSAM tools for managing multiple
-environments require that one library in the LSAM\'s library list be
+environments require that one library in the LSAM's library list be
 assigned to the SMADTA role.
 
 For the purposes of tuning system performance, it is the routing data

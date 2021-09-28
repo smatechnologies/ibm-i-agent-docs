@@ -1,7 +1,7 @@
 # Using LSAM Job Tracking Functions
 
 This section provides a simple outline of the steps required to utilize
-the various functions of the LSAM\'s job tracking feature. There are
+the various functions of the LSAM's job tracking feature. There are
 important explanations of how these functions work in the following
 section of this topic. It is important to understand that discussion
 because the LSAM job tracking feature alters the way IBM i job
@@ -10,10 +10,10 @@ running under IBM i.
 
 Certain of the following procedure outlines make reference to LSAM
 maintenance functions that are described in detail in a following
-section: [Job Tracking and Queuing Screens and Windows](#Job6){.MCXref
-.xref}. References to OpCon procedures, such as adding a job to an OpCon
-schedule, are described in detail in the [Using Job Master](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Using-Job-Master.md#top){.MCXref
-.xref} section of the **Enterprise Manager** online help.
+section: [Job Tracking and Queuing Screens and Windows](#Job6)
+. References to OpCon procedures, such as adding a job to an OpCon
+schedule, are described in detail in the [Using Job Master](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Using-Job-Master.md#top)
+ section of the **Enterprise Manager** online help.
 
 ## Operating Job Tracking
 
@@ -25,13 +25,13 @@ Tracking completes the exit point registration for processing the IBM i
 SBMJOB command, and then the LSAM Job Tracking status function reports
 that the Job Tracking status is STARTED. Starting the Alternate Job
 Notify service is a separate process that is also required only if True
-Passive tracking will be used. For more information, refer to [Alternate Job Notify Service](Components-and-Operation.md#Alternat2){.MCXref
-.xref}.
+Passive tracking will be used. For more information, refer to [Alternate Job Notify Service](Components-and-Operation.md#Alternat2)
+.
 
 Master and control file maintenance functions found in the LSAM Job
 Tracking menu do not require that Job Tracking be started.
 
-The purpose of the LSAM\'s Tracking and Queuing functions, separate from
+The purpose of the LSAM's Tracking and Queuing functions, separate from
 Capturing a job, is to intercept a job that has been submitted by an IBM
 i user or another batch job, rather than directly by the OpCon SAM, so
 that the job can be monitored by OpCon. Both tracking and queuing are
@@ -43,7 +43,7 @@ the start of this topic, and also to [How LSAM Job Tracking Works](#How).
 Enable the LSAM Job Tracking functions by using the two following
 procedure.
 
-[Option One: Start Job Tracking through LSAM Menus]{.ul}
+[Option One: Start Job Tracking through LSAM Menus]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -55,7 +55,7 @@ procedure.
     a.  A window will display either STARTED or STOPPED. The status must
         show STARTED in order for Job Tracking to work.
 
-[Option Two: Start Job Tracking Using a Manual C7ommand]{.ul}
+[Option Two: Start Job Tracking Using a Manual C7ommand]
 
 1. Log on to IBM i from a workstation or start a job with command entry
     access with a user profile that has LSAM Administrator privileges.
@@ -78,7 +78,7 @@ the instructions under [Alternate Job Notify Service](Components-and-Operation.m
 Disable the LSAM Job Tracking functions by using one of the two
 following procedures.
 
-[Option One: Stopping Job Tracking Through LSAM Menus]{.ul}
+[Option One: Stopping Job Tracking Through LSAM Menus]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -91,7 +91,7 @@ following procedures.
         show STOPPED if the Job Tracking function has been successfully
         disabled.
 
-[Option Two: Start Job Tracking Using a Manual Command]{.ul}
+[Option Two: Start Job Tracking Using a Manual Command]
 
 1. Log on to IBM i from a workstation or start a job with command entry
     access with a user profile that has LSAM Administrator privileges.
@@ -134,7 +134,7 @@ SAM-SS to track or queue the job(s). Refer to the special instructions
 for Using a Named Schedule in the following section after instructions
 about the AdHoc schedule.
 
-[Set Up Job Tracking for AdHoc Schedule]{.ul}
+[Set Up Job Tracking for AdHoc Schedule]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -154,13 +154,13 @@ about the AdHoc schedule.
         actual job intercepted for Tracking, to qualify whether the job
         is accepted for Tracking or simply bypassed and allowed to
         execute.
-    c.  Specify \"AdHoc\" for the Schedule name.
-    d.  Set the Track Type to \"T\".
+    c.  Specify "AdHoc" for the Schedule name.
+    d.  Set the Track Type to "T".
 7. In OpCon Enterprise Manager, add a new job master record to the
     AdHoc schedule, specifying the job type of IBM i.
     a.  Be sure that the selected machine name matches the LSAM
         environment where the Tracked job was registered.
-8. Select \"Tracked job\" in the job sub-type pull-down list.
+8. Select "Tracked job" in the job sub-type pull-down list.
 9. Enter the exact name of the job that was registered in the LSAM Job
     tracking parameters Add screen.
 10. Leave job parameters set to the default value of asterisk (\*);
@@ -187,7 +187,7 @@ about the AdHoc schedule.
     embedded within a program.
 18. Note the LSAM Job Tracking Number that is reported when the job is
     intercepted.
-    a.  For batch jobs, this information may be viewed in the job\'s log
+    a.  For batch jobs, this information may be viewed in the job's log
         or in the system operator (QSYSOPR) message queue.
     b.  The LSAM Job Tracking Number, not the same as the IBM i job
         number, may be used with the LSAM command WRKTRKJOB to discover
@@ -196,7 +196,7 @@ about the AdHoc schedule.
 19. View the AdHoc schedule to monitor the job status in the OpCon
     Enterprise Manager.
 
-[Set Up Job Queuing for AdHoc Schedule]{.ul}
+[Set Up Job Queuing for AdHoc Schedule]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -218,13 +218,13 @@ about the AdHoc schedule.
         actual job intercepted for Tracking, to qualify whether the job
         is accepted for Tracking or simply bypassed and allowed to
         execute.
-    c.  Specify \"AdHoc\" for the Schedule name.
-    d.  Set the Track Type to \"Q\".
+    c.  Specify "AdHoc" for the Schedule name.
+    d.  Set the Track Type to "Q".
 7. In OpCon/xps Enterprise Manager, add a new job master record to the
     AdHoc schedule, specifying the job type of IBM i.
     a.  Be sure that the selected machine name matches the LSAM
         environment where the Tracked job was registered.
-8. Select \"Batch job\" in the job sub-type pull-down list.
+8. Select "Batch job" in the job sub-type pull-down list.
 9. Enter the exact name of the job that was registered in the LSAM Job
     tracking parameters Add screen.
 10. Leave job parameters set to the default value of asterisk (\*) in
@@ -261,7 +261,7 @@ about the AdHoc schedule.
     embedded within a program.
 22. Note the LSAM Job Tracking Number that is reported when the job is
     intercepted.
-    a.  For batch jobs, this information may be viewed in the job\'s log
+    a.  For batch jobs, this information may be viewed in the job's log
         or in the system operator (QSYSOPR) message queue.
     b.  The LSAM Job Tracking Number, not the same as the IBM i job
         number, may be used with the LSAM command WRKTRKJOB to discover
@@ -288,7 +288,7 @@ automatic build of the Daily schedules that will actually execute, any
 Tracked or Queued Job must not appear in the originally built schedule.
 Instead, these jobs will be automatically added to the named schedule
 whenever the IBM i LSAM detects and qualifies a job for tracking or
-queuing, and then sends a \$JOB:TRACK or \$JOB:QUEUE Event command to
+queuing, and then sends a $JOB:TRACK or $JOB:QUEUE Event command to
 OpCon to trigger the addition of that job to the named schedule.
 
 :::warning
@@ -301,7 +301,7 @@ following revised instructions for step 7 that apply when a named
 schedule is used instead of the AdHoc schedule. These instructions are
 the same for both **Tracked** and **Queued** jobs.
 
-[Set Up Job Tracking or Queuing for a Named Schedule]{.ul}
+[Set Up Job Tracking or Queuing for a Named Schedule]
 
 1. In the OpCon User Interface, add a new job master record to the
     Named Schedule, specifying the job type of IBM i.
@@ -313,7 +313,7 @@ the same for both **Tracked** and **Queued** jobs.
         building this job into the Daily schedule each time the Schedule
         is rebuilt from the Master definitions. One example of a
         technique that may be used to accomplish this is to choose a
-        Frequency of \"On Request\" and then select a calendar date that
+        Frequency of "On Request" and then select a calendar date that
         is in the past.
     c.  Take note of the name of the Frequency used for each Tracked and
         Queued job, as this value may optionally be used within the IBM
@@ -345,7 +345,7 @@ made, the LSAM will attempt to report to OpCon/xps that the tracked or
 queued job was manually released so that OpCon/xps can update the job
 status in the OpCon/xps schedule.
 
-[Manually Releasing a Tracked or Queued Job]{.ul}
+[Manually Releasing a Tracked or Queued Job]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -369,7 +369,7 @@ status in the OpCon/xps schedule.
         execution.
 8. Examine the job status to be sure the job has not already been
     released.
-    a.  The [Sts]{.ul} column in the list display shows the status value         in effect for each job log entry that applies to a job number.
+    a.  The [Sts] column in the list display shows the status value         in effect for each job log entry that applies to a job number.
     b.  Option 5=Display detail may be used to view the interpretation
         of the job status field.
 9. A tracked or queued job may be manually released from either the
@@ -381,7 +381,7 @@ status in the OpCon/xps schedule.
         (release job) may be used to initiate the release process.
 10. A window appears requesting whether the job should be released into
     Hold status in an IBM i job queue.
-    a.  If \"N\" (no) is specified for the HOLD option, the job will
+    a.  If "N" (no) is specified for the HOLD option, the job will
         begin execution immediately after pressing \<**Enter**\> from
         the HOLD window display.
     b.  A message normally appears at the bottom of the display
@@ -401,7 +401,7 @@ job is already started before OpCon is notified about the job. Passive
 job tracking uses the Alternate Job Notify technique instead of the
 SBMJOB exit program technique to detect job starts.
 
-[Set Up True Passive Job Tracking]{.ul}
+[Set Up True Passive Job Tracking]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -430,13 +430,13 @@ SBMJOB exit program technique to detect job starts.
         actual job intercepted for Tracking, to qualify whether the job
         is accepted for Tracking or simply bypassed and allowed to
         execute.
-    c.  Specify \"AdHoc\" or a user-defined value for the Schedule name.
-    d.  Set the Track Type to \"P\".
+    c.  Specify "AdHoc" or a user-defined value for the Schedule name.
+    d.  Set the Track Type to "P".
 11. In OpCon Enterprise Manager, add a new job master record to the
     AdHoc or other named schedule, specifying the job type of IBM i.
 12. Be sure that the selected machine name matches the LSAM environment
     where the Tracked job was registered.
-13. Select \"Tracked job\" in the job sub-type pull-down list. (This
+13. Select "Tracked job" in the job sub-type pull-down list. (This
     value must be used for Passive tracking.)
 14. Enter the exact name of the job that was registered in the LSAM Job
     tracking parameters Add screen.
@@ -478,11 +478,11 @@ SBMJOB exit program technique to detect job starts.
         Job Track Logs function. If it is not apparent what caused this
         failure, please contact SMA Support for assistance. One typical
         cause of this error can be system timing issues, and these can
-        be adjusted using \"Delay job end notify proc\" value in the
+        be adjusted using "Delay job end notify proc" value in the
         **Alternate Job Notify Configuration** function, which is option
         **7** on the Alternate Job Notify sub-menu. For more
-        information, refer to [Alternate Job Notify         Configuration](Components-and-Operation.md#Alternat4){.MCXref
-        .xref}.
+        information, refer to [Alternate Job Notify         Configuration](Components-and-Operation.md#Alternat4)
+        .
 22. View the AdHoc or other named schedule to monitor the job status in
     the OpCon Enterprise Manager.
 
@@ -512,7 +512,7 @@ Type and Auto-Track Sub-Programs control fields because there are
 multiple valid combinations used for varying purposes. More information
 about these controls may be found in [How LSAM Job Tracking Works](#How).
 
-[Set Up Automatic Job Tracking]{.ul}
+[Set Up Automatic Job Tracking]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -535,7 +535,7 @@ about these controls may be found in [How LSAM Job Tracking Works](#How).
         Name, or type the special value **\*ALL**.
         i.  The job name may be predefined by third-party software where
             the SBMJOB action will take place.
-        ii. Regardless of the value specified for the \"Tracked type\"
+        ii. Regardless of the value specified for the "Tracked type"
             field, this job name will be the name of a primary, or root
             job that will generate one or more additional jobs
             (typically by executing the IBM i SBMJOB command). This job
@@ -547,8 +547,8 @@ about these controls may be found in [How LSAM Job Tracking Works](#How).
         into any of theses fields. Specific names are compared to the
         actual job intercepted for tracking, to qualify whether the job
         is accepted for, or prevented from Automatic tracking.
-    c.  Specify \"AdHoc\" or a user-defined value for the Schedule name.
-    d.  Set the Track Type to any supported value, except not \"Q\".
+    c.  Specify "AdHoc" or a user-defined value for the Schedule name.
+    d.  Set the Track Type to any supported value, except not "Q".
         i.  The Track type of **T** indicates that a job qualified by
             this Parameter set will be actively Tracked.
         ii. The Track type of **A** indicates that both this job and any
@@ -595,13 +595,13 @@ about these controls may be found in [How LSAM Job Tracking Works](#How).
         Job Track Logs function. If it is not apparent what caused this
         failure, please contact SMA Support for assistance. One typical
         cause of this error can be system timing issues, and these can
-        be adjusted using \"Delay job end notify proc\" value in the
+        be adjusted using "Delay job end notify proc" value in the
         **Alternate Job Notify Configuration** function, which is option
         **7** on the Alternate Job Notify sub-menu. More information
         about passively tracked jobs may also be available in the
         Alternate Job Notify Log display (LSAM menu 6, sub-menu 8,
-        option 2). For more information, refer to [Alternate Job Notify         Configuration](Components-and-Operation.md#Alternat4){.MCXref
-        .xref}.
+        option 2). For more information, refer to [Alternate Job Notify         Configuration](Components-and-Operation.md#Alternat4)
+        .
 16. View the AdHoc or other named schedule to monitor the job status in
     the OpCon Enterprise Manager.
 
@@ -620,7 +620,7 @@ Use these procedures to prepare for job capture, capture a job
 definition and then prepare the job definition for later execution by
 OpCon.
 
-[Set Up Job Capture]{.ul}
+[Set Up Job Capture]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -638,7 +638,7 @@ OpCon.
         job or workstation where the job capture action will be
         performed.
 
-[Capture a Job]{.ul}
+[Capture a Job]
 
 1. Complete the steps above to set up for job capturing.
 2. Log on to the workstation registered for capturing jobs **- or -**
@@ -665,7 +665,7 @@ OpCon.
         process is stopped. Each capture will be individually registered
         in the LSAM master files.
 
-[Stop Job Capture]{.ul}
+[Stop Job Capture]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -687,7 +687,7 @@ OpCon.
         resume normal operations of third-party software after a job
         capture has been completed.
 
-[Modifying a captured job definition]{.ul}
+[Modifying a captured job definition]
 
 1. Log on to an IBM i workstation with a user profile that has LSAM
     Administrator privileges.
@@ -700,11 +700,11 @@ OpCon.
     to:
     a.  Change job definition parameters.
     b.  Revise the job command line.
-    c.  Edit the job\'s library list.
+    c.  Edit the job's library list.
     d.  Update any local data area (LDA) content associated with the
         job.
 6. *(Optional)* Define Dynamic Variables that may be
-    used to update the LDA content or replace values in the job\'s
+    used to update the LDA content or replace values in the job's
     parameters or its command line.
 7. *(Optional)* Insert Dynamic Variable tokens into any
     job definition parameter field or into the job command line.
@@ -735,14 +735,14 @@ OpCon event notification server can respond to event commands sent from
 IBM i, for example, by adding a job to a schedule and then releasing the
 job.
 
-[Define a Captured Job in OpCon]{.ul}
+[Define a Captured Job in OpCon]
 In the OpCon/xps Enterprise Manager, add a new job master record to any
 OpCon schedule, specifying the job type of IBM i.
 
 a.  Be sure that the selected machine name matches the LSAM environment
     where the captured job was registered.
 
-Select \"Batch job\" in the job sub-type pull-down list.
+Select "Batch job" in the job sub-type pull-down list.
 
 Under the Call Information tab, enter this command format into the Call
 field:

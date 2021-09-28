@@ -31,7 +31,7 @@ because they are replaced by new automatic Debug/Audit log file purging
 As an IBM i command, the SMASUP command can be executed from anywhere
 that IBM i commands are supported. However, unlike some LSAM environment
 management commands that include library list management, this command
-does not manage a job\'s library list, therefore the LSAM environment
+does not manage a job's library list, therefore the LSAM environment
 libraries must be included in the library list of any job that will
 execute this command. The command syntax show below includes the library
 location of the command, although this may not be required in most
@@ -84,7 +84,7 @@ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this 
   -------------------------------------------------------------------------------
 
 To view and manage the SEL (selection) parameters, type the letters
-\"SEL\" in the field \"Save selected, logs or library\" and then press
+"SEL" in the field "Save selected, logs or library" and then press
 \<**Enter**\>. When this LOGLIB() parameter has been changed from LOG or
 LIB to SEL, pressing Enter will not cause the command to execute but
 will only redisplay the command prompt with additional keywords.
@@ -167,8 +167,8 @@ for each LSAM feature:
 - **Enter**: After the desired field options are typed, press Enter to
     submit or start the file extract operation. As documented elsewhere
     in the **IBM i LSAM** online help, a completion message will be
-    displayed both in the QSYSOPR message queue and the user\'s (or
-    workstation\'s) message queue, reporting the exact name of the save
+    displayed both in the QSYSOPR message queue and the user's (or
+    workstation's) message queue, reporting the exact name of the save
     file that was created in library SMALOG. Use this save file name
     when transferring the save file from the IBM i DB2 database to an
     external computer (such as a personal computer), from which the save

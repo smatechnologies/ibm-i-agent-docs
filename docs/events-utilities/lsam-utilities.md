@@ -344,7 +344,7 @@ Spool file number,if Rule \*ANY   SPLNBR         [\*APP      ]
 |            |         |        |     LSAM Dynamic Variable in this |
 |            |         |        |     field.                        |
 +------------+---------+--------+-----------------------------------+
-| OPCONXPS   | 1       | \*CHAR | -   [Y=yes]{.ul} (default), N=no. | |            |         |        |     Set this parameter to Y when  |
+| OPCONXPS   | 1       | \*CHAR | -   [Y=yes] (default), N=no. | |            |         |        |     Set this parameter to Y when  |
 |            |         |        |     the SCANSPLF command will be  |
 |            |         |        |     used in an OpCon/xps          |
 |            |         |        |     scheduled job. Set this       |
@@ -658,7 +658,7 @@ It may be important to note that there are four parameters of the
 SCANOUTQ command that can be used to temporarily store the IBM i job ID
 and the spool file number of each spool file selected for processing.
 The parameters support entry of the name of an LSAM dynamic variable
-([without]{.ul} the special characters that make a dynamic variable into a replaceable token). The SCANOUTQ command stores values into one or
+([without] the special characters that make a dynamic variable into a replaceable token). The SCANOUTQ command stores values into one or
 more of these dynamic variables so that they are available to any
 captured data response rules that are linked to the Scan Rules for a
 spool file. This makes it possible to perform extended processing of
@@ -765,7 +765,7 @@ discussion and the table of fields for the SCANSPLF command.
 |            |         |        |     -   LT = less than            |
 |            |         |        |     -   LE = less than or equal   |
 |            |         |        |         to                        |
-|            |         |        |     -   [EQ]{.ul} = equal (the    | |            |         |        |         default value)            |
+|            |         |        |     -   [EQ] = equal (the    | |            |         |        |         default value)            |
 |            |         |        |     -   GE = greater than or      |
 |            |         |        |         equal to                  |
 |            |         |        |     -   GT = greater than         |
@@ -775,7 +775,7 @@ discussion and the table of fields for the SCANSPLF command.
 |            |         |        |     used for the first and last   |
 |            |         |        |     times of the day.             |
 +------------+---------+--------+-----------------------------------+
-| OPCONJOB   | 1       | \*CHAR | -   [Y=yes]{.ul} (default), N=no. | |            |         |        |     Set this parameter to Y when  |
+| OPCONJOB   | 1       | \*CHAR | -   [Y=yes] (default), N=no. | |            |         |        |     Set this parameter to Y when  |
 |            |         |        |     the SCANOUTQ command will be  |
 |            |         |        |     used in an OpCon/xps          |
 |            |         |        |     scheduled job. Set this       |
@@ -857,8 +857,8 @@ discussion and the table of fields for the SCANSPLF command.
 |            |         |        |     information about this        |
 |            |         |        |     keyword.                      |
 |            |         |        | -   Also refer to the             |
-|            |         |        |     [Add/Change/Copy SPLF Scan    | |            |         |        |     Rule](#Add/Chan){.MCXref      |
-|            |         |        |     .xref} for more information   |
+|            |         |        |     [Add/Change/Copy SPLF Scan    | |            |         |        |     Rule](#Add/Chan)      |
+|            |         |        |      for more information   |
 |            |         |        |     about SPLF Scan Rules.        |
 +------------+---------+--------+-----------------------------------+
 | JOBNAME    | 10      | \*CHAR | -   This field may optionally be  |
@@ -1590,7 +1590,7 @@ Captured Data Response Rules, so there is another advantage to using the
 built-in variable setting feature of the Captured Data Rules:
 
 [The Response Rule execution module always processes storage of the captured data to a variable first, before testing the qualification
-rules or executing the response command.]{.ul}
+rules or executing the response command.]
 
 When the rule qualifies for execution, the response command is analyzed
 to see if any Dynamic Variable tokens must be replaced with the current
@@ -1780,7 +1780,7 @@ on the LSAM feature that is executing:
 2. The job that is referenced for providing OpCon and IBM job
     identifier values varies per LSAM feature, according to the
     following list.
-    a.  [Message Management]{.ul}\         \
+    a.  [Message Management]\         \
         IBM Job ID = the job that issued the message. The OpCon
         information will not be available if that job was not started
         by, or Tracked by OpCon.\
@@ -1789,7 +1789,7 @@ on the LSAM feature that is executing:
         captured message data is the ID of the job that issued the
         message instead of the LSAM Message Management server job (as in
         older versions of this Agent software).
-    b.  [Operator Replay]{.ul}\         \
+    b.  [Operator Replay]\         \
         IBM Job ID = the script driver job, which is the job that shows
         in the OpCon Schedule.\
         \
@@ -1799,7 +1799,7 @@ on the LSAM feature that is executing:
         (currently) necessary to execute extra steps that will display
         the job ID on the screen, and then use Capture Data rules and
         Response Rules to store those values into dynamic variables.
-    c.  [SCANSPLF (Scan Spool Files)]{.ul}\         \
+    c.  [SCANSPLF (Scan Spool Files)]\         \
         IBM Job ID = the job ID will vary depending on the type of task
         using this command. Sometimes it will be the ID of the Spool
         File job, other times it will be the job that is performing the
@@ -1941,7 +1941,7 @@ positions for an amount total (in US dollars).
 Example control totals:
 
 - Debit item count = 385
-- Debit total amount = $13,719.22 ([the space between the $ and the     1 is intentional]{.ul})
+- Debit total amount = $13,719.22 ([the space between the $ and the     1 is intentional])
 - Credit item count = 296
 - Credit total amount = $13,719.22
 

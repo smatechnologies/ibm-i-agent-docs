@@ -36,20 +36,20 @@ Function Code of \*DTAARA to retrieve that value. Data Area Dynamic
 Variables originally supported specifying a start position and length of
 the character string to retrieve from a data area in the DB2 database.
 
-Currently, the former \"LDA Start/Length\" fields label has been
-extended to \"Char trim/LDA Str,Len\", implying that a non-numeric
+Currently, the former "LDA Start/Length" fields label has been
+extended to "Char trim/LDA Str,Len", implying that a non-numeric
 Dynamic Variable can have its value trimmed by a start position and
 Length in order to produce the actual value that will replace the
-variable\'s {TOKEN} at run time.
+variable's {TOKEN} at run time.
 
 Character string trimming can only be used for Type-V Dynamic Variables,
 since the other Type-L Dynamic Variables already use the Start and
 Length fields to control which part of an IBM i Local Data Area should
-be updated by the Dynamic Variable\'s value.
+be updated by the Dynamic Variable's value.
 
 If the Char Trim Start value is 3 and its Length is 5, then a Dynamic
-Variable VALUE of \'ABCDEFGHIJK\' will be reported at run time as
-\'CDEFG\'.
+Variable VALUE of 'ABCDEFGHIJK' will be reported at run time as
+'CDEFG'.
 
 This capability becomes more obviously useful when nesting Dynamic
 Variable tokens.
@@ -106,7 +106,7 @@ If the default Start plus Length will exceed the limit of position 128 of the va
 - Start\>0, Length\>0
 
 Specifying both a Start position and a Length will cause any space
-characters within that segment of the variable\'s current (or
+characters within that segment of the variable's current (or
 calculated) value to be included when the {TOKEN} is replaced. This
 applies to both leading spaces and trailing spaces.
 
@@ -141,7 +141,7 @@ character string, but not identified as a numeric value, then the length
 of the character string is assumed to start with position 1 of the
 character string and to end with the last non-blank character. In other
 words, it is not possible to specify that trailing blanks should be
-considered part of a token\'s value. However, the nature of typical IBM
+considered part of a token's value. However, the nature of typical IBM
 i programming makes this unimportant because wherever trailing spaces
 are important, the overall size of the field where a token value is
 placed is being managed by some rule or characteristic of the target
@@ -149,7 +149,7 @@ function. Therefore, the LSAM does not specify the length of the token
 value, but simply offers a field that is 128 bytes long, within which
 the token value is left-adjusted, and the space within this field that
 is not filled by specific characters is assumed to be filled with space
-characters (hexadecimal: X\'40\').
+characters (hexadecimal: X'40').
 
 If an LSAM function requires a numeric value to replace a Dynamic
 Variable token, then the Dynamic Variable must be carefully defined so
@@ -232,13 +232,13 @@ will appear as:
 - Output = 0012345.67
 
 To remove the leading zeros, change the value of Suppress Leading Zeros
-to a \'1\':
+to a '1':
 
 - Output = 12345.67
 
 The value above would appear if there were no Grouping Separator code,
-or if the Grouping Separator code were set to \'B\' (a special value
-used to mean \"none\"). To insert grouping separators of the whole
+or if the Grouping Separator code were set to 'B' (a special value
+used to mean "none"). To insert grouping separators of the whole
 numbers, set the Grouping Separator to a value such as the default value
 of a comma (,). Using a comma as the grouping separator would change the
 output to appear as:
@@ -256,7 +256,7 @@ their default values:
 Notice that in the previous output, when the value was positive, there
 was no sign present because the default controls indicate to use no sign
 for a positive value. However, a positive value could be represented
-according to a report\'s standard accounting format using the following
+according to a report's standard accounting format using the following
 example rules:
 
 - Positive value symbol = CR
@@ -280,10 +280,10 @@ The default choice for using a currency sign is to Float the sign to the
 left of the most significant digit. The number of spaces between the
 most significant digit and the symbol may be specified.
 
-- Currency symbol = \$
+- Currency symbol = $
 - Currency symbol location = F
 - Currency symbol relative position = 2
-- Output = \$12,345.67 CR
+- Output = $12,345.67 CR
 
 The currency symbol position of 2 imposes 1 space between the symbol and
 the most significant digit. Use a value of 1 if no space is desired.
@@ -292,7 +292,7 @@ On some financial reports the currency symbol is located in a fixed
 position relative to the decimal point of financial amounts, and the
 decimal point is also always located at a fixed position on the report.
 For example, if allowance must be made for a number in the millions (7
-whole integers) plus one space, then the currency symbol\'s fixed
+whole integers) plus one space, then the currency symbol's fixed
 position should be set to 9 (7 digits + 1 space + the character position
 which is always considered position 1). In the following example, the
 asterisk (\*) character is used in the output illustration only to show
@@ -301,8 +301,8 @@ assume that the colon represents space characters:
 
 - Currency symbol location = . (period)
 - Currency symbol relative position = 12
-- Output = \$\*\*\*\*\*12,345.67 CR
-- (actual appearance = \$12,345.67 CR)
+- Output = $\*\*\*\*\*12,345.67 CR
+- (actual appearance = $12,345.67 CR)
 
 Notice that there are 5 asterisks representing 5 space characters. This
 result happens because there are already six positions to the left of
@@ -317,7 +317,7 @@ the LSAM function where the Dynamic Variable token is being replaced.
 For example, a data element might have been captured by an LSAM tool
 such as Operator Replay scripting, the SCANSPLF command or the Message
 Management message text capture. If the captured numeric value was
-controlled by setting the Compress Numeric flag on in the LSAM\'s data
+controlled by setting the Compress Numeric flag on in the LSAM's data
 capture rule, then the numeric string would be stored internally in the
 LSAM Captured Data Log file as a series of numeric digits without any
 other characters. All signs, including decimal points, commas, negative
@@ -353,7 +353,7 @@ a positive threshold value of 2.
 
 The master record that defines Dynamic Variables supports a flexible set
 of numeric edit codes, but there may be special formatting desired, such
-as engaging IBM\'s user-defined edit codes (values 5 - 9). In this case
+as engaging IBM's user-defined edit codes (values 5 - 9). In this case
 it would be necessary to specify a user-defined program to return the
 correctly formatted value.
 
@@ -393,23 +393,23 @@ functions, as follows:
 
 Single quotes and commas can be escaped or replaced by specifying one of
 the following reserved values in the COMMA parameter of the SETDYNVAR
-command, or in the \"Group separator; chr ed\" field of Dynamic Variable
+command, or in the "Group separator; chr ed" field of Dynamic Variable
 master record maintenance (which is the same field that is updated by
 the COMMA command parameter).
 
 The values shown in this table refer to EBCDIC values. Most Latin
 character sets use the same hexadecimal values for the comma and the
-single quote. If a client site\'s IBM i partition uses a CCSID character
+single quote. If a client site's IBM i partition uses a CCSID character
 set with different hex values, please contact SMA Support for
 assistance.
 
-- C = replace any comma (,) X\'6B\' with a space (X\'40\')
-- Q = replace any single quote (\') X\'7D\' with a space (X\'40\')
+- C = replace any comma (,) X'6B' with a space (X'40')
+- Q = replace any single quote (') X'7D' with a space (X'40')
 - D = replace both a comma and a single quote with a space
 - E = escape a single quote by inserting an extra single quote
 - F = replace comma with space AND escape a single quote by doubling
 
-The concept of \"escaping\" the single quote is supported by IBM command
+The concept of "escaping" the single quote is supported by IBM command
 editors. When a character string is enclosed with a pair of single
 quotes, such as the VALUE( ) parameter of the SETDYNVAR command, any
 single quote that is included within the string would interrupt the

@@ -11,7 +11,7 @@ is running under IBM i.
 Important fundamental definitions of Job Tracking types are provided in
 the introduction to this topic. This information is necessary for
 understanding the application of Job Tracking functions. In addition,
-the LSAM\'s Alternate Job Notify service is an LSAM service required for
+the LSAM's Alternate Job Notify service is an LSAM service required for
 the True Passive type of job tracking. Details about how the Alternate
 Job Notify service works are provided in IBM i Components and Operation
 -\> Operating the LSAM -\> Alternate Job Notify Service.
@@ -60,7 +60,7 @@ an exit program with IBM i. Registered exit programs and the available
 exit points may be viewed using the IBM i command WRKREGINF. There is a
 set of LSAM programs used by a single registered exit program that
 support the various LSAM job tracking functions of: Tracking, Queuing
-and Capture. The LSAM\'s exit program is registered using the STRJOBTRK
+and Capture. The LSAM's exit program is registered using the STRJOBTRK
 command, or the corresponding LSAM menu function on the Job Tracking
 sub-menu.
 
@@ -73,27 +73,27 @@ work. Details about these rules may be found in IBM documentation. One
 of the most important rules is that there can be only one program
 registered for use with the SBMJOB command (that is, at the critical
 exit point required by the LSAM). This means that any of the IBM i LSAM
-job tracking features can only be used when the IBM i LSAM\'s exit
+job tracking features can only be used when the IBM i LSAM's exit
 program is the one that is registered for the SBMJOB command. Certain
 job scheduling tools and programs from other software vendors are known
 to also use this same exit point in the IBM i registry. The tools from
 these other software vendors must first be used to remove their exit
-point registration before the LSAM\'s STRJOBTRK command may be used. Due
+point registration before the LSAM's STRJOBTRK command may be used. Due
 to the potential complexity of exit program registration, the IBM i LSAM
 does not offer a tool that can be used to remove and reapply registered
 exit programs from other software vendors.
 
 If it is necessary to restore the exit program registration for other
-software in the system, for example, after completing the LSAM\'s
+software in the system, for example, after completing the LSAM's
 Capture Job function, then the LSAM command ENDJOBTRK or the
 corresponding LSAM sub-menu function on the Job Tracking menu must first
-be used to remove the LSAM\'s exit program registration. Once the
+be used to remove the LSAM's exit program registration. Once the
 ENDJOBTRK function has completed, third-party software tools may be used
 to reinstate the exit programs from their software.
 
 If there is a requirement to continue using registered exit programs
 from other software vendors while the LSAM is operational, it will not
-be possible to rely on Tracked or Queued jobs. However, the LSAM\'s
+be possible to rely on Tracked or Queued jobs. However, the LSAM's
 Capture Job function may provide a useful alternative to actively
 intercepting jobs that would normally be initiated by IBM i system users
 (rather than the OpCon/xps schedule). Once a job has been captured, it
@@ -188,7 +188,7 @@ OpCon does not have a way to directly store and deliver the LDA content
 of an IBM i job (although the LDA content is passed along by tracked and
 queued jobs); this is done by the LSAM on behalf of OpCon. Even so, once
 a captured job definition exists, there are then many ways that OpCon
-can indirectly control the content of the LDA by means of the LSAM\'s
+can indirectly control the content of the LDA by means of the LSAM's
 dynamic variables and its SETDYNVAR command. This is discussed in more
 detail under the section about dynamic variables.
 
@@ -197,7 +197,7 @@ attributes of tracked and queued jobs.
 
 ## Specifying a User ID for Queued or Captured Jobs
 
-The LSAM\'s job scheduling server program allows for and supports
+The LSAM's job scheduling server program allows for and supports
 special values in the Job User field as a job start request is received
 from OpCon. The general rule for jobs submitted by OpCon is that the
 user specified in the OpCon job master record (appearing in the User
@@ -212,13 +212,13 @@ must be registered as valid OpCon user IDs for IBM i jobs, or else it
 will be necessary to register in OpCon a false user ID just for this
 purpose.
 
-OpCon would permit the registration of a user ID named \"\*\" (a single
-asterisk) or named \"\*CURRENT.\" Either of these values appearing in an
+OpCon would permit the registration of a user ID named "\*" (a single
+asterisk) or named "\*CURRENT." Either of these values appearing in an
 IBM i job start request will allow the IBM i LSAM job scheduler to honor
 the original user ID that was captured from the SBMJOB command. To set
 up these fake user IDs, open the OpCon EM and route to: Administration
 -\> Security -\> Batch User Privileges. But it is important to remember
-that once one of these fake user IDs is registered, it\'s not possible
+that once one of these fake user IDs is registered, it's not possible
 to delete it. It could only be disabled to the extent that privileges
 for the user ID are revoked.
 
@@ -237,12 +237,12 @@ Automatic tracking types. But both of those types rely on much of the
 same logic presented in this section. Passive and Automatic tracking are
 explained in more detail below.
 
-The LSAM\'s registered exit program for the SBMJOB command intercepts
+The LSAM's registered exit program for the SBMJOB command intercepts
 jobs for tracking or queuing when a job is predefined in the LSAM Job
 Tracking Parameters master file. When a job qualifies for tracking the
 LSAM forwards a request to SAM and supporting services (SAM-SS) to track
-the defined job. The LSAM uses OpCon event commands \$JOB:TRACK and
-\$JOB:QUEUED to request that SAM-SS add the jobs to the indicated
+the defined job. The LSAM uses OpCon event commands $JOB:TRACK and
+$JOB:QUEUED to request that SAM-SS add the jobs to the indicated
 schedule and then monitor them. Job names that will be monitored must
 have been pre-configured within the special OpCon schedule called AdHoc,
 or within a user-defined, Named Schedule using the special rules for
@@ -254,10 +254,10 @@ if SAM_SS does not recognize the job name, the schedule name, the
 schedule date and/or the optional frequency registered in the LSAM Job
 Tracking Parameters master record. But if the request is accepted,
 SAM-SS returns a job initiation message (TX1) to the LSAM enabling the
-job\'s completion status to be sent to SAM-SS when the job completes.
+job's completion status to be sent to SAM-SS when the job completes.
 From this point forward, the job can be viewed in Schedule Operations in
 the User Interface of OpCon. If the request is rejected by SAM-SS, the
-LSAM records an error code of SMA0014 which can be viewed in the LSAM\'s
+LSAM records an error code of SMA0014 which can be viewed in the LSAM's
 Job Tracking Log display.
 
 When the LSAM determines that a job has qualified for job tracking or
@@ -318,7 +318,7 @@ spool file management, are supported for jobs of type Queued.
 |                                  | to a schedule even when no job   |
 |                                  | master was configured in         |
 |                                  | advance. This results in fewer   |
-|                                  | TE1 rejections of a \$JOB:TRACK  |
+|                                  | TE1 rejections of a $JOB:TRACK  |
 |                                  | event command.                   |
 +----------------------------------+----------------------------------+
 
@@ -352,7 +352,7 @@ different User ID, a different Job Description and/or a different Job
 Queue, depending on circumstances such as running a test version of a
 job versus a live production version of that job.
 
-The LSAM\'s Job Tracking exit program selects the actual instance of a
+The LSAM's Job Tracking exit program selects the actual instance of a
 job that will be tracked by using the User ID and the four fields that
 identify the Job Description and the Job Queue and the libraries where
 these objects are located in the IBM i DB2 database. For each of these
@@ -361,7 +361,7 @@ the special value of \*ALL that means any value will be accepted. Jobs
 whose IBM i definition fields do not match any registered combination of
 values will be ignored by the LSAM and allowed to start normally. Jobs
 that do match one of the combinations of values registered in the
-LSAM\'s Job Tracking Parameters master file will be selected for
+LSAM's Job Tracking Parameters master file will be selected for
 processing as a tracked or queued job in whichever OpCon Schedule was
 registered along with the IBM i job definition parameters.
 
@@ -426,7 +426,7 @@ IBM i job definition fields.
 In older versions of the IBM i LSAM, the \*ALL catch-all record for Job Tracking, if found, was the first form of job tracking qualifier to be selected, if it existed. Now, however, all other combinations of specifically qualified job tracking parameters will be considered first before allowing the catch-all record to be used. Thus, in the past it was not possible to have a catch-all record if it was critical to qualify IBM i jobs by their IBM i definition fields -- the catch-all record had to be deleted if it existed. Now, however, it may be useful to have a catch-all record in case certain specific qualifiers are not matched.
 :::
 
-In the following table, the word \"name\" is used to denote a specific
+In the following table, the word "name" is used to denote a specific
 value for an IBM i object name. Notice how the order of evaluation
 begins with all specific names having the highest priority. The rule
 that places the \*ALL special value lower in the list than specific
@@ -547,7 +547,7 @@ SBMJOB command in any way. This allows the original submitted job
 message from IBM i to be returned directly to the user or batch job that
 executed the SBMJOB command. Since the IBM i job is already being at
 least queued, if not started or even completed, by the time the LSAM
-sends the \$JOB:TRACK event command to OpCon, this means that the Queued
+sends the $JOB:TRACK event command to OpCon, this means that the Queued
 form of job tracking cannot support passive job tracking. However, a
 passively tracked job can still be automatically added to an OpCon
 schedule if other requirements for automatic job tracking are met.
@@ -561,9 +561,9 @@ message to be returned directly to the submitting job, and that is the
 critical reason why the True Passive tracking type must be used with
 some software applications.
 
-To use the True Passive tracking type, the \"Alternate Job Notify\"
+To use the True Passive tracking type, the "Alternate Job Notify"
 server must be configured either for full operation, or for the limited
-option \"T\" = Tracked jobs only. In the T mode, the Job Notify server
+option "T" = Tracked jobs only. In the T mode, the Job Notify server
 jobs will generate OpCon job start and completion signals only for jobs
 that are marked for Passive job tracking.
 
@@ -574,7 +574,7 @@ subsystem which has been configured for job notify services. The other
 JOBNFY server job handles the Job End messages. Both of the server jobs
 receive transaction records from user-specified data queues that are
 configured using the tools and procedures described in Components and
-Operation under the \"Alternate Job Notify Service\" section. The
+Operation under the "Alternate Job Notify Service" section. The
 transaction records are generated by the IBM i system after the LSAM
 configuration programs have registered the user-named data queue(s) with
 one or more IBM i subsystems. Following the registration process, the
@@ -597,7 +597,7 @@ subsystem that is registered for generating job queue entry
 transactions. Just after the job enters a job queue, the system
 notification message is able to provide this critical detail about the
 job being tracked, and that enables the Job Notify LSAM server job to
-send the \$JOB:TRACK event to OpCon. OpCon responds to the event command
+send the $JOB:TRACK event to OpCon. OpCon responds to the event command
 by sending back its TX1 job start transaction. Then the IBM i job ID
 from the LSAM Job Tracking master log can be combined with the OpCon job
 ID information to compose a complete LSAM job master record. This
@@ -618,7 +618,7 @@ OpCon job master options that control when a job may start, and they
 also cannot benefit from the OpCon job master message management or
 spool file processing. But the LSAM Message Management feature can still
 be used for any messages from a passively tracked job, and spool file
-management can be handled by the LSAM\'s SCANOUTQ command. Also, job
+management can be handled by the LSAM's SCANOUTQ command. Also, job
 completion processing by OpCon is fully supported. This means that
 subsequent jobs can be made dependent upon passively tracked jobs (as
 long as those jobs were not also using automatic job tracking), and
@@ -650,7 +650,7 @@ track each sub-job that may occur. Only the primary job has to be
 recognized, at least by the IBM i LSAM, in order to get it registered on
 an OpCon schedule. (The primary job can itself be automatically tracked
 by OpCon, but the LSAM must have been told to intercept that job and
-send a \$JOB:TRACK event to OpCon in order to get that job registered
+send a $JOB:TRACK event to OpCon in order to get that job registered
 under some OpCon schedule.)
 
 Automatic job tracking determines which OpCon schedule will show the job
@@ -658,16 +658,16 @@ using various methods. All sub-jobs that were submitted by a primary job
 (or by its sub-jobs) will be assigned to the same OpCon schedule as the
 primary job. Primary jobs could be any job that OpCon started, and when
 OpCon starts the job, then the OpCon schedule name is recorded in the
-LSAM as part of that job\'s profile. But when the LSAM uses Job Tracking
+LSAM as part of that job's profile. But when the LSAM uses Job Tracking
 to notify OpCon about a primary job, the it is the LSAM Job Tracking
 Parameters record that determines which OpCon schedule shows both that
-job and any sub-jobs it submits. The primary job\'s schedule can be
+job and any sub-jobs it submits. The primary job's schedule can be
 named in the LSAM Job Tracking Parameters record, or if that field is
 not updated specifically by the user, then the default OpCon schedule
-will be the automatically created (as necessary) \"AdHoc\" schedule.
+will be the automatically created (as necessary) "AdHoc" schedule.
 
 :::note
-This LSAM feature requires a corresponding enhancement to the OpCon SAM central server program that was generally released with OpCon 15.1 and newer versions. An on-demand enhancement is available as a program replacement for OpCon version 5.20 SP1 and for OpCon 15. Although the IBM i LSAM software may show this option, the LSAM can still be used with older versions of OpCon, but in that case the Automatic Job Tracking feature will not be supported. Attempting to track a job that is not pre-configured in older versions of OpCon will result in the job tracking request being rejected with the IBM i LSAM error code SMA0014. Refer to the IBM i LSAM Configuration topic, \"Extended Discussion of Parameter\" section, for instructions about an override that is available for error code SMA0014.
+This LSAM feature requires a corresponding enhancement to the OpCon SAM central server program that was generally released with OpCon 15.1 and newer versions. An on-demand enhancement is available as a program replacement for OpCon version 5.20 SP1 and for OpCon 15. Although the IBM i LSAM software may show this option, the LSAM can still be used with older versions of OpCon, but in that case the Automatic Job Tracking feature will not be supported. Attempting to track a job that is not pre-configured in older versions of OpCon will result in the job tracking request being rejected with the IBM i LSAM error code SMA0014. Refer to the IBM i LSAM Configuration topic, "Extended Discussion of Parameter" section, for instructions about an override that is available for error code SMA0014.
 :::
 
 ### Positive Versus Negative Automatic Job Tracking
@@ -699,8 +699,8 @@ provided next, but here is a summary of the basic rule:
 
 The Positive method of Automatic Job Tracking is established for the
 whole LSAM environment (considered to control the whole of a single IBM
-i partition or machine) by the value of \"1\" = Positive for the field
-\"Allow automatic tracking\" in the LSAM Job Tracking Configuration
+i partition or machine) by the value of "1" = Positive for the field
+"Allow automatic tracking" in the LSAM Job Tracking Configuration
 (option 7 on LSAM sub-menu 1).
 
 The positive method requires that the primary job be registered in the
@@ -709,44 +709,44 @@ work is still saved because the sub-jobs started by each primary job do
 not have to be registered.
 
 Regardless of the job tracking Type code in the LSAM Job Tracking
-Parameter record, the field \"Aut-track sub-jobs\" for the registered
-primary job must be set to a value of \"A\" = Allow in order for the
+Parameter record, the field "Aut-track sub-jobs" for the registered
+primary job must be set to a value of "A" = Allow in order for the
 sub-jobs to be automatically tracked.
 
 If any of the sub-jobs are registered in the LSAM Job Tracking
 Parameters master file, it is possible to suppress automatic tracking on
-a job-by-job basis by setting the \"Aut-track sub-jobs\" field to a
-value of \"P\" = Prevent. In this case, the sub-job itself will not be
+a job-by-job basis by setting the "Aut-track sub-jobs" field to a
+value of "P" = Prevent. In this case, the sub-job itself will not be
 tracked, and also any sub-sub-jobs that it may submit will not be
 automatically tracked. This method of using prevention when the LSAM is
 configured for the Positive mode could be used to suppress automatic
-tracking of a \"branch\" in the overall \"tree\" of the primary job\'s
+tracking of a "branch" in the overall "tree" of the primary job's
 complete work flow chart.
 
 Also, when a sub-job is registered in the LSAM Job Tracking Parameters
 master file, the Type code assigned to the Parameters record must be
 considered according to the rules summarized below. Use a Type code of
-\"A\" = Automatic Tracking, in order to register a sub-job that should
+"A" = Automatic Tracking, in order to register a sub-job that should
 simply be prevented from automatic tracking.
 
 #### Negative Automatic Job Tracking
 
 The Negative method of Automatic Job Tracking is established for the
 whole LSAM environment (considered to control the whole of a single IBM
-i partition or machine) by the value of \"2\" = Negative for the field
-\"Allow automatic tracking\" in the LSAM Job Tracking Configuration
+i partition or machine) by the value of "2" = Negative for the field
+"Allow automatic tracking" in the LSAM Job Tracking Configuration
 (option 7 on LSAM sub-menu 1).
 
 The negative method requires only that the primary job must have been
 started by OpCon, or that OpCon is already tracking the submitting job
 that started a given sub-job. In those cases, no other configuration of
-the LSAM or of OpCon is required. So the term \"negative\" means that
+the LSAM or of OpCon is required. So the term "negative" means that
 registration in the LSAM Job Tracking Parameters master files is only
 needed for the purpose of preventing sub-jobs of the registered primary
 job from being automatically tracked.
 
-Set the Job Tracking Parameters master file field \"Aut-track sub-jobs\"
-to a value of \"P\" = Prevent, to prevent automatic tracking of sub-jobs
+Set the Job Tracking Parameters master file field "Aut-track sub-jobs"
+to a value of "P" = Prevent, to prevent automatic tracking of sub-jobs
 from the registered job name.
 
 This prevention control also works to stop automatic tracking of an
@@ -758,12 +758,12 @@ automatic tracking.
 Any job names that are registered in the LSAM Job Tracking Parameters
 master file will be handled according to the Type code of the Parameters
 record. More information about the Type codes is offered below.
-Regardless of the Type code, a value of \"P\" in the \"Aut-track
-sub-jobs\" field will prevent sub-jobs submitted by this registered job
+Regardless of the Type code, a value of "P" in the "Aut-track
+sub-jobs" field will prevent sub-jobs submitted by this registered job
 from being automatically tracked.
 
 To register a primary job name (or a sub-job name) that should not be
-governed by its Type code, specify a Type value of \"A\" = Control
+governed by its Type code, specify a Type value of "A" = Control
 Auto-track only. This type code does not cause the LSAM to initiate any
 job tracking activity, so it is appropriate for registering Parameter
 records that exist only for the purpose of suppressing automatic job
@@ -778,15 +778,15 @@ automatic tracking strategies.
 
 - **Type T** = Job Tracking: May be used when OpCon has a
     pre-configured job master record. But the OpCon response to the
-    \$JOB:TRACK external event command will depend on whether the job
+    $JOB:TRACK external event command will depend on whether the job
     was pre-configured in the OpCon job master file. Having an OpCon job
     master record enables more OpCon automation support, but OpCon will
-    perform automatic tracking for the \$JOB:TRACK event if there is no
+    perform automatic tracking for the $JOB:TRACK event if there is no
     OpCon job master.
 
 - **Type Q** = Job Queuing: May only be used if the job was
     pre-configured in the OpCon job master file. This type code causes
-    the LSAM to generate a \$JOB:QUEUE event command, and that command
+    the LSAM to generate a $JOB:QUEUE event command, and that command
     will be rejected by OpCon if a job master record does not exist.
     Therefore, type Q must be used with care when the job is part of an
     automatic job tracking strategy.
@@ -801,21 +801,21 @@ automatic tracking strategies.
     record.
 
 - **Type A** = Automatic Tracking: Is used to register a primary job
-    or sub-job for the purpose of providing the \"Aut-track sub-jobs\"
-    code to the LSAM Job Tracking routines. The \"automatic track sub
-    jobs\" flag can be used to select (value \"A\") or prevent (value
-    \"P\") automatic tracking of individual jobs or sub-groups of jobs.
+    or sub-job for the purpose of providing the "Aut-track sub-jobs"
+    code to the LSAM Job Tracking routines. The "automatic track sub
+    jobs" flag can be used to select (value "A") or prevent (value
+    "P") automatic tracking of individual jobs or sub-groups of jobs.
     A job that is not otherwise selected for automatic tracking will be
-    sent to OpCon for automatic tracking if the Type code is \"A\" and
-    the Aut-track sub-jobs code is also \"A\". An A-A Job Tracking
+    sent to OpCon for automatic tracking if the Type code is "A" and
+    the Aut-track sub-jobs code is also "A". An A-A Job Tracking
     Parameters record works the same in the LSAM as a Type T record, in
     that the LSAM will intercept an independently submitted job, no
-    matter who started this job. The LSAM will send a \$JOB:TRACK event
+    matter who started this job. The LSAM will send a $JOB:TRACK event
     to OpCon, and OpCon will add it to the named schedule. The OpCon
     response to that external event command will depend on whether the
     job was pre-configured in an OpCon job master record, or not. When
     there is no matching job master record for the job in the named
-    OpCon schedule, that is when \"automatic\" tracking occurs, because
+    OpCon schedule, that is when "automatic" tracking occurs, because
     OpCon will add a daily (only) job record to the OpCon database.
 
 #### Rapid Implementation of OpCon Tracking
@@ -849,15 +849,15 @@ in the work flow.
 ## Execution of Captured Jobs
 
 In order to use the Capture Job tool, the LSAM Job Tracking feature must
-be started. Any form of job interception requires that the LSAM\'s exit
+be started. Any form of job interception requires that the LSAM's exit
 programs be registered with IBM i for the SBMJOB command. But job
 capturing differs from tracking and queuing in that the capture action
 will only be performed for a job or workstation that is temporarily
 registered to use the capture function, using the STRCAPJOB function
 (also found in the LSAM menus).
 
-Use the LSAM\'s STRCAPJOB command or the corresponding menu function in
-the LSAM\'s Job Tracking sub-menu to add or remove job or workstation
+Use the LSAM's STRCAPJOB command or the corresponding menu function in
+the LSAM's Job Tracking sub-menu to add or remove job or workstation
 names from a temporary list of jobs that will be enabled to perform the
 capture function. A job or workstation that has been registered to
 capture jobs will have every SBMJOB command intercepted and every job
@@ -895,7 +895,7 @@ specify the captured job ID.
 
 The attributes of a captured job can be defined and modified in various
 ways. It is possible to modify the actual SBMJOB command parameter
-values, the job\'s command line or even the LDA content associated with
+values, the job's command line or even the LDA content associated with
 the job. The priority of attributes definitions is:
 
 1. The original job attributes are captured by the LSAM.
@@ -904,16 +904,16 @@ the job. The priority of attributes definitions is:
 3. The somewhat limited set of OpCon/xps IBM i job master record
     parameters can be used to override the stored values of the captured
     job.
-4. LSAM Dynamic Variables can be predefined so that a job\'s attributes
+4. LSAM Dynamic Variables can be predefined so that a job's attributes
     can be automatically modified just before the LSAM actually submits
     the job, usually depending on circumstances that are present at the
     moment the job will execute.
-    a.  The LSAM\'s SETDYNVAR command can be used in a predecessor job
+    a.  The LSAM's SETDYNVAR command can be used in a predecessor job
         in the OpCon/xps schedule, or as a pre-run command on the
         RUNCAPJOB job. In this case, it becomes possible to apply
         OpCon/xps variables to the SETDYNVAR command line, so that
         OpCon/xps properties can be communicated to the LSAM for use in
-        redefining a job\'s parameters.
+        redefining a job's parameters.
     b.  Other types of Dynamic Variables defined in the LSAM master file
         can be used to retrieve and apply IBM i environmental values to
         almost any aspect of the captured job.
@@ -951,7 +951,7 @@ configured).
 Whenever a job has been recognized by the LSAM as qualifying for job
 tracking or queuing, after entering the SBMJOB command there will be
 messages like the ones in the following example, shown after the example
-of a typed \"sbmjob\" command. These messages appear instead of the IBM
+of a typed "sbmjob" command. These messages appear instead of the IBM
 i standard job submitted message (CPF1221).
 
 +----------------------------------+----------------------------------+
@@ -1120,25 +1120,25 @@ The job date applied under IBM i for Tracked, Queued or Captured job has special
 ## Local Data Area (LDA) Support
 
 Every IBM i job is supported by a system-defined local data area (LDA)
-of 1024 bytes that resides in the job\'s temporary library (QTEMP). This
+of 1024 bytes that resides in the job's temporary library (QTEMP). This
 LDA is deleted from the system when a job ends, as the QTEMP library is
-deleted. A job\'s LDA is not accessible from another job, except when
-the IBM i SBMJOB command passes the content of the submitting job\'s LDA
+deleted. A job's LDA is not accessible from another job, except when
+the IBM i SBMJOB command passes the content of the submitting job's LDA
 to the submitted job.
 
 As described above, most of the LSAM job tracking, queuing and capture
 functions are supported by an exit program that is called whenever the
-SBMJOB command from the operating system\'s QSYS library is used, as
-long as the LSAM\'s general job tracking function is active. When the
+SBMJOB command from the operating system's QSYS library is used, as
+long as the LSAM's general job tracking function is active. When the
 exit program executes it is part of the job that is submitting another
-job. Therefore, the exit program has access to the submitting job\'s
+job. Therefore, the exit program has access to the submitting job's
 LDA. The LSAM exit programs store the LDA content in an LSAM database
-file, keyed by the LSAM\'s job tracking number or by the captured job\'s
+file, keyed by the LSAM's job tracking number or by the captured job's
 unique Capture ID. The stored LDA content becomes available for
 maintenance until the intercepted job is executed. The LSAM job
 scheduling server program, or the LSAM utilities that allow a queued job
 to be released manually, both retrieve the LDA content from the database
-file and set the LDA of the submitting job just before the LSAM\'s own
+file and set the LDA of the submitting job just before the LSAM's own
 SBMJOB (or SBMJOB2) command is executed.
 
 There are two ways to maintain the captured LDA content. LSAM Dynamic
@@ -1219,7 +1219,7 @@ released, usually manually while OpCon/xps was down.
 
 When failed job status code SMA0052 appears, it is a signal that manual
 job control actions will be required from the operator to properly
-resolve the job\'s status under OpCon and to assure that any required
+resolve the job's status under OpCon and to assure that any required
 jobs have completed normally under IBM i. An illustration of this job
 status follows.
 
@@ -1233,7 +1233,7 @@ does not continue to track a job once it has been manually released.
 Therefore, the operator must manually inspect the job results to assure
 normal completion. Similarly, the operator will have to manually adjust
 the OpCon job status (for example, forcing the job status to normal
-completion) after inspecting the job\'s results. In summary, once an
+completion) after inspecting the job's results. In summary, once an
 operator chooses a manual process for releasing jobs, the automated
 processes will no longer attempt to control a job but will only attempt
 to prevent job duplication. Thus, if circumstances trigger this message
@@ -1245,7 +1245,7 @@ first place.
 
 When the IBM i system may start more than one job of the same name that
 would qualify for Job Queuing on an OpCon schedule, it is possible to
-use the \"Allow Multi-Instance\" box on the OpCon Job Master record to
+use the "Allow Multi-Instance" box on the OpCon Job Master record to
 either prevent or allow duplicate jobs to run at the same time. If
 multiple jobs are expected, then it is probably desirable to track them
 all on the OpCon schedule. However, if, for example, a human operator
@@ -1253,18 +1253,18 @@ accidentally starts a second instance of a job, then it may be preferred
 to prevent duplicate jobs from running.
 
 :::note
-Depending on the version of the OpCon that is being used, it may be necessary to request a patch to the SAM module for older versions of OpCon, in order to implement the logic that applies the \"Allow Multi-Instance\" box to the control of Queued Jobs.
+Depending on the version of the OpCon that is being used, it may be necessary to request a patch to the SAM module for older versions of OpCon, in order to implement the logic that applies the "Allow Multi-Instance" box to the control of Queued Jobs.
 :::
 
 When duplicate jobs are allowed to run at the same time, the OpCon
 schedule will show the jobs with the first job having only the original
 job name, while any duplicate jobs will be assigned a name that includes
-the original job name text plus a \$ sign and a sequence number. For
+the original job name text plus a $ sign and a sequence number. For
 example:
 
 - QJOBNAME
-- QJOBNAME\$0001
-- QJOBNAME\$0002
+- QJOBNAME$0001
+- QJOBNAME$0002
 
 Remember, though, that if the same job is started after all the previous
 duplicate jobs have ended, then the new job will simply replace the
@@ -1278,46 +1278,46 @@ instance of the same job name.
 The following constraints and configuration requirements define how
 OpCon and supporting LSAMs can control duplicate Queued Jobs.
 
-1. The \$JOB:TRACK event is not supported. The concept of Tracking
+1. The $JOB:TRACK event is not supported. The concept of Tracking
     implies that a job on the host system is already running (or, it
     will always be allowed to run by the IBM i LSAM with no
-    constraints). The only purpose of the \$JOB:TRACK event is to enable
+    constraints). The only purpose of the $JOB:TRACK event is to enable
     OpCon to become aware of, and optionally respond to the completion
     of a job that was started outside of the control of OpCon. Tracked
     jobs cannot be conditioned by any OpCon dependencies or other
     constraints, therefore the flag to Allow Multi-Instance will also
     have no effect on Tracked jobs.
-2. The \$JOB:QUEUE event is supported by the job master record flag to
+2. The $JOB:QUEUE event is supported by the job master record flag to
     Allow Multi-Instance. If this flag is checked, then duplicate,
     concurrent jobs will be allowed. If the flag is not checked (which
-    is the default setting for a new job), then the \$JOB:QUEUE event
+    is the default setting for a new job), then the $JOB:QUEUE event
     will be rejected if:
     a.  The job has the same name as a currently active job.
     b.  The job is designated for the same schedule as a currently
         active job.
     c.  The original job is still active. (*Refer to the discussion
-        below for more details about the term \"active.\"*) Once the
+        below for more details about the term "active."*) Once the
         original job finishes, with either status of successful or
-        failed, the job is allowed to be replaced by a new \$JOB:QUEUE
+        failed, the job is allowed to be replaced by a new $JOB:QUEUE
         event.
     d.  The new job start request designates the same run day as the
         currently active job. This constraint implies that if the same
         schedule has already been built for the next day, it will be
-        possible to run the Queued Job for the next day\'s schedule. But
-        if a \$JOB:QUEUE event specifies the date of the currently
+        possible to run the Queued Job for the next day's schedule. But
+        if a $JOB:QUEUE event specifies the date of the currently
         active job, then the request will be considered a duplicate and
         be rejected. It becomes critical to control the Date parameter
-        of the \$JOB:QUEUE event if a schedule from yesterday is still
+        of the $JOB:QUEUE event if a schedule from yesterday is still
         active after OpCon processing moves into the new day.
 3. Queued Jobs that fail the requirements for duplicate Queued Job
     prevention will be rejected and show in the IBM i LSAM an error code
     of SMA0014. (Technical support personnel may need to know that the
     rejection of the job is communicated from OpCon using the existing
     TE1 transaction type that includes a short description of
-    \"Duplicate Job\". This transaction type and short description are
+    "Duplicate Job". This transaction type and short description are
     translated by the LSAM to report the SMA0014 error in the LSAM Job
     Tracking logs.)
-4. The flag to \"Allow Multi-Instance\" is implemented only on the
+4. The flag to "Allow Multi-Instance" is implemented only on the
     OpCon job master record, and not in the Daily job table. The flag is
     designed to control the schedule and job build process, therefore,
     it has no meaning for jobs that are already built.
@@ -1331,11 +1331,11 @@ OpCon and supporting LSAMs can control duplicate Queued Jobs.
     then each distinct job could be associated with a different OpCon
     Schedule. This implies that a job of the same name could be built in
     two different OpCon schedules, where one job master record allows
-    duplicate Queued Jobs, whereas the other OpCon schedule\'s job
+    duplicate Queued Jobs, whereas the other OpCon schedule's job
     master record would prevent duplicate jobs. This makes it possible
     to have different controls for test and production environments.
 
-### Definition of an \"Active\" Job
+### Definition of an "Active" Job
 
 This information is intended for Technical Support personnel. It refers
 to information that is only visible to IBM i system operators who have
@@ -1349,15 +1349,15 @@ information.
 Tracked and Queued jobs are supported in a unique way by a block of data
 that is provided by the LSAM once a job has been defined in the host
 system where it will run (or is already running). This block of data is
-labeled \"PDATA\", referring to \"Process identification DATA.\" For IBM
+labeled "PDATA", referring to "Process identification DATA." For IBM
 i jobs, the PDATA includes the IBM i Job ID information, along with the
-LSAM\'s additional Job Tracking Sequence Number. The PDATA is provided
-to OpCon after the LSAM intercepts a job and sends one of the \$JOB
+LSAM's additional Job Tracking Sequence Number. The PDATA is provided
+to OpCon after the LSAM intercepts a job and sends one of the $JOB
 event commands to OpCon.
 
 The presence or absence of PDATA figures into the formula for
 multi-instance control of Queued jobs. For the purpose of this document,
-a reference to an \"active\" job is a reference to a job that has PDATA
+a reference to an "active" job is a reference to a job that has PDATA
 assigned to it already, and/or a reference to a job that has actually
 started running. When the job has not actually started running on the
 host system, it will not yet show as a truly active job in the OpCon
@@ -1366,11 +1366,11 @@ schedule at first.
 The time when a job is considered active also depends on how the job
 master record was configured. There are various schemes for defining job
 master records in OpCon that can be used as Tracked or Queued jobs. Job
-master records can be marked \"do not build\" in which case they will
-not appear on a schedule until a \$JOB:QUEUE (or \$JOB:TRACK and some
+master records can be marked "do not build" in which case they will
+not appear on a schedule until a $JOB:QUEUE (or $JOB:TRACK and some
 others) event command is received. But if a job master record is allowed
 to be built on the schedule by OpCon using methods that cause the job
-qualification process to effectively wait for a \$JOB:QUEUE event from
+qualification process to effectively wait for a $JOB:QUEUE event from
 the host, then the job would at first not have any PDATA associated with
 it.
 
@@ -1379,25 +1379,25 @@ actual running status of a job as follows:
 
 - **Not Active**: If a job is built on a daily schedule, and the job
     is not yet running, and the job does not have PDATA, then it is like
-    having a finished job on the schedule, in that a \$JOB:QUEUE event
+    having a finished job on the schedule, in that a $JOB:QUEUE event
     will be accepted and have the effect of rebuilding the Daily job
     from the job master.
 - **Active**: If a job is on the daily schedule with PDATA, whether it
     is running yet or not, and the job has not reached a finished
     status, then the Allow Multi-Instance flag will control whether a
-    \$JOB:QUEUE event is either rejected or causes a new instance of the
+    $JOB:QUEUE event is either rejected or causes a new instance of the
     job to be added to the schedule.
 - **Active**: If a job on the daily schedule was started by OpCon
     before receiving PDATA, then it is considered active from the time
     that OpCon generated the job start transaction. In this case, if a
-    \$JOB:QUEUE event arrives, it will either be rejected if
+    $JOB:QUEUE event arrives, it will either be rejected if
     multi-instance is not allowed, or it will cause a second instance of
     the job to be added to the schedule (with PDATA) if multi-instance
     is allowed. In this case, the IBM i host will have received the job
     start request for the original job and that will result in PDATA
     being sent back to OpCon as the job is submitted to run. This action
     becomes separate from the activity in the host that generated the
-    \$JOB:QUEUE event.
+    $JOB:QUEUE event.
 
 If questions arise related to the management of Queued Jobs, please
 contact SMA Support for assistance.
@@ -1413,16 +1413,16 @@ i LSAM master files and in the OpCon job master record of some schedule.
 #### IBM i LSAM Job Tracking Parameters
 
 According to the rules and constraints above, a IBM i Job Tracking
-Parameters master record must be configured for a Tracked Type of \"Q\"
-= queued. The Tracked Type of \"T\" = tracked cannot be controlled and
+Parameters master record must be configured for a Tracked Type of "Q"
+= queued. The Tracked Type of "T" = tracked cannot be controlled and
 duplicate Tracked jobs will always be allowed.
 
 If users wish to implement duplicate job restrictions on an existing
 OpCon job that was originally configured with the IBM i sub-type of
-\"Tracked Job,\" it\'s possible to change the job master to \"Queued
-Job.\" However, this would also require changing the corresponding IBM i
-LSAM Job Tracking Parameters record to a value of \"Q\" instead of
-\"T\". At the same time, the OpCon job master record must be carefully
+"Tracked Job," it's possible to change the job master to "Queued
+Job." However, this would also require changing the corresponding IBM i
+LSAM Job Tracking Parameters record to a value of "Q" instead of
+"T". At the same time, the OpCon job master record must be carefully
 examined when any job is changed from Tracked to Queued, since the
 Queued Job sub-type does allow OpCon to override the IBM i job
 parameters, whereas the previous Tracked Job type did not.
@@ -1447,8 +1447,8 @@ OpCon Job Master Record for IBM i Queued Job
 
 ![OpCon Job Master Record for IBM i Queued Job](../Resources/Images/IBM-i/OpCon-Job-Master-Record-for-IBM-i-Queued-Job.png "OpCon Job Master Record for IBM i Queued Job"){.flat}
 
-If the Job Type for an existing job is changed to \"Queued Job\" from
-\"Tracked Job,\" then it will be important to carefully review the job
+If the Job Type for an existing job is changed to "Queued Job" from
+"Tracked Job," then it will be important to carefully review the job
 description fields that appear at the bottom of the illustration above.
 After the job type change, some of those fields may show values that
 would be used by the IBM i LSAM queued job routines to override the
@@ -1461,7 +1461,7 @@ when the job started.
 ### Results of Duplicate Queued Job Prevention
 
 The IBM i LSAM agent software documents when a Queued Job request (that
-is, the \$JOB:QUEUE event command) has been rejected. The status of
+is, the $JOB:QUEUE event command) has been rejected. The status of
 tracked and queued jobs may be viewed using the WRKTRKJOB command or by
 selecting option 2: Job track logs, from the LSAM sub-menu 2: Job Track
 Menu.
@@ -1470,5 +1470,5 @@ Type option 5 next to any line showing error code SMA0014 and press
 \<**Enter**\> to display the log entry details. The Details display
 shows the **TE1** OpCon transaction code at the top, right. Just below,
 on the left next to the error code SMA0014 it shows the reason text for
-the rejection that was provided by OpCon. The reason text \"Duplicate
-Job\" will appear for this type of duplicate Queued Job rejection.
+the rejection that was provided by OpCon. The reason text "Duplicate
+Job" will appear for this type of duplicate Queued Job rejection.
