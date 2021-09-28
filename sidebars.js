@@ -31,8 +31,46 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'Operator Replay Scripts',
+      collapsed: true,
+      items: [
+        'operator-replay/overview',
+        'operator-replay/menu',
+        'operator-replay/operations',
+        'operator-replay/user-management',
+        'operator-replay/screens',
+        'operator-replay/additional-info',
+        'operator-replay/virtual-devices',
+      ], 
+    },
+    {
+      type: 'category', 
+      label: 'Job Tracking and Queuing',
+      collapsed: true,
+      items: [
+        'job-tracking/overview',
+        'job-tracking/tracking-types',
+        'job-tracking/using',
+        'job-tracking/details',
+        'job-tracking/screens',
+      ], 
+    },
+    {
+      type: 'category', 
+      label: 'Message Management',
+      collapsed: true,
+      items: [
+        'message-management/menu',
+        'message-management/operations',
+        'message-management/details',
+        'message-management/screens',
+        'message-management/logs',
+      ], 
+    },
+    {
+      type: 'category', 
       label: 'Events and Utilities',
-      collapsed: false,
+      collapsed: true,
       items: [
         'events-utilities/menu',
         'events-utilities/events-operations',
@@ -46,7 +84,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'Restricted Mode and Multi-Step Jobs',
-      collapsed: false,
+      collapsed: true,
       items: [
         'restricted-mode/menu',
         'restricted-mode/operations',
@@ -58,13 +96,13 @@ module.exports = {
     {
       type: 'category', 
       label: 'Commands and Utilities',
-      collapsed: false,
+      collapsed: true,
       items: [
         'commands-utilities/commands',
         {
           type: 'category', 
           label: 'Utilities',
-          collapsed: true,
+          collapsed: false,
           items: [
             'commands-utilities/events',
             'commands-utilities/lsam-operations',
@@ -82,7 +120,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'Environment Management',
-      collapsed: false,
+      collapsed: true,
       items: [
         'environment/index',
         'environment/operations',
@@ -93,7 +131,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'SMA File Transfer',
-      collapsed: false,
+      collapsed: true,
       items: [
         'file-transfer/overview',
         'file-transfer/operations',
@@ -104,7 +142,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'Security and Object Authority',
-      collapsed: false,
+      collapsed: true,
       items: [
         'security/strategy',
         'security/work-management-authority',
@@ -117,7 +155,7 @@ module.exports = {
     {
       type: 'category', 
       label: 'Software Maintenance (PTFs)',
-      collapsed: false,
+      collapsed: true,
       items: [
         'maintenance/ptf',
         'maintenance/process',
