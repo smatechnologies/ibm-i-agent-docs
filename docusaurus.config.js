@@ -3,7 +3,7 @@ module.exports = {
   title: 'SMA Technologies Help',
   tagline: 'IBMI i Agent',
   url: 'https://help.smatechnologies.com',
-  baseUrl: '/agents/ibm-i/',
+  baseUrl: '/opcon/agents/ibm-i/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
