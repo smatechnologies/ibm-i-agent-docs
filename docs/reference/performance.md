@@ -10,14 +10,14 @@ The procedures described in this topic should only be performed by experienced t
 
 There are certain IBM i LSAM Parameters that are made accessible for user maintenance in order make it possible to tune the LSAM server program performance. Among the LSAM functions that are subject to tuning are TCP/IP sockets communications and also LSAM monitoring of job completion status. There is not a single formula for tuning LSAM performance. The best settings for the LSAM Parameters will vary depending on the profile of the overall IBM i system work load, the level of IBM i system activity, the level of OpCon/xps job scheduling activity and the types of jobs being submitted by OpCon/xps, and finally also by the capacity of the IBM System i partition resources assigned to any one IBM i partition.
 
-This online help includes detailed discussion about each LSAM Parameter, mostly in [IBM i LSAM Configuration](Configuration.md). This topic summarizes groups of parameters to help with the evaluation of how those parameters could be set.
+This online help includes detailed discussion about each LSAM Parameter, mostly in [IBM i LSAM Configuration](/configuration/configuration). This topic summarizes groups of parameters to help with the evaluation of how those parameters could be set.
 
 There are presently three groups of LSAM performance parameters, all appearing on page 2 of the LSAM Parameters maintenance function (option 7 on the LSAM main menu).
 
 ### Job Scheduling Communications Performance Parameters
 
 Parameters in this group not discussed here are covered in detail in
-[IBM i LSAM Configuration](Configuration.md).
+[IBM i LSAM Configuration](/configuration/configuration).
 
 It is very important to note that the first parameter, Keep socket open,
 should always be set to Y = yes. This parameter is carried over from
@@ -148,7 +148,7 @@ Changes made to LSAM performance parameters will only take effect if the LSAM se
 ### JORS Communications Performance Parameters
 
 Parameters in this group not discussed here are covered in detail in
-[IBM i LSAM Configuration](Configuration.md).
+[IBM i LSAM Configuration](/configuration/configuration).
 
 JORS means job output retrieval system (or service). For the IBM i LSAM,
 JORS is the function that stores and later retrieves IBM i job log
@@ -216,7 +216,7 @@ aggressive system activity monitoring and avoiding an adverse impact on
 system performance. Its value must be set low enough that the LSAM job
 completion message monitor program will always stay ahead of any
 OpCon/xps request for a job status report. This parameter is also
-discussed in two places in [IBM i LSAM Configuration](Configuration.md).
+discussed in two places in [IBM i LSAM Configuration](/configuration/configuration).
 
 It is possible for the IBM i LSAM servers issue a false error message
 SMA0097. This can happen if the LSAM job completion message monitor job
@@ -224,7 +224,7 @@ SMA0097. This can happen if the LSAM job completion message monitor job
 idle time in the LSAM Parameters. If the LSAM ever does report that a
 job has failed with error code SMA0097, but it is clear that the job did
 finish normally, this can be prevented by lowering the Job message idle
-timer parameter value (refer to [Job message idle timer](Configuration.md#Job_message_idle_timer)). In
+timer parameter value (refer to [Job message idle timer](/configuration/configuration)). In
 some cases, it might also be necessary to increase the performance of
 the LSAM server job TXMMNG by changing the active job itself while it is
 active (which could be done with an OpCon/xps job during periods of peak
@@ -357,7 +357,7 @@ apparent is the ability to execute a CHGJOB (change job) command that
 would alter the run priority or time slice allocated to one or more of
 the LSAM server jobs. There is information in this online help about the
 names of the LSAM server jobs and the purpose of each, starting with
-[IBM i Components and Operation](Components-and-Operation.md). There are
+[IBM i Components and Operation](/operations/components). There are
 also IBM i commands that can be used to vary the allocation of system
 resources among IBM i subsystems.
 

@@ -10,7 +10,7 @@ An LSAM screen now provides the user with the ability to easily send external ev
 
 ### Define a Valid User ID and Password
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to [The STRSMA Command](Components-and-Operation.md#The).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **3** to choose the **Event management** menu in the SMA Main Menu.
 3. Enter **2** to choose the **External Event Password** option in the Event Menu.
 4. Enter a valid OpCon/xps user for **User Name** in the next menu.

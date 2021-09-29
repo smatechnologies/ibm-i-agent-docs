@@ -16,7 +16,7 @@ Please review the discussion below about Starting Message Management for importa
 ### Turn On Message Management -- Using the LSAM Menu
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **2** to choose the **Message management** menu in the SMA
     Main Menu.
 3. Enter **3** to choose the **Start Message** management (STRMSGMNG)
@@ -34,12 +34,12 @@ Please review the discussion below about Starting Message Management for importa
 ### Turn On Message Management -- Using the LSAM Command
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) **-
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command) **-
     or -**
 2. From outside of the LSAM menu system, use the command SMASETLIBL to
     set the job's library list to the LSAM environment library list.
     For more information on the SMASETLIBL command refer to
-    [SMASETLIBL](LSAM-Environment-Management.md#SMASETLI)
+    [SMASETLIBL](/environment/commands#smasetlibl).
 3. From a command entry line (or the CMD parameter of a SBMJOB
     command), type the LSAM command **STRMSGMNG**. F4=Prompt may be used
     to view the optional start mode parameter. Refer to [Starting     Message Management: Cold vs. Warm](#Starting) and
@@ -67,7 +67,7 @@ for messages.
 ### Turn Off Message Management
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **2** to choose the **Message management menu** in the SMA
     Main Menu.
 3. Enter **4** to choose the **End Message management (ENDMSGMNG)**

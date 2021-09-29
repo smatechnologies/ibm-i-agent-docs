@@ -212,7 +212,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
     or an LSAM Administrator with privileges to update LSAM PTF control
     file data.
 3. From a command line, enter **SMAGPL/STRSMA**. For more information
-    on **STRSMA** command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on **STRSMA** command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 4. Enter **9** to choose the **PTF and Security menu** in the LSAM Main
     Menu.
 5. Enter **7** to choose **PTF options configuration** in the PTF and
@@ -276,7 +276,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
     or an LSAM Administrator with privileges to update LSAM PTF control
     file data.
 2. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on **STRSMA** command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on **STRSMA** command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 3. Enter **9** to choose the **PTF and Security menu** in the LSAM Main
     Menu.
 4. Enter **3** to choose **Request PTF information or save files**. The
@@ -350,7 +350,7 @@ unapplied PTFs for the following exceptional conditions:
 - PTFs that include post-install instructions
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on **STRSMA** command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on **STRSMA** command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **9** to choose the PTF and Security menu in the LSAM Main
     Menu.
 3. Enter **1** to choose **Work with LSAM PTFs** in the PTF and
@@ -405,7 +405,7 @@ PTF application process are essentially similar.
     aspect of the LSAM software may require updating, and some LSAM
     features involve the management of authority assigned to QSECOFR.
 2. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on **STRSMA** command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on **STRSMA** command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 3. Enter **9** to choose the PTF and Security menu in the LSAM Main
     Menu.
 4. Enter **5** to choose **Apply cumulative PTF (SMAPTFCUM)** in the

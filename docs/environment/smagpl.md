@@ -46,7 +46,7 @@ Following an upgrade to the IBM i LSAM version 04.00.03, the default LSAM enviro
 - SMAPGM = LSAM base and/or patched programs
 - QGPL = IBM General Purpose Library (system management utility objects)
 
-There is an LSAM installation option that allows existing or new LSAM clients to choose QGPL as the location for LSAM environment controls (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](Installation.md#top) for installation instructions). The procedure for setting up this option is explained below. But even when the LSAM environment controls are installed to library QGPL, the new library SMAGPL must still be used because it contains the PTF control structures, and these may not be moved to the QGPL library. If the QGPL location option is selected, then the SMADEFAULT environment library list would be changed to put library QGPL in a leading position, as follows:
+There is an LSAM installation option that allows existing or new LSAM clients to choose QGPL as the location for LSAM environment controls (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](/installation/installation)) for installation instructions). The procedure for setting up this option is explained below. But even when the LSAM environment controls are installed to library QGPL, the new library SMAGPL must still be used because it contains the PTF control structures, and these may not be moved to the QGPL library. If the QGPL location option is selected, then the SMADEFAULT environment library list would be changed to put library QGPL in a leading position, as follows:
 
 - QTEMP = temporary library for each unique job
 - QGPL = IBM General Purpose Library (system management utility objects)
@@ -101,7 +101,7 @@ It will not work correctly to try to use the menu access commands or the LSAM se
 
 However, the three commands that manage the users library list do not create this problem, so they can be effectively used as long as the library list requested exists in the LSAM Environment master file that is located in the commands Product Library.
 
-More information about LSAM commands may be found in the next major section of this topic and in [Commands and Utilities](Commands-and-Utilities.md).
+More information about LSAM commands may be found in the next major section of this topic and in [Commands and Utilities](/commands-utilities/commands).
 
 ## SMAPTF Library Purpose Change
 

@@ -20,7 +20,7 @@ Job Notify service works are provided in IBM i Components and Operation
 
 Some examples of where dynamic variables may be used are offered in the
 procedural outlines above. There is more information about dynamic
-variables in [How Numeric Compression Is Managed for \*DB2](Dynamic-Variables.md#How).
+variables in [How Numeric Compression Is Managed for *DB2](/dynamic-variables/function-codes#how-numeric-compression-is-managed-for-db2).
 
 The type-L Dynamic Variable is especially useful with Tracked and Queued
 Jobs. It L is used exclusively to update the local data area (LDA)
@@ -1144,7 +1144,7 @@ SBMJOB (or SBMJOB2) command is executed.
 There are two ways to maintain the captured LDA content. LSAM Dynamic
 Variables may be used for all forms of intercepted jobs: tracked, queued
 or captured. For more information about Dynamic Variables, refer to
-[Dynamic Variables](Dynamic-Variables.md). The LSAM
+[Dynamic Variables](/dynamic-variables/overview). The LSAM
 menu system also provides access to a function for manually maintaining
 stored LDA content, but this function is available only for captured
 jobs.

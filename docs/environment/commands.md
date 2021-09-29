@@ -31,7 +31,7 @@ Environment name . . . . . . . .   [\*SELECT   ]{style="text-decoration: u
 
 The environment name parameter (ENV) supports three possible values, the
 same as are supported by the STRSMA command (except that the default in
-this case is different). Refer to [The STRSMA Command](Components-and-Operation.md#The) for more
+this case is different). Refer to the [STRSMA Command](/operations/lsam#the-strsma-command) for more
 information about the environment parameter and its values.
 
 The default ENV parameter value for the SMASETLIBL command is

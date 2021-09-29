@@ -25,7 +25,7 @@ SMA does not recommend storing custom programming within the LSAM environment. P
 
 To obtain a list of all objects that are relocated to the IBM i QGPL library, if that option is selected, use the LSAM function Work with object authority (LSAM menu 9, option 8). Use the function key F15=Subset to limit the list to "SMAGPL copy". When the subsetted list is displayed, the column "GPL" will show either a 1 or a 2 for each object listed. All objects marked 2 will always remain in the SMAGPL library. Objects marked with a 1 will be moved to the QGPL library, if that option is selected during the LSAM installation (or upgrade) process.
 
-More information about using the Work with objects function can be found in [LSAM Security and Object Authority](LSAM-Security-and-Object-Authority.md#top).
+More information about using the Work with objects function can be found in [LSAM Security and Object Authority](/security/strategy).
 
 ## IBM i LSAM Job-ending Message Table File
 

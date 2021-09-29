@@ -1604,9 +1604,9 @@ can manage use the braces (curly brackets) to surround the token name.
 
  
 
-More information on Event parameters may be found in [Events and Utilities Menu](Events-and-Utilities-Menu.md#top).
+More information on Event parameters may be found in [Events and Utilities Menu](/events-utilities/menu).
 Important information about translation table support that might affect
-OpCon token variable name syntax may be found in [Commands and Utilities](Commands-and-Utilities.md#top). For
+OpCon token variable name syntax may be found in [Commands and Utilities](/commands-utilities/commands). For
 additional information, refer to
 [Properties](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Properties.md)
  in the **Concepts** online help and/or [Defining Events](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Defining-Events.md#Defining)

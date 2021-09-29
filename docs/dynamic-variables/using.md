@@ -162,7 +162,7 @@ used in the job start requests.
 
 ## Dynamic Variables with OpCon External Event Commands
 
-OpCon External Event commands, explained in the [Events Screens and Windows](Events-and-Utilities-Menu.md#Events2)
+OpCon External Event commands, explained in the [Events Screens and Windows](/events-utilities/events-screens)
 section and in the separate **Concepts** online help, can be executed by
 Captured Data Response Rules (and by LSAM Message Management Parameter
 records). The LSAM Utilities menu option 1, as well as a set of IBM

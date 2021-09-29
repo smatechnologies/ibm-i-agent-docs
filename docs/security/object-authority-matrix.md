@@ -578,7 +578,7 @@ outside of the LSAM menu system, this command can only be used if the
 interactive job's library list was previously set equal to an LSAM
 environment. The interactive job library list can be set (outside of the
 LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL
-(refer to [Commands and Utilities](Commands-and-Utilities.md#top) for more
+(refer to [Commands and Utilities](/commands-utilities/commands) for more
 information about this command).
 
 #### REFFLOW command syntax
@@ -689,7 +689,7 @@ From outside of the LSAM menu system, this command can only be used if
 the interactive job's library list was previously set equal to an LSAM
 environment. The interactive job library list can be set (outside of the
 LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL
-(refer to [Commands and Utilities](Commands-and-Utilities.md#top) for more
+(refer to [Commands and Utilities](/commands-utilities/commands) for more
 information about this command).
 
 #### DSPOBJWU command syntax

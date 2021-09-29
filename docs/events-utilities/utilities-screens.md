@@ -2,8 +2,8 @@
 
 ## LSAM Utilities Configuration
 
--   **Screen Title**: LSAM Utilities Configuration
--   **Screen ID**: LSAUTLD301
+- **Screen Title**: LSAM Utilities Configuration
+- **Screen ID**: LSAUTLD301
 
 ##### Menu Pathways
 
@@ -358,8 +358,8 @@ and Utilities menu.
 In previous versions of the IBM i LSAM, there was a separate Application master file that had to be maintained. Now, the Application ID has become just the primary key field that helps gather Scan Rule records into groups. There is still a Work with SCANSPLF Applications function on the LSAM menu \# 3, but it is now only a convenience tool used to find applications and to copy or delete whole Application sets of Scan Rules at once.
 :::
 
--   **Screen Title**: Work with SCANSPLF Applications
--   **Screen ID**: LSAUTLD301
+- **Screen Title**: Work with SCANSPLF Applications
+- **Screen ID**: LSAUTLD301
 
 ##### Menu Pathways
 
@@ -377,13 +377,13 @@ Applications (\#3)
 
 ##### Options
 
--   **1=Select**: Select an Application ID and then branch into the Work
+- **1=Select**: Select an Application ID and then branch into the Work
     with Scan Rules function, which will be limited to only the Scan
     Rules that belong to the selected Application.
--   **3=Copy**: Select an Application and copy all of its Scan Rules to
+- **3=Copy**: Select an Application and copy all of its Scan Rules to
     a new Application ID. A pop-up window will appear offering an option
     to also copy any associated Response Rules.
--   **4=Delete**: Select one or more Application IDs from the list for
+- **4=Delete**: Select one or more Application IDs from the list for
     deletion. All records selected for deletion are presented in a
     confirmation list after \<**Enter**\> is pressed, and no records are
     deleted until the confirmation display is acknowledged. Remember
@@ -391,9 +391,9 @@ Applications (\#3)
     were assigned to the selected Application ID(s). A pop-up window
     will appear offering an option to also delete all associated
     Response Rules.
--   **7=Capt chart**: Type option 7 next to any Application line to view
+- **7=Capt chart**: Type option 7 next to any Application line to view
     a chart of related Capture and Response Rules and Dynamic Variables.
--   **8=Export**: Select one or more Applications that will be copied to
+- **8=Export**: Select one or more Applications that will be copied to
     a save file collection for exporting to a different LSAM
     environment. The Export option includes all related records such as
     Capture Rules and Response Rules, as well as any Dynamic Variable
@@ -401,11 +401,11 @@ Applications (\#3)
 
 ##### Functions
 
--   **F3=Exit**: Quits the list display and returns to the menu.
--   **F5=Refresh**: Retrieves the latest list information and updates
+- **F3=Exit**: Quits the list display and returns to the menu.
+- **F5=Refresh**: Retrieves the latest list information and updates
     the display.
--   **F12=Cancel**: Quits the list display and returns to the menu.
--   **F16=Search next**: When a value is entered in the Search content
+- **F12=Cancel**: Quits the list display and returns to the menu.
+- **F16=Search next**: When a value is entered in the Search content
     field, or a value shows in pink below this field from the last
     search request, pressing \<**F16**\> finds the next (or first)
     occurrence of the value specified. F16 is useful for finding each
@@ -415,10 +415,10 @@ Applications (\#3)
     \<**Enter**\> key for starting a new search. However, only
     \<**F16**\> may be used to continue a search past the first entry
     that satisfies the search criteria.
--   **F17=Top**: Causes the display to jump to the top of the list. This
+- **F17=Top**: Causes the display to jump to the top of the list. This
     is the equivalent of the first record in the file, but the sort
     order controls which records are listed first.
--   **F18=Bottom**: Causes the display to jump to the last entry in the
+- **F18=Bottom**: Causes the display to jump to the last entry in the
     list. This is the equivalent of the last record in the log file, but
     the sort order controls which records are listed last. This function
     key is very helpful when the file is big.
@@ -430,8 +430,8 @@ Application ID to a new Application ID. After the bulk copy is
 completed, use option 1=Select from the list of Applications to Work
 with Scan Rules for the new Application ID.
 
--   **Screen Title**: Copy SCANSPLF Application
--   **Screen ID**: LSAJ50R2
+- **Screen Title**: Copy SCANSPLF Application
+- **Screen ID**: LSAJ50R2
 
 ##### Menu Pathways
 
@@ -449,12 +449,12 @@ Applications (\#3) \> Option 3=Copy
 
 ##### Functions
 
--   **F3=Exit**: Quits the maintenance function without update and
+- **F3=Exit**: Quits the maintenance function without update and
     returns to the list display.
--   **F5=Refresh**: Restores the original field values that were
+- **F5=Refresh**: Restores the original field values that were
     presented when the maintenance display format first appeared,
     replacing any data that may have been typed.
--   **F12=Cancel**: Quits the maintenance function without update and
+- **F12=Cancel**: Quits the maintenance function without update and
     returns to the menu.
 
 #### Copy/Delete SCANSPLF Application (options 3 and 4)
@@ -464,8 +464,6 @@ will present a window that offers an opportunity to also copy or delete
 any Response Rules associated with the Scan Rules that belong to the
 Application.
 
- 
-
 This same format of window is presented when individual Scan Rules are
 copied or deleted (described below).
 
@@ -473,9 +471,9 @@ Manage Response Rules Window (Copy)
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                                          Manage Response Rules
-                                                                                    
-    [Copy response rules also?]{style="color: #008000;"}   [1]{style="color: #ffcc00;text-decoration: underline;"}  [0=No, 1=Yes          ]{style="color: #008000;"}                                                                           (Recommended: 1=Yes)
-                                                                                    
+
+[Copy response rules also?]{style="color: #008000;"}   [1]{style="color: #ffcc00;text-decoration: underline;"}  [0=No, 1=Yes          ]{style="color: #008000;"}                                                                           (Recommended: 1=Yes)
+
                                                                        Enter=Select   F12=Cancel
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -483,9 +481,9 @@ Manage Response Rules Window (Delete)
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                                          Manage Response Rules
-                                                                                    
-    [Delete response rules also?]{style="color: #008000;"}   [1]{style="color: #ffcc00;text-decoration: underline;"}  [0=No, 1=Yes        ]{style="color: #008000;"}                                                                           (Recommended: 1=Yes)
-                                                                                    
+
+[Delete response rules also?]{style="color: #008000;"}   [1]{style="color: #ffcc00;text-decoration: underline;"}  [0=No, 1=Yes        ]{style="color: #008000;"}                                                                           (Recommended: 1=Yes)
+
                                                                        Enter=Select   F12=Cancel
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -530,8 +528,8 @@ provided in Copy Files from Test to Production.
 
 ## Work with SPLF Scan Rules
 
--   **Screen Title**: Work with Spool File Scan Rules
--   **Screen ID**: LSAJ40R1
+- **Screen Title**: Work with Spool File Scan Rules
+- **Screen ID**: LSAJ40R1
 
 For each Application there are one or more Scan Rules that tell the
 SCANSPLF utility how to search the report spool file(s). Some or all of
@@ -543,8 +541,6 @@ Rules it will be possible to associate one or more Captured Data
 Response Rules, as described below, in order to perform operations on
 the data that is found by these Scan Rules or to respond with some
 command as each Scan Rule is satisfied.
-
- 
 
 Refer to the How To discussion earlier in this topic for more
 information about ways to apply Spool File Scan Rules to specific tasks.
@@ -571,47 +567,47 @@ Rules (\#4).
 
 ##### Functions
 
--   **F3=Exit**: Return to the LSAM menu.
--   **F5=Refresh**: Reload the list display with the latest data from
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the list display with the latest data from
     the master file.
--   **F6=Add**: Branch to the screen for creating a new Scan Rule
+- **F6=Add**: Branch to the screen for creating a new Scan Rule
     record.
--   **F11=Sort SPLF/JOB, Sort APP/SEQ\#, Sort APP/SPLF**: Pressing F11
+- **F11=Sort SPLF/JOB, Sort APP/SEQ\#, Sort APP/SPLF**: Pressing F11
     rotates among these three different sorting options for the list
     display. In each sort mode, the primary sort field heading is
     colored pink and underlined, and secondary sort fields are also
     underlined.
--   **F12=Cancel**: Return to the LSAM menu.
--   **F16=Search next**: When a search argument has been entered in the
+- **F12=Cancel**: Return to the LSAM menu.
+- **F16=Search next**: When a search argument has been entered in the
     Search content field, pressing F16 can either start a new search (if
     the content value was changed) or it can continue a search to look
     for the next list entry that matches the search argument, starting
     with the first record after the last match found.
--   **F17=Top**: Reposition the list display to show the first record in
+- **F17=Top**: Reposition the list display to show the first record in
     the list.
--   **F18=Bottom**: Reposition the list display to show the last record
+- **F18=Bottom**: Reposition the list display to show the last record
     in the list.
--   **F24=More keys**: Use this function key to change the function key
+- **F24=More keys**: Use this function key to change the function key
     legend displayed at the bottom of the screen. All function keys
     remain active, even if they do not appear in the currently displayed
     function key legend.
 
 ##### Options
 
--   **2=Change**: To change a record, type 2 in the Opt field next to
+- **2=Change**: To change a record, type 2 in the Opt field next to
     the record(s). Press \<**Enter**\> to proceed to the Change detail
     screen.
--   **3=Copy**: To copy a record, type 3 in the Opt field next to the
+- **3=Copy**: To copy a record, type 3 in the Opt field next to the
     record. Press \<**Enter**\> to proceed to the Copy detail screen.
     During the copy process, a pop-up window will offer an option to
     also copy any Response Rules that are associated with the Scan Rule
     being copied.
--   **4=Delete**: To delete one or more records, type 4 next to each
+- **4=Delete**: To delete one or more records, type 4 next to each
     record. Press \<**Enter**\> to proceed to the Delete confirmation
     window. During the delete process, a pop-up window will offer an
     option to also delete any Response Rules that are associated with
     the Scan Rule being deleted.
--   **5=Display**: To display record details, type 5 next to each
+- **5=Display**: To display record details, type 5 next to each
     record. Press \<**Enter**\> to proceed to the display details
     screen. Typing option 5 next to many or all records at once before
     pressing \<**Enter**\> is a convenient way to review all the
@@ -620,8 +616,8 @@ Rules (\#4).
 
 ### Add/Change/Copy SPLF Scan Rule
 
--   **Screen Title**: Copy SPLF Scan Rule
--   **Screen ID**: OPRR50R2
+- **Screen Title**: Copy SPLF Scan Rule
+- **Screen ID**: OPRR50R2
 
 Refer to the How To discussion earlier in this topic for more
 information about the meaning and purpose of the fields on this display.
@@ -1244,17 +1240,17 @@ The order of the fields listed in the table below will vary, depending on the se
 
 ##### Functions
 
--   **F3=Exit**: Return to the LSAM menu.
--   **F5=Refresh**: Reload the maintenance display with the original
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the maintenance display with the original
     default values for Add, Copy or Change, discarding any new typed
     input.
--   **F8=DynVar**: When the cursor is positioned in the Scan Value
+- **F8=DynVar**: When the cursor is positioned in the Scan Value
     field, use this function key to view a window of registered Dynamic
     Variable values and select a value to be inserted into the Scan
     Value field.
--   **F12=Cancel**: Return to the Work with SPLF Scan Rules list
+- **F12=Cancel**: Return to the Work with SPLF Scan Rules list
     display.
--   **PageDown/PageUp**: When the LSAM Utilities Configuration option is
+- **PageDown/PageUp**: When the LSAM Utilities Configuration option is
     set to use the 2-page format for this maintenance display, the
     PageDown and PageUp keys can be used to move between the two pages.
     NOTE: If Enter is pressed while page 1 is on display, the master
@@ -1264,8 +1260,8 @@ The order of the fields listed in the table below will vary, depending on the se
 
 ## Work with Capture Response Rules
 
--   **Screen Title**: Work with Capture Response Rules
--   **Screen ID**: OPRR50R1
+- **Screen Title**: Work with Capture Response Rules
+- **Screen ID**: OPRR50R1
 
 The same data capture response functions support both Screen data
 capture for Operator Replay and report data capture for the SCANSPLF
@@ -1275,8 +1271,6 @@ capture. Each actual data capture definition and the captured data
 record are labeled by their Type field, where "C" = screen capture and
 "S" = spool file capture. The list column headings will change
 depending on the subset rule that is currently in effect.
-
- 
 
 Refer to the How To discussion earlier in this topic for more
 information about ways to use data capture and captured data response
@@ -1376,40 +1370,40 @@ Response Rules (\#5).
 
 ##### Functions
 
--   **F3=Exit**: Return to the LSAM menu.
--   **F5=Refresh**: Reload the list display with the latest data from
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the list display with the latest data from
     the master file.
--   **F6=Add**: Branch to the screen for creating a new Capture Response
+- **F6=Add**: Branch to the screen for creating a new Capture Response
     Rule record.
--   **F12=Cancel**: Return to the LSAM menu.
--   **F15=Subset**: When this program was called directly from the LSAM
+- **F12=Cancel**: Return to the LSAM menu.
+- **F15=Subset**: When this program was called directly from the LSAM
     menu, this function key appears, permitting a change to the type of
     Response rule appearing in the list. The Subset window offers a
     choice of Type C = screen capture response rules, or S = SCANSPLF
     data capture response rules.
--   **F16=Search next**: When a search argument has been entered in the
+- **F16=Search next**: When a search argument has been entered in the
     Search content field, pressing F16 can either start a new search (if
     the content value was changed) or it can continue a search to look
     for the next list entry that matches the search argument, starting
     with the first record after the last match found.
--   **F17=Top**: Reposition the list display to show the first record in
+- **F17=Top**: Reposition the list display to show the first record in
     the list.
--   **F18=Bottom**: Reposition the list display to show the last record
+- **F18=Bottom**: Reposition the list display to show the last record
     in the list.
--   **F24=More keys**: Change the function key line to show additional
+- **F24=More keys**: Change the function key line to show additional
     supported keys.
 
 ##### Options
 
--   **2=Change**: To change a record, type 2 in the Opt field next to
+- **2=Change**: To change a record, type 2 in the Opt field next to
     the record(s). Press \<**Enter**\> to proceed to the Change detail
     screen.
--   **3=Copy**: To copy a record, type 3 in the Opt field next to the
+- **3=Copy**: To copy a record, type 3 in the Opt field next to the
     record. Press \<**Enter**\> to proceed to the Copy detail screen.
--   **4=Delete**: To delete one or more records, type 4 next to each
+- **4=Delete**: To delete one or more records, type 4 next to each
     record. Press \<**Enter**\> to proceed to the Delete confirmation
     window.
--   **5=Display**: To display record details, type 5 next to each
+- **5=Display**: To display record details, type 5 next to each
     record. Press \<**Enter**\> to proceed to the display details
     screen. Typing option 5 next to many or all records at once before
     pressing \<**Enter**\> is a convenient way to review all the
@@ -1418,8 +1412,8 @@ Response Rules (\#5).
 
 ### Add/Change/Copy Capture Response Rules
 
--   **Screen Title**: Copy Capture Response Rule
--   **Screen ID**: OPRR50R2
+- **Screen Title**: Copy Capture Response Rule
+- **Screen ID**: OPRR50R2
 
 Refer to the How To discussion earlier in this topic for more
 information about the meaning and purpose of the fields on this display,
@@ -1844,34 +1838,34 @@ option 3=Copy.
 
 ##### Functions
 
--   **F3=Exit**: Return to the LSAM menu.
--   **F4=Prompt**: When the cursor is positioned in the Capture
+- **F3=Exit**: Return to the LSAM menu.
+- **F4=Prompt**: When the cursor is positioned in the Capture
     identifier or Capture sequence fields, a window appears for
     selecting from a list of available capture identifiers. The contents
     of the list depends on whether this display is being used for
     Operator Replay screen data capture, or for SCANSPLF report data
     capture.
--   **F5=Refresh**: Reload the maintenance display with the original
+- **F5=Refresh**: Reload the maintenance display with the original
     default values for Add, Copy or Change, discarding any new typed
     input.
--   **F8=DynVar**: Open a window to select an available Dynamic
+- **F8=DynVar**: Open a window to select an available Dynamic
     Variable, for use in the Response Command or the Compare Data
     fields.
--   **F9=Event cmds**: Open a window to select from a list of available
+- **F9=Event cmds**: Open a window to select from a list of available
     LSAM Event commands, to be inserted into the Response Command field
     after the Event command fields are filled in. (Refer to discussion
     below about using OpCon property (variable) tokens with Event
     commands.)
--   **F12=Cancel**: Return to the Work with Capture Response Rules list
+- **F12=Cancel**: Return to the Work with Capture Response Rules list
     display.
--   **F13=Full CMD**: Branch to a sub-display that uses the whole screen
+- **F13=Full CMD**: Branch to a sub-display that uses the whole screen
     to show the entire available space for entering long command text
     strings. Any data entered on the short (part 1) command entry line
     will be carried forward for display on the full command entry
     screen. After returning from the full entry screen, the first 214
     characters of the longer command will appear in the short (part 1)
     Response cmd field.
--   **F24=More keys**: Change function key line to show additional
+- **F24=More keys**: Change function key line to show additional
     supported keys.
 
 #### LSAM Event Commands and OpCon/xps Property Tokens
@@ -1883,8 +1877,6 @@ of available Event commands and then to have their keyword fields
 automatically prompted. When an Event command is placed into the
 response command line, and only for Event commands, the LSAM programs
 will support embedded OpCon/xps property (variable) tokens.
-
- 
 
 The feature of including OpCon/xps property tokens in an LSAM Event
 command is described in complete detail in the topic about Message
@@ -1905,8 +1897,8 @@ actually captured from either a display screen during an Operator Replay
 script execution, or from a report line during the use of the SCANSPLF
 command.
 
--   **Screen Title**: Display Captured Data Log
--   **Screen ID**: OPRL40R1
+- **Screen Title**: Display Captured Data Log
+- **Screen ID**: OPRL40R1
 
 The same data capture response functions support both Screen data
 capture for Operator Replay and report data capture for the SCANSPLF
@@ -1915,8 +1907,6 @@ that is useful in distinguishing between the two different types of data
 capture. Each actual data capture definition and the captured data
 record are labeled by their Type field, where "C" = screen capture,
 "S" = spool file capture and 'M' = Message data.
-
- 
 
 Refer to the How To discussions above in this topic for more information
 about ways to use data capture and captured data response rules.
@@ -1945,43 +1935,43 @@ Main Menu \> Operator replay menu (\#4) \> Display Captured Data log
 
 ##### Functions
 
--   **F3=Exit**: Return to the LSAM menu.
--   **F5=Refresh**: Reload the list display with the latest data from
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the list display with the latest data from
     the master file.
--   **F12=Cancel**: Return to the LSAM menu.
--   **F15=Subset**: Supports a change to the type of captured data
+- **F12=Cancel**: Return to the LSAM menu.
+- **F15=Subset**: Supports a change to the type of captured data
     entries appearing in the list. The Subset window offers a choice of
     Type C = screen capture response rules, or S = SCANSPLF data capture
     response rules.
--   **F16=Search next**: When a search argument has been entered in the
+- **F16=Search next**: When a search argument has been entered in the
     Search content field, pressing F16 can either start a new search (if
     the content value was changed) or it can continue a search to look
     for the next list entry that matches the search argument, starting
     with the first record after the last match found.
--   **F17=Top**: Reposition the list display to show the first record in
+- **F17=Top**: Reposition the list display to show the first record in
     the list.
--   **F18=Bottom**: Reposition the list display to show the last record
+- **F18=Bottom**: Reposition the list display to show the last record
     in the list.
--   **F24=More keys**: Change the function key line to show additional
+- **F24=More keys**: Change the function key line to show additional
     supported keys.
 
 ##### Options
 
--   **5=Display**: To display record details, type 5 next to each
+- **5=Display**: To display record details, type 5 next to each
     record. Press \<**Enter**\> to proceed to the display details
     screen. Typing option 5 next to many or all records at once before
     pressing \<**Enter**\> is a convenient way to review all the
     definition details at once. Press \<**Enter**\> to advance as each
     detail screen is presented.
--   **9=WRKJOB**: Calls the IBM i Work with Job function for the job
+- **9=WRKJOB**: Calls the IBM i Work with Job function for the job
     number that appears in the list. This function can help find output
     produced by a captured data response rule, or it can help find the
     spool file that was scanned by the SCANSPLF command.
 
 ### Display Captured Data Log Detail
 
--   **Screen Title**: Display Captured Data Log Detail
--   **Screen ID**: OPRL40R5
+- **Screen Title**: Display Captured Data Log Detail
+- **Screen ID**: OPRL40R5
 
 ##### Menu Pathways
 
@@ -2092,13 +2082,13 @@ log (\#8) \> option 5=Display.
 
 ##### Functions
 
--   **PageDown/Up**: Use the PageDown and PageUp function keys to toggle
+- **PageDown/Up**: Use the PageDown and PageUp function keys to toggle
     the display of captured data between lines 1-12 and 13-24.
--   **F3=Exit**: Return to the LSAM menu.
--   **F9=WRKJOB**: Branch to the IBM i Work with job menu, to display
+- **F3=Exit**: Return to the LSAM menu.
+- **F9=WRKJOB**: Branch to the IBM i Work with job menu, to display
     detailed information about the IBM i Job ID named in the display
     panel.
--   **F12=Cancel**: Return to the list of log entries.
+- **F12=Cancel**: Return to the list of log entries.
 
 ## Display Data Capture Debug Log
 
@@ -2108,8 +2098,6 @@ the Capture Data and Capture Response Rules programs. The log entries
 that may be observed in this display may seem apparent to users familiar
 with data capture and response.
 
- 
-
 LSAM menu 3. Events and Utilities Menu, contains option 7. LSAM Utility
 configuration, where a flag may be set to turn on debug logging for all
 of the LSAM data capture and captured data response actions. This debug
@@ -2118,15 +2106,11 @@ SCANSPLF command. The debug log entries would prove exactly when the
 system captured data, when it processed Dynamic Variables and which
 response rules were executed.
 
- 
-
 The debugging feature could be turned off for better performance in
 systems that do not require extensive audit logging or debugging of any
 problems. On the other hand, debug logging should be turned on when
 extensive system audit support is required, because the debug log
 provides detailed evidence of all automated operations.
-
- 
 
 If technical support is needed for apparent problems with either
 capturing data or executing response rules, turn on the debug function
@@ -2134,9 +2118,7 @@ in LSAM menu 3. After attempting execution of the Operator Replay
 script, or the SCANSPLF command that is causing trouble, use the SMASUP
 log file extract command to retrieve the debug log information and send
 the resulting save file from library SMALOG to SMA Support for
-assistance. (Refer to [Operation of Extracting LSAM Log and Master Files](Log-File-and-Database-Management.md#Operatio) for more information about how to use the SMASUP command.)
-
- 
+assistance. (Refer to [Operation of Extracting LSAM Log and Master Files](/logs-database/extracting) for more information about how to use the SMASUP command.)
 
 Following is a table of Entry_Code values that may be observed in the
 list of debug log entries. These entry labels help to identify the

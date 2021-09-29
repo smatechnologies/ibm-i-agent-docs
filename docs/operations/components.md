@@ -2,7 +2,7 @@
 
 ## Core Programs and Files
 
-A summary of the programs and files installed for the IBM i LSAM is available in [IBM i LSAM Programs and Files](Programs-and-Files.md#top).
+A summary of the programs and files installed for the IBM i LSAM is available in [IBM i LSAM Programs and Files](/reference/programs-files).
 
 ## Primary Server Jobs
 

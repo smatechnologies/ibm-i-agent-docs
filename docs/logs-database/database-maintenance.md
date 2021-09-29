@@ -52,6 +52,6 @@ server jobs so that files can be reorganized. However, the SMARGZ
 command will also restart the LSAM server jobs when it has completed its
 tasks.
 
-For more information about using the SMARGZ command, refer to [Commands and Utilities](Commands-and-Utilities.md#top). Also
-refer to [IBM i LSAM Configuration](Configuration.md#top) for more information about letting LSAM automatic procedures
+For more information about using the SMARGZ command, refer to [Commands and Utilities](/commands-utilities/commands). Also
+refer to [IBM i LSAM Configuration](/configuration/configuration) for more information about letting LSAM automatic procedures
 execute the SMARGZ command.

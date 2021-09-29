@@ -629,8 +629,7 @@ Display Captured Data Log Detail
 +----------------+----------------------------------------------------+
 |                | **Note:** The remaining fields on this display are |
 |                | the same as documented for the SCANSPLF utility in |
-|                | [Events and Utilities                              | |                | Menu                                               |
-|                | ](Events-and-Utilities-Menu.md#top) |
+|                | [Events and Utilities Menu](/events-utilities/menu) |
 |                | .                                            |
 +----------------+----------------------------------------------------+
 

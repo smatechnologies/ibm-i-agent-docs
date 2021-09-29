@@ -25,7 +25,7 @@ Tracking completes the exit point registration for processing the IBM i
 SBMJOB command, and then the LSAM Job Tracking status function reports
 that the Job Tracking status is STARTED. Starting the Alternate Job
 Notify service is a separate process that is also required only if True
-Passive tracking will be used. For more information, refer to [Alternate Job Notify Service](Components-and-Operation.md#Alternat2)
+Passive tracking will be used. For more information, refer to [Alternate Job Notify Service](/operations/lsam#alternate-job-notify-service)
 .
 
 Master and control file maintenance functions found in the LSAM Job
@@ -71,7 +71,7 @@ procedure.
 
 For instructions about starting the Alternate Job Notify service of the
 LSAM, required only when True Passive tracking will be used, refer to
-the instructions under [Alternate Job Notify Service](Components-and-Operation.md#Alternat2).
+the instructions under [Alternate Job Notify Service](/operations/lsam#alternate-job-notify-service).
 
 ### Stopping Job Tracking
 
@@ -107,7 +107,7 @@ following procedures.
 
 For instructions about stopping the Alternate Job Notify service of the
 LSAM, required only when True Passive tracking will be used, refer to
-the instructions in [IBM i Components and Operation](Components-and-Operation.md#top).
+the instructions in [IBM i Components and Operation](/operations/components).
 
 ### Tracking or Queuing an External Job
 
@@ -409,8 +409,7 @@ SBMJOB exit program technique to detect job starts.
 3. Enter **6** to choose the **LSAM Management menu** in the SMA Main
     Menu.
 4. Enter **8** to choose the **Alternate Job Notify** sub-menu.
-5. If not already completed, perform the [Instructions for Configuring     the Alternate Job Notify
-    Service](Components-and-Operation.md#Instruct)
+5. If not already completed, perform the [Instructions for Configuring the Alternate Job Notify Service](/operations/lsam#instructions-for-configuring-the-alternate-job-notify-service)
     for the IBM i subsystem where the job will execute.
 6. Use function key \<**F12**\> as necessary to return to the **LSAM
     Main Menu**.
@@ -481,7 +480,7 @@ SBMJOB exit program technique to detect job starts.
         be adjusted using "Delay job end notify proc" value in the
         **Alternate Job Notify Configuration** function, which is option
         **7** on the Alternate Job Notify sub-menu. For more
-        information, refer to [Alternate Job Notify         Configuration](Components-and-Operation.md#Alternat4)
+        information, refer to [Alternate Job Notify Configuration](/operations/lsam#alternate-job-notify-configuration)
         .
 22. View the AdHoc or other named schedule to monitor the job status in
     the OpCon Enterprise Manager.
@@ -600,7 +599,7 @@ about these controls may be found in [How LSAM Job Tracking Works](#How).
         **7** on the Alternate Job Notify sub-menu. More information
         about passively tracked jobs may also be available in the
         Alternate Job Notify Log display (LSAM menu 6, sub-menu 8,
-        option 2). For more information, refer to [Alternate Job Notify         Configuration](Components-and-Operation.md#Alternat4)
+        option 2). For more information, refer to [Alternate Job Notify Configuration](/operations/lsam#alternate-job-notify-configuration)
         .
 16. View the AdHoc or other named schedule to monitor the job status in
     the OpCon Enterprise Manager.

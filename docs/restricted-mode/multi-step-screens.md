@@ -202,7 +202,7 @@ Main Menu \> Restricted Mode and Multi-Step Job menu (\#5) \> Option
 ### F15=Display/Maintain LDA
 
 Both the Display and the Maintain functions for the LDA (IBM i job Local
-Data Area) are described in [F15 = Change LDA](Job-Tracking-and-Queuing.md#F152).
+Data Area) are described in [F15 = Change LDA](/job-tracking/screens#f15--view-lda).
 
 That function and this Multi-Step Job Scripting feature both share the
 same LSAM file (JOBLDAF00) to store LDA images. The key to each LDA

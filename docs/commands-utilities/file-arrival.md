@@ -118,7 +118,7 @@ Agent's capabilities that are not already supported by the OpCon EM job
 definition panel.
 
 :::note
-The two variable prefix characters "$@" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of "$@". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the chapter about [Utilities Screens and Windows](Events-and-Utilities-Menu.md#Utilitie2) for more information about changing the prefix characters.
+The two variable prefix characters "$@" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of "$@". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the chapter about [Utilities Screens and Windows](/events-utilities/utilities-screens) for more information about changing the prefix characters.
 :::
 
 The IBM i Agent now supports a system-reserved naming convention for

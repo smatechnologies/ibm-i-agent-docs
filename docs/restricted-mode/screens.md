@@ -773,7 +773,7 @@ Main Menu \> Restricted mode menu (\#5) \> Setup environment (\#2)
 - **F6=Add/maint env**: This function key supports access to the LSAM
     Environment maintenance functions, where new environment records may
     be created and library lists may be constructed or updated. Refer to
-    [LSAM Environment     Management](LSAM-Environment-Management.md#top)
+    [LSAM Environment Management](/environment/index)
     for more information about managing LSAM environments.
 - **F12=Cancel**: Quits the environment details display without
     updating and returns to the list of Actions.
@@ -811,10 +811,10 @@ not be the same as the Restricted Mode environment itself, shown on the
 previous display format (above). This is because the environment name is
 only a label for the special library list which will be in effect during
 Restricted Mode operations. For more information, refer to
-[SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG)
+[SMALIBMGT](/environment/commands#SMALIBMG)
 . Regarding the discussion about Multiple Environment Management,
-refer to [LSAM Environment Management](LSAM-Environment-Management.md#top) and
-[Installing Multiple Environments](Installing-Multiple-Environments.md#top)
+refer to [LSAM Environment Management](/environment/index) and
+[Installing Multiple Environments](/reference/multiple-environments)
 .
 
 - **Screen Title**: Restricted Mode Update SMASAV

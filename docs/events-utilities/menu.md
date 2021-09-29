@@ -48,7 +48,7 @@ Select or command
 - 7=LSAM Utility configuration
 - 8=Display captured data log
 - 9=Display data capture debug log
-- 10=Data Export/Import Utilities menu (this is documented in [Copy Files from Test to Production](Copy-Files-from-Test-to-Production.md#top))
+- 10=Data Export/Import Utilities menu (this is documented in [Copy Files from Test to Production](/reference/copying-files))
 - 11=Client eMail Management menu
 - The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**\> to begin using any of the options.
 

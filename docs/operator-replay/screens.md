@@ -422,7 +422,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration
     isolate test data.
 
 :::note
-The LSAM automatic log file clear routines do not clear the Operator Replay debug log file. This is the responsibility of the technical support personnel who may have set the debug log flag to Y. The Operator Replay debug logging function must be set back to N=no after diagnostic work has been completed, in order to avoid the consumption of large amounts of the client's disk space. The debug log file should be cleared using F20 from this display after a copy of the file has been extracted. Refer to [Delivering the LSAM File Extract to SMA Technical Support](Log-File-and-Database-Management.md#Deliveri).
+The LSAM automatic log file clear routines do not clear the Operator Replay debug log file. This is the responsibility of the technical support personnel who may have set the debug log flag to Y. The Operator Replay debug logging function must be set back to N=no after diagnostic work has been completed, in order to avoid the consumption of large amounts of the client's disk space. The debug log file should be cleared using F20 from this display after a copy of the file has been extracted. Refer to [Delivering the LSAM File Extract to SMA Technical Support](/logs-database/extracting#delivering-the-lsam-file-extract-to-sma-technical-support).
 :::
 
 #### Displayed Data Translation
@@ -2155,7 +2155,7 @@ procedure.
 [Add a Token/Variable]
 
 1. In the command line, enter **STRSMA**. For more information on
-    STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
 3. Enter **4** to choose **Operator Token/Variable Management** in the
@@ -2695,8 +2695,7 @@ variable fields.
 |                           |     place of all or part of the command |
 |                           |     line syntax. For more information   |
 |                           |     about Dynamic Variables, refer to   |
-|                           |     [Dynamic                            | |                           |     Vari                                |
-|                           | ables](Dynamic-Variables.md) |
+|                           |     [Dynamic Variables](/dynamic-variables/overview) |
 |                           |     .                             |
 +---------------------------+-----------------------------------------+
 | Comp reference value      | -   The compare reference value is a    |
@@ -2827,8 +2826,7 @@ variable fields.
 |                           |     as they will look after dynamic     |
 |                           |     variable tokens are replaced. For   |
 |                           |     more information about Dynamic      |
-|                           |     Variables, refer to [Dynamic        | |                           |     Vari                                |
-|                           | ables](Dynamic-Variables.md) |
+|                           |     Variables, refer to [Dynamic Variables](/dynamic-variables/overview) |
 |                           |     .                             |
 +---------------------------+-----------------------------------------+
 
@@ -3147,7 +3145,7 @@ Replay script, or the SCANSPLF command that is causing trouble, use the
 SMASUP log file extract command to retrieve the debug log information
 and send the resulting save file from library SMALOG to SMA Support for
 assistance. For more information about how to use the SMASUP command,
-refer to [Extracting Log and Master Files](Log-File-and-Database-Management.md#Extracti)
+refer to [Extracting Log and Master Files](/logs-database/extracting)
 .
 
 Following is a table of Entry_Code values that may be observed in the

@@ -10,7 +10,7 @@ As JORS requests are received, the primary communications program spawns a separ
 
 Both the primary communications program and the spawned data retrieval program perform TCP/IP sockets communications with the SMANetCom service of OpCon/xps. Internally, these communications programs alternate between checking a control data queue for operator instructions and waiting for communications input from the remote TCP/IP connection. Currently, the activity level of these communications programs is very low. There is very little data to be exchanged over the communications link, except for the brief period where the spawned program is pumping the actual job log report data out to SMANetCom. The default communications program performance tuning values should be adequate for this limited task.
 
-However, if an analysis of system performance suggests that these JORS server communications programs should be adjusted for (1) reduced impact on IBM i system performance or (2) improved response time to the viewer of JORS output, then the JORS communication performance parameters may be adjusted. These parameters are described in IBM i LSAM Configuration, [Communication Performance Parameters](Configuration.md#Communic).
+However, if an analysis of system performance suggests that these JORS server communications programs should be adjusted for (1) reduced impact on IBM i system performance or (2) improved response time to the viewer of JORS output, then the JORS communication performance parameters may be adjusted. These parameters are described in IBM i LSAM Configuration, [Communication Performance Parameters](/configuration/configuration).
 
 ## LSAM Spool File Server
 

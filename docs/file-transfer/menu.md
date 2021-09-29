@@ -125,7 +125,7 @@ Main Menu \> SMA File Transfer menu (\#8) \> Work with SMAFT jobs (\#3)
 The IBM i LSAM supports active control over SMAFT logging capabilities.
 Logging is a local function useful to system administrators, programmers
 and support technicians. For a complete description of how to use the
-logging features in general, refer to [Log File and Database Management](Log-File-and-Database-Management.md#top)
+logging features in general, refer to [Log File and Database Management](/logs-database/overview)
 . The SMAFT logging control function is described below, under SMA
 File Transfer Screens and Windows.
 
@@ -136,7 +136,7 @@ log viewers. This is the same function that is available from the LSAM
 Management menu option \# 5. It is reproduced here for the convenience
 of technical support personnel who may be diagnosing SMA File Transfer
 jobs. For more information about how to use the log views, refer to
-[Viewing the LSAM Log Files](Log-File-and-Database-Management.md#Viewing)
+[Viewing the LSAM Log Files](/logs-database/management#viewing-the-lsam-log-files)
 .
 
 ### View SMAFT Logs

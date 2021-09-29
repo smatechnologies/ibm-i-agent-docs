@@ -81,8 +81,8 @@ point where the LSAM has assembled the total SBMJOB command, it performs
 a scan for any dynamic variable tokens and then replaces those tokens
 with the value produced by the dynamic variable. (The processing of
 dynamic variables used with Capture Data Response Rules is described in
-[Operator Replay Scripts](Operator-Replay-Scripts.md#top)
-, in [Message Management](Message-Management.md#top)
+[Operator Replay Scripts](/operator-replay/overview)
+, in [Message Management](/message-management/overview)
 , and elsewhere in this Events and Utilities menu in relation to
 the SCANSPLF command.)
 

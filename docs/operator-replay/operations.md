@@ -241,7 +241,7 @@ the steps below to set up a user profile for use with Operator Replay.
 2. Grant \*USE privileges to the SMANET user for the IBM i user profile
     created.
 3. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on **STRSMA** command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on **STRSMA** command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 4. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
 5. Enter **1** to choose **User management** in the Operator Replay
@@ -278,7 +278,7 @@ the new copy.
 [Create an Operator Replay Script]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
@@ -373,7 +373,7 @@ the new copy.
 Copying an entire script is another way to Create new scripts:
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay** menu in the SMA Main
     Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the
@@ -401,7 +401,7 @@ Copying an entire script is another way to Create new scripts:
 [Adding a Step]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the
@@ -417,7 +417,7 @@ Copying an entire script is another way to Create new scripts:
 [Modify a Step]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
@@ -442,7 +442,7 @@ Copying an entire script is another way to Create new scripts:
 [Copy a Step]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
@@ -467,7 +467,7 @@ Copying an entire script is another way to Create new scripts:
 [Delete a Step]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
@@ -501,7 +501,7 @@ the script.
 [Delete an Entire Script]
 
 1. In the command line, enter **STRSMA**. For more information on
-    STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
@@ -603,7 +603,7 @@ More detail about how Captured Data Response Rules function may be found in Even
 [Adding a Data Capture Rule from the LSAM Menu System]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
@@ -740,7 +740,7 @@ More detail about how Captured Data Response Rules function may be found in Even
 [Adding a Data Capture Rule from the LSAM Menu System]
 
 1. In the command line, enter **STRSMA**. For more information on
-    STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
 3. Enter **6** to choose **Work with Captured Data Response Rules** in
@@ -1627,7 +1627,7 @@ Script Step and also for Screen Capture Definitions and Response Rules.
 [View Operator Replay Log Files]
 
 1. In the command line, enter **STRSMA**. For more information on
-    STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main
     Menu.
 3. Enter **3** to choose the **Operator Replay logs** option in the

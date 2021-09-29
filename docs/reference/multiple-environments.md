@@ -67,7 +67,7 @@ This procedure requires that the user is logged on to the IBM i partition as eit
 20. For each LSAM sub-menu, where option 7 is used to configure the feature, review the configuration options to make sure they are appropriate for the new LSAM environment. However, do not configure test LSAM environments to use Job Tracking or Restricted Mode functions, unless during special test circumstances it is well understood how to avoid conflicts with a production LSAM environment.
 21. **The next step requires an understanding of how to configure OpCon options at the SAM console.  Add a new machine definition** to the machine table at the OpCon Enterprise Manager (EM), using the new LSAM Name.
     - Specify that the machine type is IBM i.
-22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to [The STRSMA Command](Components-and-Operation.md#The). Be sure to specify the new environment name for the ENV parameter of this command:
+22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to the [STRSMA Command](/operations/lsam#the-strsma-command). Be sure to specify the new environment name for the ENV parameter of this command:
 23. Select **sub-menu 6**. LSAM Management Menu in the LSAM Main Menu.
 24. Select **function 1**. Start LSAM (STRSMASYS) in the LSAM Management Menu.
 25. When the start process has completed, select function 3. Check LSAM subsystem status, to confirm that the new LSAM environment server jobs are running without error (no job has a status of **MSGW**) under the unique subsystem name was created.
@@ -94,7 +94,7 @@ More detail about the configuration fields described below may be found in the C
 
 ###### Fields
 
-For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](Configuration.md) of this online help.
+For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](/configuration/configuration) of this online help.
 
 - **LSAM environment Name**: This is the name that was assigned to the new LSAM environment, also specified when the LSAINIT command was started. Normally, this field value should not be changed. It represents the LSAM environment library list that was defined for the new LSAM environment.
 - **SMAGPL alternate library name**: This library name was already chosen when the alternate LSAM environment library list was defined in the setup steps of the previous section. Confirm that the name of the new SMAGPL library appears here, but if not, type in the correct name. Do not share the same SMAGPL library that is already used by a different LSAM environment.

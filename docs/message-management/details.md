@@ -478,7 +478,7 @@ effect. This tool can be used from the command entry line of the LSAM
 menu system, or it can be used from any IBM i command entry line as long
 as the current library list of the job is the LSAM library list. The
 LSAM library list can be set from outside of the LSAM menu system using
-the SMASETLIBL utility command. Refer to [Commands and Utilities](Commands-and-Utilities.md#top) for more
+the SMASETLIBL utility command. Refer to [Commands and Utilities](/commands-utilities/commands) for more
 information about LSAM utility commands such as SMASETLIBL.
 
 DSPMSGQ displays a list of the current contents of the message queue
@@ -564,8 +564,7 @@ be used to filter messages.
 
 For assistance with analysis of the Message Management diagnostic trace
 log entries, use the SMASUP command to extract the LSAM LOG files to a
-save file and send the save file to SMA Support (refer to [Log File and Database
-Management](Log-File-and-Database-Management.md#top)
+save file and send the save file to SMA Support (refer to [Log File and Database Management](/logs-database/overview)
  for instructions about using the SMASUP command and delivering
 the save file to SMA Support).
 
@@ -605,7 +604,7 @@ about the technical details of this process follows the outline.
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For
     more information on STRSMA and LSAMENU command parameters, refer to
-    [The STRSMA Command](Components-and-Operation.md#The)
+    the [STRSMA Command](/operations/lsam#the-strsma-command)
     .
 2. Enter **7** to choose the **LSAM Parameters** in the LSAM Main Menu.
 3. Press **PageDown** to go to the second page of LSAM Parameters.
@@ -1135,7 +1134,7 @@ program call and also OpCon Event Commands.
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For
     more information on STRSMA and LSAMENU command parameters, refer to
-    [The STRSMA Command](Components-and-Operation.md#The)
+    the [STRSMA Command](/operations/lsam#the-strsma-command)
     .
 2. Enter **2** to choose the **Message management menu** in the LSAM
     Main Menu.
@@ -1202,9 +1201,7 @@ used.
 [Adding a Data Capture Rule from the LSAM Menu System]
 
 1. In the command line, enter **STRSMA** or **LSAMENU**. For more
-    information on command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) and
-    [The LSAMENU Command](Components-and-Operation.md#The2)
-    .
+    information on command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command) and the [LSAMENU Command](/operations/lsam#the-lsamenu-command).
 2. Enter **2** to choose the **Message management menu** in the LSAM
     Main Menu.
 3. Enter **11** to choose **Work with Captured Data Response Rules** in

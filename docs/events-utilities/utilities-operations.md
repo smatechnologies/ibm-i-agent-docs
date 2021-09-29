@@ -8,8 +8,8 @@ certain LSAM utilities.
 ### Update the LSAM Utility options control parameters
 
 1. In the command line, enter **SMAGPL/STRSMA or LSAMENU**. For more
-    information on STRSMA and LSAMENU command parameters, refer to [The STRSMA Command](Components-and-Operation.md#The)
-    and [The LSAMENU Command](Components-and-Operation.md#The2).
+    information on STRSMA and LSAMENU command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command)
+    and [The LSAMENU Command](/operations/lsam#the-lsamenu-command).
 2. Enter **3** to choose the **Events and Utilities menu** in the SMA
     Main Menu.
 3. Enter **7** to choose **LSAM Utility configuration** in the Events
@@ -66,8 +66,8 @@ Previous versions of the LSAM required a separate Application ID master record. 
 #### Adding a SCANSPLF Scan Rule from the LSAM Menu System
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For
-    more information on command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) and
-    [The LSAMENU Command](Components-and-Operation.md#The2).
+    more information on command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command) and
+    the [LSAMENU Command](/operations/lsam#the-lsamenu-command).
 2. Enter **3** to choose the **Events and Utilities menu** in the SMA
     Main Menu.
 3. Enter **4** to choose **Work with SPLF Scan Rules** in the Events
@@ -94,8 +94,8 @@ data response rule records.
 [Adding a Data Capture Rule from the LSAM Menu System]
 
 1. In the command line, enter **STRSMA** or **LSAMENU**. For more
-    information on command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The) and
-    [The LSAMENU Command](Components-and-Operation.md#The2)
+    information on command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command) and the
+    [LSAMENU Command](/operations/lsam#the-lsamenu-command)
     .
 2. Enter **3** to choose the **Events and Utilities menu** in the SMA
     Main Menu.

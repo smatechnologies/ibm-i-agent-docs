@@ -112,7 +112,7 @@ when the automatic option is not being used.
 [Start SMAFT Server]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information,
-    refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **8** to choose the **SMAFT File Transfer** menu in the SMA
     Main Menu.
 3. Enter **1** to choose the Start SMAFT Server (STRSMAFT) option in
@@ -135,7 +135,7 @@ SMA File Transfer requests.
 [End SMAFT Server]
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information,
-    refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **8** to choose the **SMA File Transfer** menu in the SMA Main
     Menu.
 3. Enter **2** to choose the **End SMAFT Server** (ENDSMAFT) option in

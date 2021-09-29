@@ -210,8 +210,7 @@ User ID and password must be defined to the LSAM.
 
 [Define a Valid Event User ID and Password]
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **3** to choose the **Event management** menu in the SMA Main
     Menu.
 3. Enter **2** to choose the **External Event Pass Word** option in the
@@ -234,7 +233,7 @@ use because each Event command can be prompted pressing \<**F4**\>
 during program edit operations. When the command prompting is completed
 by pressing \<**Enter**\>, the correct syntax for the command and its
 parameters is returned to the program source line. A complete list and
-explanation of the available event commands may be found in [$Variables Supported in Event Commands](Message-Management.md#Event)
+explanation of the available event commands may be found in [$Variables Supported in Event Commands](/message-management/screens#variables-supported-in-event-commands)
 . More information about Events may be found in the OpCon
 documentation.
 

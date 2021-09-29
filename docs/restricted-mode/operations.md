@@ -8,7 +8,7 @@
     **CHGUSRPRF USRPRF(SMASAV) STATUS(\*ENABLED)**.
 
 2. In the command line, enter **SMASGPL/STRSMA**. For information on
-    STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 
 3. Enter **5** to choose the **Restricted mode menu** in the SMA Main
     Menu.
@@ -58,7 +58,7 @@
     a.  If no environment has been created for use with Restricted Mode,
         press \<**F12**\> to return to the main setup screen, and then
         press \<**F6**\> (Add/maint env) to create and environment and
-        build a library list. Refer to [LSAM Environment         Management](LSAM-Environment-Management.md#top)
+        build a library list. Refer to [LSAM Environment Management](/environment/index)
         . Then repeat steps 15 and 16.
 
 17. Enter the number of seconds that are required by the system to fully
@@ -210,8 +210,8 @@ Following are details about how each reserved Action code works.
     [SMASETLIBL     ENV(\<my_LSAM_environment\>)]{style="font-family: 'Courier New';"}\
     \
     \<my_LSAM_environment\> is a different LSAM environment name than
-    the one being used. Refer to [Installing Multiple     Environments](Installing-Multiple-Environments.md#top)
-     and [LSAM Environment     Management](LSAM-Environment-Management.md#top)
+    the one being used. Refer to [Installing Multiple Environments](/reference/multiple-environments)
+     and [LSAM Environment Management](/environment/index)
     for more information on this option.\
     \
     Do not use the command SMASETLIBL without an ENV parameter because
@@ -298,8 +298,8 @@ program will recover from a failed Script.
 
 One type of command that could be assigned to an ON_ERROR Action is an
 OpCon Event. For more information about the available OpCon Event
-commands that may be specified, refer to [Events and Utilities Menu](Events-and-Utilities-Menu.md#top) and
-[Commands and Utilities](Commands-and-Utilities.md#top)
+commands that may be specified, refer to [Events and Utilities Menu](/events-utilities/menu) and
+[Commands and Utilities](/commands-utilities/commands)
 . As with all Restricted Mode Action commands, the OpCon Event
 commands may also be prompted using \<**F4**\> from the Restricted Mode
 Options Detail screen (refer to [Restricted Mode Screens and Windows](#Restrict3) for more information).

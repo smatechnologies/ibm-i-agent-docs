@@ -5,15 +5,16 @@ SMANetCom and settings for optional features. After installation of the
 LSAM, review the configuration file before starting the LSAM server
 jobs.
 
-[Run the LSAM Configuration Program]{.ul} 
-1.  In the command line, enter **SMAGPL/STRSMA**. For more information
-    on the STRSMA command, refer to [The STRSMA     Command](Components-and-Operation.md#The).
-2.  Enter **7** to choose the **LSAM Parameters** function in the SMA
+[Run the LSAM Configuration Program]
+
+1. In the command line, enter **SMAGPL/STRSMA**. For more information
+    on the STRSMA command, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+2. Enter **7** to choose the **LSAM Parameters** function in the SMA
     Main Menu.
-3.  \<**Tab**\> to move between fields on the configuration screen.
-4.  Modify relevant configuration fields. Refer to the Configuration
+3. \<**Tab**\> to move between fields on the configuration screen.
+4. Modify relevant configuration fields. Refer to the Configuration
     Settings table [IBM i LSAM Configuration Settings: Heading     Information](#Heading_Information).
-5.  After modifying all relevant fields, press \<**Enter**\>.
+5. After modifying all relevant fields, press \<**Enter**\>.
 
 ## Critical Settings {#critical-settings style="margin-top: 8pt;"}
 
@@ -22,59 +23,60 @@ with OpCon. Before using the IBM i LSAM, verify these settings in the
 system. In order to update critical settings, start the configuration
 program and then follow the instructions below.
 
--   LSAM Name: The LSAM and SMANetCom use this value for communication.
-    -   The LSAM Name setting must be all capital letters and/or numbers
+- LSAM Name: The LSAM and SMANetCom use this value for communication.
+  - The LSAM Name setting must be all capital letters and/or numbers
         and it must match the setting on the Machines screen of the
         OpCon EM (Enterprise Manager, the User Interface).
 
     ```{=html}
     <!-- -->
     ```
-    -   The SAM Server must be able to ping this name, unless the IBM i
+  - The SAM Server must be able to ping this name, unless the IBM i
         LSAM IP address will be used in the EM machine table in place of
         the LSAM server name.
--   Internet Address: This value is the IP Address of the IBM i system.
+- Internet Address: This value is the IP Address of the IBM i system.
     Use the \<**F4**\> function key to view a list of valid IP addresses
     for this system.
--   Max Concurrent Jobs: This value determines the maximum number of
+- Max Concurrent Jobs: This value determines the maximum number of
     jobs the LSAM may process concurrently. This value should not exceed
     the maximum number of jobs that can be processed concurrently by the
     IBM i subsystems and job queues where OpCon can run jobs.
--   Communication Port: The LSAM and SMANetCom use this value for
+- Communication Port: The LSAM and SMANetCom use this value for
     communication.
-    -   The Communication Port setting must match the setting on the
-        EM\'s Machines screen. (The default port value is 3100.)
+  - The Communication Port setting must match the setting on the
+        EM's Machines screen. (The default port value is 3100.)
 
     ```{=html}
     <!-- -->
     ```
-    -   Also set the JORS port (default value 3110) and verify it
+  - Also set the JORS port (default value 3110) and verify it
         matches the EM machine record.
 
     ```{=html}
     <!-- -->
     ```
-    -   This LSAM uses a separate port for SMA File Transfer. (Refer to
-        [SMA File Transfer](SMA-File-Transfer.md).)
--   SMA Subsystem Name: This value should only be changed for multiple
+  - This LSAM uses a separate port for SMA File Transfer. (Refer to
+        [SMA File Transfer](/file-transfer/overview).)
+- SMA Subsystem Name: This value should only be changed for multiple
     IBM i LSAM environments; otherwise, leave it as the default value
     (SMASBS).
--   Keep socket open (Y/N): For optimal LSAM performance, SMA recommends
+- Keep socket open (Y/N): For optimal LSAM performance, SMA recommends
     using the value Y (yes). This setting must match the setting on the
-    EM\'s Machines screen. For more information, refer to [Discussion of     Keep Socket Open Parameter](#Discussi).
+    EM's Machines screen. For more information, refer to [Discussion of     Keep Socket Open Parameter](#Discussi).
 
 ```{=html}
 <!-- -->
 ```
--   **Screen Title**: LSAM Configuration Parameters (3 Pages)
--   **Screen ID**:
-    -   LSAPARR00-1
-    -   LSAPARR00-2
+
+- **Screen Title**: LSAM Configuration Parameters (3 Pages)
+- **Screen ID**:
+  - LSAPARR00-1
+  - LSAPARR00-2
 
     ```{=html}
     <!-- -->
     ```
-    -   LSAPARR00-3
+  - LSAPARR00-3
 
 ### Function Keys
 
@@ -111,20 +113,19 @@ the SMADEFAULT environment is shown below.
 IBM i LSAM Configuration Settings: Environment Management
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  [SMALIBD00-2]{style="color: #008000;"}                SMA Environment Management                    [00/00/00]{style="color: #008000;"}   [USERNAME                     Environment:]{style="color: #008000;"} [SMADEFAULT]{style="color: #ff00ff;"}                     [00:00:00]{style="color: #008000;"}
-   
+
+[SMALIBD00-2]{style="color: #008000;"}                SMA Environment Management                    [00/00/00]{style="color: #008000;"}   [USERNAME                     Environment:]{style="color: #008000;"} [SMADEFAULT]{style="color: #ff00ff;"}                     [00:00:00]{style="color: #008000;"}
+
   Press Enter or F12=Return to return.
-   
-  Seq  Library      Type     Description                                          
+
+  Seq  Library      Type     Description
    10  QTEMP
    20  SMAGPL
    30  SMADTA       SMADTA
    40  SMAPTF       SMAPTF
    50  SMAPGM       SMAPGM
    60  QGPL
-   
-   
-   
+
     Bottom
   F3=Exit   F5=Refresh   F12=Return
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -135,13 +136,13 @@ IBM i LSAM Configuration Settings: Environment Management
 
 Certain parameters must conform to the following rules for IBM i names.
 
--   Names must be 10 characters or less.
--   Names must begin with an alphabetic character (A through Z, @, \$,
+- Names must be 10 characters or less.
+- Names must begin with an alphabetic character (A through Z, @, $,
     and \#).[1,     3]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"}
--   All subsequent characters can be alphanumeric (A through Z, 0
-    through 9, @, \$, \#, and \_ (underscore)).
+- All subsequent characters can be alphanumeric (A through Z, 0
+    through 9, @, $, \#, and \_ (underscore)).
     [3]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"} -   There can be no embedded blanks.
--   The following special characters are not allowed to be used in
+- The following special characters are not allowed to be used in
     names:
 
   ---- ----------------------------------------------------------
@@ -160,8 +161,8 @@ Certain parameters must conform to the following rules for IBM i names.
   \>   Right angle bracket
   &    Ampersand
   \%   Percent sign
-  \'   Single quotation mark
-  \"   Double quotation mark
+  '   Single quotation mark
+  "   Double quotation mark
   .    period[2]{style="font-size: 80%;vertical-align: super;"}   ---- ----------------------------------------------------------
 
 [1]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"} For some command parameters, IBM i permits special values to begin with
@@ -180,20 +181,21 @@ Certain parameters must conform to the following rules for IBM i
 passwords. Additional rules may be assigned with IBM i system security
 control values (refer to IBM reference SC41-5302, Security Reference).
 
--   A password may contain any character string
--   A password may not exceed 10 characters. IBM i does provide support
+- A password may contain any character string
+- A password may not exceed 10 characters. IBM i does provide support
     for longer passwords - up to 128 characters (optionally supported by
     the LSAM for some features), but there are still parts of the LSAM
     software that are limited to only 10 characters. (Please contact SMA
     Support to report any LSAM limitations on passwords that interfere
     with applications that could otherwise be automated by OpCon.)
 
-[Update Configuration Variables]{.ul} 
-1.  \<**Tab**\> to the relevant field.
-2.  Type a new value for the parameter. Refer to the table below for
+[Update Configuration Variables]
+
+1. \<**Tab**\> to the relevant field.
+2. Type a new value for the parameter. Refer to the table below for
     more information about each parameter.
-3.  Repeat steps 1-2.
-4.  Press \<**Enter**\> to update the LSAM\'s configuration.
+3. Repeat steps 1-2.
+4. Press \<**Enter**\> to update the LSAM's configuration.
 
 :::note
 The update is stored immediately in the LSAM Parameters control file, however, any change in control values does not take effect in the LSAM server jobs until they are stopped and restarted.
@@ -215,7 +217,7 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |     environments within the same IBM i partition.     |
 |             |     (Refer to below.)                                 |
 +-------------+-------------------------------------------------------+
-| Version     | -   This display field identifies the LSAM\'s         |
+| Version     | -   This display field identifies the LSAM's         |
 |             |     version, stored in the data area LSAVERSION.      |
 |             | -   When contacting SMA Customer Support about the    |
 |             |     LSAM, please report the version.                  |
@@ -236,8 +238,8 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             | Rules       |             |     field   |
 |             |             | (Refer to   |             |             |
 |             |             | [IBM i Name |             |  identifies | |             |             | Rules](#IB  |             |     each    |
-|             |             | M2){.MCXref |             |     LSAM    |
-|             |             | .xref}.)    |             |             |
+|             |             | M2) |             |     LSAM    |
+|             |             | .)    |             |             |
 |             |             |             |             | environment |
 |             |             |             |             |     to      |
 |             |             |             |             |             |
@@ -270,8 +272,8 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 | Subsystem   |             | Rules       |             |     field   |
 | Name        |             | (Refer to   |             |             |
 |             |             | [IBM i Name |             |    contains | |             |             | Rules](#IB  |             |     the     |
-|             |             | M2){.MCXref |             |     name of |
-|             |             | .xref})     |             |     the IBM |
+|             |             | M2) |             |     name of |
+|             |             | )     |             |     the IBM |
 |             |             |             |             |     i       |
 |             |             |             |             |             |
 |             |             |             |             |   subsystem |
@@ -368,8 +370,8 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     for the |
 |             |             |             |             |     system. |
 |             |             |             |             |             |
-|             |             |             |             | *           |
-|             |             |             |             | *Caution**: |
+|             |             |             |             | *|
+|             |             |             |             |*Caution**: |
 |             |             |             |             | Do not use  |
 |             |             |             |             | the local   |
 |             |             |             |             | host        |
@@ -722,14 +724,14 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     value   |
 |             |             |             |             |     of      |
 |             |             |             |             |     \       |
-|             |             |             |             | "\*CCSID\". |
+|             |             |             |             | "\*CCSID". |
 +-------------+-------------+-------------+-------------+-------------+
 | EBCDIC -\>  | QSYS        | IBM i Name  | Y           | -   The     |
 | A:          |             | Rules.      |             |     name of |
 | translation |             | U           |             |     the DB2 |
 | table       |             | ser-defined |             |     UDB     |
 | library or  |             | tables      |             |             |
-| \'\*CCSID\' |             | would exist |             |   (DB2/400) |
+| '\*CCSID' |             | would exist |             |   (DB2/400) |
 |             |             | in          |             |     library |
 |             |             | libraries   |             |     where   |
 |             |             | other than  |             |     the     |
@@ -743,7 +745,7 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     value   |
 |             |             |             |             |     of      |
 |             |             |             |             |             |
-|             |             |             |             | \"\*CCSID\" |
+|             |             |             |             | "\*CCSID" |
 |             |             |             |             |     instead |
 |             |             |             |             |     of a    |
 |             |             |             |             |     library |
@@ -803,14 +805,14 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     value   |
 |             |             |             |             |     of      |
 |             |             |             |             |     \       |
-|             |             |             |             | "\*CCSID\". |
+|             |             |             |             | "\*CCSID". |
 +-------------+-------------+-------------+-------------+-------------+
 | ASCII -\>   | QSYS        | IBM i Name  | Y           | -   The     |
 | E:          |             | Rules.      |             |     name of |
 | translation |             | U           |             |     the DB2 |
 | table       |             | ser-defined |             |     UDB     |
 | library or  |             | tables      |             |             |
-| \"\*CCSID\" |             | would exist |             |   (DB2/400) |
+| "\*CCSID" |             | would exist |             |   (DB2/400) |
 |             |             | in          |             |     library |
 |             |             | libraries   |             |     where   |
 |             |             | other than  |             |     the     |
@@ -824,7 +826,7 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     value   |
 |             |             |             |             |     of      |
 |             |             |             |             |             |
-|             |             |             |             | \"\*CCSID\" |
+|             |             |             |             | "\*CCSID" |
 |             |             |             |             |     instead |
 |             |             |             |             |     of a    |
 |             |             |             |             |     library |
@@ -872,7 +874,7 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     of job  |
 |             |             |             |             |     logs.   |
 |             |             |             |             |             |
-|             |             |             |             | **Note**:   |
+|             |             |             |             |**Note**:   |
 |             |             |             |             | The JORS    |
 |             |             |             |             | Port needs  |
 |             |             |             |             | to be set   |
@@ -917,8 +919,8 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             | iles/Concep |
 |             |             |             |             | ts/Machines |
 |             |             |             |             | .md#Commun |
-|             |             |             |             | ic){.MCXref |
-|             |             |             |             |     .xref}  |
+|             |             |             |             | ic) |
+|             |             |             |             |       |
 |             |             |             |             |     in the  |
 |             |             |             |             |     *       |
 |             |             |             |             | *Concepts** |
@@ -937,8 +939,8 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |             |             |     port    |
 |             |             |             |             |     number. |
 |             |             |             |             |             |
-|             |             |             |             | *           |
-|             |             |             |             | *Caution**: |
+|             |             |             |             | *|
+|             |             |             |             |*Caution**: |
 |             |             |             |             | Avoid port  |
 |             |             |             |             | numbers     |
 |             |             |             |             | ranging     |
@@ -950,8 +952,6 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 +-------------+-------------+-------------+-------------+-------------+
 
 : IBM i LSAM Configuration Settings: Control Parameters
-
- 
 
 \* If one table field specifies a CCSID number, then both table fields
 must specify a CCSID number. Refer to the topic of Character Translation
@@ -971,8 +971,8 @@ under the Extended Discussion of Parameters, below.
 |              |           | Rules (Refer |          |     field    |
 |              |           | to [IBM i    |          |     contains | |              |           | Name         |          |     the name |
 |              |           | Rules](#I    |          |     of the   |
-|              |           | BM2){.MCXref |          |     user     |
-|              |           | .xref})      |          |     whose    |
+|              |           | BM2) |          |     user     |
+|              |           | )      |          |     whose    |
 |              |           |              |          |              |
 |              |           |              |          |    authority |
 |              |           |              |          |     governs  |
@@ -1058,8 +1058,8 @@ under the Extended Discussion of Parameters, below.
 |              |           | Rules (Refer |          |              |
 |              |           | to [IBM i    |          |  Description | |              |           | Name         |          |     name     |
 |              |           | Rules](#I    |          |              |
-|              |           | BM2){.MCXref |          |    referring |
-|              |           | .xref})      |          |     to the   |
+|              |           | BM2) |          |    referring |
+|              |           | )      |          |     to the   |
 |              |           |              |          |     system   |
 |              |           |              |          |     object   |
 |              |           |              |          |     that     |
@@ -1103,15 +1103,15 @@ under the Extended Discussion of Parameters, below.
 |              |           | Rules (Refer |          | within the   |
 |              |           | to [IBM i    |          | DB2 database | |              |           | Name         |          | where the    |
 |              |           | Rules](#I    |          | job          |
-|              |           | BM2){.MCXref |          | description  |
-|              |           | .xref})      |          | resides.     |
+|              |           | BM2) |          | description  |
+|              |           | )      |          | resides.     |
 +--------------+-----------+--------------+----------+--------------+
 | Jobq Name    | QBATCH    | IBM i Name   | N        | -   A Job    |
 |              |           | Rules (Refer |          |     Queue    |
 |              |           | to [IBM i    |          |     name     | |              |           | Name         |          |              |
 |              |           | Rules](#I    |          |    referring |
-|              |           | BM2){.MCXref |          |     to the   |
-|              |           | .xref})      |          |     system   |
+|              |           | BM2) |          |     to the   |
+|              |           | )      |          |     system   |
 |              |           |              |          |     object   |
 |              |           |              |          |     that     |
 |              |           |              |          |     stores   |
@@ -1142,15 +1142,15 @@ under the Extended Discussion of Parameters, below.
 |              |           | Rules (Refer |          | within       |
 |              |           | to [IBM i    |          | DB2/400      | |              |           | Name         |          | where the    |
 |              |           | Rules](#I    |          | job queue    |
-|              |           | BM2){.MCXref |          | resides.     |
-|              |           | .xref})      |          |              |
+|              |           | BM2) |          | resides.     |
+|              |           | )      |          |              |
 +--------------+-----------+--------------+----------+--------------+
 | Outq Name    | QPRINT    | IBM i Name   | N        | An Output    |
 |              |           | Rules (Refer |          | Queue name   |
 |              |           | to [IBM i    |          | referring to | |              |           | Name         |          | the system   |
 |              |           | Rules](#I    |          | object that  |
-|              |           | BM2){.MCXref |          | stores       |
-|              |           | .xref})      |          | waiting or   |
+|              |           | BM2) |          | stores       |
+|              |           | )      |          | waiting or   |
 |              |           |              |          | on hold      |
 |              |           |              |          | printer      |
 |              |           |              |          | spool files. |
@@ -1159,15 +1159,15 @@ under the Extended Discussion of Parameters, below.
 |              |           | Rules (Refer |          | within the   |
 |              |           | to [IBM i    |          | DB2 database | |              |           | Name         |          | where the    |
 |              |           | Rules](#I    |          | output queue |
-|              |           | BM2){.MCXref |          | resides.     |
-|              |           | .xref})      |          |              |
+|              |           | BM2) |          | resides.     |
+|              |           | )      |          |              |
 +--------------+-----------+--------------+----------+--------------+
 | Current      | \*CURRENT | IBM i Name   | N        | -   This     |
 | Library Name |           | Rules (Refer |          |     field    |
 |              |           | to [IBM i    |          |              | |              |           | Name         |          |    specifies |
 |              |           | Rules](#I    |          |     the      |
-|              |           | BM2){.MCXref |          |     Current  |
-|              |           | .xref})      |          |     library  |
+|              |           | BM2) |          |     Current  |
+|              |           | )      |          |     library  |
 |              |           |              |          |     within   |
 |              |           |              |          |     the      |
 |              |           |              |          |     library  |
@@ -1276,7 +1276,7 @@ under the Extended Discussion of Parameters, below.
 |              |           |              |          |    effective |
 |              |           |              |          |     way to   |
 |              |           |              |          |     control  |
-|              |           |              |          |     a job\'s |
+|              |           |              |          |     a job's |
 |              |           |              |          |     library  |
 |              |           |              |          |     list     |
 |              |           |              |          |     when     |
@@ -1598,8 +1598,8 @@ under the Extended Discussion of Parameters, below.
 | Job          |           | Rules (Refer |          | jobs require |
 | Description  |           | to [IBM i    |          | that the IBM | |              |           | Name         |          | i LSAM       |
 |              |           | Rules](#I    |          | library list |
-|              |           | BM2){.MCXref |          | be included  |
-|              |           | .xref})      |          | in the job   |
+|              |           | BM2) |          | be included  |
+|              |           | )      |          | in the job   |
 |              |           |              |          | description. |
 |              |           |              |          | The LSAM     |
 |              |           |              |          | server job   |
@@ -1643,8 +1643,8 @@ under the Extended Discussion of Parameters, below.
 | Job          |           | Rules (Refer |          | library      |
 | Description  |           | to [IBM i    |          | where the    | | Library      |           | Name         |          | File Arrival |
 |              |           | Rules](#I    |          | Job          |
-|              |           | BM2){.MCXref |          | Description  |
-|              |           | .xref})      |          | is stored.   |
+|              |           | BM2) |          | Description  |
+|              |           | )      |          | is stored.   |
 |              |           |              |          | If the       |
 |              |           |              |          | default job  |
 |              |           |              |          | description  |
@@ -1812,8 +1812,8 @@ under the Extended Discussion of Parameters, below.
 
 ### LSAM Database Maintenance
 
-For more information, refer to [Log File and Database Management](Log-File-and-Database-Management.md#top){.MCXref
-.xref} and [JORS and Spool File Server](JORS-and-Spool-File-Servers.md#top).
+For more information, refer to [Log File and Database Management](/logs-database/overview)
+ and [JORS and Spool File Server](/reference/jors).
 
 +--------------+---------+--------------+--------------+--------------+
 | LSAM         |         |              |              |              |
@@ -1963,8 +1963,8 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              | ts](Operator |
 |              |         |              |              | -Replay- |
 |              |         |              |              | Scripts.md# |
-|              |         |              |              | top){.MCXref |
-|              |         |              |              |     .xref}   |
+|              |         |              |              | top) |
+|              |         |              |              |        |
 |              |         |              |              |     about    |
 |              |         |              |              |     types of |
 |              |         |              |              |     log      |
@@ -1976,7 +1976,7 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              |     to       |
 |              |         |              |              |     retain   |
 |              |         |              |              |     the type |
-|              |         |              |              |     \"O\"    |
+|              |         |              |              |     "O"    |
 |              |         |              |              |     save     |
 |              |         |              |              |     files in |
 |              |         |              |              |     library  |
@@ -2041,8 +2041,8 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              | ts](Operator |
 |              |         |              |              | -Replay- |
 |              |         |              |              | Scripts.md# |
-|              |         |              |              | top){.MCXref |
-|              |         |              |              |     .xref}   |
+|              |         |              |              | top) |
+|              |         |              |              |        |
 |              |         |              |              |     about    |
 |              |         |              |              |     types of |
 |              |         |              |              |     log      |
@@ -2054,7 +2054,7 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              |     to       |
 |              |         |              |              |     retain   |
 |              |         |              |              |     the type |
-|              |         |              |              |     \"D\"    |
+|              |         |              |              |     "D"    |
 |              |         |              |              |     save     |
 |              |         |              |              |     files in |
 |              |         |              |              |     library  |
@@ -2150,9 +2150,9 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              |     value of |
 |              |         |              |              |     999 to   |
 |              |         |              |              |     mean     |
-|              |         |              |              |     \"do not |
+|              |         |              |              |     "do not |
 |              |         |              |              |              |
-|              |         |              |              |    delete.\" |
+|              |         |              |              |    delete." |
 |              |         |              |              |     Instead, |
 |              |         |              |              |     to       |
 |              |         |              |              |     prevent  |
@@ -2168,7 +2168,7 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              |     d        |
 |              |         |              |              | elete-global |
 |              |         |              |              |     flag to  |
-|              |         |              |              |     \'N\' =  |
+|              |         |              |              |     'N' =  |
 |              |         |              |              |     no.      |
 |              |         |              |              |     However, |
 |              |         |              |              |     999 days |
@@ -2461,7 +2461,7 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              |              |
 |              |         |              |              |  reorganizes |
 |              |         |              |              |     the      |
-|              |         |              |              |     LSAM\'s  |
+|              |         |              |              |     LSAM's  |
 |              |         |              |              |     control  |
 |              |         |              |              |     and      |
 |              |         |              |              |     master   |
@@ -2497,7 +2497,7 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              |     instead  |
 |              |         |              |              |     of using |
 |              |         |              |              |     the      |
-|              |         |              |              |     LSAM\'s  |
+|              |         |              |              |     LSAM's  |
 |              |         |              |              |     own      |
 |              |         |              |              |              |
 |              |         |              |              |  rudimentary |
@@ -2816,12 +2816,12 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 | backup       |         |              |              |     save     |
 | and/or log   |         |              |              |     files of |
 | file extract |         |              |              |     type     |
-| save files)  |         |              |              |     \"L\" in |
+| save files)  |         |              |              |     "L" in |
 |              |         |              |              |     the      |
 |              |         |              |              |     library  |
 |              |         |              |              |     SMALOG.  |
 |              |         |              |              |     Type     |
-|              |         |              |              |     \"L\"    |
+|              |         |              |              |     "L"    |
 |              |         |              |              |     save     |
 |              |         |              |              |     files    |
 |              |         |              |              |     are      |
@@ -2892,8 +2892,8 @@ For more information, refer to [Log File and Database Management](Log-File-and-D
 |              |         |              |              | ies](Command |
 |              |         |              |              | s-and-Ut |
 |              |         |              |              | ilities.md# |
-|              |         |              |              | top){.MCXref |
-|              |         |              |              |     .xref}   |
+|              |         |              |              | top) |
+|              |         |              |              |        |
 |              |         |              |              |     for more |
 |              |         |              |              |              |
 |              |         |              |              |  information |
@@ -2944,8 +2944,8 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              | [Discussion  | |              |         |              |              | of Bypass    |
 |              |         |              |              | Fl           |
 |              |         |              |              | ags](#Discus |
-|              |         |              |              | si2){.MCXref |
-|              |         |              |              | .xref}.      |
+|              |         |              |              | si2) |
+|              |         |              |              | .      |
 +--------------+---------+--------------+--------------+--------------+
 | SMA0008 =    | Y       | Y or N       | Y            | -   **Y =    |
 |              |         |              |              |     yes**:   |
@@ -3098,7 +3098,7 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              |     bypass   |
 |              |         |              |              |     flag     |
 |              |         |              |              |     were set |
-|              |         |              |              |     to \'N\' |
+|              |         |              |              |     to 'N' |
 |              |         |              |              |     and      |
 |              |         |              |              |     return   |
 |              |         |              |              |     an error |
@@ -3350,8 +3350,8 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              |     Bypass   |
 |              |         |              |              |     Fl       |
 |              |         |              |              | ags](#Discus |
-|              |         |              |              | si2){.MCXref |
-|              |         |              |              |     .xref}   |
+|              |         |              |              | si2) |
+|              |         |              |              |        |
 |              |         |              |              |     for more |
 |              |         |              |              |              |
 |              |         |              |              | information. |
@@ -3424,8 +3424,8 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              | fail and use |
 |              |         |              |              | the          |
 |              |         |              |              | OpCon/xps    |
-|              |         |              |              | \"view       |
-|              |         |              |              | output\"     |
+|              |         |              |              | "view       |
+|              |         |              |              | output"     |
 |              |         |              |              | feature to   |
 |              |         |              |              | inspect the  |
 |              |         |              |              | job log of   |
@@ -3466,7 +3466,7 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              |     messages |
 |              |         |              |              |     to be    |
 |              |         |              |              |     sent to  |
-|              |         |              |              |     a job\'s |
+|              |         |              |              |     a job's |
 |              |         |              |              |              |
 |              |         |              |              |   completion |
 |              |         |              |              |     message  |
@@ -3535,7 +3535,7 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              |    messages. |
 |              |         |              |              |              |
 |              |         |              |              | **Note**:    |
-|              |         |              |              | The LSAM\'s  |
+|              |         |              |              | The LSAM's  |
 |              |         |              |              | Message      |
 |              |         |              |              | Management   |
 |              |         |              |              | server       |
@@ -3557,8 +3557,8 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              | flag to Y =  |
 |              |         |              |              | yes.         |
 +--------------+---------+--------------+--------------+--------------+
-| Job parms    | 6A      | X\'01\' -    | Y            | -   This     |
-| s            |         | X\'FE\'      |              |     pair of  |
+| Job parms    | 6A      | X'01' -    | Y            | -   This     |
+| s            |         | X'FE'      |              |     pair of  |
 | eparator-HEX |         |              |              |              |
 |              |         |              |              |   characters |
 |              |         |              |              |     is the   |
@@ -3763,7 +3763,7 @@ There are two sets of communications performance parameters. The first
 set is for the job scheduling server and the second set is for the JORS
 (job output retrieval) server. The parameter definitions are similar for
 each set. For more information about the LSAM JORS server job, refer to
-[JORS and Spool File Server](JORS-and-Spool-File-Servers.md#top).
+[JORS and Spool File Server](/reference/jors).
 
 +--------------+---------+--------------+--------------+--------------+
 | C            |         |              |              |              |
@@ -3818,8 +3818,8 @@ each set. For more information about the LSAM JORS server job, refer to
 |              |         |              |              |     Open     |
 |              |         |              |              |     Param    |
 |              |         |              |              | eter](#Discu |
-|              |         |              |              | ssi){.MCXref |
-|              |         |              |              |     .xref}   |
+|              |         |              |              | ssi) |
+|              |         |              |              |        |
 |              |         |              |              |     about    |
 |              |         |              |              |     s        |
 |              |         |              |              | ynchronizing |
@@ -4080,11 +4080,11 @@ each set. For more information about the LSAM JORS server job, refer to
 |              |         |              |              |     to the   |
 |              |         |              |              |     LSAM due |
 |              |         |              |              |     to       |
-|              |         |              |              |     \"socket |
+|              |         |              |              |     "socket |
 |              |         |              |              |     is       |
 |              |         |              |              |     already  |
 |              |         |              |              |     in       |
-|              |         |              |              |     use.\" A |
+|              |         |              |              |     use." A |
 |              |         |              |              |     short    |
 |              |         |              |              |     linger   |
 |              |         |              |              |     time     |
@@ -4249,7 +4249,7 @@ each set. For more information about the LSAM JORS server job, refer to
 |              |         |              |              | reported to  |
 |              |         |              |              | the active   |
 |              |         |              |              | OpCon        |
-|              |         |              |              | server\'s    |
+|              |         |              |              | server's    |
 |              |         |              |              | SMA Log.     |
 |              |         |              |              |              |
 |              |         |              |              |              |
@@ -4286,7 +4286,7 @@ each set. For more information about the LSAM JORS server job, refer to
 |              |         |              |              | SAM Log and  |
 |              |         |              |              | to the local |
 |              |         |              |              | IBM i        |
-|              |         |              |              | partition\'s |
+|              |         |              |              | partition's |
 |              |         |              |              | QSYSOPR      |
 |              |         |              |              | message      |
 |              |         |              |              | queue. The   |
@@ -4307,8 +4307,6 @@ For more information, refer to [Extended Discussion of Parameters](#Extended) th
 implementing TLS Secured communication connections with this Agent.
 Those instructions must be understood to choose correct values for the
 fields in this table.
-
- 
 
 Remember that changes to the TLS Security options will only take effect
 after the LSAM Server jobs have been stopped and restarted.
@@ -4415,8 +4413,8 @@ after the LSAM Server jobs have been stopped and restarted.
 |             |             |             |             |             |
 |             |             |             |             |    Paramete |
 |             |             |             |             | rs](#Extend |
-|             |             |             |             | ed){.MCXref |
-|             |             |             |             |     .xref}  |
+|             |             |             |             | ed) |
+|             |             |             |             |       |
 |             |             |             |             |     that    |
 |             |             |             |             |             |
 |             |             |             |             |    explains |
@@ -4480,7 +4478,7 @@ after the LSAM Server jobs have been stopped and restarted.
 |             |             |             |             |             |
 |             |             |             |             | Certificate |
 |             |             |             |             |             |
-|             |             |             |             |  Manager\'s |
+|             |             |             |             |  Manager's |
 |             |             |             |             |             |
 |             |             |             |             |   database. |
 +-------------+-------------+-------------+-------------+-------------+
@@ -4588,7 +4586,7 @@ after the LSAM Server jobs have been stopped and restarted.
 |             |             |             |             | Certificate |
 |             |             |             |             | Store for   |
 |             |             |             |             | this        |
-|             |             |             |             | Agent\'s    |
+|             |             |             |             | Agent's    |
 |             |             |             |             | c           |
 |             |             |             |             | ertificate. |
 |             |             |             |             | The Agent   |
@@ -4622,14 +4620,12 @@ to set and use certain of the LSAM parameters listed above.
 #### Introduction to TLS Security for the IBM i Agent
 
 This discussion offers supplemental information in addition to what is
-provided in [Communication Settings](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Machines.md#Communic){.MCXref
-.xref} in the **Concepts** online help, and other referenced sections of
+provided in [Communication Settings](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Machines.md#Communic)
+ in the **Concepts** online help, and other referenced sections of
 documentation that explain each part of implementing TLS Security in the
 OpCon network. The ready should look for information about configuring
 the OpCon Server communications programs, including SMANetcom, and the
 MSLSAM (Windows Agent).
-
- 
 
 This section is focused on guidelines for implementing compliant and
 compatible TLS Security for the OpCon Agent for IBM i (= the IBM i
@@ -4656,7 +4652,7 @@ a.  At least one digital certificate identifying the OpCon server must
     certificate store on the OpCon server.
     i.  Digital certificates can be self-signed or issued by well-known
         public Certificate Authorities.
-b.  Similarly, the OpCon application server\'s digital certificate, or
+b.  Similarly, the OpCon application server's digital certificate, or
     the CA root certificate for the authority that issued the OpCon
     Server certificate, must be imported into the IBM i \*SYSTEM
     certificate store, using the IBM i web-based DCM (Digital
@@ -4701,7 +4697,7 @@ c.  TLS Client/Server digital certificates for the IBM i Applications
             certificate store.
 d.  If a locally generated TLS Client/Server certificate will be
     exported from the IBM i \*SYSTEM certificate store:
-    i.  Export the certificate to an IFS root \'/\' file system
+    i.  Export the certificate to an IFS root '/' file system
         directory. Frequently it is convenient to specify a .CER suffix
         on the exported file name.
     ii. Always use ASCII text mode when transferring a .CER file from
@@ -4722,7 +4718,7 @@ b.  Put another way, it is not necessary to import individual TLS
     Client/Server certificates into a system whenever the CA that issued
     the certificate is identified as a Trusted Root (which means that
     the CA Root certificate has already been imported into the local
-    system\'s certificate store).
+    system's certificate store).
 
 There are four (4) TLS Applications in the IBM i LSAM software (as of
 the date of this publication) that must be registered in the IBM i
@@ -4740,16 +4736,16 @@ It is critical that the LSAM registration of the Application ID match
 exactly the Application ID that will be registered in the IBM i \*SYSTEM
 certificate store.
 
-The four Applications that must be assigned the exact Application ID\'s
+The four Applications that must be assigned the exact Application ID's
 are commonly described by OpCon documentation with the following
 approximate labels:
 
--   LSAM Job Scheduling and JORS services (a TLS Server).
--   LSAM SMAFT (SMA File Transfer) Agent (a TLS Client, initiated by an
+- LSAM Job Scheduling and JORS services (a TLS Server).
+- LSAM SMAFT (SMA File Transfer) Agent (a TLS Client, initiated by an
     OpCon SMA File Transfer job start request).
--   LSAM SMAFT Server (a TLS Server, a never-ending LSAM server job that
+- LSAM SMAFT Server (a TLS Server, a never-ending LSAM server job that
     runs alongside of the other LSAM server jobs).
--   LSAM Operator Replay:   The script driver (a TLS Client), accessing
+- LSAM Operator Replay:   The script driver (a TLS Client), accessing
     the IBM i Telnet Server.
 
 After the Applications are registered, use the IBM i DCM web application
@@ -4759,7 +4755,7 @@ application.
 a.  The same TLS Client/Server certificate could be used for all four
     Applications.
 b.  The client may choose to use two to four separate TLS Client/Server
-    certificates, depending on the entity\'s security standards or
+    certificates, depending on the entity's security standards or
     common practices.
 
 #### Steps to Implement TLS Security for the IBM i LSAM
@@ -4771,34 +4767,32 @@ specific to the SMA File Transfer protocol or the Operator Replay Script
 driver use of the Telnet Server, refer to TLS Security details within
 those chapters of this Agent documentation.
 
- 
-
 Some of the following steps may require information that originates from
 the Digital Certificate guidelines, above.
 
-1.  New installs of the LSAM (OpCon Agent) for IBM i must use an install
-    file with a name similar to LI181001 (or newer, where the \"181\"
+1. New installs of the LSAM (OpCon Agent) for IBM i must use an install
+    file with a name similar to LI181001 (or newer, where the "181"
     refers to the IBM i Agent version 18.1).
     a.  Version 04.00.03 or older of the IBM i LSAM are not supported
         for TLS Security. But they can be upgraded to LSAM version 18.1
         using the same, latest version of the 18.1 install file.
-2.  The OpCon server software must be at a version 17.2.x or newer.
+2. The OpCon server software must be at a version 17.2.x or newer.
     a.  For versions of OpCon prior to 18.3.1, it might be necessary to
         obtain and execute SQL instructions that are used to update the
         OpCon database (at the location of the SQL Server) to enable new
         TLS Security settings for IBM i machine records.
         i.  As of this publication, these statements were available in a
-            file named \"UpdateLSAMTYPES_AUXForSMAFTTLS.sql\". Please
+            file named "UpdateLSAMTYPES_AUXForSMAFTTLS.sql". Please
             contact SMA Support for assistance with obtaining and
-            executing this update to the OpCon server\'s database.
-3.  Within General Settings for the IBM i LSAM machine record:
+            executing this update to the OpCon server's database.
+3. Within General Settings for the IBM i LSAM machine record:
     a.  Enter the Fully Qualified Domain name, for example:
 
         ![IBM i General         Settings](../Resources/Images/IBM-i/IBM-i-General-Settings.png "IBM i General Settings")
-4.  In Advanced Settings for the IBM i LSAM machine record, complete the
+4. In Advanced Settings for the IBM i LSAM machine record, complete the
     following updates.
     a.  Under Communication Settings:
-        i.  Set the \"Use TLS for Scheduling Communications\" flag to
+        i.  Set the "Use TLS for Scheduling Communications" flag to
             True.
 
         ii. Enter the TLS Certificate Distinguished Name; this is often
@@ -4822,16 +4816,16 @@ the Digital Certificate guidelines, above.
         is true that all machines used at the site are confirmed as
         supporting TLS security for SMA File Transfer.
         i.  Unrelated to TLS security, but required, set the File
-            Transfer Role for IBM i machines to \"Both\".
+            Transfer Role for IBM i machines to "Both".
         ii. Set the File Transfer TLS Port Number to the same value as
             the non-TLS port.
             I.  The IBM i LSAM uses the same port number for either type
                 of connection and depends on a combination of the LSAM
                 local controls, plus the remote SMA File Transfer
-                partner\'s controls, to determine whether TLS security
+                partner's controls, to determine whether TLS security
                 handshake can be completed.
-            II. **NOTE**: OpCon \"File Transfer\" jobs, under the
-                Options tab, can override each job\'s settings to either
+            II. **NOTE**: OpCon "File Transfer" jobs, under the
+                Options tab, can override each job's settings to either
                 force only TLS connections, or to allow non-TLS
                 connections.
         iii. Set Support TLS for SMAFT Server Communications = True.
@@ -4845,49 +4839,49 @@ the Digital Certificate guidelines, above.
         record changes.
 
         ![File Transfer         Settings](../Resources/Images/IBM-i/File-Transfer-Settings.png "File Transfer Settings")
-5.  Update the IBM i LSAM Parameters.
+5. Update the IBM i LSAM Parameters.
     a.  The LSAM green screen main menu is accessed, for example, by
         using the command SMAGPL/STRSMA. Select option 7 on the main
         menu. There are tables summarizing the meaning of these
         parameters in the [IBM i Agent Configuration         Settings](#Configur) section of this User Help.
     b.  After verifying the main LSAM Control Parameters, press Enter or
-        PageDown twice to reach display format 3 and update the \"Job
-        Scheduling and JORS TLS Security Options.\"
-        i.  Set \"Use TLS Security\" = Y.
-        ii. The \"TLS Handshake\" default value of 30 seconds is usually
+        PageDown twice to reach display format 3 and update the "Job
+        Scheduling and JORS TLS Security Options."
+        i.  Set "Use TLS Security" = Y.
+        ii. The "TLS Handshake" default value of 30 seconds is usually
             more than long enough to complete a TLS handshakes.
             I.  If an error message in the LSAM Communications trace log
                 (LSAM sub-menu 6, option 5, log view 1) shows a
-                \"handshake timeout\" message, it\'s possible to try the
+                "handshake timeout" message, it's possible to try the
                 connection again after updating this value to a longer
                 time, and then stopping/restarting the LSAM Servers (to
                 actualize the new setting). However, in most cases it
                 seems that a handshake timeout is really an indication
-                that the other side has rejected the LSAM\'s digital
+                that the other side has rejected the LSAM's digital
                 certificate (for any of several reasons).
-        iii. The \"TLS DCM App description\" is suggested in the TLS
+        iii. The "TLS DCM App description" is suggested in the TLS
              Security parameters table, above, and on the green screen
              display, page 3 of LSAM Parameters. But it can be
              user-defined. It is not critical, but is the description
              that will show in certain IBM i DCM displays.
-        iv. The \"TLS DCM Application ID\" is critical, because this
+        iv. The "TLS DCM Application ID" is critical, because this
             field value, as entered in this display format, will be used
             by the LSAM communication program to find the digital
             certificate it must use, that was stored in the IBM i
             certificate store.
-6.  Update the IBM i LSAM Parameters.
+6. Update the IBM i LSAM Parameters.
     a.  The LSAM green screen sub-menu for SMA File Transfer in the IBM
         i is accessed using option 8: SMA File Transfer menu, from the
         LSAM main menu. From the sub-menu, select option 7: SMAFT
         Configuration Parameters, from this sub-menu.
-    b.  Press Enter or PageDown once to reach the \"SMA File Transfer
-        SSL/TLS Security Options.\"
-    c.  Set the flag \"Use TLS Security?\" to \'Y\'.
+    b.  Press Enter or PageDown once to reach the "SMA File Transfer
+        SSL/TLS Security Options."
+    c.  Set the flag "Use TLS Security?" to 'Y'.
     d.  The other fields in this segment of TLS Security options are
         managed similar to the instructions above for Job Scheduling and
         JORS, except that there are two different programs (or DCM
         Applications) for SMAFT that must each be described and labeled.
-7.  Before TLS Security can be engaged, remember to complete the IBM DCM
+7. Before TLS Security can be engaged, remember to complete the IBM DCM
     maintenance:
     a.  Register the four LSAM Applications, making sure that the
         Application ID (not the Description) matches exactly what is
@@ -4896,12 +4890,12 @@ the Digital Certificate guidelines, above.
     b.  After digital certificates are obtained and installed, or
         created from within the IBM DCM application, assign one or more
         digital certificates to the four LSAM Applications.
-8.  After setting all the LSAM options and completing other preparations
+8. After setting all the LSAM options and completing other preparations
     (above), use the LSAM sub-menu 6. If the LSAM server jobs were
     already started, they must first be stopped using the sub-menu
     option 2, in order for new LSAM Parameter values to be implemented.
     Then use sub-menu option 1 to restart the server jobs.
-    a.  The same operation holds true for the LSAM\'s SMAFT server job,
+    a.  The same operation holds true for the LSAM's SMAFT server job,
         managed from sub-menu 8, although in most cases a SMAFT
         Parameters flag will indicate that the SMAFT Server job will
         stop and restart along with all the other LSAM server jobs.
@@ -4946,22 +4940,18 @@ information between the native ASCII character set used by the OpCon
 server and the language-specific EBCDIC character set used by the IBM i
 partition where the LSAM server jobs run.
 
- 
-
 The LSAM Parameters are set by default to use IBM i translation tables
 for U.S. English. But the LSAM also supports an option to use CCSID
 character set numbers instead, since this translation method may work
 better in non-U.S. English language environments. Please contact SMA
 Support for assistance if it is believed that the table names might need
-to be changed. An SMA technical analyst should evaluate the LSAM\'s job
+to be changed. An SMA technical analyst should evaluate the LSAM's job
 scheduling communications log in order to help determine whether a
 change to a different translation table, or the use of CCSID character
 sets will be required.
 
- 
-
 To specify a numeric CCSID character set in the Table field, type the
-special value of \"\*CCSID\" into the Library field. If one table uses a
+special value of "\*CCSID" into the Library field. If one table uses a
 CCSID number, then both tables must use a CCSID number. It is not
 allowed to mix a translation table name with a CCSID character set
 number. When specifying CCSID character set numbers, specify the
@@ -4969,8 +4959,6 @@ character set that pertains to the set name that is on the right side of
 the -\> arrow character. For example, in the United States, a value of
 37 (US EBCDIC) would be specified next to ASCII -\>E:, and a value of
 819 (US ASCII) would be specified next to EBCDIC-\>A:.
-
- 
 
 The CCSID pair of 37 \<-\> 819 typically produces the same result on a
 US EBCDIC machine as using the default translation table names of
@@ -4984,8 +4972,6 @@ files.
 
 Error bypass flag SMA0014 is discussed in Job Tracking and Queuing.
 
- 
-
 When choosing the settings for the error bypass flags SMA0007 and
 SMA0008, it will help to understand the behavior visible from the
 OpCon/xps Schedule display. It is important to remember that regardless
@@ -4996,8 +4982,6 @@ bypass flags are not set to bypass the errors, OpCon/xps will report the
 jobs as failed and the jobs can be restarted after the error has been
 corrected.
 
- 
-
 If a job has been submitted by bypassing one of these errors, OpCon/xps
 will report the job as shown in the following examples (refer to both
 *Job Status* discussions, below); it will assume that the jobs are
@@ -5005,17 +4989,13 @@ active but incomplete. In this case, the IBM i system operator or
 administrator becomes responsible for manually correcting the
 configuration problems under IBM i and then manually releasing the jobs.
 
- 
-
 If it is decided that a job being held in a job queue that has an error
 (either condition SMA0007 or SMA0008) should be deleted and not run when
 the error has been bypassed, the correct procedure for deleting the job
-is to use the OpCon/xps Kill command from the job\'s context (right
+is to use the OpCon/xps Kill command from the job's context (right
 mouse click) menu in the OpCon/xps EM Schedule display. Using the Kill
 command will allow OpCon/xps to correctly set the job status in the
 schedule and it also removes the job from the IBM i job queue.
-
- 
 
 If an IBM i system operator deletes a job from an IBM i job queue,
 OpCon/xps will not be able to report the failed status of that job, but
@@ -5036,17 +5016,15 @@ the LSAM software needs to be updated with the latest software patches.
 #### Job Status for Attempted Job Starts (TX1)
 
 If the IBM i LSAM Parameters switches (SMA0008 or SMA0007) are set to
-\"Y\" = Yes, allowing job queue error conditions to be bypassed, the
+"Y" = Yes, allowing job queue error conditions to be bypassed, the
 LSAM will return a special job status to the OpCon/xps Schedule, rather
 than rejecting the job request. The job will appear to be active,
-however, it will show the special status message \"JOBQ HELD\" as
+however, it will show the special status message "JOBQ HELD" as
 illustrated in the example below. When this status appears, the job will
 not start executing until an operator intervenes and manually releases
 the held job queue. Once the job queue is released, the job should run
 normally and OpCon/xps and the LSAM will continue normal operations
 automatically.
-
- 
 
 This example illustrates how OpCon/xps notifies when a job has been
 allowed to bypass error code SMA0008 and enter a job queue in HELD
@@ -5056,19 +5034,17 @@ Bypassed Job Start Error SMA0008
 
 ![Bypassed Job Start Error SMA0008](../Resources/Images/IBM-i/Bypassed-Job-Start-Error-SMA0008.png "Bypassed Job Start Error SMA0008")
 
- 
-
 When a job has been allowed to bypass error code SMA0007 and enter a job
 queue that is not attached to an IBM i subsystem, the report from the
 OpCon/xps Schedule works the same as in the example above, but with the
 following different text:
 
-1.  The Schedule job status will show: Job Running -- JOBQ NO SBS
-    -   This status means, \"the job queue is not attached to a
-        subsystem.\"
-2.  The message sent to the SAM Log will read:
-    -   \"JOBQ not linked to SBS: library/jobq preventing job: jobname
-        \#1234567890\"\
+1. The Schedule job status will show: Job Running -- JOBQ NO SBS
+    - This status means, "the job queue is not attached to a
+        subsystem."
+2. The message sent to the SAM Log will read:
+    - "JOBQ not linked to SBS: library/jobq preventing job: jobname
+        \#1234567890"\
         (The SAM job name and job number are shown at the end of the
         message.)
 
@@ -5084,15 +5060,15 @@ Job Status When Stuck In Job Queue
 ![Job Status When Stuck In Job Queue](../Resources/Images/IBM-i/Job-Figure-Status-When-Stuck-In-Job-Queue.png "Job Status When Stuck In Job Queue")
 
 As the OpCon/xps Schedule display above illustrates, a job that is still
-in the job queue and not actually started yet shows a status of \"Job
-Running -- STILL IN JOBQ\". This status can occur for any of at least
+in the job queue and not actually started yet shows a status of "Job
+Running -- STILL IN JOBQ". This status can occur for any of at least
 the following three reasons:
 
-1.  If the job queue was not attached to a subsystem (originally
-    reported with the status of \"Job Running -- JOBQ NO SBS\")
-2.  If a job was manually placed in HOLD status while it was still in
+1. If the job queue was not attached to a subsystem (originally
+    reported with the status of "Job Running -- JOBQ NO SBS")
+2. If a job was manually placed in HOLD status while it was still in
     the job queue.
-3.  If the maximum number of jobs permitted are already active in the
+3. If the maximum number of jobs permitted are already active in the
     attached subsystem, and the job has to wait until one of the active
     jobs ends.
 
@@ -5100,9 +5076,7 @@ If an operator is able to repair any of these causes, the submitted job
 should start immediately and OpCon/xps and the LSAM will automatically
 resume normal schedule control operations.
 
- 
-
-A [job queue]{.ul} in HELD status is handled differently, as explained above. When the job queue is released, the job should start and the
+A [job queue] in HELD status is handled differently, as explained above. When the job queue is released, the job should start and the
 OpCon/xps job monitoring will return to normal status codes.
 
 #### SMA0007 Bypass Logic
@@ -5111,13 +5085,11 @@ The LSAM job scheduler server program (LSASCHR00, job TXMMNG) checks the
 job queue for a job start request to make sure the job queue is attached
 to a subsystem. This check prevents OpCon/xps from submitting a job that
 will never be executed. The default action of the LSAM server (bypass
-flag value \'N\') when it finds a job queue that is not attached to a
+flag value 'N') when it finds a job queue that is not attached to a
 subsystem is to fail the job start request with error code SMA0007. If
-the bypass flag value is set to \'Y\', the job is submitted but the LSAM
+the bypass flag value is set to 'Y', the job is submitted but the LSAM
 continues to report a special error condition to OpCon/xps SAM that
 shows next to the job in the OpCon/xps schedule.
-
- 
 
 Sometimes it may be possible that unusual conditions cause the LSAM
 server to receive a false indication that a job queue is not attached to
@@ -5128,9 +5100,7 @@ seconds specified in the Delay for SMA0007 retry, and it will repeat
 this process for the number of retries. If the job queue status still
 returns as unattached after the retries, then the LSAM job scheduler
 server program will fail the job start request with error code SMA0007,
-just as if the bypass flag had been set to \'N\'.
-
- 
+just as if the bypass flag had been set to 'N'.
 
 During the process of checking the job queue status, if the LSAM server
 program receives an error from the IBM i routine that performs the
@@ -5138,9 +5108,9 @@ check, the LSAM server will report this error to the system operator
 message queue (normally QSYSOPR). Two error messages will be sent to the
 system operator, resembling the following examples:
 
--   \"LSASCHR00 retrieve job queue API reports error CPF1234\"
--   \"CPF1234 error message text (refer to second level help text of
-    message for more information)\"
+- "LSASCHR00 retrieve job queue API reports error CPF1234"
+- "CPF1234 error message text (refer to second level help text of
+    message for more information)"
 
 The first message is used to clearly identify that this message and the
 one following it have come from the LSAM job scheduler server program,
@@ -5164,8 +5134,6 @@ job status request (TX2). The frequency of job status requests is
 controlled by OpCon performance options (refer to the OpCon **Concepts**
 online help).
 
- 
-
 Whenever the LSAM server jobs detect the MSGW status, they always send
 LSAM Feedback information (field code 5801) to OpCon, at the same time
 as the job status displayed in the Enterprise Manager is updated with
@@ -5185,7 +5153,7 @@ trigger Message Management rules by generated a message ID SMA5801.
 
 LSAM Feedback is one of three methods that can be used to trigger Job
 Events for IBM i jobs, when the Job Event tab of the job master record
-shows the \"MSGW Status for Active Job\" Feedback option. To configure
+shows the "MSGW Status for Active Job" Feedback option. To configure
 any OpCon Event command that will execute whenever a job is stuck in the
 MSGW status, update the LSAM Feedback Value field with the character
 string %MSGW% (include the percent sign % so that the letters MSGW will
@@ -5203,20 +5171,14 @@ fields from blanks to a valid message queue name and a message queue
 library name. To deactivate this option, set these two fields back to
 blanks.
 
- 
-
 Remember that any updates to the LSAM Parameters control file will not
 become effective until after the LSAM server jobs are stopped and
 restarted.
-
- 
 
 This SMA5801 option for the LSAM enables local response to the job
 status of MSGW, separately from any OpCon job master response. Both
 methods can be used, but care should be taken to avoid generating
 duplicate Event commands when responses are configured at both levels.
-
- 
 
 The local response is triggered by the message ID SMA5801 being sent to
 the designated message queue. The text of the SMA5801 message will
@@ -5232,10 +5194,8 @@ connected to Response Rules. This response matrix makes it possible to
 conditionally execute any action within the IBM i partition as well as
 any OpCon Event command.
 
- 
-
 The response to message ID SMA5801 does not connect directly to the
-pending message that caused the job\'s MSGW status. That original
+pending message that caused the job's MSGW status. That original
 message will still require a response, either manual or automatic.
 Separate Message Management Parameters must be added if the original
 message is one that might be repeated in the future. This means that one
@@ -5255,16 +5215,12 @@ could be specified for jobs, and it was also unable to easily
 accommodate specific object authorities in environments that require the
 LSAM server user profile (SMANET) to be restricted.
 
- 
-
 The LSAM Parameters bypass flag normally instructs the LSAM job
-scheduler server to bypass, or skip any validation of the job\'s command
+scheduler server to bypass, or skip any validation of the job's command
 line syntax. This is the recommended setting for most environments. This
 bypass flag has been provided so that existing IBM i LSAM clients who
 prefer to use the old validation method can set the bypass flag to N =
 no in order to continue running the LSAM with its old characteristics.
-
- 
 
 The LSAM command line syntax validation did provide a quick response in
 case a command was incorrectly typed, but it did not provide as much
@@ -5273,9 +5229,9 @@ of a failed job. According to the old method, it was sometimes necessary
 to log on to an IBM i workstation in order to view the job log of the
 LSAM job scheduler server whenever a command was rejected for incorrect
 syntax. Depending on the setting of job logging parameters, the
-OpCon/xps \"view output\" feature would typically provide more helpful
-information about anything that is wrong with a command line. The \"view
-output\" function supports inspection of an IBM i job log from the same
+OpCon/xps "view output" feature would typically provide more helpful
+information about anything that is wrong with a command line. The "view
+output" function supports inspection of an IBM i job log from the same
 console display where the OpCon/xps schedule status is viewed.
 
 ### Discussion of Translation Tables
@@ -5286,14 +5242,12 @@ OpCon must translate between the IBM i native EBCDIC character set
 character set that is native to the MS Windows Server environment where
 the OpCon communications programs function.
 
- 
-
 The IBM i LSAM supports three methods for accomplishing character
 translation:
 
-1.  Specify a matched pair of IBM-provided translation tables.
-2.  Define and specify a pair of user-defined translation tables.
-3.  Specify a pair of CCSID character sets (one for EBCDIC and one for
+1. Specify a matched pair of IBM-provided translation tables.
+2. Define and specify a pair of user-defined translation tables.
+3. Specify a pair of CCSID character sets (one for EBCDIC and one for
     ASCII).
 
 The default values presented in the LSAM Configuration Parameters are
@@ -5306,24 +5260,21 @@ commands. For non-U.S. clients the preferred option is probably to use
 CCSID character sets. User testing is required to prove that a pair of
 tables or CCSID character sets will work with OpCon.
 
- 
-
 IBM supports the creation of user-defined translation tables under IBM
 i. IBM supplies documentation that explains how to perform the following
 steps that might be useful in the process of developing new translation
 tables that would more aptly serve a unique environment:
 
--   Work with tables (WRKTBL) to view their contents.
--   Retrieve the definition of an existing translation table into a
+- Work with tables (WRKTBL) to view their contents.
+- Retrieve the definition of an existing translation table into a
     source file member (RTVTBLSRC).
--   Create or update a translation table source file member to modify
+- Create or update a translation table source file member to modify
     how the translation works.
--   Create a user-defined translation table in a DB2 UDB (DB2/400)
+- Create a user-defined translation table in a DB2 UDB (DB2/400)
     library (CRTTBL).
 
 The translation tables or CCSID character sets named here will affect
 all forms of communication between the LSAM and OpCon.
-
 
 :::warning
 Great caution must be exercised when selecting the translation tables or CCSIDs used by the LSAM. The translation must always support the existing OpCon transaction protocol rules; therefore, the reserved characters utilized by the OpCon transaction protocol must be understood. Standard XML protocol characters are among those that must be protected. SMA recommends that a test LSAM environment be used to fully prove a new translation table before attempting to use it for live operations. Please contact the SMA Support team if assistance is needed to adapt OpCon translation.
@@ -5335,8 +5286,6 @@ A typical problem experienced by IBM i LSAM users when specifying
 OpCon/xps Even commands is the difficulty of trying to insert square
 brackets \[\[ \]\] around the token fields that can be supported by OpCon/xps Event processing.
 
- 
-
 For example, when an IBM i LSAM Message Management parameter has been
 configured to issue an OpCon/xps Event upon discovery of an error
 message, it might be useful to include some variable value in a
@@ -5344,21 +5293,17 @@ notification message. A message sent to OpCon/xps from a Message
 Management Event might look something like this:
 
 :::tip Example
-$CONSOLE:DISPLAY,This message text is being sent on **\[\[\$DATE\]\]**,SYSTEM,MESSAGE
+$CONSOLE:DISPLAY,This message text is being sent on **\[\[$DATE\]\]**,SYSTEM,MESSAGE
 :::
 
-In the example above, the character sequence \[\[\$DATE\]\] will be replaced by the system date as soon as OpCon/xps receives this
-\$CONSOLE:DISPLAY event. This token appears in the OpCon/xps SMANetCom
+In the example above, the character sequence \[\[$DATE\]\] will be replaced by the system date as soon as OpCon/xps receives this
+$CONSOLE:DISPLAY event. This token appears in the OpCon/xps SMANetCom
 Trace Log, but by the time the message appears on the SAM Log, the token
 has already been replaced by an actual date value.
-
- 
 
 One difficulty that arises for IBM i workstation users is that the IBM
 5250 workstation keyboard, emulated by the iSeries Access software on a
 PC, does not support direct keying of the square brackets characters.
-
- 
 
 However, it is not necessary to create new translation tables to
 overcome this particular issue, because OpCon/xps already provides a
@@ -5368,7 +5313,7 @@ Event Token field delimiters. In this case, the example above could be
 typed on a 5250 (emulated) workstation as follows:
 
 :::tip Example
-$CONSOLE:DISPLAY,This message text is being sent on **{{\$DATE}}**,SYSTEM,MESSAGE
+$CONSOLE:DISPLAY,This message text is being sent on **{{$DATE}}**,SYSTEM,MESSAGE
 :::
 
 It is possible that in some environments, the default translation tables
@@ -5378,7 +5323,7 @@ to specify user-defined translation tables could be helpful. For more
 information about translation tables, refer to [Discussion of Translation Tables](#Discussi4).
 
 :::note
-Dynamic Variables, supported by the IBM i LSAM in places such as a job\'s call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.
+Dynamic Variables, supported by the IBM i LSAM in places such as a job's call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.
 :::
 
 ### Extending the IBM i Call Command with Special Parameters
@@ -5392,8 +5337,6 @@ character set used by the machine where the OpCon Enterprise Manager is
 executing. Before the LSAM job scheduling server actually processes the
 special character it will be translated to EBCDIC according to the
 translation table specified above in the LSAM Parameters.
-
- 
 
 IBM i jobs can have additional Job Description attributes added, and
 various job management functions that are optionally provided by the IBM
@@ -5423,8 +5366,6 @@ normally. This special use of the SCANSPLF command is specifically
 dedicated to the evaluation of the job log report produced only by each
 execution of the job where this command was added to the command line.
 
- 
-
 When the SCANSPLF command is included in the job Call command line after
 the separator character, the IBM i LSAM will withhold a report to OpCon
 about the job completion status until after it completes the evaluation
@@ -5440,8 +5381,6 @@ and the spool file QPJOBLOG, under the Application ID specified with the
 SCANSPLF command. Many Scan Rule options are available to control
 whether a job will be reported as completed normally or failed.
 
- 
-
 When the SCANSPLF command is used along with additional SBMJOB job
 parameters, the SCANSPLF command and its own parameters must follow any
 job description parameters. That is, the SCANSPLF command string must be
@@ -5452,43 +5391,36 @@ as in the previous section, the Call command line might look like this:
 WRKJOB JOB(\*) OUTPUT(\*PRINT) OPTION(\*ALL)\|CCSID(297) SCANSPLF
 APP(ChkJobLog1)
 
- 
-
 Remember that the APP() keyword of the SCANSPLF command is
 case-sensitive.
-
- 
 
 Refer to the following Note to learn about ways to diagnose this special
 use of the SCANSPLF utility included with a Call command.
 
- 
 :::note
-The details about the SCANSPLF command that was assigned to evaluate a job\'s completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this online help). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
+The details about the SCANSPLF command that was assigned to evaluate a job's completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this online help). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
 :::
 
-#### Setting an IBM i Job\'s LDA Value
+#### Setting an IBM i Job's LDA Value
 
 A new option has been added to the IBM i LSAM job scheduler server
-program that supports building a job\'s local data area (LDA) by adding
+program that supports building a job's local data area (LDA) by adding
 one or more **LDA()** keywords after the separator character. When used,
 this special keyword must follow any job description parameters, but it
 must precede the special use of the SCANSPLF command, as explained
 above.
 
- 
-
 Here are some rules for using one of the LDA keyword formats shown
 below:
 
-1.  More than one LDA() keyword may be included in the Call command
+1. More than one LDA() keyword may be included in the Call command
     line.
-2.  Blanks are not allowed, except within quoted strings.
-3.  Numeric values can be shorter than their full length, but not
+2. Blanks are not allowed, except within quoted strings.
+3. Numeric values can be shorter than their full length, but not
     longer.
-4.  The length of 1024 for the value string may be constrained by the
+4. The length of 1024 for the value string may be constrained by the
     available length of the Call command field.
-5.  Remember that the whole content of the LDA for the job will be
+5. Remember that the whole content of the LDA for the job will be
     replaced by these LDA() keywords. Therefore, it may be necessary to
     include more than one LDA() keyword to insert all of the required
     values for the LDA. However, format 2 of this LDA() keyword can be
@@ -5498,23 +5430,20 @@ below:
 
 Choose one of the following formats for the LDA keyword:
 
- 
-
-**LDA(start_nbr_4.0:length_nbr_4.0:\'value string 1024.A\')**
+**LDA(start_nbr_4.0:length_nbr_4.0:'value string 1024.A')**
 
 :::tip Example
-LDA(225:14:\'14-char string\')
+LDA(225:14:'14-char string')
 :::
- 
 
 The maximum length supported for each parameter of the LDA() keyword is
 shown as part of the symbolic names, that is:
 
--   Start Number = up to 4 digits locate the starting position within
+- Start Number = up to 4 digits locate the starting position within
     the LDA data area.
--   Length = up to 4 digits specify how much of the LDA data area is
+- Length = up to 4 digits specify how much of the LDA data area is
     updated by the string that follows.
--   value string\' = up to 1024 characters can be included to specify
+- value string' = up to 1024 characters can be included to specify
     the entire LDA contents in one string. However, considering using
     OpCon properties or LSAM Dynamic Variables (shown below) to make
     construction of the LDA contents more flexible.
@@ -5533,18 +5462,14 @@ The special characters that denote a Dynamic Variable token {} may be different 
 Do not change this special character without assistance from a technical support person. It cannot be changed once Dynamic Variables are defined, unless a custom data conversion procedure is used.
 :::
 
- 
-
 Notice that the value string for the LDA would be comprised of the
-results of one or more Type \'V\' (NOT Type \'L\') Dynamic Variables in
-this case. The Type \'L\' Dynamic Variable is used only for variation
-2., below. You cannot use both a single-quoted string and a Type \'V\'
+results of one or more Type 'V' (NOT Type 'L') Dynamic Variables in
+this case. The Type 'L' Dynamic Variable is used only for variation
+2., below. You cannot use both a single-quoted string and a Type 'V'
 Dynamic Variable together - choose one format or the other. However,
-since more than one LDA() keyword is supported, it\'s easy to see how
-quoted strings and Dynamic Variables of Type \'V\' could be combined for
+since more than one LDA() keyword is supported, it's easy to see how
+quoted strings and Dynamic Variables of Type 'V' could be combined for
 one Call command.
-
- 
 
 **LDA(DynVarName)**
 
@@ -5555,14 +5480,12 @@ LDA(DYNVARNAM2)
 Notice that this format for the LDA() keyword does not enclose
 DynVarName in the Special token characters (refer to above), because it
 will not be replaced, but will be used as the key value to fetch the LDA
-update instructions from all Type \"L\" dynamic variables that match the
+update instructions from all Type "L" dynamic variables that match the
 variable name. Since each Dynamic Variable can only return up to 128
 characters, it would be necessary to define 8 sequence numbers for the
 Type L Dynamic Variable name in order to account for all 1024 positions
 of the LDA. Of course, more sequence numbers may be used, so that
 smaller LDA content pieces can be managed more easily.
-
- 
 
 When using the LDA() keyword in an OpCon IBM i job Call command line,
 remember that LSAM Dynamic Variables are able to call a user-defined
@@ -5578,6 +5501,6 @@ Here is an example of an OpCon job master record for an IBM i job,
 showing all three possible job definition extensions used at once:
 
 :::tip Example
-CALL PROGRAM\|CCSID(000297) LDA(215:9:\'new value\') SCANSPLF\
+CALL PROGRAM\|CCSID(000297) LDA(215:9:'new value') SCANSPLF\
                                                                                                                                     APP(APPID01) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)]
 :::

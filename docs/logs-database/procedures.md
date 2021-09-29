@@ -33,7 +33,7 @@ so that disk space utilization can be kept at acceptably low levels.
 1. Log into the IBM i wit a user profile that has LSAM administration
     privileges.
 2. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
 4. Enter **4** to choose Manage LSAM logging in the Operator Replay
     Menu.
@@ -54,7 +54,7 @@ so that disk space utilization can be kept at acceptably low levels.
 1. Log into the IBM i with a user profile that has LSAM administration
     privileges.
 2. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to [The STRSMA     Command](Components-and-Operation.md#The).
+    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
 4. Enter **4** to choose Manage LSAM logging in the Operator Replay
     Menu.

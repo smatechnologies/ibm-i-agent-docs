@@ -4,7 +4,7 @@ sidebar_label: 'Screens and Windows'
 
 # Object Authority Screens and Windows
 
-The LSAM menu 9: PTF and Security menu, is documented in [LSAM Software Maintenance (PTFs)](LSAM-Software-Maintenance-(PTFs).md)
+The LSAM menu 9: PTF and Security menu, is documented in [LSAM Software Maintenance (PTFs)](/maintenance/ptf)
 . This section documents menu 9, option 8: Work with object
 authority.
 

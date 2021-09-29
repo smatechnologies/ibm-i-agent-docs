@@ -237,7 +237,7 @@ must be set as required (that is, the Required Rule field must be set to
 Y = yes). However, the SCANSPLF command is allowed to also process
 additional scan rules that specify a different Scan Value, such as a
 directly-entered value or a Dynamic Variable (refer to the chapter about
-[Dynamic Variables](Dynamic-Variables.md)). There is
+[Dynamic Variables](/dynamic-variables/overview)). There is
 also an option to create scan rules that simply capture report data,
 using the value \*CAPT in the Scan Value field. The PARAMETERS keyword
 supports a maximum of 16 parameter values, but each spool file name +
@@ -2649,7 +2649,7 @@ launched in a dependent job. This will create an archival history of the
 captured data log files that could be retrieved on demand, by date, in
 order to satisfy audit requirements.
 
-More information about the SMARGZ and SMASUP commands is provided in [Log File and Database Management](Log-File-and-Database-Management.md#top) and [Commands and Utilities](Commands-and-Utilities.md#top).
+More information about the SMARGZ and SMASUP commands is provided in [Log File and Database Management](/logs-database/overview) and [Commands and Utilities](/commands-utilities/commands).
 
 :::note
 In order to use the LSAM menu functions to view historical log data, it would be necessary to restore the backed up log files from a save file produced by the SMASUP command to a temporary staging library. The LSAM menu functions can be used to view the log file contents if the staging library is added above SMADTA in the job's library list.
