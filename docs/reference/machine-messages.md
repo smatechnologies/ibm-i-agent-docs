@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Machine Messages'
+sidebar_label: 'IBM i LSAM Messages'
 ---
 
 

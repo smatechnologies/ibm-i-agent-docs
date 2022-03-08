@@ -121,7 +121,7 @@ detail about each step in the procedure.
     of the LSAM master records in the original Work with list for this
     LSAM feature.
 
-[Manage Export batches]
+### Manage Export batches
 
 1. If function key F14 was used above to immediately close an Export
     batch and prepare the Export save file, then skip to step 8) below.
@@ -160,7 +160,7 @@ detail about each step in the procedure.
     file belonging to the current interactive job, or it may be found
     under the name of the job that was submitted to batch.
 
-[Manage Import batches]
+### Manage Import batches
 
 1. []{#aanchor22} It is the user's responsibility to copy or move a     save file that is the export data batch to the correct library in
     the correct IBM i partition where the data will be imported. If the
@@ -219,6 +219,9 @@ detail about each step in the procedure.
 13. Type **8** next to the batch that should be imported, then press
     \<**Enter**\> to continue.
 
+    :::note 
+    If the target (import) LSAM environment does not match the LSAM version and DB (database) level of the source (export) LSAM environment, an error message is displayed and the import process is not allowed. In this case it is possible to exit the import process and complete cumulative PTF application to bring the target LSAM environment up to the same level as the source environment. Then it is possible to return to this procedure and complete importing the batch.
+
 14. When the import is performed within the same IBM i partition as the
     export, a warning will appear on the display for Initiate Data
     Import Batch. In this case, choose an option for the field label
@@ -231,6 +234,9 @@ detail about each step in the procedure.
 15. The system displays a final confirmation screen for the import batch
     after editing the batch control details. If the values appear
     acceptable, press \<**F14**\> to start the actual import process.
+
+    :::note
+    The import process performs updates to the target IBM i LSAM database. During this process, a backup save file will be created to contain any data records that will be replaced by the import process. (It is possible to rollback an import batch using option 9 from the Work with Import Batches display, in case the import causes any problems or appears to corrupt data.)
 
 16. If the import process was submitted to batch, a message appears at
     the bottom of the display naming the submitted job. Use this job
@@ -322,7 +328,7 @@ diagram that follows.
 
 Export/Import Process Flow
 
-![Export/Import Process Flow](../Resources/Images/IBM-i/Export-Import-Process-Flow.png "Export/Import Process Flow"){.flat}
+![Export/Import Process Flow](../Resources/Images/IBM-i/Export-Import-Process-Flow.png "Export/Import Process Flow")
 
 The Work with Import Batches function uses the F6=Add function key to
 start a search for Import save files within the target IBM i partition.
@@ -447,25 +453,31 @@ a rollback operation.
 ## Data Export/Import Screens and Windows
 
 ### Data Export/Import Utilities Menu
-
-Data Export/Import Utilities Menu
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -- --
-  [SYSTEMNAME]{style="color: #008000;"}               DATA EXPORT/IMPORT UTILITIES MENU               [00/00/00]{style="color: #008000;"}                                  USERNAME                                                                 16:23:53
-
-    Select one of the following:
-
-       1. [Work with Export batches]{style="color: #008000;"}                                                                                                                   2. [Export a data set (LSAEXPDTA)]{style="color: #008000;"}
-       3. [Display Export Activity/Error Log]{style="color: #008000;"}                                                                                                          4. [Work with Import batches]{style="color: #008000;"}
-       5. [Import new data set (LSAIMPDTA)]{style="color: #008000;"}                                                                                                            6. [Display Import Activity/Error Log]{style="color: #008000;"}
-       7. [Export/Import options configuration]{style="color: #008000;"}
-
-  Selection or command
-    ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-    F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
-    F13=Information Assistant   F16=System main menu
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------ -- --
+```
+ S218CBBW               DATA EXPORT/IMPORT UTILITIES MENU              00/00/00 
+ CLEWIS                                                                20:50:30 
+                                                                                
+  Select one of the following:                                                  
+                                                                                
+                                                                                
+      1. Work with Export batches                                               
+      2. Export a data set (LSAEXPDTA)                                          
+      3. Display Export Activity/Error Log                                      
+      4. Work with Import batches                                               
+      5. Import new data set (LSAIMPDTA)                                        
+      6. Display Import Activity/Error Log                                      
+      7. Export/Import options configuration                                    
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+ Selection or command                                     (C) SMA 1995,2010     
+ ===>                                                                           
+                                                                                
+ F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
+ F13=Information Assistant  F16=System main menu                                
+```
 
 ###### Menu Pathways
 
@@ -520,175 +532,22 @@ their last use.
 - **Screen ID**: EXICFGD301
 
 ###### Fields
-
-+----------------------------------+----------------------------------+
-| Field                            | Description                      |
-+==================================+==================================+
-| Next Export Library number       | This control field is            |
-|                                  | automatically updated every time |
-|                                  | a new export batch is created.   |
-|                                  | Changing the starting value is   |
-|                                  | only recommended for alternate   |
-|                                  | LSAM environments that may       |
-|                                  | reside in the same IBM i         |
-|                                  | partition. In that case, it is   |
-|                                  | recommended to set the starting  |
-|                                  | number high range to a value     |
-|                                  | such as 10001, so that there     |
-|                                  | will be no library or save file  |
-|                                  | name conflicts in case data is   |
-|                                  | ever exported and imported in    |
-|                                  | both directions between two LSAM |
-|                                  | environments.                    |
-+----------------------------------+----------------------------------+
-| Export save file library         | This is the library where the    |
-|                                  | Export tools will put the final  |
-|                                  | save file that results from      |
-|                                  | preparing a batch of data for    |
-|                                  | export. Using the default value  |
-|                                  | of SMALOG makes it possible to   |
-|                                  | take advantage of the LSAM's    |
-|                                  | tools that can be used to        |
-|                                  | automatically purge aged save    |
-|                                  | files from this library.         |
-|                                  | However, it may sometimes be     |
-|                                  | convenient to specify an         |
-|                                  | alternate library name when      |
-|                                  | working within a test LSAM       |
-|                                  | environment.                     |
-+----------------------------------+----------------------------------+
-| Export save file TGTRLS          | -   This value controls the      |
-|                                  |     Target Release (version of   |
-|                                  |     IBM i) that is assigned to   |
-|                                  |     the Export data save file.   |
-|                                  |     Specify a release version if |
-|                                  |     the data will be imported on |
-|                                  |     an IBM i partition that is   |
-|                                  |     running an earlier version   |
-|                                  |     of IBM i.                    |
-|                                  | -   VALUES:                      |
-|                                  |     -   \*OSDFT = The default is |
-|                                  |         the version of the       |
-|                                  |         current IBM i partition. |
-|                                  |     -   VnRnM0 = Specify the     |
-|                                  |         version code of the      |
-|                                  |         destination partition,   |
-|                                  |         if it is older than the  |
-|                                  |         current partition. For   |
-|                                  |         example, if the current  |
-|                                  |         partition is at V7R2M0   |
-|                                  |         but the data will be     |
-|                                  |         imported into a          |
-|                                  |         partition running        |
-|                                  |         V7R1M0, then the value   |
-|                                  |         V7R1M0 must be specified |
-|                                  |         in this field.           |
-+----------------------------------+----------------------------------+
-| Export job description           | The job description used by      |
-|                                  | default when an export process   |
-|                                  | is flagged to be submitted to    |
-|                                  | batch.                           |
-+----------------------------------+----------------------------------+
-| (Export) Job description library | The library location of the      |
-|                                  | Export job description           |
-+----------------------------------+----------------------------------+
-| Export job queue                 | Values: \*JOBD or a specific job |
-|                                  | queue name. The job queue used   |
-|                                  | when submitting an export        |
-|                                  | process to a batch job.          |
-+----------------------------------+----------------------------------+
-| (Export) Job queue library       | The library location of the      |
-|                                  | Export job queue                 |
-+----------------------------------+----------------------------------+
-| Import save file library         | The library that will be         |
-|                                  | searched by default after        |
-|                                  | selecting F6=Add from the Work   |
-|                                  | with Import Batches function.    |
-|                                  | Using the default value of       |
-|                                  | SMALOG makes it possible to      |
-|                                  | depend on the LSAM automatic     |
-|                                  | purging of aged save files from  |
-|                                  | this library. Since the default  |
-|                                  | value is the same for both       |
-|                                  | export and import save files, it |
-|                                  | might sometimes seem more        |
-|                                  | convenient to use a different    |
-|                                  | library for import save files    |
-|                                  | when two LSAM environments are   |
-|                                  | installed within the same IBM i  |
-|                                  | partition. However, the Import   |
-|                                  | tools support special overrides  |
-|                                  | that allow using just one        |
-|                                  | library for exporting and        |
-|                                  | importing data batch save files  |
-|                                  | to/from the same library.        |
-+----------------------------------+----------------------------------+
-| Import job description           | The job description used by      |
-|                                  | default when an import process   |
-|                                  | is flagged to be submitted to    |
-|                                  | batch.                           |
-+----------------------------------+----------------------------------+
-| (Import) Job description library | The library location of the      |
-|                                  | Import job description           |
-+----------------------------------+----------------------------------+
-| Import job queue                 | Values: \*JOBD or a specific job |
-|                                  | queue name. The job queue used   |
-|                                  | when submitting an import        |
-|                                  | process to a batch job.          |
-+----------------------------------+----------------------------------+
-| (Import) Job queue library       | The library location of the      |
-|                                  | Import job queue                 |
-+----------------------------------+----------------------------------+
-| Backup save file library         | The name of the library where a  |
-|                                  | save file will be stored that    |
-|                                  | holds the IBM i LSAM database    |
-|                                  | values from before the Import    |
-|                                  | process is executed. The backup  |
-|                                  | save file will be used if the    |
-|                                  | Rollback option is selected.     |
-+----------------------------------+----------------------------------+
-| Backup save file TGTRLS          | -   This value controls the      |
-|                                  |     Target Release (version of   |
-|                                  |     IBM i) that is assigned to   |
-|                                  |     the pre-import data backup   |
-|                                  |     save file. Specify a release |
-|                                  |     version if the backup data   |
-|                                  |     will ever be used to restore |
-|                                  |     data to the LSAM on an IBM i |
-|                                  |     partition that is running an |
-|                                  |     earlier version of IBM i.    |
-|                                  |     This is highly unlikely. In  |
-|                                  |     most cases, the default      |
-|                                  |     value of \*OSDFT should be   |
-|                                  |     used.                        |
-|                                  | -   VALUES:                      |
-|                                  |     -   **\*OSDFT**: The default |
-|                                  |         is the version of the    |
-|                                  |         current IBM i partition. |
-|                                  |     -   **VnRnM0**: Specify the  |
-|                                  |         version code of the      |
-|                                  |         destination partition,   |
-|                                  |         if it is older than the  |
-|                                  |         current partition. For   |
-|                                  |         example, if the current  |
-|                                  |         partition is at V7R2M0   |
-|                                  |         but the backup data will |
-|                                  |         be restored into a       |
-|                                  |         partition running        |
-|                                  |         V7R1M0, then the value   |
-|                                  |         V7R1M0 must be specified |
-|                                  |         in this field.           |
-+----------------------------------+----------------------------------+
-| Days to retain Ex/Imp data       | The number of days after the     |
-|                                  | last active use of Export or     |
-|                                  | Import control data and any      |
-|                                  | associated temporary libraries   |
-|                                  | when the LSAM daily maintenance  |
-|                                  | server job will automatically    |
-|                                  | remove aged data.                |
-+----------------------------------+----------------------------------+
-
-:  
+* **Next Export Library Number** - This control field is automatically updated every time a new export batch is created. Changing the starting value is only recommended for alternate LSAM environments that may reside in the same IBM i  partition. In that case, it is recommended to set the starting number high range to a value such as 10001, so that there will be no library or save file name conflicts in case data is ever exported and imported in both directions between two LSAM environments.
+* **Export save file library** - This is the library where the Export tools will put the final save file that results from  preparing a batch of data for export. Using the default value of SMALOG makes it possible to take advantage of the LSAM's  tools that can be used to automatically purge aged save files from this library. However, it may sometimes be convenient to specify an alternate library name when working within a test LSAM  environment.
+* **Export save file TGTRLS** - This value controls the Target Release (version of IBM i) that is assigned to the Export data save file. Specify a release version if the data will be imported on an IBM i partition that is running an earlier version of IBM i.  VALUES: *OSDFT = The default is the version of the current IBM i partition. VnRnM0 = Specify the  version code of the destination partition, if it is older than the urrent partition. For example, if the current partition is at V7R2M0 but the data will be imported into a partition running V7R1M0, then the value V7R1M0 must be specified in this field.
+* **Export job description** - The job description used by default when an export process is flagged to be submitted to batch.
+* **(Export) Job description library** - The library location of the Export job description
+* **Export job queue** - Values: \*JOBD or a specific job queue name. The job queue used when submitting an export  process to a batch job.
+* **(Export) Job queue library** - The library location of the Export job queue
+* **Import save file library** - The library that will be searched by default after selecting F6=Add from the Work  with Import Batches function. Using the default value of SMALOG makes it possible to depend on the LSAM automatic purging of aged save files from this library. Since the default value is the same for both export and import save files, it might sometimes seem more convenient to use a different  library for import save files  when two LSAM environments are installed within the same IBM i partition. However, the Import tools support special overrides that allow using just one library for exporting and importing data batch save files to/from the same library.
+* **Import job description** - The job description used by default when an import process is flagged to be submitted to batch.
+* **(Import) Job description library** - The library location of the Import job description
+* **Import job queue** - Values: \*JOBD or a specific job queue name. The job queue used when submitting an import process to a batch job.
+* **(Import) Job queue library** - The library location of the Import job queue
+* **Backup save file library** - The name of the library where a save file will be stored that holds the IBM i LSAM database values from before the Import process is executed. The backup save file will be used if the Rollback option is selected.
+* **Backup save file TGTRLS** - This value controls the  Target Release (version of IBM i) that is assigned to the pre-import data backup save file. Specify a release version if the backup data will ever be used to restore data to the LSAM on an IBM i partition that is running an earlier version of IBM i. This is highly unlikely. In most cases, the default value of \*OSDFT should be used.  VALUES:   **\*OSDFT**: The default is the version of the current IBM i partition.  **VnRnM0**: Specify the version code of the destination partition, if it is older than the current partition. For example, if the current partition is at V7R2M0 but the backup data will be restored into a partition running V7R1M0, then the value V7R1M0 must be specified in this field.
+* **Days to retain Ex/Imp data** - The number of days after the last active use of Export or Import control data and any 
+associated temporary libraries when the LSAM daily maintenance server job will automatically remove aged data.
 
 ###### Functions
 
@@ -731,25 +590,21 @@ is used to close out a batch and compress it into an IBM i save file.
 - Direct access from LSAM master file maintenance \> option 8=Export
 
 ###### Fields
-
-  Field           Description
-  --------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  LSAM Env        The name of the current LSAM environment, from which data is being exported.
-  Vers            The version number of the current LSAM environment. (Must match the target LSAM environment where data will be imported.)
-  PTF/DB\#        The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
-  Search          A value entered into this field will be compared to the entire contents of every batch control record until a match is found. Press Enter to start a new search, or use function key \<**F16**\> to continue a search to the next record.
-  Subset Group    Shows the Group value that limits the current list on display. Press \<**F13**\> to change the Group Subset rule.
-  Subset status   Shows the Status value that limits the current list on display. Press \<**F14**\> to change the Status Subset rule.
-  Last search     Shows the search argument that was last used, where the cursor will be placed next to the first record in the list that contains a matching value. Note that the matching value may not show on this list display, in which case option 5=Display can be used to see the matching value in the control record. This Last search value may also be used to continue a search to the next record if function key \<**F16**\> is pressed while a value is displayed in this field.
-  Opt             \<**Tab**\> to a row in the table and enter an option.
-  Group ID        The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
-  Batch ID        The user-assigned name that helps to identify the data that is, or will be added to a batch. This field is both a key field used to identify a batch and a description field.
-  Sts             The current status of the batch record. Use option 5=Display to see an interpretation of the status code.
-  Lib/SAVF        The name of the temporary library where cloned copies of LSAM master files are used to store exported data and export control information. The save file that will be used to transport export data to another LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Lib/SAVF name is derived from the Export/Import Configuration data control field.
-  Src System      Source system: The internal identifier of the IBM i partition where the LSAM environment from which data is being exported exists. This field has more significance when it is displayed in the similar list of Import Batches, since it will always be the same for all Export batch control records.
-  Src LSAM        Source LSAM: The OpCon machine name for this LSAM environment. This field has more significance when it is displayed in the similar list of Import Batches, since it will always be the same as the display heading field for all Export batch control records.
-
-  :  
+* **LSAM Env** - The name of the current LSAM environment, from which data is being exported.
+* **Vers** - The version number of the current LSAM environment. (Must match the target LSAM environment where data will be imported.)
+* **PTF/DB\#** - The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+* **Search** - A value entered into this field will be compared to the entire contents of every batch control record until a match is found. Press Enter to start a new search, or use function key \<**F16**\> to continue a search to the next record.
+* **Subset Group** - Shows the Group value that limits the current list on display. Press \<**F13**\> to change the Group Subset rule.
+* **Subset status** - Shows the Status value that limits the current list on display. Press \<**F14**\> to change the Status Subset rule.
+*Last search** - Shows the search argument that was last used, where the cursor will be placed next to the first record in the list that contains a matching value. Note that the matching value may not show on this list display, in which case option 5=Display can be used to see the matching value in the control record. This Last search value may also be used to continue a search to the next record if function key \<**F16**\> is pressed while a value is displayed in this field.
+* **Opt** - \<**Tab**\> to a row in the table and enter an option.
+* **Group ID** - The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
+* **Batch ID** - The user-assigned name that helps to identify the data that is, or will be added to a batch. This field is both a key field used to identify a batch and a description field.
+* **Sts** - The current status of the batch record. Use option 5=Display to see an interpretation of the status code.
+* **Lib/SAVF** - The name of the temporary library where cloned copies of LSAM master files are used to store exported data and export control information. The save file that will be used to transport export data to another LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Lib/SAVF name is derived from the Export/Import Configuration data control field.
+* **Src System** - Source system: The internal identifier of the IBM i partition where the LSAM environment from which data is being exported exists. This field has more significance when it is displayed in the similar list of Import Batches, since it will always be the same for all Export batch control records.
+* **Src LSAM** - Source LSAM: The OpCon machine name for this LSAM environment. This field has more significance when it is displayed in the similar list of Import Batches, since it will always be the same as the display heading field for all Export batch control records.
+ 
 
 ###### Options
 
@@ -821,35 +676,17 @@ Subset Export Control Records by Group
   ----------------------------------------------------------------------------------------------------
 
 ###### Fields
+* **Select subset** - Type a number from the list below and press
+\<**Enter**\> to change the subset rule for the list of Export Batch control records.
 
-+---------------+-----------------------------------------------------+
-| Field         | Description                                         |
-+===============+=====================================================+
-| Select subset | Type a number from the list below and press         |
-|               | \<**Enter**\> to change the subset rule for the     |
-|               | list of Export Batch control records.               |
-+---------------+-----------------------------------------------------+
-| Group values  | The list of LSAM master record groups supported     |
-|               | includes:                                           |
-|               |                                                     |
-|               | -   OPRRPY = Operator Reply scripts, steps and      |
-|               |     related files                                   |
-|               | -   TRPMSG = Message Management Parameter records   |
-|               |     and related files                               |
-|               | -   SCANSPLF = Scan Spool File rules and related    |
-|               |     records                                         |
-|               | -   CAPJOB = Captured Job definitions and related   |
-|               |     files                                           |
-|               | -   TRKJOB = Job Tracking and Queuing definitions   |
-|               |     and related files                               |
-|               | -   RSTMOD = Restricted Mode script records         |
-|               | -   DYNVAR = LSAM Dynamic Variable table records    |
-|               |     (these will also appear as a related file to    |
-|               |     most of the other Groups)Show all = remove      |
-|               |     Group ID filtering of the control records list  |
-+---------------+-----------------------------------------------------+
-
-:  
+* **Group values** - The list of LSAM master record groups supported includes:
+  * OPRRPY = Operator Reply scripts, steps and related files
+  * TRPMSG = Message Management Parameter records and related files
+  * SCANSPLF = Scan Spool File rules and related records
+  * CAPJOB = Captured Job definitions and related files
+  * TRKJOB = Job Tracking and Queuing definitions and related files
+  * RSTMOD = Restricted Mode script records 
+  * DYNVAR = LSAM Dynamic Variable table records (these will also appear as a related file to most of the other Groups)Show all = remove Group ID filtering of the control records list
 
 ###### Functions
 
@@ -1760,27 +1597,27 @@ Subset Import Control Records by Group
 | Field         | Description                                         |
 +===============+=====================================================+
 | Select subset | Type a number from the list below and press         |
-|               | \<**Enter**\> to change the subset rule for the     |
-|               | list of import Batch control records.               |
+\<**Enter**\> to change the subset rule for the     |
+list of import Batch control records.               |
 +---------------+-----------------------------------------------------+
 | Group values  | The list of LSAM master record groups supported     |
-|               | includes:                                           |
-|               |                                                     |
-|               | -   OPRRPY = Operator Reply scripts, steps and      |
-|               |     related files                                   |
-|               | -   TRPMSG = Message Management Parameter records   |
-|               |     and related files                               |
-|               | -   SCANSPLF = Scan Spool File rules and related    |
-|               |     records                                         |
-|               | -   CAPJOB = Captured Job definitions and related   |
-|               |     files                                           |
-|               | -   TRKJOB = Job Tracking and Queuing definitions   |
-|               |     and related files                               |
-|               | -   RSTMOD = Restricted Mode script records         |
-|               | -   DYNVAR = LSAM Dynamic Variable table records    |
-|               |     (these will also appear as a related file to    |
-|               |     most of the other Groups)Show all = remove      |
-|               |     Group ID filtering of the control records list  |
+includes:                                           |
+                                                    |
+-   OPRRPY = Operator Reply scripts, steps and      |
+    related files                                   |
+-   TRPMSG = Message Management Parameter records   |
+    and related files                               |
+-   SCANSPLF = Scan Spool File rules and related    |
+    records                                         |
+-   CAPJOB = Captured Job definitions and related   |
+    files                                           |
+-   TRKJOB = Job Tracking and Queuing definitions   |
+    and related files                               |
+-   RSTMOD = Restricted Mode script records         |
+-   DYNVAR = LSAM Dynamic Variable table records    |
+    (these will also appear as a related file to    |
+    most of the other Groups)Show all = remove      |
+    Group ID filtering of the control records list  |
 +---------------+-----------------------------------------------------+
 
 :  

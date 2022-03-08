@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Programs and Files'
+sidebar_label: 'IBM i Programs and Files'
 ---
 
 # IBM i LSAM Programs and Files
