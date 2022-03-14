@@ -122,18 +122,15 @@ to apply the LSAM PTFs.
     documentation section for details about the LSAM PTF Configuration
     values.)
 
-2. Download the two LSAM PTF save files from the [SMA     Technologies]{.GeneralCompanyName} secure ftp server.
-    a.  The base file names are LSCTLDTA (PTF control data) and LSCUMPTF
-        (a collection of all the available PTF save files for each
-        numbered PTF).
-    b.  When an LSAM version matures, the LSCUMPTF save file will be
-        divided into management segments, called "partial PTF save
-        files." There is a separate sub-sub-directory at the [SMA         Technologies]{.GeneralCompanyName} secure ftp server for these
-        partial PTF save file, along with a PDF document of instructions
-        that explains how to use these smaller collections.
+2. Download the two LSAM PTF save files from the SMA Technologies secure ftp server.
+
+    a)  The base file names are LSCTLDTA (PTF control data) and LSCUMPTF (a collection of all the available PTF save files for each numbered PTF). 
+
+    b)  When an LSAM version matures, the LSCUMPTF save file will be divided into management segments, called "partial PTF save files." There is a separate sub-sub-directory at the SMA Technologies] secure ftp server for these partial PTF save file, along with a PDF document of instructions that explains how to use these smaller collections.
 
 3. Choose option 2 from the LSAM sub-menu 9 to start the PTF
     installation process.
+
     a.  Option 2 from sub-menu 9 is the all-in-one PTF install option.
         There is usually no need to utilize any other LSAM PTF sub-menu
         option (except for option 7 that was completed in step 1,
@@ -148,14 +145,17 @@ to apply the LSAM PTFs.
 
     a.  An incorrect response to a failure of the PTF Install process
         can create a big mess that is difficult to repair.
-    b.  SMA Technologies will not charge         off-hours Support fees in case support is required for the
+
+    b.  SMA Technologies will not charge off-hours Support fees in case support is required for the
         failure of the LSAM PTF install process.
 
-5. Once the sub-menu option 2 is completed, [SMA     Technologies]{.GeneralCompanyName} recommends using LSAM sub-menu
+5. Once the sub-menu option 2 is completed, SMA Technologies recommends using LSAM sub-menu
     option 1 to review the updated LSAM PTF list.
+
     a.  Note the current, new PTF level and (if available) the LSAM
         Database level (which is critical for the LSAM data
         export/import tools).
+
     b.  It may be important to carefully examine the last few PTF
         records in the list, to make sure that all PTFs show an Applied
         status. If there appear to be any exceptions, please contact SMA
@@ -197,7 +197,7 @@ by studying the individual steps of PTF application that follow.
 When using the SMAPTFINS command, only user profile QSECOFR may perform this function because the PTF application steps may periodically require QSECOFR authority. In some cases, it might be acceptable for an LSAM Administrator with \*ALLOBJ authority to apply PTFs.
 :::
 
-[Configure LSAM PTF options]
+#### Configure LSAM PTF options
 
 1. To use the automatic on-line PTF request feature (FTP mode), obtain
     from SMA the following information:
@@ -218,6 +218,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
 5. Enter **7** to choose **PTF options configuration** in the PTF and
     Security Menu.
 6. <**Tab**\> to the following fields and type data for each
+
     a.  In the **PTF source** field, type "FTP" to select the
         automatic PTF service provided by SMA. (This FTP option is only
         useful at sites where firewall rules allow the IBM i partition
@@ -225,13 +226,18 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
         used when sites will import the PTF save files to a Windows or
         UNIX ftp server within the firewall of the site LAN.) Other
         options for this field are discussed in the next section of this
-        document; [the IFS method is recommended for clients].     b.  In the **SMA ftp user** field, type the user profile name
+        document; [the IFS method is recommended for clients].     
+        
+    b.  In the **SMA ftp user** field, type the user profile name
         provided by SMA (or an alternate source) for its ftp server.
+
     c.  In the **Password** and the **Confirm Pwrd** fields, type the
         FTP server user profile's password that was provided by SMA (or
         an alternate ftp server provider).
+
     d.  In the **FTP URL or IP address** field, type the URL path or the
         IP address provided for communication with the ftp server.
+
     e.  In the **Source directory or path** field, type the path name
         provided by the ftp server source administrator for the location
         of IBM i LSAM PTF resources. (This field may also be used for a
@@ -240,18 +246,23 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
         must end with a forward slash (/), and most root directory
         servers also require that the path name begin with a forward
         slash (/).
+
     f.  Select one of the available options for the **PTF - LSAM server
         stop opt**. (Refer to the table of fields for the PTF
         configuration screen in the Screens and Windows section, below,
         for more information.)
+
     g.  Select one of the available options for the **PTF - Restart
         servers opt**.
+
     h.  Select 'Y' = yes or 'N' = no for the **PTF process default
         values** options: **Submit job?** and **Auto-load after
         request?**
+
         i.  Specifying 'Y' = yes for the Submit job option is usually
             best for system performance. Use 'N' = no for interactive
             processing only to perform process problem diagnostics.
+
         ii. The option for Auto-load after request should normally be
             set to 'Y' = yes. The PTF data requested from the ftp
             server is not useful until it has been loaded into the LSAM
@@ -260,17 +271,21 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
             intermediate staging site after it is downloaded. This might
             be necessary in a high security environment in order to move
             the PTF resources past a secured firewall.
+
     i.  When the Submit job? option is set to 'Y' = yes, also supply
         values to define the submitted job attributes:
+
         i.  **Job description** and **Job description library** use
             SMALSAJ00 in SMADTA.
+
         ii. **Job queue** and **Job queue libr** (library); the job
             queue should be set to a queue and subsystem that will
             continue to operate even if the PTF application process
             needs to stop the LSAM subsystem, such as QBATCH.
+
 7. Press <**Enter**\> to update the PTF configuration options.
 
-[Request a List of Available PTFs]
+#### Request a List of Available PTFs
 
 1. Log on to an IBM i interactive workstation session as either QSECOFR
     or an LSAM Administrator with privileges to update LSAM PTF control
@@ -283,6 +298,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
     command SMAPTFREQ will be prompted in the PTF and Security Menu.
 5. On the SMAPTFREQ command prompt screen, <**Tab**\> to the following
     fields and enter the following data:
+
     a.  In the **PTF request type** field, type ALLOBJ to request all
         list information and the cumulative collection of PTF save
         files. (Refer to the Screens and Windows section below for more
@@ -340,7 +356,7 @@ When using the SMAPTFINS command, only user profile QSECOFR may perform this fun
     information that has been loaded into the LSAM database for this
     LSAM environment.
 
-[Review PTF Status and Instructions]
+#### Review PTF Status and Instructions
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF
 control database, the next step should be to examine the updated list of
 unapplied PTFs for the following exceptional conditions:
@@ -391,7 +407,7 @@ unapplied PTFs for the following exceptional conditions:
     the PTF application job has completed normally. At that point,
     normal OpCon/xps schedule operations for the LSAM may resume.
 
-[Apply Cumulative PTF (SMAPTFCUM)]
+#### Apply Cumulative PTF (SMAPTFCUM)
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF
 control database, and the review of unapplied PTFs has been completed,
 the normal procedure would be to apply all unapplied PTFs in a single
@@ -431,7 +447,7 @@ PTF application process are essentially similar.
     the workstation screen, "Cumulative PTF application to LSAM:
     <*LSAM_name*\> completed normally."
 
-[Configuration for the "IFS" method of obtaining PTFs]
+#### Configuration for the "IFS" method of obtaining PTFs
 When site firewall rules prohibit the direct connection of the IBM i
 partition to any outside server (by automatic means), change the PTF
 Configuration options to use the IFS method. This method supports
