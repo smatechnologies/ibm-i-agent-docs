@@ -10,23 +10,31 @@ The LSAM menu 9: PTF and Security menu, option 8. Work with object authority is 
 
 PTF and Security Menu
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[SYSTEMNAME]{style="color: #008000;"}                  PTF AND SECURITY MENU                      [00/00/00]{style="color: #008000;"}    USERNAME                                                               00:00:00
-
-    Select one of the following:
-
-       1. [Work with LSAM PTFs]{style="color: #008000;"}        2. [Master PTF request, load and apply (SMAPTFINS)]{style="color: #008000;"}
-       3. [Request PTF information or save files (SMAPTFREQ)]{style="color: #008000;"}        4. [Load PTF information or save files (SMAPTFLOD)]{style="color: #008000;"}
-       5. [Apply cumulative PTF (SMAPTFCUM)]{style="color: #008000;"}        6. [Apply single PTF (SMAPTFAPY)]{style="color: #008000;"}
-       7. [PTF options configuration]{style="color: #008000;"}        8. [Work with object authority]{style="color: #008000;"}
-
-  Selection or command
-   ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-   F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
-   F13=Information Assistant   F16=System main menu
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+ S218CBBW                    PTF AND SECURITY MENU                     01/01/01 
+ USERNAME                                                              01:01:01 
+                                                                                
+  Select one of the following:                                                  
+                                                                                
+                                                                                
+      1. Work with LSAM PTFs                                                    
+      2. Master PTF request, load and apply (SMAPTFINS)                         
+      3. Request PTF information or save files (SMAPTFREQ)                      
+      4. Load PTF information or save files (SMAPTFLOD)                         
+      5. Apply cumulative PTF (SMAPTFCUM)                                       
+      6. Apply single PTF (SMAPTFAPY)                                           
+      7. PTF options configuration                                              
+      8. Work with object authority                                             
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+ Selection or command                                                           
+ ===>                                                                           
+                                                                                
+ F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
+ F13=Information Assistant  F16=System main menu                                
+```
 
 ##### Menu Pathways
 
@@ -82,29 +90,11 @@ Main Menu \> PTF and Security menu (\#9) \> PTF options configuration
 
 ##### Fields
 
-+---------------------------------+-----------------------------------+
-| Field                           | Description                       |
-+=================================+===================================+
-| PTF Source                      | LSAM PTF installation files can   |
-|                                 | be distributed and made available |
-|                                 | to the IBM i partition in four    |
-|                                 | different ways. SMA Technologies  |
-|                                 | recommends using the IFS method.  |
-|                                 | Refer to "Options for PTF        |
-|                                 | Distribution" in this section    |
-|                                 | for an explanation of the         |
-|                                 | requirements for using any of     |
-|                                 | these options.                    |
-|                                 |                                   |
-|                                 | -   FTP = LSAM PTF installation   |
-|                                 |     save files can be downloaded  |
-|                                 |     directly from an ftp server   |
-|                                 |     operated by SMA Technologies, |
-|                                 |     as a first step in a fully    |
-|                                 |     automated solution for        |
-|                                 |     obtaining and then installing |
-|                                 |     the LSAM PTFs.                |
-|                                 | -   OPT = On demand, SMA          |
+| Field      | Description |
+| ----------- | ----------- |
+| PTF Source      | LSAM PTF installation files can be distributed and made available to the IBM i partition in four different ways. SMA Technologies recommends using the IFS method. Refer to "Options for PTF Distribution" in this section for an explanation of the requirements for using any of these options.
+ -   FTP = LSAM PTF installation save files can be downloaded directly from an ftp server operated by SMA Technologies, as a first step in a fully automated solution for obtaining and then installing the LSAM PTFs. 
+ -   OPT = On demand, SMA          |
 |                                 |     Technologies can prepare an   |
 |                                 |     optical disk that contains    |
 |                                 |     the LSAM PTF save files. The  |
