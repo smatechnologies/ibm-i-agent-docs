@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Menu'
+sidebar_label: 'SMA File Transfer Menu'
 ---
 
 # SMA File Transfer Menu

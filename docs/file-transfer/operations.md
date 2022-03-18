@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Operations'
+sidebar_label: 'SMA File Transfer Operations'
 ---
 
 # SMA File Transfer Operations

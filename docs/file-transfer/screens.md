@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Screens and Windows'
+sidebar_label: 'SMA File Transfer Screens and Windows'
 ---
 
 # SMA File Transfer Screens and Windows

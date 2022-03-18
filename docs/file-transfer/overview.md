@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Overview'
+sidebar_label: 'SMA File Transfer'
 ---
 
 # SMA File Transfer
@@ -46,68 +46,91 @@ Here are the steps that define the lifetime of one SMAFT job:
 
 1. A unique SMAFT job type is assigned to a job master record on an
     OpCon/xps schedule.
+
     a.  The job master names the source machine and the target machine
         as well as the name and location, for each machine, of the file
         being transferred.
+
     b.  There are also some SMAFT functional options defined on the job
         master.
+
     c.  The run-time attributes of an SMAFT job are not defined on the
         OpCon/xps job master, as with jobs of type IBM i. A method for
         controlling the IBM i task run attributes is defined below.
+
     d.  Other OpCon/xps jobs on the same Schedule may be used to execute
         pre-transfer tasks or post-transfer tasks that affect the files,
         the data and/or the attributes of file transfer jobs.
+
 2. When the OpCon/xps Schedule determines it is time to run the SMA
     File Transfer job, the job start request is sent to one of the LSAMs
     participating in the transfer, either at the source or the target.
 3. The LSAM receiving the file transfer job start request from OpCon
     becomes the SMAFT Agent.
+
     a.  The job of an SMAFT Agent is to contact a remote SMAFT Server,
         to manage negotiation of the file transfer attributes and to
         report the job completion status to OpCon.
+
     b.  The SMAFT job definition controls whether the Agent will pull a
         file from a Server or push a file to the Server.
+
 4. The SMAFT Server must have a process listening for file transfer
     requests at a specific TCP/IP port.
+
     a.  The SMAFT Agent job is given the IP address of the Server
         machine as a job start parameter.
+
     b.  The port number where the SMAFT Server is listening at the
         remote machine is also provided to the SMAFT Agent with the job
         start request.
+
     c.  Once the SMAFT Agent makes contact with the designated SMAFT
         Server the actual file transfer process becomes active.
+
 5. An SMA File Transfer task begins with the SMAFT Agent exchanging
     information with the Server.
+
     a.  The SMA proprietary file transfer protocol defines exactly how
         the Agent and the Server exchange job parameters.
+
     b.  A decision is made about the capabilities of the two machines.
+
     c.  If either machine cannot support the required parameters of the
         file transfer job, as defined in the OpCon job master, the
         protocol information exchange ends and the OpCon job is marked
         failed.
+
     d.  As part of the file transfer preparation process, the target
         machine is able to complete any file management tasks, such as
         backups, creating new target files or setting up an existing
         file to have more data appended to it.
+
 6. Whenever the SMAFT job encounters a critical error, the file
     transfer process is stopped and error messages are sent back to the
     OpCon SAM as the job is marked failed.
+
     a.  If the remote SMAFT Server has reported the error, the report is
         made to the SMAFT Agent.
+
     b.  The SMAFT Agent job is the actual job that corresponds to the
         OpCon Schedule job master, so the SMAFT Agent always has the
         responsibility of reporting the file transfer job status, error
         messages or successful completion messages to the OpCon SAM.
+
 7. Once the SMAFT Agent and Server have agreed on the file transfer
     parameters, the participant that is has the Source role starts
     sending data packets to its partner that is the Target (or
     Destination).
+
     a.  Both the SMAFT Agent and the SMAFT Server are involved in any
         necessary character set translation. This aspect of a file
         transfer is controlled in part by parameters on the OpCon job
         master record for the file transfer.
+
     b.  Optional encryption and compression, when available, are handled
         by cooperation between the SMAFT Agent and the SMAFT Server.
+
 8. After the Source machine sends the last data packet, an
     end-of-transfer message with a final count of bytes transferred
     completes the process. Then the Agent and the Server assure that the
@@ -116,14 +139,17 @@ Here are the steps that define the lifetime of one SMAFT job:
 9. The SMAFT Agent sends a successful job completion message to the
     OpCon SAM after all data and the end-of-transfer message have been
     received.
+
     a.  The method of cooperation between an SMAFT Agent task and the
         LSAM's job scheduling functions may vary among the LSAMs
         running under different operating systems.
+
     b.  The IBM i LSAM job scheduler is able to retrieve a list of
         information and/or error messages that the SMAFT Agent job has
         stored in a special SMAFT file, but the LSAM uses its normal IBM
         i job completion handler routines for the SMAFT Agent job, the
         same as for any other OpCon job.
+
 10. An ideal method of signaling other programs when a transferred file
     is ready to process would be to create another job on the OpCon
     Schedule that only executes when the actual file transfer job
@@ -287,6 +313,6 @@ Agent job contacts the remote Server and notifies it that a file will be
 sent to it. However, for a PUSH transfer, the Agent is still responsible
 for reporting the job status to OpCon.
 
-IBM i SMA File Transfer Flow Chart
+#### IBM i SMA File Transfer Flow Chart
 
 ![IBM i SMA File Transfer Flow Chart](../Resources/Images/IBM-i/IBM-i-SMA-File-Transfer-Flow-Chart-2.png "IBM i SMA File Transfer Flow Chart")
