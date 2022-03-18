@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Commands'
+sidebar_label: 'Environment Management Commands'
 ---
 
 # Environment Management Commands

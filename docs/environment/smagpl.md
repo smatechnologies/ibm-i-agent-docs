@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Environment Rules and SMAGPL'
+sidebar_label: 'LSAM Environment Rules and Library SMAGPL'
 ---
 
 # LSAM Environment Rules and Library SMAGPL
