@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Object Authority Matrix'
+sidebar_label: 'LSAM Object Authority Matrix'
 ---
 
 # LSAM Object Authority Matrix

@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Work Management Authority'
+sidebar_label: 'LSAM Work Management Authority'
 ---
 
 # LSAM Work Management Authority
@@ -127,30 +127,31 @@ the flow chart LSAM Submit Job Flow.
     quickly to the most recent entries at the bottom of the job log.
 
 Work with Active Jobs Screen
-
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Work with Active Jobs                    [SYSTEMNAME]{style="color: #008000;"}                                                                00/00/00  03:45:13
-  CPU %:      .0     Elapsed time:   00:00:00     Active jobs:   143
-
-  Type options, press Enter.
-    2=Change   3=Hold   4=End   5=Work with   6=Release   7=Display message
-    8=Work with spooled files   13=Disconnect \...
-
-  Opt  Subsystem/Job  User        Type  CPU %  Function        Status
-  \_\_   SMASBS         QSYS        SBS      .0                   DEQW
-  \_\_     JORCMN       SMANET      BCH      .7  PGM-JORCMNR00    SELW
-  \_\_     LSAJOR       SMANET      BCH      .4  PGM-LSAJORR00    DEQA
-  \_\_     LSAMNG       SMANET      BCH      .5  PGM-DLTLOGR00    DEQA
-  \_\_     MSGMNG       SMANET      BCH      .4  PGM-LSARCMR00    DEQA
-  \_\_     SKTCMN       SMANET      BCH      .8  PGM-CMNSKTR00    DEQA
-  [5 ]{style="text-decoration: underline;"}     TXMMNG       SMANET      BCH      .5  PGM-LSASCHR00    DEQW
-  Bottom
-  Parameters or command
-  ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  F3=Exit   F5=Refresh       F7=Find      F10=Restart statistics
-  F11=Display elapsed data   F12=Cancel   F23=More options   F24=More keys
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+                            Work with Active Jobs                   SYSTEMNAME 
+                                                        00/00/00  00:00:00 CDT 
+CPU %:      .0     Elapsed time:   00:00:00     Active jobs:   236             
+                                                                               
+Type options, press Enter.                                                     
+  2=Change   3=Hold   4=End   5=Work with   6=Release   7=Display message      
+  8=Work with spooled files   13=Disconnect ...                                
+                    Current                                                    
+Opt  Subsystem/Job  User        Type  CPU %  Function        Status            
+     SMASBSC        QSYS        SBS      .0                   DEQW             
+       JORCMN       SMANET      BCH      .0  PGM-JORCMNR00    DEQA             
+       LSAJOR       SMANET      BCH      .0  PGM-LSAJORR00    DEQW             
+       LSAMNG       SMANET      BCH      .0  PGM-DLTLOGR00    DEQW             
+       MSGMNG       SMANET      BCH      .0  PGM-LSARCMR00    DEQA             
+       SKTCMN       SMANET      BCH      .0  PGM-CMNSKTR00    DEQA             
+       TXMMNG       SMANET      BCH      .0  PGM-LSASCHR00    DEQW             
+                                                                               
+                                                                               
+                                                                        Bottom 
+Parameters or command                                                          
+===>                                                                           
+F3=Exit   F5=Refresh       F7=Find      F10=Restart statistics       
+F11=Display elapsed data   F12=Cancel   F23=More options   F24=More keys          
+```
 
 - The LSAM TXMMNG job also logs each SBMJOB command and any errors to
     the LSAM log file LSALOGF30. This log file can be quickly viewed

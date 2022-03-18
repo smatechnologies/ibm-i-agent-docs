@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Strategy'
+sidebar_label: 'LSAM Security Strategy'
 ---
 
 # LSAM Security and Object Authority

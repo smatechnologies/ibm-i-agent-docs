@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'User Profiles'
+sidebar_label: 'LSAM User Profiles'
 ---
 
 # LSAM User Profiles
