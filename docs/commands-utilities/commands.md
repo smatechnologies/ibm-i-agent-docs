@@ -31,7 +31,7 @@ operations. An excellent example of how that might be accomplished is
 explained below the Commands table, in the section about the CPYTOMSGIN
 command.
 
-IBM i LSAM Commands
+## IBM i LSAM Commands
 
 +----------------+----------------+----------------+----------------+
 | IBM i LSAM     |                |                |                |
