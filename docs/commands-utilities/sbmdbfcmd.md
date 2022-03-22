@@ -29,7 +29,7 @@ As shown in the following example, the new SBMDBFCMD is typed into the
 CALL field under the Call information tab of an IBM i job master record
 of the OpCon/xps EM.
 
-IBM i Job Master Details - SBMDBFCMD Example
+### IBM i Job Master Details - SBMDBFCMD Example
 
 ![IBM i Job Master Details - SBMDBFCMD Example](../Resources/Images/IBM-i/IBM-i-Job-Master-Details---SBMDBFCMD-Example.png "IBM i Job Master Details - SBMDBFCMD Example"){.flat}
 
@@ -50,21 +50,24 @@ in the OpCon/xps EM Call field.
 
 Following are some variations on the command syntax that are all
 acceptable:
-
+```
 SBMDBFCMD FILE('MYLIB/MYFILE(MYMEMBER)')
-
+```
+```
 sbmdbfcmd file('mylib/myfile(mymember)')
-
+```
+```
 SBMDBFCMD ('MYLIB/MYFILE(MYMEMBER)')
-
+```
+```
 sbmdbfcmd 'mylib/myfile(mymember)'
-
+```
 It is possible to experiment with this command and its syntax from a
 command entry line within the LSAM menu system. A documentary version of
 an actual IBM i command exists for this purpose. Type in the command
-with a string and press \<**Enter**\>, or type just the command and
-press \<**F4**\> to enter the quoted string into a prompted FILE
-parameter field and then press \<**Enter**\>. An example of using the
+with a string and press <**Enter**\>, or type just the command and
+press <**F4**\> to enter the quoted string into a prompted FILE
+parameter field and then press <**Enter**\>. An example of using the
 documentary command is offered below.
 
 :::note
@@ -83,40 +86,33 @@ However, the command itself is useful for the purpose of experimenting
 with the syntax of the SBMDBFCMD Call string, as noted above. Users
 authorized to the command can use it from the command line within the
 LSAM menu system. Type the same command syntax as documented above and
-then press \<**Enter**\> to help assure that the library/file (member)
+then press <**Enter**\> to help assure that the library/file (member)
 string is correctly formatted. It is also possible to prompt the command
-using \<**F4**\>, type in the quoted library/file (member) string, and
-then press \<**F3**\> to exit the prompt (or, press \<**Enter**\> to
+using <**F4**\>, type in the quoted library/file (member) string, and
+then press <**F3**\> to exit the prompt (or, press <**Enter**\> to
 view the display and then quit the display). After using this command
 from command entry, the resulting command string that can be retrieved
 from command entry could be copied from the green screen workstation and
 pasted into the OpCon/xps EM job master Call field.
 
-When \<**Enter**\> is pressed after typing or prompting the SBMDBFCMD
+When <**Enter**\> is pressed after typing or prompting the SBMDBFCMD
 and its FILE string parameter, the following display is presented. This
 display panel is a simple form of documentation for the function.
 
-SBMDBFCMD Pseudo-Command Display
-
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[SBMDBFCMD]{style="color: #008000;"}                 Submit command from DB file                   [00/00/00]{style="color: #008000;"}    USERNAME                                                                10:11:34
-
-   For display only, press Enter to exit.
-
-   [File string:]{style="color: #008000;"} [mylib/myfile(mymember)                                            ]{style="color: #ffcc00;text-decoration: underline;"}   \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-
-   The SBMDBFCMD command does not perform any action itself. It exists for the
-  purpose of controlling authority to the SMA IBM i LSAM function it represents.
-  Refer to the IBM i LSAM Administration guide for instructions about how to use
-  this command to cause OpCon/xps job scheduling to retrieve the actual command
-  line from an IBM i source file member.
-
-   F3=Exit   F12=Cancel
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+### SBMDBFCMD Pseudo-Command Display
+```
+                     Submit command from DB file (SBMDBFCMD)                    
+                                                                                
+ Type choices, press Enter.                                                     
+                                                                                
+ Source file name . . . . . . . . mylib/myfile(mymember)                               
+                                                                                
+                                                                                
+                                                                                
+                                                                          Bottom 
+ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
+ F24=More keys                                                                  
+```
 Notice in the example above that the File string does not show the
 single quotes from this display panel. However, if the string is entered
 without using the single quotes, the command will fail to execute.
@@ -177,9 +173,9 @@ bytes, in order to be compatible with the IBM i job scheduler process
 that reads source members to substitute the command line text.
 
 To create an appropriate source file use the following IBM i command:
-
+```
 CRTSRCPF FILE(MYLIB/MYFILE) RCDLEN(112) AUT(\*EXCLUDE)
-
+```
 The AUT parameter in the example above is not a required value. However,
 SMA recommends revoking public authority to any source file that will be
 used to store command line text in order to help secure the system.

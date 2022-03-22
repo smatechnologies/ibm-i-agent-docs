@@ -60,156 +60,57 @@ menu system.
 The STRSMA command supports the interactive specification of an IBM i
 LSAM environment. To begin the LSAM environment specification or
 selection process, from IBM i command entry, type the command
-**SMAGPL/STRSMA** and press \<**F4**\> (Prompt) to see the possible
+**SMAGPL/STRSMA** and press <**F4**\> (Prompt) to see the possible
 parameter values:
 
 IBM i LSAM Interactive Menu
 
-  -------------------------------------------------------------------------------------------------------------------------
-                                             Start SMA for Environment (STRSMA)
-                                                               
-                                                 Type choices, press Enter.
+```
 
-Environment name . . . . . . . .   [\*SELECT]{style="text-decoration: underline;"}       \*SELECT, \*DEFAULT or name                Show animated splash display . .   [\*YES]{style="text-decoration: underline;"}          \*YES, \*NO
+                       Start SMA for Environment (STRSMA)                       
+                                                                                
+ Type choices, press Enter.                                                     
+                                                                                
+ Environment name . . . . . . . .   *DEFAULT      *SELECT, *DEFAULT or name     
+ LSAM splash display animation  .   *NO           *YES, *NO                     
+ LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name              
+        
+                                                                         Bottom 
+ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
+ F24=More keys                                                                  
+ ```
 
-  -------------------------------------------------------------------------------------------------------------------------
+### STRSMA Command Parameters
 
-+---------------------------+-----------+---------------------------+
-|   STRSMA Command          |           |                           |
-| Parameters                |           |                           |
-+===========================+:=========:+===========================+
 | Parameter                 | Default   | Description and Values    |
-+---------------------------+-----------+---------------------------+
-| ENV                       | \*DEFAULT | -   **\*DEFAULT**:        |
-|                           |           |     Indicates that the    |
-| (Environment name)        |           |     command should use    |
-|                           |           |     the default           |
-|                           |           |     environment in the    |
-|                           |           |     configuration control |
-|                           |           |     tables (refer to the  |
-|                           |           |     discussion under the  |
-|                           |           |     command               |
-|                           |           |     [SMALIBMGT](LSA       |
-|                           |           | M-Environment-Managem |
-|                           |           | ent.md#SMALIBMG) |
-|                           |           |     ).              |
-|                           |           | -   As distributed by     |
-|                           |           |     SMA, the default      |
-|                           |           |     environment flag has  |
-|                           |           |     been assigned to the  |
-|                           |           |     environment called    |
-|                           |           |     SMADEFAULT.           |
-|                           |           | -   **\*SELECT**:         |
-|                           |           |     Indicates the system  |
-|                           |           |     should present a list |
-|                           |           |     of available          |
-|                           |           |     environment names for |
-|                           |           |     the user to select    |
-|                           |           |     from.                 |
-|                           |           | -   The details of the    |
-|                           |           |     selection function    |
-|                           |           |     are explained below,  |
-|                           |           |     under command         |
-|                           |           |     SMALIBINQ.            |
-|                           |           | -   The value of \*SELECT |
-|                           |           |     has been set as the   |
-|                           |           |     backup default value  |
-|                           |           |     for the command       |
-|                           |           |     processor             |
-|                           |           |     subprograms, in case  |
-|                           |           |     a user should specify |
-|                           |           |     an incorrect value    |
-|                           |           |     for the environment   |
-|                           |           |     parameter.            |
-|                           |           | -   **\<NAME\>**: If an   |
-|                           |           |     environment name is   |
-|                           |           |     already known, a user |
-|                           |           |     can sign on to the    |
-|                           |           |     LSAM menus for that   |
-|                           |           |     environment by        |
-|                           |           |     directly typing (or   |
-|                           |           |     programming) a        |
-|                           |           |     command string that   |
-|                           |           |     is made up of the     |
-|                           |           |     command name and the  |
-|                           |           |     environment name.     |
-|                           |           | -   **Example**: To log   |
-|                           |           |     on to the original    |
-|                           |           |     IBM i LSAM            |
-|                           |           |     environment, type:    |
-|                           |           |     STRSMA SMADEFAULT.    |
-|                           |           | -   Or, just type STRSMA  |
-|                           |           |     as long as the        |
-|                           |           |     SMA-distributed       |
-|                           |           |     default environment   |
-|                           |           |     remains set to        |
-|                           |           |     SMADEFAULT.           |
-+---------------------------+-----------+---------------------------+
-| ANIMATE                   | \*YES     | -   **\*YES**: Adds an    |
-|                           |           |     entertaining          |
-| (Show animated splash     |           |     animation of          |
-| display)                  |           |     character graphics.   |
-|                           |           |     This animation is     |
-|                           |           |     useful for            |
-|                           |           |     demonstrations and    |
-|                           |           |     for illustrating that |
-|                           |           |     the LSAM application  |
-|                           |           |     is not just legacy    |
-|                           |           |     code, but a           |
-|                           |           |     state-of-the-art      |
-|                           |           |     software suite that   |
-|                           |           |     utilizes many         |
-|                           |           |     creative IBM i        |
-|                           |           |     techniques.           |
-|                           |           |                           |
-|                           |           | **Note**: The animation   |
-|                           |           | of character graphics     |
-|                           |           | adds two seconds to the   |
-|                           |           | process of signing in to  |
-|                           |           | an LSAM environment.      |
-|                           |           |                           |
-|                           |           | -   It may be desirable   |
-|                           |           |     to specify **\*NO**   |
-|                           |           |     for this parameter    |
-|                           |           |     value when using the  |
-|                           |           |     STRSMA command as     |
-|                           |           |     part of an Operator   |
-|                           |           |     Replay script. This   |
-|                           |           |     would avoid the       |
-|                           |           |     two-second delay and  |
-|                           |           |     allow the script to   |
-|                           |           |     execute more          |
-|                           |           |     efficiently. An       |
-|                           |           |     alternative command   |
-|                           |           |     for use with an       |
-|                           |           |     Operator Replay       |
-|                           |           |     script would be the   |
-|                           |           |     command LSAMENU.      |
-+---------------------------+-----------+---------------------------+
+| ------ | ------- | ------ |
+| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG)).              |
+|                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
+|                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
+|                           |           | -   The details of the selection function are explained below, under command SMALIBINQ.            |
+|                           |           | -   The value of \*SELECT has been set as the backup default value for the command processor subprograms, in case a user should specify an incorrect value for the environment parameter.            |
+|                           |           | -   **\<NAME\>**: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
+|                           |           | -   **Example**: To log on to the original IBM i LSAM environment, type: STRSMA SMADEFAULT.  |
+|                           |           | -   Or, just type STRSMA as long as the SMA-distributed default environment remains set to SMADEFAULT.           |
+| ANIMATE (Show animated splash display)  | \*YES     | -   **\*YES**: Adds an entertaining animation of character graphics. This animation is useful for demonstrations and for illustrating that the LSAM application is not just legacy code, but a state-of-the-art software suite that utilizes many creative IBM i techniques.           |
+|                           |           | **Note**: The animation of character graphics adds two seconds to the process of signing in to an LSAM environment.      |
+|                           |           | -   It may be desirable to specify **\*NO** for this parameter value when using the STRSMA command as part of an Operator Replay script. This would avoid the two-second delay and allow the script to execute more efficiently. An alternative command for use with an Operator Replay script would be the command LSAMENU.      |
 
-: STRSMA Command Parameters
 
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:** [To specify the     | | circular                         | environment value when entering  |
-| background](../../../Reso        | the LSAM menu system and to      |
-| urces/Images/example-icon(48x48) | suppress the animation of the    |
-| .png "Example icon") | splash display, the syntax would |
-|                                  | be:]{.statement2}                |
-|                                  |                                  |
-|                                  | STRSMA ENV(\<environment_name\>) |
-|                                  | ANIMATE(\*NO)                    |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | [The command can also be used    | |                                  | without the parameter keywords,  |
-|                                  | but the environment must first   |
-|                                  | be specified without its keyword |
-|                                  | in order to specify the ANIMATE  |
-|                                  | parameter without its            |
-|                                  | keyword:]{.statement2}           |
-|                                  |                                  |
-|                                  | STRSMA \<environment_name\> \*NO |
-+----------------------------------+----------------------------------+
+
+:::note Example
+To specify the environment value when entering the LSAM menu system and to suppress
+the animation of the splash display, the syntax would be:
+```
+STRSMA ENV(<environment_name>) ANIMATE(*NO)
+```
+
+The command can also be used without the parameter keywords, but the environment must first
+be specified without its keyword in order to specify the ANIMATE parameter without its keyword:
+```
+STRSMA <environment_name> *NO
+```
+:::
 
 ### Using SMASETLIBL in Batch Jobs
 
@@ -217,19 +118,20 @@ The command STRSMA was intended for entering the LSAM menu system and
 environment from an IBM i interactive workstation job; it serves no
 useful purpose in a batch job. The method for entering the LSAM
 environment from a batch job is to use the SMASETLIBL command:
-
+```
 SMAGPL/SMASETLIBL ENV(SMADEFAULT) COMPMSG(\*SILENT)
+```
+#### Prompted SMASETLIBL Command
+```
+                    Set Library List for SMA (SMASETLIBL)                     
 
-Prompted SMASETLIBL Command
+ Type choices, press Enter.                                                     
 
-  -------------------------------------------------------------------------------------------------------------------------
-                                            Set Library List for SMA (SMASETLIBL)
-                                                               
-                                                 Type choices, press Enter.
+ Environment name . . . . . . . .   *SELECT      *SELECT, *DEFAULT or name     
+ Display completion message?  . .   *VERBOSE     *SILENT, *VERBOSE             
+ LSAM General Purpose Library . .   *DEFAULT     *DEFAULT or name              
 
-Environment name . . . . . . . .   [\*SELECT   ]{style="text-decoration: underline;"}    \*SELECT, \*DEFAULT or name            Display completion message?  . .   [\*VERBOSE  ]{style="text-decoration: underline;"}    \*SILENT, \*VERBOSE
-
-  -------------------------------------------------------------------------------------------------------------------------
+```
 
 :::warning
 \*SELECT may not be used in a batch job. The default operation of the STRSMA and SMASETLIBL commands substitutes a value of \*SELECT for the environment parameter if a valid value is not supplied. If this happens in a batch job, it would cause the batch job to end abnormally when the subprograms attempt to display the environment selection screen.
@@ -265,25 +167,34 @@ log into the LSAM menu system automatically when they logon to IBM i.
 
 An example of the STRSMA splash display follows.
 
-LSAM Welcome Screen
+#### LSAM Welcome Screen
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[SYSTEMNAME]{style="color: #008000;"}     W E L C O M E  T O  T H E  I B M  i  A G E N T     [MM/DD/YY]{style="color: #008000;"}   [USERNAME]{style="color: #008000;"}                  [Environment:]{style="color: #008000;"} [SMADEFAULT]{style="color: #ff00ff;"}                 [HH:MM:SS]{style="color: #008000;"}
-
-  Press Enter to continue to the main menu.
-
-                   OOO           CCC
-                  O   O         C   C                    [x 0   x]{style="color: #ff0000;"}                  O     O       C                          [x  x]{style="color: #ff0000;"}
-                 O     O pppp  C       ooo  n nn           [x]{style="color: #ff0000;"}                  O     O p   p C      o   o n   n        [x  x]{style="color: #ff0000;"}
-                 O     O p   p C      o   o n   n       [xx  xx]{style="color: #ff0000;"}                   O   O  p   p  C   C o   o n   n      [xx   xx]{style="color: #ff0000;"}
-                   OOO   pppp    CCC   ooo  n   n     [xx    xx]{style="color: #ff0000;"}                          p                           [x      x]{style="color: #ff0000;"}
-                         p
-                              [by]{style="color: #008000;"} [SMA]{style="color: #0000ff;"}
-
-  [Load source:]{style="color: #008000;"}  [LI040004  PTF403170]{style="color: #00ffff;"}                        [Version:]{style="color: #008000;"} [04.00.03]{style="color: #00ffff;"}                                                            [PTF LVL:]{style="color: #008000;"} [PTF403170]{style="color: #00ffff;"}
-  F3=Exit   F12=Cancel
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+ SYSTEMNAME     W E L C O M E   T O   T H E   I B M  i   A G E N T     MM/DD/YY 
+ USERNAME       Env: SMADEFAULT  Cary Lewis test LSAM in HOSTA         HH:MM:SS 
+                                                                                
+  Press Enter to continue to the main menu.                                     
+                                                                                
+                                                                                
+                                                                                
+                   OOO           CCC                                            
+                  O   O         C   C                     x 0   x               
+                 O     O       C                           x  x                 
+                 O     O pppp  C       ooo  n nn            x                   
+                 O     O p   p C      o   o n   n         x  x                  
+                 O     O p   p C      o   o n   n       xx   xx                 
+                  O   O  p   p  C   C o   o n   n      xx    xx                 
+                   OOO   pppp    CCC   ooo  n   n     xx     xx                 
+                         p                           x       x                  
+                         p                                                      
+                               by SMA Solutions                                 
+                                                                                
+                                                            Version: 18.1       
+ Load source:  LI181027U PTF181027                          PTF LVL: 100        
+                                                             DB LVL: 002        
+ F3=Exit   F5=Animate   F12=Cancel   Enter=Menu                                 
+ Copyright (C) SMA Technologies 1995, 2018. ARR.                                
+```
 
 ## LSAMENU Command
 

@@ -2,25 +2,32 @@
 
 ## Restricted Mode and Multi-Step Job Menu
 
-Restricted Mode Menu
-
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[SYSTEMNAME]{style="color: #008000;"}          RESTRICTED MODE AND MULTI-STEP JOB MENU            [00/00/00]{style="color: #008000;"}    USERNAME                                                               09:15:16
-
-   Select one of the following:
-
-        1.[ Maintain Restricted mode scripts]{style="color: #008000;"}         2.[ Setup Restricted mode environment]{style="color: #008000;"}
-        3.[ Restricted mode history]{style="color: #008000;"}
-        5.[ Maintain Multi-step job scripts]{style="color: #008000;"}         6.[ View Multi-step job log]{style="color: #008000;"}
-        7.[ Maintain dynamic variables]{style="color: #008000;"}
-
-  Selection or command
-   ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-   F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
-   F13=Information Assistant   F16=System main menu
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+### Restricted Mode Menu
+```
+SYSTEMNAME          RESTRICTED MODE AND MULTI-STEP JOB MENU           MM/DD/YY 
+USERNAME                                                              HH:MM:SS 
+                                                                               
+ Select one of the following:                                                  
+                                                                               
+                                                                               
+     1. Maintain Restricted mode scripts                                       
+     2. Setup Restricted mode environment                                      
+     3. Restricted mode history                                                
+                                                                               
+     5. Maintain Multi-step job scripts                                        
+     6. View Multi-step job log                                                
+     7. Script Utility Configuration                                           
+                                                                               
+     9. Maintain dynamic variables                                             
+                                                                               
+                                                                               
+                                                                               
+Selection or command                                     (C) SMA 1995,2005     
+===>                                                                           
+                                                                               
+F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
+F13=Information Assistant  F16=System main menu                                
+```
 
 ###### Menu Pathways
 
@@ -34,7 +41,7 @@ Select or command
 
 The options displayed on this menu are explained in the following
 sections of this document. Type an option number in the Selection or
-command line and press \<**Enter**\> to begin using any of the options.
+command line and press <**Enter**\> to begin using any of the options.
 
 ###### Functions
 
@@ -50,5 +57,5 @@ command line and press \<**Enter**\> to begin using any of the options.
 - **F16=System main menu**: This is always shown on any
     system-generated menu screen. It branches to the general command
     entry menu for IBM i. Return to the previous menu by pressing
-    \<**F3**\> or \<**F12**\>. This function is not commonly used, and
+    <**F3**\> or <**F12**\>. This function is not commonly used, and
     can be restricted for certain user profiles.

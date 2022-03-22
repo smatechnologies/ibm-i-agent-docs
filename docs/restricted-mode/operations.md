@@ -2,10 +2,13 @@
 
 ## Setup for Restricted Mode
 
-[Setup Steps to Prepare for Restricted Mode]
+### Setup Steps to Prepare for Restricted Mode
 
 1. Enable the SMASAV user profile using the following command:
-    **CHGUSRPRF USRPRF(SMASAV) STATUS(\*ENABLED)**.
+    **CHGUSRPRF USRPRF(SMASAV) STATUS(*ENABLED)**.
+    :::note 
+    The default password for user profile SMASAV is SMASAV. The site should consider changing this password.
+    :::
 
 2. In the command line, enter **SMASGPL/STRSMA**. For information on
     STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
@@ -16,48 +19,48 @@
 4. Enter **1** to choose **Maintain scripts** in the Restricted Mode
     Menu.
 
-5. To add a new script, press \<**F6**\> = Add.
+5. To add a new script, press <**F6**\> = Add.
 
 6. Type the New script name (no spaces in name!) in the pop-up window,
-    press \<**Enter**\>.
+    press <**Enter**\>.
 
 7. The screen displays the Restricted mode options display, where
     script steps may be added and changed.
 
-8. Press \<**F6**\> to add new script options (an option is the same as
+8. Press <**F6**\> to add new script options (an option is the same as
     a script step) on the Restricted mode options screen.
 
 9. To change existing option lines, under the **Op** column:
-    a.  \<**Tab**\> to the desired option.
+    a.  <**Tab**\> to the desired option.
     b.  Enter **2** on the line next to the selection.
 
 10. Verify and/or change the available parameters on the options detail
     screen. For information on the Restricted Mode parameters, refer to
     [Restricted Mode Screens and Windows](#Restrict3).
 
-11. Press \<**Enter**\> to commit the changes to the options details.
+11. Press <**Enter**\> to commit the changes to the options details.
 
 12. Returning to the list of options, if necessary, type **6** next to
-    all the options to be performed and press \<**Enter**\> to set them
+    all the options to be performed and press <**Enter**\> to set them
     to RDY (ready) status.
     a.  Alternately, enter 3=Hold next to any options that should not be
         performed to set them to HLD status. (Holding options is useful
         for temporary changes to a script, making it easy to restore
         them to RDY \[ready\] status later.)
-13. Return to the Restricted Mode menu using \<**F12**\> (Cancel) or
-    \<**F3**\> (Exit).
+13. Return to the Restricted Mode menu using <**F12**\> (Cancel) or
+    <**F3**\> (Exit).
 
 14. Enter **2** to choose **Setup environment** in the Restricted Mode
     Menu.
 
 15. Position the cursor into the **Environment** field and press
-    \<**F4**\> to view a prompting list.
+    <**F4**\> to view a prompting list.
 
 16. Type **1** to select the environment that was created for use with
     Restricted Mode operations.
     a.  If no environment has been created for use with Restricted Mode,
-        press \<**F12**\> to return to the main setup screen, and then
-        press \<**F6**\> (Add/maint env) to create and environment and
+        press <**F12**\> to return to the main setup screen, and then
+        press <**F6**\> (Add/maint env) to create and environment and
         build a library list. Refer to [LSAM Environment Management](/environment/index)
         . Then repeat steps 15 and 16.
 
@@ -67,17 +70,21 @@
         the messages after the last IPL to learn how long this takes on
         the system.
 
-18. Press \<**Enter**\> to update the Restricted Mode Environment
+18. Press <**Enter**\> to update the Restricted Mode Environment
     information.
     a.  The maintenance program displays the message:
+    Job description SMASAVJ00 in library <SMADTA\> changed.
+    The value for SMADTA may be different, depending on the LSAM environment where this maintenanceis performed.
 
-19. Press \<**F15**\> (Update SMASAV) to proceed to the user profile and
+19. Press <**F15**\> (Update SMASAV) to proceed to the user profile and
     restricted mode environment update display.
 
-20. Press \<**Enter**\> to perform an update to the restricted mode user
+20. Press <**Enter**\> to perform an update to the restricted mode user
     profile and data area.
+    The display will return to the environment library list and should display the following message text on the bottom line of the display: 
+    Updates to SMASAV user profile and RSTENVIRON data area completed normally
 
-21. Press \<**F12**\> (Cancel) or \<**F3**\> (Exit) to return to the
+21. Press <**F12**\> (Cancel) or <**F3**\> (Exit) to return to the
     menu.
 
 22. Complete the configuration of a Job Definition for a Restricted Mode
@@ -112,14 +119,17 @@ possible pairs of required Action codes, used as follows:
 
 1. When the IBM i operating system will not be re-initialized, but may
     return immediately to unrestricted operations:
+
     a.  Use the ENDSYS (or NOENDSYS) Action code somewhere near the
         beginning of the script sequence, and the STRSYS Action code
         somewhere near the end of the script sequence. (Additional
         script options, that is, steps, may follow the STRSYS Action
         code step.)
+
 2. When the Restricted Mode script will perform a PWRDWNSYS operation
     in order to IPL IBM i (and then, typically, to automatically restart
     it):
+
     a.  Use the ENDSYS (or NOENDSYS) Action code somewhere near the
         beginning of the script sequence, and then the PWRDWN Action
         code as the very last step of the script sequence.
@@ -127,6 +137,16 @@ possible pairs of required Action codes, used as follows:
 Following are details about how each reserved Action code works.
 
 1. **ENDSYS** is required to put IBM i into its restricted mode.
+
+    The Action code name ENDSYS must be used for the Script step that puts the IBM i operating system into restricted mode. It is possible to specify custom commands to accomplish this procedure, but onetypical form of IBM i command to accomplish this is:
+
+    ```
+    ENDSBS SBS(*ALL) DELAY(120)
+    ```
+
+    :::note
+    When OpCon starts the Restricted Mode job, a signal program is used to tell the waiting console program where SMASAV is signed on so it can start processing the named Restricted Mode Script. This signal program performs the process of ending all the LSAM service programs, including suspending communications with OpCon. However, the console program that runs the Restricted Mode Script (named by the OpCon job) does not automatically put the IBM i system into its restricted mode. The Script is allowed to perform as many additional steps as desired before specifying that the system should be put into restricted mode. It is the Action code ENDSYS applied to one of the Script steps that marks where the restricted mode begins.
+    :::
 2. In place of the **ENDSYS** action code, the alternate value of
     **NOENDSYS** may be used. This code will satisfy the script driver
     program action code edits, but it will not actually put the IBM i
@@ -138,112 +158,106 @@ Following are details about how each reserved Action code works.
     be either a **STRSYS** Action code or a **PWRDWN** Action code.
 4. If the **PWRDWN** Action code is used, it must be the last step of a
     Script sequence because it marks the command used to power down the
-    IBM i operating system for an IPL.\
-    \
+    IBM i operating system for an IPL.
+    
     Here is a typical example of the command line text that would be
-    assigned to the **PWRDWN** Action code:\
-    \
-    PWRDWNSYS DELAY(30) RESTART(\*YES)\
-    \
+    assigned to the **PWRDWN** Action code:
+    ```
+    PWRDWNSYS DELAY(30) RESTART(*YES)
+    ```
     Be sure to refer to the note below about the CONFIRM keyword that is
     supported by the PWRDWNSYS command beginning with the IBM i 6.1
-    version of the operating system.\
-    \
+    version of the operating system.
+    
     The purpose of the **PWRDWN** Action code is to signal the
     Restricted Mode driver program that it should normally complete its
     final tasks just before executing the actual PWRDWNSYS command.
     These final tasks include setting up the LSAM environment so that
     when it is restarted after an IPL completes, the Restricted Mode job
     will be reported to OpCon/xps as completed normally.
-5. []{#aanchor15} **STRSYS** can be used instead of **PWRDWN** to     restore the IBM i normal operations mode. The Action code name
-    **STRSYS** can be used to mark the Script step that restores normal
-    mode operations. It is typical for IBM i to have a startup program
-    stored in the QGPL library. During normal system startup after an
-    IPL, the QCTL (or other named) controlling subsystem would execute
-    the program that is named in the system value QSTRUPPGM. View this
-    program name using the DSPSYSVAL command. It may be desired to
-    specify this same program as the command line for the **STRSYS**
-    Action code in the Restricted Mode Script. The purpose of the
-    **STRSYS** action is to restart all of the IBM i subsystems and
-    certain services such as TCP server programs that are required for
-    LSAM communications with OpCon. If the Script step does not call the
-    IBM i startup program that will also resume the IBM i LSAM server
-    jobs, then another Script step must be used to perform the LSAM
-    command SMAGPL/STRSMASYS, but only after using the **DLYJOB** Action
-    code, as described next.
+    :::note
+    In order to fully automate the recovery of the LSAM servers after a system IPL, the LSAM command that restarts the LSAM servers must be included in the system startup program. Use the IBM i command DSPSYSVAL to find the name of the system startup program in the system value QSTRUPPGM. This program, or a user replacement for it, must include the LSAM command SMAGPL/STRSMASYS ENV(environment_name), where the default value for the environment name can be (*DEFAULT). The ENV parameter of the STRSMASYS command must specify the name of the LSAM environment where the Restricted Mode job was executed, if this was not the default LSAM environment.
+    :::
+
+5. **STRSYS** can be used instead of **PWRDWN** to restore the IBM i normal operations mode. 
+The Action code name    **STRSYS** can be used to mark the Script step that restores normal     mode operations. It is typical for IBM i to have a startup program stored in the QGPL library. During normal system startup after an IPL, the QCTL (or other named) controlling subsystem would execute the program that is named in the system value QSTRUPPGM. View this program name using the DSPSYSVAL command. It may be desired to  specify this same program as the command line for the **STRSYS** Action code in the Restricted Mode Script. The purpose of the **STRSYS** action is to restart all of the IBM i subsystems and certain services such as TCP server programs that are required for LSAM communications with OpCon. If the Script step does not call the IBM i startup program that will also resume the IBM i LSAM server jobs, then another Script step must be used to perform the LSAM command SMAGPL/STRSMASYS, but only after using the **DLYJOB** Action     code, as described next.
+
 6. **DLYJOB** must be specified in a separate step after **STRSYS** to
-    allow time for the TCP server to restart.\
-    \
+    allow time for the TCP server to restart.
+    
     Specify any Action code name for the next step to be performed after
     **STRSYS**. However, before specifying the Action code (below) that
     restarts LSAM communications, allow sufficient time for IBM i to
     restart TCP/IP communications services. The typical syntax for the
-    delay job command is:\
-    \
-    [DLYJOB DLY(180]{style="font-family: 'Courier New';"}\     \
-    If sufficient wait time is not provided, then the LSAM
-    communications program will not have an active IP address and it
-    will fail to start. In this case, manually restart the LSAM
-    communications. The amount of time the system requires to start up
-    TCP communications can be determined by examining the time stamps on
-    messages in the operator message queue for the period of time just
-    after an IPL.
-7. Command **SMAGPL/SMASETLIBL** may be used to restore the LSAM
-    environment library list.\
-    \
+    delay job command is:
+    ```
+    DLYJOB DLY(180]
+    ```
+
+    If sufficient wait time is not provided, then the LSAM communications program will not have an active IP address and it will fail to start. In this case, manually restart the LSAM communications. The amount of time the system requires to start up TCP communications can be determined by examining the time stamps on messages in the operator message queue for the period of time just after an IPL.
+
+7. Command **SMAGPL/SMASETLIBL** may be used to restore the LSAM environment library list.
+    
     SMASETLIBL is required in order to execute many LSAM software
     commands, except for certain command such as SMAGPL/STRSMASYS (refer
-    to next step) that manage the library list themselves.\
-    \
+    to next step) that manage the library list themselves.
+    
     Specify the same name of the LSAM environment that was designated to
     control Restricted Mode operations for this command. The name of the
     controlling LSAM environment was specified during the Restricted
     Mode Setup maintenance procedure. In a default environment where
-    there is only one LSAM subsystem, the value of \*DEFAULT may be
+    there is only one LSAM subsystem, the value of *DEFAULT may be
     specified with this command. The default LSAM environment name that
     is distributed with the software is SMADEFAULT. Specify any Action
     code name desired, but the command for this action must be in one of
-    these formats:\
-    \
-    [SMASETLIBL ENV(\*DEFAULT)]{style="font-family: 'Courier New';"}\     **- or -**\
-    [SMASETLIBL ENV(SMADEFAULT)]{style="font-family: 'Courier New';"}\     **- or -**\
-    [SMASETLIBL     ENV(\<my_LSAM_environment\>)]{style="font-family: 'Courier New';"}\
-    \
-    \<my_LSAM_environment\> is a different LSAM environment name than
+    these formats:
+    ```
+    SMASETLIBL ENV(*DEFAULT)
+    ```
+    or
+    ```
+    SMASETLIBL ENV(SMADEFAULT)
+    ```
+    or
+    ```
+    SMASETLIBL ENV(<my_LSAM_environment>)
+    ```
+    
+    <my_LSAM_environment\> is a different LSAM environment name than
     the one being used. Refer to [Installing Multiple Environments](/reference/multiple-environments)
      and [LSAM Environment Management](/environment/index)
-    for more information on this option.\
-    \
+    for more information on this option.
+    
     Do not use the command SMASETLIBL without an ENV parameter because
-    the default value for the environment name is \*SELECT, and there
+    the default value for the environment name is *SELECT, and there
     will not be an operator present to select the environment name
     during automated control of Restricted Mode operations.
 
 Command **SMAGPL/SMASTRSYS** must be used to restart LSAM communication
-with OpCon.\
-\
+with OpCon.
+
 If the IBM i system startup program was not called at the **STRSYS**
 step, or if the IBM i system startup program does not include this
 STRSMASYS command, then the last required step in a Restricted Mode
 Script restarts all the LSAM server programs, including restoring
-communication with OpCon.\
-\
+communication with OpCon.
+
 Be sure to specify the name of the LSAM environment that will be
 started. The STRSMASYS command executes the SMASETLIBL command to
 establish a correct library list for the LSAM environment named. The
-value of \*DEFAULT or a specific LSAM environment name may be used for
-the environment, but the values of \*CURRENT or \*SELECT may not be used
+value of *DEFAULT or a specific LSAM environment name may be used for
+the environment, but the values of *CURRENT or *SELECT may not be used
 with this command in the Operator Replay scripts. The format for this
 command is:
-
-SMAGPL/STRSMASYS ENV(\*DEFAULT)
-
+```
+SMAGPL/STRSMASYS ENV(*DEFAULT)
+```
 Optionally include other steps to be performed before the Restricted
 Mode Script is ended, after restarting the LSAM server jobs and
 communication with OpCon.
 
 :::note
-For IBM i 6.1 (formerly known as IBM i V6R1) or a newer version of the operating system, the PWRDWNSYS command supports a new function where F16=Confirm must be pressed at the console display device in order to allow the system to power down. This feature must be suppressed in order for the Restricted Mode script to use the PWRDWN Action code, otherwise an operator must be present to respond to the console display. The F16=Confirm function may be suppressed by using the keyword and value CONFIRM(\*NO) with the PWRDWNSYS command, or it may also be suppressed by setting the environment variable QIBM_PWRDWNSYS_CONFIRM to '\*NO'.
+For IBM i 6.1 (formerly known as IBM i V6R1) or a newer version of the operating system, the PWRDWNSYS command supports a new function where F16=Confirm must be pressed at the console display device in order to allow the system to power down. This feature must be suppressed in order for the Restricted Mode script to use the PWRDWN Action code, otherwise an operator must be present to respond to the console display. The F16=Confirm function may be suppressed by using the keyword and value CONFIRM(*NO) with the PWRDWNSYS command, or it may also be suppressed by setting the environment variable QIBM_PWRDWNSYS_CONFIRM to '*NO'.
 :::
 
 This document includes an excerpt from IBM documentation, following, as
@@ -254,29 +268,29 @@ a convenience in order to fully explain the IBM i 6.1 CONFIRM option.
 Specifies whether the request should be confirmed before the system is
 powered down.
 
-##### \*ENVVAR
+##### *ENVVAR
 
 The value in environment variable QIBM_PWRDWNSYS_CONFIRM is used to
 determine whether the request should be confirmed. If the value is set
-to \*INTERACT, \*YES, or \*NO, the action described below for that value
+to *INTERACT, *YES, or *NO, the action described below for that value
 is taken. If the environment variable is not defined or not set to one
 of these values, then a confirmation panel is displayed when the
 PWRDWNSYS command is issued in an interactive job. System initiated
 power downs do not use the environment variable.
 
-##### \*INTERACT
+##### *INTERACT
 
 A confirmation panel is displayed when the PWRDWNSYS command is issued
 in an interactive job. There is no confirmation when the PWRDWNSYS
 command is issued in a non-interactive job.
 
-##### \*YES
+##### *YES
 
 A confirmation panel is displayed when the PWRDWNSYS command is issued
 in an interactive job. An inquiry message is sent to QSYSOPR when the
 PWRDWNSYS command is issued in a non-interactive job.
 
-##### \*NO
+##### *NO
 
 There is no confirmation when the PWRDWNSYS command is issued.
 
@@ -301,7 +315,7 @@ OpCon Event. For more information about the available OpCon Event
 commands that may be specified, refer to [Events and Utilities Menu](/events-utilities/menu) and
 [Commands and Utilities](/commands-utilities/commands)
 . As with all Restricted Mode Action commands, the OpCon Event
-commands may also be prompted using \<**F4**\> from the Restricted Mode
+commands may also be prompted using <**F4**\> from the Restricted Mode
 Options Detail screen (refer to [Restricted Mode Screens and Windows](#Restrict3) for more information).
 
 ON_ERROR Action codes are ignored if the entire Restricted Mode Script
@@ -394,7 +408,7 @@ different interactive display device, and it's also possible to run in
 batch mode without any display device. The LSAM setup for Restricted
 Mode script processing supports choosing any of these three methods.
 
-[Run a Restricted Mode Process in Batch Mode]
+### Run a Restricted Mode Process in Batch Mode
 
 1. Ensure that the LSAM is communicating with SAM and supporting
     services (SAM-SS).
@@ -410,15 +424,40 @@ Mode script processing supports choosing any of these three methods.
     display "Restricted mode history" (previously called "History of
     the last use").
 
-[Run a Restricted Mode Process Using the Console or an Alternate Display Device]
+### Run a Restricted Mode Process Using the Console or an Alternate Display Device
 
 1. Ensure that the LSAM is communicating with SAM and supporting
     services (SAM-SS).
 2. Log in to the IBM i console or an alternate display device as
     **SMASAV**.
+    ```
+    SYSTEMNAME                RESTRICTED MODE OPERATION              00/00/00
+    SMASAV                                                           00:00:00
+
+             ||========================================================|| 
+             ||                                                        ||
+             ||                 W A I T I N G  F O R                   ||
+             ||                                                        ||
+             ||        O P E R A T I O N  S T A R T  S I G N A L       ||
+             ||                                                        ||
+             ||                F R O M  O p C o n / X p s              ||
+             ||                                                        ||
+             ||                                                        ||
+             ||     D O N'T  S W I T C H  O F F  T H I S  S C R E E N  ||
+             ||                                                        ||
+             ||========================================================||
+    
+    Restricted mode operation ready to start ....
+    ```
+    :::note
+    The restricted mode user SMASAV may log on to the IBM i console (device DSP01), or the Restricted Mode Setup menu function can be used to designate an alternate interactive console device (or batch mode). But when the setup designates *CONS as the device, then operations cannot be performed from any other workstation device. If another workstation is logged onto by user SMASAV, the following message will be displayed: "This program must be started on the console"
+    :::
 3. Wait for a message on the display device stating, "Restricted mode
     operation ready to start ..."
 4. Start the OpCon/xps job through the Enterprise Manager.
+    :::note
+    Steps 4 and 5 (above) state the order in which the two actions must occur. However, there are many strategies that may be adopted when using the Restricted Mode utility. For example, the SMASAV user may sign on to the console before leaving the office at 5 PM one day. Meanwhile, the OpCon Schedule set up for that day might have the Restricted Mode job definition scheduled to start at 11:30 PM the same day. This means that the site does not need to have a night shift computer operator just to perform restricted mode operations during off hours. Instead, the Restricted Mode Script and OpCon can be configured so that if the Restricted Mode operation should fail, either the operator or a supervisor can be notified immediately of the event. Otherwise, when there is no failure the LSAM and OpCon will automatically resume normal operations as soon as the Restricted Mode script has been completed.
+    :::
 5. Regardless of the steps that will run, the following screen will be
     displayed after the restricted mode operation is started. The status
     log on the right side of the screen will be updated as each

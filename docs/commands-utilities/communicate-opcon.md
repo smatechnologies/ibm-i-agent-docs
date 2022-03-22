@@ -50,6 +50,9 @@ JOB() parameter according to the job's environment.
     SMAGPL/LSAMCMD and put the LFEEDBACK command into the hosting
     command's CMD() parameter, and must provide a specific JOB ID,
     using the following representative syntax:
+    ```
+    SMAGPL/LSAMCMD CMD('LFEEDBACK TEXT(''Feedback text'') JOB(123456/USERID/JOBNAME)')
+    ```
 
 When a job using this command was started or tracked by OpCon, then the
 command's JOB( ) parameter can be left set to its default value of (\*)
@@ -79,10 +82,10 @@ used only for test purposes.
 
 The syntax of the LFEEDBACK command is illustrated below, followed by an
 explanation of its keyword parameters:
-
+```
 SMAPGM/LFEEDBACK TEXT('My feedback text') MSGSEQ(0) STSMSGID(SMA0035)
 JOB(123456/USERID/JOBNAME)
-
+```
 ### Command Parameters
 
 - **TEXT** = Must be enclosed by a pair of single quotes (unless only
@@ -167,7 +170,7 @@ SMA Support if any assistance with this update is required.
 The separate purpose and implementation of these two forms of LSAM
 Feedback are described next.
 
-[SMA5801 Notification of Job MSGW Status and LSAM Feedback]
+#### SMA5801 Notification of Job MSGW Status and LSAM Feedback
 
 The field code 5801 is fully described in the Configuration topic of
 this online help, under the topic with the title above, located under
@@ -183,7 +186,7 @@ job in MSGW status". The user can register any form of Event command to
 be triggered when this category of feedback is received. The Event
 triggered may vary, depending on the nature of the job.
 
-[5802 User-defined LSAM Feedback]
+#### 5802 User-defined LSAM Feedback
 
 When the LFEEDBACK command is used, it sends any text string that the
 user defines to OpCon for processing according to LSAM Feedback Triggers
@@ -219,27 +222,27 @@ for more information about posting exceptional job status information.)
 
 Here is an example of the command syntax, followed by a list explaining
 the command keywords:
-
+```
 SMAJOBMSG TEXT('Transaction batch total: {AMTDYNVAR} ') MSGSEQ(0)
 STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
-
+```
 From Message Management, the trapped message could be forwarded to OpCon
 Detailed Job Messages using the following command syntax model, where
 the primary message text is automatically made available via the special
 variable $MSG:
-
+```
 SMAJOBMSG TEXT('Found error $MSGID : $MSG') MSGSEQ(0)
 STSMSGID(SMA0035) JOB($IBM JOB ID) FLDCOD(61)
-
+```
 Depending on another context, where the SMAJOBMSG command can be used,
 such as Multi-Step Job Scripts, the special variables $ERRMSGID and
 $ERRMSGTXT for a Step error could be sent to OpCon Detailed Job
 Messages from an ON_ERROR command using the following command syntax
 model:
-
+```
 SMAJOBMSG TEXT('Found error $ERRMSGID : $ERRMSGTXT') MSGSEQ(0)
 STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
-
+```
 ### Command Parameters
 
 - **TEXT** = Must be enclosed by a pair of single quotes (unless only
@@ -310,18 +313,18 @@ parameter to represent the current IBM i Job ID. Whenever the asterisk
 is used within the JOB() parameter, it will be replaced with the actual
 IBM i Job ID, resulting in a command syntax that resembles the following
 simplified example:
-
+```
 SMAJOBMSG TEXT('Detail msg') STSMSGID(SMA0035)
 JOB(123456/USER/JOBNAME)
-
+```
 This format for the JOB() parameter can be used anywhere that the IBM i
 Job ID is known. As always, if the command must be executed outside of
 the LSAM environment, without the LSAM library list in effect, it is
 necessary to embed this command within the LSAM command-hosting command,
 like this:
-
+```
 SMAGPL/LSAMCMD CMD('SMAJOBMSG \...
-
+```
 However, in some cases, such as within the LSAM Message Management
 server, the IBM i Job ID information would not be the same as the
 current job that is executing the SMAJOBMSG command. This is because the
@@ -339,9 +342,9 @@ particular predefined variable is already formatted as required by the
 JOB keyword. So, within a Message Management Event command field, or
 from a Captured Data Response Rule linked to a Message Management
 Parameter record, the command syntax would look like this:
-
+```
 SMAJOBMSG TEXT('Detail msg') STSMSGID(SMA0035) JOB($IBM JOB ID)
-
+```
 Notice that the spaces within the predefined variable name are required
 and anticipated - it must be spelled exactly like this. There are also
 other LSAM $-Special variable names that can be used to represent each
@@ -371,9 +374,9 @@ started the job that is executing the script.
 
 Here is an example of the command syntax, followed by a table explaining
 the command keywords:
-
+```
 SMASTATUS MESSAGE('Step=JOBSTEP01')
-
+```
 ### Command Parameters
 
 **MESSAGE** = Must be enclosed by a pair of single quotes (unless only

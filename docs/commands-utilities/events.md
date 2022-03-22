@@ -9,9 +9,9 @@ For jobs started by OpCon, the Agent will report a Failed status.
 ### Using SMAFAILJOB
 
 Here is the command syntax:
-
+```
 SMAFAILJOB JOBNAM(JOBNAME) SMAGPL(\*DEFAULT)
-
+```
 ### Command Parameters
 
 This command is typically used without specifying its parameters.
