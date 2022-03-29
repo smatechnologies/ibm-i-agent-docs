@@ -1,4 +1,8 @@
-## How the LSAM Message Management Works
+---
+sidebar_label: 'How the LSAM Message Management Works'
+---
+
+# How the LSAM Message Management Works
 
 The IBM i LSAM Message Management server performs the task of surveying
 message queues, looking for messages that conform to registered message
@@ -41,7 +45,7 @@ able to modify the behavior of the server during the startup process in
 order to control whether existing messages in any or every message queue
 will be processed or skipped as the server first starts monitoring.
 
-### Message Management Start Controls and Rules
+## Message Management Start Controls and Rules
 
 The start mode of the LSAM Message Management server is controlled by
 either an LSAM control file setting or by a start mode parameter that is
@@ -76,7 +80,7 @@ The pop-up window that appears when the command is executed in an
 interactive job is the way the LSAM software requests a value for the
 COLDSTART parameter.
 
-#### Message Management Startup Rules
+### Message Management Startup Rules
 
 The LSAM Message Management server start routine responds to the
 COLDSTART parameter and to conditions in the LSAM database and the
@@ -85,16 +89,20 @@ monitored message queues according to the following logic.
 1. When a cold start was requested, the LSAM message management control
     file (TRPMSGF10) is cleared and the COLDSTART parameter is passed
     along to the message queue scanning program.
+
     a.  The message queue scanning program always starts at the
         beginning of each message queue when a cold start was requested.
+
 2. If a warm start was requested but there is no LSAM control file
     record for a message queue, such as the first time that a message
     queue is processed, then that message queue will be scanned starting
     after the last message that was present in the queue at the time the
     first scan was initiated.
+
     a.  A technical support person can force the server to start
         processing at the end of a message queue by removing the control
         record for that message queue and then requesting a warm start.
+
 3. If a warm start was requested but the LSAM control file record for a
     message queue contains a message key that is not found in the
     message queue, the server assumes that the message queue contents
@@ -102,13 +110,14 @@ monitored message queues according to the following logic.
     the last message key processed to the last message found in the
     message queue, and then it will process only new messages that
     arrive in the message queue.
+
     a.  A technical support person can use the undocumented LSAM tools
         to force the LSAM Message Management control file record to
         contain a valid key for any message that is currently found in
         the message queue. Refer to the next section about Undocumented
         Tools for hints to technical support personnel.
 
-### Message Management Parameters --- Qualification Fields
+## Message Management Parameters --- Qualification Fields
 
 Many different Parameters records could be created to respond to a
 single message intercepted by the LSAM Message Management server. This
@@ -116,7 +125,7 @@ section explains the different groups of fields in the Parameters master
 record that are used to qualify whether each record's response will be
 executed.
 
-#### Message and Job Profile Fields
+### Message and Job Profile Fields
 
 Before other forms of message qualification are applied, the LSAM first
 validates each message it finds by using the following message profile
@@ -124,7 +133,7 @@ fields. After the message passes the profile tests, then messages can be
 further filtered using Compare Text, Message Management --- Date and
 Time fields and Threshold values.
 
-##### Message Queue and Library
+#### Message Queue and Library
 
 These two fields govern which message queues will be examined by the
 LSAM Message Management server job. If the name of a message queue and
@@ -146,7 +155,7 @@ Type-Q record because the existence of an LSAM Message Management
 Parameters record implies that the LSAM will look for messages in the
 Message Queue and Library named in that record.
 
-##### Message ID (or Range) and File
+#### Message ID (or Range) and File
 
 The LSAM will check every message delivered to any registered message
 queue. However, only those messages with IDs that were specified in IBM
@@ -503,7 +512,7 @@ In case the LSAM Message Management control file must be updated to
 control the start point of message scanning in a message queue, there is
 an option on the list display that can be used to select the message
 that will become the last message processed key. When this option is
-typed next to a message line and the \<**Enter**\> key is pressed, the
+typed next to a message line and the <**Enter**\> key is pressed, the
 utility will update the Message Management control file record for the
 current message queue being examined with the message key and the
 message date and time values from the selected message. After this
@@ -625,7 +634,7 @@ about the technical details of this process follows the outline.
 12. Press **Enter** to record the new message management parameters
     master record.
 13. At the Message Management Parameters list display, type option **9**
-    and press \<**Enter**\> to activate the new Parameter record.
+    and press <**Enter**\> to activate the new Parameter record.
     (Option 2=Change can also be used to update the record status to
     "A"=active.)
 14. Press **F12** to return to the LSAM Main Menu.
@@ -659,85 +668,34 @@ seem to properly handle job completion messages.
 Consider this next example when deciding whether or not to use this LSAM
 processing option.
 
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:** An old programming  | | circular                         | technique, not recommended for   |
-| background](../../../Reso        | use in IBM i programs, used the  |
-| urces/Images/example-icon(48x48) | MSGQ parameter of the SBMJOB     |
-| .png "Example icon") | command to identify the name of  |
-|                                  | the user profile that submitted  |
-|                                  | a job. This value was retrieved  |
-|                                  | by a program (using the SBMMSGQ  |
-|                                  | parameter of the RTVJOBA         |
-|                                  | command) and used to send        |
-|                                  | inquiry messages about system    |
-|                                  | operations, requiring a reply    |
-|                                  | from a user before the program   |
-|                                  | could continue operations. IBM i |
-|                                  | permits that the MSGQ parameter  |
-|                                  | of the SBMJOB command can be     |
-|                                  | changed to any value where job   |
-|                                  | completion messages should be    |
-|                                  | routed, therefore, this          |
-|                                  | parameter cannot be relied upon  |
-|                                  | to identify the name of the user |
-|                                  | profile submitting a job.        |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | The IBM i LSAM sets this SBMJOB  |
-|                                  | parameter to                     |
-|                                  | MSGQ(SMADTA/SMAMSGQ), where      |
-|                                  | SMADTA could be a different name |
-|                                  | of the database library in an    |
-|                                  | alternate LSAM environment.      |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | In this example, when the LSAM   |
-|                                  | submits the job where the        |
-|                                  | program issues an inquiry        |
-|                                  | message to the job completion    |
-|                                  | message queue (before the job is |
-|                                  | completed), the default behavior |
-|                                  | of the LSAM was to receive the   |
-|                                  | message and delete it from the   |
-|                                  | message queue without            |
-|                                  | considering that a response      |
-|                                  | might be required to the         |
-|                                  | inquiry. As a result, a \*NULL   |
-|                                  | response was sent to the program |
-|                                  | that issued the message. If the  |
-|                                  | program command issuing the      |
-|                                  | message was coded with           |
-|                                  | restrictions on the values of a  |
-|                                  | reply to the message, the IBM i  |
-|                                  | system message processing        |
-|                                  | routines rejected the reply and  |
-|                                  | re-sent the message to the       |
-|                                  | LSAM's job completion message   |
-|                                  | queue. A tight system logic loop |
-|                                  | was generated, flooding either   |
-|                                  | the LSAM job completion message  |
-|                                  | queue or the OpCon/xps SAM log   |
-|                                  | files, and creating a severe     |
-|                                  | performance impact on the IBM i  |
-|                                  | partition.                       |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | To prevent the system message    |
-|                                  | processing loop, the LSAM        |
-|                                  | Parameters option for using      |
-|                                  | message management with job      |
-|                                  | completion messages must be set  |
-|                                  | to Y=yes. It is also necessary   |
-|                                  | to add a message response rule   |
-|                                  | to the LSAM's Message           |
-|                                  | Management Parameters master     |
-|                                  | file that will match the inquiry |
-|                                  | message and cause an appropriate |
-|                                  | response to be provided.         |
-+----------------------------------+----------------------------------+
+:::note Example
+An old programming technique, not recommended for use in IBM i programs, used
+the MSGQ parameter of the SBMJOB command to identify the name of the user profile that submitted
+a job. This value was retrieved by a program (using the SBMMSGQ parameter of the
+RTVJOBA command) and used to send inquiry messages about system operations, requiring a
+reply from a user before the program could continue operations. IBM i permits that the MSGQ parameter
+of the SBMJOB command can be changed to any value where job completion messages
+should be routed, therefore, this parameter cannot be relied upon to identify the name of the user
+profile submitting a job.
+
+The IBM i LSAM sets this SBMJOB parameter to MSGQ(SMADTA/SMAMSGQ), where
+SMADTA could be a different name of the database library in an alternate LSAM environment.
+
+In this example, when the LSAM submits the job where the program issues an inquiry message to
+the job completion message queue (before the job is completed), the default behavior of the LSAM
+was to receive the message and delete it from the message queue without considering that a
+response might be required to the inquiry. As a result, a *NULL response was sent to the program
+that issued the message. If the program command issuing the message was coded with restrictions
+on the values of a reply to the message, the IBM i system message processing routines
+rejected the reply and re-sent the message to the LSAM's job completion message queue. A tight
+system logic loop was generated, flooding either the LSAM job completion message queue or the
+OpCon/xps SAM log files, and creating a severe performance impact on the IBM i partition.
+
+To prevent the system message processing loop, the LSAM Parameters option for using message
+management with job completion messages must be set to Y=yes. It is also necessary to add a
+message response rule to the LSAM's Message Management Parameters master file that will
+match the inquiry message and cause an appropriate response to be provided.
+:::
 
 Whenever the LSAM job completion message server is configured to provide
 a response to an inquiry message, if the response is not hard-coded in
@@ -930,12 +888,12 @@ are two function keys on the Message Management Parameters Add or Change
 screens that can be used to help correctly format IBM commands:
 
 - **F4=Prompt Evt**: When the cursor is positioned in the Event
-    command field, \<**F4**\> causes a window of available events to
+    command field, <**F4**\> causes a window of available events to
     appear from which a value may be selected and returned to this
     field.
 - **F8=Prompt CMD**: When the cursor is positioned in the Event
-    command field, \<**F8**\> causes the job to branch into IBM i
-    command prompting. If an IBM i command name was typed before \<F8\>
+    command field, <**F8**\> causes the job to branch into IBM i
+    command prompting. If an IBM i command name was typed before <F8\>
     was pressed, then that specific command will be prompt. Otherwise, a
     general command search window will appear to help find the desired
     command. (Note that this IBM command prompting will not allow a
@@ -1006,9 +964,9 @@ is helpful to use the Dynamic Variable prompting function key:
     positioned in the Event command field, causes a window listing
     available Dynamic Variables to appear. PageDown as necessary, then
     position the cursor over the desired variable name and press
-    \<**Enter**\> to select that variable so that it will be inserted as
+    <**Enter**\> to select that variable so that it will be inserted as
     a token into the Event command field. The token will be inserted at
-    the position where the cursor was when \<**F6**\> was pressed.
+    the position where the cursor was when <**F6**\> was pressed.
 
 The LSAM Message Manager processes Dynamic Variable token replacement
 before any other action when it is preparing to execute an Event
@@ -1062,7 +1020,7 @@ the IBM i LSAM, instead of sending an Event command back to OpCon/xps.
 
 To register an IBM-format command in the OpCon/xps job master record,
 select the OpCon/xps Event command named $CONSOLE:DISPLAY. Then, when
-replacing the \<**message**\> parameter for this command, insert the
+replacing the <**message**\> parameter for this command, insert the
 reserved character string: 'QCMD:' followed by any IBM-format command
 that is desired. Following is an example of how the final Event command
 would look:
@@ -1130,7 +1088,7 @@ in order to control a variety of optional responses to any given
 message. The responses supported include any form of IBM i command or
 program call and also OpCon Event Commands.
 
-[How to Configure Message Data Capture]
+#### How to Configure Message Data Capture
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For
     more information on STRSMA and LSAMENU command parameters, refer to
@@ -1177,6 +1135,11 @@ program call and also OpCon Event Commands.
 13. Use the **TAB** key to move the cursor into the field named
     **Captured Application ID**. Type in the same name of the
     Application Identifier as was just added above.
+
+    :::note
+    It is possible to press the function key F10=Capture to display a list of existing capture Application IDs and then type option 1=Select, after which the Enter key may be pressed to return that value to the Message Management Parameters record. This helps prevent typing errors on long names.
+    :::
+
 14. After typing or selecting the Capture Application ID, press
     **Enter** to update the Message Management Parameters record.
 
@@ -1198,7 +1161,7 @@ function where each type of data capture is defined, making it easy to
 avoid confusion about where the Captured Data Response Rule will be
 used.
 
-[Adding a Data Capture Rule from the LSAM Menu System]
+#### Adding a Data Capture Rule from the LSAM Menu System
 
 1. In the command line, enter **STRSMA** or **LSAMENU**. For more
     information on command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command) and the [LSAMENU Command](/operations/lsam#the-lsamenu-command).
@@ -1206,9 +1169,14 @@ used.
     Main Menu.
 3. Enter **11** to choose **Work with Captured Data Response Rules** in
     the Message management menu.
+
+    :::note
+    This same function may be accessed using function key F11=Capture from the Work with Message Data Capture Definitions function, outlines above.
+    :::
+
 4. In the Work with Capture Response Rules screen, first, notice that
     the screen title indicates the rules are Subset to Type: MESSAGE.
-5. Press \<**F6**\> to Add a new Capture Response Rule record.
+5. Press **F6**\> to Add a new Capture Response Rule record.
 6. The **Create Capture Response Rule** screen appears.
 7. On the Create Capture Response Rule screen, type the Capture
     Identifier and Capture Sequence number, using an existing Message
@@ -1234,23 +1202,30 @@ used.
 12. *(Optional)* Specify the names of a Dynamic Variable
     and/or an Operator Replay Token variable that will be used to store
     the captured data value.
+
+    :::note
+    If Compress numeric is set to "Y" = yes on the Response Rule, then the data stored in the optional Dynamic Variable will also be stored as only the digits of the number.
+    :::
+
 13. Type the Response Cmd (command) to execute if the compare data rule
-    is matched. Use function key \<**F13=Full CMD**\> if the command
+    is matched. Use function key **F13=Full CMD**\> if the command
     string is longer than will fit in the (part 1) input field.
 14. Type values for the Compare rules that decide when this response
     rule should be executed (refer to more information under [Message     Management Screens and Windows](#Message8)).
+
     a.  A simple value set that allows a response rule to always execute
         is created by setting the Compare Rule to "EQ" (equal) and
         specifying the Compare Data Lines special value of \*ANY.
-    b.  In the Compare data lines 1-5 field, use function key \<**F8**\>
+        
+    b.  In the Compare data lines 1-5 field, use function key <**F8**\>
         if the data is longer than will fit into lines 1 to 5, but first
         type the first 5 lines into this field before pressing
-        \<**F8**\>. The special values of \*ANY, \*PARM, or "DynVar"
+        <**F8**\>. The special values of \*ANY, \*PARM, or "DynVar"
         may be used. (Refer to more information under [Message         Management Screens and Windows](#Message8).)
 15. The value for the Capture length field (a display-only field near
     the bottom, right) is supplied automatically once a Capture
     Identifier and Capture Sequence number have been specified.
-16. Press \<**Enter**\> to record the new Capture Response Rule record.
+16. Press <**Enter**\> to record the new Capture Response Rule record.
 17. The system returns to an updated list of existing Capture Response
     Rule records.
 18. If the Captured Data Response Rule maintenance was entered by using

@@ -2,25 +2,32 @@
 
 Message Management Menu
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[SYSTEMNAME                  ]{style="color: #008000;"}MESSAGE MANAGEMENT MENU[                     00/00/00]{style="color: #008000;"}   USERNAME                                                                16:23:53
-
-   Select one of the following:
-
-       1.[ Message management parameters]{style="color: #008000;"}        2.[ Message management logs]{style="color: #008000;"}
-       3.[ Start Message management (STRMSGMNG)]{style="color: #008000;"}        4.[ End Message management (ENDMSGMNG)]{style="color: #008000;"}
-       5.[ Check Message management status (TRPMSGSTS)]{style="color: #008000;"}        6.[ View job completion message table (DSPPFM LSAMSGF00)]{style="color: #008000;"}
-       7.[ Message Management Performance Parameters]{style="color: #008000;"}        8.[ Display Captured Message Data log]{style="color: #008000;"}
-       9.[ Display Data Capture Debug log (response rules log)]{style="color: #008000;"}       10.[ Work with Message Data Capture Definitions]{style="color: #008000;"}
-      11.[ Work with Captured Data Response Rules ]{style="color: #008000;"}
-  Selection or command
-   ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-   F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
-   F13=Information Assistant   F16=System main menu
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+```
+ SYSTEMNAME                   MESSAGE MANAGEMENT MENU                    MM/DD/YY 
+ USERNAME                                                                HH:MM:SS 
+                                                                                
+  Select one of the following:                                                  
+                                                                                
+      1. Message management parameters                                          
+      2. Message management logs                                                
+      3. Start Message management (STRMSGMNG)                                   
+      4. End Message management (ENDMSGMNG)                                     
+      5. Check Message management status (TRPMSGSTS)                            
+      6. View job completion message table (DSPPFM LSAMSGF00)                   
+      7. Message Management Performance Parameters                              
+      8. Display Captured Message Data log                                      
+      9. Display Data Capture Debug log (response rules log)                    
+     10. Work with Message Data Capture Definitions                             
+     11. Work with Captured Data Response Rules                                 
+     12. Maintain Dynamic Variables                                             
+                                                                                
+ Selection or command                                   (C) SMA 1995,2005,2011  
+ ===>                                                                           
+                                                                                
+ F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
+ F13=Information Assistant  F16=System main menu                                
+ ```
+  
 ##### Menu Pathways
 
 Main Menu \> Message management menu (\#2)

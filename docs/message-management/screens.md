@@ -1,6 +1,10 @@
-## Message Management Screens and Windows
+---
+sidebar_label: 'Message Management Screens and Windows'
+---
 
-### Message Management Performance Parameters
+# Message Management Screens and Windows
+
+## Message Management Performance Parameters
 
 This function is used to set global options that control the actions of
 LSAM Message Management.
@@ -8,361 +12,46 @@ LSAM Message Management.
 -   **Screen Title**: Message Management Performance Parameters
 -   **Screen ID**: TRPMSGD40-R1
 
-###### Menu Pathways
+### Menu Pathways
 
 Main Menu \> Message management menu (\#2) \> Message management
 performance parameters (\#7)
 
-###### Fields
+### Fields
 
-+----------------------+----------------------+----------------------+
+
 | Parameter            | Default (VALUES)     | Description          |
-+======================+:====================:+======================+
-| Activity poll        | 15 (seconds)         | -   This value helps |
-| interval             |                      |     to balance how   |
-|                      |                      |     aggressively     |
-|                      |                      |     Message          |
-|                      |                      |     Management will  |
-|                      |                      |     be checking for  |
-|                      |                      |     messages that    |
-|                      |                      |     OpCon/xps job    |
-|                      |                      |     details have     |
-|                      |                      |     specified should |
-|                      |                      |     be managed,      |
-|                      |                      |     versus the       |
-|                      |                      |     impact of this   |
-|                      |                      |     facility on      |
-|                      |                      |     overall system   |
-|                      |                      |     performance.     |
-|                      |                      | -   A smaller number |
-|                      |                      |     of seconds will  |
-|                      |                      |     improve the      |
-|                      |                      |     LSAM's ability  |
-|                      |                      |     to manage        |
-|                      |                      |     messages from    |
-|                      |                      |     individual jobs  |
-|                      |                      |     or message       |
-|                      |                      |     queues, whereas  |
-|                      |                      |     a larger number  |
-|                      |                      |     of seconds will  |
-|                      |                      |     allow more       |
-|                      |                      |     system resources |
-|                      |                      |     for other        |
-|                      |                      |     important jobs   |
-|                      |                      |     such as LSAM Job |
-|                      |                      |     Scheduling       |
-|                      |                      |     activity.        |
-+----------------------+----------------------+----------------------+
-| Auto-start message   | N(Y or N)            | -   Y = yes, tells   |
-| management           |                      |     the LSAM         |
-|                      |                      |     subsystem        |
-|                      |                      |     startup          |
-|                      |                      |     procedure to     |
-|                      |                      |     automatically    |
-|                      |                      |     start message    |
-|                      |                      |     management at    |
-|                      |                      |     the same time as |
-|                      |                      |     the LSAM server  |
-|                      |                      |     programs are     |
-|                      |                      |     started. When    |
-|                      |                      |     this value is    |
-|                      |                      |     set to Y,        |
-|                      |                      |     stopping the     |
-|                      |                      |     LSAM also stops  |
-|                      |                      |     message          |
-|                      |                      |     management.      |
-|                      |                      | -   N = no, means    |
-|                      |                      |     that message     |
-|                      |                      |     management will  |
-|                      |                      |     only be started  |
-|                      |                      |     when the manual  |
-|                      |                      |     start command or |
-|                      |                      |     menu function    |
-|                      |                      |     (described       |
-|                      |                      |     above) are used. |
-|                      |                      |     Set this flag to |
-|                      |                      |     N (the default)  |
-|                      |                      |     when message     |
-|                      |                      |     management will  |
-|                      |                      |     never be used.   |
-+----------------------+----------------------+----------------------+
-| Server start mode    | 0 = warm start       | -   0 = keep the     |
-|                      | (default)1 = cold    |     content of the   |
-|                      | start                |     Message          |
-|                      |                      |     Management       |
-|                      |                      |     message key      |
-|                      |                      |     control file.    |
-|                      |                      |     This allows the  |
-|                      |                      |     server to        |
-|                      |                      |     perform a warm   |
-|                      |                      |     start,           |
-|                      |                      |     attempting to    |
-|                      |                      |     resume message   |
-|                      |                      |     queue reading    |
-|                      |                      |     from after the   |
-|                      |                      |     last message     |
-|                      |                      |     that was         |
-|                      |                      |     previously       |
-|                      |                      |     processed.       |
-|                      |                      | -   1 = clear the    |
-|                      |                      |     content of the   |
-|                      |                      |     Message          |
-|                      |                      |     Management       |
-|                      |                      |     message key      |
-|                      |                      |     control file.    |
-|                      |                      |     This tells the   |
-|                      |                      |     server to first  |
-|                      |                      |     clear the        |
-|                      |                      |     control file     |
-|                      |                      |     before starting  |
-|                      |                      |     the server       |
-|                      |                      |     processing, and  |
-|                      |                      |     it instructs the |
-|                      |                      |     server to start  |
-|                      |                      |     at the beginning |
-|                      |                      |     of each message  |
-|                      |                      |     queue.           |
-|                      |                      |                      |
-|                      |                      | Refer to additional  |
-|                      |                      | discussion below     |
-|                      |                      | about Starting       |
-|                      |                      | Message Management.  |
-+----------------------+----------------------+----------------------+
-| Trace message        | 0(0 1)               | -   0 = no trace, 1  |
-| management log       |                      |     = debug logging  |
-|                      |                      | -   This option flag |
-|                      |                      |     can turn on a    |
-|                      |                      |     highly detailed  |
-| (Replaces former     |                      |     form of activity |
-| external TRPMSGDBUG  |                      |     trace logging    |
-| data area.)          |                      |     that is separate |
-|                      |                      |     from the         |
-|                      |                      |     standard Message |
-|                      |                      |     Management       |
-|                      |                      |     outcome logging  |
-|                      |                      |     file. This is a  |
-|                      |                      |     support          |
-|                      |                      |     diagnostic tool  |
-|                      |                      |     that can         |
-|                      |                      |     generate a large |
-|                      |                      |     amount of data   |
-|                      |                      |     in the LSAM      |
-|                      |                      |     general purpose  |
-|                      |                      |     log file         |
-|                      |                      |     LSALOGF30. Debug |
-|                      |                      |     logging should   |
-|                      |                      |     only be used     |
-|                      |                      |     when requested   |
-|                      |                      |     by SMA Support   |
-|                      |                      |     to diagnose      |
-|                      |                      |     problems with    |
-|                      |                      |     the LSAM Message |
-|                      |                      |     Management       |
-|                      |                      |     server job.      |
-|                      |                      | -   To view the      |
-|                      |                      |     results of debug |
-|                      |                      |     logging, either  |
-|                      |                      |     use the IBM i    |
-|                      |                      |     command DSPPFM   |
-|                      |                      |     to view the      |
-|                      |                      |     content of file  |
-|                      |                      |     LSALOGF30, or    |
-|                      |                      |     select LSAM log  |
-|                      |                      |     viewer \# 4      |
-|                      |                      |     (from LSAM menu  |
-|                      |                      |     6, option 5).    |
-|                      |                      |     This is the same |
-|                      |                      |     log file where   |
-|                      |                      |     LSAM SBMJOB      |
-|                      |                      |     commands are     |
-|                      |                      |     logged. The log  |
-|                      |                      |     entries are text |
-|                      |                      |     entries, but the |
-|                      |                      |     flags and codes  |
-|                      |                      |     at the beginning |
-|                      |                      |     of each entry    |
-|                      |                      |     can only be      |
-|                      |                      |     interpreted by   |
-|                      |                      |     analysts who     |
-|                      |                      |     have access to   |
-|                      |                      |     the LSAM program |
-|                      |                      |     source code.     |
-+----------------------+----------------------+----------------------+
-| First day of week    | \*SUN(IBM i day of   | This field is used   |
-| (1)                  | week values)         | to specify which     |
-|                      |                      | calendar day will be |
-|                      |                      | considered the first |
-|                      |                      | day of the week by   |
-|                      |                      | the LSAM Message     |
-|                      |                      | Management           |
-|                      |                      | Parameters,          |
-|                      |                      | Effective DOW (day   |
-|                      |                      | of week) filter      |
-|                      |                      | field. (Refer to the |
-|                      |                      | table of field       |
-|                      |                      | values, below, for   |
-|                      |                      | Message Management   |
-|                      |                      | Parameters.)         |
-+----------------------+----------------------+----------------------+
-| Msg Mgmt Parms init  | 1 (0, 1)             | Controls the         |
-| list opt             |                      | appearance of the    |
-|                      |                      | Message Management   |
-|                      |                      | Parameters list      |
-|                      |                      | display when it is   |
-|                      |                      | first presented.     |
-|                      |                      | This option is       |
-|                      |                      | important at sites   |
-|                      |                      | where the message    |
-|                      |                      | text is more         |
-|                      |                      | important than the   |
-|                      |                      | message ID for       |
-|                      |                      | recognizing messages |
-|                      |                      | to process.          |
-|                      |                      |                      |
-|                      |                      | -   0 = Show the     |
-|                      |                      |     Message Queue    |
-|                      |                      |     Library          |
-|                      |                      | -   1 = Show the     |
-|                      |                      |     Compare Text     |
-|                      |                      |     (instead of the  |
-|                      |                      |     MSGQ LIB)        |
-+----------------------+----------------------+----------------------+
-| Event cmds in-line   | 0                    | 0 = in-line, protect |
-| or submit?           |                      | event sequence:      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | Option 0 enables     |
-|                      |                      | better cooperation   |
-|                      |                      | among multiple       |
-|                      |                      | Message Management   |
-|                      |                      | Parameters that are  |
-|                      |                      | qualified to respond |
-|                      |                      | to a single message. |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | The original Agent   |
-|                      |                      | Message Management   |
-|                      |                      | server logic was the |
-|                      |                      | same as option 1 for |
-|                      |                      | this field. But      |
-|                      |                      | sometimes the delay  |
-|                      |                      | caused by submitting |
-|                      |                      | message responses to |
-|                      |                      | a separate job would |
-|                      |                      | prevent subsequent   |
-|                      |                      | Message Management   |
-|                      |                      | Parameters (with a   |
-|                      |                      | higher sequence      |
-|                      |                      | number) from being   |
-|                      |                      | able to benefit from |
-|                      |                      | the results of a     |
-|                      |                      | Parameters record    |
-|                      |                      | with a lower         |
-|                      |                      | sequence number. So  |
-|                      |                      | the new default is   |
-|                      |                      | option 0: Process    |
-|                      |                      | each Message         |
-|                      |                      | Management Parameter |
-|                      |                      | right from the       |
-|                      |                      | Message Management   |
-|                      |                      | server job so that   |
-|                      |                      | the order of events  |
-|                      |                      | is strictly          |
-|                      |                      | preserved.           |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | 1 = submit, handle   |
-|                      |                      | other messages       |
-|                      |                      | faster:              |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | Option 1 was the     |
-|                      |                      | original mode of     |
-|                      |                      | processing for the   |
-|                      |                      | Message Management   |
-|                      |                      | Server. This option  |
-|                      |                      | improves the         |
-|                      |                      | response time of the |
-|                      |                      | Server for handling  |
-|                      |                      | multiple messages.   |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | However, when each   |
-|                      |                      | message response is  |
-|                      |                      | submitted to its     |
-|                      |                      | own, separate job,   |
-|                      |                      | it is likely that    |
-|                      |                      | this would prevent   |
-|                      |                      | the actions of       |
-|                      |                      | Parameter Sequence   |
-|                      |                      | 10 from being made   |
-|                      |                      | available to         |
-|                      |                      | Parameter Sequence   |
-|                      |                      | 20 that wants to     |
-|                      |                      | process the same     |
-|                      |                      | message - and needs  |
-|                      |                      | to know the result   |
-|                      |                      | of the Sequence 10   |
-|                      |                      | response action.     |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | The choice between   |
-|                      |                      | these two options    |
-|                      |                      | might depend on      |
-|                      |                      | whether a site uses  |
-|                      |                      | complex message      |
-|                      |                      | responses, or        |
-|                      |                      | virtually always     |
-|                      |                      | uses only one        |
-|                      |                      | Message Management   |
-|                      |                      | Parameter per        |
-|                      |                      | message.             |
-+----------------------+----------------------+----------------------+
-| $MSG handle single  | E(blank, B, E)       | An optional edit     |
-| quotes               |                      | that should be       |
-|                      |                      | performed whenever   |
-|                      |                      | the $MSG special    |
-|                      |                      | variable is used in  |
-|                      |                      | the Message          |
-|                      |                      | Management Command   |
-|                      |                      | line:                |
-|                      |                      |                      |
-|                      |                      | -   blank = no       |
-|                      |                      |     changes          |
-|                      |                      | -   B = replace a    |
-|                      |                      |     single quote     |
-|                      |                      |     with a space     |
-|                      |                      |     character        |
-|                      |                      | -   E = escape the   |
-|                      |                      |     single quote by  |
-|                      |                      |     doubling it      |
-|                      |                      |     ('')           |
-+----------------------+----------------------+----------------------+
-| $MSG handle comma   | B(blank, B)          | An optional edit     |
-|                      |                      | that should be       |
-|                      |                      | performed whenever   |
-|                      |                      | the $MSG special    |
-|                      |                      | variable is used in  |
-|                      |                      | the Message          |
-|                      |                      | Management Command   |
-|                      |                      | line:                |
-|                      |                      |                      |
-|                      |                      | -   blank = no       |
-|                      |                      |     changes          |
-|                      |                      | -   B = replace a    |
-|                      |                      |     comma with a     |
-|                      |                      |     space character  |
-+----------------------+----------------------+----------------------+
+| -------------------- | -------------------- | -------------------- |
+| Activity poll interval| 15 (seconds)        | - This value helps to balance how aggressively Message Management will be checking for messages that OpCon/xps job details have specified should be managed, versus the impact of this facility on overall system performance.     |
+|                     |                      | - A smaller number of seconds will improve the LSAM's ability to manage messages from individual jobs or message queues, whereas a larger number of seconds will allow more system resources for other important jobs such as LSAM Job Scheduling activity.  |
+| Auto-start message management  | N(Y or N)            | -   Y = yes, tells the LSAM subsystem startup procedure to automatically start message management at the same time as the LSAM server programs are started. When this value is set to Y, stopping the LSAM also stops message management. |
+|                      |                      | -   N = no, means that message management will only be started when the manual start command or menu function (described above) are used. Set this flag to N (the default) when message management will never be used.  |
+| Server start mode    | 0 = warm start (default)1 = cold start     | -   0 = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed.  |
+|                      |                      | -   1 = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue.  |
+|                      |                      | Refer to additional discussion below about Starting Message Management. |
+| Trace message management log  (Replaces former external TRPMSGDBUG data area.)   | 0(0 1)               | -   0 = no trace, 1 = debug logging  |
+|      |                      |     This option flag can turn on a highly detailed form of activity trace logging that is separate from the standard Message Management outcome logging file. This is a support diagnostic tool that can generate a large amount of data in the LSAM general purpose log file LSALOGF30. Debug logging should only be used when requested by SMA Technologies Support to diagnose problems with the LSAM Message Management server job.  |
+|                      |                      | -   To view the results of debug logging, either use the IBM i command DSPPFM to view the content of file LSALOGF30, or select LSAM log viewer # 4 (from LSAM menu 6, option 5). This is the same log file where LSAM SBMJOB commands are logged. The log entries are text entries, but the flags and codes at the beginning of each entry can only be interpreted by analysts who have access to the LSAM program source code.    |
+| First day of week (1)   | \*SUN(IBM i day of week values)  | This field is used to specify which calendar day will be considered the first day of the week by the LSAM Message Management Parameters, Effective DOW (day of week) filter field. (Refer to the table of field values, below, for Message Management Parameters.)  |
+| Msg Mgmt Parms init list opt  | 1 (0, 1)             | Controls the appearance of the Message Management Parameters list display when it is first presented. This option is important at sites where the message text is more important than the message ID for recognizing messages to process.    |
+|                      |                      | -   0 = Show the Message Queue Library   |
+|                      |                      | -   1 = Show the Compare Text (instead of the MSGQ LIB)  |
+| Event cmds in-line or submit?  | 0          | 0 = in-line, protect event sequence:     |
+|                      |                      | Option 0 enables better cooperation among multiple Message Management Parameters that are qualified to respond to a single message. |
+|                      |                      | The original Agent Message Management server logic was the same as option 1 for this field. But sometimes the delay caused by submitting message responses to a separate job would prevent subsequent Message Management Parameters (with a higher sequence number) from being able to benefit from the results of a Parameters record with a lower sequence number. So the new default is option 0: Process each Message Management Parameter right from the Message Management server job so that the order of events is strictly preserved.         |
+|                      |                      | 1 = submit, handle other messages faster:  |
+|                      |                      | Option 1 was the original mode of processing for the Message Management Server. This option improves the response time of the Server for handling multiple messages.   |
+|                      |                      | However, when each message response is submitted to its own, separate job, it is likely that this would prevent the actions of Parameter Sequence 10 from being made available to Parameter Sequence 20 that wants to process the same message - and needs to know the result of the Sequence 10 response action. |
+|                      |                      | The choice between these two options might depend on whether a site uses complex message responses, or virtually always uses only one Message Management Parameter per message.           |
+| $MSG handle single quotes | E(blank, B, E)       | An optional edit that should be performed whenever the $MSG special variable is used in the Message Management Command line:                |
+|                      |                      | -   blank = no changes          |
+|                      |                      | -   B = replace a single quote with a space character        |
+|                      |                      | -   E = escape the single quote by doubling it ('')           |
+| $MSG handle comma    | B(blank, B)          | An optional edit that should be performed whenever the $MSG special variable is used in the Message Management Command line:     |
+|                      |                      | -   blank = no changes          |
+|                      |                      | -   B = replace a comma with a space character  |
 
-:  
-
-###### Functions
+### Functions
 
 -   **F3=Exit**: Quits the maintenance display and returns to the menu
     without completing any changes.
@@ -372,50 +61,48 @@ performance parameters (\#7)
 ### Message Management Parameters
 
 Message Management Parameters - View 1 of 2
+```
+TRPMSGR1                 Message Management Parameters                MM/DD/YY 
+USERNAME                                                              HH:MM:SS 
+                                                                               
+Type options, press Enter.                          Search content:            
+  2=Change  3=Copy  4=Delete  5=Display                                        
+  7=Capt chart  8=Export  9=Chg Sts                                            
+ Opt  Msg Queue   MsgQ Lib    Msg ID   Job Name    Job User    SQ#   Sts       
+      QSYSOPR     QSYS        CPI1E94  *ALL        *ALL         10    I        
+      QSYSOPR     QSYS        SMA0009  *ALL        *ALL         10    I        
+      QSYSOPR     QSYS        SMA0145  *ALL        *ALL         10    I        
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------
-  [TRPMSGR03-S1]{style="color: #008000;"}                Message Management Parameters                    [00/00/00]{style="color: #008000;"}   [USERNAME]{style="color: #008000;"}                                                                     [17:04:07]{style="color: #008000;"}
-  ( [Status:]{style="color: #008000;"} [Inactive/Active]{style="color: #ff00ff;"} )   [Type options, press Enter.]{style="color: #0000ff;"}                          [Search content: \_\_\_\_\_\_\_\_\_\_]{style="color: #008000;"}
-  [  2=Change  3=Copy  4=Delete  5=Display]{style="color: #0000ff;"}   [  7=Capt chart  8=Export  9=Chg Sts]{style="color: #0000ff;"}
-   Opt  Msg Queue   MsgQ Lib    Msg ID   Job Name    Job User    SQ\#   Sts
-    \_   QSYSOPR     QSYS        CPA0701  \*ALL        \*ALL         10    A
-    \_   QSYSOPR     QSYS        CPA0701  \*ALL        \*ALL         20    A
-  [  \_   QSYSOPR     QSYS        CPF0927  \*ALL        USER\*        10]{style="color: #008000;"}    [I]{style="color: #ff0000;"}   [  \_   QSYSOPR     QSYS        CPF1010  \*ALL        \*ALL         10]{style="color: #008000;"}    [I]{style="color: #ff0000;"}
-    \_   USERQNAME   QUSRSYS     \*\*\*\*\*\*\*  \*\*\*\*\*\*\*\*\*\*  \*\*\*\*\*\*\*\*\*\*
-   
-  *\-- or: F11=Alt view \--*
-   
-   Opt  Msg Queue   MsgQ Lib    Msg ID   Job Name    Job User    MmRecKey\#  Sts
-    \_   QSYSOPR     QSYS        CPA0701  \*ALL        \*ALL              1     A
-   
-   
-  Bottom
-   F6=Add   F10=CompText   F11=Alt view   F16=Search next   F17=Subset   F24=More keys
-  *\-- or \--*
-   F3=Exit   F7=Add Queue   F5=Refresh   F15=Act/Inact   F24=More keys
-  ------------------------------------------------------------------------------------------------------------------------------------------------
-
- 
+                        -- or: F11=Alt view --                                                                               
+ Opt  Msg Queue   MsgQ Lib    Msg ID   Job Name    Job User    MmRecKey#  Sts                        
+      QSYSOPR     QSYS        CPI1E94  *ALL        *ALL              3     I   
+      QSYSOPR     QSYS        SMA0009  *ALL        *ALL              5     I   
+      QSYSOPR     QSYS        SMA0145  *ALL        *ALL              4     I   
+                                                                               
+                                                                        Bottom 
+F6=Add  F10=CompText  F11=Alt view  F16=SearchNxt  F17=Subset  F24=More keys   
+Copyright (C) SMA Technologies 1995, 2018  ARR                                 
+```
 
 Message Management Parameters - View 2 of 2
+'''
+ TRPMSGR1A         Message Management Parameters - Compare Text         3/23/22 
+ CLEWIS                                                                10:16:52 
+                                                                                
+ Type options, press Enter.                          Search content:            
+   2=Change  3=Copy  4=Delete  5=Display                                        
+   7=Capt chart  8=Export  9=Chg Sts                                            
+Opt Msg Queue  Msg ID  Job Name   Job User   SEQ Compare Text                 S 
+_   QSYSOPR    LNR0706 *ALL       *ALL        10 Processing date is           A
+_   QSYSOPR    LNR0706 *ALL       *ALL        20 Is data valid?               A
+_   QSYSOPR    CPF0927 *ALL       USER*       10                              I
+_   QSYSOPR    CPF9897 *ALL       *ALL        10 My user message text         I
+_   USERQNAME  ******* ********** **********
+                                                                                
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
-  [TRPMSGR1A]{style="color: #008000;"}           Message Management Parameters - Compare Text           [00/00/00 ]{style="color: #008000;"}   [USERNAME]{style="color: #008000;"}                                                                   [17:04:07 ]{style="color: #008000;"}
-  ( [Status:]{style="color: #008000;"} [Inactive/Active]{style="color: #ff00ff;"} )   [Type options, press Enter.]{style="color: #0000ff;"}                               [Search content: \_\_\_\_\_\_\_\_\_\_ ]{style="color: #008000;"}
-  [  2=Change  3=Copy  4=Delete  5=Display]{style="color: #0000ff;"}   [  7=Capt chart  8=Export  9=Chg Sts]{style="color: #0000ff;"}
-   Opt  Msg Queue  Msg ID   Job Name    Job User    SEQ Compare Text            S
-    \_   QSYSOPR    LNR0706  \*ALL        \*ALL         10 Processing date is      A
-    \_   QSYSOPR    LNR0706  \*ALL        \*ALL         20 Is data valid?          A
-  [  \_   QSYSOPR    CPF0927  \*ALL        USER\*        10    ]{style="color: #008000;"}                     [I]{style="color: #ff0000;"}   [  \_   QSYSOPR    CPF9897  \*ALL        \*ALL         10 My user message text]{style="color: #008000;"}    [I]{style="color: #ff0000;"}
-    \_   USERQNAME  \*\*\*\*\*\*\*  \*\*\*\*\*\*\*\*\*\*  \*\*\*\*\*\*\*\*\*\*
-   
-   
-   
-  Bottom
-   F6=Add   F10=MSGQ+LIB view   F16=Search next   F17=Subset   F24=More keys
-  *\-- or \--*
-   F3=Exit   F7=Add Queue   F5=Refresh   F15=Act/Inact   F24=More keys
-  ------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                         Bottom 
+ F6=Add  F10=MSGQ+LIB view  F16=Search next  F17=Subset  F24=More keys          
+'''
 
 The example lists above show both views of the list of Message
 Management Parameters. F10 is used to alternate between Views 1 and 2,
@@ -426,15 +113,11 @@ not be helpful, and message management depends more heavily on the
 Compare Text to distinguish among various Parameter records that might
 otherwise appear to have the same filter rules.
 
- 
-
 The sub-title will change to indicate when the F17=Subset function is in
 effect. As the sub-title indicates, the list may be filtered to show
 only one entry for each message queue that the LSAM will monitor.
 Pressing F17 a second time will remove the filter and show all the
 Parameter records in the file.
-
- 
 
 The illustration above also shows a type-Q standard entry that has
 asterisks (\*) in place of a Message ID and other fields. Records with
@@ -443,8 +126,6 @@ specific message that should be monitored. Rather, they provide a means
 of signaling the LSAM about message queues that need to be checked in
 case any messages may arrive that should be handled by the job-level
 message responses supplied with OpCon-initiated jobs.
-
- 
 
 LSAM Message Management will always check the message queues specified
 in the LSAM Message Management Parameters master file. However, if a
@@ -459,12 +140,12 @@ monitored, press F17=Subset on the LSAM display. It is easy to add a
 message queue to that list, as explained below under the Add Queue
 window documentation.
 
-###### Menu Pathways
+### Menu Pathways
 
 Main Menu \> Message management menu (\#2) \> Message management
 parameters (\#1)
 
-###### Fields
+### Fields
 
   Field                           Description
   ------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -483,7 +164,7 @@ parameters (\#1)
 
   :  
 
-###### Options
+### Options
 
 -   **2=Change**: To change a Msg ID, type 2 next to the Msg ID line and
     press \<**Enter**\> to proceed to the Update Message Management
@@ -2399,52 +2080,52 @@ Main Menu \> Message management menu (\#2) \> Start message management
 
 ###### Fields
 
-+----------------------+----------------------+----------------------+
+
 | Field                | Values               | Description          |
-+======================+:====================:+======================+
+
 | Server start mode    | 0 = warm start       | -   0 = keep the     |
 | (warm/cold)          |                      |     content of the   |
 |                      | 1 = cold start       |     Message          |
-|                      |                      |     Management       |
+Management       |
 |                      | The default value is |     message key      |
 |                      | retrieved from the   |     control file.    |
 |                      | Message Management   |     This allows the  |
 |                      | performance          |     server to        |
 |                      | parameters.          |     perform a warm   |
-|                      |                      |     start,           |
-|                      |                      |     attempting to    |
-|                      |                      |     resume message   |
-|                      |                      |     queue reading    |
-|                      |                      |     from after the   |
-|                      |                      |     last message     |
-|                      |                      |     that was         |
-|                      |                      |     previously       |
-|                      |                      |     processed.       |
+start,           |
+attempting to    |
+resume message   |
+queue reading    |
+from after the   |
+last message     |
+that was         |
+previously       |
+processed.       |
 |                      |                      | -   1 = clear the    |
-|                      |                      |     content of the   |
-|                      |                      |     Message          |
-|                      |                      |     Management       |
-|                      |                      |     message key      |
-|                      |                      |     control file.    |
-|                      |                      |     This tells the   |
-|                      |                      |     server to first  |
-|                      |                      |     clear the        |
-|                      |                      |     control file     |
-|                      |                      |     before starting  |
-|                      |                      |     the server       |
-|                      |                      |     processing, and  |
-|                      |                      |     it instructs the |
-|                      |                      |     server to start  |
-|                      |                      |     at the beginning |
-|                      |                      |     of each message  |
-|                      |                      |     queue.           |
+content of the   |
+Message          |
+Management       |
+message key      |
+control file.    |
+This tells the   |
+server to first  |
+clear the        |
+control file     |
+before starting  |
+the server       |
+processing, and  |
+it instructs the |
+server to start  |
+at the beginning |
+of each message  |
+queue.           |
 |                      |                      | -   Refer to         |
-|                      |                      |     additional       |
-|                      |                      |     discussion above |
-|                      |                      |     about Starting   |
-|                      |                      |     Message          |
-|                      |                      |     Management.      |
-+----------------------+----------------------+----------------------+
+additional       |
+discussion above |
+about Starting   |
+Message          |
+Management.      |
+
 
 :  
 
