@@ -145,407 +145,129 @@ Object Reference Flow Chart utility (command REFFLOW) that has been
 provided with the IBM i LSAM software. This utility is explained in a
 section that follows the menu functions table.
 
-LSAM Menu Functions
+### LSAM Menu Functions
 
-+----------------------+----------------------+----------------------+
-| LSAM Menu Functions  |                      |                      |
-+======================+======================+======================+
-| Menu/ Function       | Description          | Program or Command   |
-+----------------------+----------------------+----------------------+
-| LSAM Main Menu       | LSAM menus have      | LSAMNUE0 (menu)      |
-|                      | \*USE authority      |                      |
-|                      | granted to \*PUBLIC. |                      |
-|                      | Menu system security |                      |
-|                      | is enforced at the   |                      |
-|                      | object level         |                      |
-|                      | (command or program) |                      |
-|                      | of each menu         |                      |
-|                      | function.            |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      | The STRSMA command   |                      |
-|                      | installed in library |                      |
-|                      | QGPL and its command |                      |
-|                      | processor program    |                      |
-|                      | are restricted from  |                      |
-|                      | public use, so that  |                      |
-|                      | authority can be     |                      |
-|                      | granted on a         |                      |
-|                      | per-user basis to    |                      |
-|                      | control who has      |                      |
-|                      | access to the LSAM   |                      |
-|                      | Menu system.         |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      | **Note**: The IBM i  |                      |
-|                      | menu command GO may  |                      |
-|                      | not be used outside  |                      |
-|                      | of the LSAM Menu     |                      |
-|                      | system because the   |                      |
-|                      | LSAM Menu start      |                      |
-|                      | command (STRSMA) is  |                      |
-|                      | required to          |                      |
-|                      | initialize the LSAM  |                      |
-|                      | environment for the  |                      |
-|                      | interactive job.     |                      |
-+----------------------+----------------------+----------------------+
+| Menu/Function | Description | Program or Command |
+| --- | ----------- | ---------------|
+| LSAM Main Menu       | LSAM menus have  \*USE authority granted to \*PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function.  The STRSMA command installed in library QGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system.  **Note**: The IBM i menu command GO may not be used outside of the LSAM Menu system because the LSAM Menu start command (STRSMA) is required to initialize the LSAM environment for the interactive job.     | LSAMNUE0 (menu) |
 | 1\.                  | Job track menu       | LSAMNUE1 (menu)      |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Message management   | LSAMNUE2 (menu)      |
-|                      | menu                 |                      |
-+----------------------+----------------------+----------------------+
+| 2\.                  | Message management menu  | LSAMNUE2 (menu)      |
 | 3\.                  | Events menu          | LSAMNUE3 (menu)      |
-+----------------------+----------------------+----------------------+
 | 4\.                  | Operator replay menu | LSAMNUE4 (menu)      |
-+----------------------+----------------------+----------------------+
 | 5\.                  | Restricted mode menu | LSAMNUE5 (menu)      |
-+----------------------+----------------------+----------------------+
 | 6\.                  | LSAM management menu | LSAMNUE6 (menu)      |
-+----------------------+----------------------+----------------------+
 | 7\.                  | LSAM Parameters      | CALL LSAPARR00       |
-+----------------------+----------------------+----------------------+
-| 8\.                  | SMA File Transfer    | LSAMNUE8 (menu)      |
-|                      | menu                 |                      |
-+----------------------+----------------------+----------------------+
-| 9\.                  | PTF and Security     | LSAMNUE9 (menu)      |
-|                      | menu                 |                      |
-+----------------------+----------------------+----------------------+
+| 8\.                  | SMA File Transfer menu   | LSAMNUE8 (menu)      |
+| 9\.                  | PTF and Security menu    | LSAMNUE9 (menu)      |
 | Job Track Menu       |                      | LSAMNUE1 (menu)      |
-+----------------------+----------------------+----------------------+
 | 1\.                  | Job track parameters | CALL TRKPARR00       |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Job track logs       | CALL LSALOGR00       |
-|                      | (WRKTRKJOB)          |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Start job track      | STRJOBTRK            |
-|                      | (STRJOBTRK)          |                      |
-+----------------------+----------------------+----------------------+
-| 4\.                  | End job track        | ENDJOBTRK            |
-|                      | (ENDJOBTRK)          |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Check job track      | JOBTRKSTS            |
-|                      | status (JOBTRKSTS)   |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Maintain dynamic     | CALL LSAVARR00       |
-|                      | variables            |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Job tracking         | CALL TRKJOBR30       |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Start job capture    | STRCAPJOB            |
-|                      | (STRCAPJOB)          |                      |
-+----------------------+----------------------+----------------------+
-| 9\.                  | End job capture      | ENDCAPJOB            |
-|                      | (ENDCAPJOB)          |                      |
-+----------------------+----------------------+----------------------+
-| 10\.                 | Display captured     | DSPCAPJOB            |
-|                      | jobs (DSPCAPJOB)     |                      |
-+----------------------+----------------------+----------------------+
-| 11\.                 | Work with captured   | WRKCAPJOB            |
-|                      | jobs (WRKCAPJOB)     |                      |
-+----------------------+----------------------+----------------------+
-| Message Management   |                      | LSAMNUE2 (menu)      |
-| Menu                 |                      |                      |
-+----------------------+----------------------+----------------------+
-| 1\.                  | Message management   | CALL TRPMSGR03       |
-|                      | parameters           |                      |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Message management   | CALL LSALOGR10       |
-|                      | logs                 |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Start Message        | STRMSGMNG            |
-|                      | management           |                      |
-|                      | (STRMSGMNG)          |                      |
-+----------------------+----------------------+----------------------+
-| 4\.                  | End Message          | ENDMSGMNG            |
-|                      | management           |                      |
-|                      | (ENDMSGMNG)          |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Check Message        | TRPMSGSTS            |
-|                      | management status    |                      |
-|                      | (TRPMSGSTS)          |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | View job completion  | DSPPFM (IBM i)       |
-|                      | message table        |                      |
-|                      | (DSPPFM LSAMSGF00)   |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Message Management   | CALL TRPMSGR40       |
-|                      | Performance          |                      |
-|                      | Parameters           |                      |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Display Captured     | CALL OPRLOGR40       |
-|                      | Message Data log     | PARM('M')          |
-+----------------------+----------------------+----------------------+
-| 9\.                  | Display Data Capture | CALL CAPLOGR10       |
-|                      | Debug log (response  | PARM('M')          |
-|                      | rules log)           |                      |
-+----------------------+----------------------+----------------------+
-| 10\.                 | Work with Message    | CALL TRPMSGR30       |
-|                      | Data Capture         |                      |
-|                      | Definitions          |                      |
-+----------------------+----------------------+----------------------+
-| 11\.                 | Work with Captured   | CALL OPRRPYR50       |
-|                      | Data Response Rules  | PARM('M')          |
-+----------------------+----------------------+----------------------+
-| 12\.                 | Maintain Dynamic     | CALL LSAVARR00       |
-|                      | Variables            |                      |
-+----------------------+----------------------+----------------------+
-| Events and Utilities |                      | LSAMNUE3 (menu)      |
-| Menu                 |                      |                      |
-+----------------------+----------------------+----------------------+
+| 2\.                  | Job track logs (WRKTRKJOB)        | CALL LSALOGR00       |
+| 3\.                  | Start job track (STRJOBTRK)     | STRJOBTRK            |
+| 4\.                  | End job track (ENDJOBTRK) | ENDJOBTRK            |
+| 5\.                  | Check job track status (JOBTRKSTS) | JOBTRKSTS            |
+| 6\.                  | Maintain dynamic variables | CALL LSAVARR00       |
+| 7\.                  | Job tracking configuration | CALL TRKJOBR30       |
+| 8\.                  | Start job capture (STRCAPJOB) | STRCAPJOB            |
+| 9\.                  | End job capture (ENDCAPJOB)   | ENDCAPJOB            |
+| 10\.                 | Display captured jobs (DSPCAPJOB) | DSPCAPJOB            |
+| 11\.                 | Work with captured jobs (WRKCAPJOB) | WRKCAPJOB            |
+| Message Management Menu|                      | LSAMNUE2 (menu)      |
+| 1\.                  | Message management parameters | CALL TRPMSGR03       |
+| 2\.                  | Message management logs  | CALL LSALOGR10       |
+| 3\.                  | Start Message management (STRMSGMNG) | STRMSGMNG            |
+| 4\.                  | End Message management (ENDMSGMNG) | ENDMSGMNG            |
+| 5\.                  | Check Message management status (TRPMSGSTS) | TRPMSGSTS            |
+| 6\.                  | View job completion message table (DSPPFM LSAMSGF00) | DSPPFM (IBM i)       |
+| 7\.                  | Message Management Performance Parameters | CALL TRPMSGR40       |
+| 8\.                  | Display Captured Message Data log | CALL OPRLOGR40 PARM('M') |
+| 9\.                  | Display Data Capture Debug log (response rules log) | CALL CAPLOGR10 PARM('M') |
+| 10\.                 | Work with Message Data Capture Definitions | CALL TRPMSGR30       |
+| 11\.                 | Work with Captured Data Response Rules  | CALL OPRRPYR50 PARM('M') |
+| 12\.                 | Maintain Dynamic Variables | CALL LSAVARR00       |
+| Events and Utilities Menu |                      | LSAMNUE3 (menu)      |
 | 1\.                  | Event Management     | CALL LSAEVTR02       |
-+----------------------+----------------------+----------------------+
-| 2\.                  | External Event       | CALL LSACONR00       |
-|                      | Password             |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Work with SCANSPLF   | CALL LSAJORR50       |
-|                      | Applications         |                      |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Work with SPLF Scan  | CALL LSAJORR40       |
-|                      | Rules                |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Work with Captured   | CALL OPRRPYR50       |
-|                      | Data Response Rules  |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Maintain dynamic     | CALL LSAVARR00       |
-|                      | variables            |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | LSAM Utility         | CALL LSAUTLR30       |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Display Captured     | CALL OPRLOGR40       |
-|                      | Data log             |                      |
-+----------------------+----------------------+----------------------+
-| 9\.                  | Display data capture | CALL CAPLOGR10       |
-|                      | debug log            |                      |
-+----------------------+----------------------+----------------------+
-| 10\.                 | Data Export/Import   | GO LSAMNUEA          |
-|                      | Utilities menu       |                      |
-+----------------------+----------------------+----------------------+
-| 11\.                 | Client eMail         | GO LSAMNUEB          |
-|                      | Management menu      |                      |
-+----------------------+----------------------+----------------------+
-| Data Export/Import   |                      | LSAMNUEA (menu)      |
-| Utilities Menu       |                      |                      |
-+----------------------+----------------------+----------------------+
-| 1\.                  | Work with Export     | CALL EXIEXPR00       |
-|                      | batches              |                      |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Export a data set    | LSAEXPDTA            |
-|                      | (LSAEXPDTA)          |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Display Export       | CALL EXILOGR00       |
-|                      | Activity/Error Log   | PARM('E')          |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Work with Import     | CALL EXIIMPR00       |
-|                      | batches              |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Import new data set  | LSAIMPDTA            |
-|                      | (LSAIMPDTA)          |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Display Import       | CALL EXILOGR00       |
-|                      | Activity/Error Log   | PARM('I')          |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Export/Import        | CALL EXICFGR30       |
-|                      | options              |                      |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-| Client eMail         |                      | LSAMNUEB (menu)      |
-| Management Menu      |                      |                      |
-+----------------------+----------------------+----------------------+
-| 1\.                  | Work with Client     | WRKCLTEML            |
-|                      | eMail Data           |                      |
-|                      | (WRKCLTEML)          |                      |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Work with Message    | WRKMBRPDM            |
-|                      | Text Source Members  | FI                   |
-|                      |                      | LE(\*LIBL/EMLTXTSRC) |
-+----------------------+----------------------+----------------------+
+| 2\.                  | External Event Password | CALL LSACONR00       |
+| 3\.                  | Work with SCANSPLF Applications | CALL LSAJORR50       |
+| 4\.                  | Work with SPLF Scan Rules | CALL LSAJORR40       |
+| 5\.                  | Work with Captured Data Response Rules | CALL OPRRPYR50       |
+| 6\.                  | Maintain dynamic variables | CALL LSAVARR00       |
+| 7\.                  | LSAM Utility configuration | CALL LSAUTLR30       |
+| 8\.                  | Display Captured Data log | CALL OPRLOGR40       |
+| 9\.                  | Display data capture debug log | CALL CAPLOGR10       |
+| 10\.                 | Data Export/Import Utilities menu | GO LSAMNUEA          |
+| 11\.                 | Client eMail Management menu  | GO LSAMNUEB          |
+| Data Export/Import Utilities Menu |                      | LSAMNUEA (menu)      |
+| 1\.                  | Work with Export batchesv| CALL EXIEXPR00       |
+| 2\.                  | Export a data set (LSAEXPDTA) | LSAEXPDTA            |
+| 3\.                  | Display Export Activity/Error Log | CALL EXILOGR00 PARM('E') |
+| 4\.                  | Work with Import batches | CALL EXIIMPR00       |
+| 5\.                  | Import new data set (LSAIMPDTA) | LSAIMPDTA            |
+| 6\.                  | Display Import Activity/Error Log | CALL EXILOGR00 PARM('I') |
+| 7\.                  | Export/Import options configuration | CALL EXICFGR30       |
+| Client eMail Management Menu |                      | LSAMNUEB (menu)      |
+| 1\.                  | Work with Client eMail Data (WRKCLTEML) | WRKCLTEML            |
+| 2\.                  | Work with Message Text Source Members | WRKMBRPDM FILE(\*LIBL/EMLTXTSRC) |
 | 3\.                  | Generate eMail       | ?GENEMLREQ           |
 |                      | Request (GENEMLREQ)  | ??OPCONJOB('0')    |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Display eMail        | CALL EMLLOGR00       |
-|                      | Activity Logs        |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Display Error Log    | DSPPFM EMLLOGF10     |
-|                      | (DSPPFM EMLLOGF10)   |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Maintain Dynamic     | CALL LSAVARR00       |
-|                      | Variables            |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Client eMail         | CALL CLTEMLR30       |
-|                      | Configuration        |                      |
-+----------------------+----------------------+----------------------+
-| There is no menu 7.  |                      |                      |
-| Main menu function 7 |                      |                      |
-| is a call to the     |                      |                      |
-| LSAM Parameters      |                      |                      |
-| function:CALL        |                      |                      |
-| LSAPARR00            |                      |                      |
-+----------------------+----------------------+----------------------+
+| 4\.                  | Display eMail Activity Logs | CALL EMLLOGR00       |
+| 5\.                  | Display Error Log (DSPPFM EMLLOGF10) | DSPPFM EMLLOGF10     |
+| 6\.                  | Maintain Dynamic Variables | CALL LSAVARR00       |
+| 7\.                  | Client eMail Configuration | CALL CLTEMLR30       |
+| There is no menu 7. Main menu function 7 is a call to the LSAM Parameters function:CALL LSAPARR00 |                      |
 | Operator Replay Menu |                      | LSAMNUE4 (menu)      |
-+----------------------+----------------------+----------------------+
 | 1\.                  | User management      | CALL LSAUSRR00       |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Operator Replay      | CALL OPRRPYR10       |
-|                      | scripts              |                      |
-+----------------------+----------------------+----------------------+
+| 2\.                  | Operator Replay scripts | CALL OPRRPYR10       |
 | 3\.                  | Operator Replay logs | CALL OPRLOGR00       |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Operator             | CALL OPRVARR00       |
-|                      | Token/Variable       |                      |
-|                      | management           |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Work with Screen     | CALL OPRRPYR40       |
-|                      | Capture definitions  |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Work with Captured   | CALL OPRRPYR50       |
-|                      | Data Response Rules  |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Operator Replay      | CALL OPRRPYR30       |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Display Captured     | CALL OPRLOGR40       |
-|                      | Data log             |                      |
-+----------------------+----------------------+----------------------+
-| 9\.                  | Display data capture | CALL CAPLOGR10       |
-|                      | debug log            |                      |
-+----------------------+----------------------+----------------------+
-| 10\.                 | Maintain Dynamic     | CALL LSAVARR00       |
-|                      | Variables            |                      |
-+----------------------+----------------------+----------------------+
-| 11\.                 | Client eMail         | GO LSAMNUEB          |
-|                      | Management menu      |                      |
-+----------------------+----------------------+----------------------+
-| Restricted Mode and  |                      | LSAMNUE5 (menu)      |
-| Multi-step Job Menu  |                      |                      |
-+----------------------+----------------------+----------------------+
+| 4\.                  | Operator Token/Variable management | CALL OPRVARR00       |
+| 5\.                  | Work with Screen Capture definitions | CALL OPRRPYR40       |
+| 6\.                  | Work with Captured Data Response Rules | CALL OPRRPYR50       |
+| 7\.                  | Operator Replay configuration | CALL OPRRPYR30       |
+| 8\.                  | Display Captured Data log | CALL OPRLOGR40       |
+| 9\.                  | Display data capture debug log | CALL CAPLOGR10       |
+| 10\.                 | Maintain Dynamic Variables | CALL LSAVARR00       |
+| 11\.                 | Client eMail Management menu | GO LSAMNUEB          |
+| Restricted Mode and Multi-step Job Menu |                      | LSAMNUE5 (menu)      |
 | 1\.                  | Maintain scripts     | CALL SAVRSTR20       |
-+----------------------+----------------------+----------------------+
 | 2\.                  | Setup environment    | CALL SAVRSTR21       |
-+----------------------+----------------------+----------------------+
-| 3\.                  | History of the last  | CALL SAVRSTR05       |
-|                      | use                  |                      |
-+----------------------+----------------------+----------------------+
-|                      |                      |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Maintain Multi-step  | CALL MLTJOBR10       |
-|                      | job scripts          |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | View Multi-step job  | DSPPFM MLTLOGF00     |
-|                      | log                  |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Maintain dynamic     | CALL LSAVARR00       |
-|                      | variables            |                      |
-+----------------------+----------------------+----------------------+
+| 3\.                  | History of the last use | CALL SAVRSTR05       |
+| 5\.                  | Maintain Multi-step job scripts | CALL MLTJOBR10       |
+| 6\.                  | View Multi-step job log | DSPPFM MLTLOGF00     |
+| 7\.                  | Maintain dynamic variables | CALL LSAVARR00       |
 | LSAM Management Menu |                      | LSAMNUE6 (menu)      |
-+----------------------+----------------------+----------------------+
-| 1\.                  | Start LSAM           | STRSMASYS            |
-|                      | (STRSMASYS)          |                      |
-+----------------------+----------------------+----------------------+
+| 1\.                  | Start LSAM (STRSMASYS)  | STRSMASYS            |
 | 2\.                  | End LSAM (ENDSMASYS) | ENDSMASYS            |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Check LSAM subsystem | CALL CHKLSAC00       |
-|                      | status               |                      |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Manage LSAM logging  | CALL SMAMNGLOGR      |
-|                      |                      | PARM('MANAGE')     |
-+----------------------+----------------------+----------------------+
-| 5\.                  | View LSAM logs       | CALL SMAMNGLOGR      |
-|                      |                      | PARM('VIEW')       |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Work with LSAM       | WRKSMASVR            |
-|                      | Servers (WRKSMASVR)  |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | LSAM Parameters      | CALL LSAPARR00       |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Alternate Job Notify | GO LSAMENUEC         |
-|                      | menu                 |                      |
-+----------------------+----------------------+----------------------+
-| Alternate Job Notify |                      | LSAMNUEC (menu)      |
-| Menu                 |                      |                      |
-+----------------------+----------------------+----------------------+
-| 1\.                  | Work with job notify | CALL JOBNFYR10       |
-|                      | subsystems           |                      |
-+----------------------+----------------------+----------------------+
-| 2\.                  | View job notify      | CALL JOBNFYR20       |
-|                      | message log          |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Start job notify     | STRSMASVR            |
-|                      | server               | SERVER(JOBNFY)       |
-+----------------------+----------------------+----------------------+
-| 4\.                  | End job notify       | CALL JOBNFYC02       |
-|                      | server               |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Check LSAM subsystem | CALL CHKLSAC00       |
-|                      | status               |                      |
-+----------------------+----------------------+----------------------+
-|                      |                      |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | Job notify           | CLAL JOBNFYR30       |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-|                      |                      |                      |
-+----------------------+----------------------+----------------------+
-| SMA File Transfer    |                      | LSAMNUE8 (menu)      |
-| Menu                 |                      |                      |
-+----------------------+----------------------+----------------------+
-| 1\.                  | Start SMAFT Server   | STRSMAFT             |
-|                      | (STRSMAFT)           |                      |
-+----------------------+----------------------+----------------------+
-| 2\.                  | End SMAFT Server     | ENDSMAFT             |
-|                      | (ENDSMAFT)           |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Work with SMAFT jobs | WRKSFTJOB            |
-|                      | (WRKSFTJOB)          |                      |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Manage SMAFT logging | CALL SFTMNGLOGR      |
-|                      |                      | PARM('MANAGE')     |
-+----------------------+----------------------+----------------------+
-| 5\.                  | View LSAM logs       | CALL SMAMNGLOGR      |
-|                      |                      | PARM('VIEW')       |
-+----------------------+----------------------+----------------------+
-| 6\.                  | View SMAFT logs      | CALL SFTMNGLOGR      |
-|                      |                      | PARM('VIEW')       |
-+----------------------+----------------------+----------------------+
+| 3\.                  | Check LSAM subsystem status | CALL CHKLSAC00       |
+| 4\.                  | Manage LSAM logging  | CALL SMAMNGLOGR PARM('MANAGE') |
+| 5\.                  | View LSAM logs       | CALL SMAMNGLOGR  PARM('VIEW') |
+| 6\.                  | Work with LSAM Servers (WRKSMASVR) | WRKSMASVR            |
+| 7\.                  | LSAM Parameters configuration | CALL LSAPARR00       |
+| 8\.                  | Alternate Job Notify menu | GO LSAMENUEC         |
+| Alternate Job Notify Menu |                      | LSAMNUEC (menu)      |
+| 1\.                  | Work with job notify subsystems | CALL JOBNFYR10       |
+| 2\.                  | View job notify message log | CALL JOBNFYR20       |
+| 3\.                  | Start job notify server | STRSMASVR SERVER(JOBNFY)  |
+| 4\.                  | End job notify server | CALL JOBNFYC02       |
+| 5\.                  | Check LSAM subsystem status | CALL CHKLSAC00       |
+| 7\.                  | Job notify configuration | CLAL JOBNFYR30       |
+| SMA File Transfer Menu |                      | LSAMNUE8 (menu)      |
+| 1\.                  | Start SMAFT Server (STRSMAFT) | STRSMAFT             |
+| 2\.                  | End SMAFT Server (ENDSMAFT) | ENDSMAFT             |
+| 3\.                  | Work with SMAFT jobs (WRKSFTJOB) | WRKSFTJOB            |
+| 4\.                  | Manage SMAFT logging | CALL SFTMNGLOGR PARM('MANAGE') |
+| 5\.                  | View LSAM logs       | CALL SMAMNGLOGR PARM('VIEW') |
+| 6\.                  | View SMAFT logs      | CALL SFTMNGLOGR PARM('VIEW')|
 | 7\.                  | SMAFT Parameters     | CALL SFTPARR00       |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Work with SMAFT      | CALL SFTNATR00       |
-|                      | Network Address      |                      |
-|                      | Translation          |                      |
-+----------------------+----------------------+----------------------+
-| PTF and Security     |                      | LSAMNUE9 (menu)      |
-| Menu                 |                      |                      |
-+----------------------+----------------------+----------------------+
+| 8\.                  | Work with SMAFT Network Address Translation | CALL SFTNATR00       |
+| PTF and Security Menu |                      | LSAMNUE9 (menu)      |
 | 1\.                  | Work with LSAM PTFs  | WRKPTFCTL            |
-+----------------------+----------------------+----------------------+
-| 2\.                  | Master PTF request,  | SMAPTFINS            |
-|                      | load and apply       |                      |
-|                      | (SMAPTFINS)          |                      |
-+----------------------+----------------------+----------------------+
-| 3\.                  | Request PTF          | SMAPTFREQ            |
-|                      | information or save  |                      |
-|                      | files (SMAPTFREQ)    |                      |
-+----------------------+----------------------+----------------------+
-| 4\.                  | Load PTF information | SMAPTFLOD            |
-|                      | or save files        |                      |
-|                      | (SMAPTFLOD)          |                      |
-+----------------------+----------------------+----------------------+
-| 5\.                  | Apply cumulative PTF | SMAPTFCUM            |
-|                      | (SMAPTFCUM)          |                      |
-+----------------------+----------------------+----------------------+
-| 6\.                  | Apply single PTF     | SMAPTFAPY            |
-|                      | (SMAPTFAPY)          |                      |
-+----------------------+----------------------+----------------------+
-| 7\.                  | PTF options          | CALL LSAPTFR30       |
-|                      | configuration        |                      |
-+----------------------+----------------------+----------------------+
-| 8\.                  | Work with object     | WRKSPLAUT            |
-|                      | authority            |                      |
-+----------------------+----------------------+----------------------+
+| 2\.                  | Master PTF request, load and apply (SMAPTFINS) | SMAPTFINS            |
+| 3\.                  | Request PTF information or save files (SMAPTFREQ) | SMAPTFREQ            |
+| 4\.                  | Load PTF information or save files (SMAPTFLOD) | SMAPTFLOD            |
+| 5\.                  | Apply cumulative PTF (SMAPTFCUM)  | SMAPTFCUM            |
+| 6\.                  | Apply single PTF (SMAPTFAPY)      | SMAPTFAPY            |
+| 7\.                  | PTF options configuration         | CALL LSAPTFR30       |
+| 8\.                  | Work with object authority    | WRKSPLAUT            |
+
 
 ## LSAM Object Reference Flow Chart
 
@@ -582,8 +304,9 @@ LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL
 information about this command).
 
 #### REFFLOW command syntax
-
+```
 REFFLOW OBJ(object_name) LEVELS(n) SAVE(x) WRKLIB(lib_name)
+```
 
 - **OBJ**: The name of an LSAM menu, command or program.
 - **LEVELS**: The number of nesting levels to show in the reference
@@ -611,15 +334,15 @@ REFFLOW OBJ(object_name) LEVELS(n) SAVE(x) WRKLIB(lib_name)
     parameter is set to either Y=Yes or E=Existing.
 
 #### REFFLOW command examples
-
+```
 REFFLOW OBJ(LSAPARR00)
-
+```
 This example shows that it is only necessary to name the LSAM menu,
 command or program in order to use this command. The default values for
 each other command parameter will be used.
-
+```
 REFFLOW OBJ(LSAPARR00) LEVELS(9) SAVE(E) WRKLIB(SMADTA)
-
+```
 This example requests that a full analysis up to the maximum of 9 levels
 be performed for the LSAM Parameters maintenance program that is called
 from the LSAM Main menu (refer to the table of LSAM Menu Functions,
@@ -693,9 +416,9 @@ LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL
 information about this command).
 
 #### DSPOBJWU command syntax
-
+```
 DSPOBJWU OBJ(object_name) TYPE(object_type)
-
+```
 - OBJ = the name of the LSAM object to be studied. The named object
     must be one of the valid types. LSAM objects that are not one of
     these types will not be found in the supplied LSAM object reference
@@ -711,14 +434,14 @@ DSPOBJWU OBJ(object_name) TYPE(object_type)
   - \*CMD = command
 
 #### DSPOBJWU command examples
-
+```
 DSPOBJWU OBJ(LSAPARF00) TYPE(\*FILE)
-
+```
 This example will produce a list of all programs and service programs
 that use the LSAM Parameters control physical file, LSAPARF00.
-
+```
 DSPOBJWU OBJ(SFTMNGLOGR) TYPE(\*PGM)
-
+```
 This example will produce a list of all programs, service programs,
 commands and menus that call the program SFTMNGLOGR.
 
