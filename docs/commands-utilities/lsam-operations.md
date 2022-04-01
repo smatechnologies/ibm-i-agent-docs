@@ -84,7 +84,7 @@ IBM i LSAM Interactive Menu
 
 | Parameter                 | Default   | Description and Values    |
 | ------ | ------- | ------ |
-| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](/environment/commands.md#SMALIBMG).|
+| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](/environment/commands.md#SMALIBMG).| 
 |                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained below, under command SMALIBINQ.            |
