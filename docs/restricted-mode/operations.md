@@ -464,6 +464,42 @@ Mode script processing supports choosing any of these three methods.
     restricted mode step is started and completed. From this step, the
     Restricted Mode program will complete automatically and normal LSAM
     operations will be restored.
+    ```
+    SYSTEMNAME                  Restricted mode operation monitor          00/00/00
+    SMASAV                                                                 00:00:00
+    .............................. ................................................
+    :                            : : Application Date Time Sts Msg               :
+    :    R E S T R I C T E D     : :  AutoRecovr 2006-06-16 10.45.05 B            :
+    :                            : :  TESTSAVE 2006-06-16 10.45.04 E CPF3794      :
+    :   M O D E   S C R I P T    : :  TESTSAVE 2006-06-16 10.44.53 B *NONE        :
+    :                            : :  ENDSYS 2006-06-16 10.44.52 E *NONE          :
+    :         TESTSAVE           : :  ENDSYS 2006-06-16 10.43.46 B *NONE          :
+    :                            : :  ON_ERROR 2006-06-16 10.43.45 E *NONE        :
+    :       R U N N I N G        : :  ON_ERROR 2006-06-16 10.43.44 B *NONE        :
+    :                            : :                                              : 
+    :         D O  N O T         : :                                              :
+    :                            : :                                              :
+    :   S W I T C H  O F F       : :                                              :
+    :                            : :                                              :
+    :         T H I S            : :                                              :
+    :                            : :                                              :
+    :       S C R E E N          : :                                              :
+    :                            : :                                              :
+    :                            : :                                       Bottom :
+    :............................: :..............................................:
+    Copyright (C) SMA Technologies 1995, 2005, 2006 ARR
+    ```
+:::note EXAMPLE: System AutoRecovr upon failure:
+The illustration above shows a Restricted Mode Script named TESTSAVE. The Script started
+its operation by registering an ON_ERROR method and then proceeded immediately to
+put the system into restricted mode (the step using the ENDSYS reserved action code).
+During the action code that was called TESTSAVE, an error occurred. In response to the
+error the LSAM's Restricted Mode program began automatic recovery of the system state.
+The AutoRecovr step restarted LSAM operations so that a report of this failure could be
+communicated back to OpCon for a responsive action. More detail about Script action
+codes and how the Restricted Mode program works can be found in the IBM i LSAM documentation
+section on Restricted Mode Screens and Windows, below.
+:::
 
 ## OpCon Job Details Definition for a Restricted Mode Job
 
