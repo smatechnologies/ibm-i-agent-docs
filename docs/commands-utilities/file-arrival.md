@@ -238,10 +238,10 @@ that enable this capability.
     When the Job End Time is zero (the default for this parameter), then
     the Create End Time WILL govern the absolute job end time. But when
     a Job End Time is specified, then the file check commands will use
-    this value as the end time boundary for the Re-check Frequency.
+    this value as the end time boundary for the Re-check Frequency. 
 
-:::caution
-If both the Job End Time and the Create End Time are zeros/blanks, but the Re-check Frequency is not zero, then the File Arrival job will run endlessly until a matching file is found. This can only happen if the user intentionally creates this parameter configuration -- the default parameter values for the job will not create this endless loop. Interestingly, allowing for an endless loop makes it possible to create a real all-day file watcher. For this type of job, users can choose to have an OpCon control schedule force the job to end and then start a new one, based on their own schedule, or the endless file watcher could just keep running day after day until and unless there is a system stop or system failure. In that case, it would be necessary to have a secondary OpCon service monitor restarting itself all the time to assure that the endless file watcher job is always active.
+:::caution 
+If both the Job End Time and the Create End Time are zeros/blanks, but the Re-check Frequency is not zero, then the File Arrival job will run endlessly until a matching file is found. This can only happen if the user intentionally creates this parameter configuration -- the default parameter values for the job will not create this endless loop. Interestingly, allowing for an endless loop makes it possible to create a real all-day file watcher. For this type of job, users can choose to have an OpCon control schedule force the job to end and then start a new one, based on their own schedule, or the endless file watcher could just keep running day after day until and unless there is a system stop or system failure. In that case, it would be necessary to have a secondary OpCon service monitor restarting itself all the time to assure that the endless file watcher job is always active. 
 :::
 
 ## Using the Agent Commands in File Arrival Jobs
@@ -292,9 +292,9 @@ command box.
 
 To enter the full screen mode for IBM i commands, type the following
 command and then press Enter:
-
+```
 CALL QCMD
-
+```
 To successfully access the File Arrival commands it is necessary to
 refer to at least the Agent library SMAPGM, where the commands are
 stored. To execute either command, the full Agent library list is
@@ -428,54 +428,32 @@ specified for similar purposes.
 
 The CHKFILE command complete command syntax is shown here with the
 default values for all parameters (where applicable):
-
+```
 CHKFILE
-
-FILE(libname/filename)
-
-LOCK(\*NO)
-
-MEMBER(\*FIRST)
-
-FILNAMPROP(\*NONE)
-
-NUMRECPROP(\*NONE)
-
-FAILCDPROP(\*NONE)
-
-FILNAMDV(\*NONE)
-
-NUMRECDV(\*NONE)
-
-FAILCODEDV(\*NONE)
-
-FAILIFZERO(\*NO)
-
-CRTSTRTIME(0)
-
-CRTENDTIME(0)
-
-CRTREFDATE(\*DEFAULT)
-
-JOBENDTIME(0)
-
-JOBREFDATE(\*DEFAULT)
-
-RECHKFREQ(0)
-
-STABLEDUR(0)
-
-AUTUSER(\*JOB)
-
-AUT(\*NONE)
-
-OPCONJOB(O)
-
-FAILONERR(Y)
-
-ENV(\*DEFAULT)
-
-GPL(\*DEFAULT)
+    FILE(libname/filename)
+    LOCK(*NO)
+    MEMBER(*FIRST)
+    FILNAMPROP(*NONE)
+    NUMRECPROP(*NONE)
+    FAILCDPROP(*NONE)
+    FILNAMDV(*NONE)
+    NUMRECDV(*NONE)
+    FAILCODEDV(*NONE)
+    FAILIFZERO(*NO)
+    CRTSTRTIME(0)
+    CRTENDTIME(0)
+    CRTREFDATE(*DEFAULT)
+    JOBENDTIME(0)
+    JOBREFDATE(*DEFAULT)
+    RECHKFREQ(0)
+    STABLEDUR(0)
+    AUTUSER(*JOB)
+    AUT(*NONE)
+    OPCONJOB(O)
+    FAILONERR(Y)
+    ENV(*DEFAULT)
+    GPL(*DEFAULT)
+```
 
 The command parameter summary shown next defines each parameter and
 lists possible values. However, the effect of using these parameters
@@ -483,43 +461,13 @@ together can vary the outcome of the command, as discussed below.
 
 ### CHKFILE Command Parameter Summary
 
-+-------------------+-----------------------+-----------------------+
++
 | Parameter Keyword | Values                | Description           |
-+===================+=======================+=======================+
-| FILE              | IBM i object names.   | DB2: library name /   |
-|                   | File name can be      | file (table) name.    |
-|                   | generic.              |                       |
-|                   |                       | The file name can be  |
-|                   |                       | generic, e.g., FIL\*. |
-|                   |                       | For DB2 tables, only  |
-|                   |                       | a trailing asterisk   |
-|                   |                       | (\*) is supported for |
-|                   |                       | generic names. A      |
-|                   |                       | partial name is       |
-|                   |                       | defined by one or     |
-|                   |                       | more leading          |
-|                   |                       | characters            |
-|                   |                       | (conforming to the    |
-|                   |                       | rules for IBM i       |
-|                   |                       | object names).        |
-+-------------------+-----------------------+-----------------------+
-| LOCK              | -   \*NO              | \*YES causes command  |
-|                   |                       | to report failure if  |
-|                   | -   \*YES             | a lock exists on the  |
-|                   |                       | file object that      |
-|                   |                       | might prevent a       |
-|                   |                       | subsequent operation  |
-|                   |                       | from being performed. |
-+-------------------+-----------------------+-----------------------+
-| MEMBER            | -   \*FIRST           | Optionally, specify a |
-|                   |                       | specific data member  |
-|                   | -   IBM i object name | name for PF-SRC       |
-|                   |                       | files, or for         |
-|                   |                       | multi-member PF-DTA   |
-|                   |                       | files. (SQL tables do |
-|                   |                       | not support multiple  |
-|                   |                       | data members.)        |
-+-------------------+-----------------------+-----------------------+
+| ------- | ------ | ------| ------ |
+| FILE              | IBM i object names. File name can be generic. | DB2: library name / file(table) name. The file name can be generic, e.g., FIL\*. For DB2 tables, only a trailing asterisk (*) is supported for generic names. A partial name is defined by one or more leading characters (conforming to the rules for IBM i object names).        |
+| LOCK              |  *NO \ *YES              | *YES causes command to report failure if a lock exists on the file object that might prevent a subsequent operation from being performed. |
+| MEMBER            | -   *FIRST \ IBM i object name    | Optionally, specify a specific data member name for PF-SRC files, or for multi-member PF-DTA files. (SQL tables do not support multiple data members.)        |
+
 | FILNAMPROP        | -   \*NONE            | File Name Property:   |
 |                   |                       | Optionally, specify   |
 |                   | -   OpCon Property    | an OpCon Property     |

@@ -1,4 +1,8 @@
-### Translation Table Testing
+---
+sidebar_label: 'Translation Table Testing'
+---
+
+# Translation Table Testing
 
 The IBM i LSAM software includes two commands that may help to diagnose
 problems with translation tables. The LSAM Parameters configuration
@@ -33,7 +37,7 @@ specified in the IBM i LSAM Parameters it should be thoroughly tested
 using the LSAM translation table testing utilities. A strategy for using
 these utilities follows.
 
-#### Translation Table Versus CCSID
+## Translation Table Versus CCSID
 
 When using the LSAM translation table testing tools it is important to
 understand the different uses that the LSAM makes of translation tables,
@@ -107,7 +111,7 @@ a special form of OpCon job command for an IBM i job, it is possible to
 isolate and test character translation in either direction, using any
 available translation table pair, or any available pair of CCSID codes.
 
-#### LSATBLTEST Utility Command
+## LSATBLTEST Utility Command
 
 The command LSATBLTEST should be used from within the IBM i LSAM menu
 system or from a command entry screen where the LSAM environment library
@@ -134,60 +138,68 @@ either direction (sending or receiving) is controlled by this test
 program and not by the usual LSAM translation routines. (The LSAM server
 jobs are coded to recognize when the TESTLSATBL command has been
 requested by OpCon.) Therefore, be sure to choose appropriate
-translation settings before using the \<**Enter**\> key or any function
+translation settings before using the <**Enter**\> key or any function
 key.
 
-##### LSATBLTEST Utility Display
+### LSATBLTEST Utility Display
 
 When the LSATBLTEST command is entered, the following utility display
 appears.
 
-LSATBLTEST Utility Command Display (F11-EBCDIC Mode)
+#### LSATBLTEST Utility Command Display (F11-EBCDIC Mode)
+```
+ LSATBLR1                 Test LSAM Translation Tables                 MM/DD/YY 
+ USERNAME               Translation Mode: EBCDIC -> ASCII              HH:MM:SS 
+                                                                                
+ Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.  
+ To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters   
+  of TEXT, then press F17.  CMD:  TESTLSATBL TEXT('any ASCII character')        
+ Use F20 to retranslate same data with new options.  F2=clear data only.        
+          NOTE: Send uses these translation options, not LSAM routines.         
+ Use Table or CCSID . : T  T=table, C=CCSID       SMAFT ASCII CCSID : 00819     
+ EBCDIC-to-ASCII table: QASCII                    SMAFT EBCDIC CCSID: 00037     
+   Library  . . . . . :   QSYS                    Job default CCSID*: 00037     
+ ASCII-to-EBCDIC table: QEBCDIC                   Alt ASCII CCSID . : 00000     
+   Library  . . . . . :   QSYS                    Alt EBCDIC CCSID  : 00000     
+   * NOTE: Job default CCSID used for EBCDIC char. Use F10=Hex for other CCSID. 
+ F2=CLR  1...5...10....5...20....5...30....5...40....5...50....5...60....5...70 
+ EBCDIC:                                                                        
+                                                                                
+                                                                                
+                                                                                
+  ASCII                                                                         
+                                                                                
+                                                                                
+ F5=Refresh  F10=Hex  F11=Mode  F14=Send msg  F17=Receive msg  F20=Retranslate  
+```
+Function key F10 enables the Hex1/Hex2 fields for input, instead of the EBCDIC character input field.
 
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[LSATBLR1]{style="color: #008000;"}                Test LSAM Translation Tables                  [00/00/00]{style="color: #008000;"}    [USERNAME              Translation Mode:]{style="color: #008000;"} [EBCDIC -\> ASCII ]{style="color: #ff00ff;"}              [00:00:00]{style="color: #008000;"}
-
-  Type any options and EBCDIC text, press Enter for local or F14=Send to OpCon.
-  To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
-           NOTE: Send uses these translation options, not LSAM routines.
-  Use Table or CCSID . : [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       SMAFT ASCII CCSID : [00819]{style="color: #00ffff;text-decoration: underline;"}   EBCDIC-to-ASCII table: [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                SMAFT EBCDIC CCSID: [00037]{style="color: #00ffff;text-decoration: underline;"}
-    Library  . . . . . :   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              Job default CCSID\*: [00037]{style="color: #00ffff;text-decoration: underline;"}   ASCII-to-EBCDIC table: [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                Alt ASCII CCSID . : [00000]{style="color: #ffcc00;text-decoration: underline;"}
-    Library  . . . . . :   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              Alt EBCDIC CCSID  : [00000]{style="color: #ffcc00;text-decoration: underline;"}     [\* NOTE: Job default CCSID used for EBCDIC char. Use F10=Hex for other CCSID.]{style="color: #0000ff;"}
-  [F2=CLR]{style="color: #0000ff;"}   1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"}  [                                                                      ]{style="color: #ffcc00;text-decoration: underline;"}
-  (Hex1:)  [0000000000000000000000000000000000000000000000000000000000000000000000]{style="text-decoration: underline;"}   (Hex2:)  [0000000000000000000000000000000000000000000000000000000000000000000000]{style="text-decoration: underline;"}
-
-    ASCII  0000000000000000000000000000000000000000000000000000000000000000000000
-           0000000000000000000000000000000000000000000000000000000000000000000000
-
-  F5=Refresh  F10=Hex  F11=Mode  F14=Send msg  F17=Receive msg  F20=Retranslate
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Function key F10 enables the Hex1/Hex2 fields for input, instead of the
-EBCDIC character input field.
-
-LSATBLTEST Utility Command Display (F11-ASCII Mode)
-
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[LSATBLR1                ]{style="color: #008000;"}Test LSAM Translation Tables                 [00/00/00]{style="color: #008000;"}    [USERNAME             Translation Mode:]{style="color: #008000;"} [ASCII -\> EBCDIC               ]{style="color: #ff00ff;"}[00:00:00]{style="color: #008000;"}
-
-  Type any options and ASCII hex, then press Enter for local translation.
-  To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters
-   [of TEXT, then press F17. CMD:]{style="color: #0000ff;"}  [TESTLSATBL TEXT('any ASCII character')]{style="color: #008000;"}   Use F20 to retranslate same data with new options. F2=clear data only.
-
-  [Use Table or CCSID . :]{style="color: #008000;"} [T]{style="color: #ffcc00;text-decoration: underline;"}  [T=table, C=CCSID]{style="color: #0000ff;"}       [SMAFT ASCII CCSID :]{style="color: #008000;"} [00819]{style="color: #00ffff;text-decoration: underline;"}   [EBCDIC-to-ASCII table:]{style="color: #008000;"} [QASCII    ]{style="color: #ffcc00;text-decoration: underline;"}                [SMAFT EBCDIC CCSID:]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}
-    [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Job default CCSID :]{style="color: #008000;"} [00037]{style="color: #00ffff;text-decoration: underline;"}   [ASCII-to-EBCDIC table:]{style="color: #008000;"} [QEBCDIC   ]{style="color: #ffcc00;text-decoration: underline;"}                [Alt ASCII CCSID . :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}
-    [Library  . . . . . :]{style="color: #008000;"}   [QSYS      ]{style="color: #ffcc00;text-decoration: underline;"}              [Alt EBCDIC CCSID  :]{style="color: #008000;"} [00000]{style="color: #ffcc00;text-decoration: underline;"}
-  [F2=CLR]{style="color: #0000ff;"}  1\...5\...10\....5\...20\....5\...30\....5\...40\....5\...50\....5\...60\....5\...70   [EBCDIC:]{style="color: #008000;"} [                                                                      ]{style="text-decoration: underline;"}
-    Hex1: 0000000000000000000000000000000000000000000000000000000000000000000000
-    Hex2: 0000000000000000000000000000000000000000000000000000000000000000000000
-
-   [ASCII:]{style="color: #008000;"} [0000000000000000000000000000000000000000000000000000000000000000000000]{style="color: #ffcc00;text-decoration: underline;"}     [Hex2:]{style="color: #008000;"} [0000000000000000000000000000000000000000000000000000000000000000000000]{style="color: #ffcc00;text-decoration: underline;"}
-
-   F5=Refresh          F11=Mode                F17=Receive msg   F20=Retranslate
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#### LSATBLTEST Utility Command Display (F11-ASCII Mode)
+```
+ LSATBLR1                 Test LSAM Translation Tables                 MM/DD/YY 
+ USERNAME               Translation Mode: ASCII -> EBCDIC              HH:MM:SS 
+                                                                                
+ Type any options and ASCII hex, then press Enter for local translation.        
+ To test ASCII with OpCon job, run command TESTLSATBL and up to 70 characters   
+  of TEXT, then press F17.  CMD:  TESTLSATBL TEXT('any ASCII character')        
+ Use F20 to retranslate same data with new options.  F2=clear data only.        
+                                                                                
+ Use Table or CCSID . : T  T=table, C=CCSID       SMAFT ASCII CCSID : 00819     
+ EBCDIC-to-ASCII table: QASCII                    SMAFT EBCDIC CCSID: 00037     
+   Library  . . . . . :   QSYS                    Job default CCSID : 00037     
+ ASCII-to-EBCDIC table: QEBCDIC                   Alt ASCII CCSID . : 00000     
+   Library  . . . . . :   QSYS                    Alt EBCDIC CCSID  : 00000     
+                                                                                
+ F2=CLR  1...5...10....5...20....5...30....5...40....5...50....5...60....5...70 
+ EBCDIC                                                                         
+   Hex1:                                                                        
+   Hex2:                                                                        
+                                                                                
+  ASCII:                                                                        
+   Hex2:                                                                        
+                                                                                
+ F5=Refresh           F11=Mode                F17=Receive msg  F20=Retranslate  
+```
 
 There is no support for F10=Hex or F14=Send msg in the ASCII mode, since
 this mode is for local testing only, and it is always driven by entering
@@ -197,424 +209,43 @@ ASCII-Hex2 fields.
 ###### Menu Pathways
 
 Main Menu \> Selection or command line \> type LSATBLTEST and press
-\<Enter\>
+<Enter\>
 
-###### Fields
+##### Fields
 
-+----------------------+----------------------+----------------------+
 | Field                | Default              | Description          |
-+======================+:====================:+======================+
-| Use Table or CCSID   | T                    | -   T = use          |
-|                      |                      |     translation      |
-|                      |                      |     tables, as       |
-|                      |                      |     specified on     |
-|                      |                      |     left of screen.  |
-|                      |                      | -   C = use CCSID    |
-|                      |                      |     codes, as        |
-|                      |                      |     specified on     |
-|                      |                      |     right of screen. |
-|                      |                      | -   Set this field   |
-|                      |                      |     and choose the   |
-|                      |                      |     appropriate      |
-|                      |                      |     tables or codes  |
-|                      |                      |     before           |
-|                      |                      |     performing any   |
-|                      |                      |     operations, to   |
-|                      |                      |     determine how    |
-|                      |                      |     translation is   |
-|                      |                      |     done in either   |
-|                      |                      |     direction        |
-|                      |                      |     (sending or      |
-|                      |                      |     receiving        |
-|                      |                      |     messages).       |
-+----------------------+----------------------+----------------------+
-| EBCDIC to ASCII      | The LSAM Parameters  | -   Initially, the   |
-| table                | value, or QASCII     |     utility displays |
-|                      |                      |     the LSAM         |
-|                      |                      |     Parameters       |
-|                      |                      |     control file     |
-|                      |                      |     value for this   |
-|                      |                      |     translation      |
-|                      |                      |     table. If no     |
-|                      |                      |     value is present |
-|                      |                      |     in the control   |
-|                      |                      |     file, the IBM i  |
-|                      |                      |     system default   |
-|                      |                      |     translation      |
-|                      |                      |     table used to    |
-|                      |                      |     translate EBCDIC |
-|                      |                      |     characters to    |
-|                      |                      |     the extended     |
-|                      |                      |     ASCII character  |
-|                      |                      |     set is           |
-|                      |                      |     displayed. This  |
-|                      |                      |     initial value is |
-|                      |                      |     the one          |
-|                      |                      |     currently used   |
-|                      |                      |     by the IBM i     |
-|                      |                      |     LSAM             |
-|                      |                      |     communications   |
-|                      |                      |     server programs. |
-|                      |                      | -   This value can   |
-|                      |                      |     be changed to a  |
-|                      |                      |     user-selected    |
-|                      |                      |     translation      |
-|                      |                      |     table for        |
-|                      |                      |     testing when the |
-|                      |                      |     Use code is set  |
-|                      |                      |     to T = Table.    |
-|                      |                      |     This table is    |
-|                      |                      |     used when a text |
-|                      |                      |     string is typed  |
-|                      |                      |     into the EBCDIC  |
-|                      |                      |     input field for  |
-|                      |                      |     use with the     |
-|                      |                      |     \<**Enter**\>    |
-|                      |                      |     key or with      |
-|                      |                      |     \<**F14**\>.     |
-+----------------------+----------------------+----------------------+
-| Library              | The LSAM Parameters  | The UDB DB2          |
-|                      | value, or QSYS       | (DB2/400) library    |
-|                      |                      | where the            |
-|                      |                      | translation table is |
-|                      |                      | stored.              |
-+----------------------+----------------------+----------------------+
-| ASCII to EBCDIC      | The LSAM Parameters  | -   Initially, the   |
-| table                | value, or QEBCDIC    |     utility displays |
-|                      |                      |     the LSAM         |
-|                      |                      |     Parameters       |
-|                      |                      |     control file     |
-|                      |                      |     value for this   |
-|                      |                      |     translation      |
-|                      |                      |     table. If no     |
-|                      |                      |     value is present |
-|                      |                      |     in the control   |
-|                      |                      |     file, the IBM i  |
-|                      |                      |     system default   |
-|                      |                      |     translation      |
-|                      |                      |     table used to    |
-|                      |                      |     translate the    |
-|                      |                      |     extended ASCII   |
-|                      |                      |     character set to |
-|                      |                      |     EBCDIC           |
-|                      |                      |     characters is    |
-|                      |                      |     displayed. This  |
-|                      |                      |     value is the one |
-|                      |                      |     currently used   |
-|                      |                      |     by the IBM i     |
-|                      |                      |     LSAM             |
-|                      |                      |     communications   |
-|                      |                      |     server programs. |
-|                      |                      | -   This value can   |
-|                      |                      |     be changed to a  |
-|                      |                      |     user-selected    |
-|                      |                      |     translation      |
-|                      |                      |     table for        |
-|                      |                      |     testing when the |
-|                      |                      |     Use code is set  |
-|                      |                      |     to T = Table.    |
-|                      |                      |     This table is    |
-|                      |                      |     used when a text |
-|                      |                      |     string is typed  |
-|                      |                      |     into the ASCII   |
-|                      |                      |     Hex input field, |
-|                      |                      |     or is received   |
-|                      |                      |     from an OpCon    |
-|                      |                      |     test job with    |
-|                      |                      |     \<**F17**\>.     |
-+----------------------+----------------------+----------------------+
-| Library              | The LSAM Parameters  | The UDB DB2          |
-|                      | value, or QSYS       | (DB2/400) library    |
-|                      |                      | where the            |
-|                      |                      | translation table is |
-|                      |                      | stored.              |
-+----------------------+----------------------+----------------------+
-| SMAFT ASCII CCSID    | LSAM Parameters      | The default          |
-|                      |                      | character code set   |
-|                      |                      | assigned in the LSAM |
-|                      |                      | SMA File Transfer    |
-|                      |                      | (SMAFT) Parameters   |
-|                      |                      | is displayed. This   |
-|                      |                      | code is assumed to   |
-|                      |                      | represent the        |
-|                      |                      | character set for    |
-|                      |                      | the ASCII data being |
-|                      |                      | tested, if the Alt   |
-|                      |                      | ASCII CCSID is left  |
-|                      |                      | at zeros.            |
-+----------------------+----------------------+----------------------+
-| SMAFT EBCDIC CCSID   | LSAM Parameters      | The default          |
-|                      |                      | character code set   |
-|                      |                      | assigned in the LSAM |
-|                      |                      | SMAFT Parameters is  |
-|                      |                      | displayed. This code |
-|                      |                      | is displayed for     |
-|                      |                      | reference. If the    |
-|                      |                      | user-specified ALT   |
-|                      |                      | EBCDIC CCSID field   |
-|                      |                      | is left at zeros,    |
-|                      |                      | the program assumes  |
-|                      |                      | the Job default      |
-|                      |                      | CCSID represents     |
-|                      |                      | EBCDIC data.         |
-+----------------------+----------------------+----------------------+
-| Job default CCSID    | IBM i job current    | The default          |
-|                      | value                | character code set   |
-|                      |                      | of the IBM i job is  |
-|                      |                      | assumed to be        |
-|                      |                      | assigned to EBCDIC   |
-|                      |                      | data when the        |
-|                      |                      | user-defined Receive |
-|                      |                      | or To-CCSID are left |
-|                      |                      | at zeros.            |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      |                      |
-|                      |                      | **Note**: The job    |
-|                      |                      | default CCSID is     |
-|                      |                      | always the default   |
-|                      |                      | that is used to      |
-|                      |                      | represent an EBCDIC  |
-|                      |                      | text string that is  |
-|                      |                      | manually typed into  |
-|                      |                      | this display's      |
-|                      |                      | input field, such as |
-|                      |                      | before testing a     |
-|                      |                      | local translation or |
-|                      |                      | when creating a text |
-|                      |                      | message to send to   |
-|                      |                      | the OpCon SAM log    |
-|                      |                      | using \<**F14**\>.   |
-+----------------------+----------------------+----------------------+
-| Alt ASCII CCSID      | zeros = not used     | Set the translation  |
-|                      |                      | type to C=CCSID,     |
-|                      |                      | then type a 5-digit  |
-|                      |                      | CCSID code (using    |
-|                      |                      | leading zeros as     |
-|                      |                      | necessary) that will |
-|                      |                      | represent the ASCII  |
-|                      |                      | message data         |
-|                      |                      | received and         |
-|                      |                      | processed when       |
-|                      |                      | pressing \<**F17**\> |
-|                      |                      | or \<**F20**\> (if   |
-|                      |                      | F20 used after F17   |
-|                      |                      | to reprocess an      |
-|                      |                      | incoming ASCII       |
-|                      |                      | message). This tells |
-|                      |                      | the local program    |
-|                      |                      | how to handle the    |
-|                      |                      | received message     |
-|                      |                      | text BEFORE the      |
-|                      |                      | program translates   |
-|                      |                      | it.                  |
-+----------------------+----------------------+----------------------+
-| Alt EBCDIC CCSID     | zeros = not used     | Set the translation  |
-|                      |                      | type to C=CCSID,     |
-|                      |                      | then type a 5-digit  |
-|                      |                      | CCSID code (using    |
-|                      |                      | leading zeros as     |
-|                      |                      | necessary) that will |
-|                      |                      | represent the result |
-|                      |                      | of a translation.    |
-|                      |                      | For incoming         |
-|                      |                      | messages received    |
-|                      |                      | with the F17         |
-|                      |                      | function key, this   |
-|                      |                      | CCSID will represent |
-|                      |                      | the EBCDIC text that |
-|                      |                      | will be displayed as |
-|                      |                      | the result of        |
-|                      |                      | translation. For     |
-|                      |                      | outgoing messages    |
-|                      |                      | sent using the F14   |
-|                      |                      | function key, this   |
-|                      |                      | value tells the      |
-|                      |                      | program what EBCDIC  |
-|                      |                      | character set to     |
-|                      |                      | assume when          |
-|                      |                      | translating the      |
-|                      |                      | message. A           |
-|                      |                      | translated message   |
-|                      |                      | sent to the OpCon    |
-|                      |                      | SAM Log is sent      |
-|                      |                      | transparently, that  |
-|                      |                      | is, the LSAM allows  |
-|                      |                      | the test translation |
-|                      |                      | to pass through to   |
-|                      |                      | OpCon SMANetCom      |
-|                      |                      | without any changes, |
-|                      |                      | so the result can be |
-|                      |                      | tested by viewing it |
-|                      |                      | with the OpCon SAM   |
-|                      |                      | Log viewer.          |
-+----------------------+----------------------+----------------------+
-| EBCDIC character     | n/a                  | For the              |
-| entry/display line   |                      | \<**Enter**\> key    |
-|                      |                      | and function key     |
-|                      |                      | \<**F14**\> this is  |
-|                      |                      | an input field where |
-|                      |                      | 5250 workstation     |
-|                      |                      | characters may be    |
-|                      |                      | typed to create a    |
-|                      |                      | test character       |
-|                      |                      | string. For function |
-|                      |                      | key \<**F17**\> this |
-|                      |                      | is used as an output |
-|                      |                      | field to show the    |
-|                      |                      | EBCDIC character     |
-|                      |                      | translation of the   |
-|                      |                      | message received     |
-|                      |                      | from the special     |
-|                      |                      | command TESTLSATBL   |
-|                      |                      | used by an OpCon     |
-|                      |                      | job.                 |
-+----------------------+----------------------+----------------------+
-| EBCDIC hex character | X'00'              | -   Under the        |
-| lines                |                      |     input/output     |
-|                      |                      |     character line,  |
-|                      |                      |     a string of      |
-|                      |                      |     hexadecimal      |
-|                      |                      |     character        |
-|                      |                      |     equivalents is   |
-|                      |                      |     displayed after  |
-|                      |                      |     a character      |
-|                      |                      |     translation has  |
-|                      |                      |     been performed.  |
-|                      |                      |     The hexadecimal  |
-|                      |                      |     characters are   |
-|                      |                      |     displayed in     |
-|                      |                      |     over/under       |
-|                      |                      |     format, that is, |
-|                      |                      |     for each         |
-|                      |                      |     character on the |
-|                      |                      |     EBCDIC           |
-|                      |                      |     entry/display    |
-|                      |                      |     line, there are  |
-|                      |                      |     two characters   |
-|                      |                      |     displayed below  |
-|                      |                      |     it that form the |
-|                      |                      |     pair of          |
-|                      |                      |     hexadecimal      |
-|                      |                      |     character        |
-|                      |                      |     equivalents for  |
-|                      |                      |     the displayed    |
-|                      |                      |     character. The   |
-|                      |                      |     hexadecimal      |
-|                      |                      |     characters range |
-|                      |                      |     from 0-9 and     |
-|                      |                      |     A-F. Each        |
-|                      |                      |     over/under pair  |
-|                      |                      |     of characters    |
-|                      |                      |     represents one   |
-|                      |                      |     8-bit byte of    |
-|                      |                      |     digital data.    |
-|                      |                      |     These are the    |
-|                      |                      |     same pairs of    |
-|                      |                      |     hexadecimal      |
-|                      |                      |     characters that  |
-|                      |                      |     are displayed by |
-|                      |                      |     the IBM i WRKTBL |
-|                      |                      |     view table       |
-|                      |                      |     function, and    |
-|                      |                      |     they are the     |
-|                      |                      |     same as the data |
-|                      |                      |     that is used to  |
-|                      |                      |     create a source  |
-|                      |                      |     file member from |
-|                      |                      |     which a          |
-|                      |                      |     translation      |
-|                      |                      |     table can be     |
-|                      |                      |     created.         |
-|                      |                      | -   Use \<**F10**\>  |
-|                      |                      |     = Hex to change  |
-|                      |                      |     the program to   |
-|                      |                      |     accept hex       |
-|                      |                      |     characters typed |
-|                      |                      |     for EBCDIC       |
-|                      |                      |     instead of the   |
-|                      |                      |     keyboard         |
-|                      |                      |     characters line. |
-|                      |                      |     In this mode,    |
-|                      |                      |     the keyboard     |
-|                      |                      |     characters line  |
-|                      |                      |     will show what   |
-|                      |                      |     the local        |
-|                      |                      |     workstation      |
-|                      |                      |     (usually an      |
-|                      |                      |     emulator         |
-|                      |                      |     program)         |
-|                      |                      |     interprets as a  |
-|                      |                      |     display          |
-|                      |                      |     character for    |
-|                      |                      |     each hex value   |
-|                      |                      |     that is typed.   |
-|                      |                      |     Non-display      |
-|                      |                      |     characters are   |
-|                      |                      |     prevented from   |
-|                      |                      |     reaching the     |
-|                      |                      |     display, in      |
-|                      |                      |     order to avoid   |
-|                      |                      |     causing a        |
-|                      |                      |     failure of the   |
-|                      |                      |     test command.    |
-+----------------------+----------------------+----------------------+
-| ASCII hex character  | X'00'              | -   Printable or     |
-| lines                |                      |                      |
-|                      |                      | displayable/keyboard |
-|                      |                      |     characters from  |
-|                      |                      |     the ASCII        |
-|                      |                      |     character set    |
-|                      |                      |     cannot be        |
-|                      |                      |     displayed, as    |
-|                      |                      |     is, on a 5250    |
-|                      |                      |     workstation      |
-|                      |                      |     screen. Instead, |
-|                      |                      |     only the         |
-|                      |                      |     hexadecimal      |
-|                      |                      |     equivalent of    |
-|                      |                      |     the ASCII        |
-|                      |                      |     characters is    |
-|                      |                      |     displayed.       |
-|                      |                      | -   Refer to EBCDIC  |
-|                      |                      |     hex character    |
-|                      |                      |     lines, above,    |
-|                      |                      |     for more         |
-|                      |                      |     information      |
-|                      |                      |     about the        |
-|                      |                      |     hexadecimal      |
-|                      |                      |     character        |
-|                      |                      |     display.         |
-|                      |                      | -   When \<**F11**\> |
-|                      |                      |     puts the test    |
-|                      |                      |     program into     |
-|                      |                      |     ASCII-\>EBCDIC   |
-|                      |                      |     local test mode, |
-|                      |                      |     these ASCII hex  |
-|                      |                      |     lines can be     |
-|                      |                      |     used to enter    |
-|                      |                      |     the equivalent   |
-|                      |                      |     of ASCII         |
-|                      |                      |     characters that  |
-|                      |                      |     should be        |
-|                      |                      |     translated to    |
-|                      |                      |     the EBCDIC lines |
-|                      |                      |     above when the   |
-|                      |                      |     \<**Enter**\>    |
-|                      |                      |     key is pressed.  |
-+----------------------+----------------------+----------------------+
-
-:  
+| ----- | ----- | -----|
+| Use Table or CCSID   | T                    | -   T = use translation tables, as specified on left of screen.  |
+|                      |                      | -   C = use CCSID codes, as specified on right of screen. |
+|                      |                      | -   Set this field and choose the appropriate tables or codes before performing any operations, to determine how translation is done in either direction (sending or receiving messages).       |
+| EBCDIC to ASCII table  | The LSAM Parameters value, or QASCII | -   Initially, the utility displays the LSAM Parameters control file value for this translation table. If no value is present in the control file, the IBM i system default translation table used to translate EBCDIC characters to the extended ASCII character set is displayed. This  initial value is the one currently used by the IBM i LSAM communications server programs. |
+|                      |                      | -   This value can be changed to a user-selected translation table for testing when the Use code is set to T = Table. This table is used when a text string is typed into the EBCDIC input field for use with the <**Enter**\> key or with <**F14**\>.     |
+| Library              | The LSAM Parameters value, or QSYS | The UDB DB2 (DB2/400) library where the translation table is stored.              |
+| ASCII to EBCDIC table     | The LSAM Parameters  value, or QEBCDIC | -  Initially, the utility displays the LSAM Parameters control file value for this translation table. If no value is present in the control file, the IBM i system default translation table used to translate the extended ASCII character set to EBCDIC characters is displayed. This value is the one currently used by the IBM i LSAM communications server programs. |
+|                      |                      | -   This value can be changed to a user-selected translation table for testing when the Use code is set  to T = Table. This table is used when a text string is typed into the ASCII Hex input field, or is received from an OpCon test job with <**F17**\>.     |
+| Library              | The LSAM Parameters value, or QSYS  | The UDB DB2 (DB2/400) library where the translation table is stored.              |
+| SMAFT ASCII CCSID    | LSAM Parameters      | The default character code set assigned in the LSAM SMA File Transfer (SMAFT) Parameters is displayed. This code is assumed to represent the character set for the ASCII data being tested, if the Alt ASCII CCSID is left at zeros.            |
+| SMAFT EBCDIC CCSID   | LSAM Parameters      | The default character code set assigned in the LSAM SMAFT Parameters is displayed. This code is displayed for reference. If the user-specified ALT EBCDIC CCSID field is left at zeros, the program assumes the Job default CCSID represents EBCDIC data.         |
+| Job default CCSID    | IBM i job current value   | The default character code set of the IBM i job is assumed to be assigned to EBCDIC data when the user-defined Receive or To-CCSID are left at zeros.            |
+|                      |                      | **Note**: The job default CCSID is always the default that is used to represent an EBCDIC text string that is manually typed into this display's input field, such as before testing a local translation or when creating a text message to send to the OpCon SAM log using <**F14**\>.   |
+| Alt ASCII CCSID      | zeros = not used     | Set the translation type to C=CCSID, then type a 5-digit CCSID code (using leading zeros as necessary) that will represent the ASCII message data received and processed when pressing <**F17**\> or <**F20**\> (if F20 used after F17 yo reprocess an incoming ASCII message). This tells the local program how to handle the received message text BEFORE the program translates it.                  |
+| Alt EBCDIC CCSID     | zeros = not used     | Set the translation type to C=CCSID, then type a 5-digit CCSID code (using leading zeros as necessary) that will represent the result of a translation. For incoming messages received with the F17 function key, this CCSID will represent the EBCDIC text that will be displayed as the result of translation. For outgoing messages sent using the F14 function key, this value tells the program what EBCDIC character set to assume when translating the message. A translated message sent to the OpCon SAM Log is sent transparently, that is, the LSAM allows the test translation to pass through to OpCon SMANetCom without any changes, so the result can be tested by viewing it with the OpCon SAM Log viewer.          |
+| EBCDIC character entry/display line | n/a                  | For the <**Enter**\> key and function key <**F14**\> this is an input field where 5250 workstation characters may be typed to create a test character string. For function key <**F17**\> this is used as an output field to show the EBCDIC character translation of the message received from the special command TESTLSATBL used by an OpCon job.                 |
+| EBCDIC hex character lines| X'00'              | -   Under the input/output character line, a string of hexadecimal character equivalents is displayed after a character translation has been performed. The hexadecimal characters are displayed in over/under format, that is, for each character on the EBCDIC entry/display line, there are two characters displayed below it that form the pair of hexadecimal character equivalents for the displayed character. The hexadecimal characters range from 0-9 and A-F. Each over/under pair of characters represents one 8-bit byte of digital data. These are the same pairs of hexadecimal characters that  are displayed by the IBM i WRKTBL view table function, and they are the same as the data that is used to create a source file member from which a translation table can be created.         |
+|                      |                      | -   Use <**F10**\> = Hex to change the program to accept hex characters typed for EBCDIC instead of the keyboard characters line. In this mode, the keyboard characters line will show what the local workstation (usually an emulator program) interprets as a display character for each hex value that is typed. Non-display characters are   prevented from reaching the display, in order to avoid causing a failure of the test command.    |
+| ASCII hex character lines | X'00'              | -   Printable or displayable/keyboard characters from the ASCII character set cannot be displayed, as is, on a 5250 workstation screen. Instead, only the hexadecimal equivalent of the ASCII characters is displayed.       |
+|                      |                      | -   Refer to EBCDIC hex character lines, above, for more information about the hexadecimal character display.         |
+|                     |                      | -   When <**F11**\> puts the test program into     ASCII-\>EBCDIC local test mode, these ASCII hex lines can be used to enter the equivalent of ASCII characters that should be translated to the EBCDIC lines above when the <**Enter**\>     key is pressed.  |
 
 ###### Functions
 
 - **Enter**: After a value has been typed in the EBCDIC character
-    entry field, pressing the \<**Enter**\> key causes the utility
+    entry field, pressing the <**Enter**\> key causes the utility
     program to perform a local translation of the data using the
     translation table named in the EBCDIC-to-ASCII fields. In
-    ASCII-\>EBCDIC mode, pressing \<**Enter**\> causes the ASCII hex
+    ASCII-\>EBCDIC mode, pressing <**Enter**\> causes the ASCII hex
     values to be translated to the EBCDIC display and hex lines. The
-    \<**Enter**\> key does not cause any data to be sent or received
+    <**Enter**\> key does not cause any data to be sent or received
     externally to this program.
 - **F3=Exit**: Not displayed in the function key legend, this key
     quits the list display and returns to the command line where the
@@ -653,14 +284,14 @@ Main Menu \> Selection or command line \> type LSATBLTEST and press
     understood by the LSAM server programs and by IBM i. Used with Use
     option C=CCSID, it demonstrates SMAFT file data translation.
 - **F20=Re-translate**: After any other function has been performed on
-    this utility display, function key \<**F20**\> makes it possible to
+    this utility display, function key <**F20**\> makes it possible to
     type in a new translation table name or a new CCSID code and
     discover a new result using the same data from the most recent
     translation test. The translation table or CCSID codes that will be
     used by the F20=re-translate function depends on the most recent
-    operation performed. If the \<**Enter**\> key or function key
-    \<**F14**\> was last executed, the EBCDIC-to-ASCII table is used. If
-    function key \<**F17**\> was last executed, the ASCII-to-EBCDIC
+    operation performed. If the <**Enter**\> key or function key
+    <**F14**\> was last executed, the EBCDIC-to-ASCII table is used. If
+    function key <**F17**\> was last executed, the ASCII-to-EBCDIC
     table is used. Refer to the Fields table above for an explanation of
     how the CCSID codes may be used when the Use option is C.
 
@@ -679,9 +310,9 @@ OpCon normal completion status does not reflect whether the test message
 was actually received by the LSATBLTESTdisplay tool, documented above.
 
 ##### Command Syntax
-
+```
 TESTLSATBL TEXT('any ASCII text or special character')
-
+```
 The name of the command should be followed by the parameter keyword
 value TEXT. Although IBM i command parameter rules would allow just the
 parameter value inside of the parentheses without typing the TEXT
@@ -756,7 +387,7 @@ translation tables and/or pairs of CCSID codes. These tools can also be
 used to test a proposed user-defined translation table in a test LSAM
 environment before that translation table is used in a live production
 environment. This section offers some details about how the LSAM
-[translation table] testing utilities will behave, specific to the task of developing user-defined translation tables.
+translation table testing utilities will behave, specific to the task of developing user-defined translation tables.
 
 ##### Creating User-defined Translation Tables
 
@@ -793,26 +424,32 @@ character occurs in the EBCDIC character set (X'D0').
 
 QSYS/QASCII Display Conversion Table
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------
-                                                                Display Conversion Table
-                             Table:   [QASCII]{style="color: #008000;"}         Library:   [QSYS]{style="color: #008000;"}                                             Hex    Hex                 Hex    Hex                 Hex    Hex
-                                          Input  Output              Input  Output              Input  Output
-                                            B4      DC                 C3      43                 D2      4B
-                                            B5      DD                 C4      44                 D3      4C
-                                            B6      DE                 C5      45                 D4      4D
-                                            B7      DF                 C6      46                 D5      4E
-                                            B8      E0                 C7      47                 D6      4F
-                                            B9      E1                 C8      48                 D7      50
-                                            BA      E2                 C9      49                 D8      51
-                                            BB      E3                 CA      E8                 D9      52
-                                            BC      E4                 CB      E9                 DA      EE
-                                            BD      E5                 CC      EA                 DB      EF
-                                            BE      E6                 CD      EB                 DC      F0
-                                            BF      E7                 CE      EC                 DD      F1
-                                            C0      7B                 CF      ED                 DE      F2
-    [C1      41]{style="color: #008000;"}                 [D0      7D]{style="color: #ff0000;"}                 [DF      F3]{style="color: #008000;"}                                             C2      42                 D1      4A                 E0      5C
-                                                                                                            More\...
-                                           [F3=Exit   F12=Cancel   F17=Position to]{style="color: #0000ff;"}   ----------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ ```
+                             Display Conversion Table                            
+                                                                                
+ Table:   QASCII         Library:   QSYS                                        
+                                                                                
+  Hex    Hex                 Hex    Hex                 Hex    Hex              
+ Input  Output              Input  Output              Input  Output            
+  00      00                 0F      0F                 1E      1E              
+  01      01                 10      10                 1F      1F              
+  02      02                 11      11                 20      80              
+  03      03                 12      12                 21      81              
+  04      9C                 13      13                 22      82              
+  05      09                 14      9D                 23      83              
+  06      86                 15      85                 24      84              
+  07      7F                 16      08                 25      0A              
+  08      97                 17      87                 26      17              
+  09      8D                 18      18                 27      1B              
+  0A      8E                 19      19                 28      88              
+  0B      0B                 1A      92                 29      89              
+  0C      0C                 1B      8F                 2A      8A              
+  0D      0D                 1C      1C                 2B      8B              
+  0E      0E                 1D      1D                 2C      8C              
+                                                                        More... 
+ F3=Exit   F12=Cancel   F17=Position to                                         
+ ```
 
 Notice that the X'D0' translation has been highlighted in red, near
 the bottom of the middle column. The original IBM-supplied translation
@@ -845,10 +482,7 @@ Columns . . . :    1  71           Browse           
           \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* End of data \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
   -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Before we modify this source member, we copy it to a new source member
-name, TSTASCII. The new source member TSTASCII is then modified at
-columns 33-34 of line 7. The following example shows that the prior
-value of '7D' has been replaced by the new value '5D'.
+Before we modify this source member, we copy it to a new source member name, TSTASCII. The new source member TSTASCII is then modified at columns 33-34 of line 7. The following example shows that the prior value of '7D' has been replaced by the new value '5D'.
 
 Modified TSTASCII Table Source Member
 
@@ -943,7 +577,7 @@ LSATBLTEST Displays Default Translation Results
 
 This display has been obtained by typing in the EBCDIC test message
 shown, and then pressing F14=Send msg. The same result would appear on
-this display if the \<**Enter**\> key had been pressed. However, using
+this display if the <**Enter**\> key had been pressed. However, using
 F14=Send msg allows us to go to the OpCon log displays to verify how
 this data was received.
 
@@ -973,7 +607,7 @@ system date just as \[\[$DATE\]\] would be.
 
 To prove the results of the modified TSTASCII translation table, we can
 go back to the LSATBLTEST utility program display and type in some new
-values, then press \<**Enter**\> to test the translation table
+values, then press <**Enter**\> to test the translation table
 completely within the utility itself. We start with the default
 QSYS/QASCII translation table and test how a simple OpCon Token string
 is translated.
@@ -1007,7 +641,7 @@ this discussion.
 
 To continue the test, we change the name of the EBCDIC-to-ASCII
 translation table and the library where our test table is located. Then
-we can press the \<**F20**\> function key to retest translation of the
+we can press the <**F20**\> function key to retest translation of the
 same test character string without having to type the data a second
 time. As the results show in the illustration below, the braces (curly
 brackets) have now been translated into ASCII X'5D'.
@@ -1055,9 +689,9 @@ when data is sent from OpCon to the IBM i LSAM servers.
 ###### Local Testing of ASCII-\>EBCDIC
 
 For a quick test that does not require configuring an OpCon job, use the
-\<**F11**\> function key to put the LSATBLTEST program into
+<**F11**\> function key to put the LSATBLTEST program into
 ASCII-\>EBCDIC mode. Then type hex characters that represent the ASCII
-source data for translation and press \<**Enter**\> to test different
+source data for translation and press <**Enter**\> to test different
 tables and CCSID code sets.
 
 ###### Utilizing OpCon for Testing of ASCII-\>EBCDIC
@@ -1161,7 +795,7 @@ message sent by OpCon, that message is removed by the utility from its
 dedicated data queue, LSATBLT00 in SMADTA. This test data will remain in
 the LSATBLTEST program so that we can experiment with it until it is
 flushed by pressing F5=Refresh, or until another function key or the
-\<**Enter**\> key is pressed.
+<**Enter**\> key is pressed.
 
 The example above shows how the default translation tables used by the
 IBM i LSAM interpreted the incoming message. To experiment with another

@@ -27,7 +27,7 @@ test whether these will pass through the OpCon Event command processor
 program in the OpCon server, after the EBCDIC hex values have been
 translated to the ASCII character set that OpCon uses.
 
-:::note
+:::note HINT
 Use the command SMAGPL/CPYTOMSGIN to test any Event command, since that LSAM command supports translating Dynamic Variable tokens. The LSAM sub-menu 3, option 1, supports a sub-prompt of most OpCon Event commands within the CPYMSGIN keyword field of the CPYTOMSGIN command, so it's easy to correctly format the OpCon Event command string. Insert a {DynVar} token anywhere within the Event command text string, although the hex values are only useful in the Subject Line or the Message Body parameters of the $NOTIFY:EMAIL Event command.
 :::
 
@@ -39,11 +39,9 @@ command from the IBM i command entry line in the LSAM menu system.
 
 Here is an example of how to use this command to store the CR + LF
 characters:
-
-     SETHEXDV VARNAM(CRLF) VALUE(0D25)
-
-              DESC('Carriage Return + Line Feed characters')
-
+```
+SETHEXDV VARNAM(CRLF) VALUE(0D25) DESC('Carriage Return + Line Feed characters')
+```
 One of the limitations of storing low-level hex characters as a Value
 for a Dynamic Variable is that the DSPDYNVAR value test command does not
 produce readable results. This means that testing these types of values
@@ -99,17 +97,17 @@ command (as illustrated below).
 
 Here is the layout of the LOGDYNVAR table:
 
-  Field          Type      Length  Description
-  ----------- ----------- -------- ------------------------------------------
-  DVRECDATE    TIMESTAMP     26    Automatically assigned
-  DVPRIMARY     NUMERIC      9     Automatically assigned
-  DVNAME       CHARACTER     12    Dynamic Variable name or other name
-  DVVALUE      CHARACTER    128    Current (or any) captured value
-  DVCODE       CHARACTER     20    User-defined category, for SQL Select
-  DVDESC       CHARACTER     32    User-defined description, opt for Select
+| Field  | Type | Length |  Description |
+| ----------- | ----------- | -------- | ------------------------------------------ |
+|  DVRECDATE  |  TIMESTAMP  |   26  |  Automatically assigned |
+|  DVPRIMARY  |   NUMERIC   |   9   |  Automatically assigned |
+|  DVNAME     |  CHARACTER  |   12  |  Dynamic Variable name or other name |
+|  DVVALUE    |  CHARACTER  |  128  |  Current (or any) captured value |
+|  DVCODE     |  CHARACTER  |   20  |  User-defined category, for SQL Select |
+|  DVDESC     |  CHARACTER  |   32  |  User-defined description, opt for Select |
 
 Here is the syntax of the LOGDYNVAR command:
-
+```
 SMAPGM/LOGDYNVAR DVNAME(DVORKEYNAME1)  +
 
      VALUE('Any value string contained within a pair of single -
@@ -119,6 +117,7 @@ SMAPGM/LOGDYNVAR DVNAME(DVORKEYNAME1)  +
      CODE('MY-CODEA-CPU-UTIL')  +
 
      DESC('CPU utilization from DSPSYSSTS')
+```
 
 :::note
 Any value can be used for the DVNAME key value, but if it contains special characters or spaces, or it begins with a non-alpha character, then it must be contained within a pair of single quotes.
@@ -136,67 +135,32 @@ single average value for the new Dynamic Variable. The data and SQL
 clauses used in this example are explained in the notes that follow the
 example.
 
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:**                     | | circular                         |                                  |
-| background](../../../Reso        |                                  |
-| urces/Images/example-icon(48x48) |                                  |
-| .png "Example icon") | SELECT 'CPU avg: ' CONCAT      |
-|                                  | AVG(DEC(DVVALUE,4,1))            |
-|                                  |                                  |
-|                                  |  FROM SMADTA/LOGDYNVAR           |
-|                                  |                                  |
-|                                  |  WHERE DVNAME LIKE 'CPU%'      |
-|                                  |                                  |
-|                                  |   AND DVRECDATE \>=              |
-|                                  | '2017-07-10-00.00.00.000'      |
-|                                  |                                  |
-|                                  |   AND DVRECDATE \<=              |
-|                                  | '2017-07-12-23.59.59.000'      |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | EXAMPLE RESULT:                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | CPU avg: 15.2                    |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | **Example Notes:**               |
-|                                  |                                  |
-|                                  | 1.  The SQL statement above can  |
-|                                  |     be typed entirely into the   |
-|                                  |     WHERE field of a \*DB2       |
-|                                  |     extension to a Dynamic       |
-|                                  |     Variable master record, if   |
-|                                  |     the "field/col" field is   |
-|                                  |     set to a value of            |
-|                                  |     "\*WHERE".                 |
-|                                  | 2.  The example above assumes    |
-|                                  |     that the CPU utilization was |
-|                                  |     captured from the DSPSYSSTS  |
-|                                  |     display on a screen format,  |
-|                                  |     and that its maximum value   |
-|                                  |     could be 999.9. The captured |
-|                                  |     character string is          |
-|                                  |     converted to a Decimal value |
-|                                  |     using the SQL DEC keyword    |
-|                                  |     and its associated numeric   |
-|                                  |     size parameters (4 digits,   |
-|                                  |     of which 1 is to the right   |
-|                                  |     of the decimal point).       |
-|                                  | 3.  The LOGDYNVAR command and    |
-|                                  |     table support two other      |
-|                                  |     user-defined fields (table   |
-|                                  |     columns):                    |
-|                                  | 4.  The LSAM does not support    |
-|                                  |     any automatic purging of the |
-|                                  |     LOGDYNVAR table. This is     |
-|                                  |     entirely up to the user. The |
-|                                  |     table could be purged by     |
-|                                  |     using an SQL statement that  |
-|                                  |     deletes all records with     |
-|                                  |     timestamps older than a      |
-|                                  |     user-specified value.        |
-+----------------------------------+----------------------------------+
+:::note EXAMPLE
+```
+SELECT 'CPU avg: ' CONCAT AVG(DEC(DVVALUE,4,1))
+FROM SMADTA/LOGDYNVAR
+WHERE DVNAME LIKE 'CPU%'
+AND DVRECDATE >= '2017-07-10-00.00.00.000'
+AND DVRECDATE <= '2017-07-12-23.59.59.000'
+
+EXAMPLE RESULT:
+
+CPU avg: 15.2
+```
+:::
+
+**Example Notes:**
+1. The SQL statement above can be typed entirely into the WHERE field of a *DB2 extension to a Dynamic Variable master record, if the "field/col" field is set to a value of "*WHERE". REMEMBER: The value returned to the Dynamic Variable token replacement module must be a single character string that does not exceed 128 characters in length. The example above shows the SQL operator CONCAT being used to blend a hard-coded label with the average value into a single character string. (CONCAT forces the numeric average to be handled as part of an overall, single character string.) 
+2. The example above assumes that the CPU utilization was captured from the DSPSYSSTS
+display on a screen format, and that its maximum value could be 999.9. The captured character
+string is converted to a Decimal value using the SQL DEC keyword and its associated
+numeric size parameters (4 digits, of which 1 is to the right of the decimal point).
+3. The LOGDYNVAR command and table support two other user-defined fields (table
+columns):
+CODE = up to 20 characters of a category code
+DESC = up to 32 characters describing the stored value
+These columns could also be used in the SQL WHERE clause to group logged values
+according to any user-defined scheme.
+4. The LSAM does not support any automatic purging of the LOGDYNVAR table. This is
+entirely up to the user. The table could be purged by using an SQL statement that deletes
+all records with timestamps older than a user-specified value.

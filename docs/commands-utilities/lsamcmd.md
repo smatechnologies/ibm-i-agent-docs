@@ -16,10 +16,11 @@ commands typically found in the SMAPGM library, such as SETDYNVAR
 (set/add LSAM Dynamic Variable, explained above).
 
 Here is an example of the syntax required to use this command:
-
-```shell
+:::note Example
+```
 SMAGPL/LSAMCMD ENV(SMADEFAULT) CMD('command syntax')
 ```
+:::
 
 :::note
 This command leaves the LSAM libraries added to the job, unlike the LSAM management commands in SMAGPL, such as ENDSMASYS. To remove the libraries from the job library list, use the LSAM command SMARMVLIBL ENV(SMADEFAULT).

@@ -307,50 +307,22 @@ job's IBM i Job ID should be used. This imitates the behavior of older
 versions of the SMAJOBMSG command as it worked before the JOB keyword
 was added.
 
-Any of the IBM i LSAM automation tools that can be executed within batch
-jobs started by OpCon can rely on the default value of the JOB(\*)
-parameter to represent the current IBM i Job ID. Whenever the asterisk
-is used within the JOB() parameter, it will be replaced with the actual
-IBM i Job ID, resulting in a command syntax that resembles the following
-simplified example:
+Any of the IBM i LSAM automation tools that can be executed within batch jobs started by OpCon can rely on the default value of the JOB(\*) parameter to represent the current IBM i Job ID. Whenever the asterisk is used within the JOB() parameter, it will be replaced with the actual IBM i Job ID, resulting in a command syntax that resembles the following simplified example:
 ```
 SMAJOBMSG TEXT('Detail msg') STSMSGID(SMA0035)
 JOB(123456/USER/JOBNAME)
 ```
-This format for the JOB() parameter can be used anywhere that the IBM i
-Job ID is known. As always, if the command must be executed outside of
-the LSAM environment, without the LSAM library list in effect, it is
-necessary to embed this command within the LSAM command-hosting command,
-like this:
+This format for the JOB() parameter can be used anywhere that the IBM i Job ID is known. As always, if the command must be executed outside of the LSAM environment, without the LSAM library list in effect, it is necessary to embed this command within the LSAM command-hosting command, like this:
 ```
 SMAGPL/LSAMCMD CMD('SMAJOBMSG \...
 ```
-However, in some cases, such as within the LSAM Message Management
-server, the IBM i Job ID information would not be the same as the
-current job that is executing the SMAJOBMSG command. This is because the
-LSAM Message Management server job is not under the direct control of
-the OpCon server. The IBM i Job ID of the LSAM Message Management server
-job is not related to the actual IBM i Job IDs that generated the
-messages themselves.
+However, in some cases, such as within the LSAM Message Management server, the IBM i Job ID information would not be the same as the current job that is executing the SMAJOBMSG command. This is because the LSAM Message Management server job is not under the direct control of the OpCon server. The IBM i Job ID of the LSAM Message Management server job is not related to the actual IBM i Job IDs that generated the messages themselves.
 
-To make the IBM i Job ID associated with each individual message
-available, the IBM i LSAM defines some of its $-Special variables,
-representing the ability of the LSAM Message Management server to find
-and use the correct IBM i Job ID. The predefined LSAM variable named
-$IBM JOB ID could be inserted into the JOB keyword value, and this
-particular predefined variable is already formatted as required by the
-JOB keyword. So, within a Message Management Event command field, or
-from a Captured Data Response Rule linked to a Message Management
-Parameter record, the command syntax would look like this:
+To make the IBM i Job ID associated with each individual message available, the IBM i LSAM defines some of its $-Special variables, representing the ability of the LSAM Message Management server to find and use the correct IBM i Job ID. The predefined LSAM variable named $IBM JOB ID could be inserted into the JOB keyword value, and this particular predefined variable is already formatted as required by the JOB keyword. So, within a Message Management Event command field, or from a Captured Data Response Rule linked to a Message Management Parameter record, the command syntax would look like this:
 ```
 SMAJOBMSG TEXT('Detail msg') STSMSGID(SMA0035) JOB($IBM JOB ID)
 ```
-Notice that the spaces within the predefined variable name are required
-and anticipated - it must be spelled exactly like this. There are also
-other LSAM $-Special variable names that can be used to represent each
-part of an IBM i Job ID. Additional information about $-Special
-variables can be found within the LSAM documentation under the following
-headings:
+Notice that the spaces within the predefined variable name are required and anticipated - it must be spelled exactly like this. There are also other LSAM $-Special variable names that can be used to represent each part of an IBM i Job ID. Additional information about $-Special variables can be found within the LSAM documentation under the following headings:
 
 - Message Management
 - Commands and Utilities
@@ -358,29 +330,14 @@ headings:
 
 ## SMASTATUS - Send Job Status Message to OpCon
 
-OpCon and the IBM i LSAM employ a job scheduling protocol which includes
-a standard format for job status messages. This command causes the LSAM
-to generate current job status information and send it to OpCon. The
-purpose of this command is to override the job status value that is
-displayed on most views of jobs in the Enterprise Manager user
-interface. The MESSAGE parameter of this command supplies the text to be
-displayed on various EM views.
+OpCon and the IBM i LSAM employ a job scheduling protocol which includes a standard format for job status messages. This command causes the LSAM to generate current job status information and send it to OpCon. The purpose of this command is to override the job status value that is displayed on most views of jobs in the Enterprise Manager user interface. The MESSAGE parameter of this command supplies the text to be displayed on various EM views.
 
-Since this command does not (currently) support an ability to designate
-an IBM i Job ID, it can only be used from within a job that was started
-by, or is tracked by OpCon. An example of where this command might be
-useful is among the Steps of an LSAM Multi-Step Job Script, if OpCon
-started the job that is executing the script.
+Since this command does not (currently) support an ability to designate an IBM i Job ID, it can only be used from within a job that was started by, or is tracked by OpCon. An example of where this command might be useful is among the Steps of an LSAM Multi-Step Job Script, if OpCon started the job that is executing the script.
 
-Here is an example of the command syntax, followed by a table explaining
-the command keywords:
+Here is an example of the command syntax, followed by a table explaining the command keywords:
 ```
 SMASTATUS MESSAGE('Step=JOBSTEP01')
 ```
 ### Command Parameters
 
-**MESSAGE** = Must be enclosed by a pair of single quotes (unless only
-one word with no spaces is used that starts with an alphabetic
-character), and any enclosed single quotes must be escaped by doubling
-the single quote character. This text can include any helpful
-information about the current job status.
+**MESSAGE** = Must be enclosed by a pair of single quotes (unless only one word with no spaces is used that starts with an alphabetic character), and any enclosed single quotes must be escaped by doubling the single quote character. This text can include any helpful information about the  current job status.

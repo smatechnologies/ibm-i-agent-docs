@@ -44,20 +44,14 @@ The following example shows two steps that are part of a Multi-Step Job
 Script, illustrating how the SMAFAILJOB command can force the Script job
 to end in case the next command step should fail.
 
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:** Forcing a           | | circular                         | Multi-Step Script Job to fail if |
-| background](../../../Reso        | a critical Step fails:           |
-| urces/Images/example-icon(48x48) |                                  |
-| .png "Example icon") |                                  |
-|                                  |                                  |
-|                                  |   STEP\#   LABEL      COMMAND    |
-|                                  |                                  |
-|                                  |  -------- ---------- ----------- |
-|                                  | -------------------------------- |
-|                                  |   0040     ON_ERROR   SMAFAILJOB |
-|                                  |   0050                CALL MYPR  |
-|                                  | OGRAM PARM('If this step fails') |
-+----------------------------------+----------------------------------+
+:::note EXAMPLE 
+Forcing a Multi-Step Script Job to fail if a critical Step fails: 
+```
+STEP#      LABEL      COMMAND 
+0040        ON_ERROR   SMAFAILJOB 
+0050                   CALL MYPROGRAM PARM('If this step fails') 
+```
+:::
 
 Actually, a simpler way to force the Script to fail would be to mark
 Step \# 50 with the flag that indicates "force script failure if this
@@ -113,24 +107,15 @@ program.
 
 ### Example Program Using CPYTOMSGIN
 
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:** [A sample Control   | | circular                         | Language program                 |
-| background](../../../Reso        | follows:]{.Exampletxt}           |
-| urces/Images/example-icon(48x48) |                                  |
-| .png "Example icon") |                                  |
-|                                  |                                  |
-|                                  | 00010 PGM                        |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | *00020 SMAGPL/CPYTOMSGIN         |
-|                                  | CPYMSGIN*($NOTIFY:LOG,\<Sev     |
-|                                  | erity\>,\<EventID\>,\<Message\>) |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | 00030 ENDPGM                     |
-+----------------------------------+----------------------------------+
+:::note EXAMPLE 
+A sample Control Language program follows:
+```
+00010 PGM
+00020 SMAGPL/CPYTOMSGIN CPYMSGIN($NOTIFY:LOG,<Severity>,<EventID>,<Message>)
+00030 ENDPGM
+```
+:::
+
 
 In the example above, the \< \> characters are used only to mark the
 locations where field names are identified. Both the field name and the
@@ -171,16 +156,12 @@ the **IBM i LSAM** online help.
 Here is an example of pushing the value from an IBM i LSAM Dynamic
 Variable up to an OpCon global property:
 
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:** [Sending an IBM i   | | circular                         | value to an OpCon                |
-| background](../../../Reso        | Property]{.Exampletxt}           |
-| urces/Images/example-icon(48x48) |                                  |
-| .png "Example icon") |                                  |
-|                                  |                                  |
-|                                  | CPYTOMSGIN                       |
-|                                  | CPYMSGIN('$PROPERTY:SET,m      |
-|                                  | y_opcon_property,{DISKPERCNT}') |
-+----------------------------------+----------------------------------+
+:::note EXAMPLE 
+Sending an IBM i value to an OpCon Property
+```
+CPYTOMSGIN CPYMSGIN('$PROPERTY:SET,my_opcon_property,{DISKPERCNT}')
+```
+:::
 
 The example above assumes that the Dynamic Variable DISKPERCNT would
 previously have been loaded with the current IBM i disk utilization
@@ -208,18 +189,21 @@ value from an IBM i DB2 data area.
 In order to allow the LSAM to send valid events to the SAM-SS, a valid
 User ID and password must be defined to the LSAM.
 
-[Define a Valid Event User ID and Password]
+### Define a Valid Event User ID and Password
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **3** to choose the **Event management** menu in the SMA Main
     Menu.
 3. Enter **2** to choose the **External Event Pass Word** option in the
     Event Management Menu.
-4. On the External Event Pass Word screen, **\<Tab\>** to the following
+4. On the External Event Pass Word screen, **<Tab\>** to the following
     fields and enter the following data:
-    a.  **User Name**: type a [valid OpCon/xps user name.]     b.  **Password**: type a [valid external event password] for
-        the User Name above.
-    c.  **Password**: type a [valid external event password] again         to verify the password.
+
+    a.  **User Name**: type a [valid OpCon/xps user name.]     
+    
+    b.  **Password**: type a [valid external event password] for the User Name above.
+
+    c.  **Password**: type a [valid external event password] again to verify the password.
 
 ## Direct Event Commands
 
@@ -229,9 +213,9 @@ performs the same function as CPYTOMSGIN, by delivering the command and
 its parameters to the LSAM communications programs.
 
 Direct Event commands may be simpler than CPYTOMSGIN for a programmer to
-use because each Event command can be prompted pressing \<**F4**\>
+use because each Event command can be prompted pressing <**F4**\>
 during program edit operations. When the command prompting is completed
-by pressing \<**Enter**\>, the correct syntax for the command and its
+by pressing <**Enter**\>, the correct syntax for the command and its
 parameters is returned to the program source line. A complete list and
 explanation of the available event commands may be found in [$Variables Supported in Event Commands](/message-management/screens#variables-supported-in-event-commands)
 . More information about Events may be found in the OpCon
