@@ -84,7 +84,7 @@ IBM i LSAM Interactive Menu
 
 | Parameter                 | Default   | Description and Values    |
 | ------ | ------- | ------ |
-| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG)).              |
+| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](/environment/commands.md#SMALIBMG).|
 |                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained below, under command SMALIBINQ.            |
@@ -119,7 +119,7 @@ environment from an IBM i interactive workstation job; it serves no
 useful purpose in a batch job. The method for entering the LSAM
 environment from a batch job is to use the SMASETLIBL command:
 ```
-SMAGPL/SMASETLIBL ENV(SMADEFAULT) COMPMSG(\*SILENT)
+SMAGPL/SMASETLIBL ENV(SMADEFAULT) COMPMSG(*SILENT)
 ```
 #### Prompted SMASETLIBL Command
 ```
@@ -134,7 +134,7 @@ SMAGPL/SMASETLIBL ENV(SMADEFAULT) COMPMSG(\*SILENT)
 ```
 
 :::warning
-\*SELECT may not be used in a batch job. The default operation of the STRSMA and SMASETLIBL commands substitutes a value of \*SELECT for the environment parameter if a valid value is not supplied. If this happens in a batch job, it would cause the batch job to end abnormally when the subprograms attempt to display the environment selection screen.
+*SELECT may not be used in a batch job. The default operation of the STRSMA and SMASETLIBL commands substitutes a value of \*SELECT for the environment parameter if a valid value is not supplied. If this happens in a batch job, it would cause the batch job to end abnormally when the subprograms attempt to display the environment selection screen.
 :::
 
 The SMASETLIBL command simply replaces any job's library list with the
@@ -171,7 +171,7 @@ An example of the STRSMA splash display follows.
 
 ```
  SYSTEMNAME     W E L C O M E   T O   T H E   I B M  i   A G E N T     MM/DD/YY 
- USERNAME       Env: SMADEFAULT  Cary Lewis test LSAM in HOSTA         HH:MM:SS 
+ USERNAME       Env: SMADEFAULT  SMA Default                           HH:MM:SS 
                                                                                 
   Press Enter to continue to the main menu.                                     
                                                                                 
@@ -213,125 +213,43 @@ ENV(\*CURRENT).
 
 The LSAMENU command supports specification of an IBM i LSAM environment.
 To begin the LSAM environment specification or selection process, from
-IBM i command entry, type the command LSAMENU and press \<**F4**\>
+IBM i command entry, type the command LSAMENU and press <**F4**\>
 (Prompt) to see the possible parameter values that are supported by this
 command:
 
-Prompted LSAMENU Command
+#### Prompted LSAMENU Command
+```
+                    Start LSAM Menu (opt number) (LSAMENU)                     
+                                                                               
+Type choices, press Enter.                                                     
+                                                                               
+Environment name . . . . . . . .   *DEFAULT      *CURRENT,*DEFAULT,*SELECT,name
+Optional sub-menu number . . . .   0             Optional sub-menu number      
+LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name              
+```
 
-  -------------------------------------------------------------------------------------------------------------------------------
-                                              Start LSAM Menu (opt number) (LSAMENU)
-                                                                  
-                                                    Type choices, press Enter.
+##### System and User Configuration Requirements for the LSAM Menu
 
-Environment name . . . . . . . .   [\*CURRENT  ]{style="text-decoration: underline;"}    \*CURRENT,\*DEFAULT,\*SELECT,name             Optional sub-menu number . . . .   [0    ]{style="text-decoration: underline;"}         Optional sub-menu number
-
-  -------------------------------------------------------------------------------------------------------------------------------
-
-+---------------------------+-----------+---------------------------+
-| LSAMENU Command           |           |                           |
-| Parameters                |           |                           |
-+===========================+:=========:+===========================+
 | Parameter                 | Default   | Description and Values    |
-+---------------------------+-----------+---------------------------+
-| ENV                       | \*CURRENT | -   **\*CURRENT**: This   |
-|                           |           |     value can only be     |
-| (Environment name)        |           |     used if the           |
-|                           |           |     interactive job's    |
-|                           |           |     current library list  |
-|                           |           |     includes all the      |
-|                           |           |     libraries required to |
-|                           |           |     define an LSAM        |
-|                           |           |     environment. If an    |
-|                           |           |     LSAM environment is   |
-|                           |           |     not discovered in the |
-|                           |           |     job's current        |
-|                           |           |     library list, the     |
-|                           |           |     LSAMENU command       |
-|                           |           |     routes to the         |
-|                           |           |     \*SELECT logic.       |
-|                           |           | -   **\*DEFAULT**:        |
-|                           |           |     Indicates that the    |
-|                           |           |     command should use    |
-|                           |           |     the default           |
-|                           |           |     environment in the    |
-|                           |           |     configuration control |
-|                           |           |     tables (refer to the  |
-|                           |           |     discussion under the  |
-|                           |           |     command               |
-|                           |           |     [SMALIBMGT](LSA       |
-|                           |           | M-Environment-Managem |
-|                           |           | ent.md#SMALIBMG) |
-|                           |           |     ).              |
-|                           |           | -   As distributed by     |
-|                           |           |     SMA, the default      |
-|                           |           |     environment flag has  |
-|                           |           |     been assigned to the  |
-|                           |           |     environment called    |
-|                           |           |     SMADEFAULT.           |
-|                           |           | -   **\*SELECT**:         |
-|                           |           |     Indicates the system  |
-|                           |           |     should present a list |
-|                           |           |     of available          |
-|                           |           |     environment names for |
-|                           |           |     the user to select    |
-|                           |           |     from.                 |
-|                           |           | -   The details of the    |
-|                           |           |     selection function    |
-|                           |           |     are explained under   |
-|                           |           |     command SMALIBINQ.    |
-|                           |           | -   The value of \*SELECT |
-|                           |           |     has been set as the   |
-|                           |           |     backup default value  |
-|                           |           |     for the command       |
-|                           |           |     processor subprogram, |
-|                           |           |     in case a user should |
-|                           |           |     specify an incorrect  |
-|                           |           |     value for the         |
-|                           |           |     environment           |
-|                           |           |     parameter.            |
-|                           |           | -   **\<NAME\>**: If an   |
-|                           |           |     environment name is   |
-|                           |           |     already known, a user |
-|                           |           |     can sign on to the    |
-|                           |           |     LSAM menus for that   |
-|                           |           |     environment by        |
-|                           |           |     directly typing (or   |
-|                           |           |     programming) a        |
-|                           |           |     command string that   |
-|                           |           |     is made up of the     |
-|                           |           |     command name and the  |
-|                           |           |     environment name.     |
-+---------------------------+-----------+---------------------------+
-| MENUNBR                   | 0         | -   **0**: Show the LSAM  |
-|                           |           |     Main menu upon first  |
-| (Optional LSAM sub-menu   |           |     entry into the LSAM   |
-| number)                   |           |     menu system. This is  |
-|                           |           |     the default value.    |
-|                           |           | -   **1-6,8**: Currently, |
-|                           |           |     the LSAM main menu    |
-|                           |           |     supports sub-menus    |
-|                           |           |     only as menu options  |
-|                           |           |     1-6 and 8. Function 7 |
-|                           |           |     is a direct call to   |
-|                           |           |     the LSAM Parameters   |
-|                           |           |     maintenance program   |
-|                           |           |     and it is not allowed |
-|                           |           |     as a parameter of the |
-|                           |           |     LSAMENU command.      |
-+---------------------------+-----------+---------------------------+
+| -------- | ------ | --------- |
+| ENV (Environment name)  | \*CURRENT | -   **\*CURRENT**: This value can only be used if the interactive job's current library list includes all the libraries required to define an LSAM  environment. If an LSAM environment is not discovered in the job's current library list, the 
+LSAMENU command routes to the \*SELECT logic.    |
+|                           |           | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG)).              |
+|                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
+|                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
+|                           |           | -   The details of the selection function are explained under command SMALIBINQ.    |
+|                           |           | -   The value of \*SELECT has been set as the backup default value for the command processor subprogram, in case a user should specify an incorrect  value for the environment parameter.            |
+|                           |           | -   **\<NAME\>**: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
+| MENUNBR (Optional LSAM sub-menu number) | 0         | -   **0**: Show the LSAM Main menu upon first entry into the LSAM  menu system. This is the default value.    |
+|                           |           | -   **1-6,8**: Currently, the LSAM main menu supports sub-menus only as menu options 1-6 and 8. Function 7 is a direct call to the LSAM Parameters maintenance program and it is not allowed as a parameter of the LSAMENU command.      |
 
-: System and User Configuration Requirements for the LSAM Menu
-
-+----------------------------------+----------------------------------+
-| ![White pencil icon on green     | **EXAMPLE:** [To specify the     | | circular                         | environment value and to enter   |
-| background](../../../Reso        | directly to the LSAM Operations  |
-| urces/Images/example-icon(48x48) | sub-menu without using command   |
-| .png "Example icon") | keywords the syntax would        |
-|                                  | be:]{.Exampletxt}                |
-|                                  |                                  |
-|                                  | [LSAMENU \<environment_name\>    | |                                  | 6]{.Exampletxt}                  |
-+----------------------------------+----------------------------------+
+:::note EXAMPLE
+To specify the environment value and to enter directly to the LSAM Operations submenu
+without using command keywords the syntax would be:
+```
+LSAMENU <environment_name> 6
+```
+:::
 
 ## System and User Configuration Requirements for the LSAM Menu
 
@@ -352,9 +270,9 @@ program, could also be used to link directly into the LSAM menu system
 from another menu system.
 
 Command processor program and syntax for STRSMA:
-
+```
 CALL SMAGPL/STRSMAC PARM(\<environment_name\> \*NO)
-
+```
 The first parameter value can also be one of the STRSMA command special
 values for the ENV keyword: \*DEFAULT or \*SELECT. Use a value of \*YES
 instead of \*NO for the second parameter value if it is desired to show
@@ -362,9 +280,9 @@ the animated characters for two seconds before the splash display
 appears.
 
 Command processor program and syntax for LSAMENU:
-
+```
 CALL SMAGPL/LSAMENUC PARM(\<environment_name\> 0)
-
+```
 The values for the first parameter are the values for the ENV keyword of
 the LSAMENU command, but it is not recommended to use the \*CURRENT
 value because the LSAM library list will not likely be set when this

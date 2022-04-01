@@ -55,7 +55,7 @@ CPYTOMSGIN: Copy Event to SAM-SS message input
 - Passes Event instructions to the LSAM communications program for forwarding to SAM-SS.
 
 Direct Event Commands: …for example… JOBRLS, NTYLOG, TOKSET Refer to the table of Event commands under the topic of Event Management. Refer to
-[Event Management](Events%20and-Utilities-Menu.md#Event)
+[Event Management](/events-utilities/events-screens.md#Event-Management)
 - Each OpCon/xps Event has been implemented by the IBM i LSAM as an IBM i command using the same name as the Event. The command processor program passes the Event instruction to the LSAM communications program for forwarding to SAM-SS.
 
 ### Debug mode, logging, log viewers
