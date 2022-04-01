@@ -84,7 +84,7 @@ IBM i LSAM Interactive Menu
 
 | Parameter                 | Default   | Description and Values    |
 | ------ | ------- | ------ |
-| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG).| 
+| ENV (Environment name)    | \*DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](/environment/commands.md#SMALIBMGT)).| 
 |                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained below, under command SMALIBINQ.            |
@@ -234,7 +234,7 @@ LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name
 | -------- | ------ | --------- |
 | ENV (Environment name)  | \*CURRENT | -   **\*CURRENT**: This value can only be used if the interactive job's current library list includes all the libraries required to define an LSAM  environment. If an LSAM environment is not discovered in the job's current library list, the 
 LSAMENU command routes to the \*SELECT logic.    |
-|                           |           | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](LSAM-Environment-Management.md#SMALIBMG)).              |
+|                           |           | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](/environment/commands.md#SMALIBMGT)).              |
 |                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained under command SMALIBINQ.    |
