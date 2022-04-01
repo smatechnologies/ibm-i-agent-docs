@@ -296,7 +296,7 @@ the discussion of this parameter in the Commands and Utilities section of this A
 
 :::note
    -   New records are initially set to a status of I =inactive to allow time for configuration of message data capture and captured data response rules, if any are desired. It may also be necessary to create multiple  different responses to a single message. After all file maintenance is complete, set the status of all new Parameters records to A = active, using option 2=Change.                   
-   -   Refer to [Commands and Utilities](/events-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
+   -   Refer to [Commands and Utilities](/commands-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
 :::    
 - Message ID: The identifier of the message to be trapped. 
 - Message File: The message file that holds the definition of the Message ID.
