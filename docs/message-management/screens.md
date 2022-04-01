@@ -296,7 +296,7 @@ the discussion of this parameter in the Commands and Utilities section of this A
 
 :::note
    -   New records are initially set to a status of I =inactive to allow time for configuration of message data capture and captured data response rules, if any are desired. It may also be necessary to create multiple  different responses to a single message. After all file maintenance is complete, set the status of all new Parameters records to A = active, using option 2=Change.                   
-   -   Refer to [Commands and Utilities](Commands-and-Utilities.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
+   -   Refer to [Commands and Utilities](/events-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
 :::    
 - Message ID: The identifier of the message to be trapped. 
 - Message File: The message file that holds the definition of the Message ID.
@@ -851,8 +851,9 @@ the Message Management Parameters master record, as explained above in
 that screen documentation. A single Application ID may be shared by more
 than one Message Management Parameters record.
 
-:::notes
+:::note
 It may be easier to use the F10=Capture function key from the Message management parameters Create, Copy or Change screens when selecting an Application ID because this helps avoid keystroke errors when long IDs are used. As noted in Menu Pathways here, this same Work With function may be used via that F10 function key.
+:::
 
 -   **Screen Title**: Work with Message Data Capture Definitions
 -   **Screen ID**: TRPM30R1
@@ -866,47 +867,14 @@ It may be easier to use the F10=Capture function key from the Message management
 
 ###### Fields
 
-+----------------+----------------------------------------------------+
-| Field          | Description                                        |
-+================+====================================================+
-| Search Content | -   Type a value in this field and press           |
-|                |     <**Enter**> or <**F16**> to find a record  |
-|                |     in the list that contains the characters       |
-|                |     typed. The content may exist anywhere within   |
-|                |     the master record, so the list may not show    |
-|                |     the value when a record is identified. Type    |
-|                |     5=Display to view the record details and       |
-|                |     verify the matched content.                    |
-|                | -   A search may be continued beyond the first     |
-|                |     record, using the same search value that now   |
-|                |     appears in pink below this field, by pressing  |
-|                |     <**F16**> to continue the search to the next |
-|                |     matching record.                               |
-+----------------+----------------------------------------------------+
-| Application ID | The character string that labels the message data  |
-|                | capture definition.                                |
-+----------------+----------------------------------------------------+
-| Seq            | A sequence number that is used to support multiple |
-|                | capture definitions within the same Application    |
-|                | ID.                                                |
-+----------------+----------------------------------------------------+
-| P/S            | This flag field indicates which message text field |
-|                | is used by the capture definition. Values include: |
-|                | P = primary text, S = secondary (Help) text, or B  |
-|                | = both. When both are used, they are assembled     |
-|                | into a single message text buffer for the purpose  |
-|                | of applying the From/To capture positions.         |
-+----------------+----------------------------------------------------+
-| From/To        | These two fields show the starting and ending      |
-|                | locations of the message text buffer that will be  |
-|                | captured by this definition.                       |
-+----------------+----------------------------------------------------+
-| Length         | This field shows the length of data that will be   |
-|                | captured from the message text buffer, starting at |
-|                | the From position.                                 |
-+----------------+----------------------------------------------------+
-
-:  
+- Search Content: 
+  -   Type a value in this field and press <**Enter**> or <**F16**> to find a record in the list that contains the characters typed. The content may exist anywhere within the master record, so the list may not show the value when a record is identified. Type 5=Display to view the record details and verify the matched content.
+  -   A search may be continued beyond the first ecord, using the same search value that now appears in pink below this field, by pressing <**F16**> to continue the search to the next matching record.
+- Application ID: The character string that labels the message data capture definition.
+- Seq: A sequence number that is used to support multiple capture definitions within the same Application ID.
+- P/S:  This flag field indicates which message text field is used by the capture definition. Values include: P = primary text, S = secondary (Help) text, or B = both. When both are used, they are assembled into a single message text buffer for the purpose of applying the From/To capture positions.
+- From/To: These two fields show the starting and ending locations of the message text buffer that will be captured by this definition.
+- Length: This field shows the length of data that will be captured from the message text buffer, starting at the From position. 
 
 ###### Functions
 
@@ -975,171 +943,47 @@ Capture Definitions (\# 10) \> F6=Add *- or -* option 2=Change **- or
 
 ###### Fields
 
-+------------------------+--------------------------------------------+
-| Field                  | Description                                |
-+========================+============================================+
-| From fields:           | When this screen appears in Copy mode, the |
-|                        | key fields of the source record being      |
-| -   Application ID     | copied are shown in this heading area. A   |
-| -   Capt Seq           | new value must be assigned to the Sequence |
-|                        | of the Capture Definition record being     |
-|                        | created in Copy mode, using the Capture    |
-|                        | Sequence input field, below. (The          |
-|                        | Application ID field may remain the same   |
-|                        | in the new, copied record, since more than |
-|                        | one scan rule is allowed per Application   |
-|                        | ID.)                                       |
-+------------------------+--------------------------------------------+
-| Application Identifier | This field is used to group one or more    |
-|                        | Capture Definitions into a single task     |
-|                        | that will be executed whenever an          |
-|                        | associated Message Management Parameters   |
-|                        | record is selected for processing a        |
-|                        | message.                                   |
-+------------------------+--------------------------------------------+
-| Capture sequence       | The order in which the Capture Definition  |
-|                        | will be processed, relative to other       |
-|                        | records under the same Application. The    |
-|                        | value must be unique within the            |
-|                        | Application ID.                            |
-+------------------------+--------------------------------------------+
-| Primary/Secondary text | Data may be captured from a text buffer    |
-|                        | created from any of these sources:         |
-|                        |                                            |
-|                        | -   P = primary message text only          |
-|                        | -   S = secondary message (Help) text only |
-|                        | -   B = both: primary and secondary text   |
-|                        |     are assembled into a single buffer,    |
-|                        |     with one space character between the   |
-|                        |     last non-blank character of the        |
-|                        |     primary text and the start of the      |
-|                        |     secondary text                         |
-+------------------------+--------------------------------------------+
-| Message data from pos. | The start position in the message text     |
-|                        | buffer where data capture will begin. (The |
-|                        | first position is 1, not 0.)               |
-|                        |                                            |
-|                        |                                            |
-|                        |                                            |
-|                        | **Note:** If the Scan Label is used, then  |
-|                        | this From-position marks the location      |
-|                        | where the search will start for the Scan   |
-|                        | Label.                                     |
-+------------------------+--------------------------------------------+
-| Message data to pos.   | The end position of the data capture; may  |
-|                        | be used instead of Length.                 |
-|                        |                                            |
-|                        |                                            |
-|                        |                                            |
-|                        | **Note:** If the Scan Label is used, then  |
-|                        | this To-position marks the position within |
-|                        | the text buffer where the search for the   |
-|                        | Scan Label will end.                       |
-+------------------------+--------------------------------------------+
-| Length of data string  | The length of data, starting with the      |
-|                        | From-position, that will be captured from  |
-|                        | the text buffer.                           |
-|                        |                                            |
-|                        |                                            |
-|                        |                                            |
-|                        | **Note:** This field is required when the  |
-|                        | Scan Label is used, in order to determine  |
-|                        | how much data to capture, starting with    |
-|                        | the "Data position from LBL."            |
-+------------------------+--------------------------------------------+
-| Scan label string      | -   A character string that will be used   |
-|                        |     as a Label to identify where data      |
-|                        |     capture should start. If this label is |
-|                        |     found, then the data capture will      |
-|                        |     begin from the "Data position from    |
-|                        |     LBL" and continue until the specified |
-|                        |     "Length" is reached.                 |
-|                        | -   If the Scan Label is not found, no     |
-|                        |     data will be captured.                 |
-|                        | -   An LSAM Dynamic Variable token may be  |
-|                        |     used in this field (refer to **F6**).  |
-+------------------------+--------------------------------------------+
-| Scan label length      | Specifies the length of the character      |
-|                        | string entered in the "Scanlabel string" |
-|                        | field. If this value is left at zero, the  |
-|                        | length of the label is assumed to be the   |
-|                        | last non-blank character in the Scan label |
-|                        | string field. Specify a non-zero value in  |
-|                        | this field in order to include any         |
-|                        | trailing blanks as part of the Scan label  |
-|                        | string.                                    |
-+------------------------+--------------------------------------------+
-| Scan label incidence   | This is the number of times that the Scan  |
-|                        | Label String must be found before starting |
-|                        | the data capture. If the Scan Label is not |
-|                        | found this number of times, no data        |
-|                        | capture will be performed. The "Data      |
-|                        | position from LBL" is computed from this  |
-|                        | incidence of the Scan Label. If this field |
-|                        | is left at zeros, a value of 1 is assumed. |
-+------------------------+--------------------------------------------+
-| Data position from LBL | -   This field specifies the position of   |
-|                        |     the data to be captured, relative to   |
-|                        |     the start of the Scan Label String.    |
-|                        | -   +n (a positive number) = start the     |
-|                        |     data capture at this position relative |
-|                        |     to the start of the Scan Label, where  |
-|                        |     1 is the first byte of the Scan Label  |
-|                        |     itself. In other words, it is possible |
-|                        |     to include the Scan Label as part or   |
-|                        |     all of the captured data.              |
-|                        | -   -n (a negative number) = start the     |
-|                        |     data capture this number of characters |
-|                        |     before the Scan Label, where (-1) is   |
-|                        |     the character position immediately     |
-|                        |     preceding the Scan Label. The data     |
-|                        |     capture may overlap the Scan Label     |
-|                        |     itself.                                |
-|                        | -   0 = Capture data beginning with the    |
-|                        |     "Message data from pos." specified   |
-|                        |     above. Using this value, it is         |
-|                        |     possible to let the Scan Label be used |
-|                        |     only as means of qualifying whether or |
-|                        |     not any data should be captured from   |
-|                        |     the message text buffer. If the scan   |
-|                        |     label is not found, then no data will  |
-|                        |     be captured.                           |
-+------------------------+--------------------------------------------+
-| Compress numeric data  | -   0 = not numeric                        |
-|                        | -   1 = yes, compress numeric data         |
-|                        | -   This flag indicates whether the        |
-|                        |     captured data should be a simple       |
-|                        |     character string, exactly as it        |
-|                        |     appears in the message text buffer, or |
-|                        |     whether the data should be scrubbed to |
-|                        |     remove all except the digits. This     |
-|                        |     flag is useful when a numeric value    |
-|                        |     may be found in the message data, but  |
-|                        |     the number included some formatting    |
-|                        |     characters as it appeared in the       |
-|                        |     message text. Setting this flag to 1   |
-|                        |     allows the real numeric value to be    |
-|                        |     saved and later used in numeric        |
-|                        |     computations.                          |
-|                        |                                            |
-|                        | **Note:** When numeric data is compressed, |
-|                        | the number is saved as a whole number.     |
-|                        | There is no record of any decimal          |
-|                        | positions, so those are only implied. To   |
-|                        | preserve the number of decimal positions   |
-|                        | in captured data, use a Captured Data      |
-|                        | Response Rule to store the captured        |
-|                        | numeric data into an LSAM Dynamic          |
-|                        | Variable, having created the Dynamic       |
-|                        | Variable as a numeric field with a number  |
-|                        | of decimal places specified. (Refer to the |
-|                        | SETDYNVAR command or the "Maintain        |
-|                        | dynamic variables" function from LSAM     |
-|                        | menus (on many LSAM menus) in Events and   |
-|                        | Utilities.)                                |
-+------------------------+--------------------------------------------+
+- From fields:    
+  -   Application ID       
+  -   Capt Seq
 
-:  
+  When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. A new value must be assigned to the Sequence of the Capture Definition record being created in Copy mode, using the Capture Sequence input field, below. (The Application ID field may remain the same in the new, copied record, since more than one scan rule is allowed per Application ID.)
+
+- Application Identifier: This field is used to group one or more Capture Definitions into a single task that will be executed whenever an associated Message Management Parameters record is selected for processing a message.
+- Capture sequence: The order in which the Capture Definition will be processed, relative to other records under the same Application. The value must be unique within the Application ID.
+- Primary/Secondary text: Data may be captured from a text buffer created from any of these sources:
+  -   P = primary message text only
+  -   S = secondary message (Help) text only
+  -   B = both: primary and secondary text are assembled into a single buffer, with one space character between the last non-blank character of the primary text and the start of the     secondary text
+-  Message data from pos.: The start position in the message text buffer where data capture will begin. (The first position is 1, not 0.)
+:::note
+If the Scan Label is used, then this From-position marks the location where the search will  start for the Scan Label.
+:::
+- Message data to pos.: The end position of the data capture; may be used instead of Length.
+:::note 
+If the Scan Label is used, then this To-position marks the position within the text buffer where the search for the Scan Label will end.
+:::
+- Length of data string: The length of data, starting with the From-position, that will be captured from the text buffer.
+:::note
+This field is required when the Scan Label is used, in order to determine how much data to capture, starting with the "Data position from LBL."
+:::
+- Scan label string:
+  -   A character string that will be used as a Label to identify where data capture should start. If this label is found, then the data capture will begin from the "Data position from LBL" and continue until the specified "Length" is reached.
+  -   If the Scan Label is not found, no data will be captured.
+  -   An LSAM Dynamic Variable token may be  used in this field (refer to **F6**).
+- Scan label length: Specifies the length of the character string entered in the "Scanlabel string" field. If this value is left at zero, the length of the label is assumed to be the last non-blank character in the Scan label string field. Specify a non-zero value in this field in order to include any trailing blanks as part of the Scan label string.
+- Scan label incidence: This is the number of times that the Scan Label String must be found before starting the data capture. If the Scan Label is not found this number of times, no data capture will be performed. The "Data position from LBL" is computed from this incidence of the Scan Label. If this field is left at zeros, a value of 1 is assumed.
+- Data position from LBL:
+  -   This field specifies the position of the data to be captured, relative to the start of the Scan Label String.
+  -   +n (a positive number) = start the data capture at this position relative to the start of the Scan Label, where 1 is the first byte of the Scan Label itself. In other words, it is possible to include the Scan Label as part or all of the captured data.
+  -   -n (a negative number) = start the data capture this number of characters before the Scan Label, where (-1) is the character position immediately preceding the Scan Label. The data capture may overlap the Scan Label itself.
+  -   0 = Capture data beginning with the "Message data from pos." specified above. Using this value, it is possible to let the Scan Label be used only as means of qualifying whether or not any data should be captured from the message text buffer. If the scan label is not found, then no data will be captured.
+- Compress numeric data:
+  -   0 = not numeric
+  -   1 = yes, compress numeric data
+  -   This flag indicates whether the captured data should be a simple character string, exactly as it appears in the message text buffer, or whether the data should be scrubbed to remove all except the digits. This flag is useful when a numeric value may be found in the message data, but the number included some formatting characters as it appeared in the message text. Setting this flag to 1 allows the real numeric value to be saved and later used in numeric computations.
+  :::note
+  When numeric data is compressed, the number is saved as a whole number. There is no record of any decimal positions, so those are only implied. To preserve the number of decimal positions in captured data, use a Captured Data Response Rule to store the captured numeric data into an LSAM Dynamic Variable, having created the Dynamic Variable as a numeric field with a number of decimal places specified. (Refer to the SETDYNVAR command or the "Maintain dynamic variables" function from LSAM menus (on many LSAM menus) in Events and Utilities.)
 
 ###### Functions
 
