@@ -109,7 +109,7 @@ option is documented below under the topic SMAFT Parameters. The
 following procedure describes how to manually start the SMAFT Server
 when the automatic option is not being used.
 
-[Start SMAFT Server]
+### Start SMAFT Server
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information,
     refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
@@ -132,7 +132,7 @@ when the automatic option is not being used.
 The End SMAFT Server option tells the LSAM to discontinue listening for
 SMA File Transfer requests.
 
-[End SMAFT Server]
+### End SMAFT Server
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information,
     refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
@@ -222,9 +222,7 @@ the record in the file.
 :::tip Example
 A MS Windows stream file is known to contain fixed-length records that are each 80 bytes long. The file must be transferred to an IBM i DB2 database file. The Destination File Name field in the OpCon File Transfer job master record is entered using the IBM i DB2 file name format and extended by the special REC= keyword as follows:
 
-```shell
-. TARGETLIB/FILENAME,REC=80
-```
+**. TARGETLIB/FILENAME,REC=80**
 
 :::
 

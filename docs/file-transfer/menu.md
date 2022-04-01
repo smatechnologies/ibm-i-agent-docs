@@ -6,23 +6,33 @@ sidebar_label: 'SMA File Transfer Menu'
 
 SMA File Transfer Menu
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
 
-[SYSTEMNAME                   ]{style="color: #008000;"}SMA FILE TRANSFER MENU                     [00/00/00]{style="color: #008000;"}   USERNAME                                                                16:23:53
 
-   Select one of the following:
-
-       1. [Start SMAFT Server (STRSMAFT)]{style="color: #008000;"}        2. [End SMAFT Server (ENDSMAFT)]{style="color: #008000;"}
-       3. [Work with SMAFT jobs (WRKSFTJOB)]{style="color: #008000;"}        4. [Manage SMAFT Logging]{style="color: #008000;"}
-       5. [View LSAM Logs]{style="color: #008000;"}        6. [View SMAFT Logs]{style="color: #008000;"}
-       7. [SMAFT Parameters]{style="color: #008000;"}
-
-  Selection or command
-   ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-   F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
-   F13=Information Assistant   F16=System main menu
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+ SYSTEMNAME                  SMA FILE TRANSFER MENU                    00/00/00 
+ USERNAME                                                              00:00:00 
+                                                                                
+  Select one of the following:                                                  
+                                                                                
+                                                                                
+      1. Start SMAFT Server (STRSMAFT)                                          
+      2. End SMAFT Server (ENDSMAFT)                                            
+      3. Work with SMAFT jobs (WRKSFTJOB)                                       
+      4. Manage SMAFT logging                                                   
+      5. View LSAM logs                                                         
+      6. View SMAFT logs                                                        
+      7. SMAFT Parameters                                                       
+      8. Work with SMAFT Network Address Translation                            
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+ Selection or command                                    Copyright (C) SMA 2007 
+ ===>                                                                           
+                                                                                
+ F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
+ F13=Information Assistant  F16=System main menu                                
+ ```
 
 ##### Menu Pathways
 
@@ -84,38 +94,38 @@ command displays the jobs active in the LSAM subsystem defined in the
 LSAM configuration parameters. From the WRKACTJOB display, press the
 Help key to view a complete description of all the data displayed.
 
-:::danger
+:::caution
 Unless directed by SMA Support, please do not execute any of the options on the following screen.
 :::
 
-Work with Active Jobs Screen
-
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Work with Active Jobs                  [SYSTEMNAME]{style="color: #008000;"}                                                               00/00/00  03:45:13
-  CPU %:      .0     Elapsed time:   00:00:00     Active jobs:   143
-
-  Type options, press Enter.
-    2=Change   3=Hold   4=End   5=Work with   6=Release   7=Display message
-    8=Work with spooled files   13=Disconnect \...
-
-  Opt  Subsystem/Job  User        Type  CPU %  Function        Status
-  \_\_   SMASBS         QSYS        SBS      .0                   DEQW
-  \_\_     LSAMNG       SMANET      BCH      .0  PGM-DLTLOGR00    DEQW
-  \_\_     MSGMNG       SMANET      BCH      .0  PGM-LSARCMR00    DEQA
-  \_\_     SKTCMN       SMANET      BCH      .0  PGM-CMNSKTR00    TIMW
-  \_\_     TXMMNG       SMANET      BCH      .0  PGM-LSASCHR00    DEQW
-  \_\_     LSAJOR       SMANET      BCH      .0  PGM-LSAJORR00    DEQW
-  \_\_     JORCMN       SMANET      BCH      .0  PGM-JORCMNR00    DEQW
-  \_\_     SMAFTS       SMANET      BCH      .0  PGM-SMAFTSR00    DEQW
-
-  Bottom
-  Parameters or command
-  ===\> \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-  F3=Exit   F5=Refresh       F7=Find      F10=Restart statistics
-  F11=Display elapsed data   F12=Cancel   F23=More options   F24=More keys
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
+### Work with Active Jobs Screen
+```
+                             Work with Active Jobs                   SYSTEMNAME
+                                                         00/00/00  00:00:50 CDT
+ CPU %:     0.0     Elapsed time:   00:00:00     Active jobs:   143            
+                                                                               
+ Type options, press Enter.                                                    
+   2=Change   3=Hold   4=End   5=Work with   6=Release   7=Display message     
+   8=Work with spooled files   13=Disconnect ...                               
+                     Current                                                   
+ Opt  Subsystem/Job  User        Type  CPU %  Function        Status           
+      SMASBSC        QSYS        SBS      .0                   DEQW            
+        JORCMN       SMANET      BCH      .0  PGM-JORCMNR00    SELW            
+        LSAJOR       SMANET      BCH      .0  PGM-LSAJORR00    DEQA            
+        LSAMNG       SMANET      BCH      .0  PGM-DLTLOGR00    DEQA            
+        MSGMNG       SMANET      BCH      .0  PGM-LSARCMR00    DEQA            
+        SKTCMN       SMANET      BCH      .0  PGM-CMNSKTR00    SELW            
+        TXMMNG       SMANET      BCH      .0  PGM-LSASCHR00    DEQW            
+        SMAFTS       SMANET      BCH      .0  PGM-SMAFTSR00    DEQW  
+                                                                               
+                                                                               
+                                                                         Bottom
+ Parameters or command                                                         
+ ===>                                                                          
+ F3=Exit   F5=Refresh       F7=Find      F10=Restart statistics                
+ F11=Display elapsed data   F12=Cancel   F23=More options   F24=More keys      
+```
+ 
 ##### Menu Pathways
 
 Main Menu \> SMA File Transfer menu (\#8) \> Work with SMAFT jobs (\#3)
