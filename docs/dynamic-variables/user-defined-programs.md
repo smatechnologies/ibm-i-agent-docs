@@ -9,18 +9,14 @@ in the Fields table above under VALUE and also USRPGM.
 
 Following is the RPG program logic used by the LSAM to call a
 user-defined value calculator program for Dynamic Variables. Specify
-input (\*ENTRY) parameters in the user-defined program to match:
+input (*ENTRY) parameters in the user-defined program to match:
 
-Eval UsrLibPgm = %trim(VUSRLIB)
-
-\+ '/' + %trim(VUSRPGM)
-
+```
+Eval UsrLibPgm = %trim(VUSRLIB) + '/' + %trim(VUSRPGM)
 Call UsrLibPgm
-
-Parm VTOKVAL UsrValue *(128 characters)*
-
-Parm WkVarNam UsrVarNam *(12 characters)*
-
+Parm VTOKVAL UsrValue (128 characters)
+Parm WkVarNam UsrVarNam (12 characters)
+```
 A model CL program that conforms to these requirements is provided in an
 example box below, under the topic of fetching DB2 database values.
 

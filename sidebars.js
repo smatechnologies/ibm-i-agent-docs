@@ -4,6 +4,17 @@ module.exports = {
     'release-notes',
     {
       type: 'category', 
+      label: 'Overview & Reader Notes',
+      collapsed: true,
+      items: [
+        'release-notes/Overview/Reader-Notes',
+        'release-notes/Overview/installing-ibm-i-lsam-patches',
+        'release-notes/Overview/sma-ibm-ilsam-18.1-and-04.00.03-patches',
+        'release-notes/Overview/compatibility',
+      ], 
+    },    
+    {
+      type: 'category', 
       label: 'Install',
       collapsed: true,
       items: [
@@ -50,6 +61,7 @@ module.exports = {
       collapsed: true,
       items: [
         'dynamic-variables/overview',
+        'dynamic-variables/rules',
         'dynamic-variables/using',
         'dynamic-variables/numeric-vs-character',
         'dynamic-variables/applying',

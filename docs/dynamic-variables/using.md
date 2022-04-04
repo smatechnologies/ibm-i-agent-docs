@@ -40,7 +40,7 @@ for a list of supported parameters). This would allow the scan value and
 other command parameters to be changed dynamically as prior steps in a
 process are executed.
 
-When adding or changing a SPLF Scan Rule record, function key \<**F8**\>
+When adding or changing a SPLF Scan Rule record, function key <**F8**>
 may be pressed while the cursor is in the Scan Value field to view a
 list of Dynamic Variables. One of the available Dynamic Variables can be
 selected from the prompt window and it will be inserted at the exact
@@ -75,7 +75,7 @@ either field a Dynamic Variable can be all or just part of the value of
 the field.
 
 When adding or changing a Captured Data Response Rule record, function
-key \<**F8**\> may be pressed while the cursor is in one of the two
+key <**F8**> may be pressed while the cursor is in one of the two
 supported fields to view a list of Dynamic Variables. One of the
 available Dynamic Variables can be selected from the prompt window and
 it will be inserted at the exact position of the cursor.

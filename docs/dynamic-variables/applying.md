@@ -32,7 +32,7 @@ data area) contents of IBM i jobs.
 In older versions of the Agent software, the only way to cut out part of
 the value string from a Dynamic Variable would have been to store that
 value into an IBM i data area on disk, and then use a variable with a
-Function Code of \*DTAARA to retrieve that value. Data Area Dynamic
+Function Code of *DTAARA to retrieve that value. Data Area Dynamic
 Variables originally supported specifying a start position and length of
 the character string to retrieve from a data area in the DB2 database.
 
@@ -295,7 +295,7 @@ For example, if allowance must be made for a number in the millions (7
 whole integers) plus one space, then the currency symbol's fixed
 position should be set to 9 (7 digits + 1 space + the character position
 which is always considered position 1). In the following example, the
-asterisk (\*) character is used in the output illustration only to show
+asterisk (*) character is used in the output illustration only to show
 the count of spaces between the currency symbol and the first digit;
 assume that the colon represents space characters:
 
@@ -377,11 +377,6 @@ functions, as follows:
     parameter values. This problem may also occur in other functions
     that may replace a Dynamic Variable token with its character string
     value.
-
-```{=html}
-<!-- -->
-```
-
 - **Commas**: If a comma is included in the value of a dynamic
     variable it can interfere with the syntax of OpCon Event commands
     whenever that dynamic variable is included as one of the command
