@@ -11,12 +11,12 @@ jobs.
     on the STRSMA command, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 2. Enter **7** to choose the **LSAM Parameters** function in the SMA
     Main Menu.
-3. \<**Tab**\> to move between fields on the configuration screen.
+3. <**Tab**> to move between fields on the configuration screen.
 4. Modify relevant configuration fields. Refer to the Configuration
-    Settings table [IBM i LSAM Configuration Settings: Heading     Information](#Heading_Information).
-5. After modifying all relevant fields, press \<**Enter**\>.
+    Settings table [IBM i LSAM Configuration Settings: Heading Information](#Heading_Information).
+5. After modifying all relevant fields, press <**Enter**>.
 
-## Critical Settings {#critical-settings style="margin-top: 8pt;"}
+## Critical Settings 
 
 The following settings are **critical** to the operation of the LSAM
 with OpCon. Before using the IBM i LSAM, verify these settings in the
@@ -27,15 +27,14 @@ program and then follow the instructions below.
   - The LSAM Name setting must be all capital letters and/or numbers
         and it must match the setting on the Machines screen of the
         OpCon EM (Enterprise Manager, the User Interface).
-
-    ```{=html}
-    <!-- -->
-    ```
   - The SAM Server must be able to ping this name, unless the IBM i
         LSAM IP address will be used in the EM machine table in place of
         the LSAM server name.
+    :::note
+    If using multiple environments, assign a unique name to each LSAM environment.
+    :::
 - Internet Address: This value is the IP Address of the IBM i system.
-    Use the \<**F4**\> function key to view a list of valid IP addresses
+    Use the <**F4**> function key to view a list of valid IP addresses
     for this system.
 - Max Concurrent Jobs: This value determines the maximum number of
     jobs the LSAM may process concurrently. This value should not exceed
@@ -45,16 +44,8 @@ program and then follow the instructions below.
     communication.
   - The Communication Port setting must match the setting on the
         EM's Machines screen. (The default port value is 3100.)
-
-    ```{=html}
-    <!-- -->
-    ```
   - Also set the JORS port (default value 3110) and verify it
         matches the EM machine record.
-
-    ```{=html}
-    <!-- -->
-    ```
   - This LSAM uses a separate port for SMA File Transfer. (Refer to
         [SMA File Transfer](/file-transfer/overview).)
 - SMA Subsystem Name: This value should only be changed for multiple
@@ -64,31 +55,48 @@ program and then follow the instructions below.
     using the value Y (yes). This setting must match the setting on the
     EM's Machines screen. For more information, refer to [Discussion of     Keep Socket Open Parameter](#Discussi).
 
-```{=html}
-<!-- -->
-```
-
+:::note
+In the past, changing the value to N (no) was sometimes proposed as a solution
+when a site was experiencing unstable communication between the LSAM and
+SMANetCom, or if data was being lost. However, if either of these symptoms appear,
+please contact the Support team at SMA Technologies for assistance. SMA Technologies
+does not recommend trying to use this interface with the Keep socket open value set to N
+(no).
+:::
 - **Screen Title**: LSAM Configuration Parameters (3 Pages)
 - **Screen ID**:
   - LSAPARR00-1
   - LSAPARR00-2
-
-    ```{=html}
-    <!-- -->
-    ```
   - LSAPARR00-3
 
 ### Function Keys
 
 ##### F4=IP Address List
 
-When the cursor is in the Internet Address field, press \<**F4**\> to
+When the cursor is in the Internet Address field, press <**F4**> to
 view a list of the IP addresses used by the system. Select the address
 that represents the communications path used between OpCon and the LSAM.
 From the IP Address List window, use the keyboard/mouse to highlight the
-appropriate IP address and press \<**Enter**\> to select it.
+appropriate IP address and press <**Enter**> to select it.
+
+
+```jsx title="IBM i LSAM Configuration Settings: IP Address Selection"
+                                        .. IP Adr Selection ...
+                                        :   111.22.33.4       :
+                                        :   127.0.0.1         :
+                                        :                     :
+                                        :                     :
+                                        :                     :
+                                        :                     :
+                                        :                     :
+                                        :                     :
+                                        :                     :
+                                        :              Bottom :
+                                        : F12=Cancel .........:
+```
 
 IBM i LSAM Configuration Settings: IP Address Selection
+
 
   ------------------------------------------------------------------------------
   .. IP Adr Selection \...
@@ -105,12 +113,27 @@ IBM i LSAM Configuration Settings: IP Address Selection
 
 ##### F9=View LIBL
 
-From the LSAM Parameters display, press \<**F9**\> to view the library
+From the LSAM Parameters display, press <**F9**> to view the library
 list in effect for this LSAM environment. This function is useful with
 multiple LSAM environments. An example of the default library list for
 the SMADEFAULT environment is shown below.
 
-IBM i LSAM Configuration Settings: Environment Management
+```jsx title="IBM i LSAM Configuration Settings: Environment Management"
+SMALIBD00-2                          SMA Environment Management                    00/00/00
+USERNAME                               Environment: SMADEFAULT                     00:00:00
+
+Press Enter or F12=Return to return.
+Seq Library Type Description
+10 QTEMP
+20 SMAGPL
+30 SMADTA SMADTA
+40 SMAPTF SMAPTF
+50 SMAPGM SMAPGM
+60 QGPL
+Bottom
+F3=Exit F5=Refresh F12=Return
+```
+
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -138,42 +161,60 @@ Certain parameters must conform to the following rules for IBM i names.
 
 - Names must be 10 characters or less.
 - Names must begin with an alphabetic character (A through Z, @, $,
-    and \#).[1,     3]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"}
+    and \#).[1,3]
 - All subsequent characters can be alphanumeric (A through Z, 0
     through 9, @, $, \#, and \_ (underscore)).
-    [3]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"} -   There can be no embedded blanks.
-- The following special characters are not allowed to be used in
-    names:
+    [3]
+-   There can be no embedded blanks.
 
-  ---- ----------------------------------------------------------
-  /    Forward slash
-  \\   Backslash
-  \*   Asterisk
-  ,    Comma
-  :    Colon
-  ;    Semi-colon
-  \-   Dash
-  =    Equal sign
-  \+   Plus sign
-  ?    Question mark
-  \|   Vertical bar
-  \<   Left angle bracket
-  \>   Right angle bracket
-  &    Ampersand
-  \%   Percent sign
-  '   Single quotation mark
-  "   Double quotation mark
-  .    period[2]{style="font-size: 80%;vertical-align: super;"}   ---- ----------------------------------------------------------
 
-[1]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"} For some command parameters, IBM i permits special values to begin with
-an asterisk (\*).
+```jsx title="The following special characters are not allowed to be used in names"
+/ Forward slash
+\ Backslash
+* Asterisk
+, Comma
+: Colon
+; Semi-colon
+- Dash
+= Equal sign
++ Plus sign
+? Question mark
+| Vertical bar
+< Left angle bracket
+> Right angle bracket
+& Ampersand
+% Percent sign
+' Single quotation mark
+" Double quotation mark
+. period2
+```
 
-[2]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"} The period is not valid as the first character of the name string, but
-it is valid as a subsequent character.
 
-[3]{style="line-height: 14pt;font-size: 9.6pt;vertical-align: super;"} SMA does not recommend using special characters due to difficulties that
-can arise with character translation tables. Please use only alphabetic
-characters and numeric digits in IBM i names.
+- / Forward slash
+- \ Backslash
+- * Asterisk
+- , Comma
+- : Colon
+- ; Semi-colon
+- - Dash
+- = Equal sign
+- + Plus sign
+- ? Question mark
+- | Vertical bar
+- < Left angle bracket
+- > Right angle bracket
+- & Ampersand
+- % Percent sign
+- ' Single quotation mark
+- " Double quotation mark
+- . period2
+
+
+[1] For some command parameters, IBM i permits special values to begin with an asterisk (\*).
+
+[2] The period is not valid as the first character of the name string, but it is valid as a subsequent character.
+
+[3] SMA does not recommend using special characters due to difficulties that can arise with character translation tables. Please use only alphabetic characters and numeric digits in IBM i names.
 
 ### IBM i Password Rules
 
@@ -191,764 +232,755 @@ control values (refer to IBM reference SC41-5302, Security Reference).
 
 [Update Configuration Variables]
 
-1. \<**Tab**\> to the relevant field.
+1. <**Tab**> to the relevant field.
 2. Type a new value for the parameter. Refer to the table below for
     more information about each parameter.
 3. Repeat steps 1-2.
-4. Press \<**Enter**\> to update the LSAM's configuration.
+4. Press <**Enter**> to update the LSAM's configuration.
 
 :::note
 The update is stored immediately in the LSAM Parameters control file, however, any change in control values does not take effect in the LSAM server jobs until they are stopped and restarted.
 :::
 
 ### Information Fields
+- Environment:
+  -   This display field contains the name of the LSAM environment.
+  -   For new installations, the default value is SMADEFAULT and the LSAM Name is IBMILSAM, or the IBM i system/partition name may be used. **Use all capital letters!**
+  -   SMA recommends using the LSAM Environment name for the Host Name when there are multiple LSAM environments within the same IBM i partition.(Refer to below.)
 
-+-------------+-------------------------------------------------------+
-| Field       | Description                                           |
-+=============+=======================================================+
-| Environment | -   This display field contains the name of the LSAM  |
-|             |     environment.                                      |
-|             | -   For new installations, the default value is       |
-|             |     SMADEFAULT and the LSAM Name is IBMILSAM, or the  |
-|             |     IBM i system/partition name may be used. **Use    |
-|             |     all capital letters!**                            |
-|             | -   SMA recommends using the LSAM Environment name    |
-|             |     for the Host Name when there are multiple LSAM    |
-|             |     environments within the same IBM i partition.     |
-|             |     (Refer to below.)                                 |
-+-------------+-------------------------------------------------------+
-| Version     | -   This display field identifies the LSAM's         |
-|             |     version, stored in the data area LSAVERSION.      |
-|             | -   When contacting SMA Customer Support about the    |
-|             |     LSAM, please report the version.                  |
-+-------------+-------------------------------------------------------+
 
-: []{#Heading_Information}IBM i LSAM Configuration Settings: Heading Information
+- Version 
+  -   This display field identifies the LSAM's version, stored in the data area LSAVERSION.
+  -   When contacting SMA Customer Support about the LSAM, please report the version. 
+  
+<a name="Heading_Information"></a>
+
+## IBM i LSAM Configuration Settings: Heading Information
 
 ### LSAM Control Parameters
 
 +-------------+-------------+-------------+-------------+-------------+
-| Control     |             |             |             |             |
-| Parameters  |             |             |             |             |
+| Control                     |
+| Parameters                  |
 +=============+:===========:+:===========:+:===========:+=============+
 | Field       | Default     | Valid       | Required    | Description |
-|             |             | Values      | (Y/N)       |             |
+        | Values      | (Y/N)       |             |
 +-------------+-------------+-------------+-------------+-------------+
 | LSAM Name   | IBMILSAM    | IBM i Name  | Y           | -   This    |
-|             |             | Rules       |             |     field   |
-|             |             | (Refer to   |             |             |
-|             |             | [IBM i Name |             |  identifies | |             |             | Rules](#IB  |             |     each    |
-|             |             | M2) |             |     LSAM    |
-|             |             | .)    |             |             |
-|             |             |             |             | environment |
-|             |             |             |             |     to      |
-|             |             |             |             |             |
-|             |             |             |             |  OpCon/xps. |
-|             |             |             |             | -   The     |
-|             |             |             |             |     default |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |             |
-|             |             |             |             | environment |
-|             |             |             |             |     may use |
-|             |             |             |             |     the     |
-|             |             |             |             |     system  |
-|             |             |             |             |     name.   |
+        | Rules       field   |
+        | (Refer to           |
+        | [IBM i Name |             |  identifies |         | Rules](#IB  each    |
+        | M2) LSAM    |
+        | .)            |
+                | environment |
+                |     to      |
+                |             |
+                |  OpCon/xps. |
+                | -   The     |
+                |     default |
+                |     LSAM    |
+                |             |
+                | environment |
+                |     may use |
+                |     the     |
+                |     system  |
+                |     name.   |
 +-------------+-------------+-------------+-------------+-------------+
 | Max         | 100         | Verify that | Y           | This field  |
 | Concurrent  |             | the number  |             | contains    |
 | Jobs        |             | of jobs     |             | the maximum |
-|             |             | does not    |             | number of   |
-|             |             | exceed the  |             | jobs the    |
-|             |             | maximum     |             | LSAM is     |
-|             |             | number of   |             | allowed to  |
-|             |             | active jobs |             | process     |
-|             |             | allowed by  |             | co          |
-|             |             | the IBM i   |             | ncurrently. |
-|             |             | subsystem   |             |             |
-|             |             | d           |             |             |
-|             |             | efinitions. |             |             |
+        | does not    |             | number of   |
+        | exceed the  |             | jobs the    |
+        | maximum     |             | LSAM is     |
+        | number of   |             | allowed to  |
+        | active jobs |             | process     |
+        | allowed by  |             | co          |
+        | the IBM i   |             | ncurrently. |
+        | subsystem           |
+        | d                   |
+        | efinitions.         |
 +-------------+-------------+-------------+-------------+-------------+
 | SMA         | SMASBS      | IBM i Name  | Y           | -   This    |
-| Subsystem   |             | Rules       |             |     field   |
-| Name        |             | (Refer to   |             |             |
-|             |             | [IBM i Name |             |    contains | |             |             | Rules](#IB  |             |     the     |
-|             |             | M2) |             |     name of |
-|             |             | )     |             |     the IBM |
-|             |             |             |             |     i       |
-|             |             |             |             |             |
-|             |             |             |             |   subsystem |
-|             |             |             |             |     where   |
-|             |             |             |             |     the     |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     agent   |
-|             |             |             |             |     jobs    |
-|             |             |             |             |     run.    |
-|             |             |             |             | -   The IBM |
-|             |             |             |             |     i       |
-|             |             |             |             |             |
-|             |             |             |             |   subsystem |
-|             |             |             |             |     should  |
-|             |             |             |             |     be a    |
-|             |             |             |             |             |
-|             |             |             |             |   dedicated |
-|             |             |             |             |             |
-|             |             |             |             |   subsystem |
-|             |             |             |             |             |
-|             |             |             |             |    unshared |
-|             |             |             |             |     with    |
-|             |             |             |             |     other   |
-|             |             |             |             |     ap      |
-|             |             |             |             | plications, |
-|             |             |             |             |     because |
-|             |             |             |             |     normal  |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |             |
-|             |             |             |             |  management |
-|             |             |             |             |             |
-|             |             |             |             |   functions |
-|             |             |             |             |     start   |
-|             |             |             |             |     and     |
-|             |             |             |             |     stop    |
-|             |             |             |             |     the     |
-|             |             |             |             |             |
-|             |             |             |             |  subsystem. |
-|             |             |             |             |             |
-|             |             |             |             | **Note**:   |
-|             |             |             |             | Although    |
-|             |             |             |             | the         |
-|             |             |             |             | i           |
-|             |             |             |             | nstallation |
-|             |             |             |             | of the LSAM |
-|             |             |             |             | creates a   |
-|             |             |             |             | default     |
-|             |             |             |             | subsystem   |
-|             |             |             |             | description |
-|             |             |             |             | (SMASBS),   |
-|             |             |             |             | the IBM i   |
-|             |             |             |             | ad          |
-|             |             |             |             | ministrator |
-|             |             |             |             | is          |
-|             |             |             |             | responsible |
-|             |             |             |             | for         |
-|             |             |             |             | configuring |
-|             |             |             |             | the         |
-|             |             |             |             | subsystem   |
-|             |             |             |             | and for     |
-|             |             |             |             | tuning      |
-|             |             |             |             | system      |
-|             |             |             |             | p           |
-|             |             |             |             | erformance. |
+| Subsystem   |             | Rules       field   |
+| Name        |             | (Refer to           |
+        | [IBM i Name |             |    contains |         | Rules](#IB  the     |
+        | M2) name of |
+        | )     the IBM |
+                |     i       |
+                |             |
+                |   subsystem |
+                |     where   |
+                |     the     |
+                |     LSAM    |
+                |     agent   |
+                |     jobs    |
+                |     run.    |
+                | -   The IBM |
+                |     i       |
+                |             |
+                |   subsystem |
+                |     should  |
+                |     be a    |
+                |             |
+                |   dedicated |
+                |             |
+                |   subsystem |
+                |             |
+                |    unshared |
+                |     with    |
+                |     other   |
+                |     ap      |
+                | plications, |
+                |     because |
+                |     normal  |
+                |     LSAM    |
+                |             |
+                |  management |
+                |             |
+                |   functions |
+                |     start   |
+                |     and     |
+                |     stop    |
+                |     the     |
+                |             |
+                |  subsystem. |
+                |             |
+                | **Note**:   |
+                | Although    |
+                | the         |
+                | i           |
+                | nstallation |
+                | of the LSAM |
+                | creates a   |
+                | default     |
+                | subsystem   |
+                | description |
+                | (SMASBS),   |
+                | the IBM i   |
+                | ad          |
+                | ministrator |
+                | is          |
+                | responsible |
+                | for         |
+                | configuring |
+                | the         |
+                | subsystem   |
+                | and for     |
+                | tuning      |
+                | system      |
+                | p           |
+                | erformance. |
 +-------------+-------------+-------------+-------------+-------------+
-| Internet    | \<IP        | 255.        | Y           | -   This    |
-| Address     | address of  | 255.255.255 |             |     field   |
-|             | the         |             |             |             |
-|             | server\>    | (IPv4       |             |  identifies |
-|             |             | required    |             |     the IP  |
-|             |             | address     |             |     address |
-|             |             | pattern     |             |     of the  |
-|             |             | shown. If   |             |     server  |
-|             |             | the IPv6    |             |     where   |
-|             |             | switch is   |             |     the     |
-|             |             | set to Y =  |             |     LSAM    |
-|             |             | yes, this   |             |             |
-|             |             | field MUST  |             |    programs |
-|             |             | be updated  |             |     may be  |
-|             |             | to the      |             |             |
-|             |             | correct     |             |  contacted. |
-|             |             | format. Use |             | -   Use the |
-|             |             | F4 for      |             |             |
-|             |             | a           |             |  \<**F4**\> |
-|             |             | ssistance.) |             |             |
-|             |             |             |             |    function |
-|             |             |             |             |     key to  |
-|             |             |             |             |     view a  |
-|             |             |             |             |     list of |
-|             |             |             |             |     valid   |
-|             |             |             |             |     IP      |
-|             |             |             |             |             |
-|             |             |             |             |   addresses |
-|             |             |             |             |     for the |
-|             |             |             |             |     system. |
-|             |             |             |             |             |
-|             |             |             |             | *|
-|             |             |             |             |*Caution**: |
-|             |             |             |             | Do not use  |
-|             |             |             |             | the local   |
-|             |             |             |             | host        |
-|             |             |             |             | address of  |
-|             |             |             |             | 127.0.0.1   |
+| Internet    | <IP        | 255.        | Y           | -   This    |
+| Address     | address of  | 255.255.255 field   |
+|             | the                 |             |
+|             | server>    | (IPv4       |             |  identifies |
+        | required    the IP  |
+        | address     address |
+        | pattern     of the  |
+        | shown. If   server  |
+        | the IPv6    where   |
+        | switch is   the     |
+        | set to Y =  LSAM    |
+        | yes, this           |
+        | field MUST  |             |    programs |
+        | be updated  may be  |
+        | to the              |
+        | correct     |             |  contacted. |
+        | format. Use |             | -   Use the |
+        | F4 for              |
+        | a           |             |  <**F4**> |
+        | ssistance.)         |
+                |    function |
+                |     key to  |
+                |     view a  |
+                |     list of |
+                |     valid   |
+                |     IP      |
+                |             |
+                |   addresses |
+                |     for the |
+                |     system. |
+                |             |
+                | *|
+                |*Caution**: |
+                | Do not use  |
+                | the local   |
+                | host        |
+                | address of  |
+                | 127.0.0.1   |
 +-------------+-------------+-------------+-------------+-------------+
 | Int IP Addr | \*EXT       | \*EXT or IP | Y           | -   Most    |
-| (or \*EXT)  |             | Address     |             |     IBM i   |
-|             |             |             |             |             |
-|             |             |             |             |  partitions |
-|             |             |             |             |     will    |
-|             |             |             |             |             |
-|             |             |             |             |    directly |
-|             |             |             |             |     support |
-|             |             |             |             |     an      |
-|             |             |             |             |             |
-|             |             |             |             |   Interface |
-|             |             |             |             |     to the  |
-|             |             |             |             |             |
-|             |             |             |             |    External |
-|             |             |             |             |     (or     |
-|             |             |             |             |     Public) |
-|             |             |             |             |     IP      |
-|             |             |             |             |     Address |
-|             |             |             |             |     that is |
-|             |             |             |             |     used by |
-|             |             |             |             |     OpCon   |
-|             |             |             |             |     to      |
-|             |             |             |             |     connect |
-|             |             |             |             |     to the  |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     Job     |
-|             |             |             |             |             |
-|             |             |             |             |   Scheduler |
-|             |             |             |             |     and     |
-|             |             |             |             |     JORS    |
-|             |             |             |             |     Server. |
-|             |             |             |             |     When    |
-|             |             |             |             |     this is |
-|             |             |             |             |     the     |
-|             |             |             |             |     case,   |
-|             |             |             |             |     just    |
-|             |             |             |             |     leave   |
-|             |             |             |             |     the     |
-|             |             |             |             |             |
-|             |             |             |             |    Internal |
-|             |             |             |             |     IP      |
-|             |             |             |             |     Address |
-|             |             |             |             |     field   |
-|             |             |             |             |     set to  |
-|             |             |             |             |     \*EXT.  |
-|             |             |             |             |     The     |
-|             |             |             |             |             |
-|             |             |             |             |    External |
-|             |             |             |             |     IP      |
-|             |             |             |             |     Address |
-|             |             |             |             |     is      |
-|             |             |             |             |             |
-|             |             |             |             |   available |
-|             |             |             |             |     for the |
-|             |             |             |             |     Bind    |
-|             |             |             |             |     IP?     |
-|             |             |             |             |     Option. |
-|             |             |             |             | -           |
-|             |             |             |             |    However, |
-|             |             |             |             |     when    |
-|             |             |             |             |     port    |
-|             |             |             |             | -forwarding |
-|             |             |             |             |     is      |
-|             |             |             |             |     being   |
-|             |             |             |             |     used by |
-|             |             |             |             |     Client  |
-|             |             |             |             |     IBM i   |
-|             |             |             |             |             |
-|             |             |             |             |   (virtual) |
-|             |             |             |             |             |
-|             |             |             |             | partitions, |
-|             |             |             |             |     as they |
-|             |             |             |             |     are     |
-|             |             |             |             |             |
-|             |             |             |             |   supported |
-|             |             |             |             |     by a    |
-|             |             |             |             |             |
-|             |             |             |             |  (physical) |
-|             |             |             |             |     Host    |
-|             |             |             |             |             |
-|             |             |             |             |  partition, |
-|             |             |             |             |     then it |
-|             |             |             |             |     is      |
-|             |             |             |             |             |
-|             |             |             |             |   necessary |
-|             |             |             |             |     to      |
-|             |             |             |             |     specify |
-|             |             |             |             |     an IP   |
-|             |             |             |             |     Address |
-|             |             |             |             |     that    |
-|             |             |             |             |     can be  |
-|             |             |             |             |             |
-|             |             |             |             |    directly |
-|             |             |             |             |             |
-|             |             |             |             |    accessed |
-|             |             |             |             |     "       |
-|             |             |             |             | internally" |
-|             |             |             |             |     by the  |
-|             |             |             |             |             |
-|             |             |             |             |    virtual, |
-|             |             |             |             |     client  |
-|             |             |             |             |             |
-|             |             |             |             |  partition, |
-|             |             |             |             |     in      |
-|             |             |             |             |     order   |
-|             |             |             |             |     to      |
-|             |             |             |             |     support |
-|             |             |             |             |     the     |
-|             |             |             |             |     Bind    |
-|             |             |             |             |     IP?     |
-|             |             |             |             |     option. |
+| (or \*EXT)  |             | Address     IBM i   |
+                |             |
+                |  partitions |
+                |     will    |
+                |             |
+                |    directly |
+                |     support |
+                |     an      |
+                |             |
+                |   Interface |
+                |     to the  |
+                |             |
+                |    External |
+                |     (or     |
+                |     Public) |
+                |     IP      |
+                |     Address |
+                |     that is |
+                |     used by |
+                |     OpCon   |
+                |     to      |
+                |     connect |
+                |     to the  |
+                |     LSAM    |
+                |     Job     |
+                |             |
+                |   Scheduler |
+                |     and     |
+                |     JORS    |
+                |     Server. |
+                |     When    |
+                |     this is |
+                |     the     |
+                |     case,   |
+                |     just    |
+                |     leave   |
+                |     the     |
+                |             |
+                |    Internal |
+                |     IP      |
+                |     Address |
+                |     field   |
+                |     set to  |
+                |     \*EXT.  |
+                |     The     |
+                |             |
+                |    External |
+                |     IP      |
+                |     Address |
+                |     is      |
+                |             |
+                |   available |
+                |     for the |
+                |     Bind    |
+                |     IP?     |
+                |     Option. |
+                | -           |
+                |    However, |
+                |     when    |
+                |     port    |
+                | -forwarding |
+                |     is      |
+                |     being   |
+                |     used by |
+                |     Client  |
+                |     IBM i   |
+                |             |
+                |   (virtual) |
+                |             |
+                | partitions, |
+                |     as they |
+                |     are     |
+                |             |
+                |   supported |
+                |     by a    |
+                |             |
+                |  (physical) |
+                |     Host    |
+                |             |
+                |  partition, |
+                |     then it |
+                |     is      |
+                |             |
+                |   necessary |
+                |     to      |
+                |     specify |
+                |     an IP   |
+                |     Address |
+                |     that    |
+                |     can be  |
+                |             |
+                |    directly |
+                |             |
+                |    accessed |
+                |     "       |
+                | internally" |
+                |     by the  |
+                |             |
+                |    virtual, |
+                |     client  |
+                |             |
+                |  partition, |
+                |     in      |
+                |     order   |
+                |     to      |
+                |     support |
+                |     the     |
+                |     Bind    |
+                |     IP?     |
+                |     option. |
 +-------------+-------------+-------------+-------------+-------------+
 | Bind IP?    | N           | Y or N      | Y           | -   The     |
-|             |             |             |             |             |
-|             |             |             |             |    original |
-|             |             |             |             |             |
-|             |             |             |             |    behavior |
-|             |             |             |             |     of the  |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     com     |
-|             |             |             |             | munications |
-|             |             |             |             |             |
-|             |             |             |             |    programs |
-|             |             |             |             |     was to  |
-|             |             |             |             |     request |
-|             |             |             |             |     any     |
-|             |             |             |             |             |
-|             |             |             |             |   available |
-|             |             |             |             |     IP      |
-|             |             |             |             |             |
-|             |             |             |             |   Interface |
-|             |             |             |             |     where   |
-|             |             |             |             |     they    |
-|             |             |             |             |     can     |
-|             |             |             |             |     bind    |
-|             |             |             |             |     their   |
-|             |             |             |             |             |
-|             |             |             |             |  designated |
-|             |             |             |             |     Ports   |
-|             |             |             |             |     and     |
-|             |             |             |             |     then    |
-|             |             |             |             |     use     |
-|             |             |             |             |     that    |
-|             |             |             |             |             |
-|             |             |             |             |  connection |
-|             |             |             |             |     point   |
-|             |             |             |             |     to      |
-|             |             |             |             |     accept  |
-|             |             |             |             |     a       |
-|             |             |             |             |     socket  |
-|             |             |             |             |             |
-|             |             |             |             |  connection |
-|             |             |             |             |     request |
-|             |             |             |             |     from    |
-|             |             |             |             |     the     |
-|             |             |             |             |     OpCon   |
-|             |             |             |             |     server. |
-|             |             |             |             | -   It is   |
-|             |             |             |             |     often   |
-|             |             |             |             |             |
-|             |             |             |             |  preferred, |
-|             |             |             |             |     and     |
-|             |             |             |             |             |
-|             |             |             |             |    possibly |
-|             |             |             |             |     more    |
-|             |             |             |             |     secure, |
-|             |             |             |             |     to bind |
-|             |             |             |             |     the     |
-|             |             |             |             |     Port to |
-|             |             |             |             |     a       |
-|             |             |             |             |             |
-|             |             |             |             |    specific |
-|             |             |             |             |     IP      |
-|             |             |             |             |             |
-|             |             |             |             |    address. |
-|             |             |             |             |     This    |
-|             |             |             |             |     ability |
-|             |             |             |             |     is      |
-|             |             |             |             |             |
-|             |             |             |             |    required |
-|             |             |             |             |     if an   |
-|             |             |             |             |             |
-|             |             |             |             |    Internal |
-|             |             |             |             |     IP      |
-|             |             |             |             |     address |
-|             |             |             |             |     (such   |
-|             |             |             |             |     as a    |
-|             |             |             |             |     Virtual |
-|             |             |             |             |     LAN     |
-|             |             |             |             |             |
-|             |             |             |             |    address) |
-|             |             |             |             |     will be |
-|             |             |             |             |     used to |
-|             |             |             |             |     support |
-|             |             |             |             |     the     |
-|             |             |             |             |     OpCon   |
-|             |             |             |             |             |
-|             |             |             |             |    server's |
-|             |             |             |             |             |
-|             |             |             |             |  connection |
-|             |             |             |             |     to the  |
-|             |             |             |             |             |
-|             |             |             |             |  designated |
-|             |             |             |             |             |
-|             |             |             |             |    External |
-|             |             |             |             |     IP      |
-|             |             |             |             |             |
-|             |             |             |             |    Address. |
+                |             |
+                |    original |
+                |             |
+                |    behavior |
+                |     of the  |
+                |     LSAM    |
+                |     com     |
+                | munications |
+                |             |
+                |    programs |
+                |     was to  |
+                |     request |
+                |     any     |
+                |             |
+                |   available |
+                |     IP      |
+                |             |
+                |   Interface |
+                |     where   |
+                |     they    |
+                |     can     |
+                |     bind    |
+                |     their   |
+                |             |
+                |  designated |
+                |     Ports   |
+                |     and     |
+                |     then    |
+                |     use     |
+                |     that    |
+                |             |
+                |  connection |
+                |     point   |
+                |     to      |
+                |     accept  |
+                |     a       |
+                |     socket  |
+                |             |
+                |  connection |
+                |     request |
+                |     from    |
+                |     the     |
+                |     OpCon   |
+                |     server. |
+                | -   It is   |
+                |     often   |
+                |             |
+                |  preferred, |
+                |     and     |
+                |             |
+                |    possibly |
+                |     more    |
+                |     secure, |
+                |     to bind |
+                |     the     |
+                |     Port to |
+                |     a       |
+                |             |
+                |    specific |
+                |     IP      |
+                |             |
+                |    address. |
+                |     This    |
+                |     ability |
+                |     is      |
+                |             |
+                |    required |
+                |     if an   |
+                |             |
+                |    Internal |
+                |     IP      |
+                |     address |
+                |     (such   |
+                |     as a    |
+                |     Virtual |
+                |     LAN     |
+                |             |
+                |    address) |
+                |     will be |
+                |     used to |
+                |     support |
+                |     the     |
+                |     OpCon   |
+                |             |
+                |    server's |
+                |             |
+                |  connection |
+                |     to the  |
+                |             |
+                |  designated |
+                |             |
+                |    External |
+                |     IP      |
+                |             |
+                |    Address. |
 +-------------+-------------+-------------+-------------+-------------+
 | Use IPv6    | N           | Y or N      | Y           | The LSAM    |
-| protocol?   |             |             |             | com         |
-|             |             |             |             | munications |
-|             |             |             |             | programs    |
-|             |             |             |             | (for both   |
-|             |             |             |             | job         |
-|             |             |             |             | scheduling  |
-|             |             |             |             | and JORS)   |
-|             |             |             |             | are capable |
-|             |             |             |             | of managing |
-|             |             |             |             | both the    |
-|             |             |             |             | IPv4 and    |
-|             |             |             |             | IPv6        |
-|             |             |             |             | protocols,  |
-|             |             |             |             | co          |
-|             |             |             |             | ncurrently. |
-|             |             |             |             | This        |
-|             |             |             |             | support     |
-|             |             |             |             | cannot be   |
-|             |             |             |             | used until  |
-|             |             |             |             | at least    |
-|             |             |             |             | one IPv6    |
-|             |             |             |             | com         |
-|             |             |             |             | munications |
-|             |             |             |             | line has    |
-|             |             |             |             | been        |
-|             |             |             |             | configured  |
-|             |             |             |             | under IBM   |
-|             |             |             |             | i.          |
+| protocol?           |             | com         |
+                | munications |
+                | programs    |
+                | (for both   |
+                | job         |
+                | scheduling  |
+                | and JORS)   |
+                | are capable |
+                | of managing |
+                | both the    |
+                | IPv4 and    |
+                | IPv6        |
+                | protocols,  |
+                | co          |
+                | ncurrently. |
+                | This        |
+                | support     |
+                | cannot be   |
+                | used until  |
+                | at least    |
+                | one IPv6    |
+                | com         |
+                | munications |
+                | line has    |
+                | been        |
+                | configured  |
+                | under IBM   |
+                | i.          |
 +-------------+-------------+-------------+-------------+-------------+
 | Start JORS  | Y=yes       | Y or N      | Y           | -   This    |
-| server?     |             |             |             |     field   |
-| (Y/N)       |             |             |             |             |
-|             |             |             |             |  determines |
-|             |             |             |             |     if the  |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     server  |
-|             |             |             |             |     startup |
-|             |             |             |             |             |
-|             |             |             |             |    routines |
-|             |             |             |             |     will    |
-|             |             |             |             |     au      |
-|             |             |             |             | tomatically |
-|             |             |             |             |     start   |
-|             |             |             |             |     the     |
-|             |             |             |             |     JORS    |
-|             |             |             |             |     com     |
-|             |             |             |             | munications |
-|             |             |             |             |     server  |
-|             |             |             |             |             |
-|             |             |             |             |    program. |
-|             |             |             |             | -   This    |
-|             |             |             |             |     option  |
-|             |             |             |             |     should  |
-|             |             |             |             |             |
-|             |             |             |             |    normally |
-|             |             |             |             |     be set  |
-|             |             |             |             |     to      |
-|             |             |             |             |     Y=yes.  |
-|             |             |             |             |     The     |
-|             |             |             |             |     option  |
-|             |             |             |             |     is      |
-|             |             |             |             |             |
-|             |             |             |             |    provided |
-|             |             |             |             |     only in |
-|             |             |             |             |     case    |
-|             |             |             |             |     any     |
-|             |             |             |             |             |
-|             |             |             |             |  functional |
-|             |             |             |             |     problem |
-|             |             |             |             |     might   |
-|             |             |             |             |     make it |
-|             |             |             |             |             |
-|             |             |             |             |  convenient |
-|             |             |             |             |     to      |
-|             |             |             |             |     disable |
-|             |             |             |             |     the     |
-|             |             |             |             |     lower   |
-|             |             |             |             |             |
-|             |             |             |             |    priority |
-|             |             |             |             |     JORS    |
-|             |             |             |             |             |
-|             |             |             |             |    services |
-|             |             |             |             |     while   |
-|             |             |             |             |     still   |
-|             |             |             |             |             |
-|             |             |             |             |    allowing |
-|             |             |             |             |     the     |
-|             |             |             |             |             |
-|             |             |             |             |    critical |
-|             |             |             |             |     job     |
-|             |             |             |             |             |
-|             |             |             |             |  scheduling |
-|             |             |             |             |     servers |
-|             |             |             |             |     to      |
-|             |             |             |             |             |
-|             |             |             |             |    continue |
-|             |             |             |             |             |
-|             |             |             |             | processing. |
+| server?             field   |
+| (Y/N)                       |
+                |  determines |
+                |     if the  |
+                |     LSAM    |
+                |     server  |
+                |     startup |
+                |             |
+                |    routines |
+                |     will    |
+                |     au      |
+                | tomatically |
+                |     start   |
+                |     the     |
+                |     JORS    |
+                |     com     |
+                | munications |
+                |     server  |
+                |             |
+                |    program. |
+                | -   This    |
+                |     option  |
+                |     should  |
+                |             |
+                |    normally |
+                |     be set  |
+                |     to      |
+                |     Y=yes.  |
+                |     The     |
+                |     option  |
+                |     is      |
+                |             |
+                |    provided |
+                |     only in |
+                |     case    |
+                |     any     |
+                |             |
+                |  functional |
+                |     problem |
+                |     might   |
+                |     make it |
+                |             |
+                |  convenient |
+                |     to      |
+                |     disable |
+                |     the     |
+                |     lower   |
+                |             |
+                |    priority |
+                |     JORS    |
+                |             |
+                |    services |
+                |     while   |
+                |     still   |
+                |             |
+                |    allowing |
+                |     the     |
+                |             |
+                |    critical |
+                |     job     |
+                |             |
+                |  scheduling |
+                |     servers |
+                |     to      |
+                |             |
+                |    continue |
+                |             |
+                | processing. |
 +-------------+-------------+-------------+-------------+-------------+
-| EBCDIC -\>  | QASCII      | IBM i Name  | Y           | -   This    |
-| A:          |             | Rules.      |             |     field   |
-| translation |             | Table must  |             |             |
+| EBCDIC ->  | QASCII      | IBM i Name  | Y           | -   This    |
+| A:          |             | Rules.      field   |
+| translation |             | Table must          |
 | table       |             | exist       |             |  identifies |
-| (EBCDIC to  |             | before      |             |     the     |
-| ASCII) or   |             | starting    |             |             |
+| (EBCDIC to  |             | before      the     |
+| ASCII) or   |             | starting            |
 | CCSID       |             | LSAM. A     |             | translation |
-| number      |             | CCSID       |             |     table   |
-|             |             | number may  |             |     used to |
-|             |             | be          |             |             |
-|             |             | specified   |             |   translate |
-|             |             | instead. \* |             |     IBM i   |
-|             |             |             |             |     native  |
-|             |             |             |             |     EBCDIC  |
-|             |             |             |             |             |
-|             |             |             |             |  characters |
-|             |             |             |             |     to the  |
-|             |             |             |             |     ASCII   |
-|             |             |             |             |             |
-|             |             |             |             |   character |
-|             |             |             |             |     set     |
-|             |             |             |             |             |
-|             |             |             |             |    required |
-|             |             |             |             |     by      |
-|             |             |             |             |             |
-|             |             |             |             |  OpCon/xps. |
-|             |             |             |             | -   To use  |
-|             |             |             |             |     a CCSID |
-|             |             |             |             |     number, |
-|             |             |             |             |     set the |
-|             |             |             |             |     Library |
-|             |             |             |             |     field   |
-|             |             |             |             |     to the  |
-|             |             |             |             |     special |
-|             |             |             |             |     value   |
-|             |             |             |             |     of      |
-|             |             |             |             |     \       |
-|             |             |             |             | "\*CCSID". |
+| number      |             | CCSID       table   |
+        | number may  used to |
+        | be                  |
+        | specified   |             |   translate |
+        | instead. \* IBM i   |
+                |     native  |
+                |     EBCDIC  |
+                |             |
+                |  characters |
+                |     to the  |
+                |     ASCII   |
+                |             |
+                |   character |
+                |     set     |
+                |             |
+                |    required |
+                |     by      |
+                |             |
+                |  OpCon/xps. |
+                | -   To use  |
+                |     a CCSID |
+                |     number, |
+                |     set the |
+                |     Library |
+                |     field   |
+                |     to the  |
+                |     special |
+                |     value   |
+                |     of      |
+                |     \       |
+                | "\*CCSID". |
 +-------------+-------------+-------------+-------------+-------------+
-| EBCDIC -\>  | QSYS        | IBM i Name  | Y           | -   The     |
-| A:          |             | Rules.      |             |     name of |
-| translation |             | U           |             |     the DB2 |
-| table       |             | ser-defined |             |     UDB     |
-| library or  |             | tables      |             |             |
+| EBCDIC ->  | QSYS        | IBM i Name  | Y           | -   The     |
+| A:          |             | Rules.      name of |
+| translation |             | U           the DB2 |
+| table       |             | ser-defined UDB     |
+| library or  |             | tables              |
 | '\*CCSID' |             | would exist |             |   (DB2/400) |
-|             |             | in          |             |     library |
-|             |             | libraries   |             |     where   |
-|             |             | other than  |             |     the     |
-|             |             | QSYS.       |             |             |
-|             |             |             |             | translation |
-|             |             |             |             |     table   |
-|             |             |             |             |     may be  |
-|             |             |             |             |     found.  |
-|             |             |             |             | -   Use the |
-|             |             |             |             |     special |
-|             |             |             |             |     value   |
-|             |             |             |             |     of      |
-|             |             |             |             |             |
-|             |             |             |             | "\*CCSID" |
-|             |             |             |             |     instead |
-|             |             |             |             |     of a    |
-|             |             |             |             |     library |
-|             |             |             |             |     name if |
-|             |             |             |             |     a CCSID |
-|             |             |             |             |     number  |
-|             |             |             |             |     will be |
-|             |             |             |             |             |
-|             |             |             |             |   specified |
-|             |             |             |             |     in the  |
-|             |             |             |             |     table   |
-|             |             |             |             |     name    |
-|             |             |             |             |     field.  |
+        | in          library |
+        | libraries   where   |
+        | other than  the     |
+        | QSYS.               |
+                | translation |
+                |     table   |
+                |     may be  |
+                |     found.  |
+                | -   Use the |
+                |     special |
+                |     value   |
+                |     of      |
+                |             |
+                | "\*CCSID" |
+                |     instead |
+                |     of a    |
+                |     library |
+                |     name if |
+                |     a CCSID |
+                |     number  |
+                |     will be |
+                |             |
+                |   specified |
+                |     in the  |
+                |     table   |
+                |     name    |
+                |     field.  |
 +-------------+-------------+-------------+-------------+-------------+
-| ASCII -\>   | QEBCDIC     | IBM i Name  | Y           | -   This    |
-| E:          |             | Rules.      |             |     field   |
-| translation |             | Table must  |             |             |
+| ASCII ->   | QEBCDIC     | IBM i Name  | Y           | -   This    |
+| E:          |             | Rules.      field   |
+| translation |             | Table must          |
 | table       |             | exist       |             |  identifies |
-| (ASCII to   |             | before      |             |     the     |
-| EBCDIC) or  |             | starting    |             |             |
+| (ASCII to   |             | before      the     |
+| EBCDIC) or  |             | starting            |
 | CCSID       |             | LSAM. A     |             | translation |
-| number      |             | CCSID       |             |     table   |
-|             |             | number may  |             |     used to |
-|             |             | be          |             |             |
-|             |             | specified   |             |   translate |
-|             |             | instead. \* |             |     the     |
-|             |             |             |             |     ASCII   |
-|             |             |             |             |             |
-|             |             |             |             |   character |
-|             |             |             |             |     set     |
-|             |             |             |             |             |
-|             |             |             |             |    incoming |
-|             |             |             |             |     from    |
-|             |             |             |             |             |
-|             |             |             |             |   OpCon/xps |
-|             |             |             |             |     to the  |
-|             |             |             |             |     IBM i   |
-|             |             |             |             |     native  |
-|             |             |             |             |     EBCDIC  |
-|             |             |             |             |             |
-|             |             |             |             |   character |
-|             |             |             |             |     set     |
-|             |             |             |             |     used by |
-|             |             |             |             |     the     |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     server  |
-|             |             |             |             |             |
-|             |             |             |             |   programs. |
-|             |             |             |             | -   To use  |
-|             |             |             |             |     a CCSID |
-|             |             |             |             |     number, |
-|             |             |             |             |     set the |
-|             |             |             |             |     Library |
-|             |             |             |             |     field   |
-|             |             |             |             |     to the  |
-|             |             |             |             |     special |
-|             |             |             |             |     value   |
-|             |             |             |             |     of      |
-|             |             |             |             |     \       |
-|             |             |             |             | "\*CCSID". |
+| number      |             | CCSID       table   |
+        | number may  used to |
+        | be                  |
+        | specified   |             |   translate |
+        | instead. \* the     |
+                |     ASCII   |
+                |             |
+                |   character |
+                |     set     |
+                |             |
+                |    incoming |
+                |     from    |
+                |             |
+                |   OpCon/xps |
+                |     to the  |
+                |     IBM i   |
+                |     native  |
+                |     EBCDIC  |
+                |             |
+                |   character |
+                |     set     |
+                |     used by |
+                |     the     |
+                |     LSAM    |
+                |     server  |
+                |             |
+                |   programs. |
+                | -   To use  |
+                |     a CCSID |
+                |     number, |
+                |     set the |
+                |     Library |
+                |     field   |
+                |     to the  |
+                |     special |
+                |     value   |
+                |     of      |
+                |     \       |
+                | "\*CCSID". |
 +-------------+-------------+-------------+-------------+-------------+
-| ASCII -\>   | QSYS        | IBM i Name  | Y           | -   The     |
-| E:          |             | Rules.      |             |     name of |
-| translation |             | U           |             |     the DB2 |
-| table       |             | ser-defined |             |     UDB     |
-| library or  |             | tables      |             |             |
+| ASCII ->   | QSYS        | IBM i Name  | Y           | -   The     |
+| E:          |             | Rules.      name of |
+| translation |             | U           the DB2 |
+| table       |             | ser-defined UDB     |
+| library or  |             | tables              |
 | "\*CCSID" |             | would exist |             |   (DB2/400) |
-|             |             | in          |             |     library |
-|             |             | libraries   |             |     where   |
-|             |             | other than  |             |     the     |
-|             |             | QSYS.       |             |             |
-|             |             |             |             | translation |
-|             |             |             |             |     table   |
-|             |             |             |             |     may be  |
-|             |             |             |             |     found.  |
-|             |             |             |             | -   Use the |
-|             |             |             |             |     special |
-|             |             |             |             |     value   |
-|             |             |             |             |     of      |
-|             |             |             |             |             |
-|             |             |             |             | "\*CCSID" |
-|             |             |             |             |     instead |
-|             |             |             |             |     of a    |
-|             |             |             |             |     library |
-|             |             |             |             |     name if |
-|             |             |             |             |     a CCSID |
-|             |             |             |             |     number  |
-|             |             |             |             |     will be |
-|             |             |             |             |             |
-|             |             |             |             |   specified |
-|             |             |             |             |     in the  |
-|             |             |             |             |     table   |
-|             |             |             |             |     name    |
-|             |             |             |             |     field.  |
+        | in          library |
+        | libraries   where   |
+        | other than  the     |
+        | QSYS.               |
+                | translation |
+                |     table   |
+                |     may be  |
+                |     found.  |
+                | -   Use the |
+                |     special |
+                |     value   |
+                |     of      |
+                |             |
+                | "\*CCSID" |
+                |     instead |
+                |     of a    |
+                |     library |
+                |     name if |
+                |     a CCSID |
+                |     number  |
+                |     will be |
+                |             |
+                |   specified |
+                |     in the  |
+                |     table   |
+                |     name    |
+                |     field.  |
 +-------------+-------------+-------------+-------------+-------------+
 | Co          | 3100        | Valid port  | Y           | -   These   |
-| mmunication |             | numbers     |             |     fields  |
-| Port        |             | range from  |             |     contain |
-|             |             | 0 to 65535  |             |     the     |
-|             |             |             |             |     TCP/IP  |
-|             |             |             |             |     port    |
-| JORS Port   | 3110        |             |             |     numbers |
-|             |             |             |             |     used    |
-|             |             |             |             |     for     |
-|             |             |             |             |     co      |
-|             |             |             |             | mmunication |
-|             |             |             |             |     between |
-|             |             |             |             |     the     |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     and     |
-|             |             |             |             |             |
-|             |             |             |             |  SMANetCom. |
-|             |             |             |             | -   Com     |
-|             |             |             |             | munications |
-|             |             |             |             |     Port is |
-|             |             |             |             |     for Job |
-|             |             |             |             |             |
-|             |             |             |             | Scheduling. |
-|             |             |             |             | -   JORS    |
-|             |             |             |             |     Port is |
-|             |             |             |             |     for     |
-|             |             |             |             |             |
-|             |             |             |             |   OpCon/xps |
-|             |             |             |             |             |
-|             |             |             |             |   retrieval |
-|             |             |             |             |     of job  |
-|             |             |             |             |     logs.   |
-|             |             |             |             |             |
-|             |             |             |             |**Note**:   |
-|             |             |             |             | The JORS    |
-|             |             |             |             | Port needs  |
-|             |             |             |             | to be set   |
-|             |             |             |             | in both the |
-|             |             |             |             | LSAM        |
-|             |             |             |             | Parameters  |
-|             |             |             |             | and the     |
-|             |             |             |             | advanced    |
-|             |             |             |             | machine     |
-|             |             |             |             | setting in  |
-|             |             |             |             | the EM of   |
-|             |             |             |             | OpCon. The  |
-|             |             |             |             | JORS port   |
-|             |             |             |             | is          |
-|             |             |             |             | different   |
-|             |             |             |             | from the    |
-|             |             |             |             | SMA File    |
-|             |             |             |             | Transfer    |
-|             |             |             |             | port for    |
-|             |             |             |             | this LSAM.  |
-|             |             |             |             |             |
-|             |             |             |             | -   For     |
-|             |             |             |             |     more    |
-|             |             |             |             |             |
-|             |             |             |             | information |
-|             |             |             |             |     on      |
-|             |             |             |             |             |
-|             |             |             |             |   modifying |
-|             |             |             |             |     the     |
-|             |             |             |             |     JORS    |
-|             |             |             |             |     port    |
-|             |             |             |             |     number, |
-|             |             |             |             |     refer   |
-|             |             |             |             |     to      |
-|             |             |             |             |     [Co     | |             |             |             |             | mmunication |
-|             |             |             |             |     Setting |
-|             |             |             |             | s](https:// |
-|             |             |             |             | help.smatec |
-|             |             |             |             | hnologies.c |
-|             |             |             |             | om/opcon/co |
-|             |             |             |             | re/latest/F |
-|             |             |             |             | iles/Concep |
-|             |             |             |             | ts/Machines |
-|             |             |             |             | .md#Commun |
-|             |             |             |             | ic) |
-|             |             |             |             |       |
-|             |             |             |             |     in the  |
-|             |             |             |             |     *       |
-|             |             |             |             | *Concepts** |
-|             |             |             |             |     online  |
-|             |             |             |             |     help.   |
-|             |             |             |             | -   For     |
-|             |             |             |             |             |
-|             |             |             |             |    multiple |
-|             |             |             |             |     en      |
-|             |             |             |             | vironments, |
-|             |             |             |             |     each    |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     must    |
-|             |             |             |             |     have a  |
-|             |             |             |             |     unique  |
-|             |             |             |             |     port    |
-|             |             |             |             |     number. |
-|             |             |             |             |             |
-|             |             |             |             | *|
-|             |             |             |             |*Caution**: |
-|             |             |             |             | Avoid port  |
-|             |             |             |             | numbers     |
-|             |             |             |             | ranging     |
-|             |             |             |             | from 0 to   |
-|             |             |             |             | 1023 due to |
-|             |             |             |             | common      |
-|             |             |             |             | c           |
-|             |             |             |             | onventions. |
+| mmunication |             | numbers     fields  |
+| Port        |             | range from  contain |
+        | 0 to 65535  the     |
+|             |                     |     TCP/IP  |
+                |     port    |
+| JORS Port   | 3110                |     numbers |
+                |     used    |
+                |     for     |
+                |     co      |
+                | mmunication |
+                |     between |
+                |     the     |
+                |     LSAM    |
+                |     and     |
+                |             |
+                |  SMANetCom. |
+                | -   Com     |
+                | munications |
+                |     Port is |
+                |     for Job |
+                |             |
+                | Scheduling. |
+                | -   JORS    |
+                |     Port is |
+                |     for     |
+                |             |
+                |   OpCon/xps |
+                |             |
+                |   retrieval |
+                |     of job  |
+                |     logs.   |
+                |             |
+                |**Note**:   |
+                | The JORS    |
+                | Port needs  |
+                | to be set   |
+                | in both the |
+                | LSAM        |
+                | Parameters  |
+                | and the     |
+                | advanced    |
+                | machine     |
+                | setting in  |
+                | the EM of   |
+                | OpCon. The  |
+                | JORS port   |
+                | is          |
+                | different   |
+                | from the    |
+                | SMA File    |
+                | Transfer    |
+                | port for    |
+                | this LSAM.  |
+                |             |
+                | -   For     |
+                |     more    |
+                |             |
+                | information |
+                |     on      |
+                |             |
+                |   modifying |
+                |     the     |
+                |     JORS    |
+                |     port    |
+                |     number, |
+                |     refer   |
+                |     to      |
+                |     [Co     |                 | mmunication |
+                |     Setting |
+                | s](https:// |
+                | help.smatec |
+                | hnologies.c |
+                | om/opcon/co |
+                | re/latest/F |
+                | iles/Concep |
+                | ts/Machines |
+                | .md#Commun |
+                | ic) |
+                |       |
+                |     in the  |
+                |     *       |
+                | *Concepts** |
+                |     online  |
+                |     help.   |
+                | -   For     |
+                |             |
+                |    multiple |
+                |     en      |
+                | vironments, |
+                |     each    |
+                |     LSAM    |
+                |     must    |
+                |     have a  |
+                |     unique  |
+                |     port    |
+                |     number. |
+                |             |
+                | *|
+                |*Caution**: |
+                | Avoid port  |
+                | numbers     |
+                | ranging     |
+                | from 0 to   |
+                | 1023 due to |
+                | common      |
+                | c           |
+                | onventions. |
 +-------------+-------------+-------------+-------------+-------------+
 
 : IBM i LSAM Configuration Settings: Control Parameters
@@ -4312,299 +4344,299 @@ Remember that changes to the TLS Security options will only take effect
 after the LSAM Server jobs have been stopped and restarted.
 
 +-------------+-------------+-------------+-------------+-------------+
-| TLS         |             |             |             |             |
-| Security    |             |             |             |             |
-| Options     |             |             |             |             |
+| TLS                         |
+| Security                    |
+| Options                     |
 +=============+:===========:+:===========:+:===========:+=============+
 | Field       | Default     | Valid       | Required    | Description |
-|             |             | Values      | (Y/N)       |             |
+        | Values      | (Y/N)       |             |
 +-------------+-------------+-------------+-------------+-------------+
 | Use TLS     | N           | Y = yes     | Y           | -   This    |
-| Security?   |             |             |             |     field   |
-|             |             | N = no      |             |             |
-|             |             |             |             |  determines |
-|             |             |             |             |     if the  |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     will    |
-|             |             |             |             |     engage  |
-|             |             |             |             |     a       |
-|             |             |             |             |     digital |
-|             |             |             |             |             |
-|             |             |             |             | certificate |
-|             |             |             |             |     and     |
-|             |             |             |             |             |
-|             |             |             |             |    complete |
-|             |             |             |             |     a TLS   |
-|             |             |             |             |             |
-|             |             |             |             |    Security |
-|             |             |             |             |             |
-|             |             |             |             |   handshake |
-|             |             |             |             |     with    |
-|             |             |             |             |     the     |
-|             |             |             |             |     OpCon   |
-|             |             |             |             |     server. |
-|             |             |             |             | -   When    |
-|             |             |             |             |     this    |
-|             |             |             |             |     option  |
-|             |             |             |             |     is set  |
-|             |             |             |             |     to Y =  |
-|             |             |             |             |     Yes,    |
-|             |             |             |             |     the TLS |
-|             |             |             |             |             |
-|             |             |             |             |    Security |
-|             |             |             |             |             |
-|             |             |             |             |   handshake |
-|             |             |             |             |     must    |
-|             |             |             |             |             |
-|             |             |             |             |    complete |
-|             |             |             |             |     su      |
-|             |             |             |             | ccessfully, |
-|             |             |             |             |     or the  |
-|             |             |             |             |             |
-|             |             |             |             |  connection |
-|             |             |             |             |     with    |
-|             |             |             |             |     the     |
-|             |             |             |             |     OpCon   |
-|             |             |             |             |     server  |
-|             |             |             |             |     will be |
-|             |             |             |             |             |
-|             |             |             |             |    refused. |
-|             |             |             |             | -   Use the |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     Log     |
-|             |             |             |             |             |
-|             |             |             |             |    Viewers, |
-|             |             |             |             |     log     |
-|             |             |             |             |     view 1, |
-|             |             |             |             |     to see  |
-|             |             |             |             |     entries |
-|             |             |             |             |     that    |
-|             |             |             |             |     report  |
-|             |             |             |             |     about   |
-|             |             |             |             |     TLS     |
-|             |             |             |             |             |
-|             |             |             |             |   Security, |
-|             |             |             |             |     whether |
-|             |             |             |             |     it      |
-|             |             |             |             |             |
-|             |             |             |             |   completed |
-|             |             |             |             |     su      |
-|             |             |             |             | ccessfully, |
-|             |             |             |             |     or      |
-|             |             |             |             |     whether |
-|             |             |             |             |     some    |
-|             |             |             |             |     error   |
-|             |             |             |             |     is      |
-|             |             |             |             |             |
-|             |             |             |             |   reported. |
-|             |             |             |             | -   Please  |
-|             |             |             |             |             |
-|             |             |             |             |   carefully |
-|             |             |             |             |             |
-|             |             |             |             |    consider |
-|             |             |             |             |     the     |
-|             |             |             |             |             |
-|             |             |             |             | information |
-|             |             |             |             |     under   |
-|             |             |             |             |             |
-|             |             |             |             |   [Extended | |             |             |             |             |             |
-|             |             |             |             |  Discussion |
-|             |             |             |             |     of      |
-|             |             |             |             |             |
-|             |             |             |             |    Paramete |
-|             |             |             |             | rs](#Extend |
-|             |             |             |             | ed) |
-|             |             |             |             |       |
-|             |             |             |             |     that    |
-|             |             |             |             |             |
-|             |             |             |             |    explains |
-|             |             |             |             |     how to  |
-|             |             |             |             |             |
-|             |             |             |             |   configure |
-|             |             |             |             |     and use |
-|             |             |             |             |     TLS     |
-|             |             |             |             |             |
-|             |             |             |             |   Security. |
-|             |             |             |             |             |
-|             |             |             |             |  Understand |
-|             |             |             |             |     that    |
-|             |             |             |             |     there   |
-|             |             |             |             |     are IBM |
-|             |             |             |             |     Digital |
-|             |             |             |             |             |
-|             |             |             |             | Certificate |
-|             |             |             |             |     Manager |
-|             |             |             |             |     options |
-|             |             |             |             |     for     |
-|             |             |             |             |             |
-|             |             |             |             |    directly |
-|             |             |             |             |             |
-|             |             |             |             |    updating |
-|             |             |             |             |     some of |
-|             |             |             |             |     the     |
-|             |             |             |             |     follow  |
-|             |             |             |             |     fields, |
-|             |             |             |             |             |
-|             |             |             |             |    although |
-|             |             |             |             |     SMA     |
-|             |             |             |             |             |
-|             |             |             |             |  recommends |
-|             |             |             |             |     using   |
-|             |             |             |             |     this    |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |             |
-|             |             |             |             |  Parameters |
-|             |             |             |             |             |
-|             |             |             |             |   interface |
-|             |             |             |             |     to      |
-|             |             |             |             |     change  |
-|             |             |             |             |     those   |
-|             |             |             |             |             |
-|             |             |             |             |   settings, |
-|             |             |             |             |     so that |
-|             |             |             |             |     the     |
-|             |             |             |             |     LSAM    |
-|             |             |             |             |     control |
-|             |             |             |             |     file    |
-|             |             |             |             |     and     |
-|             |             |             |             |     display |
-|             |             |             |             |     will    |
-|             |             |             |             |     remain  |
-|             |             |             |             |     s       |
-|             |             |             |             | ynchronized |
-|             |             |             |             |     with    |
-|             |             |             |             |     the     |
-|             |             |             |             |     Digital |
-|             |             |             |             |             |
-|             |             |             |             | Certificate |
-|             |             |             |             |             |
-|             |             |             |             |  Manager's |
-|             |             |             |             |             |
-|             |             |             |             |   database. |
+| Security?           field   |
+        | N = no              |
+                |  determines |
+                |     if the  |
+                |     LSAM    |
+                |     will    |
+                |     engage  |
+                |     a       |
+                |     digital |
+                |             |
+                | certificate |
+                |     and     |
+                |             |
+                |    complete |
+                |     a TLS   |
+                |             |
+                |    Security |
+                |             |
+                |   handshake |
+                |     with    |
+                |     the     |
+                |     OpCon   |
+                |     server. |
+                | -   When    |
+                |     this    |
+                |     option  |
+                |     is set  |
+                |     to Y =  |
+                |     Yes,    |
+                |     the TLS |
+                |             |
+                |    Security |
+                |             |
+                |   handshake |
+                |     must    |
+                |             |
+                |    complete |
+                |     su      |
+                | ccessfully, |
+                |     or the  |
+                |             |
+                |  connection |
+                |     with    |
+                |     the     |
+                |     OpCon   |
+                |     server  |
+                |     will be |
+                |             |
+                |    refused. |
+                | -   Use the |
+                |     LSAM    |
+                |     Log     |
+                |             |
+                |    Viewers, |
+                |     log     |
+                |     view 1, |
+                |     to see  |
+                |     entries |
+                |     that    |
+                |     report  |
+                |     about   |
+                |     TLS     |
+                |             |
+                |   Security, |
+                |     whether |
+                |     it      |
+                |             |
+                |   completed |
+                |     su      |
+                | ccessfully, |
+                |     or      |
+                |     whether |
+                |     some    |
+                |     error   |
+                |     is      |
+                |             |
+                |   reported. |
+                | -   Please  |
+                |             |
+                |   carefully |
+                |             |
+                |    consider |
+                |     the     |
+                |             |
+                | information |
+                |     under   |
+                |             |
+                |   [Extended |                 |             |
+                |  Discussion |
+                |     of      |
+                |             |
+                |    Paramete |
+                | rs](#Extend |
+                | ed) |
+                |       |
+                |     that    |
+                |             |
+                |    explains |
+                |     how to  |
+                |             |
+                |   configure |
+                |     and use |
+                |     TLS     |
+                |             |
+                |   Security. |
+                |             |
+                |  Understand |
+                |     that    |
+                |     there   |
+                |     are IBM |
+                |     Digital |
+                |             |
+                | Certificate |
+                |     Manager |
+                |     options |
+                |     for     |
+                |             |
+                |    directly |
+                |             |
+                |    updating |
+                |     some of |
+                |     the     |
+                |     follow  |
+                |     fields, |
+                |             |
+                |    although |
+                |     SMA     |
+                |             |
+                |  recommends |
+                |     using   |
+                |     this    |
+                |     LSAM    |
+                |             |
+                |  Parameters |
+                |             |
+                |   interface |
+                |     to      |
+                |     change  |
+                |     those   |
+                |             |
+                |   settings, |
+                |     so that |
+                |     the     |
+                |     LSAM    |
+                |     control |
+                |     file    |
+                |     and     |
+                |     display |
+                |     will    |
+                |     remain  |
+                |     s       |
+                | ynchronized |
+                |     with    |
+                |     the     |
+                |     Digital |
+                |             |
+                | Certificate |
+                |             |
+                |  Manager's |
+                |             |
+                |   database. |
 +-------------+-------------+-------------+-------------+-------------+
 | TLS         | 30          | 1 -- 999    | Y           | -   The     |
-| handshake   |             |             |             |     number  |
-| timeout     |             |             |             |     of      |
-|             |             |             |             |     seconds |
-|             |             |             |             |     that    |
-|             |             |             |             |     the     |
-|             |             |             |             |     Agent   |
-|             |             |             |             |     com     |
-|             |             |             |             | munications |
-|             |             |             |             |             |
-|             |             |             |             |    programs |
-|             |             |             |             |     should  |
-|             |             |             |             |     wait    |
-|             |             |             |             |     for the |
-|             |             |             |             |     next    |
-|             |             |             |             |             |
-|             |             |             |             |   response, |
-|             |             |             |             |     once a  |
-|             |             |             |             |     TLS     |
-|             |             |             |             |             |
-|             |             |             |             |    Security |
-|             |             |             |             |             |
-|             |             |             |             |   handshake |
-|             |             |             |             |     has     |
-|             |             |             |             |     been    |
-|             |             |             |             |             |
-|             |             |             |             |  initiated, |
-|             |             |             |             |     before  |
-|             |             |             |             |     they    |
-|             |             |             |             |     give up |
-|             |             |             |             |     waiting |
-|             |             |             |             |     and     |
-|             |             |             |             |     reject  |
-|             |             |             |             |     the     |
-|             |             |             |             |             |
-|             |             |             |             |  connection |
-|             |             |             |             |             |
-|             |             |             |             |    attempt. |
-|             |             |             |             | -   This    |
-|             |             |             |             |     value   |
-|             |             |             |             |     must be |
-|             |             |             |             |     long    |
-|             |             |             |             |     enough  |
-|             |             |             |             |     for a   |
-|             |             |             |             |     normal  |
-|             |             |             |             |             |
-|             |             |             |             |  connection |
-|             |             |             |             |     from    |
-|             |             |             |             |     the     |
-|             |             |             |             |     OpCon   |
-|             |             |             |             |     server  |
-|             |             |             |             |     to      |
-|             |             |             |             |             |
-|             |             |             |             |    complete |
-|             |             |             |             |     su      |
-|             |             |             |             | ccessfully. |
-|             |             |             |             |     But if  |
-|             |             |             |             |     the     |
-|             |             |             |             |     time is |
-|             |             |             |             |     too     |
-|             |             |             |             |     long,   |
-|             |             |             |             |     that    |
-|             |             |             |             |     could   |
-|             |             |             |             |     create  |
-|             |             |             |             |     an      |
-|             |             |             |             |             |
-|             |             |             |             | opportunity |
-|             |             |             |             |     for     |
-|             |             |             |             |     hacking |
-|             |             |             |             |     the     |
-|             |             |             |             |             |
-|             |             |             |             |    security |
-|             |             |             |             |             |
-|             |             |             |             |  handshake. |
+| handshake           number  |
+| timeout             of      |
+                |     seconds |
+                |     that    |
+                |     the     |
+                |     Agent   |
+                |     com     |
+                | munications |
+                |             |
+                |    programs |
+                |     should  |
+                |     wait    |
+                |     for the |
+                |     next    |
+                |             |
+                |   response, |
+                |     once a  |
+                |     TLS     |
+                |             |
+                |    Security |
+                |             |
+                |   handshake |
+                |     has     |
+                |     been    |
+                |             |
+                |  initiated, |
+                |     before  |
+                |     they    |
+                |     give up |
+                |     waiting |
+                |     and     |
+                |     reject  |
+                |     the     |
+                |             |
+                |  connection |
+                |             |
+                |    attempt. |
+                | -   This    |
+                |     value   |
+                |     must be |
+                |     long    |
+                |     enough  |
+                |     for a   |
+                |     normal  |
+                |             |
+                |  connection |
+                |     from    |
+                |     the     |
+                |     OpCon   |
+                |     server  |
+                |     to      |
+                |             |
+                |    complete |
+                |     su      |
+                | ccessfully. |
+                |     But if  |
+                |     the     |
+                |     time is |
+                |     too     |
+                |     long,   |
+                |     that    |
+                |     could   |
+                |     create  |
+                |     an      |
+                |             |
+                | opportunity |
+                |     for     |
+                |     hacking |
+                |     the     |
+                |             |
+                |    security |
+                |             |
+                |  handshake. |
 +-------------+-------------+-------------+-------------+-------------+
 | TLS DCM     | (see        | Any text    | N           | This field  |
-| Application | default     |             |             | supports a  |
-| Description | text on     |             |             | description |
-|             | screen)     |             |             | of the      |
-|             |             |             |             | Digital     |
-|             |             |             |             | Certificate |
-|             |             |             |             | Manager     |
-|             |             |             |             | a           |
-|             |             |             |             | pplication, |
-|             |             |             |             | for         |
-|             |             |             |             | information |
-|             |             |             |             | purposes    |
-|             |             |             |             | only.       |
+| Application | default             | supports a  |
+| Description | text on             | description |
+|             | screen)             | of the      |
+                | Digital     |
+                | Certificate |
+                | Manager     |
+                | a           |
+                | pplication, |
+                | for         |
+                | information |
+                | purposes    |
+                | only.       |
 +-------------+-------------+-------------+-------------+-------------+
 | TLS DCM     | (see        | Must match  | Y           | This        |
 | Application | default     | the IBM i   |             | Digital     |
 | ID          | text on     | DCM App ID  |             | Certificate |
-|             | screen)     |             |             | Manager     |
-|             |             |             |             | Application |
-|             |             |             |             | ID must     |
-|             |             |             |             | match the   |
-|             |             |             |             | Application |
-|             |             |             |             | ID that was |
-|             |             |             |             | registered  |
-|             |             |             |             | in the      |
-|             |             |             |             | local IBM i |
-|             |             |             |             | Certificate |
-|             |             |             |             | Store for   |
-|             |             |             |             | this        |
-|             |             |             |             | Agent's    |
-|             |             |             |             | c           |
-|             |             |             |             | ertificate. |
-|             |             |             |             | The Agent   |
-|             |             |             |             | uses this   |
-|             |             |             |             | key value   |
-|             |             |             |             | to request  |
-|             |             |             |             | the digital |
-|             |             |             |             | certificate |
-|             |             |             |             | data that   |
-|             |             |             |             | it needs to |
-|             |             |             |             | complete a  |
-|             |             |             |             | TLS         |
-|             |             |             |             | Security    |
-|             |             |             |             | handshake   |
-|             |             |             |             | with the    |
-|             |             |             |             | OpCon       |
-|             |             |             |             | application |
-|             |             |             |             | server.     |
+|             | screen)             | Manager     |
+                | Application |
+                | ID must     |
+                | match the   |
+                | Application |
+                | ID that was |
+                | registered  |
+                | in the      |
+                | local IBM i |
+                | Certificate |
+                | Store for   |
+                | this        |
+                | Agent's    |
+                | c           |
+                | ertificate. |
+                | The Agent   |
+                | uses this   |
+                | key value   |
+                | to request  |
+                | the digital |
+                | certificate |
+                | data that   |
+                | it needs to |
+                | complete a  |
+                | TLS         |
+                | Security    |
+                | handshake   |
+                | with the    |
+                | OpCon       |
+                | application |
+                | server.     |
 +-------------+-------------+-------------+-------------+-------------+
 
 : IBM i LSAM Configuration Settings: Job Scheduling and JORS TLS
@@ -4956,11 +4988,11 @@ CCSID number, then both tables must use a CCSID number. It is not
 allowed to mix a translation table name with a CCSID character set
 number. When specifying CCSID character set numbers, specify the
 character set that pertains to the set name that is on the right side of
-the -\> arrow character. For example, in the United States, a value of
-37 (US EBCDIC) would be specified next to ASCII -\>E:, and a value of
-819 (US ASCII) would be specified next to EBCDIC-\>A:.
+the -> arrow character. For example, in the United States, a value of
+37 (US EBCDIC) would be specified next to ASCII ->E:, and a value of
+819 (US ASCII) would be specified next to EBCDIC->A:.
 
-The CCSID pair of 37 \<-\> 819 typically produces the same result on a
+The CCSID pair of 37 <-> 819 typically produces the same result on a
 US EBCDIC machine as using the default translation table names of
 QEBCDIC and QASCII. But in other countries it is more difficult to
 identify useful translation tables, and in those sites better results
@@ -5005,7 +5037,7 @@ status poll interval. After OpCon/xps sends a job status poll
 the job is either not found or is in \*OUTQ (output queue) status.
 
 :::note
-It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon/xps. The interval that controls how often OpCon/xps sends a job status request is set using the OpCon/xps **Administration function -\> Options table -\> Time Settings -\> Minutes between checking running jobs**.
+It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon/xps. The interval that controls how often OpCon/xps sends a job status request is set using the OpCon/xps **Administration function -> Options table -> Time Settings -> Minutes between checking running jobs**.
 :::
 
 In previous versions of he IBM i LSAM software, it was possible for the

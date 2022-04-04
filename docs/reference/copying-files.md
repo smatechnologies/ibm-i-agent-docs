@@ -515,7 +515,7 @@ If two or more LSAM environments will share the library SMALOG to store
 export/import save files, coordinate which environment will manage
 SMALOG contents with the SMARGZ command to purge aged save files. For
 more information about managing files stored in the SMALOG library,
-please refer to [IBM i LSAM Configuration](/configuration/configuration), subject LSAM
+please refer to [IBM i LSAM Configuration](/configuration/configuration),  subject LSAM
 Database Maintenance. A description of how the SMARGZ command may be
 used for this purpose is found in [Commands and Utilities](/commands-utilities/commands).
 
