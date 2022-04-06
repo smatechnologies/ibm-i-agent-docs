@@ -1,41 +1,18 @@
 # Manage LSAM Logging
 
-The IBM i LSAM supports active control over its logging capabilities. In
-general, logging is a local function that is not part of LSAM
-communications with OpCon, but instead it is a tool that is useful to
-system administrators, programmers, and support technicians\... as well
-as for providing proof of automation to auditors. The IBM i LSAM has the
-ability to log transaction management events at virtually every point in
-the input/output flow of its communications process. Each of these
-logging capabilities can be controlled separately. Use the logging
-control functions to:
+The IBM i LSAM supports active control over its logging capabilities. In general, logging is a local function that is not part of LSAM communications with OpCon, but instead it is a tool that is useful to system administrators, programmers, and support technicians\... as well as for providing proof of automation to auditors. The IBM i LSAM has the ability to log transaction management events at virtually every point in the input/output flow of its communications process. Each of these logging capabilities can be controlled separately. Use the logging control functions to:
 
 - Request that the system start logging a function immediately.
-- Request that the system start logging a function at the next new
-    start of the function.
+- Request that the system start logging a function at the next new start of the function.
 - Choose to log the internal transactions that the IBM i LSAM
-    generates, and/or all the input and output activity of the IBM i
-    LSAM sockets communications program.
-- Engage a secondary level of highly detailed trace logging, on a
-    limited basis, to debug complex problems. (CAUTION: Do not use
-    "trace logging" unless requested by SMA Support, to avoid excess
-    disk utilization and possible impacts on system performance.)
+    generates, and/or all the input and output activity of the IBM i LSAM sockets communications program.
+- Engage a secondary level of highly detailed trace logging, on a limited basis, to debug complex problems. (CAUTION: Do not use "trace logging" unless requested by SMA Support, to avoid excess disk utilization and possible impacts on system performance.)
 
-The setting of log controls by the start and end commands is "sticky."
-This means that after logging is set on it remains on even after the IBM
-i LSAM functions have been stopped and restarted. The same is true for
-ending logging. Once logging has been ended for a function, it does not
-start again until the start command is used, even if the programs doing
-the logging are stopped and restarted.
+The setting of log controls by the start and end commands is "sticky." This means that after logging is set on it remains on even after the IBM i LSAM functions have been stopped and restarted. The same is true for ending logging. Once logging has been ended for a function, it does not start again until the start command is used, even if the programs doing the logging are stopped and restarted.
 
 ## Manage LSAM Server Logging
 
-Managing LSAM logging starts with a Server Logging status display from
-which function keys are used to implement the Start or End requests that
-are typed into the Option fields. The function key \<**F2**\> is used to
-toggle between the LSAM server job logging functions and a separate
-display format where other LSAM utility logging options are gathered
-into a single management display.
+Managing LSAM logging starts with a Server Logging status display from which function keys are used to implement the Start or End requests that are typed into the Option fields. The function key <**F2**> is used to toggle between the LSAM server job logging functions and a separate display format where other LSAM utility logging options are gathered into a single management display.
 
 - **Screen Title**: Manage LSAM Server Logging
 - **Screen ID**: MNGLOGR1
@@ -46,37 +23,15 @@ Main Menu \> LSAM management menu (\#6) \> option 4
 
 ##### Fields
 
-- **Opt**: Type an option next to any/all of the lines, then press
-    Enter to register the request under the Pending column, or press F7
-    and/or F8 to implement the actions immediately.
+- **Opt**: Type an option next to any/all of the lines, then press Enter to register the request under the Pending column, or press <**F7**> and/or <**F8**> to implement the actions immediately.  
   - VALUES: 1 = Start, 4 = End.
-- **LSAM server/function**: The name of the LSAM server job or other
-    LSAM feature that supports Debug/Audit logging.
-- **CTL STS**: Control Status: This column shows the current settings
-    that are stored in the LSAM Parameters control file.
+- **LSAM server/function**: The name of the LSAM server job or other LSAM feature that supports Debug/Audit logging.
+- **CTL STS**: Control Status: This column shows the current settings that are stored in the LSAM Parameters control file.
   - VALUES: Yes, No.
-  - This status does not reflect whether the LSAM server jobs are
-        active or stopped. It is possible that the control file settings
-        do not match the current live job logging status, if new control
-        values were stored using F14 from this display. In that case,
-        stopping and restarting the LSAM server jobs would be necessary
-        to assure that the current Control Status reflects the actual
-        status of logging in the active LSAM server jobs. This Control
-        Status does indicate how the LSAM server jobs will handle
-        logging the next time they are started.
-- **Pending**: When the Enter key is pressed after one or more options
-    are typed next to the list lines, the Option value that was typed is
-    reflected in the Pending column.
+  - This status does not reflect whether the LSAM server jobs are  active or stopped. It is possible that the control file settings do not match the current live job logging status, if new control values were stored using <**F14**> from this display. In that case, stopping and restarting the LSAM server jobs would be necessary to assure that the current Control Status reflects the actual status of logging in the active LSAM server jobs. This Control Status does indicate how the LSAM server jobs will handle logging the next time they are started.
+- **Pending**: When the Enter key is pressed after one or more options are typed next to the list lines, the Option value that was typed is reflected in the Pending column.
   - VALUES: Start, End.
-  - Pressing Enter does not cause any change to the LSAM Parameters
-        control file or to any active LSAM server jobs. The Pending
-        column is a good way to edit the planned logging changes before
-        they are implemented, either by pressing F7 or F8 to cause an
-        immediate change to the active LSAM server jobs (and to store
-        the new values in the LSAM Parameters control file), or by
-        pressing F14 to only store the values in the LSAM Parameter
-        control for later reference the next time that the LSAM server
-        jobs are restarted.
+  - Pressing Enter does not cause any change to the LSAM Parameters control file or to any active LSAM server jobs. The Pending column is a good way to edit the planned logging changes before they are implemented, either by pressing <**F7**> or <**F8**> to cause an immediate change to the active LSAM server jobs (and to store  the new values in the LSAM Parameters control file), or by pressing F14 to only store the values in the LSAM Parameter  control for later reference the next time that the LSAM server jobs are restarted.
 
 ##### Options
 
@@ -116,7 +71,7 @@ Main Menu \> LSAM management menu (\#6) \> option 4
 
 ## Manage LSAM Utility Logging
 
-Pressing \<**F2**\> from the initial LSAM logging management display
+Pressing <**F2**> from the initial LSAM logging management display
 causes the maintenance program to switch to a different display where
 the debug/audit logging for LSAM utility features can be managed. These
 LSAM utility logging options are also each managed when selecting option
@@ -164,7 +119,7 @@ normal operations.
 
 Many of the LSAM log viewer programs may be accessed from a sub-menu
 that can be accessed from the Manage LSAM Logging function using
-function key \<**F9**\> or from the LSAM Menu \#6, option 5.
+function key <**F9**> or from the LSAM Menu \#6, option 5.
 
 - **Screen Title**: View LSAM Logs
 - **Screen ID**: MNGLOGR2
@@ -179,20 +134,12 @@ function key \<**F9**\> or from the LSAM Menu \#6, option 5.
 ##### Fields
 
 Type a number (1 -- 14) into the Selection entry field and press
-\<**Enter**\> to execute the selected viewer.
+<**Enter**> to execute the selected viewer.
 
-+-----------------+----------------+---------------------------------+
-| Field           | Default        | Description                     |
-|                 |                |                                 |
-|                 | (Valid Values) |                                 |
-+=================+:==============:+=================================+
-| Selection entry | none (1 -- 14) | Type the number of the view     |
-|                 |                | function to use into this       |
-|                 |                | field. Press \<**Enter**\> to   |
-|                 |                | start the viewer.               |
-+-----------------+----------------+---------------------------------+
 
-:  
+| Field           | Default (Valid Values)       | Description                     |
+| -------         | ------------ | ------------------ |
+| Selection entry | none (1 -- 14) | Type the number of the view function to use into this field. Press <**Enter**> to start the viewer.               |
 
 ##### Options
 

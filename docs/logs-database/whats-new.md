@@ -1,5 +1,5 @@
 ---
-sidebar_label: "What's New"
+sidebar_label: "What's New with Log File Management"
 ---
 
 # What's New with Log File Management
@@ -16,41 +16,22 @@ Although there are default settings implemented for all the log file management 
 
 ## No Copies of IBM i Job Log Reports
 
-One of the most important improvements is the new option to prevent the
-LSAM from making copies of every IBM i job log report (that is, for jobs
-started by OpCon). The new default is to NOT copy the job logs. Instead,
-the LSAM will find and convert job log reports directly from output
-queues whenever they are requested by OpCon job output retrieval (JORS).
+One of the most important improvements is the new option to prevent the LSAM from making copies of every IBM i job log report (that is, for jobs started by OpCon). The new default is to NOT copy the job logs. Instead, the LSAM will find and convert job log reports directly from output queues whenever they are requested by OpCon job output retrieval (JORS).
 
-At the same time, the LSAM now supports retrieval of incomplete job log
-reports from active jobs. Use the OpCon EM user interface function
-"View Output" to see any job log report that still exists in the IBM i
-system, including viewing the logs of active jobs. (View Output is
-typically accessed using a right mouse click on the line or object that
-represents a job in an OpCon schedule.)
+At the same time, the LSAM now supports retrieval of incomplete job log reports from active jobs. Use the OpCon EM user interface function "View Output" to see any job log report that still exists in the IBM i system, including viewing the logs of active jobs. (View Output is typically accessed using a right mouse click on the line or object that represents a job in an OpCon schedule.)
 
 ## Learn About Different Types of LSAM Log Files
 
 To properly manage the LSAM logging function, it is important to
 understand the different types of log files:
 
-- [Daily operational logs] are logging operations that cannot be     turned off by the user. They are required for correct operation of
-    the LSAM features, or to store a critical history of operations.
-- [Debug/Audit logging] is a capability that can be turned on or     off by LSAM administrators. This type of logging supports diagnosis
-    of new or failing automation procedures and it also provides a
-    detailed audit trail of automation.
-- [Trace logging] is an exceptional kind of logging that     generates a very large amount of data in a very short time. This
-    type of logging should only be used when specially requested.
+- **Daily operational logs** are logging operations that cannot be turned off by the user. They are required for correct operation of the LSAM features, or to store a critical history of operations.
+- **Debug/Audit logging** is a capability that can be turned on or off by LSAM administrators. This type of logging supports diagnosis of new or failing automation procedures and it also provides a detailed audit trail of automation.
+- **Trace logging** is an exceptional kind of logging that generates a very large amount of data in a very short time. This type of logging should only be used when specially requested.
 
 ## LSAM Periodic Database Maintenance Improvements
 
-It is important to understand the improvements in the way files are
-purged and reorganized by LSAM tools. Previously, many LSAM users were
-experiencing excessive disk space utilization. The changes to LSAM
-Parameters (refer to Configuration)and some LSAM utility commands and
-programs now make it easy to avoid this problem. Strategies for managing
-disk utilization are enabled by the various tools and parameters
-explained throughout this topic.
+It is important to understand the improvements in the way files are purged and reorganized by LSAM tools. Previously, many LSAM users were experiencing excessive disk space utilization. The changes to LSAM Parameters (refer to Configuration)and some LSAM utility commands and programs now make it easy to avoid this problem. Strategies for managing disk utilization are enabled by the various tools and parameters explained throughout this topic.
 
 ## SMASUP Improved with Limited Log File Extracts
 
