@@ -132,33 +132,16 @@ Main Menu \> SMA File Transfer menu (\#8) \> Work with SMAFT jobs (\#3)
 
 ## Manage SMAFT Logging
 
-The IBM i LSAM supports active control over SMAFT logging capabilities.
-Logging is a local function useful to system administrators, programmers
-and support technicians. For a complete description of how to use the
-logging features in general, refer to [Log File and Database Management](/logs-database/overview)
-. The SMAFT logging control function is described below, under SMA
-File Transfer Screens and Windows.
+The IBM i LSAM supports active control over SMAFT logging capabilities. Logging is a local function useful to system administrators, programmers and support technicians. For a complete description of how to use the  logging features in general, refer to [Log File and Database Management](../logs-database/overview.md). The SMAFT logging control function is described below, under SMA File Transfer Screens and Windows.
 
 ### View LSAM Logs
 
-This menu option provides direct access to the list of available LSAM
-log viewers. This is the same function that is available from the LSAM
-Management menu option \# 5. It is reproduced here for the convenience
-of technical support personnel who may be diagnosing SMA File Transfer
-jobs. For more information about how to use the log views, refer to
-[Viewing the LSAM Log Files](/logs-database/management#viewing-the-lsam-log-files)
-.
+This menu option provides direct access to the list of available LSAM log viewers. This is the same function that is available from the LSAM Management menu option \# 5. It is reproduced here for the convenience of technical support personnel who may be diagnosing SMA File Transfer jobs. For more information about how to use the log views, refer to [Viewing the LSAM Log Files](../logs-database/management.md#viewing-the-lsam-log-files).
 
 ### View SMAFT Logs
 
-This menu option provides direct access to the list of available SMA
-File Transfer log viewers. For general information about how to use the
-log views, refer to [Viewing the SMAFT Log Files](#Viewing)
-. Specific information about the SMA File Transfer log views is
-available below, under SMA File Transfer Screens and Windows.
+This menu option provides direct access to the list of available SMA File Transfer log viewers. For general information about how to use the log views, refer to [Viewing the SMAFT Log Files](#Viewing). Specific information about the SMA File Transfer log views is available below, under SMA File Transfer Screens and Windows.
 
 ## SMAFT Parameters
 
-The SMAFT Parameters function is used to set options that govern how the
-IBM i LSAM supports SMA File Transfer jobs. This option is discussed in
-detail below, under SMA File Transfer Screens and Windows.
+The SMAFT Parameters function is used to set options that govern how the IBM i LSAM supports SMA File Transfer jobs. This option is discussed in detail below, under SMA File Transfer Screens and Windows.

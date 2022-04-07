@@ -132,7 +132,7 @@ correct IBM Digital Certificate Manager Store's Application(s).
     and returns to the menu.
 - **PageDown/PageUp**: Used to move between the two pages of the SMAFT
     Parameters. Updates on page one are not completed until the
-    \<**Enter**\> key is pressed on page two.
+    <**Enter**> key is pressed on page two.
 
 ## SMAFT Agent Network Address Translation Table
 
@@ -196,8 +196,8 @@ Address Translation (\#8)
 
 The Manage SMAFT Logging screen, by itself, is an inquiry-only screen
 that shows the current status of the IBM i SMA File Transfer
-communications logging features. The functions keys \<**F7**\> and
-\<**F8**\> are used to actually control the logging functions. SMA File
+communications logging features. The functions keys <**F7**> and
+<**F8**> are used to actually control the logging functions. SMA File
 Transfer logging can also be controlled from the general LSAM Logging
 management screen, found in option \# 4 of the LSAM Management Menu
 (menu \# 6 from the LSAM Main Menu).
@@ -217,22 +217,14 @@ Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT Logging (\#5)
 
 - **F3=Exit**: Returns to the menu.
 - **F5=Refresh**: Re-displays the most current log control settings.
-- **F7=STRSSFTLOG**: Refer to a full description of the STRSFTLOG
-    command below.
-- **F8=ENDSFTALOG**: Refer to a full description of the ENDSFTLOG
-    command in [ENDSFTLOG -- End SMAFT Logging](#ENDSFTLO)
-    .
-- **F9=View logs**: Refer to a full description of the View SMAFT logs
-    function in [View SMAFT Logs](#View2).
+- **F7=STRSSFTLOG**: Refer to a full description of the STRSFTLOG command below.
+- **F8=ENDSFTALOG**: Refer to a full description of the ENDSFTLOG command in [ENDSFTLOG -- End SMAFT Logging](#endsftlog-end-smaft-logging).
+- **F9=View logs**: Refer to a full description of the View SMAFT logs function in [View SMAFT Logs](../file-transfer/menu.md#View_SMAFT_Logs).
 - **F12=Cancel**: Return to the menu.
 
 ## STRSFTLOG -- Start SMAFT logging
 
-Using \<**F7**\> (STRSFTLOG) from the Manage SMAFT Logging screen, or
-typing the STRSFTLOG command, presents the prompted set of parameters
-for the command STRSFTLOG. The command parameter scan be changed from
-the default values, making it possible to choose only the logging
-features that are needed for a particular situation.
+Using <**F7**> (STRSFTLOG) from the Manage SMAFT Logging screen, or typing the STRSFTLOG command, presents the prompted set of parameters for the command STRSFTLOG. The command parameter scan be changed from the default values, making it possible to choose only the logging features that are needed for a particular situation.
 
 ##### Start LSAM Logging
 ```
@@ -249,13 +241,6 @@ Clear SMAFT Server comm log? . .   *YES          *YES, *NO
 Detail SMAFT Server comm log?  .   *NO           *YES, *NO                     
                                                                                
                                                                                
-                                                                               
-                                                                               
-                                                                               
-                                                                               
-                                                                               
-                                                                               
-                                                                               
                                                                         Bottom 
 F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
 F24=More keys                                                                  
@@ -263,31 +248,24 @@ F24=More keys
 
 ##### Menu Pathways
 
-- Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT logging
-    (\#5) \>F7
-- From command entry, using the LSAM environment library list, enter
-    STRSFTLOG
+- Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT logging (\#5) \>F7
+- From command entry, using the LSAM environment library list, enter STRSFTLOG
 
 ##### Fields
 
-This screen is an IBM i command prompting screen. It behaves according
-to the operating system rules for prompted commands (similar, but not
-the same as screens that are presented by LSAM programs). The function
-controlled by each command parameter (screen field) is shown in the
-table below.
+This screen is an IBM i command prompting screen. It behaves according to the operating system rules for prompted commands (similar, but not the same as screens that are presented by LSAM programs). The function controlled by each command parameter (screen field) is shown in the table below.
 
 :::note
 It is only possible to choose the CLEAR (\*YES) option for a log file if that logging feature is already stopped. If it is not stopped, the CLEAR function will fail and logging may not start up correctly. If the file is not being cleared, it does not matter if logging is already started.
 :::
 
 
-| Field                   | Default (Valid Values)       | Description             |
-| -----                   | ------                 |   -------                      |
-| OPTION (When to start logging) | \*IMMED (\*CNTRLD) | -   **\*IMMED** (immediate) causes a control message to be sent to either of the programs that perform logging functions, triggering them to make the necessary  change. |
+| Field                           | Default (Valid Values)  | Description             |
+| -----                           | ------                  |    -------                      |
+| OPTION (When to start logging)  | \*IMMED (\*CNTRLD)      | -   **\*IMMED** (immediate) causes a control message to be sent to either of the programs that perform logging functions, triggering them to make the necessary  change. |
 |                         |                | **Note:** The \*IMMED value also causes the configuration control file to be updated, so that the requested change always acts as a permanent change to the IBM i LSAM settings. |
 |                         |                | -   **\*CNTRLD** tells the command processor program to store the change of the logging parameters in the IBM i LSAM configuration control file (LSAPARF00). The change does not take effect until the next time that  either program is   restarted. 
-| FTSCMN (Log SMAFT Server communications?) | \*YES (\*NO) | -   **\*YES** tells the system to have the SMAFT Server communications programs (SMAFTSR00 and SMAFTSR01) log all of their input 
-and output activity to the log file SFTLOGF10 as it runs in an IBM i job called SMAFTS.  |
+| FTSCMN (Log SMAFT Server communications?) | \*YES (\*NO) | -   **\*YES** tells the system to have the SMAFT Server communications programs (SMAFTSR00 and SMAFTSR01) log all of their input and output activity to the log file SFTLOGF10 as it runs in an IBM i job called SMAFTS.  |
 |                         |                | -   **\*NO** tells the command processor not to perform any changes to the logging of the SMAFT S Setting this value to \*NO does not cause any  active logging to stop, or turn off the log parameter in the IBM i configuration control file.    |
 | CLRFTSCMN (Clear SMAFT Server comm log?) | \*YES (\*NO) | Have the system automatically clear the SMAFT Server communications log file (SFTLOGF10) so there is only one set of log entries that are for the current logging session.                |
 |                         |                | -   **\*YES** clears the file when **Enter** is pressed, before the new log entries are made. (This logging function must be stopped for the Clear to be successful.)        |
@@ -295,7 +273,7 @@ and output activity to the log file SFTLOGF10 as it runs in an IBM i job called 
 |                         |                | **Note**: The system can clear the file using the STRSMALOG command or by using the SMASUP command. Optionally, an administrator, programmer or support technician with proper authority can clear the log file manually from command entry any time the file is not in active use.             |
 | FTSDUMP (Detail SMAFT Server comm log?) | \*NO (\*YES) | -   **\*YES**, the SMAFT Server communications program writes multiple log entries for every transaction that it receives from the port where it is listening. On an active system, a great many records might be logged very quickly. This has the potential of consuming a very large amount of disk space. The detailed logging feature should be used only for a very limited time to debug critical program problems. The detailed logging function is typically used in a test environment by programmers.     |
 |                         |                | -   **\*NO** prevents turning on the detail logging function when logging starts.     |
-|                         |                | **Note:** The detail logging function can only be turned off by completely stopping the log feature. Refer to [Turn Off Debug Logging](/logs-database/procedures.md#Turn_Off_Debug_Logging). There is no control that may be used to stop the detail logging function without also stopping all logging for the sockets communications program. If detail logging is turned on and it should end while continuing to perform standard debug logging, then all logging must be temporarily ended for the communications program and then restarted with the FTSDUMP parameter set to \*NO.   |
+|                         |                | **Note:** The detail logging function can only be turned off by completely stopping the log feature. Refer to [Turn Off Debug Logging](../logs-database/procedures.md#Turn_Off_Debug_Logging). There is no control that may be used to stop the detail logging function without also stopping all logging for the sockets communications program. If detail logging is turned on and it should end while continuing to perform standard debug logging, then all logging must be temporarily ended for the communications program and then restarted with the FTSDUMP parameter set to \*NO.   |
 | FTACMN (Log SMAFT Agent communications?)   | \*YES (\*NO) | -   **\*YES** tells the system to have the SMAFT Agent communications programs (SMAFTAR01) log all of its input and output activity to the log file SFTLOGF00.          |
 |                         |                | **Note:** The SMAFT Agent program runs as the primary program in a job named by OpCon/xps when SAM submits a file transfer job start request to the IBM i LSAM. When the job ends, the SMAFT Agent communications program ends. This log flag will control the logging of each submitted job.      |
 |                         |                | -   **\*NO** tells the command processor not to perform any changes to the logging of the SMAFT Agent communications program.         |
@@ -319,39 +297,22 @@ None
 
 - **F3=Exit**: Abandons all changes and return to the menu.
 - **F4=Prompt**: Shows all valid values for a parameter field.
-- **F5=Refresh**: Resets all the command parameters to their default
-    values.
-- **F12=Cancel**: Abandons all changes and returns to the Manage LSAM
-    Logging status display.
-- **F13=How to use this display**: The IBM default information that
-    applies to all command prompting displays.
+- **F5=Refresh**: Resets all the command parameters to their default values.
+- **F12=Cancel**: Abandons all changes and returns to the Manage LSAM Logging status display.
+- **F13=How to use this display**: The IBM default information that applies to all command prompting displays.
 - **F24=More keys**: Shows other function keys that may be used.
 
 ##### More Keys
 
-- **F9=All parameters**: This function key has no effect on this
-    display.
-- **F11=Keywords**: Toggles the display between the parameter key
-    words and the prompting text that describes each parameter.
-- **F14=Command string**: Shows the command and its parameters in the
-    form that would be used if the command were typed manually. This
-    command appears with a question mark in front of it because it was
-    forced into prompt mode by a program call.
-- **F15=Error messages**: Shows any error messages that a command
-    validation program has produced, but this command has no command
-    validation program.
-- **F16=Command complete**: Has the same effect as pressing
-    \<**Enter**\> to initiate the command action. Verify that the
-    parameter values are set correctly before using this command key or
-    \<**Enter**\>.
+- **F9=All parameters**: This function key has no effect on this display.
+- **F11=Keywords**: Toggles the display between the parameter key words and the prompting text that describes each parameter.
+- **F14=Command string**: Shows the command and its parameters in the form that would be used if the command were typed manually. This command appears with a question mark in front of it because it was forced into prompt mode by a program call.
+- **F15=Error messages**: Shows any error messages that a command validation program has produced, but this command has no command validation program.
+- **F16=Command complete**: Has the same effect as pressing <**Enter**> to initiate the command action. Verify that the parameter values are set correctly before using this command key or <**Enter**>.
 
-## ENDSFTLOG -- End SMAFT Logging
+## ENDSFTLOG End SMAFT Logging
 
-The ENDSFTLOG command presents a prompted set of parameters for the
-ENDLOGCMD command. The command parameters can be changed from the
-default values, enabling a choice of the logging functions to stop and
-how to stop them. Logging can be stopped immediately, or it can wait
-until the next time the IBM i LSAM facility is stopped.
+The ENDSFTLOG command presents a prompted set of parameters for the ENDLOGCMD command. The command parameters can be changed from the default values, enabling a choice of the logging functions to stop and how to stop them. Logging can be stopped immediately, or it can wait until the next time the IBM i LSAM facility is stopped.
 
 ### End SMAFT Logging
 ```
@@ -370,18 +331,12 @@ until the next time the IBM i LSAM facility is stopped.
 
 ##### Menu Pathways
 
-- Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT logging
-    (\#5) \>F8
-- From command entry, using the LSAM environment library list, enter
-    ENDSFTLOG
+- Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT logging (\#5) \>F8
+- From command entry, using the LSAM environment library list, enter ENDSFTLOG
 
 ##### Fields
 
-This screen is an IBM i command prompting screen. It behaves according
-to the operating system rules for prompted commands (similar, but not
-the same as screens that are presented by LSAM programs). The function
-controlled by each command parameter (screen field) is shown in the
-table below.
+This screen is an IBM i command prompting screen. It behaves according to the operating system rules for prompted commands (similar, but not the same as screens that are presented by LSAM programs). The function controlled by each command parameter (screen field) is shown in the table below.
 
 
 | Field                   | Default (Valid Values) | Description             |
@@ -398,68 +353,43 @@ table below.
 
 - **F3=Exit**: Abandons all changes and returns to the menu.
 - **F4=Prompt**: Shows all valid values for a parameter field.
-- **F5=Refresh**: Resets all the command parameters to their default
-    values.
-- **F12=Cancel**: Abandons all changes and returns to the Manage LSAM
-    Logging status display.
-- **F13=How to use this display**: The IBM default information that
-    applies to all command prompting displays.
+- **F5=Refresh**: Resets all the command parameters to their default values.
+- **F12=Cancel**: Abandons all changes and returns to the Manage LSAM Logging status display.
+- **F13=How to use this display**: The IBM default information that applies to all command prompting displays.
 - **F24=More keys**: Shows other function keys that may be used.
 
 ##### More Keys
 
-- **F9=All parameters**: This function key has no effect on this
-    display
-- **F11=Keywords**: Toggles the display between the parameter key
-    words and the prompting text that describes each parameter.
-- **F14=Command string**: Shows the command and its parameters in the
-    form that would be used if the command were typed manually. This
-    command appears with a question mark in front of it because it was
-    forced into prompt mode by a program call.
-- **F15=Error messages**: Shows any error messages that a command
-    validation program has produced. This command has no command
-    validation program.
-- **F16=Command complete**: Has the same effect as pressing
-    \<**Enter**\> to initiate the command action. Verify that the
-    parameter values are set correctly before using this command key or
-    \<**Enter**\>.
+- **F9=All parameters**: This function key has no effect on this display
+- **F11=Keywords**: Toggles the display between the parameter key words and the prompting text that describes each parameter.
+- **F14=Command string**: Shows the command and its parameters in the form that would be used if the command were typed manually. This command appears with a question mark in front of it because it was forced into prompt mode by a program call.
+- **F15=Error messages**: Shows any error messages that a command validation program has produced. This command has no command validation program.
+- **F16=Command complete**: Has the same effect as pressing <**Enter**> to initiate the command action. Verify that the parameter values are set correctly before using this command key or <**Enter**>.
 
 ## Viewing the SMAFT Log Files
 
-The available SMAFT log viewer functions may be accessed from a sub-menu
-that can be accessed from the Manage SMAFT Logging function using
-function key \<**F9**\> or from the SMA File Transfer menu \#8, option
-6.
+The available SMAFT log viewer functions may be accessed from a sub-menu that can be accessed from the Manage SMAFT Logging function using function key <**F9**> or from the SMA File Transfer menu \#8, option 6.
 
 - **Screen Title**: View LSAM Logs
 - **Screen ID**: SFTLOGR2
 
 ##### Menu Pathways
 
-- Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT logging
-    (\#5) \>F9
-- From command entry, using the LSAM environment library list, enter
-    any one of the commands that appears on the View logs sub-menu
+- Main Menu \> SMA File Transfer menu (\#8) \> Manage SMAFT logging (\#5) \>F9
+- From command entry, using the LSAM environment library list, enter any one of the commands that appears on the View logs sub-menu
 
 ##### Fields
 
-Type a number (1 -- 4) into the Selection entry field and press
-\<**Enter**\> to execute the selected viewer.
+Type a number (1 -- 4) into the Selection entry field and press <**Enter**> to execute the selected viewer.
 
 
 | Field           | Default (Valid Values) | Description                     |
 |------ | ------| -------- |
-| Selection entry | none (1 -- 14) | Type the number of the view function to use into this field. Press \<**Enter**\> to start the viewer.              |
+| Selection entry | none (1 -- 14) | Type the number of the view function to use into this field. Press <**Enter**> to start the viewer.              |
 
 ##### Options
 
-The individual log viewers are not documented in this online help. These
-viewers are tools meant for use by support and technical personnel. The
-technical construction and operation of the LSAM software must be
-understood in order for these log views to be useful. The current set of
-SMA File Transfer viewing functions is simply a group of convenience
-commands that engage the IBM i command DSPPFM. The viewers do not format
-the raw data from the log files at this time.
+The individual log viewers are not documented in this online help. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. The current set of SMA File Transfer viewing functions is simply a group of convenience commands that engage the IBM i command DSPPFM. The viewers do not format the raw data from the log files at this time.
 
 ##### Functions
 
