@@ -26,6 +26,6 @@ The default settings that allow the LSAM to automatically reorganize database fi
 
 Remember that the SMARGZ command will temporarily suspend the LSAM server jobs so that files can be reorganized. However, the SMARGZ command will also restart the LSAM server jobs when it has completed its tasks.
 
-For more information about using the SMARGZ command, refer to [Commands and Utilities](/commands-utilities/commands.md). Also
-refer to [IBM i LSAM Configuration](/configuration/configuration) for more information about letting LSAM automatic procedures
+For more information about using the SMARGZ command, refer to [Commands and Utilities](../commands-utilities/commands.md). Also
+refer to [IBM i LSAM Configuration](../configuration/configuration.md) for more information about letting LSAM automatic procedures
 execute the SMARGZ command.
