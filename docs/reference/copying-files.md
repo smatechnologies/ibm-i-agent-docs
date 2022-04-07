@@ -40,7 +40,7 @@ detail about each step in the procedure.
 ### Configure Export/Import options (one time)
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+    on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **3** to select the Events and Utilities sub-menu in the SMA
     Main Menu.
 3. Enter **10** to choose the Data Export/Import Utilities Menu in the
@@ -515,9 +515,9 @@ If two or more LSAM environments will share the library SMALOG to store
 export/import save files, coordinate which environment will manage
 SMALOG contents with the SMARGZ command to purge aged save files. For
 more information about managing files stored in the SMALOG library,
-please refer to [IBM i LSAM Configuration](/configuration/configuration),  subject LSAM
+please refer to [IBM i LSAM Configuration](../configuration/configuration.md),  subject LSAM
 Database Maintenance. A description of how the SMARGZ command may be
-used for this purpose is found in [Commands and Utilities](/commands-utilities/commands).
+used for this purpose is found in [Commands and Utilities](../commands-utilities/commands.md).
 
 The job description and job queue fields are optionally used whenever an
 export or import procedure is set to run as a batch job instead of

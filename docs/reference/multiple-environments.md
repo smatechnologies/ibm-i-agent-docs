@@ -103,7 +103,7 @@ The next step requires an understanding of how to configure OpCon options at the
 21.  **Add a new machine definition** to the machine table at the OpCon Enterprise Manager (EM), using the new LSAM Name.
     
     a. Specify that the machine type is IBM i.
-22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to the [STRSMA Command](/operations/lsam#the-strsma-command). Be sure to specify the new environment name for the ENV parameter of this command:
+22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command). Be sure to specify the new environment name for the ENV parameter of this command:
 ```
 STRSMA ENV(alt_environment_name)
 ```
@@ -138,7 +138,7 @@ More detail about the configuration fields described below may be found in the C
 
 ###### Fields
 
-For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](/configuration/configuration) of this online help.
+For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](../configuration/configuration.md) of this online help.
 
 - **LSAM environment Name**: This is the name that was assigned to the new LSAM environment, also specified when the LSAINIT command was started. Normally, this field value should not be changed. It represents the LSAM environment library list that was defined for the new LSAM environment.
 - **SMAGPL alternate library name**: This library name was already chosen when the alternate LSAM environment library list was defined in the setup steps of the previous section. Confirm that the name of the new SMAGPL library appears here, but if not, type in the correct name. Do not share the same SMAGPL library that is already used by a different LSAM environment.

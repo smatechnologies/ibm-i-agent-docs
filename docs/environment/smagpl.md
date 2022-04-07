@@ -46,7 +46,7 @@ Following an upgrade to the IBM i LSAM version 04.00.03, the default LSAM enviro
 - SMAPGM = LSAM base and/or patched programs
 - QGPL = IBM General Purpose Library (system management utility objects)
 
-There is an LSAM installation option that allows existing or new LSAM clients to choose QGPL as the location for LSAM environment controls (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](/installation/installation)) for installation instructions). The procedure for setting up this option is explained below. But even when the LSAM environment controls are installed to library QGPL, the new library SMAGPL must still be used because it contains the PTF control structures, and these may not be moved to the QGPL library. If the QGPL location option is selected, then the SMADEFAULT environment library list would be changed to put library QGPL in a leading position, as follows:
+There is an LSAM installation option that allows existing or new LSAM clients to choose QGPL as the location for LSAM environment controls (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](../installation/installation.md)) for installation instructions). The procedure for setting up this option is explained below. But even when the LSAM environment controls are installed to library QGPL, the new library SMAGPL must still be used because it contains the PTF control structures, and these may not be moved to the QGPL library. If the QGPL location option is selected, then the SMADEFAULT environment library list would be changed to put library QGPL in a leading position, as follows:
 
 - QTEMP = temporary library for each unique job
 - QGPL = IBM General Purpose Library (system management utility objects)

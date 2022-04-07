@@ -230,9 +230,9 @@ If changes are required to make the LSAM log file purging more effective, it wil
 - Stop and restart the LSAM server jobs so that the new purge control values will be in effect.
 - Allow the LSAM server jobs to operate during at least one cycle that passes the Maintenance Hour specified in the LSAM Parameters. (**HINT:** It is possible to change the maintenance hour to some time in the near future, but again, the LSAM server jobs must be stopped and restarted for this change to take effect. Do not forget to reset the Maintenance Hour back to its usual time after the out-of-cycle purge process has completed.)
 
-The other LSAM maintenance process that is critical is to reorganize the LSAM database using the SMARGZ command. This command and its operation are explained in detail in the [Log File and Database Management](/logs-database/overview) section.
+The other LSAM maintenance process that is critical is to reorganize the LSAM database using the SMARGZ command. This command and its operation are explained in detail in the [Log File and Database Management](../logs-database/overview.md) section.
 
-The SMARGZ command will either be executed automatically during the next Maintenance Hour, if the LSAM Parameters controlling this option are set accordingly, or else the SMARGZ command can be executed either from the IBM i command entry line (within the LSAM menu system so that the LSAM library list is in effect), or by configuring an OpCon IBM i Batch Job with the SMARGZ command in the "CALL" box. Details about how to use these strategies are documented in the [Log File and Database Management](/logs-database/overview) section of the **IBM i LSAM** online help.
+The SMARGZ command will either be executed automatically during the next Maintenance Hour, if the LSAM Parameters controlling this option are set accordingly, or else the SMARGZ command can be executed either from the IBM i command entry line (within the LSAM menu system so that the LSAM library list is in effect), or by configuring an OpCon IBM i Batch Job with the SMARGZ command in the "CALL" box. Details about how to use these strategies are documented in the [Log File and Database Management](../logs-database/overview.md) section of the **IBM i LSAM** online help.
 
 ### Backing Up the LSAM Environment
 
@@ -250,7 +250,7 @@ For alternate LSAM environments, change the name of the SMAGPL library and speci
 
 Choose 1) or 2):
 
-1. *EITHER*: Terminate the LSAM by issuing the **ENDSMASYS** command. Newer versions of this command may support an optional ENV parameter that can be used to designate the name of the LSAM environment to be stopped. Use F4=Prompt to determine if the ENV parameter is supported. Otherwise, it is necessary to set the job's library list to the LSAM environment library list. This can be done using the SMASETLIBL command. Refer to [SMASETLIBL](/environment/commands#smasetlibl) for more information about LSAM environments and the SMASETLIBL command.
+1. *EITHER*: Terminate the LSAM by issuing the **ENDSMASYS** command. Newer versions of this command may support an optional ENV parameter that can be used to designate the name of the LSAM environment to be stopped. Use F4=Prompt to determine if the ENV parameter is supported. Otherwise, it is necessary to set the job's library list to the LSAM environment library list. This can be done using the SMASETLIBL command. Refer to [SMASETLIBL](../environment/commands.md#smasetlibl) for more information about LSAM environments and the SMASETLIBL command.
 2. *OR*: From LSAM menus, terminate the LSAM with the following steps:
 
 1. From the **LSAM Master Menu**, enter **6**.
@@ -359,7 +359,7 @@ It is normally possible to copy the following text and paste it into the IBM i w
     SPCAUT(\*JOBCTL \*SPLCTL \*SAVSYS)**
 
 :::note
-The \*ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#Introduc) as well as in the [LSAM Security and Object Authority](/security/strategy) section of the **IBM i LSAM** online help.
+The \*ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#Introduc) as well as in the [LSAM Security and Object Authority](../security/strategy.md) section of the **IBM i LSAM** online help.
 :::
 
 []{#Prepare_the_Installation_Library}Prepare the Installation Library
@@ -450,7 +450,7 @@ More information on this subject is offered in the LSAM Environment Management s
 This topic provides guidance for configuring the LSAM installation or
 upgrade to support various optional configurations of some LSAM
 utilities. Information about how the LSAM standard utilities library
-SMAGPL is used is provided in the [LSAM Environment Management](/environment/index) topic.
+SMAGPL is used is provided in the [LSAM Environment Management](../environment/index.md) topic.
 
 Existing LSAM installations might have chosen in the past to install the
 LSAM utilities in the IBM library QGPL, or to allow the utilities to
@@ -748,7 +748,7 @@ SMASETUP Second Prompt Screen
 #### LSAM Installation Configuration Values
 
 Detailed information about the individual fields showing on the second
-installation prompt screen (format SMASETR2) are provided in the [IBM i LSAM Configuration](/configuration/configuration) section of the
+installation prompt screen (format SMASETR2) are provided in the [IBM i LSAM Configuration](../configuration/configuration.md) section of the
 **IBM i LSAM** online help.
 
 Use F4=Prompt while the cursor is positioned in the Internet Address
@@ -1164,7 +1164,7 @@ profile to complete its tasks. However, if revoking the \*ALLOBJ special
 authority, it may necessary to grant authority to the objects that
 SMANET will use when submitting jobs. A more detailed explanation of
 this step, including references to additional object authorities that
-may be required, can be found in [LSAM Security and Object Authority](/security/strategy)
+may be required, can be found in [LSAM Security and Object Authority](../security/strategy.md)
 .
 
 The batch job user profile specified in the OpCon job master record, for
@@ -1176,7 +1176,7 @@ function "view output." Instead, diagnostic information is available
 from the active job log of the LSAM server job TXMMNG.
 
 :::note
-For additional information about diagnosing job start failures, see [Guide to Job Failure Diagnosis](/operations/automation#guide-to-job-failure-diagnosis).
+For additional information about diagnosing job start failures, see [Guide to Job Failure Diagnosis](../operations/automation.md#guide-to-job-failure-diagnosis).
 :::
 
 As an example, to assure that the QSYSOPR profile has authority to use
@@ -1209,14 +1209,14 @@ QSYS/QPRINT.)
 
 ## Configure and Operate the LSAM
 
-To begin using the LSAM, refer to [IBM i LSAM Configuration](/configuration/configuration) to configure and
+To begin using the LSAM, refer to [IBM i LSAM Configuration](../configuration/configuration.md) to configure and
 operate the LSAM. In summary, the following basic steps are required to
 initiate LSAM operations for the first time:
 
 [Initiate LSAM Operations]
 
 1. Log on to an IBM i workstation session as QSECOFR or as the user
-    profile designated as the LSAM Administrator. Refer to [LSAM Security and Object Authority](/security/strategy)
+    profile designated as the LSAM Administrator. Refer to [LSAM Security and Object Authority](../security/strategy.mdmd)
      for more information about creating an LSAM Administrator
     user profile.
 
@@ -1234,7 +1234,7 @@ initiate LSAM operations for the first time:
     that will be used by OpCon to communicate with this LSAM.
 
 4. On the OpCon server, configure the OpCon machine table to add a
-    record for the LSAM Name. Please refer to [Extended Discussion of Parameters](/configuration/configuration) for some
+    record for the LSAM Name. Please refer to [Extended Discussion of Parameters](../configuration/configuration.md) for some
     important notes about setting some of the Advanced values in the
     OpCon/xps machine table.
 
@@ -1293,8 +1293,7 @@ authority, once they have developed an authority matrix that allows user
 SMANET to submit jobs to run under other user profiles. For detailed
 instructions about how to manage the IBM i Agent software and the system
 configuration if SMANET will not have \*ALLOBJ special authority refer
-to [LSAM Security and Object Authority](/security/strategy)
-.
+to [LSAM Security and Object Authority](../security/strategy.md).
 
 :::caution
 Even if the SMANET user profile is restricted, care must still be used when granting access to the LSAM maintenance functions for Operator Replay, Multi-Step Job script maintenance, and Restricted Mode script maintenance, so that security loopholes may not be created through these points of access.
