@@ -1216,7 +1216,7 @@ initiate LSAM operations for the first time:
 [Initiate LSAM Operations]
 
 1. Log on to an IBM i workstation session as QSECOFR or as the user
-    profile designated as the LSAM Administrator. Refer to [LSAM Security and Object Authority](../security/strategy.mdmd)
+    profile designated as the LSAM Administrator. Refer to [LSAM Security and Object Authority](../security/strategy.md)
      for more information about creating an LSAM Administrator
     user profile.
 

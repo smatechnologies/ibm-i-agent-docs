@@ -10,7 +10,7 @@ Creating and using extra IBM i LSAM environments requires an understanding of Op
 
 There are two approaches that SMA supports for installing an alternate LSAM environment:
 
-- Install a new environment from the installation save file using the SMASETUP command (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](../installation/installation)).
+- Install a new environment from the installation save file using the SMASETUP command (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](../installation/installation.md)).
 - Use the IBM i CPYLIB command (or a similar method for duplicating libraries, such as Save/Restore) to clone an existing LSAM environment and adapt it to an alternate environment with a different library list.
 
 Installing a new copy of the LSAM (especially using the LI040005 installation save file) has the advantage of using the least amount of disk space for the alternate environment. However, the CPYLIB method offers the advantage of preserving existing automation strategies that may have already been configured in the source environment.
@@ -27,7 +27,7 @@ When using the CPYLIB method, it is necessary to perform two operations in the s
 
 ### Method 1: Use the SMASETUP Command
 
-All the instructions for installing a new LSAM environment using the SMASETUP command are provided in [IBM i Agent 18.1 Installation/Upgrade Instructions](../installation/installation). Here are the key steps to remember when the SMASETUP process will not use the SMADEFAULT environment.
+All the instructions for installing a new LSAM environment using the SMASETUP command are provided in [IBM i Agent 18.1 Installation/Upgrade Instructions](../installation/installation.md). Here are the key steps to remember when the SMASETUP process will not use the SMADEFAULT environment.
 
 1. Prompt the SMASETUP command using function key <**F4**\> and/or specify the keyword parameter ALTENV(\*YES). This parameter controls the actions of the SMASETUP processing program.
 2. When the Install/Upgrade initial prompt screen is displayed, confirm that the "Use alternate environment name" field shows "\*YES". Also, be sure to change the default name of the "SMAGPL alternate library name" and of the "LSAM environment tools library." These two names should normally refer to the same library, unless the alternate environment will make exclusive use of the IBM library QGPL for the environment tools library. Do NOT share any existing SMAGPL library that is being used by another LSAM environment. Examples of library naming strategies might include either a prefix or a suffix for each LSAM library name that will match the other LSAM libraries, such as TSTSMAGPL or SMAGPL1.
