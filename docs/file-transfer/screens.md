@@ -12,11 +12,7 @@ sidebar_label: 'SMA File Transfer Screens and Windows'
   - SFTPARR00-2
   - SFTPARR00-3
 
-The screens show typical default values that would be appropriate for
-most installations. The notable exceptions are the IP address, and
-perhaps the port numbers. There may be a need to change the CCSID and
-translation tables, depending on the country and the text language used
-on the OpCon/xps server.
+The screens show typical default values that would be appropriate for most installations. The notable exceptions are the IP address, and perhaps the port numbers. There may be a need to change the CCSID and translation tables, depending on the country and the text language used on the OpCon/xps server.
 
 ##### Menu Pathways
 
@@ -59,33 +55,13 @@ Main Menu \> SMA File Transfer menu (\#8) \> SMAFT Parameters (\#4)
 
 ##### SMA File Transfer SSL/TLS Security Options
 
-The setting of the TLS Security options can match the same parameters as
-described for the Agent's Job Scheduler and JORS communications
-settings, as described in the Configuration section of this Agent's
-User Help. The Extended Discussion of Parameters under that topic
-includes additional details and instructions about implementing TLS
-Security for any of this Agent's communication services.
+The setting of the TLS Security options can match the same parameters as described for the Agent's Job Scheduler and JORS communications settings, as described in the Configuration section of this Agent's User Help. The Extended Discussion of Parameters under that topic includes additional details and instructions about implementing TLS Security for any of this Agent's communication services.
 
-One notable difference for SMA File Transfer is that this Agent uses two
-additional Digital Certificate Applications in the IBM i Digital
-Certificate Manager Store which are separate from the LSAM Job Scheduler
-Application names. This means that all three Applications must be
-assigned a digital certificate, but they may all use the same digital
-certificate, depending on the preferences and requirements of the local
-site's security policies.
+One notable difference for SMA File Transfer is that this Agent uses two additional Digital Certificate Applications in the IBM i Digital Certificate Manager Store which are separate from the LSAM Job Scheduler Application names. This means that all three Applications must be assigned a digital certificate, but they may all use the same digital certificate, depending on the preferences and requirements of the local site's security policies.
 
-Remember when configuring the TLS Security options for SMA File Transfer
-that these affect the TCP/IP socket connection with another OpCon Agent.
-These are not connections between this Agent and the OpCon Server.
+Remember when configuring the TLS Security options for SMA File Transfer that these affect the TCP/IP socket connection with another OpCon Agent. These are not connections between this Agent and the OpCon Server. 
 
-The SMA File Transfer (SMAFT) protocol defines a SMAFT Server that is
-listening for connection requests, and a separate SMAFT Agent program
-that is started whenever OpCon tells this Agent that it must connect
-with another OpCon Agent (LSAM) to perform a file transfer. The SMAFT
-Server takes the TLS Security Server role, while the SMAFT Agent takes
-the TLS Client role. Accordingly, the following table of parameters
-shows a "Server App" and a "Client App" that must be assigned to the
-correct IBM Digital Certificate Manager Store's Application(s).
+The SMA File Transfer (SMAFT) protocol defines a SMAFT Server that is listening for connection requests, and a separate SMAFT Agent program that is started whenever OpCon tells this Agent that it must connect with another OpCon Agent (LSAM) to perform a file transfer. The SMAFT Server takes the TLS Security Server role, while the SMAFT Agent takes the TLS Client role. Accordingly, the following table of parameters shows a "Server App" and a "Client App" that must be assigned to the correct IBM Digital Certificate Manager Store's Application(s).
 
 | Field | Default | Valid Values | Required (Y/N) | Description |
 | ----  | ------- | ------------ | -------------- | ----------- |
@@ -120,28 +96,15 @@ correct IBM Digital Certificate Manager Store's Application(s).
 
 ##### Functions
 
-- **F3=Exit**: Quits the list of trapped messages and returns to the
-    menu.
-- **F4=IP Addresses**: Produces a window where all the IP addresses
-    configured on the system are listed, so that one can be chosen to
-    fill in the SMAFT IP Address field.
-- **F9=View LIBL**: This is a convenience feature. This function key
-    produces a display of the library list that applies to the current
-    LSAM environment.
-- **F12=Cancel**: Quits the SMAFT Parameters function without update
-    and returns to the menu.
-- **PageDown/PageUp**: Used to move between the two pages of the SMAFT
-    Parameters. Updates on page one are not completed until the
-    <**Enter**> key is pressed on page two.
+- **F3=Exit**: Quits the list of trapped messages and returns to the menu.
+- **F4=IP Addresses**: Produces a window where all the IP addresses configured on the system are listed, so that one can be chosen to fill in the SMAFT IP Address field.
+- **F9=View LIBL**: This is a convenience feature. This function key produces a display of the library list that applies to the current LSAM environment.
+- **F12=Cancel**: Quits the SMAFT Parameters function without update and returns to the menu.
+- **PageDown/PageUp**: Used to move between the two pages of the SMAFT Parameters. Updates on page one are not completed until the <**Enter**> key is pressed on page two.
 
 ## SMAFT Agent Network Address Translation Table
 
-Use this maintenance function to add or change SMAFT Agent NAT table
-entries that will enable a connection between virtualized IBM i
-partitions, when the public IP address for the SMAFT Server is not
-supported from the SMAFT Agent partition for this type of communication
-connection. Additional details about the use of this function are
-offered above, under SMA File Transfer Operations.
+Use this maintenance function to add or change SMAFT Agent NAT table entries that will enable a connection between virtualized IBM i partitions, when the public IP address for the SMAFT Server is not supported from the SMAFT Agent partition for this type of communication connection. Additional details about the use of this function are offered above, under SMA File Transfer Operations.
 
 - **Screen Title**: SMAFT Agent NAT Table Details
 - **Screen ID**: SFTNATR2A
@@ -160,47 +123,24 @@ Address Translation (\#8)
 
 ##### Options
 
-- **2=Change**: Branches to a display format where an existing NAT
-    table entry can be updated and the changes stored to the database
-    table.
-- **3=Copy**: Branches to the display format where a new NAT table
-    entry can be defined and stored to the database table, starting with
-    the values from an existing table record. When using the Copy
-    function, the Original IP Address value must either be unique in the
-    table, or it must be associated in this new record with a unique
-    Original Port Number. The Original IP Address and Original Port
-    Number, combined, cannot be the same as another record in the table.
-- **4=Delete**: Select one or more records to be removed from the
-    table, then press Enter to proceed to the Delete confirmation list
-    display that will finally perform the actual delete action.
-- **5=Display**: Branches to a display format where an existing NAT
-    table entry will be displayed with complete data. This display will
-    often show the same information as the Work With list display,
-    unless one of the IP addresses is too long for the list display.
+- **2=Change**: Branches to a display format where an existing NAT table entry can be updated and the changes stored to the database table.
+- **3=Copy**: Branches to the display format where a new NAT table entry can be defined and stored to the database table, starting with the values from an existing table record. When using the Copy function, the Original IP Address value must either be unique in the table, or it must be associated in this new record with a unique Original Port Number. The Original IP Address and Original Port Number, combined, cannot be the same as another record in the table.
+- **4=Delete**: Select one or more records to be removed from the table, then press Enter to proceed to the Delete confirmation list display that will finally perform the actual delete action.
+- **5=Display**: Branches to a display format where an existing NAT table entry will be displayed with complete data. This display will often show the same information as the Work With list display, unless one of the IP addresses is too long for the list display.
 
 ##### Functions
 
-- **F3=Exit**: Quits the list of NAT table entries and returns to the
-    menu.
-- **F5=Refresh**: Reloads the list of NAT table entries directly from
-    the database table.
-- **F6=Add**: Branches to a display format where a new NAT table entry
-    can be defined and stored to the database table.
-- **F12=Cancel**: Quits the Work With function, abandoning any typed
-    line options, and returns to the menu.
+- **F3=Exit**: Quits the list of NAT table entries and returns to the menu.
+- **F5=Refresh**: Reloads the list of NAT table entries directly from the database table.
+- **F6=Add**: Branches to a display format where a new NAT table entry can be defined and stored to the database table.
+- **F12=Cancel**: Quits the Work With function, abandoning any typed line options, and returns to the menu.
 
 ## Manage SMAFT Logging
 
 - **Screen Title**: Manage SMAFT Logging
 - **Screen ID**: SFTLOGR1
 
-The Manage SMAFT Logging screen, by itself, is an inquiry-only screen
-that shows the current status of the IBM i SMA File Transfer
-communications logging features. The functions keys <**F7**> and
-<**F8**> are used to actually control the logging functions. SMA File
-Transfer logging can also be controlled from the general LSAM Logging
-management screen, found in option \# 4 of the LSAM Management Menu
-(menu \# 6 from the LSAM Main Menu).
+The Manage SMAFT Logging screen, by itself, is an inquiry-only screen that shows the current status of the IBM i SMA File Transfer communications logging features. The functions keys <**F7**> and <**F8**> are used to actually control the logging functions. SMA File Transfer logging can also be controlled from the general LSAM Logging management screen, found in option \# 4 of the LSAM Management Menu (menu \# 6 from the LSAM Main Menu).
 
 ##### Menu Pathways
 
@@ -287,7 +227,7 @@ It is only possible to choose the CLEAR (\*YES) option for a log file if that lo
 function when logging starts.  |
 |                         |                | **Note:** The detail logging function can    |
 |                         |                | only be turned off by completely stopping the |
-|                         |                | log feature. Refer to [Turn Off Debug Logging](/logs-database/procedures.md#Turn_Off_Debug_Logging). There is no control that may be used to stop the detail logging function without also stopping all logging for the sockets communications program. If detail logging is turned on and it should end while continuing to perform standard debug logging, then all logging must be temporarily ended for the communications program and then restarted with the FTADUMP parameter set to \*NO. |               
+|                         |                | log feature. Refer to [Turn Off Debug Logging](../logs-database/procedures.md#Turn_Off_Debug_Logging). There is no control that may be used to stop the detail logging function without also stopping all logging for the sockets communications program. If detail logging is turned on and it should end while continuing to perform standard debug logging, then all logging must be temporarily ended for the communications program and then restarted with the FTADUMP parameter set to \*NO. |               
 
 ##### Options
 

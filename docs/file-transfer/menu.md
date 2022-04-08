@@ -47,52 +47,28 @@ Main Menu \> SMA File Transfer menu (\#8)
 - 5=View LSAM Logs
 - 6=View SMAFT Logs
 - 7=SMAFT Parameters
-- The start and stop options 1 and 2 are explained on the previous
-    page; other options appear below.
+- The start and stop options 1 and 2 are explained on the previous page; other options appear below.
 
 ##### Functions
 
 - **F3=Exit**: Returns to the master menu.
-- **F4=Prompt**: Prompts for keywords for any command entered in the
-    Select or command line.
-- **F9=Retrieve**: Retrieves the previous command that was entered on
-    the Select or the command line. If it is pressed multiple times, the
-    system goes further and further back to previous commands.
+- **F4=Prompt**: Prompts for keywords for any command entered in the Select or command line.
+- **F9=Retrieve**: Retrieves the previous command that was entered on the Select or the command line. If it is pressed multiple times, the system goes further and further back to previous commands.
 - **F12=Cancel**: Returns to the master menu.
-- **F13=Information Assistant**: Branches to the IBM i general help
-    screen.
-- **F16=System main menu**: This is always shown on any
-    system-generated menu screen. It branches to the general command
-    entry menu for IBM i. Return to the previous menu by pressing
-    \<**F3**\> or \<**F12**\>. This function is not commonly used and
-    can be restricted for certain user profiles.
+- **F13=Information Assistant**: Branches to the IBM i general help screen.
+- **F16=System main menu**: This is always shown on any system-generated menu screen. It branches to the general command entry menu for IBM i. Return to the previous menu by pressing <**F3**> or <**F12**>. This function is not commonly used and can be restricted for certain user profiles.
 
 ## Start SMAFT Server (STRSMAFT)
 
-The Start SMAFT Server option starts the IBM i LSAM's SMA File Transfer
-listener job named SMAFTS in the LSAM subsystem (default name SMASBS).
-Use the LSAM management function "work with SMAFT jobs" or "Check
-LSAM subsystem status" to verify that the server job has been started.
-Refer to [SMAFT Parameters -- Critical Configuration Settings](#SMAFT) for a setting that causes the SMAFT
-server to be started automatically with the other LSAM server jobs.
+The Start SMAFT Server option starts the IBM i LSAM's SMA File Transfer listener job named SMAFTS in the LSAM subsystem (default name SMASBS). Use the LSAM management function "work with SMAFT jobs" or "Check LSAM subsystem status" to verify that the server job has been started. Refer to [SMAFT Parameters -- Critical Configuration Settings](#SMAFT) for a setting that causes the SMAFT server to be started automatically with the other LSAM server jobs.
 
 ## End SMAFT Server (ENDSMAFT)
 
-The End SMAFT Server option stops only the IBM i LSAM's SMA File
-Transfer listener job (SMAFTS) that is running in the LSAM subsystem.
-Use the LSAM management function "Work with SMAFT jobs" or "Check
-LSAM subsystem status" to verify that job SMAFTS is no longer active in
-the subsystem. The SMAFTS server job will also be stopped automatically
-whenever the End LSAM function terminates all the LSAM server jobs.
+The End SMAFT Server option stops only the IBM i LSAM's SMA File Transfer listener job (SMAFTS) that is running in the LSAM subsystem. Use the LSAM management function "Work with SMAFT jobs" or "Check LSAM subsystem status" to verify that job SMAFTS is no longer active in the subsystem. The SMAFTS server job will also be stopped automatically whenever the End LSAM function terminates all the LSAM server jobs.
 
 ## Work with SMAFT Jobs (WRKSFTJOB)
 
-The Work with SMAFT jobs function is currently the same as the Check
-LSAM Subsystem Status option found on the LSAM Management menu. Both
-execute the IBM i command WRKACTJOB (i.e., Work with Active Jobs). The
-command displays the jobs active in the LSAM subsystem defined in the
-LSAM configuration parameters. From the WRKACTJOB display, press the
-Help key to view a complete description of all the data displayed.
+The Work with SMAFT jobs function is currently the same as the Check LSAM Subsystem Status option found on the LSAM Management menu. Both execute the IBM i command WRKACTJOB (i.e., Work with Active Jobs). The command displays the jobs active in the LSAM subsystem defined in the LSAM configuration parameters. From the WRKACTJOB display, press the Help key to view a complete description of all the data displayed.
 
 :::caution
 Unless directed by SMA Support, please do not execute any of the options on the following screen.
