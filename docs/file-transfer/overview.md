@@ -10,7 +10,7 @@ The IBM i Agent SMAFT programs enable the LSAM to act as an SMAFT Agent that req
 
 In addition to this topic, refer to the following references in the **Concepts** online help for more information about OpCon SMAFT jobs:
 
-- [File Transfer Jobs](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/File-Transfer-Jobs.md#top)
+- [File Transfer Jobs](https://help.smatechnologies.com/opcon/core/job-types/file-transfer)
 - [IBM i File Transfer Options Support](https://help.smatechnologies.com/opcon/core/job-types/file-transfer#ibm-i-file-transfer-options-support)
 
 This topic explains the aspects of SMAFT jobs that are unique to the IBM i LSAM. It also provides instructions about how to use the IBM i LSAM software tools to configure and diagnose SMAFT jobs.
