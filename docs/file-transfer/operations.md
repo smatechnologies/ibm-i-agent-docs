@@ -4,7 +4,7 @@ sidebar_label: 'SMA File Transfer Operations'
 
 # SMA File Transfer Operations
 
-## SMAFT Parameters -- Critical Configuration Settings
+## SMAFT Parameters - Critical Configuration Settings
 
 The SMA File Transfer parameters for the IBM i LSAM are discussed in detail below, under the SMA File Transfer Screens and Windows. Before the IBM i LSAM SMAFT Server is started or SMAFT Agent jobs may be submitted to the IBM i LSAM, it is required to set the following parameters:
 

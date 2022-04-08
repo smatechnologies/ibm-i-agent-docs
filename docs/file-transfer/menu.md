@@ -4,11 +4,9 @@ sidebar_label: 'SMA File Transfer Menu'
 
 # SMA File Transfer Menu
 
-SMA File Transfer Menu
+## SMA File Transfer Menu
 
 ```
-
-
  SYSTEMNAME                  SMA FILE TRANSFER MENU                    00/00/00 
  USERNAME                                                              00:00:00 
                                                                                 
@@ -23,8 +21,6 @@ SMA File Transfer Menu
       6. View SMAFT logs                                                        
       7. SMAFT Parameters                                                       
       8. Work with SMAFT Network Address Translation                            
-                                                                                
-                                                                                
                                                                                 
                                                                                 
  Selection or command                                    Copyright (C) SMA 2007 
@@ -60,7 +56,7 @@ Main Menu \> SMA File Transfer menu (\#8)
 
 ## Start SMAFT Server (STRSMAFT)
 
-The Start SMAFT Server option starts the IBM i LSAM's SMA File Transfer listener job named SMAFTS in the LSAM subsystem (default name SMASBS). Use the LSAM management function "work with SMAFT jobs" or "Check LSAM subsystem status" to verify that the server job has been started. Refer to [SMAFT Parameters -- Critical Configuration Settings](#SMAFT) for a setting that causes the SMAFT server to be started automatically with the other LSAM server jobs.
+The Start SMAFT Server option starts the IBM i LSAM's SMA File Transfer listener job named SMAFTS in the LSAM subsystem (default name SMASBS). Use the LSAM management function "work with SMAFT jobs" or "Check LSAM subsystem status" to verify that the server job has been started. Refer to [SMAFT Parameters -- Critical Configuration Settings](../file-transfer/operations.md) for a setting that causes the SMAFT server to be started automatically with the other LSAM server jobs.
 
 ## End SMAFT Server (ENDSMAFT)
 
@@ -116,7 +112,8 @@ This menu option provides direct access to the list of available LSAM log viewer
 
 ### View SMAFT Logs
 
-This menu option provides direct access to the list of available SMA File Transfer log viewers. For general information about how to use the log views, refer to [Viewing the SMAFT Log Files](#Viewing). Specific information about the SMA File Transfer log views is available below, under SMA File Transfer Screens and Windows.
+This menu option provides direct access to the list of available SMA File Transfer log viewers. For general information about how to use the log views, refer to [Viewing the SMAFT Log Files](../file-transfer/screens.md#viewing-the-smaft-log-files)
+. Specific information about the SMA File Transfer log views is available below, under SMA File Transfer Screens and Windows.
 
 ## SMAFT Parameters
 

@@ -8,11 +8,10 @@ The IBM i Agent software includes programs and tools that support SMA's propriet
 
 The IBM i Agent SMAFT programs enable the LSAM to act as an SMAFT Agent that requests files be transferred to or from other systems, and as an SMAFT Server that responds to file transfer requests from other system Agents. The IBM i Agent SMAFT tools are used to configure permanent options that govern the performance and function of the IBM i SMAFT programs. There are also tools that can be used to monitor SMAFT jobs and to diagnose problems that might arise as files are being transferred.
 
-In addition to this topic, refer to the following references in the
-**Concepts** online help for more information about OpCon SMAFT jobs:
+In addition to this topic, refer to the following references in the **Concepts** online help for more information about OpCon SMAFT jobs:
 
 - [File Transfer Jobs](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/File-Transfer-Jobs.md#top)
-- [File Transfer Job Details](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/File-Transfer-Job-Details.md#top)
+- [IBM i File Transfer Options Support](https://help.smatechnologies.com/opcon/core/job-types/file-transfer#ibm-i-file-transfer-options-support)
 
 This topic explains the aspects of SMAFT jobs that are unique to the IBM i LSAM. It also provides instructions about how to use the IBM i LSAM software tools to configure and diagnose SMAFT jobs.
 
@@ -35,6 +34,7 @@ Here are the steps that define the lifetime of one SMAFT job:
     d.  Other OpCon/xps jobs on the same Schedule may be used to execute pre-transfer tasks or post-transfer tasks that affect the files, the data and/or the attributes of file transfer jobs.
 
 2. When the OpCon/xps Schedule determines it is time to run the SMA File Transfer job, the job start request is sent to one of the LSAMs participating in the transfer, either at the source or the target. 
+
 3. The LSAM receiving the file transfer job start request from OpCon becomes the SMAFT Agent.
 
     a.  The job of an SMAFT Agent is to contact a remote SMAFT Server, to manage negotiation of the file transfer attributes and to report the job completion status to OpCon.
@@ -72,6 +72,7 @@ Here are the steps that define the lifetime of one SMAFT job:
     b.  Optional encryption and compression, when available, are handled by cooperation between the SMAFT Agent and the SMAFT Server.
 
 8. After the Source machine sends the last data packet, an end-of-transfer message with a final count of bytes transferred completes the process. Then the Agent and the Server assure that the target file has been written to its intended destination before a final job status report is sent to OpCon.
+
 9. The SMAFT Agent sends a successful job completion message to the OpCon SAM after all data and the end-of-transfer message have been received.
 
     a.  The method of cooperation between an SMAFT Agent task and the LSAM's job scheduling functions may vary among the LSAMs running under different operating systems.
@@ -82,7 +83,7 @@ Here are the steps that define the lifetime of one SMAFT job:
 
 ### Method for Controlling the IBM i Task Attributes
 
-The IBM i LSAM starts a SMA File Transfer (SMAFT) Agent job when it receives a job start request from OpCon 1. Most job start requests sent to IBM i are for IBM i batch jobs where the OpCon job master record supports specifying IBM i job definition parameters (that correspond to the parameters of the IBM i SBMJOB - submit job - command). However, SMAFT jobs involve multiple operating systems, so OpCon does not support control of the IBM i Agent job parameters. Instead, the IBM i LSAM job scheduling server program always uses the IBM i job description called SMAFTAJ00 (located in library SMADTA) to start the SMAFT Agent job. Therefore, most SMAFT Agent job parameters can be controlled by making changes to this job description. The initial library list used by this job description must always include the library list that defines the LSAM environment, but any other job parameter can be changed, including changing the job queue (and therefore, the IBM i subsystem) where the job will be submitted. The IBM i LSAM Server job parameters are controlled by the job description SMADTA/SMAFTSJ00. (Refer to [IBM i SMAFT Flow Chart](#IBM).)
+The IBM i LSAM starts a SMA File Transfer (SMAFT) Agent job when it receives a job start request from OpCon 1. Most job start requests sent to IBM i are for IBM i batch jobs where the OpCon job master record supports specifying IBM i job definition parameters (that correspond to the parameters of the IBM i SBMJOB - submit job - command). However, SMAFT jobs involve multiple operating systems, so OpCon does not support control of the IBM i Agent job parameters. Instead, the IBM i LSAM job scheduling server program always uses the IBM i job description called SMAFTAJ00 (located in library SMADTA) to start the SMAFT Agent job. Therefore, most SMAFT Agent job parameters can be controlled by making changes to this job description. The initial library list used by this job description must always include the library list that defines the LSAM environment, but any other job parameter can be changed, including changing the job queue (and therefore, the IBM i subsystem) where the job will be submitted. The IBM i LSAM Server job parameters are controlled by the job description SMADTA/SMAFTSJ00. (Refer to [IBM i SMAFT Flow Chart](#ibm-i-sma-file-transfer-flow-chart).)
 
 ### SMA File Transfer Job Completion Messages
 
