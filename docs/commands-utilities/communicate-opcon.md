@@ -1,3 +1,7 @@
+---
+sidebar_label: 'LSAM Commands to Communicate with OpCon'
+---
+
 # LSAM Commands to Communicate with OpCon
 
 There are IBM i commands installed with the SMA Agent for IBM i that can

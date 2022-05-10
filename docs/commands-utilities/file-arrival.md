@@ -1,3 +1,7 @@
+---
+sidebar_label: 'File Arrival Jobs using CHKFILE and CHKIFSFIL'
+---
+
 # File Arrival Jobs using CHKFILE and CHKIFSFIL
 
 Previously, the IBM i LSAM utility commands CHKFILE and CHKIFSFIL could

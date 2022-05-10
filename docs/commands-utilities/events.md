@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Events: OpCon Event Notification'
+---
+
 # Events: OpCon Event Notification
 
 ## SMAFAILJOB

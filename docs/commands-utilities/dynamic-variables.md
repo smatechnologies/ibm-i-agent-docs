@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Dynamic Variable Management'
+---
+
 # Dynamic Variable Management
 
 ## SETHEXDV: Set hex value in a Dynamic Variable

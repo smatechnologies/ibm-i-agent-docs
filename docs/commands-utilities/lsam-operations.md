@@ -1,3 +1,7 @@
+---
+sidebar_label: 'LSAM Operations'
+---
+
 # LSAM Operations
 
 There are two commands that can be used to enter the IBM i LSAM green

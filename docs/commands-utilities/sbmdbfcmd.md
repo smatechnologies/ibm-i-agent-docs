@@ -1,3 +1,7 @@
+---
+sidebar_label: 'SBMDBFCMD -- Submit Database File Command'
+---
+
 # SBMDBFCMD -- Submit Database File Command
 
 A symbolic command SBMDBFCMD can be used in an OpCon/xps job master

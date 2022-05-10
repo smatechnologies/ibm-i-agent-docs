@@ -1,3 +1,7 @@
+---
+sidebar_label: 'CMDEXE, CMDEXE2: IBM i Native Command Wrapper'
+---
+
 # CMDEXE, CMDEXE2: IBM i Native Command Wrapper
 
 These commands are used to execute IBM i native commands inside a "wrapper" CL program that intercepts any command failure message and makes it possible for the Agent and/or OpCon to control the OpCon job status and to respond appropriately to different error messages.
