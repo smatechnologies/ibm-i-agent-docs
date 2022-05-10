@@ -1,3 +1,7 @@
+---
+sidebar_label: 'JORS and Spool File Server'
+---
+
 # JORS and Spool File Server
 
 This topic provides technical details about the way the IBM i LSAM serves the OpCon/xps Job Output Retrieval System (JORS) and how it manages job output, that is, spool files (reports). These details could be needed by technical support personnel for the purpose of tuning the LSAM JORS server program performance.

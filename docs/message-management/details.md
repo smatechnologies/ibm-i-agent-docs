@@ -4,52 +4,22 @@ sidebar_label: 'How the LSAM Message Management Works'
 
 # How the LSAM Message Management Works
 
-The IBM i LSAM Message Management server performs the task of surveying
-message queues, looking for messages that conform to registered message
-response rules. Message response rules are created either by adding
-Message Parameters using the IBM i LSAM Menu function, or by adding
-message response parameters to an IBM i job in the OpCon/xps EM job
-master record. Each message response rule can specify either or both
-types of response: answer a message that requires a reply, and/or
-generate an OpCon/xps Event.
+The IBM i LSAM Message Management server performs the task of surveying message queues, looking for messages that conform to registered message response rules. Message response rules are created either by adding Message Parameters using the IBM i LSAM Menu function, or by adding message response parameters to an IBM i job in the OpCon/xps EM job master record. Each message response rule can specify either or both types of response: answer a message that requires a reply, and/or generate an OpCon/xps Event.
 
-During the process of scanning message queues, the LSAM server job
-TRPMSG maintains a control file (TRPMSGF10) where it stores the message
-key of the last message read from each message queue. As the server
-program repeats its cycle of checking each message queue, it uses the
-stored last message key to make sure that it does not process the same
-message twice. As long as this server job is active, the cycle of
-checking message queues works well and the stored message keys are
-normally reliable.
+During the process of scanning message queues, the LSAM server job TRPMSG maintains a control file (TRPMSGF10) where it stores the message key of the last message read from each message queue. As the server program repeats its cycle of checking each message queue, it uses the stored last message key to make sure that it does not process the same message twice. As long as this server job is active, the cycle of checking message queues works well and the stored message keys are normally reliable.
 
 :::note
 The message keys that are stored by the LSAM Message Management server could become unreliable if messages are manually deleted from a monitored message queue before the server programs have processed that message and at least one more message that is newer than the message being manually deleted. Avoid manually deleting new messages from a monitored message queue.
 :::
 
-If the LSAM Message Management server job is stopped for any length of
-time, it is not always possible to predict the state of any message
-queue when the server job is later restarted. A message queue may be
-cleared, and then new messages may be added to the message queue. In
-this case, the last message key that was stored by the server is no
-longer valid. A similar circumstance could arise if the last message key
-that was stored by the server is for a message that has been manually
-removed from the message queue. When the server is unable to locate the
-last stored message key, it will normally reposition itself to the end
-of the message queue and start processing with the next new messages
+If the LSAM Message Management server job is stopped for any length of time, it is not always possible to predict the state of any message queue when the server job is later restarted. A message queue may be cleared, and then new messages may be added to the message queue. In this case, the last message key that was stored by the server is no longer valid. A similar circumstance could arise if the last message key that was stored by the server is for a message that has been manually removed from the message queue. When the server is unable to locate the last stored message key, it will normally reposition itself to the end of the message queue and start processing with the next new messages
 that arrive.
 
-The behavior of the LSAM Message Management server is normally
-predictable once it has established a starting point in each message
-queue that it will monitor. But the LSAM operator or administrator is
-able to modify the behavior of the server during the startup process in
-order to control whether existing messages in any or every message queue
-will be processed or skipped as the server first starts monitoring.
+The behavior of the LSAM Message Management server is normally predictable once it has established a starting point in each message queue that it will monitor. But the LSAM operator or administrator is able to modify the behavior of the server during the startup process in order to control whether existing messages in any or every message queue will be processed or skipped as the server first starts monitoring. 
 
 ## Message Management Start Controls and Rules
 
-The start mode of the LSAM Message Management server is controlled by
-either an LSAM control file setting or by a start mode parameter that is
-supplied by an operator as the start request is submitted to the LSAM.
+The start mode of the LSAM Message Management server is controlled by either an LSAM control file setting or by a start mode parameter that is supplied by an operator as the start request is submitted to the LSAM.
 
 The LSAM control file value is set by using the Message Management
 Parameters, Maintain performance parameters (F22). This value is used by

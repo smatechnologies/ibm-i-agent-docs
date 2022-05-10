@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Copy Files from Test to Production'
+---
+
 # Copy Files from Test to Production
 
 :::note Revision Note

@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Installing Multiple Environments'
+---
+
 # Installing Multiple Environments
 
 ## Introduction

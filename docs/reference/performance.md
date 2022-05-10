@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Tuning LSAM Performance'
+---
+
 # Tuning LSAM Performance
 
 This topic provides hints and guidance about procedures and configuration settings that can be used to tune the performance of SMA's IBM i LSAM servers. This topic may be updated from time to time with additional information. It is not presented as a comprehensive guide to every possibility.

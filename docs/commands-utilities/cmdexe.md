@@ -1,5 +1,5 @@
 # CMDEXE, CMDEXE2: IBM i Native Command Wrapper
-test
+
 These commands are used to execute IBM i native commands inside a "wrapper" CL program that intercepts any command failure message and makes it possible for the Agent and/or OpCon to control the OpCon job status and to respond appropriately to different error messages.
 
 These utility commands are especially helpful for some IBM i commands, such as CPYF or RSTOBJ and RSTLIB, that can issue failure messages when the command did not actually fail, but IBM felt they should notify the user of some important irregularity. Using one of the Agent's wrapper commands can prevent an unnecessary failure of an OpCon job while still making it possible to generate an OpCon Event command that might notify an operator of the irregularity.
