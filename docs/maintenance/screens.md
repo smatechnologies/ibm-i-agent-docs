@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Screens and Windows'
+sidebar_label: 'PTF Menu Screens and Windows'
 ---
 
 # PTF Menu Screens and Windows

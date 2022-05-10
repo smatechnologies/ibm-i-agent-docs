@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'The Process'
+sidebar_label: 'How the PTF Application Process Works'
 ---
 
 # How the PTF Application Process Works

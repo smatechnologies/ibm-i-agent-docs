@@ -1,3 +1,7 @@
+---
+sidebar_label: 'LSAM Software Maintenance (PTFs)'
+---
+
 # LSAM Software Maintenance (PTFs)
 
 This topic explains how to use the LSAM menu-driven tools that should be used to update the IBM i LSAM software product whenever SMA issues program corrections or enhancements in between distributed
