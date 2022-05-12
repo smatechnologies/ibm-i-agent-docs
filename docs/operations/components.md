@@ -9,19 +9,25 @@ A summary of the programs and files installed for the IBM i LSAM is available in
 When the LSAM is running, one subsystem and multiple primary server jobs are active. There may also be transient sub-processes spawned in the subsystem, but these are not listed in the following table.
 
 ### IBM i LSAM Primary Server Jobs
-SMASBS: This is the subsystem where the LSAM agent server jobs are running. 
+**SMASBS**
+-  This is the subsystem where the LSAM agent server jobs are running. 
 
-MSGMNG: This job monitors for IBM i job completion or failure messages, for jobs that were submitted by OpCon.
+**MSGMNG**
+-  This job monitors for IBM i job completion or failure messages, for jobs that were submitted by OpCon.
 
-SKTCMN: This job performs sockets communication with SMANetCom, sending and receiving all information exchanged with OpCon via the TCP/IP connection. 
+**SKTCMN**
+-  This job performs sockets communication with SMANetCom, sending and receiving all information exchanged with OpCon via the TCP/IP connection. 
 
-TXMMNG: This job performs the actual tasks requested by OpCon ansactions. For example, it submits jobs to IBM i.
+**TXMMNG**
+-  This job performs the actual tasks requested by OpCon ansactions. For example, it submits jobs to IBM i.
 
-LSAJOR: This job handles internal requests for job output retrieval as each OpCon-started job reaches completion. This server task manages the tracking (and optional storing) of job logs reports (i.e., spool files).
+**LSAJOR**
+-  This job handles internal requests for job output retrieval as each OpCon-started job reaches completion. This server task manages the tracking (and optional storing) of job logs reports (i.e., spool files).
 
-JORCMN: This is the communications server job that responds to requests from OpCon to view the job output. This server job lists the job logs that the LSAM has tracked and then it retrieves the job log content and sends it back through the TCP/IP communications link with OpCon.
+**JORCMN**
+-  This is the communications server job that responds to requests from OpCon to view the job output. This server job lists the job logs that the LSAM has tracked and then it retrieves the job log content and sends it back through the TCP/IP communications link with OpCon.
 
-LSAMNG:
+**LSAMNG**:
 -   This job purges LSAM log files and job report output, including job log reports (spool files).
 -   The LSAM log files are purged only when the LSAM Parameter value of Automatic delete has been set to Y. 
 -   Job log report spool files are always managed according to the separate LSAM Parameters that control how long job output should be retained.
