@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Operation of IBM i Automation'
+---
+
 # Operation of IBM i Automation
 
 This document section provides a high level survey of concepts and of the steps required for OpCon to manage work in the IBM i operating system. It summarizes how to prepare jobs to run in the IBM i system and it also provides a guide for diagnosing job failures.

@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Procedure to Manage LSAM Debug/Audit Logging'
+---
+
 # Procedure to Manage LSAM Debug/Audit Logging
 
 This section presents a simplified method for starting, stopping, and retrieving LSAM debug log information. Please ask advice from SMA Support in order to decide which logging features to use and what log file content is needed to help solve a problem. More information about debug/audit logging may be found in the section titled Manage LSAM Logging, below.
@@ -34,19 +38,15 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
 
 ## Turn Off Debug Logging
 
-1. Log into the IBM i with a user profile that has LSAM administration
-    privileges.
-2. In the command line, enter **SMAGPL/STRSMA**. For more information
-    on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. Log into the IBM i with a user profile that has LSAM administration privileges.
+2. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
-4. Enter **4** to choose Manage LSAM logging in the Operator Replay
-    Menu.
+4. Enter **4** to choose Manage LSAM logging in the Operator Replay Menu.
 5. Type a "**4**" (= End) next to one or more logging features.
 
     a.  It is possible to type "**4**" next to logging functions one at a time, then press <**Enter**> to update the Pending status, until the correct logging profile is shown. Pressing <**Enter**> does not initiate any Start or End action.
 
-6. Press <**F8**> (= ENDSMALOG) to immediately end the selected
-    logging.
+6. Press <**F8**> (= ENDSMALOG) to immediately end the selected logging.
 
     a.  Use <**F14**> to store the logging option in the LSAM Parameters, so that it will not take effect until the next time that the LSAM server jobs (or other feature) are restarted.
 
@@ -67,10 +67,7 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
     a.  To view the physical log file's raw file data:
         i.  In the command line, enter **DSPPFM** <physical file name\>*.
 
-    b.  The formatted viewers available from the LSAM menu system
-        (described in the next section) make the log data much easier to
-        understand. These viewers can also be executed from a command
-        line using the commands listed in the following table.
+    b.  The formatted viewers available from the LSAM menu system (described in the next section) make the log data much easier to understand. These viewers can also be executed from a command line using the commands listed in the following table.
 
 ### Basic LSAM Log Viewer Commands and Physical File Names
   | Type of Log |                                                                                         LSAM viewer command     |  Physical file name |
@@ -87,22 +84,23 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
   | Job log trace/storage file                                                                          |      LSADSPLOG      |           LSAJORF00 |
   | Job log index file                                                                                  |      LSADSPLOG      |           LSAJORF10 |
   | JORS communications trace log                                                                       |      JORCMNLOG      |           JORLOGF00 |
-  | JORS comm. transaction log file                                                                     |      JORTXNLOG      |           JORLOGF10 | 
+  | JORS comm. transaction log file<sub>1</sub>                                                         |      JORTXNLOG      |           JORLOGF10 | 
   | Job Tracking failed SBMJOB command log                                                              |  DSPPFM TRKLOGF00   |           TRKLOGF00 |
   | Display FTP transfer job output logs                                                                |      LSADSPFTP      |  LSAFTPLOG(multiple members) |
 
-  
 
-[1]{style="font-size: 80%;vertical-align: super;"}The communications transaction log files are always used and not controlled by user
-options.
- : LSAM SMA File Transfer Log Viewer Commands and Physical File Names
+[1] The communications transaction log files are always used and not controlled by user options.
+
+#### LSAM SMA File Transfer Log Viewer Commands and Physical File Names
+
 |  Type of Log                                    |  LSAM viewer command |  Physical file name|
 |  -----------------------------------------------| ---------------------| --------------------|
 |  Display SMAFT Agent communications trace log   |       DSPSFALOG      |      SFTLOGF00|
 |  Display SMAFT Server communications trace log  |       DSPSFSLOG      |      SFTLOGF10|
 |  View SMAFT job index master file               |   DSPPFM SFTJOBF00   |      SFTJOBF00|
 |  View SMAFT job details master                  |   DSPPFM SFTJOBF10   |      SFTJOBF10|
- 
+
+#### Other LSAM Function Log Viewer Commands and Physical File Names
 |  Menu# : Function # : Type of Log                                                        |                LSAM viewer command                    |                    Physical file name |
 |  ----------------------------------------------------------------------------------------| ------------------------------------------------------| ------------------------------------------------------------- |
 |  1 : 2 : Job Track Logs                                                                  |                       WRKTRKJOB                       |  LSALOGF00 (activity log)TRKJOBF00 (tracked job definitions)|

@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Components'
+---
+
 # Components
 
 ## Core Programs and Files

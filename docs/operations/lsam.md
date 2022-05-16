@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Operating the LSAM'
+---
+
 # Operating the LSAM
 
 ## Entering the LSAM Environment

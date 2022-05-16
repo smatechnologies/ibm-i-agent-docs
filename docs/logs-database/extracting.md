@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Extracting Log and Master Files'
+---
+
 # Extracting Log and Master Files
 
 Whenever SMA Support may request that a client extract LSAM log or master file content for problem analysis, a client may use either the SMASUP command (from an IBM i command entry line, if that is permitted at a given site) or the function key F15=Extract files, wherever that function key is supported.
@@ -165,10 +169,8 @@ C:\other_directory\>cd C:\
     process completion message.
 11. Enter **quit** to exit the FTP utility.
 12. Enter **exit** to close the command entry window.
+
 :::note Example
- 
-
-
 ```
 The following shows a typical FTP procedure in a DOS command window.
 C:\>ftp <LSAM Machine Name or TCP/IP address>
@@ -191,3 +193,4 @@ ftp> quit
 221 QUIT subcommand received
 C:\>exit
 ```
+:::
