@@ -701,48 +701,53 @@ when the JOBNFY servers start and stop.
 
 Alternate Job Notify Log - View 1 of 3 (F11=Sort)
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[JOBNFY20R1]{style="color: #008000;"}               Display Alternate Job Notify Log       [00/00/00  00:00:00]{style="color: #008000;"}   USERNAME
+```
+JOBNFY20R1             Display Alternate Job Notify Log       00/00/00  00:00:00
+USERNAME
   Type option, press Enter to continue.
-    [Opts:   5=Display   9=WRKJOB]{style="color: #0000ff;"}                  [Search content:]{style="color: #008000;"} [          ]{style="color: #ffcc00;text-decoration: underline;"}          [Log entry time]{style="color: #ff00ff;"}
-  Opt  [CCYY-MM-DD-HH.MM.SS]{style="color: #ff00ff;"}  Job Name   Job User   JobNbr  Job Queue  JOBQ Lib       \_   2013-03-26-09.57.42  SMANTFYTST JSMITH     079864
-   \_   2013-03-26-09.58.31  ANYJOBNAME JSMITH     079865
-   \_   2013-03-26-09.59.53  ZJOBLAST   JSMITH     079866
+    Opts:   5=Display   9=WRKJOB                  Search content: __________       
+         Log entry time
+  Opt  CCYY-MM-DD-HH.MM.SS  Job Name   Job User   JobNbr  Job Queue  JOBQ Lib       
+   _   2013-03-26-09.57.42  SMANTFYTST JSMITH     079864
+   _   2013-03-26-09.58.31  ANYJOBNAME JSMITH     079865
+   _   2013-03-26-09.59.53  ZJOBLAST   JSMITH     079866
 
-  Bottom
-  F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bottom
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                           Bottom
+F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bottom
+```
 
 Alternate Job Notify Log - View 2 of 3 (F11=Sort)
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[JOBNFY20R1]{style="color: #008000;"}               Display Alternate Job Notify Log       [00/00/00  00:00:00]{style="color: #008000;"}   USERNAME
+```
+JOBNFY20R1               Display Alternate Job Notify Log       00/00/00  00:00:00
+USERNAME
   Type option, press Enter to continue.
-  [  Opts:   5=Display   9=WRKJOB]{style="color: #0000ff;"}                 [Search content:]{style="color: #008000;"} [          ]{style="color: #ffcc00;text-decoration: underline;"}          Log entry time
-  Opt  CCYY-MM-DD-HH.MM.SS  [Job Name]{style="color: #ff00ff;"}   Job User   [JobNbr]{style="color: #ff00ff;"}  Job Queue  JOBQ Lib       \_   2013-03-26-09.58.31  ANYJOBNAME JSMITH     079865
-   \_   2013-03-26-09.57.42  SMANTFYTST JSMITH     079864
-   \_   2013-03-26-09.59.53  ZJOBLAST   JSMITH     079866
+   Opts:   5=Display   9=WRKJOB              Search content: __________
+           Log entry time
+  Opt  CCYY-MM-DD-HH.MM.SS  Job Name   Job User   JobNbr Job Queue  JOBQ Lib       
+   _   2013-03-26-09.58.31  ANYJOBNAME JSMITH     079865
+   _   2013-03-26-09.57.42  SMANTFYTST JSMITH     079864
+   _   2013-03-26-09.59.53  ZJOBLAST   JSMITH     079866
 
-  Bottom
-  F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bottom
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                           Bottom
+F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bottom
+```
 
 Alternate Job Notify Log - View 3 of 3
+```
+JOBNFY20R1              Display Alternate Job Notify Log       00/00/00  00:00:00
+USERNAME
+Type option, press Enter to continue.
+  Opts:   5=Display   9=WRKJOB          Search content:
+        Job end time (DESC)
+Opt  CCYY-MM-DD-HH.MM.SS] Job Name   Job User   JobNbr  Job Queue  JOBQ Lib       
+ _   2013-03-26-09.59.53  ZJOBLAST   JSMITH     079866
+ _   2013-03-26-09.58.31  ANYJOBNAME JSMITH     079865
+ _   2013-03-26-09.57.42  SMANTFYTST JSMITH     079864
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[JOBNFY20R1]{style="color: #008000;"}               Display Alternate Job Notify Log       [00/00/00  00:00:00]{style="color: #008000;"}   USERNAME
-  Type option, press Enter to continue.
-  [  Opts:   5=Display   9=WRKJOB]{style="color: #0000ff;"}                  [Search content:]{style="color: #008000;"} [          ]{style="color: #ffcc00;text-decoration: underline;"}   [     Job end time (DESC)]{style="color: #ff00ff;"}
-  Opt  [CCYY-MM-DD-HH.MM.SS]{style="color: #ff00ff;"}  Job Name   Job User   JobNbr  Job Queue  JOBQ Lib       \_   2013-03-26-09.59.53  ZJOBLAST   JSMITH     079866
-   \_   2013-03-26-09.58.31  ANYJOBNAME JSMITH     079865
-   \_   2013-03-26-09.57.42  SMANTFYTST JSMITH     079864
-
-  Bottom
-  F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bottom
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                            Bottom
+F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bottom
+```
 
 ###### Menu Pathways
 
