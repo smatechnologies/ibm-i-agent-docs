@@ -1,3 +1,6 @@
+---
+sidebar_label: 'Dynamic Variable General Rules and Suggestions'
+---
 # Dynamic Variable General Rules and Suggestions
 
 Examples of where dynamic variables may be used are offered throughout this online help in each topic. There is more information about dynamic variables in the Screens and Windows section of this topic. Here are some general rules and suggestions to keep in mind when planning to use Dynamic Variables:
