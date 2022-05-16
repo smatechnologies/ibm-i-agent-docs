@@ -93,7 +93,8 @@ module.exports = {
       label: 'Message Management',
       collapsed: true,
       items: [
-        'message-management/menu',
+        'message-management/overview',
+        'message-management/operations',        
         'message-management/operations',
         'message-management/details',
         'message-management/screens',
