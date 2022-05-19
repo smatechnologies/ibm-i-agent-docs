@@ -1,3 +1,6 @@
+---
+sidebar_label: 'How LSAM Job Tracking Works'
+---
 # How LSAM Job Tracking Works
 
 This section of documentation provides important background information
