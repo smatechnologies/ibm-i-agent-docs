@@ -632,7 +632,7 @@ But sites with no special requirements can simply press Enter to complete the co
 
    If physical line descriptions are used, they must be manually created by the user, since this prompting screen does not support creation of line descriptions.
 
-- Subnet mask: This display prompts the ADDTCPIFC command with a subnet mask that is appropriate for a *LOOPBACK type of interface. This value can be replaced after the ADDTCPIFC command is prompted using the F14 function key, if that is necessary to meet any unique site requirements.\
+- Subnet mask: This display prompts the ADDTCPIFC command with a subnet mask that is appropriate for a *LOOPBACK type of interface. This value can be replaced after the ADDTCPIFC command is prompted using the F14 function key, if that is necessary to meet any unique site requirements.
 
 - Alias name: The alias name used to represent a TCP Interface can be set to *NONE, or a unique name can be typed by the user to represent each different Interface that will be added to the partition. Use of interface alias names is optional, depending on the overall network practices and/or requirements of the site. The Operator Replay device selection routines do not rely on the alias name.
 - Text (description): This description text is inserted into the description of the display device and the TCP interface, when the commands are prompted using the F14 function key. The description text can also be updated from the command prompt displays, especially if the device and the interface should have different text.
@@ -664,67 +664,32 @@ From the Operator Replay Configuration main display pages (1 or 2), use function
 ##### Menu Pathways
 
 Main Menu \> Operator replay menu (\#4) \> Operator Replay Configuration (\#7) \> F22
+```
+SMATELR1          Manage SMA Telnet Exit Program in Batch Job             00/00/00
+USERNAME        END/STRTCPSVR required to activate ADD or RMVEXITPGM      00:00:00
 
-+----------------------------------------------------------------------+
-| [ SMAT                                                               | | ELR1]{style="font-weight: normal; color: #000000;"}[          Manage |
-| SMA Telnet Exit Program in Batch                                     |
-| Job             ]{style="font-weight: normal;color:                  |
-| #000000;"}[00/00/00]{style="font-weight: normal; color: #000000;"}   | +----------------------------------------------------------------------+
-| [ USERNAME                                                           | | ]{style="font-weight: normal;color: #000000;"}        [END/STRTCPSVR |
-| required to activate ADD or                                          |
-| RMVEXITPGM]{style="font-weight: normal;color: #0000                  |
-| 00;"}      [00:00:00]{style="font-weight: normal;color: #000000;"}   | +----------------------------------------------------------------------+
-| [ ]{style="font-weight: normal;color: #000000;"}                     |                                                  |
-|  Specify the following batch job parameters, then press Enter to     |
-| submit the job.                                                      |
-|                                                                      |
-| [ The SBMJOB command will be prompted for changes to the job start   | | date and time.]{style="font-weight: normal;color: #000000;"}         |
-|                                                                      |
-|                                                                      |
-|                                                                      |
-|  A submitted job is used to manage stopping and restarting the       |
-| TELNET server,                                                       |
-|                                                                      |
-|    if ACTIVATE is set to 1. Stopping the Telnet server will          |
-| disconnect                                                           |
-|                                                                      |
-|    display and printer devices, except for the system CONSOLE        |
-| device.                                                              |
-|                                                                      |
-|    The batch job will automatically restart the Telnet server after  |
-| a short                                                              |
-|                                                                      |
-|    delay. Use IBM i command WRKREGINF to view exit point             |
-| QIBM-QTG-DEVINIT.                                                    |
-|                                                                      |
-|                                                                      |
-|                                                                      |
-| [ SMATELSVB command                                                  | | parameters]{style="font-weight: normal;color: #000000;"}             |
-|                                                                      |
-|    [*ADD/*REMOVE Exit pgm entry? . .                               | | **[*NONE                                                            |
-|   ]**]{style="font-weight: normal;color: #000000;"}    [*NONE, | | *ADD, *REMOVE]{style="font-weight: normal;color: #000000;"}        |
-|                                                                      |
-|    [END & STRTCPSVR (*TELNET)? . . .                                | | **[0]*                                                          |
-| *]{style="font-weight: normal;color: #000000;"}           [ACTIVATE: | | 0=No, 1=Yes]{style="font-weight: normal;color: #000000;"}            |
-|                                                                      |
-|    [Delay between END/STRTCPSVR  .                                   | | .**[ 10]{.                                                          |
-| ul}**]{style="font-weight: normal;color: #000000;"}         [DLYJOB: | | 0 - 999 seconds]{style="font-weight: normal;color: #000000;"}        |
-|                                                                      |
-|                                                                      |
-|                                                                      |
-|  SBMJOB command parameters                                           |
-|                                                                      |
-| [   Job name . . . . . . . . . . . .                                 | | **SMATELNET **]{style="font-weight: normal;color: #000000;"}         |
-|                                                                      |
-|    [Job description, library . . . .                                 | |**SMALSA                                                             |
-| J00 ****SMADTA    **]{style="font-weight: normal;color: #000000;"} |
-|                                                                      |
-|    [Job queue (*JOBD), library . . .                                | |**QBATCH                                                             |
-|     ****QGPL      **]{style="font-weight: normal;color: #000000;"} |
-+----------------------------------------------------------------------+
-| [ ]{style="font-weight: normal;color: #000000;"}                     | |                                                                      |
-| [ F3=Exit   F12=Cancel                                               | | ]{style="font-weight: normal;color: #000000;"}                       |
-+----------------------------------------------------------------------+
+Specify the following batch job parameters, then press Enter to submit the job.
+The SBMJOB command will be prompted for changes to the job start date and time.
+
+A submitted job is used to manage stopping and restarting the TELNET server,
+  if ACTIVATE is set to 1. Stopping the Telnet server will disconnect
+  display and printer devices, except for the system CONSOLE device.
+  The batch job will automatically restart the Telnet server after a short
+  delay. Use IBM i command WRKREGINF to view exit point QIBM-QTG-DEVINIT.
+
+SMATELSVB command parameters
+  *ADD/*REMOVE Exit pgm entry? . . *NONE      *NONE, *ADD, *REMOVE
+  END & STRTCPSVR (*TELNET)? . . . 0          ACTIVATE: 0=No, 1=Yes
+  Delay between END/STRTCPSVR  . .  10        DLYJOB: 0 - 999 seconds
+
+SBMJOB command parameters
+  Job name . . . . . . . . . . . . SMATELNET
+  Job description, library . . . . SMALSAJ00  SMADTA   
+  Job queue (*JOBD), library . . . QBATCH     QGPL
+
+
+F3=Exit   F12=Cancel
+```
 
 When using this display, to prevent accidental system interruption, the *ADD/*REMOVE action control field is displayed with a default value of *NONE, which means that no action will be initiated in case the Enter key is pressed too quickly. This same display may be used to add and activate the Telnet exit program, or to remove and deactivate it.
 
@@ -732,175 +697,64 @@ Please carefully consider the detailed instructions for using this display, foll
 
 ##### Fields
 
-+--------------------------------+------------------------------------+
-| Field                          | Description                        |
-+================================+====================================+
-| *ADD/*REMOVE Exit pgm entry? | The display shows a default value  |
-|                                | of *NONE to help prevent an       |
-|                                | accidental initiation of an        |
-|                                | unexpected action.                 |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | *ADD (REPLACE) = Add or update    |
-|                                | the exit program entry             |
-|                                |                                    |
-|                                | *REMOVE = remove the exit program |
-|                                | entry                              |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | Remember that after changing the   |
-|                                | IBM i exit program registry, this  |
-|                                | change will not take effect until  |
-|                                | the Telnet server is ended and     |
-|                                | restarted. Use the next field to   |
-|                                | control the activation with the    |
-|                                | job submitted from this display,   |
-|                                | or to suppress the activation      |
-|                                | action because it will be handled  |
-|                                | separately (either by a manual     |
-|                                | end/restart or by a pair of OpCon  |
-|                                | IBM i batch jobs).                 |
-+--------------------------------+------------------------------------+
-| END & STRTCPSVR (*TELNET)?    | This control field determines if   |
-|                                | the submitted job will only        |
-|                                | add/remove an exit program entry,  |
-|                                | or if it will also activate the    |
-|                                | change to the exit program entry   |
-|                                | by ending and restarting the       |
-|                                | Telnet server.                     |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | '0' = No, do not end/restart the |
-|                                | Telnet server.                     |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | '1' = Yes, do end/restart the    |
-|                                | Telnet server immediately after    |
-|                                | updating the exit program          |
-|                                | registry.                          |
-+--------------------------------+------------------------------------+
-| Delay between END/STRTCPSVR    | If the END & STR option is '1' = |
-|                                | Yes, then this value determines    |
-|                                | how many seconds the submitted     |
-|                                | batch job should wait between      |
-|                                | ending the Telnet server and then  |
-|                                | starting it again. The amount of   |
-|                                | time required depends on the speed |
-|                                | of the processor and also how busy |
-|                                | the machine may be. A value of 10  |
-|                                | seconds is suggested, but if the   |
-|                                | submitted job's log shows that    |
-|                                | the restart action failed, use a   |
-|                                | longer time when retrying this     |
-|                                | action.                            |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | If there has been a failure to     |
-|                                | restart the Telnet server, it is   |
-|                                | possible to use either the IBM i   |
-|                                | partition's console or create and |
-|                                | execute an immediate OpCon batch   |
-|                                | job for IBM i, executing this      |
-|                                | command:                           |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | STRTCPSVR SERVER(*TELNET)         |
-+--------------------------------+------------------------------------+
-| Job name                       | Any valid IBM i job name may be    |
-|                                | typed into this field, or the      |
-|                                | default job name may be left.      |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | **NOTE**: The Job User name is not |
-|                                | prompted by this display, but it   |
-|                                | can be overridden with an          |
-|                                | appropriate value when the SBMJOB  |
-|                                | command prompt appears. If the Job |
-|                                | User name is not specified, then   |
-|                                | the default for the SBMJOB command |
-|                                | is to use the current interactive  |
-|                                | job user. The requirement for the  |
-|                                | submitted job is that the Job User |
-|                                | must have authority to execute the |
-|                                | LSAM's SMATESVB command (and the  |
-|                                | command driver program), and it    |
-|                                | must also have authority to use    |
-|                                | these IBM i commands: ADDEXITPGM,  |
-|                                | RMVEXITPGM, STRTCPSVR, ENDTCPSVR.  |
-+--------------------------------+------------------------------------+
-| Job description                | The actions of the submitted job   |
-|                                | require the IBM i LSAM environment |
-|                                | library list. The LSAM Server Job  |
-|                                | Description SMALSAJ00 is           |
-|                                | appropriate, but a user-defined    |
-|                                | job description may also be used,  |
-|                                | as long as it includes the LSAM    |
-|                                | environment libraries in its       |
-|                                | initial library list for the       |
-|                                | submitted job.                     |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | A user-defined job description     |
-|                                | could be used to specify the Job   |
-|                                | User name. See the explanation     |
-|                                | above in the Job Name field about  |
-|                                | requirements for the submitted Job |
-|                                | User Name.                         |
-+--------------------------------+------------------------------------+
-| Job description library        | The DB2 library location of the    |
-|                                | job description. The default job   |
-|                                | description of SMALSAJ00 resides   |
-|                                | in the library SMADTA (or its      |
-|                                | equivalent, if an alternate LSAM   |
-|                                | environment is managing the Telnet |
-|                                | exit program).                     |
-+--------------------------------+------------------------------------+
-| Job queue                      | Values permitted in this field:    |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | *JOBD = use the job queue         |
-|                                | specified by the Job Description.  |
-|                                | The default LSAM job description   |
-|                                | points to the job queue SMALSAQ00  |
-|                                | in library SMADTA (or its          |
-|                                | equivalent library name), which is |
-|                                | connected to the LSAM server jobs  |
-|                                | subsystem (SMASBS, or an           |
-|                                | equivalent name).                  |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | QBATCH = the suggested default job |
-|                                | queue, which is often an           |
-|                                | appropriate queue (and subsystem)  |
-|                                | for executing system management    |
-|                                | batch jobs. The QBATCH job queue   |
-|                                | typically resides in the QGPL      |
-|                                | library.                           |
-|                                |                                    |
-|                                |                                    |
-|                                |                                    |
-|                                | Any user-selected job queue name   |
-|                                | can be used, as long as it is      |
-|                                | connected to an active subsystem   |
-|                                | where the system management        |
-|                                | commands are allowed to execute.   |
-+--------------------------------+------------------------------------+
-| Job queue library              | The DB2 library where the named    |
-|                                | Job Queue resides. See the         |
-|                                | definition of the Job queue name,  |
-|                                | above, for more information about  |
-|                                | the correct library name.          |
-+--------------------------------+------------------------------------+
+- *ADD/*REMOVE Exit pgm entry?: 
+
+  The display shows a default value of *NONE to help prevent an accidental initiation of an unexpected action. 
+
+  *ADD (REPLACE) = Add or update the exit program entry
+
+  *REMOVE = remove the exit program entry
+ 
+   Remember that after changing the IBM i exit program registry, this change will not take effect until the Telnet server is ended and restarted. Use the next field to  control the activation with the job submitted from this display, or to suppress the activation action because it will be handled separately (either by a manual end/restart or by a pair of OpCon IBM i batch jobs).
+
+- END & STRTCPSVR (*TELNET)?: 
+
+  This control field determines if the submitted job will only add/remove an exit program entry, or if it will also activate the change to the exit program entry by ending and restarting the Telnet server.
+
+  '0' = No, do not end/restart the Telnet server.
+
+  '1' = Yes, do end/restart the Telnet server immediately after updating the exit program registry.
+
+- Delay between END/STRTCPSVR:
+
+  If the END & STR option is '1' = Yes, then this value determines how many seconds the submitted batch job should wait between ending the Telnet server and then starting it again. The amount of time required depends on the speed of the processor and also how busy the machine may be. A value of 10 seconds is suggested, but if the submitted job's log shows that the restart action failed, use a longer time when retrying this action.
+ 
+  If there has been a failure to restart the Telnet server, it is possible to use either the IBM i partition's console or create and execute an immediate OpCon batch job for IBM i, executing this command:
+  ```
+  STRTCPSVR SERVER(*TELNET)
+  ```
+
+- Job name:
+ 
+  Any valid IBM i job name may be typed into this field, or the default job name may be left. 
+ 
+  :::note
+  The Job User name is not prompted by this display, but it can be overridden with an appropriate value when the SBMJOB command prompt appears. If the Job User name is not specified, then the default for the SBMJOB command is to use the current interactive job user. The requirement for the submitted job is that the Job User must have authority to execute the LSAM's SMATESVB command (and the command driver program), and it must also have authority to use these IBM i commands: ADDEXITPGM, RMVEXITPGM, STRTCPSVR, ENDTCPSVR.
+  :::
+
+- Job description:
+
+  The actions of the submitted job require the IBM i LSAM environment library list. The LSAM Server Job Description SMALSAJ00 is appropriate, but a user-defined job description may also be used, as long as it includes the LSAM environment libraries in its initial library list for the submitted job.
+ 
+  A user-defined job description could be used to specify the Job User name. See the explanation above in the Job Name field about requirements for the submitted Job User Name.
+
+- Job description library:
+
+  The DB2 library location of the job description. The default job description of SMALSAJ00 resides in the library SMADTA (or its equivalent, if an alternate LSAM environment is managing the Telnet exit program).
+
+- Job queue:
+
+  Values permitted in this field: 
+   
+  *JOBD = use the job queue specified by the Job Description. The default LSAM job description points to the job queue SMALSAQ00 in library SMADTA (or its equivalent library name), which is connected to the LSAM server jobs subsystem (SMASBS, or an equivalent name).
+
+  QBATCH = the suggested default job queue, which is often an appropriate queue (and subsystem) for executing system management batch jobs. The QBATCH job queue typically resides in the QGPL library.                           
+
+  Any user-selected job queue name can be used, as long as it is connected to an active subsystem where the system management commands are allowed to execute.
+
+- Job queue library:
+
+  The DB2 library where the named Job Queue resides. See the definition of the Job queue name, above, for more information about the correct library name. 
 
 ##### Functions
 
@@ -948,6 +802,10 @@ Each condition above requires knowledge and use of IBM IBM i commands and proced
 If any of the above error conditions occur, one or more of the following symptoms might be observed:
 
 - A message will be sent to the IBM i operator message queue (QSYSOPR)
+  :::note Example
+  Subsystem QINTER disabled user profile RPYUSER on device LSAOPRRPY.
+  Subsystem QINTER varied off work station LSAOPRRPY for user RPYUSER.
+  :::
 - The Operator Replay job status in the OpCon/xps Schedule will show "Failed -- SMA0106"
 - The IBM i LSAM Operator Replay Log Entry, under function 3: Operator Replay Logs, will show a job completion code of 6
 - There will usually be no data in the LSAM's Operator Replay log detail

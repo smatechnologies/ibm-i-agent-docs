@@ -1746,44 +1746,11 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay logs (\#3) \> Option 
 The Operator Replay Display Log function is explained in detail above under OR Script Operation \> [Viewing Operator Replay Logs](#Viewing).
 
 ### Tokens/Variables Management
+:::note
+SMA Technologies recommends using Dynamic Variables instead of the older, simple Operator Replay token/variables. Documentation of this older variable type is retained to support existing users. Dynamic Variables are explained in detail in Events and Utilities menu.
 
-+----------------------------------+----------------------------------+
-| ![White pencil/paper icon on     | **NOTE:** [SMA recommends using  | | gray circular                    | Dynamic Variables instead of the |
-| background](../../.              | older, simple Operator Replay    |
-| ./Resources/Images/note-icon(48x | token/variables. Documentation   |
-| 48).png "Note icon") | of this older variable type is   |
-|                                  | retained to support existing     |
-|                                  | users. Dynamic Variables are     |
-|                                  | explained in detail in Events    |
-|                                  | and Utilities menu.] |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | The terms Token and Variable may |
-|                                  | be used interchangeably, but the |
-|                                  | actual meaning assigned to these |
-|                                  | terms is: A Variable is an entry |
-|                                  | in the LSAM table of Operator    |
-|                                  | Replay Variables, and it         |
-|                                  | includes its name, a description |
-|                                  | and its current value setting. A |
-|                                  | Token represents the Variable in |
-|                                  | the one of the Operator Replay   |
-|                                  | Step detail record fields. The   |
-|                                  | format of a Token is             |
-|                                  | \|variable_name\|, where the     |
-|                                  | vertical bars (pipes) are the    |
-|                                  | special character used to        |
-|                                  | separate the Token from other    |
-|                                  | text in the string to send       |
-|                                  | field. The special character     |
-|                                  | assigned to denote Operator      |
-|                                  | Replay Tokens is specified in    |
-|                                  | the Operator Replay              |
-|                                  | configuration function, LSAM     |
-|                                  | menu 4, option 7.                |
-+----------------------------------+----------------------------------+
-
+The terms Token and Variable may be used interchangeably, but the actual meaning assigned to these terms is: A Variable is an entry in the LSAM table of Operator Replay Variables, and it includes its name, a description and its current value setting. A Token represents the Variable in the one of the Operator Replay Step detail record fields. The format of a Token is |variable_name|, where the vertical bars (pipes) are the special character used to separate the Token from other text in the string to send field. The special character assigned to denote Operator Replay Tokens is specified in the Operator Replay configuration function, LSAM menu 4, option 7.
+:::
 #### Tokens/Variables Management Operations
 
 An Operator Replay variable can be added, or have its value reset, using the IBM i LSAM command ADDRPYTOK (Add Replay Token). Operator Replay variables can also be added and set by a special field that appears in the Captured Data Response Rules record. These methods may be helpful to capture values that exist only while a job is active. But Operator Replay variables may also be configured in advance, so they are readily available during maintenance of Script Steps, using the following procedure.
@@ -1844,16 +1811,17 @@ The Add and Change Token windows appear the same, except for the title.
 ##### Delete Token Window
 
 Delete Token Window
+```
+            Delete Tokens/Variables
 
-  ------------------------------------------------------------------------------------------------------------------------------------------
-                                                           Delete Tokens/Variables
+ Token Name        Token 
+                Description
+ $TEST        Valeur de Test
+ MAXJOBS      Max Concurrent Jobs Token
 
-[Token Name]{style="text-decoration: underline;"}   [        Token Description                ]{style="text-decoration: underline;"}                                                             $TEST        Valeur de Test
-                                                     MAXJOBS      Max Concurrent Jobs Token
-
-                                                                   More\...
-                                                          Enter=Confirm   F12=Cancel
-  ------------------------------------------------------------------------------------------------------------------------------------------
+                               More...
+Enter=Confirm   F12=Cancel
+```
 
 ###### Fields
 
@@ -1899,8 +1867,6 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 -  Col:              The column within the Row (above) where the data capture starts.
 -  Len:              The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
 
-  :  
-
 ###### Functions
 
 - **F3=Exit**: Return to the LSAM menu or to the Operator Replay Step maintenance screen.
@@ -1916,6 +1882,9 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 - **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press <**Enter**> to proceed to the Change detail screen.
 - **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press <**Enter**> to proceed to the Copy detail screen.
 - **4=Delete**: To delete one or more records, type 4 next to each record. Press <**Enter**> to proceed to the Delete confirmation window.
+  :::note
+  The Screen Capture definition records do not have to be deleted to change their position; use option 2=Change to update the sequence number to a different position in the list.
+  :::
 - **5=Display**: To display record details, type 5 next to each record. Press <**Enter**> to proceed to the display details screen. Typing option 5 next to many or all records at once before pressing <**Enter**> is a convenient way to review all the definition details at once. Press <**Enter**> to advance as each detail screen is presented.
 - **6=Response**: To display a list of all captured data response rules that pertain to each data capture definition, type 6 next to each record. Press <**Enter**> to branch to the Work with Capture Response Rule list display. After exiting the Response list for each Capture Rule, another list will display for each Capture Rule record selected with option 6.
 
@@ -1972,9 +1941,9 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 - Capture ID (APP):   A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field serves Operator Replay screen capture as the means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
 - Seq:               The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
 - T:                  Type: C = screen capture, S = SCANSPLF data capture.
-- RS\#:               Rule Sequence Number: The order in which each response rule will be executed.
+- RS#:               Rule Sequence Number: The order in which each response rule will be executed.
 - Script:             When the Type field is C, this shows the ID of the Operator Replay script with which the response rules are associated. (This column becomes the Spool file name for records of Type S.)
-- Step \#:            When the Type field is C, this shows the Script Step sequence number associated with each response rule. (This column becomes the Spool file number for records of Type S.)
+- Step #:            When the Type field is C, this shows the Script Step sequence number associated with each response rule. (This column becomes the Spool file number for records of Type S.)
 - (Job Name):         When the Type field is S, this column will appear to show the Job Name for the Scan Rule associated with each response rule. (This column is not ued for Operator Replay screen data capture and response.)
 - Command:            The command text (first few characters shown) that will be executed in response to captured data, if the comparison data rule qualifies.
 
@@ -1995,6 +1964,9 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 - **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press <**Enter**> to proceed to the Change detail screen.
 - **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press <**Enter**> to proceed to the Copy detail screen.
 - **4=Delete**: To delete one or more records, type 4 next to each record. Press <**Enter**> to proceed to the Delete confirmation window.
+  :::note
+  The Capture Response Rule records do not have to be deleted to change their position; use option 2=Change to update the sequence number to a different position in the list.
+  :::
 - **5=Display**: To display record details, type 5 next to each record. Press <**Enter**> to proceed to the display details screen. Typing option 5 next to many or all records at once before pressing <**Enter**> is a convenient way to review all the definition details at once. Press <**Enter**> to advance as each detail screen is presented.
 
 #### Add/Change/Copy Capture Response Rules
@@ -2011,324 +1983,56 @@ Refer to the topic on Events and Utilities menu, for more information about the 
 
 ###### Fields
 
-+---------------------------+-----------------------------------------+
-| Field                     | Description                             |
-+===========================+=========================================+
-| Script:                   | When this maintenance screen has been   |
-|                           | called using function key F10 from the  |
-|                           | Operator Replay Step record screen, the |
-|                           | name of the Operator Replay script is   |
-|                           | fixed and it appears in the heading of  |
-|                           | this list display.                      |
-+---------------------------+-----------------------------------------+
-| (Script) Seq:             | When this maintenance screen has been   |
-|                           | called using function key F10 from the  |
-|                           | Operator Replay Step record screen, the |
-|                           | number of the Operator Replay Step      |
-|                           | Sequence is fixed and it appears in the |
-|                           | heading of this list display.           |
-+---------------------------+-----------------------------------------+
-| From fields (Resp Seq)    | When this screen appears in Copy mode,  |
-|                           | the key fields of the source record     |
-|                           | being copied are shown in this heading  |
-|                           | area. When this program is called from  |
-|                           | the Operator Replay Step maintenance,   |
-|                           | only the Response Sequence appears in   |
-|                           | the From field list. A new value must   |
-|                           | be assigned to the new Response Rule    |
-|                           | record being created in Copy mode,      |
-|                           | using the Response Sequence input field |
-|                           | (below).                                |
-+---------------------------+-----------------------------------------+
-| Capture Identifier        | A label that groups together all of the |
-|                           | data capture rules that apply to a      |
-|                           | single Operator Replay script step      |
-|                           | Sequence number. For Copy and Change    |
-|                           | operations, this key field is protected |
-|                           | from update. This field and the Capture |
-|                           | Seq field (next) identify the rule to   |
-|                           | which this response record will react.  |
-+---------------------------+-----------------------------------------+
-| Capture sequence          | The sequence of the data capture rule   |
-|                           | to which this response will react. For  |
-|                           | Copy and Change operations, this key    |
-|                           | field is protected from update. This    |
-|                           | number determines the order in which    |
-|                           | data capture rules are executed.        |
-+---------------------------+-----------------------------------------+
-| Capture Type              | The type of the data capture: C =       |
-|                           | screen capture, S = SCANSPLF data       |
-|                           | capture, M = Message data capture.      |
-|                           |                                         |
-|                           | Type C is required for Screen Captures  |
-|                           | from Operator Replay scripts. For Copy  |
-|                           | and Change operations, this field is    |
-|                           | protected from update.                  |
-+---------------------------+-----------------------------------------+
-| Response sequence         | Response Sequence Number: The order in  |
-|                           | which each response rule will be        |
-|                           | executed. When changing an existing     |
-|                           | rule's sequence number, pay close      |
-|                           | attention to the Continuation field     |
-|                           | value, because the order of records is  |
-|                           | critical when the Continuation field is |
-|                           | used to group multiple response         |
-|                           | qualifications (using Compare data) and |
-|                           | commands.                               |
-+---------------------------+-----------------------------------------+
-| Continuation              | -   Continuation field values are:      |
-|                           |     blanks, CMD, AND, OR.               |
-|                           | -   A value that supports multiple      |
-|                           |     groups of commands and/or rules     |
-|                           |     that may be qualified for execution |
-|                           |     in response to a single record of   |
-|                           |     captured data. In summary, the      |
-|                           |     values work like this:              |
-|                           | -   blank = Starts a new group of       |
-|                           |     comparison rules and commands,      |
-|                           |     separate and unrelated from other   |
-|                           |     rules groups.                       |
-|                           | -   OR = an exclusive OR, meaning that  |
-|                           |     the next comparison rule or group   |
-|                           |     of rules may qualify a response     |
-|                           |     command group if the previous rule  |
-|                           |     group did not qualify.              |
-|                           | -   AND = connects more than one        |
-|                           |     qualification rule into a single    |
-|                           |     group.                              |
-|                           | -   CMD = an additional rules record is |
-|                           |     providing an additional response    |
-|                           |     command to execute, associated with |
-|                           |     the qualification rules of the      |
-|                           |     comparison record or group of       |
-|                           |     records immediately preceding this  |
-|                           |     record. This continuation record    |
-|                           |     will be ignored for comparison      |
-|                           |     rules, it exists only to support    |
-|                           |     multiple commands that are part of  |
-|                           |     a single response group.            |
-|                           | -   For more information on this field  |
-|                           |     and examples, refer to [Events and  | |                           |     Utilities                           |
-|                           |     Menu](Event                         |
-|                           | s-and-Utilities-Menu.md) |
-|                           |     .                             |
-+---------------------------+-----------------------------------------+
-| Compress numeric          | This flag field tells the LSAM data     |
-|                           | comparison rule engine how to handle    |
-|                           | the comparison data and the captured    |
-|                           | data. If numeric data was edited using  |
-|                           | a currency sign and decimal point, it   |
-|                           | may be preferable to match the whole    |
-|                           | character string exactly, without       |
-|                           | compression. But if the absolute        |
-|                           | numeric value is important and the      |
-|                           | numeric field editing cannot be         |
-|                           | predicted, then it may work better to   |
-|                           | compress out all non-numeric characters |
-|                           | and compare only the numeric digits.    |
-|                           | Compressed numeric values do not keep   |
-|                           | track of how many digits fall to the    |
-|                           | right of the decimal point, so it is    |
-|                           | important that the number of decimal    |
-|                           | places be the same in both the captured |
-|                           | data and the comparison data when the   |
-|                           | option for compressing numeric data     |
-|                           | will be used.                           |
-|                           |                                         |
-|                           |                                         |
-|                           |                                         |
-|                           | **Note:** This flag also affects how    |
-|                           | data will be stored for a Dynamic       |
-|                           | Variable token name, if specified.      |
-+---------------------------+-----------------------------------------+
-| Store to-\> DynVar        | Type a name into this field to cause    |
-|                           | the current captured data value to be   |
-| (Dynamic Variable)        | stored in an LSAM Dynamic Variable of   |
-|                           | this name. This function can only store |
-|                           | dynamic variables of type-V (general    |
-|                           | use). To create or update dynamic       |
-|                           | variables of type-L (for updating an    |
-|                           | IBM i job local data area image for     |
-|                           | LSAM captured or tracked/queued jobs,   |
-|                           | use the SETDYNVAR command in the        |
-|                           | Response command field and include a    |
-|                           | different Dynamic Variable name (that   |
-|                           | may be entered into this field) as the  |
-|                           | value for the type-L variable.          |
-+---------------------------+-----------------------------------------+
-| Store to-\> Oper Rply Var | Type a name into this field to cause    |
-|                           | the current captured data value to be   |
-| (Operator Replay          | stored in an LSAM Operator Replay Token |
-|                           | variable of this name. The captured     |
-| token/variable)           | data response function linked to        |
-|                           | Operator Replay script execution        |
-|                           | completes the task of storing the       |
-|                           | captured data into this variable field  |
-|                           | before the script step is executed.     |
-|                           | Therefore, it is possible to use this   |
-|                           | variable in fields that define the      |
-|                           | script step execution, responding to    |
-|                           | the screen that is on display as the    |
-|                           | data was captured.                      |
-+---------------------------+-----------------------------------------+
-| Response cmd (part 1);    | -   The first 214 characters of the     |
-|                           |     response command string may be      |
-| F13=Full CMD              |     entered in this field. If the       |
-|                           |     command is longer than 214          |
-|                           |     characters, press <**F13=Full      |
-|                           |     CMD**> to branch to a screen where |
-|                           |     a much longer command string may be |
-|                           |     entered. Function key               |
-|                           |     <**F4=Prompt**> may be used to    |
-|                           |     get IBM i help with command         |
-|                           |     prompting. Unlike the Compare data  |
-|                           |     lines, the entire command string    |
-|                           |     will appear in the F13=Full CMD     |
-|                           |     screen. Be careful if a partial     |
-|                           |     command shows in this field in      |
-|                           |     Change mode; in this case it is     |
-|                           |     recommended that F13=Full CMD be    |
-|                           |     used to be sure that the final      |
-|                           |     command syntax is correct after any |
-|                           |     changes.                            |
-|                           | -   Dynamic Variables may be used in    |
-|                           |     place of all or part of the command |
-|                           |     line syntax. For more information   |
-|                           |     about Dynamic Variables, refer to   |
-|                           |     [Dynamic Variables](/dynamic-variables/overview) |
-|                           |     .                             |
-+---------------------------+-----------------------------------------+
-| Comp reference value      | -   The compare reference value is a    |
-|                           |     field containing a character string |
-|                           |     or a reference to a value store in  |
-|                           |     another file, for use in qualifying |
-|                           |     this Rule for execution. If the     |
-|                           |     referenced value does not match the |
-|                           |     Compare data according to the       |
-|                           |     Compare rule, then the Capture      |
-|                           |     Response Rule Response command will |
-|                           |     not be executed.                    |
-|                           | -   \*CAPT = Use the captured data as   |
-|                           |     the reference data (this is the     |
-|                           |     original default for comparing      |
-|                           |     data, in prior versions).           |
-|                           | -   DynVar = The LSAM Dynamic Variable  |
-|                           |     named in this field will be         |
-|                           |     compared to the Compare data. (Do   |
-|                           |     not type 'DynVar' but instead     |
-|                           |     type the name of a Dynamic          |
-|                           |     Variable. Use function key F8 to    |
-|                           |     select from a list of existing      |
-|                           |     dynamic variables.)                 |
-|                           | -   char = a specific string typed in   |
-|                           |     this field will be compared to the  |
-|                           |     Compare data.                       |
-+---------------------------+-----------------------------------------+
-| Comp reference length     | Specifies the length of data to be used |
-|                           | from the Comp reference value, starting |
-|                           | at position 1 of the reference value.   |
-|                           | If this field is zero, then the trimmed |
-|                           | length of the reference value will be   |
-|                           | used. (Trimming means that any trailing |
-|                           | blanks will not be considered, only     |
-|                           | data from position 1 through the last   |
-|                           | non-blank character will determine the  |
-|                           | length of the Comp reference value.)    |
-+---------------------------+-----------------------------------------+
-| Compare rule              | -   Specifies the type of compare to    |
-|                           |     use between the Comp reference      |
-|                           |     value (which will be factor 1) and  |
-|                           |     the Compare data (which will be     |
-|                           |     factor 2). For example, if GT is    |
-|                           |     specified, then the Comp reference  |
-|                           |     value must be greater than the      |
-|                           |     Compare data in order for this      |
-|                           |     Capture Response Rule to be         |
-|                           |     executed.                           |
-|                           | -   EQ = equal, NE = not equal, GT =    |
-|                           |     greater than, LT = less than, GE =  |
-|                           |     greater than or equal, LE = less    |
-|                           |     than or equal.                      |
-+---------------------------+-----------------------------------------+
-| Capture length            | This is a protected field that shows    |
-|                           | the length specified for the captured   |
-|                           | data. The value will appear in Copy and |
-|                           | Change mode. In Add (Create) mode, a    |
-|                           | value will be supplied if the F4=Prompt |
-|                           | key is used to select a valid Capture   |
-|                           | ID and Sequence. Use this field as a    |
-|                           | reference when defining the Compare     |
-|                           | data.                                   |
-+---------------------------+-----------------------------------------+
-| Compare data lines 1-5;   | -   The compare data is used to match   |
-|                           |     with the original capture data      |
-| PagDown=6-24              |     according to the compare rule. The  |
-|                           |     compare data may be typed directly  |
-|                           |     into this field. Use PageDown to    |
-|                           |     show and update lines 6-24; lines   |
-|                           |     1-5 only appear on the main         |
-|                           |     maintenance screen. Up to 1920      |
-|                           |     characters may be specified.        |
-|                           | -   If it should be desired to compare  |
-|                           |     an entire 24 X 80 screen, that is,  |
-|                           |     all 1920 characters, it would be    |
-|                           |     possible to copy and paste the      |
-|                           |     reference screen image (lines 1-5   |
-|                           |     separately from lines 6-24) into    |
-|                           |     this field. However, keep in mind   |
-|                           |     that only the displayable           |
-|                           |     characters are compared. That is,   |
-|                           |     field attributes such as color (and |
-|                           |     any EBCID character value less than |
-|                           |     X'40' ) will not be considered; a |
-|                           |     space character is used in place of |
-|                           |     non-display values.                 |
-|                           | -   Special values may be typed into    |
-|                           |     this field, instead of actual       |
-|                           |     compare data:                       |
-|                           | -   \*ANY = No comparison will be       |
-|                           |     performed. A command or group of    |
-|                           |     commands associated with compare    |
-|                           |     data value of \*ANY will always be  |
-|                           |     executed.                           |
-|                           | -   \*PARM = Reserved for the SCANSPLF  |
-|                           |     command. This means that the        |
-|                           |     compare data to be used is the same |
-|                           |     as the parameter value supplied     |
-|                           |     with the SCANSPLF command, except   |
-|                           |     that the Compare rules supplied     |
-|                           |     with this response record will      |
-|                           |     apply. If this value is used with   |
-|                           |     an Operator Replay screen data      |
-|                           |     capture, it has the same effect as  |
-|                           |     \*ANY.                              |
-|                           | -   DynVar = This prompting value       |
-|                           |     indicates that one or more Dynamic  |
-|                           |     Variable tokens may be typed into   |
-|                           |     the Compare data lines. DO NOT TYPE |
-|                           |     "DynVar" into the Compare data.   |
-|                           |     Instead, type the Dynamic Variable  |
-|                           |     token syntax, which by default      |
-|                           |     looks like this:                    |
-|                           | -   One or more dynamic variables may   |
-|                           |     be typed along with other actual    |
-|                           |     compare data. When the response     |
-|                           |     rule is qualified for execution,    |
-|                           |     the dynamic variable value will be  |
-|                           |     retrieved just before the           |
-|                           |     comparison operation is performed.  |
-|                           |     Keep in mind that the result of     |
-|                           |     replacing a dynamic variable may be |
-|                           |     longer or shorter than the dynamic  |
-|                           |     variable token. It is important to  |
-|                           |     anticipate the exact length and     |
-|                           |     content of the compare data line(s) |
-|                           |     as they will look after dynamic     |
-|                           |     variable tokens are replaced. For   |
-|                           |     more information about Dynamic      |
-|                           |     Variables, refer to [Dynamic Variables](/dynamic-variables/overview) |
-|                           |     .                             |
-+---------------------------+-----------------------------------------+
+- Script: When this maintenance screen has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
+- (Script) Seq: When this maintenance screen has been called using function key F10 from the Operator Replay Step record screen, the number of the Operator Replay Step 
+Sequence is fixed and it appears in the heading of this list display.
+- From fields (Resp Seq): When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. When this program is called from the Operator Replay Step maintenance, only the Response Sequence appears in the From field list. A new value must be assigned to the new Response Rule record being created in Copy mode, using the Response Sequence input field (below).
+- Capture Identifier: A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. For Copy and Change operations, this key field is protected from update. This field and the Capture Seq field (next) identify the rule to which this response record will react.
+- Capture sequence: The sequence of the data capture rule to which this response will react. For Copy and Change operations, this key field is protected from update. This number determines the order in which data capture rules are executed.
+- Capture Type: The type of the data capture: C = screen capture, S = SCANSPLF data capture, M = Message data capture. Type C is required for Screen Captures from Operator Replay scripts. For Copy and Change operations, this field is protected from update.
+- Response sequence: Response Sequence Number: The order in which each response rule will be executed. When changing an existing rule's sequence number, pay close 
+attention to the Continuation field value, because the order of records is critical when the Continuation field is used to group multiple response qualifications (using Compare data) and commands.
+- Continuation: 
+  -   Continuation field values are: blanks, CMD, AND, OR.
+  -   A value that supports multiple groups of commands and/or rules that may be qualified for execution in response to a single record of captured data. In summary, the values work like this:
+  -   blank = Starts a new group of  comparison rules and commands, separate and unrelated from other rules groups.
+  -   OR = an exclusive OR, meaning that the next comparison rule or group of rules may qualify a response command group if the previous rule group did not qualify.
+  -   AND = connects more than one qualification rule into a single group.
+  -   CMD = an additional rules record is providing an additional response command to execute, associated with the qualification rules of the comparison record or group of records immediately preceding this record. This continuation record will be ignored for comparison rules, it exists only to support multiple commands that are part of a single response group.
+  -   For more information on this field and examples, refer to [Events and Utilities Menu](../events-utilities/menu.md).
+- Compress numeric: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits. Compressed numeric values do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the captured data and the comparison data when the option for compressing numeric data will be used.
+  :::note
+  This flag also affects how data will be stored for a Dynamic Variable token name, if specified.
+  :::
+- Store to-> DynVar (Dynamic Variable): Type a name into this field to cause the current captured data value to be stored in an LSAM Dynamic Variable of this name. This function can only store dynamic variables of type-V (general use). To create or update dynamic variables of type-L (for updating an IBM i job local data area image for LSAM captured or tracked/queued jobs, use the SETDYNVAR command in the Response command field and include a different Dynamic Variable name (that may be entered into this field) as the value for the type-L variable.
+- Store to-> Oper Rply Var (Operator Replay token/variable): Type a name into this field to cause the current captured data value to be stored in an LSAM Operator Replay Token variable of this name. The captured data response function linked to Operator Replay script execution completes the task of storing the captured data into this variable field before the script step is executed. Therefore, it is possible to use this variable in fields that define the script step execution, responding to
+ the screen that is on display as the data was captured.
+- Response cmd (part 1); F13=Full CMD 
+  -   The first 214 characters of the response command string may be  entered in this field. If the command is longer than 214 characters, press <**F13=Full CMD**> to branch to a screen where a much longer command string may be entered. Function key <**F4=Prompt**> may be used to get IBM i help with command prompting. Unlike the Compare data lines, the entire command string will appear in the F13=Full CMD screen. Be careful if a partial command shows in this field in Change mode; in this case it is recommended that F13=Full CMD be used to be sure that the final command syntax is correct after any changes. 
+  -   Dynamic Variables may be used in place of all or part of the command line syntax. For more informatin about Dynamic Variables, refer to [Dynamic Variables](../dynamic-variables/overview.md).
+
+- Comp reference value: 
+   - The compare reference value is a field containing a character string or a reference to a value store in another file, for use in qualifying     this Rule for execution. If the referenced value does not match the Compare data according to the Compare rule, then the Capture Response Rule Response command will not be executed.
+   -   *CAPT = Use the captured data as the reference data (this is the original default for comparing data, in prior versions).
+   -   DynVar = The LSAM Dynamic Variable named in this field will be compared to the Compare data. (Do not type 'DynVar' but instead type the name of a Dynamic Variable. Use function key F8 to select from a list of existing dynamic variables.)
+   -   char = a specific string typed in this field will be compared to the Compare data.
+
+- Comp reference length: Specifies the length of data to be used from the Comp reference value, starting at position 1 of the reference value. If this field is zero, then the trimmed length of the reference value will be used. (Trimming means that any trailing blanks will not be considered, only data from position 1 through the last non-blank character will determine the length of the Comp reference value.) 
+
+- Compare rule:
+   -   Specifies the type of compare to use between the Comp reference value (which will be factor 1) and the Compare data (which will be factor 2). For example, if GT is specified, then the Comp reference value must be greater than the Compare data in order for this Capture Response Rule to be executed.
+   -   EQ = equal, NE = not equal, GT = greater than, LT = less than, GE = greater than or equal, LE = less than or equal.
+
+- Capture length: This is a protected field that shos the length specified for the captured data. The value will appear in Copy and Change mode. In Add (Create) mode, a value will be supplied if the F4=Prompt key is used to select a valid Capture ID and Sequence. Use this field as a reference when defining the Compare data.
+- Compare data lines 1-5; PagDown=6-24
+  -   The compare data is used to match with the original capture data according to the compare rule. The compare data may be typed directly into this field. Use PageDown to show and update lines 6-24; lines 1-5 only appear on the main maintenance screen. Up to 1920 characters may be specified.
+  -   If it should be desired to compare an entire 24 X 80 screen, that is, all 1920 characters, it would be possible to copy and paste the reference screen image (lines 1-5 separately from lines 6-24) into this field. However, keep in mind that only the displayable characters are compared. That is, field attributes such as color (and any EBCID character value less than X'40' ) will not be considered; a space character is used in place of non-display values.
+  -   Special values may be typed into this field, instead of actual compare data:
+  -   *ANY = No comparison will be performed. A command or group of commands associated with compare data value of *ANY will always be executed.
+  -   *PARM = Reserved for the SCANSPLF command. This means that the compare data to be used is the same as the parameter value supplied with the SCANSPLF command, except that the Compare rules supplied with this response record will apply. If this value is used with an Operator Replay screen data capture, it has the same effect as *ANY.
+  -   DynVar = This prompting value indicates that one or more Dynamic Variable tokens may be typed into the Compare data lines. DO NOT TYPE "DynVar" into the Compare data. Instead, type the Dynamic Variable token syntax, which by default looks like this: {dyn_var_name}
+  -   One or more dynamic variables may be typed along with other actual compare data. When the response rule is qualified for execution, the dynamic variable value will be retrieved just before the comparison operation is performed. Keep in mind that the result of replacing a dynamic variable may be longer or shorter than the dynamic variable token. It is important to anticipate the exact length and content of the compare data line(s) as they will look after dynamic variable tokens are replaced. For more information about Dynamic  Variables, refer to [Job Dynamic Variables](../dynamic-variables/overview.md).
+
 
 
 ###### Functions
@@ -2371,8 +2075,6 @@ The Operator Replay Script driver program will recognize exactly spelled tokens 
 - $SCRIPT ID:        The name of the Operator Replay Script. This combines with the $STEP SEQ\# to uniquely identify a Step record in the Agent's database table.
 - $SCRIPT USER:      The name of the IBM i User Profile that was used to log into the green screen workstation session. Since this User name can be assigned from various sources, this variable is helpful for documenting this detail about the Script execution, and for finding jobs that were initiated by this User name.
 - $STEP SEQ\#:       The unique number assigned to a Step master record from the Operator Replay Script. This combines with the $SCRIPT ID to uniquely identify a Step record in the Agent's database table.
-
-F10=$Var: $-Special variables supported for Operator Replay Response Rules
 
 ### Display Captured Data Log
 
@@ -2428,87 +2130,23 @@ Main Menu \> Operator replay menu (\#4) \> Display Captured Data log (\#8).
 Main Menu \> Operator replay menu (\#4) \> Display Captured Data log (\#8) \> option 5=Display.
 
 ###### Fields
-
-+------------------------+--------------------------------------------+
-| Field                  | Description                                |
-+========================+============================================+
-| Log record RRN         | The relative record number of this record  |
-|                        | in physical file OPRLOGF40                 |
-+------------------------+--------------------------------------------+
-| Type                   | -   C = Operator Replay screen data        |
-|                        |     capture                                |
-|                        | -   S = SCANSPLF report spool file         |
-|                        |     scanning                               |
-|                        | -   M = Message data capture               |
-+------------------------+--------------------------------------------+
-| Capture ID:            | The identifier assigned to a group of data |
-|                        | capture rules. For Operator Replay screen  |
-|                        | data capture, this label is in addition to |
-|                        | the Script Name and Sequence number.       |
-+------------------------+--------------------------------------------+
-| (Capture) Seq:         | The sequence number assigned to the data   |
-|                        | capture definition, representing the order |
-|                        | of capture within the Capture ID.          |
-+------------------------+--------------------------------------------+
-| Scrn Row               | For screen data capture, this is the row   |
-|                        | where the data capture operation started.  |
-+------------------------+--------------------------------------------+
-| Col(-umn)              | The column within the Row (above) where    |
-|                        | the data capture started.                  |
-+------------------------+--------------------------------------------+
-| Length                 | The length of data that was captured,      |
-|                        | starting at the Row and Col specified. For |
-|                        | Operator Replay screen data, up to 1920    |
-|                        | characters of displayable data may be      |
-|                        | captured by a single capture rule. (For    |
-|                        | display formats larger than 24 X 80, more  |
-|                        | than one screen capture rule would be      |
-|                        | required to capture more than 1920         |
-|                        | characters of data.)                       |
-+------------------------+--------------------------------------------+
-| Capture Job ID         | The IBM i full job name that made the      |
-|                        | Captured Data log entry. This is the job   |
-|                        | that will be shown if the function key     |
-|                        | F9=WRKJOB is pressed.                      |
-+------------------------+--------------------------------------------+
-| Date                   | The log file entry date, in CCYYMMDD       |
-|                        | format. Used to purge the log file, based  |
-|                        | on the LSAM log file retention days (refer |
-|                        | to LSAM Parameters).                       |
-+------------------------+--------------------------------------------+
-| Time stamp             | The IBM i system time when the log entry   |
-|                        | was written.                               |
-+------------------------+--------------------------------------------+
-| Script Name            | The Operator Replay Script name that       |
-|                        | triggered this data capture.               |
-+------------------------+--------------------------------------------+
-| Step number            | The Sequence number of the Operator Replay |
-|                        | script step being executed when the data   |
-|                        | was captured.                              |
-+------------------------+--------------------------------------------+
-| Numeric                | Y = yes, N = No: Indicates whether numeric |
-|                        | data compression was specified for the     |
-|                        | captured data.                             |
-+------------------------+--------------------------------------------+
-| Rows 1-12:             | The row and columns of the capture data    |
-|                        | are labeled. Press PageDown or PageUp to   |
-| Rows 13-24:            | toggle between the display of rows 1-12    |
-|                        | and 13-24. Either eye vision, or           |
-| 2..5\...10\....5\...20 | manipulation of the cursor may be used to  |
-|                        | help identify the exact column for each    |
-|                        | character of captured data, based on the   |
-|                        | numbered ruler line just above the first   |
-|                        | line of captured data. The ruler starts    |
-|                        | with number 2 and ends with number 78 (due |
-|                        | to 5250 workstation display constraints),  |
-|                        | however, the actual captured data occupies |
-|                        | columns 1 to 80 on the lines below the     |
-|                        | ruler. Thus, workstations that display the |
-|                        | column location of the cursor should match |
-|                        | the character location in the ruler line.  |
-+------------------------+--------------------------------------------+
-
-:  
+- Log record RRN: The relative record number of this record in physical file OPRLOGF40
+- Type:  
+   -   C = Operator Replay screen data capture
+   -   S = SCANSPLF report spool file scanning
+   -   M = Message data capture
+- Capture ID: The identifier assigned to a group of data capture rules. For Operator Replay screen data capture, this label is in addition to the Script Name and Sequence number.
+- (Capture) Seq: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
+- Scrn Row: For screen data capture, this is the row where the data capture operation started.
+- Col(-umn): The column within the Row (above) where the data capture started.
+- Length: The length of data that was captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data.)
+- Capture Job ID: The IBM i full job name that made the Captured Data log entry. This is the job that will be shown if the function key F9=WRKJOB is pressed.
+- Date: The log file entry date, in CCYYMMDD format. Used to purge the log file, based on the LSAM log file retention days (refer to LSAM Parameters).
+- Time stamp: The IBM i system time when the log entry was written. 
+- Script Name: The Operator Replay Script name that triggered this data capture.
+- Step number: The Sequence number of the Operator Replay script step being executed when the data  was captured.
+- Numeric: Y = yes, N = No: Indicates whether numeric data compression was specified for the captured data.
+- Rows 1-12 Rows 13-24 2..5\...10\....5\...20: The row and columns of the capture data are labeled. Press PageDown or PageUp to toggle between the display of rows 1-12 and 13-24. Either eye vision, or manipulation of the cursor may be used to help identify the exact column for each character of captured data, based on the numbered ruler line just above the first line of captured data. The ruler starts with number 2 and ends with number 78 (due to 5250 workstation display constraints), however, the actual captured data occupies columns 1 to 80 on the lines below the ruler. Thus, workstations that display the column location of the cursor should match the character location in the ruler line.
 
 ###### Functions
 
@@ -2526,10 +2164,11 @@ LSAM menu 3. Events and Utilities Menu, contains option 7. LSAM Utility configur
 The debugging feature could be turned off for better performance in systems that do not require extensive audit logging or debugging of any  problems. On the other hand, debug logging should be turned on when extensive system audit support is required, because the debug log provides detailed evidence of all automated operations.
 
 If technical support is needed for apparent problems with either capturing data or executing response rules, turn on the debug function in LSAM menu 3, function 7. After attempting execution of the Operator Replay script, or the SCANSPLF command that is causing trouble, use the SMASUP log file extract command to retrieve the debug log information and send the resulting save file from library SMALOG to SMA Support for assistance. For more information about how to use the SMASUP command,
-refer to [Extracting Log and Master Files](/logs-database/extracting).
+refer to [Extracting Log and Master Files](../logs-database/extracting.md).
 
 Following is a table of Entry_Code values that may be observed in the list of debug log entries. These entry labels help to identify the action that was performed and/or the result of data capture and captured data response rules. Some of the codes reflect a failure in which case the log entry will appear red in color.
 
+### Entry_Code Values Appearing in Captured Data Debug Log Viewer
 #### Entry_Code
   **SCANSPLF command log entries**
 - SCANSPLFST: The SCANSPLF command has started its function.
@@ -2567,5 +2206,3 @@ Following is a table of Entry_Code values that may be observed in the list of de
 - OVARERR: Documents an error that occurred when the ADDRPYTOK command was executed.
 - SETDYNVAR:  Log of the command that sets a Dynamic Variable value, based on that field in the Response Rule record.
 - DVARERR: Documents an error that occurred when the SETDYNVAR command was executed.
-
-Entry_Code Values Appearing in Captured Data Debug Log Viewer
