@@ -66,17 +66,17 @@ Add User Fields table (below) as new data is typed.
 
 | Parameter       | Default Value    | Required | Description      |
 | -------         | ---------------  | -------- | -------          |
-| User Name       | IBM i Name Rules (Refer to IBM i [Rules](Configuration.htm#IBM2)| Y        | -   The User Name specified does not have to exist when it isentered in the maintenance functions of this section, but it must be created as a valid IBM i user ID before it can be used by the LSA.|
+| User Name       | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration.md#ibm_i_name_rules)| Y        | -   The User Name specified does not have to exist when it isentered in the maintenance functions of this section, but it must be created as a valid IBM i user ID before it can be used by the LSA.|
 | | | |-   Long user names may be entered for other applications, such as an FTP transfer job, but the LSAM Operator Reply function is currently limited to User Names of only 10 characters in length. |
-| Password        | IBM i Name Rules (Refer to [IBM i Rules](Configuration.htm#IBM2)) | Y        | IBM i may be restricted to 10 Name characters as a user password. The first character must be alphabetic, and the remaining characters must be alphanumeric. |
+| Password        | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration.md#ibm_i_name_rules)) | Y        | IBM i may be restricted to 10 Name characters as a user password. The first character must be alphabetic, and the remaining characters must be alphanumeric. |
 | | | |**Note:** The LSAM only supports passwords up to 128 characters. However, the password length must be limited to what will be accepted by either the current version of IBM i, or by the target system (as when the User applies to an FTP transfer job).   |
 | Password (to verify) | None             | Y        | Must be exactly the same as the original password entry above.           |
 | Description     | None             | N        | A description that helps explain the identity and purpose of this user. SMA recommends providing this information.|
 | Device Name     | None             | N        | When the user will be restricted by IBM i object authority to just one virtual display device, type the Device Name in this field. Leaving this field blank tells the Operator Replay script driver (and the optional Telnet exit program) That this user will rely on either (1) automatic virtual device creation, or (2) at least that one virtual display device is available for allocation to this user's job.|
-| | | | Please refer to [Managing Virtual Devices](#Managing) near the end of the Operator Replay Scripts section for more information about when to use this Device Name field.      |
+| | | | Please refer to [Managing Virtual Devices](../operator-replay/virtual-devices.md) near the end of the Operator Replay Scripts section for more information about when to use this Device Name field.      |
 | IP Address    | None             | N        | When a Device Name is specified, ths field is also required. The IP Address tells the LSAM Telnet exit program which device name to specify as the Script driver job is connecting to the Telnet server.          |
 | | | | SMA recommends configuring IP addresses with the Interface type of *LOOPBACK, since this type of Interface does not require a line description object. However, any valid IP address value that is configured in the partition can be used, as long as it is understood that there is a one-to-one relationship between the IP Address and a Device Name.  Specifying an external IP address or even an inter-system virtual LAN IP Address would restrict Operator Replay jobs to serial (one at a time) execution, since the virtual device can only be used for one job at a time. |
-| | | | Please refer to [Managing Virtual Devices](#Managing) near the end of the Operator Replay Scripts section for more information about when to use this IP Address field.   |
+| | | | Please refer to [Managing Virtual Devices](../operator-replay/virtual-devices.md) near the end of the Operator Replay Scripts section for more information about when to use this IP Address field.   |
 
 ### Change User Screen
 

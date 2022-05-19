@@ -628,46 +628,14 @@ But sites with no special requirements can simply press Enter to complete the co
   The default values that this screen format supplies for the ADDTCPFC command are what SMA recommends for Operator Replay IP addresses. There are common standards for IP addresses that should be used for *LOOPBACK interface types. SMA recommends using a loopback interface because it does not require a line description, so the configuration is easier to manage and it involves less overhead in the system than using a locally defined external  (or virtual LAN) IP address in a loopback mode.
 
 
-- Line description   | The Internet Address field (above) explains    |
-                    | why *LOOPBACK is recommended instead of using |
-                    | a physical line description. However, when the |
-                    | ADDTCPIFC command is prompted by the F14       |
-                    | function key, the user may replace this        |
-                    | prompted value with any actual value that      |
-                    | meets any unique site requirements.            |
-                                               |
-                    |                                                |
-                                               |
-                    | If physical line descriptions are used, they   |
-                    | must be manually created by the user, since    |
-                    | this prompting screen does not support         |
-                    | creation of line descriptions.                 |
+- Line description: The Internet Address field (above) explains why *LOOPBACK is recommended instead of using a physical line description. However, when the ADDTCPIFC command is prompted by the F14 function key, the user may replace this prompted value with any actual value that meets any unique site requirements. 
 
-| Subnet mask        | This display prompts the ADDTCPIFC command     |
-|                    | with a subnet mask that is appropriate for a   |
-|                    | *LOOPBACK type of interface. This value can   |
-|                    | be replaced after the ADDTCPIFC command is     |
-|                    | prompted using the F14 function key, if that   |
-|                    | is necessary to meet any unique site           |
-|                    | requirements.                                  |
+   If physical line descriptions are used, they must be manually created by the user, since this prompting screen does not support creation of line descriptions.
 
-| Alias name         | The alias name used to represent a TCP         |
-|                    | Interface can be set to *NONE, or a unique    |
-|                    | name can be typed by the user to represent     |
-|                    | each different Interface that will be added to |
-|                    | the partition. Use of interface alias names is |
-|                    | optional, depending on the overall network     |
-|                    | practices and/or requirements of the site. The |
-|                    | Operator Replay device selection routines do   |
-|                    | not rely on the alias name.                    |
+- Subnet mask: This display prompts the ADDTCPIFC command with a subnet mask that is appropriate for a *LOOPBACK type of interface. This value can be replaced after the ADDTCPIFC command is prompted using the F14 function key, if that is necessary to meet any unique site requirements.\
 
-| Text (description) | This description text is inserted into the     |
-|                    | description of the display device and the TCP  |
-|                    | interface, when the commands are prompted      |
-|                    | using the F14 function key. The description    |
-|                    | text can also be updated from the command      |
-|                    | prompt displays, especially if the device and  |
-|                    | the interface should have different text.      |
+- Alias name: The alias name used to represent a TCP Interface can be set to *NONE, or a unique name can be typed by the user to represent each different Interface that will be added to the partition. Use of interface alias names is optional, depending on the overall network practices and/or requirements of the site. The Operator Replay device selection routines do not rely on the alias name.
+- Text (description): This description text is inserted into the description of the display device and the TCP interface, when the commands are prompted using the F14 function key. The description text can also be updated from the command prompt displays, especially if the device and the interface should have different text.
 
 
 ##### Functions
