@@ -1,3 +1,6 @@
+---
+sidebar_label: 'Job Tracking and Queuing'
+---
 # Job Tracking and Queuing
 
 The Job Tracking and Queuing feature allows external (user-submitted) jobs to be tracked, queued or captured for processing by OpCon. This feature is used for three general purposes.

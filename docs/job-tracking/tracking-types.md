@@ -1,3 +1,7 @@
+---
+sidebar_label: 'Introduction to Tracking Types'
+---
+
 # Introduction to Tracking Types
 
 The general LSAM Job Tracking set up and maintenance tools described in this topic are configured in different ways depending on the purpose for using tracking, and on the third-party application software that may have its jobs intercepted for tracking.
@@ -6,7 +10,7 @@ The LSAM may employ two different techniques for tracking jobs. The most commonl
 
 Following is a list of the different types of tracking tasks managed by this LSAM feature. The list identifies which tracking technique is used for each task. It is often important to understand the difference among these tracking types when using the LSAM job tracking maintenance functions according to the step-by-step instructions that follow later in this document. Notice the listed attributes of each type in order to understand what purposes may be served by each type.
 
-There is more information about actually configuring for and operating with each tracking type in the remainder of this topic. Additional background information and technical details are offered in [How LSAM Job Tracking Works](#How).
+There is more information about actually configuring for and operating with each tracking type in the remainder of this topic. Additional background information and technical details are offered in [How LSAM Job Tracking Works](../job-tracking/details.md).
 
 ## Job Tracking
 

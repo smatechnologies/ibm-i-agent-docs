@@ -1,8 +1,11 @@
+---
+sidebar_label: 'Using LSAM Job Tracking Functions'
+---
 # Using LSAM Job Tracking Functions
 
 This section provides a simple outline of the steps required to utilize the various functions of the LSAM's job tracking feature. There are important explanations of how these functions work in the following section of this topic. It is important to understand that discussion because the LSAM job tracking feature alters the way IBM i job management behaves. These changes could impact other software that is running under IBM i.
 
-Certain of the following procedure outlines make reference to LSAM maintenance functions that are described in detail in a following section: [Job Tracking and Queuing Screens and Windows](#Job6) . References to OpCon procedures, such as adding a job to an OpCon schedule, are described in detail in the [Using Job Master](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Using-Job-Master.md#top) section of the **Enterprise Manager** online help.
+Certain of the following procedure outlines make reference to LSAM maintenance functions that are described in detail in a following section: [Job Tracking and Queuing Screens and Windows](../job-tracking/screens.md) . References to OpCon procedures, such as adding a job to an OpCon schedule, are described in detail in the [Using Job Master](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Using-Job-Master.md#top) section of the **Enterprise Manager** online help.
 
 ## Operating Job Tracking
 
@@ -10,7 +13,7 @@ The general capabilities of the LSAM to perform job tracking, queuing or capture
 
 Master and control file maintenance functions found in the LSAM Job Tracking menu do not require that Job Tracking be started.
 
-The purpose of the LSAM's Tracking and Queuing functions, separate from Capturing a job, is to intercept a job that has been submitted by an IBM i user or another batch job, rather than directly by the OpCon SAM, so that the job can be monitored by OpCon. Both tracking and queuing are manage in the same way. Refer to the introduction to Tracking Types at the start of this topic, and also to [How LSAM Job Tracking Works](#How).
+The purpose of the LSAM's Tracking and Queuing functions, separate from Capturing a job, is to intercept a job that has been submitted by an IBM i user or another batch job, rather than directly by the OpCon SAM, so that the job can be monitored by OpCon. Both tracking and queuing are manage in the same way. Refer to the introduction to Tracking Types at the start of this topic, and also to [How LSAM Job Tracking Works](../job-tracking/details.md).
 
 ### Starting Job Tracking
 
