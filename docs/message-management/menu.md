@@ -1,3 +1,6 @@
+---
+sidebar_label: 'Message Management Menu'
+---
 # Message Management Menu
 
 Message Management Menu
@@ -30,27 +33,17 @@ Message Management Menu
   
 ##### Menu Pathways
 
-Main Menu \> Message management menu (\#2)
+Main Menu > Message management menu (#2)
 
 ##### Options
 
-The options displayed on this menu are explained in the following
-sections of this document. Type an option number in the Selection or
-command line and press \<**Enter**\> to begin using any of the options.
+The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options.
 
 ##### Functions
 
 - **F3=Exit**: Returns to the master menu.
-- **F4=Prompt**: Prompts for keywords for any command entered in the
-    Select or command line.
-- **F9=Retrieve**: Retrieves the previous command that was entered on
-    the Select or the command line. If it is pressed multiple times, the
-    system goes further and further back to previous commands.
+- **F4=Prompt**: Prompts for keywords for any command entered in the Select or command line.
+- **F9=Retrieve**: Retrieves the previous command that was entered on the Select or the command line. If it is pressed multiple times, the system goes further and further back to previous commands.
 - **F12=Cancel**: Returns to the master menu.
-- **F13=Information Assistant**: Branches to the IBM i general help
-    screen.
-- **F16=System main menu**: This is always shown on any
-    system-generated menu screen. It branches to the general command
-    entry menu for IBM i. Return to the previous menu by pressing
-    \<**F3**\> or \<**F12**\>. This function is not commonly used and
-    can be restricted for certain user profiles.
+- **F13=Information Assistant**: Branches to the IBM i general help screen.
+- **F16=System main menu**: This is always shown on any system-generated menu screen. It branches to the general command entry menu for IBM i. Return to the previous menu by pressing <**F3**> or <**F12**>. This function is not commonly used and can be restricted for certain user profiles.

@@ -94,8 +94,8 @@ module.exports = {
       collapsed: true,
       items: [
         'message-management/overview',
+        'message-management/menu',
         'message-management/operations',        
-        'message-management/operations',
         'message-management/details',
         'message-management/screens',
         'message-management/logs',

@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Overview'
+sidebar_label: 'Message Management Overview'
 ---
 
 # Message Management Overview
