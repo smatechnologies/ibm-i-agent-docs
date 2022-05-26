@@ -11,402 +11,87 @@ sidebar_label: 'OR Script Screens and Windows'
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay configuration (\#5)
+Main Menu \> Operator replay menu (#4) \> Operator Replay configuration (#5)
 
 ###### Fields
 
-+----------------------------------+----------------------------------+
-| Field                            | Description                      |
-+==================================+==================================+
-| **TCP/IP and Device              |                                  |
-| Configuration**                  |                                  |
-+----------------------------------+----------------------------------+
-| Telnet device modes              | The list of optional Telnet      |
-|                                  | device modes is introduced by    |
-|                                  | the F1=Help text, and it is      |
-|                                  | fully explained in the [Managing | |                                  | Virtual                          |
-|                                  | Devices](#Managing)      |
-|                                  |  section near the end of   |
-|                                  | the Operator Replay Scripts      |
-|                                  | chapter.                         |
-+----------------------------------+----------------------------------+
-| NOTE: MODEs 2-4                  | Use F1=Help to view an           |
-|                                  | introduction to the Telnet Exit  |
-|                                  | Program use and configuration.   |
-|                                  | See [Managing Virtual            | |                                  | Devices](#Managing)      |
-|                                  |  near the end of the       |
-|                                  | Operator Replay Scripts chapter  |
-|                                  | for complete instructions.       |
-+----------------------------------+----------------------------------+
-| IP Address                       | This address is used to start an |
-|                                  | emulated interactive user        |
-|                                  | session, using IP Telnet         |
-|                                  | protocol. The default value for  |
-|                                  | this field is the typical        |
-|                                  | \*LOOPBACK interface address of  |
-|                                  | 127.0.0.1. Use F4=Prompt to see  |
-|                                  | a list of valid values that IBM  |
-|                                  | i supplies from existing         |
-|                                  | configured IP lines. SMA         |
-|                                  | recommends using loopback        |
-|                                  | interfaces instead of physical   |
-|                                  | line descriptions for Operator   |
-|                                  | Replay Script jobs to ease the   |
-|                                  | configuration and improve system |
-|                                  | efficiency.                      |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | An IP Address is always required |
-|                                  | by the Operator Replay Script    |
-|                                  | driver program. However, the IP  |
-|                                  | Address might be provided from   |
-|                                  | either User Management, from the |
-|                                  | OpCon job start request (as an   |
-|                                  | extension to the Script name) or |
-|                                  | from the STROPRRPY command when  |
-|                                  | it is used for testing. When an  |
-|                                  | alternate source for the IP      |
-|                                  | Address has been configured,     |
-|                                  | this field value in the          |
-|                                  | Configuration screen is usually  |
-|                                  | ignored, unless it may be used   |
-|                                  | by reference to a \*DEFAULT      |
-|                                  | value in the IPADDR( ) parameter |
-|                                  | of the STROPRPRY command.        |
-+----------------------------------+----------------------------------+
-| Telnet port                      | The default telnet port of 23    |
-|                                  | should be specified, unless IBM  |
-|                                  | i has been configured to support |
-|                                  | Telnet services at a different   |
-|                                  | port. This is the port where the |
-|                                  | emulated interactive user        |
-|                                  | session will be started by the   |
-|                                  | Operator Replay control program. |
-+----------------------------------+----------------------------------+
-| Telnet device name               | Enter a virtual display device   |
-|                                  | name or one of the functional    |
-|                                  | values:                          |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | Mode 1: Leave this field blank.  |
-|                                  | The system will select or create |
-|                                  | an available virtual display     |
-|                                  | device.                          |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | Mode 2: This mode requires an    |
-|                                  | actual virtual display device    |
-|                                  | name.                            |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | Mode 3: Type "\*USER" into the |
-|                                  | device name field.               |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | Mode 4: Type "\*CMD" into the  |
-|                                  | device name field.               |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | **NOTE**: To allow command line  |
-|                                  | parameter overrides when in User |
-|                                  | mode, type both values into this |
-|                                  | field: "\*USER \*CMD"          |
-+----------------------------------+----------------------------------+
-| Telnet device exit program       | This is a protected display      |
-| number                           | field, showing the default exit  |
-|                                  | program number that will be used |
-|                                  | by the Agent when adding or      |
-|                                  | removing the exit program entry  |
-|                                  | in the IBM i registry.           |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | In case of the unlikely event    |
-|                                  | that this unique number is       |
-|                                  | already in use by some other     |
-|                                  | software application, use        |
-|                                  | function key F13 to unlock this  |
-|                                  | field and type in a different,   |
-|                                  | valid exit program number.       |
-|                                  | (Valid values are mostly below   |
-|                                  | the default value, since this    |
-|                                  | was intentionally set to very    |
-|                                  | near the upper limit.)           |
-+----------------------------------+----------------------------------+
-| **General Configuration          |                                  |
-| Options**                        |                                  |
-+----------------------------------+----------------------------------+
-| Script job logging               | Controls whether the interactive |
-|                                  | user emulation session will be   |
-|                                  | recorded in the LSAM's Operator |
-|                                  | Replay log file. Use this        |
-|                                  | feature whenever a new script is |
-|                                  | added, or to diagnose suspected  |
-|                                  | problems with a script. There    |
-|                                  | will always be a log index entry |
-|                                  | made for every script that is    |
-|                                  | executed, but only:              |
-|                                  |                                  |
-|                                  | -   Y = yes, record each Script  |
-|                                  |     execution in its own log     |
-|                                  |     file data member,            |
-|                                  |     corresponding to the log     |
-|                                  |     index entry.                 |
-+----------------------------------+----------------------------------+
-| Script job debug logging         | For use by technical support     |
-|                                  | personnel only. This option      |
-|                                  | causes additional log entries to |
-|                                  | be added to a special trace      |
-|                                  | file, OPRLOGF20. Refer to more   |
-|                                  | information about this function  |
-|                                  | under the F17 and F18 function   |
-|                                  | key descriptions.                |
-+----------------------------------+----------------------------------+
-| Telnet exit pgm trace log        | For use by technical support     |
-|                                  | personnel only. This option      |
-|                                  | causes additional log entries to |
-|                                  | be added to a special trace      |
-|                                  | file, OPRLOGF20. Refer to more   |
-|                                  | information about this function  |
-|                                  | under the F19 and F20 function   |
-|                                  | key descriptions.                |
-+----------------------------------+----------------------------------+
-| Post-send delay                  | The number of microseconds to    |
-|                                  | wait after sending a reply to a  |
-|                                  | screen format, before attempting |
-|                                  | to read the system response to   |
-|                                  | the sent data. A tuning option   |
-|                                  | for the script execution         |
-|                                  | program, this value should only  |
-|                                  | be changed by trained technical  |
-|                                  | support personnel.               |
-+----------------------------------+----------------------------------+
-| Inter-read delay                 | The number of microseconds to    |
-|                                  | wait in between reading segments |
-|                                  | of the screen buffer that the    |
-|                                  | system is writing. A tuning      |
-|                                  | option for the script execution  |
-|                                  | program, this value should only  |
-|                                  | be changed by trained technical  |
-|                                  | support personnel. SMA           |
-|                                  | recommends using 0.1 seconds for |
-|                                  | this field (instead of a whole 1 |
-|                                  | second, previously offered as    |
-|                                  | the default value).              |
-+----------------------------------+----------------------------------+
-| Receiving data timeout           | The number of microseconds to    |
-|                                  | wait before deciding that the    |
-|                                  | system is no longer replying to  |
-|                                  | the script execution. A tuning   |
-|                                  | option for the script execution  |
-|                                  | program, this value should only  |
-|                                  | be changed by trained technical  |
-|                                  | support personnel.               |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | **Note:** This value can be      |
-|                                  | overridden at the script step    |
-|                                  | level.                           |
-+----------------------------------+----------------------------------+
-| Script loop detect limit         | Number of repeats by Script      |
-|                                  | Branching Logic to same or lower |
-|                                  | Step sequence number allowed     |
-|                                  | within same Script name before   |
-|                                  | script execution is aborted with |
-|                                  | an error message reporting too   |
-|                                  | many loops.                      |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | The Script Step master records   |
-|                                  | support an override value to     |
-|                                  | this limit, in case a script     |
-|                                  | must intentionally loop back to  |
-|                                  | the same step more times than    |
-|                                  | this global loop limit would     |
-|                                  | allow.                           |
-+----------------------------------+----------------------------------+
-| Separator data columns           | Each of the three separator hex  |
-|                                  | character values shows a         |
-|                                  | maintainable value field in      |
-|                                  | yellow. To the right is the      |
-|                                  | current value in the control     |
-|                                  | file, shown in turquoise. The    |
-|                                  | displayable character equivalent |
-|                                  | of each hex character sequence   |
-|                                  | is displayed as a single pink    |
-|                                  | character. Use the LSAM command  |
-|                                  | LSATBLTEST to test results for   |
-|                                  | hex character sequences,         |
-|                                  | especially when US English       |
-|                                  | (CCSID 37) is NOT the IBM i      |
-|                                  | default character set.           |
-+----------------------------------+----------------------------------+
-| **Hexadecimal control            |                                  |
-| characters**                     |                                  |
-+----------------------------------+----------------------------------+
-| Token/variable separator         | -   The special character that   |
-|                                  |     is inserted by the script    |
-|                                  |     maintenance program to       |
-|                                  |     designate a character string |
-|                                  |     that is actually a token or  |
-|                                  |     variable field that will     |
-|                                  |     have its value substituted   |
-|                                  |     from the user-defined list   |
-|                                  |     of tokens.                   |
-|                                  | -   If this value is changed, it |
-|                                  |     could affect all the         |
-|                                  |     existing scripts. A warning  |
-|                                  |     and utility function screen  |
-|                                  |     will follow.                 |
-|                                  | -   This value should only be    |
-|                                  |     changed by trained technical |
-|                                  |     support personnel, and then  |
-|                                  |     only if required to work     |
-|                                  |     around a conflict in the     |
-|                                  |     character sequences being    |
-|                                  |     managed by the script        |
-|                                  |     execution program.           |
-+----------------------------------+----------------------------------+
-| Cursor control separator 1       | -   The special character that   |
-|                                  |     is inserted by the script    |
-|                                  |     maintenance program to       |
-|                                  |     designate the start of a     |
-|                                  |     character string that will   |
-|                                  |     be used to move the cursor   |
-|                                  |     on the emulated green screen |
-|                                  |     image during script          |
-|                                  |     execution.                   |
-|                                  | -   If this value is changed, it |
-|                                  |     could affect all the         |
-|                                  |     existing scripts. A warning  |
-|                                  |     and utility function screen  |
-|                                  |     will follow.                 |
-|                                  | -   This value should only be    |
-|                                  |     changed by trained technical |
-|                                  |     support personnel, and then  |
-|                                  |     only if required to work     |
-|                                  |     around a conflict in the     |
-|                                  |     character sequences being    |
-|                                  |     managed by the script        |
-|                                  |     execution program.           |
-|                                  | -   This value is a pair of      |
-|                                  |     displayable characters used  |
-|                                  |     to represent the hexadecimal |
-|                                  |     value of the actual single   |
-|                                  |     character used as the        |
-|                                  |     separator.                   |
-+----------------------------------+----------------------------------+
-| Cursor control separator 2       | -   The special character that   |
-|                                  |     is inserted by the script    |
-|                                  |     maintenance program to       |
-|                                  |     designate the end of a       |
-|                                  |     character string that will   |
-|                                  |     be used to move the cursor   |
-|                                  |     on the emulated green screen |
-|                                  |     image during script          |
-|                                  |     execution.                   |
-|                                  | -   If this value is changed, it |
-|                                  |     could affect all the         |
-|                                  |     existing scripts. A warning  |
-|                                  |     and utility function screen  |
-|                                  |     will follow.                 |
-|                                  | -   This value should only be    |
-|                                  |     changed by trained technical |
-|                                  |     support personnel, and then  |
-|                                  |     only if required to work     |
-|                                  |     around a conflict in the     |
-|                                  |     character sequences being    |
-|                                  |     managed by the script        |
-|                                  |     execution program.           |
-|                                  | -   This value is a pair of      |
-|                                  |     displayable characters used  |
-|                                  |     to represent the hexadecimal |
-|                                  |     value of the actual single   |
-|                                  |     character used as the        |
-|                                  |     separator.                   |
-+----------------------------------+----------------------------------+
-| **Displayed Data Translation**   |                                  |
-+----------------------------------+----------------------------------+
-| Displayed data translation       | Refer to the discussion below    |
-|                                  | about the purpose for these      |
-|                                  | table names. Note the option to  |
-|                                  | use CCSID character set numbers  |
-|                                  | instead of translations; this    |
-|                                  | option may produce better        |
-|                                  | results in countries outside of  |
-|                                  | the United States of America.    |
-|                                  | SMA Support can help with the    |
-|                                  | analysis of any translation      |
-|                                  | problems.                        |
-+----------------------------------+----------------------------------+
-| **"Attempt to Recover           |                                  |
-| Interactive Job" Display --     |                                  |
-| Local Language**                 |                                  |
-+----------------------------------+----------------------------------+
-| Instructions:                    | If an Operator Replay Script job |
-|                                  | ended abnormally, depending on   |
-|                                  | the system value QDEVRCYACN, the |
-|                                  | next attempt to access the same  |
-|                                  | display device might be          |
-|                                  | intercepted by a job recovery    |
-|                                  | message. The Operator Replay     |
-|                                  | script driver will attempt to    |
-|                                  | recognize and bypass this        |
-|                                  | message if the display matches   |
-|                                  | these configuration values. This |
-|                                  | will prevent another script job  |
-|                                  | failure and it will also reduce  |
-|                                  | the requirement for manual       |
-|                                  | operator intervention to restore |
-|                                  | the status of the display        |
-|                                  | device.                          |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | It might be necessary to view    |
-|                                  | the Operator Replay log display  |
-|                                  | and examine the detailed log of  |
-|                                  | screen output to determine the   |
-|                                  | exact values required in these   |
-|                                  | Configuration fields. But after  |
-|                                  | the first incident, if the Row,  |
-|                                  | Column and Text are configured   |
-|                                  | correctly, then the script       |
-|                                  | driver program will be able to   |
-|                                  | successfully bypass future       |
-|                                  | incidents of this type.          |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | The default title text shown in  |
-|                                  | the display is intended to match |
-|                                  | the screen title that appears in |
-|                                  | a default US EBCDIC partition.   |
-|                                  | Update this text to match what   |
-|                                  | is found in the Operator Replay  |
-|                                  | log details display.             |
-+----------------------------------+----------------------------------+
-| Row of title                     | 1 (the row location of the       |
-|                                  | screen title in a default US     |
-|                                  | EBCDIC partition)                |
-+----------------------------------+----------------------------------+
-| Column of title                  | 24 (the column where text begins |
-|                                  | in a default US EBCDIC           |
-|                                  | partition)                       |
-+----------------------------------+----------------------------------+
-| Local title text                 | Attempt to recover interactive   |
-|                                  | job                              |
-+----------------------------------+----------------------------------+
+**TCP/IP and Device Configuration**
+- Telnet device modes:  
+  - The list of optional Telnet device modes is introduced by the F1=Help text, and it is fully explained in the [Managing Virtual Devices](../operator-replay/virtual-devices.md) section near the end of the Operator Replay Scripts chapter.
+  - NOTE: MODEs 2-4: Use F1=Help to view an introduction to the Telnet Exit Program use and configuration. See [Managing Virtual Devices](../operator-replay/virtual-devices.md) near the end of the Operator Replay Scripts chapter for complete instructions.
+- IP Address: 
+  - This address is used to start an emulated interactive user session, using IP Telnet protocol. The default value for this field is the typical *LOOPBACK interface address of 127.0.0.1. Use F4=Prompt to see a list of valid values that IBM i supplies from existing configured IP lines. SMA Technologies recommends using loopback interfaces instead of physical line descriptions for Operator Replay Script jobs to ease the configuration and improve system efficiency.
+  - An IP Address is always required by the Operator Replay Script driver program. However, the IP Address might be provided from either User Management, from the OpCon job start request (as an extension to the Script name) or from the STROPRRPY command when it is used for testing. When an alternate source for the IP Address has been configured, this field value in the Configuration screen is usually ignored, unless it may be used by reference to a *DEFAULT value in the IPADDR( ) parameter of the STROPRPRY command.
+- Telnet port: 
+  - The default telnet port of 23 should be specified, unless IBM i has been configured to support Telnet services at a different port. This is the port where the emulated interactive user session will be started by the Operator Replay control program.
+- Telnet device name: 
+  - Enter a virtual display device name or one of the functional values:
+  - Mode 1: Leave this field blank. The system will select or create an available virtual display device.
+  - Mode 2: This mode requires an actual virtual display device name.
+  - Mode 3: Type "*USER" into the device name field.
+  - Mode 4: Type "*CMD" into the device name field.
+  :::note
+  To allow command line parameter overrides when in User mode, type both values into this field: "*USER *CMD"
+  :::
+-  Telnet device exit program number:
+  - This is a protected display field, showing the default exit program number that will be used by the Agent when adding or removing the exit program entry in the IBM i registry. 
+  - In case of the unlikely event that this unique number is already in use by some other software application, use function key F13 to unlock this field and type in a different, valid exit program number. (Valid values are mostly below the default value, since this was intentionally set to very near the upper limit.)
 
-:  
+**General Configuration Options**
+- Script job logging:
+  - Controls whether the interactive user emulation session will be recorded in the LSAM's Operator Replay log file. Use this feature whenever a new script is added, or to diagnose suspected problems with a script. There will always be a log index entry made for every script that is executed, but only:
+    - Y = yes, record each Script execution in its own log file data member, corresponding to the log index entry.
+- Script job debug logging:
+For use by technical support personnel only. This option causes additional log entries to be added to a special trace file, OPRLOGF20. Refer to more information about this function under the F17 and F18 function key descriptions.
+- Telnet exit pgm trace log:
+  - For use by technical support personnel only. This option causes additional log entries to be added to a special trace file, OPRLOGF20. Refer to more information about this function under the F19 and F20 function key descriptions.
+- Post-send delay:
+  - The number of microseconds to wait after sending a reply to a screen format, before attempting to read the system response to the sent data. A tuning option for the script execution program, this value should only be changed by trained technical support personnel.
+- Inter-read delay:
+  - The number of microseconds to wait in between reading segments of the screen buffer that the system is writing. A tuning option for the script execution program, this value should only be changed by trained technical support personnel. SMA Technologies recommends using 0.1 seconds for this field (instead of a whole 1 second, previously offered as the default value).
+- Receiving data timeout:
+  - The number of microseconds to wait before deciding that the system is no longer replying to the script execution. A tuning option for the script execution program, this value should only be changed by trained technical support personnel.
+  :::note
+  This value can be overridden at the script step level.
+  :::
+- Script loop detect limit:
+  - Number of repeats by Script Branching Logic to same or lower Step sequence number allowed within same Script name before script execution is aborted with an error message reporting too many loops.
+  - The Script Step master records support an override value to this limit, in case a script must intentionally loop back to the same step more times than this global loop limit would allow.
+- Separator data columns:
+  - Each of the three separator hex character values shows a maintainable value field in yellow. To the right is the current value in the control file, shown in turquoise. The displayable character equivalent of each hex character sequence is displayed as a single pink character. Use the LSAM command LSATBLTEST to test results for hex character sequences, especially when US English (CCSID 37) is NOT the IBM i default character set.
+
+**Hexadecimal control characters**
+- Token/variable separator:
+  - The special character that is inserted by the script maintenance program to designate a character string that is actually a token or variable field that will have its value substituted from the user-defined list of tokens.
+  - If this value is changed, it could affect all the existing scripts. A warning and utility function screen will follow.
+  - This value should only be changed by trained technical support personnel, and then only if required to work around a conflict in the character sequences being
+managed by the script execution program. 
+- Cursor control separator 1:
+  - The special character that is inserted by the script maintenance program to designate the start of a character string that will be used to move the cursor on the emulated green screen image during script execution.
+  - If this value is changed, it could affect all the existing scripts. A warning and utility function screen will follow.
+  - This value should only be changed by trained technical support personnel, and then only if required to work around a conflict in the character sequences being managed by the script execution program.
+  - This value is a pair of displayable characters used to represent the hexadecimal value of the actual single character used as the separator.
+- Cursor control separator 2:
+  - The special character that is inserted by the script maintenance program to designate the end of a character string that will be used to move the cursor on the emulated green screen image during script execution.
+  - If this value is changed, it could affect all the existing scripts. A warning and utility function screen will follow.
+  - This value should only be changed by trained technical support personnel, and then only if required to work around a conflict in the character sequences being managed by the script execution program.
+  - This value is a pair of displayable characters used to represent the hexadecimal value of the actual single character used as the separator.
+
+**Displayed Data Translation**
+- Displayed data translation:
+  - Refer to the discussion below about the purpose for these table names. Note the option to use CCSID character set numbers instead of translations; this option may produce better results in countries outside of the United States of America. SMA Technologies Support can help with the analysis of any translation problems.
+
+**"Attempt to Recover Interactive Job" Display -- Local Language**
+- Instructions: 
+  - If an Operator Replay Script job ended abnormally, depending on the system value QDEVRCYACN, the next attempt to access the same display device might be intercepted by a job recovery message. The Operator Replay script driver will attempt to recognize and bypass this message if the display matches these configuration values. This will prevent another script job failure and it will also reduce the requirement for manual operator intervention to restore the status of the display device.
+  - It might be necessary to view the Operator Replay log display and examine the detailed log of screen output to determine the exact values required in these Configuration fields. But after the first incident, if the Row, Column and Text are configured correctly, then the script driver program will be able to successfully bypass future incidents of this type. 
+  - The default title text shown in the display is intended to match the screen title that appears in a default US EBCDIC partition. Update this text to match what is found in the Operator Replay log details display.
+- Row of title:
+  - 1 (the row location of the screen title in a default US EBCDIC partition)
+- Column of title:
+  - 24 (the column where text begins in a default US EBCDIC partition
+- Local title text:
+  - Attempt to recover interactive job
 
 ###### Functions
 
@@ -444,7 +129,7 @@ However, LSAM i nstallations that were upgraded to version 04.00.03 from prior v
 
 ###### Fields
 
--  New/Old:  The New values will be inserted into the Script Steps if conversion is confirmed, replacing the Old values (when they are different). For more  information, refer to the field descriptions for [Operator Replay Configuration](#Operator3).
+-  New/Old:  The New values will be inserted into the Script Steps if conversion is confirmed, replacing the Old values (when they are different). For more  information, refer to the field descriptions for [Operator Replay Configuration](../operator-replay/screens.md).
 
 ###### Functions
 
@@ -454,28 +139,15 @@ However, LSAM i nstallations that were upgraded to version 04.00.03 from prior v
     format as they are shown on the screen. Actual conversion of the representative characters into a single value, as it appears in pink on this display, does not occur until during Script execution.)
 - **F16=Bypass conversion**: This function key allows all control file changes to be committed but it does not perform the automatic scan and replace function for the Script Steps. This option is not recommended in most cases because the actual Script Step content must always match the control file values in order for Script execution to be successful.
 
-+----------------------------------+----------------------------------+
-| ![White triangle icon on yellow  | **CAUTION:** [Do NOT change the  | | circlular                        | settings for the Token/variable  |
-| background](../../../Reso        | separator or the Cursor control  |
-| urces/Images/caution-icon(48x48) | separators without first         |
-| .png "Caution icon") | learning all about them. Please  |
-|                                  | consult with SMA Support before  |
-|                                  | attempting this change to be     |
-|                                  | sure that Scripts will continue  |
-|                                  | to execute as                    |
-|                                  | expected.]           |
-|                                  |                                  |
-|                                  |                                  |
-|                                  |                                  |
-|                                  | **However:**[ LSAM installations | |                                  | upgraded to version 04.00.03     |
-|                                  | from prior versions are advised  |
-|                                  | to change the Cursor control     |
-|                                  | separator characters to the new  |
-|                                  | LSAM default values of X'A1'   |
-|                                  | and X'79'. Please contact SMA  |
-|                                  | Support for more                 |
-|                                  | information].        |
-+----------------------------------+----------------------------------+
+:::caution
+Do NOT change the settings for the Token/variable separator or the Cursor control separators without first learning all about them. Please consult with SMA Technologies Support before attempting this change to be sure that Scripts will continue to execute as expected. However: LSAM installations upgraded to version 04.00.03 from prior versions are advised to change the Cursor control separator characters to the new LSAM default values of X'A1' and X'79'. Please contact SMA Technologies Support for more information.
+
+***However***: LSAM installations upgraded to version 04.00.03 from prior versions are advised to
+change the Cursor control separator characters to the new LSAM default values of X'A1' and
+X'79'. Please contact SMA Technologies Support for more information.
+:::
+
+
 
 ### Operator Replay Script List
 
@@ -484,7 +156,7 @@ However, LSAM i nstallations that were upgraded to version 04.00.03 from prior v
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2)
+Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2)
 
 ###### Fields
 
@@ -517,17 +189,16 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2)
 This screen appears the same for both the Add and Copy functions. The mode is indicated by the pink subtitle on line 2 of the screen. The Copy function also copies all Steps associated with the from-script.
 
 Add (Copy) Operator Replay Script Screen 
+```
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+OPRRPYR10-3               Operator Replay Script                 00/00/00   
+USERNAME                           ADD                           04:43:59
 
-[OPRRPYR10-3]{style="color: #008000;"}               Operator Replay Script                 [00/00/00]{style="color: #008000;"}   [USERNAME]{style="color: #008000;"}                           [ADD]{style="color: #ff00ff;"}                           [04:43:59]{style="color: #008000;"}
-
-  [ Name  . . . . :]{style="color: #008000;"}  [\_\_\_\_\_\_\_\_\_\_]{style="color: #ffcc00;"}    [User  . . . . :]{style="color: #008000;"}  [\_\_\_\_\_\_\_\_\_\_]{style="color: #ffcc00;"}
-  [ Description . :]{style="color: #008000;"}  [\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_]{style="color: #ffcc00;"}
+   Name  . . . . :  __________    User  . . . . :  __________
+   Description . :  ________________________________________
 
   F3=Exit   F4=Prompt   F9=Flow chart   F12=Cancel
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+```
 ##### Change Script Screen
 
 This screen is similar to the Add/Copy screen, but with an informational
@@ -538,140 +209,71 @@ field added and the Name field cannot be changed.
 
 ###### Fields
 
-+---------------+---------------+----------+------------------------+
-| Field         | Default Value | Required | Description            |
-+===============+:=============:+:========:+========================+
-| Name          | None          | Y        | -   This name is used  |
-|               |               |          |     as a parameter in  |
-|               |               |          |     the STROPRRPY      |
-|               |               |          |     command when       |
-|               |               |          |     registering a      |
-|               |               |          |     script as a        |
-|               |               |          |     scheduled job in   |
-|               |               |          |     OpCon/xps.         |
-|               |               |          | -   Any Alphabetic     |
-|               |               |          |     characters may be  |
-|               |               |          |     used to identify a |
-|               |               |          |     script.            |
-|               |               |          | -   This field cannot  |
-|               |               |          |     be updated in      |
-|               |               |          |     Change mode.       |
-+---------------+---------------+----------+------------------------+
-| User          | None          | Y        | The name of an IBM i   |
-|               |               |          | user profile that is   |
-|               |               |          | registered in the      |
-|               |               |          | Operator Replay user   |
-|               |               |          | table.                 |
-|               |               |          |                        |
-|               |               |          | Press <**F4**>       |
-|               |               |          | (Prompt) from this     |
-|               |               |          | field to view and      |
-|               |               |          | select from a list of  |
-|               |               |          | names.                 |
-+---------------+---------------+----------+------------------------+
-| Description   | None          | N        | Enter text describing  |
-|               |               |          | what this script does. |
-+---------------+---------------+----------+------------------------+
-| Int record ID | output only   |          | In Change mode, this   |
-|               |               |          | field is displayed for |
-|               |               |          | technical support      |
-|               |               |          | purposes only. The     |
-|               |               |          | hidden, internal       |
-|               |               |          | record number has no   |
-|               |               |          | meaning at the level   |
-|               |               |          | of Script maintenance  |
-|               |               |          | or flow analysis.      |
-+---------------+---------------+----------+------------------------+
 
-:  
+| Field         | Default Value | Required | Description            |
+| -----         | ------------- | -------- | -----------            |
+| Name          | None          | Y        | -   This name is used as a parameter in the STROPRRPY command when registering a script as a scheduled job in OpCon/xps.  |
+|               |               |          | -   Any Alphabetic characters may be used to identify a script.            |
+|               |               |          | -   This field cannot be updated in Change mode.       |
+| User          | None          | Y        | The name of an IBM i user profile that is registered in the Operator Replay user table.                 |
+|               |               |          | Press <**F4**> (Prompt) from this field to view and select from a list of names.                 |
+| Description   | None          | N        | Enter text describing what this script does. |
+| Int record ID | output only   |          | In Change mode, this field is displayed for technical support purposes only. The hidden, internal record number has no meaning at the level of Script maintenance or flow analysis.      |
+
 
 ###### Functions
 
-- **F3=Exit**: Quits the OR Script's maintenance function and returns
-    to the menu without completing the maintenance function (add,
-    change, copy).
-- **F4=Prompt**: Prompts for User Names when the cursor is in the User
-    field.
-- **F9=Flow chart**: Produces a display of the logic flow of this
-    script and any scripts that it may branch to. This function key
-    produces no results during Add mode because no script record exists
-    to analyze. (Refer to option 9=Flow chart on the list of Scripts
-    display, above, for more information.)
-- **F12=Cancel**: Quits the Script maintenance function and returns to
-    the list of scripts without adding or updating a record.
+- **F3=Exit**: Quits the OR Script's maintenance function and returns to the menu without completing the maintenance function (add, change, copy).
+- **F4=Prompt**: Prompts for User Names when the cursor is in the User field.
+- **F9=Flow chart**: Produces a display of the logic flow of this script and any scripts that it may branch to. This function key produces no results during Add mode because no script record exists to analyze. (Refer to option 9=Flow chart on the list of Scripts display, above, for more information.)
+- **F12=Cancel**: Quits the Script maintenance function and returns to the list of scripts without adding or updating a record.
 
 ##### Delete Script Window
-
-Delete Script Window
-
-  -----------------------------------------------------
-
-Delete Script
+```
+                     Delete Script
 
    Name          Description
    ACCOUNTING    Test Operator Replay
    CHGMAXJOBS    Change the Max Jobs to 175
 
-    Bottom
+                                            Bottom
   Enter=Confirm   F12=Cancel
-  -----------------------------------------------------
-
+```
 ###### Fields
-
-  Field         Description
-  ------------- -------------------------------------------------
-  Name          The name of the script(s) that is deleted.
-  Description   A description of the script(s) that is deleted.
-
-  :  
+- Name:          The name of the script(s) that is deleted.
+- Description:   A description of the script(s) that is deleted.
 
 ###### Functions
 
-**F12=Cancel**: Quits the Delete Script confirmation window and returns
-to the list of scripts without deleting any records.
+**F12=Cancel**: Quits the Delete Script confirmation window and returns to the list of scripts without deleting any records.
 
 ##### Copy/Delete Script Window (Options 3 and 4)
 
 Manage Capture Rules Window (Copy)
+```
+                   Manage Capture Rules
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------- -- --
-              Manage Capture Rules
-
-  [ Copy capture rules also?]{style="color: #008000;"}   [1]{style="color: #ffcc00;text-decoration: underline;"}  [0=No, 1=Yes ]{style="color: #008000;"}           (Recommended: 1=Yes)
+   Copy capture rules also?   1  0=No, 1=Yes            (Recommended: 1=Yes)
 
   Enter=Select   F12=Cancel
-  --------------------------------------------------------------------------------------------------------------------------------------------------------- -- --
+```
 
 Manage Capture Rules Window (Delete)
+```
 
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------- -- --
-               Manage Capture Rules
+                     Manage Capture Rules
 
-  [ Delete capture rules also?]{style="color: #008000;"}   [1]{style="color: #ffcc00;text-decoration: underline;"}  [0=No, 1=Yes ]{style="color: #008000;"}           (Recommended: 1=Yes)
+   Delete capture rules also?   1  0=No, 1=Yes            (Recommended: 1=Yes)
 
   Enter=Select   F12=Cancel
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------- -- --
+```
 
 ###### Fields
-
-+------------+--------------------------------------------------------+
-| Field      | Description                                            |
-+============+========================================================+
-| Copy?      | -   0=No, 1=Yes                                        |
-|            | -   When either option 3=Copy or option 4=Delete is    |
-| **- or -** |     selected, the program offers the option to perform |
-|            |     either a copy or a delete of all Capture Data and  |
-| Delete?    |     Response Rules that are related to each step in    |
-|            |     the script.                                        |
-|            | -   For option 0=No, the copy or delete action is      |
-|            |     completed, but any associated Capture Data and     |
-|            |     Response rules are ignored.                        |
-|            | -   When this window is presented from the Step list,  |
-|            |     it applies only to the step(s) being copied and    |
-|            |     not to the whole script.                           |
-+------------+--------------------------------------------------------+
-
-:  
+Copy? **- or -** Delete?
+  -   0=No, 1=Yes                                       
+  -   When either option 3=Copy or option 4=Delete is selected, the program offers the option to perform either a copy or a delete of all Capture Data and Response Rules that are related to each step in the script.                                        
+  -   For option 0=No, the copy or delete action is completed, but any associated Capture Data and Response rules are ignored. 
+  -   When this window is presented from the Step list, it applies only to the step(s) being copied and not to the whole script.
 
 ###### Functions
 
@@ -684,7 +286,7 @@ Option 7 from the list of Scripts will present the following read-only list that
 - **Screen Title**: Capture Screen Data Chart (5 Views)
 - **Screen ID:** OPRR10R7
 
-I n View 4, for each Step there is a profile of the Top Control String. (View 5 shows the Bottom Control String.) The control string rules use these labels:
+In View 4, for each Step there is a profile of the Top Control String. (View 5 shows the Bottom Control String.) The control string rules use these labels:
 
 - **CtlOpt** = control option: F=Fail if "not", S=Skip if "not"
 - **TR** = top row
@@ -697,8 +299,7 @@ A list of the symbolic field labels used for each Step record is documented unde
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2)
-\> Option 7 (Capt chart)
+Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 7 (Capt chart)
 
 ###### Fields
 
@@ -731,8 +332,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2)
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2)
-\> Option 1 (Script steps)
+Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps)
 
 ###### Fields
 
@@ -741,8 +341,6 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2)
 - Seq:                               Sequence number controls the order in which steps are performed as part of a script.
 - Label:                             An optional label assigned to a step that becomes the target of a branching operation.
 - Comments/String to send + F-Key:   A description of what each step in a script accomplishes. When <**F11**> is pressed, the list shows the String to send data and the Function key.
-
-  :  
 
 ###### Options
 
@@ -769,16 +367,15 @@ strings, etc.). After a search is started, when there is a previous search conte
 ##### Delete Step Window
 
 Delete Step Window
-
-  -------------------------------------------------------
-                        Delete Step
+```
+               Delete Step
 
 Seq       Comment
-         10       Bypass logon messages 1
+10       Bypass logon messages 1
 
-                          Bottom
-                Enter=Confirm   F12=Cancel
-  -------------------------------------------------------
+                                    Bottom
+Enter=Confirm   F12=Cancel
+```
 
 ###### Fields
 
@@ -795,713 +392,65 @@ Seq       Comment
 - **Screen ID**: OPRRPYR10-4
 
 :::note
-[The screen][ denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal "Rec ID" does not appear in the Add or Copy modes.
+The screen denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal "Rec ID" does not appear in the Add or Copy modes.
 :::
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 2 (Change)
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 3 (Copy)
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2) \> Option 1 (Script steps) \> Operator Replay Step List \> F6 (Add)
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay scripts (\#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 5 (Display)
+- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 2 (Change)
+- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 3 (Copy)
+- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> F6 (Add)
+- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 5 (Display)
 
 ###### Fields
 
 (Look for **DynVar** notation in Default Value to find fields that support Dynamic Variables)
 
-+----------------+----------------+---------------+----------------+
-| Field          | Default Value  | Required      | Description    |
-+================+:==============:+:=============:+================+
-| Step           | None           | N             | Type a Text    |
-| description    |                |               | Description    |
-|                |                | (recommended) | for the script |
-|                |                |               | (up to 40      |
-|                |                |               | characters)    |
-+----------------+----------------+---------------+----------------+
-| Rec ID         | System         |               | Not shown for  |
-|                | assigned       |               | Add or Copy    |
-|                |                |               | mode, this     |
-|                |                |               | internal       |
-|                |                |               | number is for  |
-|                |                |               | technical      |
-|                |                |               | support use    |
-|                |                |               | only.          |
-+----------------+----------------+---------------+----------------+
-| Step sequence  | Auto-assigned, | Y             | -   The next   |
-| number         | but may be     |               |     available  |
-|                | changed        |               |     sequence   |
-|                |                |               |     number is  |
-|                |                |               |                |
-|                |                |               |  auto-assigned |
-|                |                |               |     when the   |
-|                |                |               |     Add or     |
-|                |                |               |     Copy       |
-|                |                |               |     function   |
-|                |                |               |     is being   |
-|                |                |               |     used. This |
-|                |                |               |     number can |
-|                |                |               |     be changed |
-|                |                |               |     to         |
-|                |                |               |     reposition |
-|                |                |               |     a step to  |
-|                |                |               |     a          |
-|                |                |               |     different  |
-|                |                |               |     relative   |
-|                |                |               |     position   |
-|                |                |               |     among all  |
-|                |                |               |     the        |
-|                |                |               |     sequence   |
-|                |                |               |     steps.     |
-|                |                |               | -   Use        |
-|                |                |               |     F7=ReSeq   |
-|                |                |               |                |
-|                |                |               |  (re-sequence) |
-|                |                |               |     from the   |
-|                |                |               |     list of    |
-|                |                |               |     steps to   |
-|                |                |               |     renumber   |
-|                |                |               |     all steps  |
-|                |                |               |     in         |
-|                |                |               |     increments |
-|                |                |               |     of 10, if  |
-|                |                |               |     there are  |
-|                |                |               |     no more    |
-|                |                |               |     numbers    |
-|                |                |               |     available  |
-|                |                |               |     for        |
-|                |                |               |     inserting  |
-|                |                |               |     steps      |
-|                |                |               |     between    |
-|                |                |               |     existing   |
-|                |                |               |     steps.     |
-+----------------+----------------+---------------+----------------+
-| Step label     | None           | N             | Optional value |
-|                |                |               | used as the    |
-|                |                |               | target of a    |
-|                |                |               | branching      |
-|                |                |               | operation from |
-|                |                |               | another step   |
-|                |                |               | and/or script. |
-+----------------+----------------+---------------+----------------+
-| Receive timer  | Zero           | N             | A response     |
-| override (in   |                |               | wait timeout   |
-| seconds)       |                |               | value that     |
-|                |                |               | overrides the  |
-|                |                |               | global wait    |
-|                |                |               | timeout value  |
-|                |                |               | set for all    |
-|                |                |               | Operator       |
-|                |                |               | Replay         |
-|                |                |               | Scripts,       |
-|                |                |               | optionally     |
-|                |                |               | allowing this  |
-|                |                |               | step of the    |
-|                |                |               | Script to take |
-|                |                |               | as long as the |
-|                |                |               | specified      |
-|                |                |               | number of      |
-|                |                |               | seconds before |
-|                |                |               | the session    |
-|                |                |               | control        |
-|                |                |               | program logs a |
-|                |                |               | timeout        |
-|                |                |               | failure of the |
-|                |                |               | Script. (Refer |
-|                |                |               | to discussion  |
-|                |                |               | above about    |
-|                |                |               | using this     |
-|                |                |               | override field |
-|                |                |               | with branching |
-|                |                |               | logic.)        |
-+----------------+----------------+---------------+----------------+
-| Loopback OVR   | Zero           | N             | This field     |
-|                |                |               | allows a       |
-|                |                |               | script to loop |
-|                |                |               | back to this   |
-|                |                |               | same step more |
-|                |                |               | times than are |
-|                |                |               | allowed by the |
-|                |                |               | Operator       |
-|                |                |               | Replay         |
-|                |                |               | Configuration  |
-|                |                |               | global setting |
-|                |                |               | for the Script |
-|                |                |               | Loop Detect    |
-|                |                |               | Limit.         |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               | A value of     |
-|                |                |               | blank or zero  |
-|                |                |               | means that     |
-|                |                |               | there is no    |
-|                |                |               | override to    |
-|                |                |               | the global     |
-|                |                |               | loop limit.    |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               | A value of all |
-|                |                |               | 9s (99999)     |
-|                |                |               | will mean      |
-|                |                |               | \*NOMAX, that  |
-|                |                |               | is, there is   |
-|                |                |               | no limit.      |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               | **CAUTION**:   |
-|                |                |               | Using the      |
-|                |                |               | \*NOMAX value  |
-|                |                |               | of all 9's    |
-|                |                |               | might allow a  |
-|                |                |               | script driver  |
-|                |                |               | program to run |
-|                |                |               | endlessly,     |
-|                |                |               | possibly       |
-|                |                |               | consuming      |
-|                |                |               | system         |
-|                |                |               | resources      |
-|                |                |               | until the      |
-|                |                |               | system reaches |
-|                |                |               | a critical     |
-|                |                |               | resources      |
-|                |                |               | limit          |
-|                |                |               | (depending on  |
-|                |                |               | the script     |
-|                |                |               | actions that   |
-|                |                |               | are repeated). |
-+----------------+----------------+---------------+----------------+
-| String to send | None           | N             | -   In this    |
-|                |                |               |     field,     |
-|                |                |               |     type all   |
-|                |                |               |     the        |
-|                | supports       |               |     characters |
-|                | **DynVar**     |               |     and spaces |
-|                |                |               |     that an    |
-|                |                |               |     operator   |
-|                |                |               |     would      |
-|                |                |               |     type. Stop |
-|                |                |               |     right      |
-|                |                |               |     before the |
-|                |                |               |     next press |
-|                |                |               |     of a       |
-|                |                |               |     Function   |
-|                |                |               |     key or     |
-|                |                |               |                |
-|                |                |               | <**Enter**>. |
-|                |                |               | -   Dynamic    |
-|                |                |               |     Variable   |
-|                |                |               |     tokens may |
-|                |                |               |     be used in |
-|                |                |               |     this field |
-|                |                |               |     (use F9 to |
-|                |                |               |     select     |
-|                |                |               |     from list  |
-|                |                |               |     and format |
-|                |                |               |     tokens),   |
-|                |                |               |     but care   |
-|                |                |               |     must be    |
-|                |                |               |     taken that |
-|                |                |               |     after all  |
-|                |                |               |     Tokens are |
-|                |                |               |     replaced,  |
-|                |                |               |     the String |
-|                |                |               |     to send    |
-|                |                |               |     will not   |
-|                |                |               |     exceed 250 |
-|                |                |               |     characters |
-|                |                |               |     in total   |
-|                |                |               |     length.    |
-|                |                |               | -   If it is   |
-|                |                |               |     necessary  |
-|                |                |               |     to type    |
-|                |                |               |     more than  |
-|                |                |               |     250        |
-|                |                |               |     characters |
-|                |                |               |     into a     |
-|                |                |               |     single     |
-|                |                |               |     display    |
-|                |                |               |     format,    |
-|                |                |               |     extra      |
-|                |                |               |     steps may  |
-|                |                |               |     be added   |
-|                |                |               |     to type    |
-|                |                |               |     the        |
-|                |                |               |     additional |
-|                |                |               |     data. (Do  |
-|                |                |               |     not use    |
-|                |                |               |     the        |
-|                |                |               |     Function   |
-|                |                |               |     to send    |
-|                |                |               |     until the  |
-|                |                |               |     last step  |
-|                |                |               |     record.)   |
-|                |                |               | -   Press      |
-|                |                |               |     <**F4**> |
-|                |                |               |     to use a   |
-|                |                |               |     prompt     |
-|                |                |               |     window to  |
-|                |                |               |     select any |
-|                |                |               |     required   |
-|                |                |               |     cursor     |
-|                |                |               |     movement   |
-|                |                |               |     keys. When |
-|                |                |               |     a cursor   |
-|                |                |               |     movement   |
-|                |                |               |     key is     |
-|                |                |               |     selected   |
-|                |                |               |     from the   |
-|                |                |               |     pop-up     |
-|                |                |               |     window,    |
-|                |                |               |     the        |
-|                |                |               |     correct    |
-|                |                |               |     control    |
-|                |                |               |     sequence   |
-|                |                |               |     of         |
-|                |                |               |     characters |
-|                |                |               |     will be    |
-|                |                |               |     inserted   |
-|                |                |               |     into the   |
-|                |                |               |     String to  |
-|                |                |               |     send field |
-|                |                |               |     (at the    |
-|                |                |               |     current    |
-|                |                |               |     cursor     |
-|                |                |               |     location). |
-|                |                |               | -   This field |
-|                |                |               |     may be     |
-|                |                |               |     left       |
-|                |                |               |     blank,     |
-|                |                |               |     such as    |
-|                |                |               |     when the   |
-|                |                |               |     step       |
-|                |                |               |     record     |
-|                |                |               |     only       |
-|                |                |               |     executes a |
-|                |                |               |     function   |
-|                |                |               |     key        |
-|                |                |               |     (*refer to |
-|                |                |               |     next       |
-|                |                |               |     field*).   |
-+----------------+----------------+---------------+----------------+
-| Function to    | None           | N             | -   A Function |
-| send           |                |               |     to send is |
-|                |                |               |     required   |
-| (function key  |                |               |     to execute |
-| mnemonic)      | supports       |               |     the String |
-|                | **DynVar**     |               |     to send.   |
-|                |                |               |     However, a |
-|                |                |               |     given Step |
-|                |                |               |     record     |
-|                |                |               |     does not   |
-|                |                |               |     have to    |
-|                |                |               |     include    |
-|                |                |               |     this field |
-|                |                |               |     value,     |
-|                |                |               |     depending  |
-|                |                |               |     on the     |
-|                |                |               |     purpose of |
-|                |                |               |     the step   |
-|                |                |               |     record.    |
-|                |                |               | -   An Dynamic |
-|                |                |               |     Variable   |
-|                |                |               |     token      |
-|                |                |               |     (with a    |
-|                |                |               |     short name |
-|                |                |               |     length)    |
-|                |                |               |     may be     |
-|                |                |               |     used in    |
-|                |                |               |     this       |
-|                |                |               |     field,     |
-|                |                |               |     similar to |
-|                |                |               |     the way a  |
-|                |                |               |     token may  |
-|                |                |               |     be         |
-|                |                |               |     inserted   |
-|                |                |               |     into the   |
-|                |                |               |     String To  |
-|                |                |               |     Send       |
-|                |                |               |     field.     |
-|                |                |               | -   However,   |
-|                |                |               |     before     |
-|                |                |               |     this Step  |
-|                |                |               |     is         |
-|                |                |               |     executed,  |
-|                |                |               |     the Token  |
-|                |                |               |     must be    |
-|                |                |               |     set to one |
-|                |                |               |     of the     |
-|                |                |               |     valid      |
-|                |                |               |     mnemonic   |
-|                |                |               |     values for |
-|                |                |               |     a function |
-|                |                |               |     key, as    |
-|                |                |               |     appear on  |
-|                |                |               |     the prompt |
-|                |                |               |     Window     |
-|                |                |               |     when       |
-|                |                |               |     F4=Prompt  |
-|                |                |               |     is pressed |
-|                |                |               |     from this  |
-|                |                |               |     field.     |
-|                |                |               | -   A Step     |
-|                |                |               |     record may |
-|                |                |               |     have only  |
-|                |                |               |     a function |
-|                |                |               |     key (and   |
-|                |                |               |     no String  |
-|                |                |               |     To Send).  |
-|                |                |               |     There are  |
-|                |                |               |     also uses  |
-|                |                |               |     for Step   |
-|                |                |               |     records    |
-|                |                |               |     that have  |
-|                |                |               |     no         |
-|                |                |               |     Function   |
-|                |                |               |     to send.   |
-|                |                |               |                |
-|                |                |               | **Example:**   |
-|                |                |               | No String to   |
-|                |                |               | send is        |
-|                |                |               | require when   |
-|                |                |               | pressing       |
-|                |                |               | <**Enter**>  |
-|                |                |               | is required to |
-|                |                |               | bypass a       |
-|                |                |               | display that   |
-|                |                |               | does not       |
-|                |                |               | require any    |
-|                |                |               | data input.    |
-+----------------+----------------+---------------+----------------+
-| Top/Bottom     |                |               | Either or both |
-| Control        |                |               | of the control |
-| strings        |                |               | string rules   |
-|                |                |               | may be         |
-|                |                |               | specified.     |
-|                |                |               | Both control   |
-|                |                |               | rules, when    |
-|                |                |               | specified,     |
-|                |                |               | must be met in |
-|                |                |               | order to       |
-|                |                |               | perform any    |
-|                |                |               | operation on a |
-|                |                |               | Step record.   |
-|                |                |               | String to      |
-|                |                |               | send, Function |
-|                |                |               | to send and    |
-|                |                |               | branching      |
-|                |                |               | operations are |
-|                |                |               | controlled by  |
-|                |                |               | these control  |
-|                |                |               | string rules.  |
-+----------------+----------------+---------------+----------------+
-| If no match:   | F              | Y             | -   F = fail   |
-|                |                |               |     the Script |
-| Skip/Fail      |                |               |     job if a   |
-|                |                |               |     rule is    |
-|                |                |               |     not        |
-|                |                |               |     matched.   |
-|                |                |               | -   S = skip   |
-|                |                |               |     this Step  |
-|                |                |               |     only if a  |
-|                |                |               |     rule is    |
-|                |                |               |     not        |
-|                |                |               |     matched.   |
-|                |                |               |     When the   |
-|                |                |               |     Skip       |
-|                |                |               |     option is  |
-|                |                |               |     specified  |
-|                |                |               |     there must |
-|                |                |               |     be another |
-|                |                |               |     Step       |
-|                |                |               |     record     |
-|                |                |               |     following  |
-|                |                |               |     this one   |
-|                |                |               |     that will  |
-|                |                |               |     process    |
-|                |                |               |     the        |
-|                |                |               |     current    |
-|                |                |               |     display    |
-|                |                |               |     format in  |
-|                |                |               |     the Script |
-|                |                |               |     execution  |
-|                |                |               |     program's |
-|                |                |               |     buffer,    |
-|                |                |               |     otherwise  |
-|                |                |               |     the Script |
-|                |                |               |     Steps will |
-|                |                |               |     be out of  |
-|                |                |               |     s          |
-|                |                |               | ynchronization |
-|                |                |               |     with the   |
-|                |                |               |     sequence   |
-|                |                |               |     of display |
-|                |                |               |     formats.   |
-|                |                |               |     The Skip   |
-|                |                |               |     option     |
-|                |                |               |     does not   |
-|                |                |               |     include    |
-|                |                |               |     any means  |
-|                |                |               |     of         |
-|                |                |               |     responding |
-|                |                |               |     to a       |
-|                |                |               |     display    |
-|                |                |               |     format by  |
-|                |                |               |     itself.    |
-+----------------+----------------+---------------+----------------+
-| Comp numeric   | N              | N             | Compress       |
-|                |                |               | numeric =      |
-|                |                |               | forces         |
-|                |                |               | processing of  |
-|                |                |               | both the Top   |
-|                |                |               | and Bottom     |
-|                |                |               | control        |
-|                |                |               | strings to use |
-|                |                |               | numeric        |
-|                |                |               | comparison     |
-|                |                |               | rules. Both    |
-|                |                |               | the control    |
-|                |                |               | value and the  |
-|                |                |               | found string   |
-|                |                |               | at the         |
-|                |                |               | specified      |
-|                |                |               | location are   |
-|                |                |               | first          |
-|                |                |               | processed to   |
-|                |                |               | remove all but |
-|                |                |               | the digits 0 - |
-|                |                |               | 9, then each   |
-|                |                |               | string of      |
-|                |                |               | digits is      |
-|                |                |               | right-adjusted |
-|                |                |               | and zero       |
-|                |                |               | filled into a  |
-|                |                |               | numeric work   |
-|                |                |               | field before   |
-|                |                |               | the comparison |
-|                |                |               | is performed.  |
-|                |                |               | All compared   |
-|                |                |               | values may     |
-|                |                |               | include other  |
-|                |                |               | characters,    |
-|                |                |               | but they will  |
-|                |                |               | be ignored and |
-|                |                |               | the rule will  |
-|                |                |               | pass as long   |
-|                |                |               | as the         |
-|                |                |               | compressed     |
-|                |                |               | numeric digits |
-|                |                |               | pass the Rule. |
-|                |                |               | If Comp        |
-|                |                |               | numeric is     |
-|                |                |               | specified,     |
-|                |                |               | then character |
-|                |                |               | string         |
-|                |                |               | comparisons    |
-|                |                |               | cannot be      |
-|                |                |               | used; include  |
-|                |                |               | another Step   |
-|                |                |               | record if a    |
-|                |                |               | character      |
-|                |                |               | string         |
-|                |                |               | comparison     |
-|                |                |               | must be        |
-|                |                |               | provided as an |
-|                |                |               | option.        |
-+----------------+----------------+---------------+----------------+
-| Rule           | EQ             | N             | -   If the     |
-|                |                |               |     Rule field |
-|                |                |               |     for either |
-|                |                |               |     the Top or |
-|                |                |               |     Bottom     |
-|                |                |               |     control    |
-|                |                |               |     string is  |
-|                |                |               |     blank,     |
-|                |                |               |     that       |
-|                |                |               |     control    |
-|                |                |               |     string has |
-|                |                |               |     no effect. |
-|                |                |               | -   Possible   |
-|                |                |               |     Rule       |
-|                |                |               |     values     |
-|                |                |               |     are:       |
-|                |                |               |     -   EQ =   |
-|                |                |               |         Equal  |
-|                |                |               |     -   NE =   |
-|                |                |               |         Not    |
-|                |                |               |         Equal  |
-|                |                |               |     -   GT =   |
-|                |                |               |                |
-|                |                |               |        Greater |
-|                |                |               |         Than   |
-|                |                |               |     -   LT =   |
-|                |                |               |         Less   |
-|                |                |               |         Than   |
-|                |                |               |     -   GE =   |
-|                |                |               |                |
-|                |                |               |        Greater |
-|                |                |               |         or     |
-|                |                |               |         Equal  |
-|                |                |               |     -   LE =   |
-|                |                |               |         Less   |
-|                |                |               |         or     |
-|                |                |               |         Equal  |
-+----------------+----------------+---------------+----------------+
-| Val: (value)   | blank          | N             | -   Type a     |
-|                |                |               |     character  |
-|                |                |               |     string     |
-|                |                |               |     that will  |
-|                | supports       |               |     be         |
-|                | **DynVar**     |               |     compared   |
-|                |                |               |     to the     |
-|                |                |               |     location   |
-|                |                |               |     specified  |
-|                |                |               |     on the     |
-|                |                |               |     current    |
-|                |                |               |     display    |
-|                |                |               |     format.    |
-|                |                |               | -   This field |
-|                |                |               |     can be     |
-|                |                |               |     left blank |
-|                |                |               |     so that    |
-|                |                |               |     blanks     |
-|                |                |               |     will be    |
-|                |                |               |     used for   |
-|                |                |               |     the        |
-|                |                |               |     comparison |
-|                |                |               |     if the     |
-|                |                |               |     Length is  |
-|                |                |               |     specified. |
-|                |                |               |     The Length |
-|                |                |               |     field      |
-|                |                |               |     determines |
-|                |                |               |     how many   |
-|                |                |               |     blank      |
-|                |                |               |     characters |
-|                |                |               |     will be    |
-|                |                |               |     compared.  |
-|                |                |               | -   This field |
-|                |                |               |     supports a |
-|                |                |               |     Dynamic    |
-|                |                |               |     Variable   |
-|                |                |               |     token.     |
-+----------------+----------------+---------------+----------------+
-| R: (row)       |                | N             | Type a value   |
-|                |                |               | from 1 to 24   |
-|                |                |               | to designate   |
-|                |                |               | the vertical   |
-|                |                |               | row of the     |
-|                |                |               | display that   |
-|                |                |               | should be      |
-|                |                |               | searched for   |
-|                |                |               | the Control    |
-|                |                |               | string.        |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               | **Note:**      |
-|                |                |               | There may be   |
-|                |                |               | row numbers    |
-|                |                |               | higher than 24 |
-|                |                |               | when alternate |
-|                |                |               | display        |
-|                |                |               | formats are    |
-|                |                |               | being used,    |
-|                |                |               | however,       |
-|                |                |               | screen formats |
-|                |                |               | other that     |
-|                |                |               | \*DS3 (24 rows |
-|                |                |               | by 80 columns) |
-|                |                |               | are not        |
-|                |                |               | supported at   |
-|                |                |               | this time.     |
-|                |                |               | Contact SMA    |
-|                |                |               | Support if     |
-|                |                |               | support for 27 |
-|                |                |               | X 132 formats  |
-|                |                |               | is required.   |
-+----------------+----------------+---------------+----------------+
-| C: (column)    |                | N             | Type a value   |
-|                |                |               | from 1 to 80   |
-|                |                |               | to designate   |
-|                |                |               | the horizontal |
-|                |                |               | column         |
-|                |                |               | position where |
-|                |                |               | the Top string |
-|                |                |               | must begin.    |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               |                |
-|                |                |               | **Note:**      |
-|                |                |               | Refer to the   |
-|                |                |               | note on R:     |
-|                |                |               | (row) about    |
-|                |                |               | value limits.  |
-+----------------+----------------+---------------+----------------+
-| L: (length)    |                | N             | -   Type a     |
-|                |                |               |     length up  |
-|                |                |               |     to 30      |
-|                |                |               |     characters |
-|                |                |               |     that       |
-|                |                |               |     indicates  |
-|                |                |               |     how long a |
-|                |                |               |     control    |
-|                |                |               |     string     |
-|                |                |               |     value      |
-|                |                |               |     should be  |
-|                |                |               |     used.      |
-|                |                |               | -   When the   |
-|                |                |               |     control    |
-|                |                |               |     string is  |
-|                |                |               |     not blank, |
-|                |                |               |     this value |
-|                |                |               |     is         |
-|                |                |               |     optional   |
-|                |                |               |     and the    |
-|                |                |               |     system     |
-|                |                |               |     assumes    |
-|                |                |               |     the length |
-|                |                |               |     is equal   |
-|                |                |               |     to the     |
-|                |                |               |     last       |
-|                |                |               |     non-blank  |
-|                |                |               |     character. |
-|                |                |               | -   However,   |
-|                |                |               |     if         |
-|                |                |               |     trailing   |
-|                |                |               |     blanks     |
-|                |                |               |     must be    |
-|                |                |               |     included,  |
-|                |                |               |     or if the  |
-|                |                |               |     whole      |
-|                |                |               |     control    |
-|                |                |               |     string     |
-|                |                |               |     must be a  |
-|                |                |               |     certain    |
-|                |                |               |     number of  |
-|                |                |               |     blanks,    |
-|                |                |               |     then the   |
-|                |                |               |     length     |
-|                |                |               |     specifies  |
-|                |                |               |     exactly    |
-|                |                |               |     how long   |
-|                |                |               |     the        |
-|                |                |               |     control    |
-|                |                |               |     string is  |
-|                |                |               |     and how    |
-|                |                |               |     many       |
-|                |                |               |     characters |
-|                |                |               |     in the     |
-|                |                |               |     display    |
-|                |                |               |     format     |
-|                |                |               |     location   |
-|                |                |               |     specified  |
-|                |                |               |     must       |
-|                |                |               |     match.     |
-+----------------+----------------+---------------+----------------+
 
-:  
+| Field            | Default Value  | Required        | Description    |
+| -----            | -------------  | --------        | -----------    |
+| Step description | None           | N (recommended) | Type a Text Description for the script (up to 40characters)    |
+| Rec ID           | System assigned |               | Not shown for Add or Copy mode, this internal number is for technical support use only.          |
+| Step sequence number | Auto-assigned, | Y             | -   The next available sequence number is autoassigned when the Add or Copy function is being used. This number can be changed to reposition a step to a different relative position among all the sequence steps. |
+|                  |                |                  |-   Use F7=ReSeq (re-sequence) from the list of steps to renumber all steps in increments of 10, if there are no more numbers available for inserting steps between existing steps. |
+| Step label     | None           | N             | Optional value used as the target of a branching operation from another step and/or script.|
+| Receive timer override (in seconds)  | Zero           | N             | A response wait timeout value that overrides the global wait timeout value set for all Operator Replay Scripts, optionally allowing this step of the Script to take as long as the specified number of seconds before the session control program logs a timeout failure of the Script. (Refer to discussion above about using this override field with branching logic.) |
+| Loopback OVR   | Zero           | N             | This field allows a script to loop back to this same step more times than are allowed by the Operator Replay Configuration global setting for the Script Loop Detect Limit. A value of blank or zero means that there is no override to the global loop limit.
+|                |                |               | A value of all 9s (99999) will mean *NOMAX, that is, there is no limit.
+|                |                |               | CAUTION: Using the *NOMAX value of all 9's might allow a script driver program to run endlessly, possibly consuming system resources until the system reaches a critical resources limit (depending on the script actions that are repeated). |
+| String to send | None supports Dyn- Var  | N             | -   In this field, type all the characters and spaces that an operator would type. Stop right before the next press of a Function key or <**Enter**>. |
+|                |                |               | - Dynamic Variable tokens may be used in this field (use F9 to select from list and format tokens), but care must be taken that after all Tokens are replaced, the String to send will not exceed 250 characters in total length. |
+|                |                |               | - If it is necessary to type more than 250 characters into a single display format, extra steps may be added to type the additional data. (Do not use the Function to send until the last step record.) |
+|                |                |               | - Press <**F4**> to use a prompt window to select any required cursor movement keys. When a cursor movement key is selected from the pop-up window, the correct control sequence of characters will be inserted into the String to send field (at the current cursor location). |
+|                |                |               | - This field may be left blank, such as when the step record only executes a function key (refer to next field). |
+| Function to send (function key mnemonic)  | None supports **DynVar** | N             | -  A Function to send is required to execute the String to send. However, a given Step record does not have to include this field value, depending on the purpose of the step record.  |
+|                |                |               | -   An Dynamic Variable token (with a short name length) may be used in this field, similar to the way a token may be inserted into the String To Send field. |
+|                |                |               | -   However, before this Step is executed, the Token must be set to one of the valid mnemonic values for a function key, as appear on the prompt Window when F4=Prompt is pressed from this field. |
+|                |                |               | -   A Step record may have only a function key (and no String To Send). There are also uses for Step records that have no Function to send. |
+|                |                |               | **Example:**  No String to send is require when pressing <**Enter**> is required to bypass a display that does not require any data input.    |
+| Top/Bottom Control strings   |                |               | Either or both of the control string rules may be specified. Both control rules, when specified, must be met in order to perform any operation on a Step record. String to send, Function to send and branching operations are controlled by these control string rules.  |
+| If no match: Skip/Fail  | F              | Y             | - F = fail the Script job if a rule is not matched. |
+|                         |                |               | - S = skip this Step only if a rule is not matched. When the Skip option is specified there must be another Step record following this one that will process the current display format in the Script execution program's buffer, otherwise the Script Steps will be out of synchronization with the sequence of display formats. The Skip option does not include any means of responding to a display format by itself. |
+| Comp numeric   | N              | N             | Compress numeric = forces processing of both the Top and Bottom control strings to use numeric comparison rules. Both the control value and the found  string at the specified location are first processed to remove all but the digits 0 - 9, then each string of digits is  right-adjusted and zero filled into a numeric work field before the comparison is performed. All compared values may include other characters, but they will be ignored and the rule will pass as long as the compressed numeric digits pass the Rule. If Comp numeric is specified, then character string comparisons cannot be used; include another Step record if a character string comparison must be provided as an option. |
+| Rule           | EQ             | N             | - If the Rule field for either the Top or Bottom control string is blank, that control string has no effect. |
+|                 |               |               | - Possible Rule values are: |
+|                 |               |               | -- EQ = Equal |
+|                 |               |               | -- NE = Not Equal |
+|                 |               |               | -- GT = Greater Than | 
+|                 |               |               | -- LT = Less Than |
+|                 |               |               | -- GE = Greater or Equal |
+|                 |               |               | -- LE = Less or Equal  |
+| Val: (value) character | blank supports **DynVar** | N             | -   Type a character string that will be compared to the location specified on the current  display format. |
+|                 |               |               | -   This field can be left blank so that blanks will be used for the comparison if the Length is specified. The Length field determines how many blank characters will be compared. |
+|                 |               |               | -   This field supports a Dynamic Variable token. |
+ | R: (row)       |                | N             | Type a value from 1 to 24 to designate the vertical row of the display that should be searched for the Control string. |
+|                 |               |               | Note: There may be row numbers higher than 24 when alternate display formats are being used, however, screen formats other that *DS3 (24 rows by 80 columns) are not supported at this time. Contact SMA Technologies Support if support for 27 X 132 formats is required. |
+| C: (column)    |                | N             | Type a value from 1 to 80 to designate the horizontal column position where the Top string must begin. |
+|                 |               |               | **Note:** Refer to the note on R: (row) about value limits. |
+| L: (length)    |                | N             | -   Type a length up to 30 characters that indicates how long a control string value should be used. |
+|                 |               |               | -   When the control string is not blank, this value is optional and the system assumes the length is equal to the last non-blank character. |
+|                 |               |               | -   However, if trailing blanks must be included, or if the whole control string must be a certain number of blanks, then the length specifies exactly how long the control string is and how many characters in the display format location specified must match.  |
+
 
 ###### Functions
 
@@ -1510,11 +459,11 @@ Seq       Comment
     1. String to send: <**F4**> shows a list of cursor control commands that may be inserted.
     2. Function to send: <**F4**> shows a list of valid function keys that may be specified.
     3. Rule: <**F4**> shows a list of valid Rules.
-- **F6=Variable**: Shows the list of the Token/Variable data fields that are registered for use with Operator Replay (refer to [Tokens/Variables Management](#Tokens/V)). When variables are inserted into supported fields, the Operator Replay function substitutes the currently registered value in place of the token at the time the script is executed.
+- **F6=Variable**: Shows the list of the Token/Variable data fields that are registered for use with Operator Replay (refer to [Tokens/Variables Management](../operator-replay/screens.md#tokensvariables-management)). When variables are inserted into supported fields, the Operator Replay function substitutes the currently registered value in place of the token at the time the script is executed.
 - **F7=DSPLBLWU**: Display Label Where Used. If a Step label value has been assigned to this step, a script analysis utility will search for all Scripts that reference this label value in a branch operation and then show a list of the Scripts that use this label value.
 - **F8=Cmd prompt**: When the cursor is positioned in the String to send field, press <**F8**> to branch into IBM i command prompting. The selected command and any parameter values prepared during this branch will be returned to the string to send field (unless the prompting is exited using <**F3**> or <**F12**>.) Hint: It helps to type in a command name first before pressing <**F8**>, since the access to command entry using this function key is intentionally restricted.
 - **F9=DynVar**: Shows a list of Dynamic Variables, when the cursor is in a supported field (refer to table of fields, above). When a Dynamic Variable is selected from the pop-up window, a formatted token is inserted at the current cursor location. The Dynamic Variable token will be replaced with its value at run time. Captured Data Response Rules (linked to the same step, or to prior steps) can be used to set Dynamic Variable values just before they are used.
-- **F10=Capt Defn**: After the Step Sequence (number) field has been specified, it is possible to press <**F10**> to branch into the Work with Screen Capture Definitions screen. (Refer to [OR Script     Operations](#OR) for an outline of how to use this function key. Also refer to the [OR Script Screens and     Windows](#OR2) below for more information about Screen Capture definitions.) Remember to press <**Enter**> after returning from this branch in order to complete the creation or change of the Operator Replay Step detail record.
+- **F10=Capt Defn**: After the Step Sequence (number) field has been specified, it is possible to press <**F10**> to branch into the Work with Screen Capture Definitions screen. (Refer to [OR Script Operations](../operator-replay/operations.md) for an outline of how to use this function key. Also refer to the [OR Script Screens and Windows](../operator-replay/screens.md) below for more information about Screen Capture definitions.) Remember to press <**Enter**> after returning from this branch in order to complete the creation or change of the Operator Replay Step detail record.
 - **F12=Cancel**: (Not shown, but supported.) Quits the maintenance function without completing any data changes and returns to the list of step records.
 
 #### Discussion of Receive Timer Override
@@ -1531,12 +480,10 @@ If a branch operation is being used in a Script there are special rules for maki
 
 ##### Function to Send
 
-Function to Send
-
-  ----------------------------------------------------------------
-
+```
 Fctn Selection
-     [ACK  ]{style="color: #008000; background-color: #00ff00;"}      [ATT]{style="color: #008000;"}[N]{style="color: #008000;"}
+     ACK
+     ATTN
      ENTER
      F1
      F10
@@ -1551,12 +498,11 @@ Fctn Selection
      F19
      F2
      F20
-         More\...
-   F12=Cancel
-  ----------------------------------------------------------------
-
+           More...
+F12=Cancel
+```
 :::note
-The special function key value ACK does not generate any data sent to the Host system. It is used to clear the script driver program's screen image buffer, typically after a \*STATUS message was received from the host. (Status messages do not require any response by a human operator, but the driver program may need to clear them in order to manage step timeouts.)
+The special function key value ACK does not generate any data sent to the Host system. It is used to clear the script driver program's screen image buffer, typically after a *STATUS message was received from the host. (Status messages do not require any response by a human operator, but the driver program may need to clear them in order to manage step timeouts.)
 :::
 
 ###### Functions
@@ -1569,12 +515,11 @@ The special function key value ACK does not generate any data sent to the Host s
 ##### Cursor Control Selection
 
 Cursor Control Selection Window
-
-  -----------------------------------------------------------------------
-
+```
 Cur Ctl Sel
 
-  [Backspace      ]{style="color: #008000; background-color: #00ff00;"}   [Cursor Dow]{style="color: #008000;"}[n]{style="color: #008000;"}
+  Backspace
+  Cursor Down
   Cursor Left
   Cursor Right
   Cursor Up
@@ -1583,10 +528,9 @@ Cur Ctl Sel
   Field Exit
   New Line
 
-         Bottom
-  F12=Cancel
-  -----------------------------------------------------------------------
-
+               Bottom
+F12=Cancel
+```
 ###### Functions
 
 - **Cursor up/down**: Moves the cursor down or back up to select the cursor control operation that is inserted into the String to send field.
@@ -1599,15 +543,15 @@ Cur Ctl Sel
 Refer to Token/Variables Management below. Operator Replay Token variables are supported in the following Step record fields: String to send, Function to send, Branch-to Script, Branch-to Label and the Control string Val(ue) fields. SMA recommends using Dynamic Variables instead of this older type.
 
 Variable/Token Selection Window
+```
+            Var Selection
 
-  ---------------------------------------------------------------------
-                              Var Selection
-
-[DATE1  ]{style="background-color: #00ff00;"}    Application date                   MAXJOBS    Max Concurrent Jobs Token  
+DATE1      Application date                   
+MAXJOBS    Max Concurrent Jobs Token  
 
                                  Bottom
-                               F12=Cancel
-  ---------------------------------------------------------------------
+F12=Cancel
+```
 
 ###### Functions
 
@@ -1615,6 +559,11 @@ Variable/Token Selection Window
 - **Page Up/Page Down**: When the window shows "More..." at the bottom, right-hand corner, use the Paging keys to show other valid values from the entire list.
 - **Enter**: Returns the currently highlighted variable as a token and inserts it into the supported field where the cursor was last positioned.
 - **F12=Cancel**: Quits the window and returns to the step details screen without selecting a variable.
+:::note
+The special characters that are reserved to designate token/variable fields and cursor control characters are specified in control records within the LSAM Parameters table LSAPARF00.
+The Token/Variable Separator and the Cursor Control Separator characters can be maintained by the Operator Replay Configuration function, however, SMA Technologies recommends against changing these characters (except for the one-time conversion recommended after upgrading to LSAM version 04.00.03 from a prior version). If these special characters must be changed, it is required to observe the following caution. Also, please contact SMA Technologies Support for advice. 
+If these special characters are changed in the control file, then every existing Operator Replay script that uses them must also be updated. The Operator Replay script execution program relies on the contents of the control file to recognize which characters designate token/variable fields and cursor control characters. A special warning/utility screen appears after pressing <**Enter**> on the Operator Replay configuration maintenance screen, if any of the three Separator hex character sequences has changed. Use the function key <**F14**> to confirm the change and allow a conversion program to scan all Script Step records, replacing the old separator characters with the new characters. This keeps the control file synchronized with the Step record content, which is required for successful execution of an Operator Replay Script.
+:::
 
 ##### Select Dynamic Variable
 
@@ -1622,19 +571,19 @@ SMA recommends using these Dynamic Variables instead of the older Operator Repla
 current cursor location.
 
 Dynamic Variable Selection Window
+```
+Select Dynamic Var
 
-  --------------------------------------------------------------------------------------------------------
-                                             Select Dynamic Var
-                                                      
-                                              Dynamic Var.   Seq
+Dynamic Var.   Seq
 
-[ANYMSGTXT ]{style="color: #008000; background-color: #00ff00;"}      [00]{style="color: #008000;"}                                               MAXJOBS         00
-                                              TESTSTSVAR      00
+ANYMSGTXT       00                                               
+MAXJOBS         00
+TESTSTSVAR      00
 
-                                                   Bottom
+                 Bottom
 
-                                         Enter=Select   F12=Cancel
-  --------------------------------------------------------------------------------------------------------
+Enter=Select   F12=Cancel
+```
 
 ###### Functions
 
@@ -1646,22 +595,23 @@ Dynamic Variable Selection Window
 ### Operator Replay Log Selection
 
 Operator Replay Log Selection Screen
+```
+OPRLOGR00-1             Operator Replay Log Selection               00/00/00
+QSECOFR                                                             00:00:00
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --
-  [OPRLOGR00-1]{style="color: #008000;"}             Operator Replay Log Selection             [   00/00/00]{style="color: #008000;"}                                                                                                                                                                                                                                                                                       QSECOFR                                                              00:00:00
-
-  Position to Script Name\...   \_\_\_\_\_\_\_\_\_
+  Position to Script Name...   _________
   Type options, press Enter.
      5=Display   8=RpyUsrJob   9=WRKJOB
-  \- IBM i Replay Control Job -
-  [Opt]{style="text-decoration: underline;"} [Script    ]{style="color: #ff00ff;text-decoration: underline;"}  [Rpy User  ]{style="text-decoration: underline;"}  [   Date   ]{style="text-decoration: underline;"} [  Time  ]{style="text-decoration: underline;"}  [Name      ]{style="text-decoration: underline;"} [User      ]{style="text-decoration: underline;"} [Number]{style="text-decoration: underline;"}       \_  TSTOPRPY02  TSTOPR      03/12/0000 10:06:06  TSTJOBNM   QSECOFR    109972
-   \_  [TSTOPRPY02  TSTOPR      03/09/0000 16:35:05  TSTJOBNM   USER01     109787]{style="color: #ff0000;"}                                                                                                                                                                                                                                                                                                                  \_  TSTOPRPY02  TSTOPR      03/09/0000 16:34:12  TSTJOBNM   USER01     109787
-   \_  TSTOPRPY02  TSTOPR      03/09/0000 15:45:43  TSTJOBNM   USER01     109776
+  - IBM i Replay Control Job -
+  Opt Script      Rpy User       Date      Time    Name       User       Number       
+   _  TSTOPRPY02  TSTOPR      03/12/0000 10:06:06  TSTJOBNM   QSECOFR    109972
+   _  TSTOPRPY02  TSTOPR      03/09/0000 16:35:05  TSTJOBNM   USER01     109787                                                                       _  TSTOPRPY02  TSTOPR      03/09/0000 16:34:12  TSTJOBNM   USER01     109787
+   _  TSTOPRPY02  TSTOPR      03/09/0000 15:45:43  TSTJOBNM   USER01     109776
 
-  More\...
+                                                                         More...
 
-  F3=Exit   F5=Refresh   F11=Sort date   F12=Cancel
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --
+F3=Exit   F5=Refresh   F11=Sort date   F12=Cancel
+```
 
 The example above illustrates that the list of log index entries uses red to highlight any jobs that completed with a non-zero completion code. The color blue indicates that the Script job is still active; green indicates a normally completed job; white indicates that the job is no longer found in the system (rare).
 
@@ -1669,11 +619,11 @@ Use option 5=Display to view more information about any job, including the error
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay logs (\#3)
+Main Menu \> Operator replay menu (#4) \> Operator Replay logs (#3)
 
 ###### Fields
 
-- Opt:          <**Tab** to the line of a step record and type an option number. Press <**Enter**> to perform the option function. Type 5 to view the log information for the execution of the script.
+- Opt:          <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function. Type 5 to view the log information for the execution of the script.
 - Script:       The name of the Script that was executed at each date and time.
 - Rpy User:     The name of the IBM i User ID that was specified to run the script.
 - Date:         The date when this Script was executed.
@@ -1698,28 +648,28 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay logs (\#3)
 ### Operator Replay Display Log Detail
 
 Example Operator Replay Display Log Entry
-
-  -------------------------------------------------------------------------------------------------------------------------------------
-
-[OPRLOGR00-2]{style="color: #008000;"}               Operator Replay Log Entry                  [00/00/00]{style="color: #008000;"}   USERNAME                                                             00:00:00
+```
+OPRLOGR00-2               Operator Replay Log Entry                  00/00/00   
+USERNAME                                                             00:00:00
 
   Press F10=Log detail to see captured dialog.
 
-  Script name\...\...\...\...\....: TSTOPRPY02
-  Replay job user name\...\....: TSTOPR
-  [Replay job return code\.....: 0]{style="color: #008000;"}  [Normal end of job]{style="color: #ff00ff;"}   OPRLOGF10 data member name.: O234567890
-  Job date\...\...\...\...\...\....: 03/12/0000
-  Job time\...\...\...\...\...\....: 10:06:06
-  IBM i control job name\.....: JOBNAME
-  IBM i control job user\.....: QSECOFR
-  IBM i control job number\...: 109972
+  Script name................: TSTOPRPY02
+  Replay job user name.......: TSTOPR
+  Replay job return code.....: 0  Normal end of job
+  OPRLOGF10 data member name.: O234567890
+  Job date...................: 03/12/0000
+  Job time...................: 10:06:06
+  IBM i control job name.....: JOBNAME
+  IBM i control job user.....: QSECOFR
+  IBM i control job number...: 109972
 
   F3=Exit   F8=RpyUsrJob   F9=WRKJOB   F10=Log detail   F12=Cancel
-  -------------------------------------------------------------------------------------------------------------------------------------
+```
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay logs (\#3) \> Option (\#5)
+Main Menu \> Operator replay menu (#4) \> Operator Replay logs (#3) \> Option (#5)
 
 ###### Fields
 
@@ -1743,7 +693,7 @@ Main Menu \> Operator replay menu (\#4) \> Operator Replay logs (\#3) \> Option 
 
 #### Replay Log Detail (F10)
 
-The Operator Replay Display Log function is explained in detail above under OR Script Operation \> [Viewing Operator Replay Logs](#Viewing).
+The Operator Replay Display Log function is explained in detail above under OR Script Operation > [Viewing Operator Replay Logs](../operator-replay/operations.md#view-operator-replay-log-files).
 
 ### Tokens/Variables Management
 :::note
@@ -1769,7 +719,7 @@ An Operator Replay variable can be added, or have its value reset, using the IBM
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Token/Variable management (\#4)
+Main Menu \> Operator replay menu (#4) \> Operator Token/Variable management (#4)
 
 ###### Fields
 
@@ -1849,11 +799,10 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay Scripts (\#2) \> Script step list (Opt 1) \> F6=Add **- or -** option 2=Change **- or -** option 3=Copy \> F10=Capt Defn.
-- Main Menu \> Operator replay menu (\#4) \> Work with Screen Capture Definitions (\#5)
+- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script step list (Opt 1) \> F6=Add **- or -** option 2=Change **- or -** option 3=Copy \> F10=Capt Defn.
+- Main Menu \> Operator replay menu (#4) \> Work with Screen Capture Definitions (#5)
 
 ###### Fields
-
 
 -  Script:          When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
 -  (Script) Seq:    When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the sequence number of the Operator Replay Step is fixed and it appears in the heading of this list display.
@@ -1895,8 +844,8 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay Scripts (\#2) \> Script Steps (Opt 1) \> F6=Add **- or -** option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
-- Main Menu \> Operator replay menu (\#4) \> Work with Screen Capture definitions (\#5) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script Steps (Opt 1) \> F6=Add **- or -** option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu \> Operator replay menu (#4) \> Work with Screen Capture definitions (#5) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
 
 ###### Fields
 
@@ -1928,8 +877,8 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay Scripts (\#2) \> Script steps (Opt 1) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F11=Response rules.
-- Main Menu \> Operator replay menu (\#4) \> Work with Captured Data Response Rules (\#6).
+- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script steps (Opt 1) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F11=Response rules.
+- Main Menu \> Operator replay menu (#4) \> Work with Captured Data Response Rules (#6).
 
 ###### Fields
 
@@ -1978,8 +927,8 @@ Refer to the topic on Events and Utilities menu, for more information about the 
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (\#4) \> Operator Replay Scripts (\#2) \> Script steps (Opt 1) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F11=Response rules \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
-- Main Menu \> Operator replay menu (\#4) \> Work with Captured Data Response Rules (\#6) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script steps (Opt 1) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F11=Response rules \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu \> Operator replay menu (#4) \> Work with Captured Data Response Rules (#6) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
 
 ###### Fields
 
@@ -2089,7 +1038,7 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Display Captured Data log (\#8).
+Main Menu \> Operator replay menu (#4) \> Display Captured Data log (#8).
 
 ###### Fields
 
@@ -2127,7 +1076,7 @@ Main Menu \> Operator replay menu (\#4) \> Display Captured Data log (\#8).
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Display Captured Data log (\#8) \> option 5=Display.
+Main Menu \> Operator replay menu (#4) \> Display Captured Data log (#8) \> option 5=Display.
 
 ###### Fields
 - Log record RRN: The relative record number of this record in physical file OPRLOGF40
@@ -2146,7 +1095,7 @@ Main Menu \> Operator replay menu (\#4) \> Display Captured Data log (\#8) \> op
 - Script Name: The Operator Replay Script name that triggered this data capture.
 - Step number: The Sequence number of the Operator Replay script step being executed when the data  was captured.
 - Numeric: Y = yes, N = No: Indicates whether numeric data compression was specified for the captured data.
-- Rows 1-12 Rows 13-24 2..5\...10\....5\...20: The row and columns of the capture data are labeled. Press PageDown or PageUp to toggle between the display of rows 1-12 and 13-24. Either eye vision, or manipulation of the cursor may be used to help identify the exact column for each character of captured data, based on the numbered ruler line just above the first line of captured data. The ruler starts with number 2 and ends with number 78 (due to 5250 workstation display constraints), however, the actual captured data occupies columns 1 to 80 on the lines below the ruler. Thus, workstations that display the column location of the cursor should match the character location in the ruler line.
+- Rows 1-12 Rows 13-24 2..5...10....5...20: The row and columns of the capture data are labeled. Press PageDown or PageUp to toggle between the display of rows 1-12 and 13-24. Either eye vision, or manipulation of the cursor may be used to help identify the exact column for each character of captured data, based on the numbered ruler line just above the first line of captured data. The ruler starts with number 2 and ends with number 78 (due to 5250 workstation display constraints), however, the actual captured data occupies columns 1 to 80 on the lines below the ruler. Thus, workstations that display the column location of the cursor should match the character location in the ruler line.
 
 ###### Functions
 
@@ -2187,9 +1136,11 @@ Following is a table of Entry_Code values that may be observed in the list of de
 - SCAN_LOG: A program debug entry providing non-critical, general information about conditions detected by the SCANSPLFR program. Refer to the entry details for more information.
 - SCAN_MATCH: A log entry registering a matched scan value.
 - SCAN_LBLNO: An indicated scan label was found, but the associated value after the label did not match the supplied scan reference value.
+
   **Operator Replay script entries for data capture operations**
 - CAPTDATA: A log entry recording the data captured from a screen image.
 - CAPTERR: A log entry reporting a program error code encountered while attempting to capture screen data. Refer to the log entry details for the exact error message that was trapped.
+
   **Message Data entries for data capture operations**
 - M_MSG_BUF:  The log entry shows the message data buffer used for data capture. The buffer may contain only the primary message text, only the secondary (Help) message text, or both text types concatenated with one space character between them.
 - M_CAPTURE:  The log entry shows the portion of data that was captured from the message text buffer. This data would be referred to, for example, when the special value of \*CAPT is used in a Captured Data Response Rule.
@@ -2197,6 +1148,7 @@ Following is a table of Entry_Code values that may be observed in the list of de
 - M_DYNV_ERR: A Dynamic Variable token could not be replaced during the processing of Message Data capture.
 - M_DYNV_PRE: During Message Data capture, the string that contains a Dynamic Variable token before the token is replaced. This is the string that contains an optional Scan Label that will be used to identify the message data desired for capture.
 - M_DYNV_RPL: During Message Data capture, the string value after a Dynamic Variable token was replaced.
+
   **Common entries for Captured Data Response Rule processing**
 - RESPCMD0: Documents the original response command string from the rules record, before processing any embedded variables.
 - RESPCMD1: Documents the response command string after any Dynamic Variables were replaced.
