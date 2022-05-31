@@ -1,3 +1,6 @@
+---
+sidebar_label: 'Restricted Mode Screens and Windows'
+---
 # Restricted Mode Screens and Windows
 
 ## Maintain Restricted Mode Scripts
@@ -7,23 +10,23 @@
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> Setup options (\#1)
+Main Menu > Restricted mode menu (\#5) > Setup options (\#1)
 
 ##### Fields
 
   | Field | Default | Description |
   | ----- | ------- | ----------- |
-  | Op    |   None  |  <**Tab**\> to a row in the table and enter an option.|
+  | Op    |   None  |  <**Tab**> to a row in the table and enter an option.|
   | Script Name  |    n/a |   The name of the Script to be changed, copied, or deleted. |
 
 ##### Options
 
-- **1=Select**: Type 1 next to the Script name and press <Enter\> to
+- **1=Select**: Type 1 next to the Script name and press <**Enter**> to
     work with Options (script steps).
 - **3=Copy**: Type 3 next to the Script name to be copied and press
-    <Enter\> to proceed to the new script name window.
+    <**Enter**> to proceed to the new script name window.
 - **4=Delete**: Type 4 next to the Script to be removed from the
-    system and press <Enter\> to proceed to the Confirm Delete screen.
+    system and press <**Enter**> to proceed to the Confirm Delete screen.
 - **8=Export**: Initiate dialog to export this script and all its
     steps.
 
@@ -62,14 +65,14 @@ any records and returns to the list of Scripts.
 ### Add New Script
 
 A window is displayed for typing in a new Script name when function
-<**F6**\> (Add) is pressed. This occurs before the program displays the
+<**F6**> (Add) is pressed. This occurs before the program displays the
 Restricted mode options detail screen where the new Script Actions will
 be defined.
 
 The same format of the New Script Name window is displayed for both
-function <**F6**\> (Add) and function <**F3**\> (Copy). The only
+function <**F6**> (Add) and function <**F3**> (Copy). The only
 difference will be the title line of the window, where the title line
-for <**F3**\> (Copy) will show the name of the Script that is being
+for <**F3**> (Copy) will show the name of the Script that is being
 copied.
 
 Add New Script Window
@@ -98,9 +101,9 @@ SAVRSTD20W3
 
 ##### Menu Pathways
 
-- Main Menu \> Restricted mode menu (\#5) \> Setup options (\#1) \>
+- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
     F6=Add
-- Main Menu \> Restricted mode menu (\#5) \> Setup options (\#1) \>
+- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
     Copy Script option (\#3)
 
 ##### Fields
@@ -125,7 +128,7 @@ SAVRSTD20W3
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> Setup options (\#1) \> Select
+Main Menu > Restricted mode menu (\#5) > Setup options (\#1) > Select
 Script, options (\#1)
 
 ##### Fields
@@ -134,7 +137,7 @@ Script, options (\#1)
 | Field       | Default | Description                                |
 | ------- | -----| ------| -------|
 | Script name |         | The name of the Script selected from the list display to which all these Action codes belong.|
-| Op          | None    | <**Tab**\> to a row in the table and enter an option.  |
+| Op          | None    | <**Tab**> to a row in the table and enter an option.  |
 | Seq         |         | The order in which steps in RDY status will be performed. Note that Actions in    HLD status will be sorted to the end of the list, separate from the steps in RDY   status that are listed in order of their sequence number. |
 | | | **Note:** A former restriction on the use of sequence numbers has been removed from the system and replaced with reserved names for certain Action codes.            |
 | Action      |         | A user-assigned or a system-reserved name for each sequenced step. |
@@ -151,7 +154,7 @@ special ON_ERROR Action code.            |
 ##### Options
 
 - **2=Change**: Type 2 next to the Action to be changed and press
-    <Enter\> to proceed to the options details screen.
+    <**Enter**> to proceed to the options details screen.
 
 - **3=Hold**: Change the status of an Action to HLD, so that it will
     not be used during restricted mode operations. This provides for
@@ -162,7 +165,7 @@ Reclaims of storage might only be performed once a quarter, while a full system 
 :::
 
 - **4=Delete**: Type 4 next to the Action to be removed from the
-    system and press <Enter\> to proceed to the Confirm Delete screen.
+    system and press <**Enter**> to proceed to the Confirm Delete screen.
 
 - **6=Release**: Change the status of a step to RDY (ready), so that
     it will be executed during restricted mode operations.
@@ -205,16 +208,16 @@ any records and returns to the list of Actions.
 ### Restricted Mode Options Detail
 
 The same format of Options Detail screen is displayed for both option
-2=Change and function <**F6**\> (Add).
+2=Change and function <**F6**> (Add).
 
 - **Screen Title**: Restricted Mode Options Detail
 - **Screen ID**: SAVRSTD20-2
 
 ##### Menu Pathways
 
-- Main Menu \> Restricted mode menu (\#5) \> Setup options (\#1) \>
+- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
     F6=Add
-- Main Menu \> Restricted mode menu (\#5) \> Setup options (\#1) \>
+- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
     option 2=Change
 
 ##### Fields
@@ -233,11 +236,11 @@ The same format of Options Detail screen is displayed for both option
 | Stop Execution on Error  | None             | Y        | -   Y=Yes      |
 |          |                  |          | -   N=No         |
 |          |                  |          | -   This instruction flag causes theRestricted Mode operations to be suspended if an Action that is flagged as Y=Yes, encounters an error condition. In that case, the Restricted Mode operations program will go into AutoRecovr mode, restore normal system operations, and report the error.   |
-| Command line     | None             | Y        | Type the IBM i command to be executed. The <**F4**\> (Prompt) key supports access to IBM i command prompting. When <*Enter**\> is pressed from the prompt display, the resulting command text will be inserted into this field. |
+| Command line     | None             | Y        | Type the IBM i command to be executed. The <**F4**> (Prompt) key supports access to IBM i command prompting. When <*Enter**> is pressed from the prompt display, the resulting command text will be inserted into this field. |
 
  
 :::caution *Special Action circlular code: ON_ERROR
-There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is specified, the Restricted Mode operations program registers the command that has been assigned to this Action code as the current operation to be performed in case any subsequent step in the Script might fail. The ON_ERROR command is executed after the Restricted Mode operations program ha performed most of the AutoRecovr steps (after normal system operations have been restored an the LSAM service programs have been restarted). The usual type of command that would be assigned to an ON_ERROR Action is an OpCon/xps Event.Refer to [Events and Utilities Menu](/events-utilities/menu.md)  and [Commands and Utilities](/commands-utilities/commands.md) for more information about the available OpCon/xps Event commands that may be specified. As with all Restricted Mode Action commands, the OpCon/xps Event commands may also be prompted using <F4\> from the Restricted Mode Options Detail screen (below). ON_ERROR Action codes are ignored if the entire Restricted Mode Script executes normally.
+There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is specified, the Restricted Mode operations program registers the command that has been assigned to this Action code as the current operation to be performed in case any subsequent step in the Script might fail. The ON_ERROR command is executed after the Restricted Mode operations program ha performed most of the AutoRecovr steps (after normal system operations have been restored an the LSAM service programs have been restarted). The usual type of command that would be assigned to an ON_ERROR Action is an OpCon/xps Event.Refer to [Events and Utilities Menu](/events-utilities/menu.md)  and [Commands and Utilities](/commands-utilities/commands.md) for more information about the available OpCon/xps Event commands that may be specified. As with all Restricted Mode Action commands, the OpCon/xps Event commands may also be prompted using <**F4**> from the Restricted Mode Options Detail screen (below). ON_ERROR Action codes are ignored if the entire Restricted Mode Script executes normally.
 :::
 
 ##### Functions
@@ -245,7 +248,7 @@ There is a special Action code name ON_ERROR that is reserved as an optional ste
 - **F3=Exit**: Quits the options details display without updating and
     returns to the menu.
 - **F4=Prompt**: In the Command line field, go to IBM i command
-    prompting. When <Enter\> is pressed from the command prompt screen,
+    prompting. When <**Enter**> is pressed from the command prompt screen,
     the resulting command text will be inserted into this field.
 - **F12=Cancel**: Quits the options details display without updating
     and returns to the list of Actions.
@@ -261,7 +264,7 @@ for managing any exceptional messages that may arise.
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> Setup environment (\#2)
+Main Menu > Restricted mode menu (\#5) > Setup environment (\#2)
 
 ##### Fields
 
@@ -290,9 +293,9 @@ Main Menu \> Restricted mode menu (\#5) \> Setup environment (\#2)
     possible to view the library list that defines each environment.
     Select the environment and library list that has been created for
     use with Restricted Mode operations. If no environment and library
-    list has been set up for Restricted Mode operations, use <F6\>
+    list has been set up for Restricted Mode operations, use <**F6**>
     (Add/maint env) to perform environment maintenance now. Then repeat
-    the <F4\> (Prompt) to select the new environment for insertion into
+    the <**F4**> (Prompt) to select the new environment for insertion into
     the Environment field.
 - **F5=Refresh**: Retrieves the latest information from the LSAM
     environment master files and updates the display.
@@ -324,10 +327,10 @@ Initial Program.
 It is recommended to always perform this function before using the
 Restricted Mode for the first time, or at any time after updating or
 changing the LSAM environment or programs. It is also required to
-complete this function by pressing <**Enter**\> when this display shows
+complete this function by pressing <**Enter**> when this display shows
 that the Restricted Mode controlling environment is either blank or is
 not the same as the Current environment. However, it is not necessary to
-press <**Enter**\> when viewing this display from a test environment
+press <**Enter**> when viewing this display from a test environment
 and that environment should not be in control of Restricted Mode
 operations.
 
@@ -348,7 +351,7 @@ refer to [LSAM Environment Management](/environment/index) and
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> Setup environment (\#2) \>
+Main Menu > Restricted mode menu (\#5) > Setup environment (\#2) >
 F15=Update SMASAV
 
 ##### Fields
@@ -360,140 +363,109 @@ F15=Update SMASAV
 
 ##### Functions
 
-- **F3=Exit**: Quits the environment details display without updating
-    and returns to the menu.
-- **F10=View SMASAV**: View the settings of the SMASAV user profile in
-    order to confirm that the initial program and the job description
-    are referring to correct library names. If it appears they are
-    incorrect, press <Enter\> to complete the update process.
-- **F12=Cancel**: Quits the environment details display without
-    updating and returns to the list of Actions.
-- **Enter**: Press <Enter\> to initiate the system changes described
-    on this screen. To avoid any updates press <F12\> or <F3\>
-    instead. After pressing <Enter\>, the display will return to the
-    list of libraries for the Restricted Mode environment and a message
-    will appear at the bottom line confirming that the updates have been
-    successfully completed.
+- **F3=Exit**: Quits the environment details display without updating and returns to the menu.
+- **F10=View SMASAV**: View the settings of the SMASAV user profile in order to confirm that the initial program and the job description are referring to correct library names. If it appears they are incorrect, press <**Enter**> to complete the update process.
+- **F12=Cancel**: Quits the environment details display without updating and returns to the list of Actions.
+- **Enter**: Press <**Enter**> to initiate the system changes described on this screen. To avoid any updates press <**F12**> or <**F3**> instead. After pressing <**Enter**>, the display will return to the list of libraries for the Restricted Mode environment and a message will appear at the bottom line confirming that the updates have been successfully completed.
 
 ## Restricted Mode History
 
-Shows the Actions and other steps that were performed during the last
-Restricted Mode of operations with the associated dates, times, and
-messages.
+Shows the Actions and other steps that were performed during the last Restricted Mode of operations with the associated dates, times, and messages.
 
 ### Restricted Mode Job History
 
-Shows a list of each Script name and job for which a history has been
-recorded.
+Shows a list of each Script name and job for which a history has been recorded.
 
 - **Screen Title**: Restricted Mode Job History
 - **Screen ID**: SAVRSTD05-1
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> History of last use (\#3)
+Main Menu > Restricted mode menu (\#5) > History of last use (\#3)
 
 ##### Fields
 
- | Field  |          Description|
- | ---------------- | --|
- | Search content |  Type a value in this field and press <**Enter**\> to find the first job history (control record) that contains this value. Use <**F16**\> to continue the search to the next record(s). |
- | Opt          |    <**Tab**\> to a row in the table and enter an option. |
- | Script       |    The name of the Script for which a history exists.|
- | JobNbr       |    The IBM i job serial number.|
- | Job User     |    The IBM i user profile (should always be SMASAV).|
- | Job Name     |    The IBM i job name (should always be DSP01).|
- | Date         |    The day when this Script was last executed (as of the last step in the script).|
+- Search content |  Type a value in this field and press <**Enter**> to find the first job history (control record) that contains this value. Use <**F16**> to continue the search to the next record(s). 
+- Opt: <**Tab**> to a row in the table and enter an option. 
+- Script: The name of the Script for which a history exists.
+- JobNbr: The IBM i job serial number.
+- Job User: The IBM i user profile (should always be SMASAV).
+- Job Name: The IBM i job name (should always be DSP01).
+- Date: The day when this Script was last executed (as of the last step in the script).
 
 ##### Options
 
-- **1=Select**: Type 1 next to a Script/Job and press <**Enter**\>
-    key to view its history detail.
-- **9=WRKJOB**: Type 9 next to a Script/Job and press <**Enter**\> to
-    view the IBM i WRKJOB menu.
+- **1=Select**: Type 1 next to a Script/Job and press <**Enter**>  key to view its history detail.
+- **9=WRKJOB**: Type 9 next to a Script/Job and press <**Enter**> to view the IBM i WRKJOB menu.
 
 ##### Functions
 
 - **F3=Exit**: Quits the list of Scripts and returns to the menu.
 - **F5=Refresh**: Reloads the list of jobs from the log file.
 - **F12=Cancel**: Quits the list of Scripts and returns to the menu.
-- **F16=Search next**: Continue the content search to the next
-    matching record.
+- **F16=Search next**: Continue the content search to the next     matching record.
 - **F17=Top**: Jump to the first record in the list of job histories.
-- **F18=Bottom**: Jump to the last record in the list of job
-    histories.
+- **F18=Bottom**: Jump to the last record in the list of job histories.
 
 ### Restricted Mode Activity History
 
-Shows a list of script options and/or program-defined steps that were
-performed, throughout the history of the job.
+Shows a list of script options and/or program-defined steps that were performed, throughout the history of the job.
 
 - **Screen Title**: Restricted Mode Activity History
 - **Screen ID**: SAVRSTD05-2
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> History of the last use (\#3)
-\> option (\#1)
+Main Menu > Restricted mode menu (\#5) > History of the last use (\#3) > option (\#1)
 
 ##### Options
 
-**5=Display**: Type **5** next to a history line and press <**Enter**\>
-key to view its details.
+**5=Display**: Type **5** next to a history line and press <**Enter**> key to view its details.
 
 ##### Functions
 
 - **F3=Exit**: Quits the list of Scripts and returns to the menu.
 - **F9=WRKJOB**: Branch to the IBM i Work with job menu for this job.
 - **F12=Cancel**: Quits the list of Scripts and returns to the menu.
-- **F16=Search next**: Continue the content search to the next
-    matching record.
+- **F16=Search next**: Continue the content search to the next matching record.
 - **F17=Top**: Jump to the first record in the list of job histories.
-- **F18=Bottom**: Jump to the last record in the list of job
-    histories.
+- **F18=Bottom**: Jump to the last record in the list of job histories.
 
 ##### Fields
 
- | Field |                Description |
- | --------------------- | ---------------- |
- | Script              |  The name of the Script that was executed by this job. |
- | Job ID              |  The full IBM i job identifier for this job. |
- | Opt                 |  Type option 5 next to one or more lines to view the full history detail. |
- | Entry timestamp   |    The system date and time when this step was executed. |
- | Action            |    The mnemonic name, or the Action Code of the script step (option) that was executed at this time. |
- | Sts                |   Each history entry is marked as to its type. Values: B = begin step, E=end step, F=failure. |
- | Message             |  If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows \*NONE. |
- | Description/Command  | For steps that executed a command, shows the first several characters of the command. Use option 5 to view the full command text. For other entry types, this field may show the description of an error, or other descriptive comment. |
+- Script: The name of the Script that was executed by this job.
+- Job ID: The full IBM i job identifier for this job.
+- Opt: Type option 5 next to one or more lines to view the full history detail.
+- Entry timestamp: The system date and time when this step was executed.
+- Action: The mnemonic name, or the Action Code of the script step (option) that was executed at this time.
+- Sts: Each history entry is marked as to its type. Values: B = begin step, E=end step, F=failure.
+- Message: If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows *NONE.
+- Description/Command: For steps that executed a command, shows the first several characters of the command. Use option 5 to view the full command text. For other entry types, this field may show the description of an error, or other descriptive comment.
 
 ### Restricted Mode Activity History Detail
 
-Shows extended detail about the activity selected from the list of steps
-in a job's history.
+Shows extended detail about the activity selected from the list of steps in a job's history.
 
 - **Screen Title**: Restricted Mode Activity History Detail
 - **Screen ID**: SAVRSTD05-5
 
 ##### Menu Pathways
 
-Main Menu \> Restricted mode menu (\#5) \> History of the last use (\#3)
-\> option (\#1) \> option (\#5)
+Main Menu > Restricted mode menu (\#5) > History of the last use (\#3) > option (\#1) > option (\#5)
 
 ##### Fields
 
- | Field |                Description |
- | --------------------- | ---------------- |
- | Script                | The name of the Script that was executed by this job.|
- | Job ID                | The full IBM i job identifier for this job.|
- | Log entry date, time  | The date and time when the log entry was written.|
- | Action code           | The mnemonic name, or the Action Code of the script step (option) that was executed at this time.|
- | Log status code       | Each history entry is marked as to its type. B = begin step, E=end step, F=failure.|
- | Log message code      | If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows \*NONE.|
- | Log entry text        | For steps that executed a command, shows the full command text. For other entry types, this field shows the description of an error, or other comment.|
+- Script: The name of the Script that was executed by this job.
+- Job ID: The full IBM i job identifier for this job.
+- Log entry date, time The date and time when the log entry was written.
+- Action code; The mnemonic name, or the Action Code of the script step (option) that was executed at this time.
+- Log status code: Each history entry is marked as to its type. B = begin step, E=end step, F=failure.
+- Log message code: If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows *NONE.
+- Log entry text: For steps that executed a command, shows the full command text. For other entry types, this field shows the description of an error, or other comment.
 
 ##### Options
 
-**5=Display**: Type **5** next to a history line and press <**Enter**\>
-key to view its details.
+**5=Display**: Type **5** next to a history line and press <**Enter**> key to view its details.
 
 ##### Functions
 

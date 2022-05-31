@@ -1,3 +1,6 @@
+---
+sidebar_label: 'Restricted Mode and Multi-Step Jobs'
+---
 # Restricted Mode and Multi-Step Jobs
 
 ## Restricted Mode and Multi-Step Job Menu
@@ -41,7 +44,7 @@ Select or command
 
 The options displayed on this menu are explained in the following
 sections of this document. Type an option number in the Selection or
-command line and press <**Enter**\> to begin using any of the options.
+command line and press <**Enter**> to begin using any of the options.
 
 ###### Functions
 
@@ -57,5 +60,5 @@ command line and press <**Enter**\> to begin using any of the options.
 - **F16=System main menu**: This is always shown on any
     system-generated menu screen. It branches to the general command
     entry menu for IBM i. Return to the previous menu by pressing
-    <**F3**\> or <**F12**\>. This function is not commonly used, and
+    <**F3**> or <**F12**>. This function is not commonly used, and
     can be restricted for certain user profiles.
