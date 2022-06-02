@@ -57,14 +57,8 @@ FAILCODEDV(FAILDYNVAR) FAILONERR(Y) IGNOREMSG(CPF1234) OPCONJOB(Y)
 
 ### Command Parameters
 
-- **CMD** = Type or paste the entire native IBM i command inside a
-    pair of single quotes.
-- **FAILCODEDV** = Optionally, specify the name of an Agent Dynamic
-    Variable that will receive the 7-character IBM i message ID in case
-    there is any failure of the native command. The {TOKEN} for this
-    Dynamic Variable can be used in Multi-Step Job Scripts or Response
-    Rules to test for various error message ID values and then generate
-    an appropriate response.
+- **CMD** = Type or paste the entire native IBM i command inside a pair of single quotes.
+- **FAILCODEDV** = Optionally, specify the name of an Agent Dynamic Variable that will receive the 7-character IBM i message ID in case there is any failure of the native command. The {TOKEN} for this Dynamic Variable can be used in Multi-Step Job Scripts or Response Rules to test for various error message ID values and then generate an appropriate response.
 - **FAILONERR** = Control the success or failure of the CMDEXE2 command. Values:
   - **'Y' or '1'** = Yes, allow the CMDEXE2 command to fail if the native command fails.
   - **'N' or '0'** = No, force the CMDEXE2 command to end normally, despite any failure of the native command.

@@ -4,32 +4,17 @@ sidebar_label: 'Commands and APIs'
 
 # LSAM Commands, APIs
 
-The IBM i LSAM supports many of its functions and actions with IBM i commands that may be used interactively or included in user
-programs. These commands become an application program interface (API)
-to OpCon/xps and to the LSAM itself, enabling very tight integration
-between clients' applications and the OpCon/xps strategy for
-synchronizing all enterprise operations. In most cases, the commands can
-be run either interactively or in batch mode.
+The IBM i LSAM supports many of its functions and actions with IBM i commands that may be used interactively or included in user programs. These commands become an application program interface (API) to OpCon/xps and to the LSAM itself, enabling very tight integration between clients' applications and the OpCon/xps strategy for
+synchronizing all enterprise operations. In most cases, the commands can be run either interactively or in batch mode.
 
 :::warning
 Many of the LSAM Commands may require that the IBM i job's library list be set to reference either the default or any one of multiple LSAM environments. Sometimes the requirements of a command can be set by careful configuration of the library attributes associated with a user-written command. In cases where more complex programming is implemented, consider using the SMASETLIBL command that is documented below. Note that this command has a parameter that can cause it to run in silent mode, so that no unexpected messages are generated within the user-written program.
 :::
 
-Most of the IBM i LSAM commands are listed in the table below. Many of
-these commands are fully explained and illustrated in the referenced
-sections of this document. Certain stand-alone utility commands that
-require a careful explanation are documented below the following table.
+Most of the IBM i LSAM commands are listed in the table below. Many of these commands are fully explained and illustrated in the referenced sections of this document. Certain stand-alone utility commands that require a careful explanation are documented below the following table.
 
-The term API means application program interface. This term refers to
-points in a software application where an interface has been prepared
-that allows external applications to perform or control the execution of
-the home applications functions. Many of the LSAM software functions
-have been represented by IBM i commands. These commands could be
-programmed into other software applications so that those other
-applications can be more tightly integrated with LSAM and OpCon
-operations. An excellent example of how that might be accomplished is
-explained below the Commands table, in the section about the CPYTOMSGIN
-command.
+The term API means application program interface. This term refers to points in a software application where an interface has been prepared that allows external applications to perform or control the execution of the home applications functions. Many of the LSAM software functions have been represented by IBM i commands. These commands could be
+programmed into other software applications so that those other applications can be more tightly integrated with LSAM and OpCon operations. An excellent example of how that might be accomplished is explained below the Commands table, in the section about the CPYTOMSGIN command.
 
 ## IBM i LSAM Commands
 
@@ -75,18 +60,13 @@ JORCMNLOG: Display JORS communications trace log
 - A data viewer that lists the entries in the JORS communications trace log file (JORLOGF00) and provides various tools for interpreting the log file contents. A detailed display is supported to format each log entry according to its LSAM transaction codes.
 
 JORTXNLOG: Display JORS communications transaction log
-- A data viewer that displays and interprets the JORS communications program
-transaction log file. This file is used to track transactions until they are
-acknowledged and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
+- A data viewer that displays and interprets the JORS communications program transaction log file. This file is used to track transactions until they are acknowledged and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
 
 LSACMNLOG: Display Job Scheduler communications trace log
-- A data viewer that lists the entries in the Job Scheduler communications
-trace log file, CMNLOGF00, and provides various tools for interpreting the log file contents. A detailed display is supported to format each log entry according to its LSAM transaction
-codes.
+- A data viewer that lists the entries in the Job Scheduler communications trace log file, CMNLOGF00, and provides various tools for interpreting the log file contents. A detailed display is supported to format each log entry according to its LSAM transaction codes.
 
 LSADSPLOG: Displ ay LSAM job log tracking
-- A data viewer that lists all the members in the LSAM job log storage file, LSAJORF00. File LSAJORF10 contains the index entries that are actually shown on the list. The utility supports
-an option to display the contents of each job log.
+- A data viewer that lists all the members in the LSAM job log storage file, LSAJORF00. File LSAJORF10 contains the index entries that are actually shown on the list. The utility supports an option to display the contents of each job log.
 
 LSAINPLOG: Display Job Scheduler input transaction log
 - A data viewer that displays and interprets all the formatted transactions passed from the Job Scheduler communications program to the LSAM transaction manager.
@@ -98,8 +78,7 @@ LSAJORLOG: Display job output retrieval activity log
 - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon/xps Enterprise Manager job master records for IBM i jobs.
 
 LSATXNLOG: Display Job Scheduler communications transaction log
-- A data viewer that displays and interprets the Job Scheduler communications program transaction log file. This file is used to track transactions until they are acknowledged
-and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
+- A data viewer that displays and interprets the Job Scheduler communications program transaction log file. This file is used to track transactions until they are acknowledged and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
 
 SMADSPUSP: Display SMA User Space
 - A support utility command to view the content of the LSACONU01 user space where the User Name and Password for OpCon/xps external event commands is stored. This encrypted content may be viewed only with security officer authority.
@@ -109,7 +88,6 @@ SMASUP: Extract debug log files to IBM i save file for delivery to SMA Technolog
 
 DSPSUPDTA: Display Agent Support Data
 - This command displays the profile of the Agent that is shared with the OpCon server and included in SMASUP log file extracts. The SMASUP command must be run once before the data is available to display, and SMASUP is used to refresh the data to current levels.
-
 
 ### LSAM Operations
 LSAMENU: Enter LSAM menu system
@@ -122,8 +100,7 @@ LSAMENU: Enter LSAM menu system
 - Direct entry to the IBM i LSAM menus, bypassing the splash display and hidden environment configuration steps.
 
 STRCAPJOB: Start Capture Job mode
-- Registers a workstation or a batch job name so that any SBMJOB command is intercepted, not run, but all job details are captured and stored in the LSAM database. The Job Tracking facility
-must be started for this to work. The LSAM menu function that supports this command provides a view of currently registered job names.
+- Registers a workstation or a batch job name so that any SBMJOB command is intercepted, not run, but all job details are captured and stored in the LSAM database. The Job Tracking facility must be started for this to work. The LSAM menu function that supports this command provides a view of currently registered job names.
 
 ENDCAPJOB: End Capture Job mode
 - Un-registers a workstation or a batch job so that the SBMJOB is no longer intercepted to capture jobs.
