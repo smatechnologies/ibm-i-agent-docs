@@ -8,12 +8,9 @@ sidebar_label: 'Operating the LSAM'
 
 There are two commands that can be used to enter the LSAM green screen workstation menus: STRSMA and LSAMENU.
 
-The STRSMA command may be used when the LSAM environment library list is not in effect because it will set the interactive job's library list before the LSAM menu is displayed. Depending on how the SMAGPL utility
-library support has been configured, it may be necessary to qualify the STRSMA command with the library name: SMAGPL/STRSMA. This requirement can be eliminated either by choosing to copy some LSAM commands into the
-QGPL library, or by adding SMAGPL to the IBM i default user library list.
+The STRSMA command may be used when the LSAM environment library list is not in effect because it will set the interactive job's library list before the LSAM menu is displayed. Depending on how the SMAGPL utility library support has been configured, it may be necessary to qualify the STRSMA command with the library name: SMAGPL/STRSMA. This requirement can be eliminated either by choosing to copy some LSAM commands into the QGPL library, or by adding SMAGPL to the IBM i default user library list.
 
-The command LSAMENU is more direct because it skips the splash display, and it may also be a convenient tool for programming or scripting since it supports an optional parameter that allows an LSAM sub-menu to be
-specified for direct access. From outside of the LSAM library list, the LSAMENU command requires that the LSAM Environment name be specified using its ENV() keyword parameter.
+The command LSAMENU is more direct because it skips the splash display, and it may also be a convenient tool for programming or scripting since it supports an optional parameter that allows an LSAM sub-menu to be specified for direct access. From outside of the LSAM library list, the LSAMENU command requires that the LSAM Environment name be specified using its ENV() keyword parameter.
 
 Throughout the **IBM i LSAM** online help, wherever the STRSMA command is specified, in most cases it will be acceptable to replace that with the command LSAMENU, as long as the differences in the command
 parameters are observed and the LSAM environment library list is available when the LSAMENU command is used.
@@ -24,7 +21,7 @@ There are two optional parameters associated with the STRSMA command. In order t
 
 #### Syntax
 ```
-SMAGPL/STRSMA ENV(my_environment_name) ANIMATE(\*YES\|\*NO)
+SMAGPL/STRSMA ENV(my_environment_name) ANIMATE(*YES|*NO)
 ```
 
 - **ENV**: This parameter is the LSAM Environment name. This parameter specifies the library list that will be used by the LSAM.
@@ -39,14 +36,11 @@ The ENV parameter can be specified by position without the keyword:
 SMAGPL/STRSMA SMADEFAULT
 ```
 
-**\- or -**
+**- or -**
 
 ```shell
 SMAGPL/STRSMA <alternate_environment>
 ```
-
-:::
-
 ### The LSAMENU Command
 
 There are two optional parameters associated with the LSAMENU command. In order to view the parameters and change their values, press <**F4**> (Prompt) after typing the command (and before pressing <**Enter**>). The parameters may also be typed as in the example below.
@@ -56,10 +50,10 @@ There are two optional parameters associated with the LSAMENU command. In order 
 SMAGPL/LSAMENU ENV(my_environment_name) MENUNBR([0])
 
 - **ENV**: This parameter is the LSAM Environment name. This parameter specifies the library list that will be used by the LSAM. 
-  - The default value is \*CURRENT. This special value means that if the current job already has its library list set to the LSAM environment, the command driver program will assume that the request for an LSAM menu applies to the environment indicated by the job's library list. If this default value is used with the LSAMENU command in a batch job, it will be replaced by the special value \*DEFAULT, therefore, it may be better to specify n LSAM environment name when using the LSAMENU command in a batch job.
+  - The default value is *CURRENT. This special value means that if the current job already has its library list set to the LSAM environment, the command driver program will assume that the request for an LSAM menu applies to the environment indicated by the job's library list. If this default value is used with the LSAMENU command in a batch job, it will be replaced by the special value *DEFAULT, therefore, it may be better to specify n LSAM environment name when using the LSAMENU command in a batch job.
   - Other values that can be used for this parameter include:
-    - \*DEFAULT = the LSAM environment that was indicated as the default environment by the SMALIBMGT command function.
-    - \*SELECT = a list of LSAM environments will be presented asthe command is executed so that the user may select the desired LSAM environment.
+    - *DEFAULT = the LSAM environment that was indicated as the default environment by the SMALIBMGT command function.
+    - *SELECT = a list of LSAM environments will be presented asthe command is executed so that the user may select the desired LSAM environment.
     - IBM i LSAM patch instructions
     - Name = a specific LSAM environment may be indicated by its name, such as SMADEFAULT.
 - **MENUNBR**: Specifies the LSAM main menu when the default value of zero (0) is used, otherwise, values 1 - 6 and 8 may be used to enter directly to one of the LSAM sub-menus.
@@ -78,7 +72,7 @@ Additionally, the parameters can be specified by position without the keywords, 
 SMAGPL/LSAMENU *DEFAULT 3
 ```
 
-**\- or -**
+**- or -**
 
 ```shell
 SMAGPL/LSAMENU <alternate_environment> 3
@@ -165,13 +159,15 @@ Begin processing OpCon/xps jobs by starting the LSAM using either of the two fol
 
 1. Log in to the IBM i as **QSYSOPR** or a user profile with privileges to access the LSAM menu and to use the LSAM startup program.
 2. Start the LSAM through the menu system with the following steps.
+
     a.  At the command line, enter **SMAGPL/STRSMA**.
     :::note
     If using multiple environments, refer to The STRSMA Command.
     :::
 
-    a.  Enter **6** to choose the **LSAM management menu**.
-    b.  Enter **1** to choose the **Start LSAM (STRSMASYS)** option.
+    b.  Enter **6** to choose the **LSAM management menu**.
+
+    c.  Enter **1** to choose the **Start LSAM (STRSMASYS)** option.
 
 #### Option Two: Start the LSAM Manually
 
@@ -198,6 +194,7 @@ For either option, please verify the Subsystem SMASBS has ended. Do this by usin
     :::note
     If using multiple environments, refer to The STRSMA Command.
     :::
+
     b.  Enter **6** to choose the **LSAM management** menu.
 
     c.  Enter **2** to choose the **End LSAM (ENDSMASYS)** option.
@@ -205,6 +202,10 @@ For either option, please verify the Subsystem SMASBS has ended. Do this by usin
 #### Option Two: Stop the LSAM Manually
 
 1. To end the LSAM manually, enter **SMAGPL/ENDSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter. If ENV is specified, the job's library list does not  matter.
+:::note
+Log in to the LSAM menu system or set the interactive library list to match the LSAM environment to be managed. Use the command SMASETLIBL to see a list of
+choices for automatically setting the library list when using command entry outside of the LSAM menu system. Refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about the SMASETLIBL command. If the library list is set, the ENV parameter default value of *CURRENT may be used.
+:::
 2. The ENDSMASYS command supports an optional parameter that may be used to specify the LSAM environment name. This parameter enables the copy of the command in library SMAGPL to be used from the IBM iSeries Navigator to stop the LSAM without having to log on to a green screen workstation.
 
 ### LSAM Communication Idle Timeout
@@ -213,7 +214,6 @@ The IBM i LSAM sockets communications program actively monitors TCP/IP communica
 parameters described above), the LSAM sends a warning message to the IBM i Operator Message queue.
 
 :::tip Example
-
 The following is a warning message to the IBM i Operator Message queue when communication between the LSAM and OpCon/xps is idle:
 
 Message ID: SMA0009
@@ -222,9 +222,7 @@ Message file: SMAMSGF
 
 Severity: 40
 
-
 Message . . . . : OpCon/xps LSAM communications idle time exceeded on port &1. Lost connection? The OpCon/xps IBM i LSA sockets communications program has not received any data or any request to connect for longer than the idle time specified in the LSAM Parameters control file. This warning usually occurs when the TCP/IP connection has been interrupted. The communication program will continue to monitor for a connection on the specified port, however, under some circumstances it might be necessary to stop and restart the LSAM communications program.
-
 :::
 
 Upon receiving this warning message, contact the OpCon system administrator to check data communications between OpCon/xps and the IBM
@@ -259,8 +257,8 @@ without needing to stop and restart the IBM i LSAM server programs.
                                                                                 
                                                                                 
  Selection or command                                     (C) SMA 1995,2005     
- ===>                                                                           
-                                                                                
+ ===> ________________________________________________________________________
+ ___________________________________________________________________________                                                                                
  F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
  F13=Information Assistant  F16=System main menu                                                               
 ```
@@ -306,7 +304,7 @@ The End LSAM option stops the IBM i LSAM server programs and the LSAM subsystem.
 
 The Check LSAM Subsystem Status option executes the IBM i command WRKACTJOB (i.e., Work with Active Jobs). The command displays the jobs active in the LSAM subsystem defined in the LSAM configuration parameters. From the WRKACTJOB display, press the Help key to view a complete description of all the data displayed.
 
-:::danger
+:::caution
 Unless directed by SMA Support, do not execute any of the options on this screen that affect the job status. Options 5 and 8 are allowed. If option 7 is required, please contact the Support team at SMA for help with determining the cause of the MSGW status.
 :::
 
@@ -385,9 +383,9 @@ Notify server. The final confirmation of this symptom is when it is always the s
 
 SMA suggests the client should consult with SMA Support before considering implementing the Alternate Job Notify service. There is no need to impose this additional overhead on system capacity unless the specific problem it fixes has been confirmed, or unless the client needs to use the Passive mode of job tracking. It is important to understand the multi-step procedure for activating Job Notification, which is done separately for each IBM i subsystem where jobs must be monitored.
 
-Following the [Alternate Job Notify - Job End Process](#Alternate_Job_Notify-Job_End_Process) illustration, there is an outline of the steps required to implement the Alternate Job Notify service. There are multiple steps that must be carefully complete in the correct sequence in order for the Job Notify server to operate correctly. Also, many of the configuration steps require a high level of security permission. The implementation steps should be completely reviewed first before attempting to execute any of the steps. The [Alternate Job Notify - Job End Process](#Alternate_Job_Notify-Job_End_Process) flow chart may help with understanding each of the configuration steps.
+Following the [Alternate Job Notify - Job End Process](../operations/lsam.md#alternate-job-notify---job-end-process) illustration, there is an outline of the steps required to implement the Alternate Job Notify service. There are multiple steps that must be carefully complete in the correct sequence in order for the Job Notify server to operate correctly. Also, many of the configuration steps require a high level of security permission. The implementation steps should be completely reviewed first before attempting to execute any of the steps. The [Alternate Job Notify - Job End Process](../operations/lsam.md#alternate-job-notify---job-end-process) flow chart may help with understanding each of the configuration steps.
 
-The Job Notify service is actually comprised of two different IBM i LSAM server jobs. The JOBNFY server job handles the Job End messages, as illustrated in the [Alternate Job Notify - Job End Process](#Alternate_Job_Notify-Job_End_Process) figure. The other JOBNFY4 server job is not illustrated in that figure. It handles a separate message type generated by IBM i that is generated whenever a job enters a job queue that is attached to a subsystem which has been configured for job notify services.
+The Job Notify service is actually comprised of two different IBM i LSAM server jobs. The JOBNFY server job handles the Job End messages, as illustrated in the [Alternate Job Notify - Job End Process](../operations/lsam.md#alternate-job-notify---job-end-process) figure. The other JOBNFY4 server job is not illustrated in that figure. It handles a separate message type generated by IBM i that is generated whenever a job enters a job queue that is attached to a subsystem which has been configured for job notify services.
 
 #### Job Notify Service for Passive Job Tracking
 
@@ -396,14 +394,13 @@ schedule and Job Master information that enables the full operation of OpCon aut
 
 The Job End message processing of the JOBNFY server is also critical for Passive Job Tracking. This is because the LSAM job start services were not used to initiate the IBM i job, and therefore the standard IBM i job completion message will not be sent to the job completion message queue that the LSAM is monitoring. Instead, the Job Notify service forwards the IBM i Job End message to the LSAM job completion message queue.
 
-More information about Passive Job Tracking may be found in [Job Tracking and Queuing](/job-tracking/overview)
-.
+More information about Passive Job Tracking may be found in [Job Tracking and Queuing](/job-tracking/overview).
 
 #### Flow Chart of Alternate Job Notify Processing
 
 The Alternate Job Notify server job processes transactions put into the data queue specified in the Exit Program Register. The Job Start message management works similar to the following Job End process.
  
-[]{#Alternate_Job_Notify-Job_End_Process}Alternate Job Notify - Job End Process
+##### Alternate Job Notify - Job End Process
 
 ![Alternate Job Notify - Job End Process](../Resources/Images/IBM-i/Alternate-JobNotify---Job-End-Process.png "Alternate Job Notify - Job End Process")
 
@@ -412,14 +409,13 @@ The Alternate Job Notify server job processes transactions put into the data que
 SMA recommends that all of these steps be studied and fully understood before beginning the procedure. This procedure assumes the PTF has been successfully applied. Some steps require a high level of security
 permission.
 
-[Procedure to Add Job Notify Subsystem Records]
+##### Procedure to Add Job Notify Subsystem Records
 
 1. Navigate to the IBM i LSAM sub-menu 6: LSAM Management menu, then select option 8: Alternate Job Notify menu.
 2. Execute option 7: Job notify configuration, to set the control values for this new feature. Do NOT set the first flag, "Use Alt Job Notify Server" on at this time, leave it set to 'N' = No. Refer to Screens and Windows, below, for more information.
 3. Execute option 1 from the Alternate Job Notify Menu and then use F6=Add to create one or more Job Notify Subsystem control records. Add one record for each IBM i subsystem where a job may start that has demonstrated a problem with notifying OpCon about the job end. Do not add more subsystems than are needed to solve the job end notification problem. Refer to Screens and Windows, below, for more information about using this function.
 
-    **Authority:** *This function requires data authority to add records to the file JOBNFYF00 in the SMADTA library. Prompting with function key F4 in the subsystem name field also requires read authority to
-    all the subsystem descriptions in the IBM i partition. However, F4 is not required, as long as the user knows the exact subsystem name and the library location of each subsystem description.
+    **Authority:** *This function requires data authority to add records to the file JOBNFYF00 in the SMADTA library. Prompting with function key F4 in the subsystem name field also requires read authority to all the subsystem descriptions in the IBM i partition. However, F4 is not required, as long as the user knows the exact subsystem name and the library location of each subsystem description.
 4. From the same Work with function, type option 1 next to each subsystem control record in order to add its Exit Program number to the IBM i exit point registry.
 
     ***Authority:*** This function requires authority to the IBM i command ADDEXITPGM and to the exit point registry.
@@ -439,7 +435,7 @@ permission.
   Finally, please contact SMA Support for assistance if the test notify job cannot be completed successfully. This Alternate Job Notify procedure cannot be relied on unless the test notify job has completed successfully.
 10. After the Job Notify subsystems are each verified, the Alternate Job Notify feature does not require any special attention. It will be stopped and restarted along with the other LSAM server jobs. The Job Notify message log will be automatically purged at the same time as the LSAM job status master records.
 
-#### Procedure to Change Job Notify Subsystem Records
+##### Procedure to Change Job Notify Subsystem Records
 All the general rules for the Add procedure, above, still apply. But to change the control values for any subsystem, this is the order in which steps must be executed. References to "options" are from the Work with Job Notify Subsystems list display.
 
 1. Remove the exit program entry (option 9).
@@ -485,7 +481,7 @@ Alternate Job Notify Menu
 
 ###### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> option 8
+Main Menu > LSAM management menu (#6) > option 8
 
 ###### Options
 
@@ -523,7 +519,7 @@ Type the menu item number and press <**Enter**> to start the function.
 
 ###### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu(\#8) \> option 7
+Main Menu > LSAM management menu (#6) > Alternate Job Notify menu(#8) > option 7
 
 ###### Functions
 
@@ -555,7 +551,7 @@ Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu(\#8) \> opt
 
 ###### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1
+Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1
 
 ###### Options
 
@@ -622,10 +618,10 @@ The display example above is used to illustrate the Display, Change, Copy and Ad
 
 ###### Menu Displays
 
-- Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1 \> option 2=Change
-- Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1 \> option 3=Copy
-- Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1 \> option 5=Display
-- Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1 \> function key F6=Add
+- Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1 > option 2=Change
+- Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1 > option 3=Copy
+- Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1 > option 5=Display
+- Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1 > function key F6=Add
 
 ###### Functions
 
@@ -684,8 +680,8 @@ The display example above is used to illustrate the Display, Change, Copy and Ad
 
 ###### Menu Pathways
 
-- Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1 \> option 3=Copy \> F4
-- Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 1 \> function key F6=Add \> F4
+- Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1 > option 3=Copy > F4
+- Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 1 > function key F6=Add > F4
 
 ###### Functions
 
