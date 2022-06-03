@@ -13,7 +13,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Configuration',
+      label: 'Chapter 4: IBM i LSAM Configuration',
       collapsed: true,
       items: [
         'configuration/configuration',
@@ -21,7 +21,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Operations',
+      label: 'Chapter 5: IBM i Components and Operation',
       collapsed: true,
       items: [
         'operations/components',
