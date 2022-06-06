@@ -10,22 +10,19 @@ The programs and files used by the IBM i LSAM are contained within three product
 
 In order to obtain a list of the files or programs that are part of the LSAM software product, use any of the IBM i commands to list the objects in each of the product libraries listed in the IBM i LSAM default library names table. When there are multiple LSAM environments installed, use the command SMALIBINQ to discover the actual names of the libraries that represent each of the default product library names in the following table.
 
-|Library Name|Description|
-|--- |--- |
-|SMAGPL|The LSAM utilities library, used primarily to support multiple IBM i LSAM environments within a single IBM i partition.|
-|SMADTA|This is the name of the database library. It stores physical and logical files, data areas, data queues, and other IBM i objects that need to be defined differently for each LSAM environment installed within the same IBM i partition. It is not necessary to have multiple copies of the LSAM environment, but when a test and a live environment exist in the same partition, they are each governed by the content of their own copy of SMADTA.|
-|SMAPTF|<ul><li>This is the name of the program patches support library. This library is primarily used only to store backup save files containing objects that were replaced by program temporary fixes (PTFs) supplied by SMA in between LSAM product releases. The patches fix program problems that need to be repaired.</li><li>If there is a need to insert user-specific modifications into the LSAM software (not recommended), all custom programs should be located in this library rather than the SMAPGM library. Otherwise, the SMAPTF library contains only the PTF backup save files, used to support PTF rollback (unapply) features.</li></ul>|
-|SMAPGM|This is the name of the LSAM program objects library. This library contains commands, programs, display and printer file definitions, and other objects that are unlikely to change when multiple LSAM environments are being used. No custom modifications or program patches should be installed in this library. SMA product upgrade procedures will not protect custom modifications when the LSAM software is upgraded to a new release level.|
-|SMABAK|Not required in LSAM operations library lists, this library is created as necessary and utilized by the SMA File Transfer Agent programs to perform data file backups as requested by SMA File Transfer job requests.|
-|SMALOG|Not required in LSAM operations library lists. This library is used by all LSAM environments to store debug log file extract save files, and also complete SMADTA library save files, produced by the SMASUP command. The SMARGZ command calls SMASUP, so it also utilizes this library.|
-
-:::note
-SMA does not recommend storing custom programming within the LSAM environment. Prior to LSAM version 04.00.00, SMAPTF contained replacement copies of programs that were originally installed in the SMAPGM library. Now the PTF application process actually replaces the programs in SMAPGM, and it keeps a backup save file for each PTF. The backup save file is stored in library SMAPTF.
-:::
+##### IBM i LSAM Default Library Names
+| Library Name  | Description |
+| :----------:  | ----------- |
+| SMAGPL        | The LSAM utilities library, used primarily to support multiple IBM i LSAM environments within a single IBM i partition.|
+| SMADTA        | This is the name of the database library. It stores physical and logical files, data areas, data queues, and other IBM i objects that need to be defined differently for each LSAM environment installed within the same IBM i partition. It is not necessary to have multiple copies of the LSAM environment, but when a test and a live environment exist in the same partition, they are each governed by the content of their own copy of SMADTA.|
+| SMAPTF        | <ul><li>This is the name of the program patches support library. This library is primarily used only to store backup save files containing objects that were replaced by program temporary fixes (PTFs) supplied by SMA in between LSAM product releases. The patches fix program problems that need to be repaired.</li><li>If there is a need to insert user-specific modifications into the LSAM software (not recommended), all custom programs should be located in this library rather than the SMAPGM library. Otherwise, the SMAPTF library contains only the PTF backup save files, used to support PTF rollback (unapply) features.</li></ul>|
+| SMAPGM        | This is the name of the LSAM program objects library. This library contains commands, programs, display and printer file definitions, and other objects that are unlikely to change when multiple LSAM environments are being used. No custom modifications or program patches should be installed in this library. SMA product upgrade procedures will not protect custom modifications when the LSAM software is upgraded to a new release level.|
+| SMABAK        | Not required in LSAM operations library lists, this library is created as necessary and utilized by the SMA File Transfer Agent programs to perform data file backups as requested by SMA File Transfer job requests.|
+| SMALOG        | Not required in LSAM operations library lists. This library is used by all LSAM environments to store debug log file extract save files, and also complete SMADTA library save files, produced by the SMASUP command. The SMARGZ command calls SMASUP, so it also utilizes this library.|
 
 To obtain a list of all objects that are relocated to the IBM i QGPL library, if that option is selected, use the LSAM function Work with object authority (LSAM menu 9, option 8). Use the function key F15=Subset to limit the list to "SMAGPL copy". When the subsetted list is displayed, the column "GPL" will show either a 1 or a 2 for each object listed. All objects marked 2 will always remain in the SMAGPL library. Objects marked with a 1 will be moved to the QGPL library, if that option is selected during the LSAM installation (or upgrade) process.
 
-More information about using the Work with objects function can be found in [LSAM Security and Object Authority](/security/strategy).
+More information about using the Work with objects function can be found in [LSAM Security and Object Authority](../security/strategy.md).
 
 ## IBM i LSAM Job-ending Message Table File
 
@@ -51,11 +48,11 @@ SMA technical support personnel will utilize the following table file column val
 
 Three generic programs are distributed with library SMAPGM for use in testing OpCon software and job configuration parameters.
 
-|Program|Purpose|
-|---|---|
-|GCRTDTAARA|Generic test program: Create &DTAARA at &LIB|
-|GCRTFIL|Generic test program: Create &FILE at &LIB|
-|GP|Generic program: Delay job for &Parm secs. (4.0)|
+| Program    | Purpose |
+| -------    | ------- |
+| GCRTDTAARA | Generic test program: Create &DTAARA at &LIB|
+| GCRTFIL    | Generic test program: Create &FILE at &LIB|
+| GP         | Generic program: Delay job for &Parm secs. (4.0)|
 
 :::note
 Please verify the authority of the test job user to execute the test programs. Most of the IBM i LSAM software is distributed with \*PUBLIC authority set to \*REVOKE. The LSAM default user profile set in the LSAM Parameters (LSAM main menu, function 7) which is QSYSOPR may not have been granted authority to use these programs. If not, QSECOFR can grant *USE authority to these programs for QSYSOPR (or another test user configured in OpCon), either using the GRTOBJAUT command or using option 2 from the WRKOBJ command.
@@ -140,7 +137,7 @@ There may be more than one job with the same name, in which case select the most
 
 SMA does not recommend that any modifications be made to its software. The task of controlling IBM i operations requires careful coordination between the LSAM and OpCon/xps. Also, whenever SMA may issue an upgrade to the IBM i LSAM software, the presence of a custom modification would require special analysis and possibly additional procedures that would not be documented in the standard installation instructions.
 
-:::danger
+:::danger warning
 Be advised that if an SMA client attempts to modify or add to the IBM i LSAM software, any support issues that arise from such changes could be subject to time and materials billing from SMA, depending on the terms of the contract with SMA.
 :::
 

@@ -27,23 +27,23 @@ The other function performed by the LSAM spool file server is to process all the
 The spool file server program performance is controlled mostly by the IBM i job attributes. These are set by the values stored in the default LSAM server job description: SMADTA/SMALSAJ00. However, there are two internal performance parameters that can make this server job more or less aggressive. The default values for these parameters should be appropriate for most installations. However, if system performance analysis suggests that the LSAJOR job should be changed to (1) reduce impact on overall system performance or (2) make the spool file server more responsive to spool file management requests, then the internal performance parameters may be adjusted by technical support personnel.
 
 The internal performance parameters are stored in a data area called LSAJOR in the SMADTA (or equivalent) library. This control data area is also used as a locking mechanism to prevent duplicate submission of the LSAJOR server job; therefore, the job must be stopped before the control data area can be updated with new values.
-
+```
                                Display Data Area
-                                        
-                      Data area . . . . . . . :   LSAJOR
-                       Library . . . . . . . :     SMADTA
-                      Type  . . . . . . . . . :   \*CHAR
-                        Length  . . . . . . . . :   10
-         Text  . . . . . . . . . :   LSAJOR job control & timing parms
-                                        
-                                          Value
-         Offset      *...+....1....+....2....+....3....+....4....+....5
-                 0      '0000500015'   
 
+Data area . . . . . . . :   LSAJOR
+  Library . . . . . . . :     SMADTA
+Type  . . . . . . . . . :   \*CHAR
+Length  . . . . . . . . :   10
+Text  . . . . . . . . . :   LSAJOR job control & timing parms
+
+           Value
+Offset      *...+....1....+....2....+....3....+....4....+....5
+    0      '0000500015'   
+```
 The contents of the LSAJOR control data area are defined in the following table.
 
-|Position|Field|Description|
-|--- |--- |--- |
+| Position | Field | Description |
+| -------- | :---: | ----------- |
 |1 – 5|Number of retries on data queue|The number of times a wait for input in the programs data input data queue should time out before the program checks the operational control data queue for any new instructions.|
 |6 – 10|Seconds to wait for data queue|The number of seconds the program should wait for new data to arrive in the data input data queue before the wait times out.|
 

@@ -198,7 +198,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Reference',
+      label: 'IBM i LSAM Reference Information',
       collapsed: true,
       items: [
         'reference/machine-messages',
