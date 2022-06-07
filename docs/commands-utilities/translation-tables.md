@@ -159,16 +159,13 @@ Main Menu \> Selection or command line \> type LSATBLTEST and press <Enter\>
 
 #### TESTLSATBL Utility Command
 
-The command TESTLSATBL has been created only for one special purpose. This command may be used from within an OpCon job master record, in the Call command line of a Batch job type, to send a message directly from OpCon/xps to the LSATBLTEST utility display documented above. This command will not function as expected when used outside of the
-OpCon/xps-to-LSAM job scheduler work flow because the LSAM server programs have been specially coded to respond in a unique way to this command name. The command by itself merely logs a normal completion message into the job log of any job where the command runs, and the OpCon normal completion status does not reflect whether the test message
-was actually received by the LSATBLTESTdisplay tool, documented above. 
+The command TESTLSATBL has been created only for one special purpose. This command may be used from within an OpCon job master record, in the Call command line of a Batch job type, to send a message directly from OpCon/xps to the LSATBLTEST utility display documented above. This command will not function as expected when used outside of the OpCon/xps-to-LSAM job scheduler work flow because the LSAM server programs have been specially coded to respond in a unique way to this command name. The command by itself merely logs a normal completion message into the job log of any job where the command runs, and the OpCon normal completion status does not reflect whether the test message was actually received by the LSATBLTESTdisplay tool, documented above. 
 
 ##### Command Syntax
 ```
 TESTLSATBL TEXT('any ASCII text or special character')
 ```
-The name of the command should be followed by the parameter keyword value TEXT. Although IBM i command parameter rules would allow just the parameter value inside of the parentheses without typing the TEXT keyword, the TEXT keyword is required by the LSAM server jobs in order to recognize the test character string that will receive special
-handling.
+The name of the command should be followed by the parameter keyword value TEXT. Although IBM i command parameter rules would allow just the parameter value inside of the parentheses without typing the TEXT keyword, the TEXT keyword is required by the LSAM server jobs in order to recognize the test character string that will receive special handling.
 
 The TEXT parameter must be enclosed by a pair of parentheses ( ) and also by a pair of single quote marks ' ' inside of the parentheses. The LSAM server programs check for the reserved text string of TEXT('to mark the beginning of the test character string, and they test for a single quote followed by a right parenthesis ') to mark the end of the test character string. Therefore, it is not allowed to include a single quote followed immediately by a right parenthesis inside of the test character string. However, each of these characters may be included within the test character string as long as they are not immediately next to each other in this order.
 
@@ -179,8 +176,7 @@ One of the typical problems encountered in OpCon environments is that there may 
 
 ##### TESTLSATBL Job Results Under IBM i
 
-The special TESTLSATBL command provided with LSAM software is used to trigger a reserved, direct routing of test data from an OpCon job to the LSATBLTEST utility data queue, LSATBLT00 in SMADTA (or the equivalent library). The LSAM sockets communications server program for job scheduling tests for this command and performs special data routing
-functions that preserve test data for handling only by the LSAM LSATBLTEST command.
+The special TESTLSATBL command provided with LSAM software is used to trigger a reserved, direct routing of test data from an OpCon job to the LSATBLTEST utility data queue, LSATBLT00 in SMADTA (or the equivalent library). The LSAM sockets communications server program for job scheduling tests for this command and performs special data routing functions that preserve test data for handling only by the LSAM LSATBLTEST command.
 
 The TESTLSATBL command is NOT managed by the IBM i LSAM job scheduler the same as a regular IBM i job command. When the job command is logged to the LSAM communications debug trace file for the usual translated EBCDIC image of every transaction, it appears with the ASCII data removed from the TEXT parameter and only one blank (space) character is left as the parameter data.
 
@@ -381,8 +377,7 @@ USERNAME              Translation Mode: EBCDIC -> ASCII     
 
 Notice in the example above that the hexadecimal equivalents of the right braces (curly brackets) }} have been highlighted in red. The red does not appear normally on the utility display. It has been included in this document to help identify the characters that are the subject of this discussion.
 
-To continue the test, we change the name of the EBCDIC-to-ASCII translation table and the library where our test table is located. Then we can press the <**F20**> function key to retest translation of the same test character string without having to type the data a second time. As the results show in the illustration below, the braces (curly
-brackets) have now been translated into ASCII X'5D'. 
+To continue the test, we change the name of the EBCDIC-to-ASCII translation table and the library where our test table is located. Then we can press the <**F20**> function key to retest translation of the same test character string without having to type the data a second time. As the results show in the illustration below, the braces (curly brackets) have now been translated into ASCII X'5D'. 
 
 ##### LSAM Translation Table Test of Modified TSTQASCII Table
 ```
@@ -411,18 +406,17 @@ USERNAME              Translation Mode: EBCDIC -\> ASCII    �
   F5=Refresh  F10=Hex  F11=Mode  F14=Send msg  F17=Receive msg  F20=Retranslate
 ```
 
-For the purpose of this illustration, we have changed only the translation of the right brace (curly bracket) character. We might expect that we would also want to modify the translation of the left brace (curly bracket) character as well, in order to produce a resulting Token field string that would be valid for OpCon to interpret. In many
-environments, as explained above, it may not be necessary to change the translation of braces (curly brackets) to square brackets. However, when national language support has been configured under IBM i, and depending on the type of keyboard used with a 5250 workstation emulation program, it might be necessary to develop some similar modification to a translation table in order to make it simple for system users to configure OpCon Event commands from inside the LSAM configuration screens, such as when maintaining LSAM Message Management Parameters.
+For the purpose of this illustration, we have changed only the translation of the right brace (curly bracket) character. We might expect that we would also want to modify the translation of the left brace (curly bracket) character as well, in order to produce a resulting Token field string that would be valid for OpCon to interpret. In many environments, as explained above, it may not be necessary to change the translation of braces (curly brackets) to square brackets. However, when national language support has been configured under IBM i, and depending on the type of keyboard used with a 5250 workstation emulation program, it might be necessary to develop some similar modification to a translation table in order to make it simple for system users to configure OpCon Event commands from inside the LSAM configuration screens, such as when maintaining LSAM Message Management Parameters.
 
 ##### Proving Translation Table Modifications with TESTLSATBL
 
 It is equally important to prove that translation table changes work when data is sent from OpCon to the IBM i LSAM servers.
 
-###### Local Testing of ASCII-\>EBCDIC
+###### Local Testing of ASCII->EBCDIC
 
-For a quick test that does not require configuring an OpCon job, use the <**F11**> function key to put the LSATBLTEST program into ASCII-\>EBCDIC mode. Then type hex characters that represent the ASCII source data for translation and press <**Enter**> to test different tables and CCSID code sets.
+For a quick test that does not require configuring an OpCon job, use the <**F11**> function key to put the LSATBLTEST program into ASCII->EBCDIC mode. Then type hex characters that represent the ASCII source data for translation and press <**Enter**> to test different tables and CCSID code sets.
 
-###### Utilizing OpCon for Testing of ASCII-\>EBCDIC
+###### Utilizing OpCon for Testing of ASCII->EBCDIC
 
 The special LSAM command TESTLSATBL used in an OpCon batch job for IBM i is a good way to test ASCII characters that are typed within the Microsoft Windows environment of the SMA Enterprise Manager.
 

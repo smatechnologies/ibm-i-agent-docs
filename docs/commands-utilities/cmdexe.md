@@ -24,7 +24,7 @@ The Agent's Message Management Parameters can be linked to Message Data Capture 
 
 Here is the command syntax:
 
-```shell
+```
 CMDEXE CMD('IBMCMD KEWORD1(''value 1'') KEYWORD2(1234)')
 ```
 
@@ -50,17 +50,17 @@ Used in local mode, such as from a step of a Multi-Step Job Script, this command
 
 Here is the command syntax:
 
-```shell
+```
 CMDEXE2 CMD('IBMCMD KEWORD1(''value 1'') KEYWORD2(1234)')
 FAILCODEDV(FAILDYNVAR) FAILONERR(Y) IGNOREMSG(CPF1234) OPCONJOB(Y)
 ```
 
 ### Command Parameters
 
-- **CMD** = Type or paste the entire native IBM i command inside a pair of single quotes.
-- **FAILCODEDV** = Optionally, specify the name of an Agent Dynamic Variable that will receive the 7-character IBM i message ID in case there is any failure of the native command. The {TOKEN} for this Dynamic Variable can be used in Multi-Step Job Scripts or Response Rules to test for various error message ID values and then generate an appropriate response.
-- **FAILONERR** = Control the success or failure of the CMDEXE2 command. Values:
-  - **'Y' or '1'** = Yes, allow the CMDEXE2 command to fail if the native command fails.
-  - **'N' or '0'** = No, force the CMDEXE2 command to end normally, despite any failure of the native command.
-- **IGNOREMSG** = Enter the message ID of a possible error message that should be ignored. This parameter can be used with the FAILONERR(Y) option, so that the CMDEXE2 command will fail if there is any other error except for the message ID specified in this parameter.
-- **OPCONJOB** = Control the attempt to communicate command results to OpCon. Prevent attempts to communicate with OpCon when the CMDEXE2 command is being used in a local mode, such as within a Multi-Step Job Script.
+- **CMD**: Type or paste the entire native IBM i command inside a pair of single quotes.
+- **FAILCODEDV**: Optionally, specify the name of an Agent Dynamic Variable that will receive the 7-character IBM i message ID in case there is any failure of the native command. The {TOKEN} for this Dynamic Variable can be used in Multi-Step Job Scripts or Response Rules to test for various error message ID values and then generate an appropriate response.
+- **FAILONERR**: Control the success or failure of the CMDEXE2 command. Values:
+  - **'Y' or '1'**: Yes, allow the CMDEXE2 command to fail if the native command fails.
+  - **'N' or '0'**: No, force the CMDEXE2 command to end normally, despite any failure of the native command.
+- **IGNOREMSG**: Enter the message ID of a possible error message that should be ignored. This parameter can be used with the FAILONERR(Y) option, so that the CMDEXE2 command will fail if there is any other error except for the message ID specified in this parameter.
+- **OPCONJOB**: Control the attempt to communicate command results to OpCon. Prevent attempts to communicate with OpCon when the CMDEXE2 command is being used in a local mode, such as within a Multi-Step Job Script.

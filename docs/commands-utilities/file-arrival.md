@@ -75,9 +75,7 @@ ENV = the LSAM environment name (defaults to the current LSAM).
 
 GPL = the name of the SMAGPL library in this LSAM environment.
 
-When these two parameters are set to existing values, and not left set to their default values of '*DEFAULT', the CHK* commands can be executed from anywhere within the IBM i partition without
-
-requiring that the job's initial (or current) library list be set to the LSAM environment library list.
+When these two parameters are set to existing values, and not left set to their default values of '*DEFAULT', the CHK* commands can be executed from anywhere within the IBM i partition without requiring that the job's initial (or current) library list be set to the LSAM environment library list.
 
 When the ENV and GPL values are set to represent an existing LSAM environment, the CHK* command driver programs will add the LSAM environment libraries temporarily to the job's library list, so that the command can interact as required with tables in the LSAM database.
 
@@ -89,8 +87,8 @@ The old, original CHKFILE and CHKIFSFIL commands performed simple, one-time chec
 
 With the implementation of the File Arrival job sub-type for IBM i jobs, it is now possible to control the behavior of the File Arrival job so that it executes either a one-time check or it performs a continues file arrival watching function. When defining the continuous file watching function, it is important to carefully control the two IBM i parameters that enable this capability.
 
-- **RECHKFREQ** (Re-check frequency): This parameter creates two effects. When it is not zero, it implies that the check for a matching file will be repeated, and this frequency value specifies (in seconds) how long the file check program will pause before repeating the check for file existence. When this value is left at zero (by default, or intentionally specifying zero), this tells the file check commands that the job should perform only a one-time check.
-- **JOBENDTIME** (Job End Time): The Job End Time works together with the Re-check Frequency. The primary use case for the Job End Time parameter is when it is expected that a file might have been created earlier in the day (or on a previous day), but it will not be moved into the watched directory (or DB2 library) until after some previous depended-on job has completed. Currently, the OpCon Windows  File Arrival job depends only on the file Create End Time to govern when the File Arrival job should stop. But if the target file is believed to have a Create Time in the past, and the job only wants to find a file that was created on or before that time, then there is no good way to keep the File Arrival job running until the expected file finally arrives. Using the Job End Time parameter separates the control of the absolute time when the File Arrival job should give up waiting and end, and it allows the File Create End Time to perform only its intended function of qualify whether a matching file name was created during the desired window of time. When the Job End Time is zero (the default for this parameter), then the Create End Time WILL govern the absolute job end time. But when a Job End Time is specified, then the file check commands will use this value as the end time boundary for the Re-check Frequency. 
+- **RECHKFREQ (Re-check frequency)**: This parameter creates two effects. When it is not zero, it implies that the check for a matching file will be repeated, and this frequency value specifies (in seconds) how long the file check program will pause before repeating the check for file existence. When this value is left at zero (by default, or intentionally specifying zero), this tells the file check commands that the job should perform only a one-time check.
+- **JOBENDTIME (Job End Time)**: The Job End Time works together with the Re-check Frequency. The primary use case for the Job End Time parameter is when it is expected that a file might have been created earlier in the day (or on a previous day), but it will not be moved into the watched directory (or DB2 library) until after some previous depended-on job has completed. Currently, the OpCon Windows  File Arrival job depends only on the file Create End Time to govern when the File Arrival job should stop. But if the target file is believed to have a Create Time in the past, and the job only wants to find a file that was created on or before that time, then there is no good way to keep the File Arrival job running until the expected file finally arrives. Using the Job End Time parameter separates the control of the absolute time when the File Arrival job should give up waiting and end, and it allows the File Create End Time to perform only its intended function of qualify whether a matching file name was created during the desired window of time. When the Job End Time is zero (the default for this parameter), then the Create End Time WILL govern the absolute job end time. But when a Job End Time is specified, then the file check commands will use this value as the end time boundary for the Re-check Frequency. 
 
 :::caution 
 If both the Job End Time and the Create End Time are zeros/blanks, but the Re-check Frequency is not zero, then the File Arrival job will run endlessly until a matching file is found. This can only happen if the user intentionally creates this parameter configuration -- the default parameter values for the job will not create this endless loop. Interestingly, allowing for an endless loop makes it possible to create a real all-day file watcher. For this type of job, users can choose to have an OpCon control schedule force the job to end and then start a new one, based on their own schedule, or the endless file watcher could just keep running day after day until and unless there is a system stop or system failure. In that case, it would be necessary to have a secondary OpCon service monitor restarting itself all the time to assure that the endless file watcher job is always active. 
@@ -98,11 +96,9 @@ If both the Job End Time and the Create End Time are zeros/blanks, but the Re-ch
 
 ## Using the Agent Commands in File Arrival Jobs
 
-The recommended method for configuring File Arrival jobs in OpCon Schedules is to select the IBM i job sub-type of "File Arrival" and then fill in the unique job definition panel. The Variables tab of the IBM i job can also be used to set additional command parameters using the $@ Agent variable naming convention to represent any given command
-parameter keyword. The File Arrival job sub-type will cause the Agent to format and submit the CHKFILE or CHKIFSFIL command, with any optional $\@VARIABLE parameters, as the File Arrival job.
+The recommended method for configuring File Arrival jobs in OpCon Schedules is to select the IBM i job sub-type of "File Arrival" and then fill in the unique job definition panel. The Variables tab of the IBM i job can also be used to set additional command parameters using the $@ Agent variable naming convention to represent any given command parameter keyword. The File Arrival job sub-type will cause the Agent to format and submit the CHKFILE or CHKIFSFIL command, with any optional $\@VARIABLE parameters, as the File Arrival job.
 
-Before the OpCon File Arrival job definition panel was supported for IBM i jobs, the job sub-type of Batch Job was used and the CHKFILE or CHKIFSFIL command with parameters was typed (or pasted) into the Call command box. That format of File Arrival Job may still be used -- it fully supports all the same features as the new File Arrival job
-definition panel. All new command parameter keywords that have been added to the two commands support default values that are transparent to older formats of the command lines, so existing Batch job definitions using the native command lines will still execute correctly.
+Before the OpCon File Arrival job definition panel was supported for IBM i jobs, the job sub-type of Batch Job was used and the CHKFILE or CHKIFSFIL command with parameters was typed (or pasted) into the Call command box. That format of File Arrival Job may still be used -- it fully supports all the same features as the new File Arrival job definition panel. All new command parameter keywords that have been added to the two commands support default values that are transparent to older formats of the command lines, so existing Batch job definitions using the native command lines will still execute correctly.
 
 Otherwise, the command line formats of the CHKFILE and CHKIFSFIL commands are documented here for two purposes. First, these commands can be used in local mode (not submitted by OpCon), such as from a Step of a Multi-Step Job Script, or from a Captured Data Response Rule, as long as the command parameter OPCONJOB is set to a value of (N), (T), or (A), where both of those values refer to Test mode (offline from OpCon). Second, a clear understanding of the native command parameters may be required to complete more complex File Arrival job definitions, especially when using the $@ variable names for setting command parameter keyword values from an OpCon job's Variables tab.
 
@@ -116,8 +112,7 @@ To enter the full screen mode for IBM i commands, type the following command and
 ```
 CALL QCMD
 ```
-To successfully access the File Arrival commands it is necessary to refer to at least the Agent library SMAPGM, where the commands are stored. To execute either command, the full Agent library list is required. However, when simply prompting the command to format the parameter keywords, it is only necessary to use the SMAPGM library. The
-following options will support prompting the commands: 
+To successfully access the File Arrival commands it is necessary to refer to at least the Agent library SMAPGM, where the commands are stored. To execute either command, the full Agent library list is required. However, when simply prompting the command to format the parameter keywords, it is only necessary to use the SMAPGM library. The following options will support prompting the commands: 
 
 - Type SMAPGM/CHKFILE or SMAPGM/CHKIFSFIL and press F4. 
 - Enter the Agent (LSAM) menu system and use the menu command line to type only the command name, then press F4. It works better to first CALL QCMD before attempting to prompt, format, cancel and retrieve the command line.
@@ -164,16 +159,13 @@ In most cases, it is probably better to use the CHKFILE command for DB2 tables, 
 
 ### Replacing Windows File Shares with Direct Access to IBM i
 
-Before there was an enhanced File Arrival job method for the IBM i Agent, many OpCon users would try to use the OpCon Windows Resource Monitor in File Watcher mode. This required a complex configuration of IBM i disk file shares within the Windows system where the Resource Monitor was executing, as well as difficult management of user
-authorities.
+Before there was an enhanced File Arrival job method for the IBM i Agent, many OpCon users would try to use the OpCon Windows Resource Monitor in File Watcher mode. This required a complex configuration of IBM i disk file shares within the Windows system where the Resource Monitor was executing, as well as difficult management of user authorities.
 
-Now, the enhanced IBM i File Arrival job sub-type replaces the dependency on IBM i file shares with direct access to any IBM i file system. This is a welcome move towards eliminating the extra work required for system and network administrators to configure IBM i file shares. Another benefit of eliminating the use of file shares is a
-reduced work load within the IBM i system, which improves system performance overall.
+Now, the enhanced IBM i File Arrival job sub-type replaces the dependency on IBM i file shares with direct access to any IBM i file system. This is a welcome move towards eliminating the extra work required for system and network administrators to configure IBM i file shares. Another benefit of eliminating the use of file shares is a reduced work load within the IBM i system, which improves system performance overall.
 
 ## Using CHKFILE for DB2 Tables
 
-The File Name field of an IBM i File Arrival job sub-type in the OpCon EM is checked by the Agent to determine whether the file exists in the DB2 database, or whether it is located outside of DB2 in another IFS file system, such as the root '/' file system. It is the leading forward slash character '/' that designates an IFS file outside of
-DB2. Without the leading slash, the Agent attempts to hand the File Name string in the DB2 format of LIBRARY/FILENAME or LIBRARY/FILENAME(MEMBER). When a DB2 format will be processed, the Agent uses the EM job definition panel fields to compose the Agent's CHKFILE command for execution in an IBM i batch job.
+The File Name field of an IBM i File Arrival job sub-type in the OpCon EM is checked by the Agent to determine whether the file exists in the DB2 database, or whether it is located outside of DB2 in another IFS file system, such as the root '/' file system. It is the leading forward slash character '/' that designates an IFS file outside of DB2. Without the leading slash, the Agent attempts to hand the File Name string in the DB2 format of LIBRARY/FILENAME or LIBRARY/FILENAME(MEMBER). When a DB2 format will be processed, the Agent uses the EM job definition panel fields to compose the Agent's CHKFILE command for execution in an IBM i batch job.
 
 The CHKFILE command can also be used in stand-alone mode, either inside of OpCon using the IBM I job sub-type of Batch Job, or outside of direct control by OpCon, from some of the Agent's local automation tools such as a Multi-Step Job Script, or as a command in a Captured Data Response Rule. To use this command off line from OpCon, it is necessary to specify the command parameter OPCONJOB() with a value of N=no, or T or A, where either value indicates "test mode" for the command. In fact, "No" or the test mode turns off any attempt to send job information and completion codes to OpCon. The optional parameters for sending values to OpCon Properties are also not supported in the local test mode; but in this case, there are Dynamic Variable names that can be specified for similar purposes.
 
@@ -209,96 +201,82 @@ The command parameter summary shown next defines each parameter and lists possib
 
 ### CHKFILE Command Parameter Summary
 
-#### Parameter Keyword 
+#### Parameter Keyword/Values/Description
 - FILE  
   - IBM i object names. File name can be generic. 
-
-DB2: library name / file(table) name. The file name can be generic, e.g., FIL*. For DB2 tables, only a trailing asterisk (*) is supported for generic names. A partial name is defined by one or more leading characters (conforming to the rules for IBM i object names).
+    - DB2: library name / file(table) name. The file name can be generic, e.g., FIL*. For DB2 tables, only a trailing asterisk (*) is supported for generic names. A partial name is defined by one or more leading characters (conforming to the rules for IBM i object names).
 - LOCK
   - *NO
   - *YES
-
-  *YES causes command to report failure if a lock exists on the file object that might prevent a subsequent operation from being performed.
+    - *YES causes command to report failure if a lock exists on the file object that might prevent a subsequent operation from being performed.
 - MEMBER
   - *FIRST 
   - IBM i object name
-
-  Optionally, specify a specific data member name for PF-SRC files, or for multi-member PF-DTA files. (SQL tables do not support multiple data members.)        
+    - Optionally, specify a specific data member name for PF-SRC files, or for multi-member PF-DTA files. (SQL tables do not support multiple data members.)        
 - FILNAMPROP
   - *NONE 
   - OpCon Property name 
   - {dvtoken} 
-
-  File Name Property: Optionally, specify an OpCon Property name (without brackets) that will store the name of the actual file that was found and used for the command. This feedback is important when a GENERIC* name is submitted. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
+    - File Name Property: Optionally, specify an OpCon Property name (without brackets) that will store the name of the actual file that was found and used for the command. This feedback is important when a GENERIC* name is submitted. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
 - NUMRECPROP
   - *NONE 
   -  OpCon Property name 
   -  {dvtoken} 
-
-  Number of Records  Property: Optionally, specify an OpCon Property name (without brackets) that will store the digits representing the number of records for the actual file that was found and used for the command. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.               
+     - Number of Records  Property: Optionally, specify an OpCon Property name (without brackets) that will store the digits representing the number of records for the actual file that was found and used for the command. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.               
 - FAILCDPROP
   - *NONE 
   - OpCon Property name 
   -  {dvtoken} 
-
-  Failure Code (command completion code) Property: Optionally, specify an OpCon Property name (without brackets) that will store the command completion code. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
+     - Failure Code (command completion code) Property: Optionally, specify an OpCon Property name (without brackets) that will store the command completion code. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
 - FILNAMDV
   - *NONE 
   - LSAM Dynamic Variable name  
-
-  File Name Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the name of the actual file that was found and used for the command.
+    - File Name Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the name of the actual file that was found and used for the command.
 - NUMRECDV          
   - *NONE
   - LSAM Dynamic Variable name 
-
-  Number of Records Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store digits for the number of active records in the actual file that was found and used for the command.
+      - Number of Records Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store digits for the number of active records in the actual file that was found and used for the command.
 - FAILCODEDV        
   - *NONE
   - LSAM Dynamic Variable name 
-
-  Failure Code (command completion code) Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the command completion code. This value can be useful, for example, when developing LSAM Multi-Step Job scripts, to condition actions that might be performed depending on the completion code value. 
+     - Failure Code (command completion code) Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the command completion code. This value can be useful, for example, when developing LSAM Multi-Step Job scripts, to condition actions that might be performed depending on the completion code value. 
 - FAILIFZERO        
   - *NO
   - *YES
-
-  Fail If Zero (report job status as failed):
-    - *NO = allow the command to complete normally when a file is found with zero records. 
-    - *YES = request the command report a failure when the file is found with zero records.
+     - Fail If Zero (report job status as failed):
+       - *NO = allow the command to complete normally when a file is found with zero records. 
+       - *YES = request the command report a failure when the file is found with zero records.
     
     (Refer also the notes about parameter interactions.)
-- CRTSTRTIME    -
+- CRTSTRTIME 
   - 0 (zero)
   - +/- 99999.99 hours, where .99 refers to hundredths of an hour: 0.25 = 15 minutes.
-
-  The File Create Time must occur after this Start Time value (converted to a time stamp relative to midnight of the Reference Date).
-    - Zero means to ignore this parameter.
-    - A negative value indicates the number of hours before midnight.
-    - A positive value indicates the number f hours after midnight.
-    - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTSTRTIME with a format of hhhhh:mm (+/- hours and minutes).
+     - The File Create Time must occur after this Start Time value (converted to a time stamp relative to midnight of the Reference Date).
+       - Zero means to ignore this parameter.
+       - A negative value indicates the number of hours before midnight.
+       - A positive value indicates the number f hours after midnight.
+       - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTSTRTIME with a format of hhhhh:mm (+/- hours and minutes).
 - CRTENDTIME
   - 0 (zero)
   - +/- 99999.99 hours, where .99 refers to hundredths of an hour: 0.25 = 15 minutes.
-
-  The File Create Time must occur before this End Time value (converted to a time stamp relative to midnight of the Reference Date).
-  - Zero means to ignore this parameter.
-  - A negative value indicates the number of hours before midnight.
-  - A positive value indicates the number of hours after midnight.
-  - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTENDTIME with a format of hhhhh:mm (+/- hours and minutes.
-
+     - The File Create Time must occur before this End Time value (converted to a time stamp relative to midnight of the Reference Date).
+        - Zero means to ignore this parameter.
+        - A negative value indicates the number of hours before midnight.
+        - A positive value indicates the number of hours after midnight.
+        - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTENDTIME with a format of hhhhh:mm (+/- hours and minutes.
 - CRTREFDATE
   - *DEFAULT
   - *SCHED
   - *JOB
   - CCYYMMDD
   - {dvtoken}
-
-  File Create Time Reference Date for midnight: Designates what date is used for midnight. Midnight is considered to be at the start of the specified date.
-  - For OpCon jobs, *DEFAULT refers to the Schedule Date of the job.
-  - Outside of OpCon (job type is T or A), *DEFAULT refers to the current IBM i system date.
-  - *SCHED = use the Schedule Date (only valid for OpCon jobs).
-  - *JOB = use the IBM i Job Date.
-  - CCYYMMDD = an actual date may be specified, e.g., 20160601 = June 1, 2016.
-  - An LSAM Dynamic Variable (with curly braces) can be translated at run time to provide an actual date in the CCYYMMDD format.
+     - File Create Time Reference Date for midnight: Designates what date is used for midnight. Midnight is considered to be at the start of the specified date.
+        - For OpCon jobs, *DEFAULT refers to the Schedule Date of the job.
+        - Outside of OpCon (job type is T or A), *DEFAULT refers to the current IBM i system date.
+        - *SCHED = use the Schedule Date (only valid for OpCon jobs).
+        - *JOB = use the IBM i Job Date.
+        - CCYYMMDD = an actual date may be specified, e.g., 20160601 = June 1, 2016.
+        - An LSAM Dynamic Variable (with curly braces) can be translated at run time to provide an actual date in the CCYYMMDD format.
 
   For Enterprise Manager File Arrival jobs, use the job master Variables tab to put the desired Value into the variable $@CRTREFDATE.
 - JOBENDTIME

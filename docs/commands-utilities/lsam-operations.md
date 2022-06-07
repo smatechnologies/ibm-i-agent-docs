@@ -4,10 +4,9 @@ sidebar_label: 'LSAM Operations'
 
 # LSAM Operations
 
-There are two commands that can be used to enter the IBM i LSAM green screen workstation menu system: STRSMA and LSAMENU. The STRSMA may be used from any IBM i command line, regardless of the current library list, as long as the command is qualified by its library location, for example, SMAGPL/STRSMA (replace SMAGPL with a different name, if the
-default LSAM utility library is not the installation default name). STRSMA supports specification of an LSAM environment name in one of its parameters, and the command will set the job's library list appropriately.
+There are two commands that can be used to enter the IBM i LSAM green screen workstation menu system: STRSMA and LSAMENU. The STRSMA may be used from any IBM i command line, regardless of the current library list, as long as the command is qualified by its library location, for example, SMAGPL/STRSMA (replace SMAGPL with a different name, if the default LSAM utility library is not the installation default name). STRSMA supports specification of an LSAM environment name in one of its parameters, and the command will set the job's library list appropriately.
 
-In cases where the LSAM environment library list will already be set, it is typically more convenient to use the LSAMENU command. This alternate command bypasses the LSAM menu system splash display, saving time and keystrokes. It's also possible to specify an LSAM sub-menu number with the LSAMENU command, so this command might be useful in configuring links between another menu system and the LSAM menu system. The LSAMENU command can be useful in Operator Replay scripts. The LSAMENU command does support specification of an LSAM environment name in its ENV parameter, but the default value of the ENV parameter is \*CURRENT - a value that can only be used if the job is already set to use the LSAM environment library list.
+In cases where the LSAM environment library list will already be set, it is typically more convenient to use the LSAMENU command. This alternate command bypasses the LSAM menu system splash display, saving time and keystrokes. It's also possible to specify an LSAM sub-menu number with the LSAMENU command, so this command might be useful in configuring links between another menu system and the LSAM menu system. The LSAMENU command can be useful in Operator Replay scripts. The LSAMENU command does support specification of an LSAM environment name in its ENV parameter, but the default value of the ENV parameter is *CURRENT - a value that can only be used if the job is already set to use the LSAM environment library list.
 
 ## STRSMA Command
 
@@ -22,8 +21,7 @@ The LSAM utility commands such as STRSMA that are critical for management of mul
 
 The STRSMA command supports the interactive specification of an IBM i LSAM environment. To begin the LSAM environment specification or selection process, from IBM i command entry, type the command **SMAGPL/STRSMA** and press <**F4**> (Prompt) to see the possible parameter values:
 
-IBM i LSAM Interactive Menu
-
+##### IBM i LSAM Interactive Menu
 ```
 
                        Start SMA for Environment (STRSMA)                       
@@ -42,7 +40,7 @@ IBM i LSAM Interactive Menu
 ### STRSMA Command Parameters
 
 | Parameter                 | Default   | Description and Values    |
-| ------ | ------- | ------ |
+| ------                    | -------   | ------                    |
 | ENV (Environment name)    | *DEFAULT | -   **\*DEFAULT**: Indicates that the command should use the default environment in the configuration control tables (refer to the discussion under the command [SMALIBMGT](../environment/commands.md#SMALIBMGT)).| 
 |                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |

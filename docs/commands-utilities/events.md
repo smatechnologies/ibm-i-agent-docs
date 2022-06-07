@@ -12,14 +12,14 @@ This Agent utility command can be used in any context to cause the current job t
 
 Here is the command syntax:
 ```
-SMAFAILJOB JOBNAM(JOBNAME) SMAGPL(\*DEFAULT)
+SMAFAILJOB JOBNAM(JOBNAME) SMAGPL(*DEFAULT)
 ```
 ### Command Parameters
 
 This command is typically used without specifying its parameters.
 
-- **JOBNAM** = Specify the IBM i job name to be used in the message text of the SMA0992 message ID. If this parameter is not specified, then the actual job name of the current job will be reported as the failing job.
-- **SMAGPL** = This command parameter is used (by this command, not by other commands) only to locate the SMAMSGF message file, so that the SMA0992 message ID can be retrieved to format the escape message. When the SMAFAILJOB is used within the Agent (LSAM) environment, that is, when the job's library list includes the LSAM libraries, then it is not necessary to specify this parameter. However, this parameter makes it possible to use the command from outside of the  LSAM environment, as long as the command name is qualified, as in this example:
+- **JOBNAM**: Specify the IBM i job name to be used in the message text of the SMA0992 message ID. If this parameter is not specified, then the actual job name of the current job will be reported as the failing job.
+- **SMAGPL**: This command parameter is used (by this command, not by other commands) only to locate the SMAMSGF message file, so that the SMA0992 message ID can be retrieved to format the escape message. When the SMAFAILJOB is used within the Agent (LSAM) environment, that is, when the job's library list includes the LSAM libraries, then it is not necessary to specify this parameter. However, this parameter makes it possible to use the command from outside of the  LSAM environment, as long as the command name is qualified, as in this example:
 
 The SMAFAILJOB command is especially useful for the Agent's Multi-Step Script jobs, and it can be used in the Captured Data Response Rules for these Agent automation features: Message Management, Operator Replay, and the SCANSPLF command. In SCANSPLF applications, the SMAFAILJOB can have the effect of overriding the Scan Rules and SCANSPLF command normal controls over when a job should fail (based on the number of matched or unmatched scan rules).
 
@@ -31,8 +31,8 @@ The following example shows two steps that are part of a Multi-Step Job Script, 
 Forcing a Multi-Step Script Job to fail if a critical Step fails: 
 ```
 STEP#      LABEL      COMMAND 
-0040        ON_ERROR   SMAFAILJOB 
-0050                   CALL MYPROGRAM PARM('If this step fails') 
+0040       ON_ERROR   SMAFAILJOB 
+0050                  CALL MYPROGRAM PARM('If this step fails') 
 ```
 :::
 
@@ -41,11 +41,9 @@ Actually, a simpler way to force the Script to fail would be to mark Step # 50 w
 Despite the simplicity of the example above, in many cases, the ON_ERROR Step would prove useful because it might also included a step qualification rule where, for example, the special variable $ERRMSGID could be compared to a known possible message ID value that is recognized by the Script author as a fatal error. Similarly, the ON_ERROR step could use the SMAGOTO command to turn job control over to a separate error handling Script, where mutiple different conditions could be tested, and only certain conditions would then actually execute the SMAFAILJOB command.
 
 ## CPYTOMSGIN
-
 This External Event Interface command allows a user program to directly pass OpCon/xps events to the SAM and supporting services (SAM-SS).
 
 ### Using CPYTOMSGIN
-
 Copy to message input: This is an IBM i LSAM imitation of the similar function available on the OpCon server. CPYTOMSGIN may be used to generate any OpCon Event command, especially those that are not supported by individual LSAM commands.
 
 The CPYTOMSGIN utility forwards external events to SAM and supporting services (SAM-SS). This utility can be executed within an IBM i batch job that is scheduled by OpCon, or it can be executed from virtually anywhere within the IBM i environment, wherever IBM i command execution is supported. The CPYTOMSGIN command is supported by a driver program that automatically allocates the IBM i LSAM libraries and other resources needed to complete its task. When it is executed from outside of the LSAM library list, qualify the command with its library location, as in the example below.
@@ -66,8 +64,7 @@ A sample Control Language program follows:
 :::
 
 
-In the example above, the < > characters are used only to mark the locations where field names are identified. Both the field name and the < > characters must be replaced by the required parameter value. If the specified Event command allows that a field is optional and the value will be left out of the command, the commas that delimit the field
-position must still be retained. Two consecutive commas with no value between them tells OpCon/xps that the null value should be assigned to the field in that position.
+In the example above, the < > characters are used only to mark the locations where field names are identified. Both the field name and the < > characters must be replaced by the required parameter value. If the specified Event command allows that a field is optional and the value will be left out of the command, the commas that delimit the field position must still be retained. Two consecutive commas with no value between them tells OpCon/xps that the null value should be assigned to the field in that position.
 
 ## Application Example: Sending IBM i values to OpCon Properties
 

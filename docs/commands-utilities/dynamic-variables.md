@@ -31,11 +31,9 @@ For further assistance with the SETHEXDV command, please contact SMA Support.
 
 ## LOGDYNVAR: Set hex value in a Dynamic Variable
 
-The LSAM utility command named LOGDYNVAR is located in the SMAPGM library. This command and the table of values that it maintains (a file named LOGDYNVAR in library SMADTA) was created to store a series of captured data values that would each be stored into the same Dynamic Variable, at different times. If this command is used to record a copy
-of the Value each time the Dynamic Variable is updated, then the series of values could later be queried to produce statistical results such as an average, for example, of system CPU or Disk utilization.
+The LSAM utility command named LOGDYNVAR is located in the SMAPGM library. This command and the table of values that it maintains (a file named LOGDYNVAR in library SMADTA) was created to store a series of captured data values that would each be stored into the same Dynamic Variable, at different times. If this command is used to record a copy of the Value each time the Dynamic Variable is updated, then the series of values could later be queried to produce statistical results such as an average, for example, of system CPU or Disk utilization.
 
-The LOGDYNVAR table adds value to the data store by automatically assigning a time stamp to each entry. This makes it possible to limit value surveys within any specified range of times. The table also supports a 12-character Key field (originally designed to match the longest possible Dynamic Variable name), a 20-character user-defined
-CODE column (field) and a 32-character Description column. All three of these fields could contribute to isolation of data when SQL query techniques are used.
+The LOGDYNVAR table adds value to the data store by automatically assigning a time stamp to each entry. This makes it possible to limit value surveys within any specified range of times. The table also supports a 12-character Key field (originally designed to match the longest possible Dynamic Variable name), a 20-character user-defined CODE column (field) and a 32-character Description column. All three of these fields could contribute to isolation of data when SQL query techniques are used.
 
 One goal of gathering a series of Values from one Dynamic Variable is to make it possible for another Dynamic Variable of type *DB2 to use SQL SELECT statements to query that series of values. The new Dynamic Variable would, at run time, produce a single result that might be, for example, either a MAX value or an AVG (average) value, deduced from the series of values within a given range of dates/times. Values exceeding user-defined thresholds could trigger OpCon Events, including notification actions and possibly also automated remedial jobs executed by an OpCon Schedule.
 
@@ -45,22 +43,22 @@ Values captured from messages, reports, and workstation displays can be easily s
 
 Here is the layout of the LOGDYNVAR table:
 
-| Field  | Type | Length |  Description |
+| Field       | Type        | Length   |  Description |
 | ----------- | ----------- | -------- | ------------------------------------------ |
-|  DVRECDATE  |  TIMESTAMP  |   26  |  Automatically assigned |
-|  DVPRIMARY  |   NUMERIC   |   9   |  Automatically assigned |
-|  DVNAME     |  CHARACTER  |   12  |  Dynamic Variable name or other name |
-|  DVVALUE    |  CHARACTER  |  128  |  Current (or any) captured value |
-|  DVCODE     |  CHARACTER  |   20  |  User-defined category, for SQL Select |
-|  DVDESC     |  CHARACTER  |   32  |  User-defined description, opt for Select |
+|  DVRECDATE  |  TIMESTAMP  |   26     |  Automatically assigned                    |
+|  DVPRIMARY  |   NUMERIC   |   9      |  Automatically assigned                    |
+|  DVNAME     |  CHARACTER  |   12     |  Dynamic Variable name or other name       |
+|  DVVALUE    |  CHARACTER  |  128     |  Current (or any) captured value           |
+|  DVCODE     |  CHARACTER  |   20     |  User-defined category, for SQL Select     |
+|  DVDESC     |  CHARACTER  |   32     |  User-defined description, opt for Select  |
 
 Here is the syntax of the LOGDYNVAR command:
 ```
 SMAPGM/LOGDYNVAR DVNAME(DVORKEYNAME1)  +
-     VALUE('Any value string contained within a pair of single -
-       quotes.')  +
-     CODE('MY-CODEA-CPU-UTIL')  +
-     DESC('CPU utilization from DSPSYSSTS')
+  VALUE('Any value string contained within a pair of single -
+    quotes.')  +
+  CODE('MY-CODEA-CPU-UTIL')  +
+  DESC('CPU utilization from DSPSYSSTS')
 ```
 
 :::note
