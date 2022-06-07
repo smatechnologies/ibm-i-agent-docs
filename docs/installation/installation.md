@@ -178,7 +178,7 @@ Please ask the Support team at SMA for assistance installing a manual fix to the
 
 ## Instructions for Upgrading from 04.00.03 to 18.1
 
-These are topics and actions that must be considered when planning to upgrade an existing LSAM environment. If an existing LSAM environment is not being upgraded, skip to the [New Install Instructions](#New) that follow this section.
+These are topics and actions that must be considered when planning to upgrade an existing LSAM environment. If an existing LSAM environment is not being upgraded, skip to the [New Install Instructions](../installation/installation.md#new-install-instructions) that follow this section.
 
 The foundation for upgrade preparation is determined by the Installation Strategies for version 18.1, discussed above. Part of the strategy is to determine which existing LSAM libraries should be backed up, and when they should be backed up (**HINT: Always**).
 
