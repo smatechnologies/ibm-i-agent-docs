@@ -13,7 +13,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Chapter 4: IBM i LSAM Configuration',
+      label: 'IBM i LSAM Configuration',
       collapsed: true,
       items: [
         'configuration/configuration',
@@ -21,7 +21,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Chapter 5: IBM i Components and Operation',
+      label: 'IBM i Components and Operation',
       collapsed: true,
       items: [
         'operations/components',
@@ -153,7 +153,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Environment Management',
+      label: 'LSAM Environment Management',
       collapsed: true,
       items: [
         'environment/index',
@@ -175,7 +175,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Security and Object Authority',
+      label: 'LSAM Security and Object Authority',
       collapsed: true,
       items: [
         'security/strategy',
@@ -188,7 +188,7 @@ module.exports = {
     },
     {
       type: 'category', 
-      label: 'Software Maintenance (PTFs)',
+      label: 'LSAM Software Maintenance (PTFs)',
       collapsed: true,
       items: [
         'maintenance/ptf',
