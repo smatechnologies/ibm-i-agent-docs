@@ -1,6 +1,7 @@
 ---
 sidebar_label: 'Application of Dynamic Variable Definition Fields'
 ---
+
 # Application of Dynamic Variable Definition Fields
 
 The purpose of this discussion is to explain how to control the value that will be delivered by the LSAM Dynamic Variable Value Fetch routine whenever a Dynamic Variable {TOKEN} is being replaced within an LSAM function.
@@ -37,13 +38,13 @@ The following list of options explains how managing zero or non-zero values in t
 
 The entire Dynamic Variable value will be returned, however, all leading and trailing spaces will be truncated.
 
-- Start\>0, Length=0
+- Start>0, Length=0
 
 Any leading spaces, beginning at the Start location, will be included in the returned value, but trailing spaces will be truncated because there is no specific length indicated.
 
 Use a Start location of 1 to include any characters, including spaces, starting with the very first position of the 128-character maximum value length. The last non-blank character will be the end of the value string used to replace the {TOKEN}.
 
-- Start=0, Length\>0
+- Start=0, Length>0
 
 Any leading spaces will be trimmed, and the first non-blank character will be considered the beginning of the character string that will occupy the full Length of data inserted in place of the {TOKEN}.
 
@@ -53,7 +54,7 @@ Use a Length greater than zero to include any trailing spaces, up to the full Le
 If the default Start plus Length will exceed the limit of position 128 of the value string, then the {TOKEN} replacement will fail and the Agent general-purpose log file (LSALOGF30), plus any optional tool-specific log, will report the reason for the token replacement failure.
 :::
 
-- Start\>0, Length\>0
+- Start>0, Length>0
 
 Specifying both a Start position and a Length will cause any space characters within that segment of the variable's current (or calculated) value to be included when the {TOKEN} is replaced. This applies to both leading spaces and trailing spaces.
 
@@ -174,10 +175,10 @@ Single quotes and commas can be escaped or replaced by specifying one of the fol
 
 The values shown in this table refer to EBCDIC values. Most Latin character sets use the same hexadecimal values for the comma and the single quote. If a client site's IBM i partition uses a CCSID character set with different hex values, please contact SMA Support for assistance.
 
-- C = replace any comma (,) X'6B' with a space (X'40')
-- Q = replace any single quote (') X'7D' with a space (X'40')
-- D = replace both a comma and a single quote with a space
-- E = escape a single quote by inserting an extra single quote
-- F = replace comma with space AND escape a single quote by doubling
+- **C**: replace any comma (,) X'6B' with a space (X'40')
+- **Q**: replace any single quote (') X'7D' with a space (X'40')
+- **D**: replace both a comma and a single quote with a space
+- **E**: escape a single quote by inserting an extra single quote
+- **F**: replace comma with space AND escape a single quote by doubling
 
 The concept of "escaping" the single quote is supported by IBM command editors. When a character string is enclosed with a pair of single quotes, such as the VALUE( )  parameter of the SETDYNVAR command, any single quote that is included within the string would interrupt the string unless there are two single quote characters. If there are two single quotes, IBM command processing will replace them with just one single quote as the character string is being processed, and the characters that follow the doubled single quote will still be part of the character string.
