@@ -100,11 +100,11 @@ In order to allow the LSAM to send valid events to the SAM-SS, a valid User ID a
 3. Enter **2** to choose the **External Event Pass Word** option in the Event Management Menu.
 4. On the External Event Pass Word screen, **<Tab\>** to the following fields and enter the following data:
 
-    a.  **User Name**: type a [valid OpCon/xps user name.]     
+    a.  **User Name**: type a valid OpCon/xps user name.     
     
-    b.  **Password**: type a [valid external event password] for the User Name above.
+    b.  **Password**: type a valid external event password for the User Name above.
 
-    c.  **Password**: type a [valid external event password] again to verify the password.
+    c.  **Password**: type a valid external event password again to verify the password.
 
 ## Direct Event Commands
 

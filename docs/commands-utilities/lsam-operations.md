@@ -45,7 +45,7 @@ The STRSMA command supports the interactive specification of an IBM i LSAM envir
 |                           |           | -   As distributed by SMA, the default environment flag has been assigned to the environment called SMADEFAULT.           |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained below, under command SMALIBINQ.            |
-|                           |           | -   The value of \*SELECT has been set as the backup default value for the command processor subprograms, in case a user should specify an incorrect value for the environment parameter.            |
+|                           |           | -   The value of *SELECT has been set as the backup default value for the command processor subprograms, in case a user should specify an incorrect value for the environment parameter.            |
 |                           |           | -   **<NAME\>**: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
 |                           |           | -   **Example**: To log on to the original IBM i LSAM environment, type: STRSMA SMADEFAULT.  |
 |                           |           | -   Or, just type STRSMA as long as the SMA-distributed default environment remains set to SMADEFAULT.           |

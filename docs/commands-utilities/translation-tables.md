@@ -117,7 +117,7 @@ There is no support for F10=Hex or F14=Send msg in the ASCII mode, since this mo
 
 ###### Menu Pathways
 
-Main Menu \> Selection or command line \> type LSATBLTEST and press <Enter\>
+Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 
 ##### Fields
 

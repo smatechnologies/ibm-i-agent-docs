@@ -204,138 +204,159 @@ The command parameter summary shown next defines each parameter and lists possib
 #### Parameter Keyword/Values/Description
 - FILE  
   - IBM i object names. File name can be generic. 
-    - DB2: library name / file(table) name. The file name can be generic, e.g., FIL*. For DB2 tables, only a trailing asterisk (*) is supported for generic names. A partial name is defined by one or more leading characters (conforming to the rules for IBM i object names).
+    
+    DB2: library name / file(table) name. The file name can be generic, e.g., FIL*. For DB2 tables, only a trailing asterisk (*) is supported for generic names. A partial name is defined by one or more leading characters (conforming to the rules for IBM i object names).
+
 - LOCK
   - *NO
   - *YES
-    - *YES causes command to report failure if a lock exists on the file object that might prevent a subsequent operation from being performed.
+
+    *YES causes command to report failure if a lock exists on the file object that might prevent a subsequent operation from being performed.
+
 - MEMBER
   - *FIRST 
   - IBM i object name
-    - Optionally, specify a specific data member name for PF-SRC files, or for multi-member PF-DTA files. (SQL tables do not support multiple data members.)        
+    
+    Optionally, specify a specific data member name for PF-SRC files, or for multi-member PF-DTA files. (SQL tables do not support multiple data members.)        
+
 - FILNAMPROP
   - *NONE 
   - OpCon Property name 
   - {dvtoken} 
-    - File Name Property: Optionally, specify an OpCon Property name (without brackets) that will store the name of the actual file that was found and used for the command. This feedback is important when a GENERIC* name is submitted. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
+
+    File Name Property: Optionally, specify an OpCon Property name (without brackets) that will store the name of the actual file that was found and used for the command. This feedback is important when a GENERIC* name is submitted. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
+
 - NUMRECPROP
   - *NONE 
   -  OpCon Property name 
   -  {dvtoken} 
-     - Number of Records  Property: Optionally, specify an OpCon Property name (without brackets) that will store the digits representing the number of records for the actual file that was found and used for the command. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.               
+
+     Number of Records  Property: Optionally, specify an OpCon Property name (without brackets) that will store the digits representing the number of records for the actual file that was found and used for the command. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.               
+
 - FAILCDPROP
   - *NONE 
   - OpCon Property name 
-  -  {dvtoken} 
-     - Failure Code (command completion code) Property: Optionally, specify an OpCon Property name (without brackets) that will store the command completion code. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
+  - {dvtoken} 
+
+    Failure Code (command completion code) Property: Optionally, specify an OpCon Property name (without brackets) that will store the command completion code. An LSAM Dynamic Variable token (with curly braces) can be used to provide the actual name of the OpCon Property at run time.
 - FILNAMDV
   - *NONE 
   - LSAM Dynamic Variable name  
-    - File Name Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the name of the actual file that was found and used for the command.
+
+    File Name Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the name of the actual file that was found and used for the command.
+
 - NUMRECDV          
   - *NONE
   - LSAM Dynamic Variable name 
-      - Number of Records Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store digits for the number of active records in the actual file that was found and used for the command.
+
+    Number of Records Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store digits for the number of active records in the actual file that was found and used for the command.
+
 - FAILCODEDV        
   - *NONE
   - LSAM Dynamic Variable name 
-     - Failure Code (command completion code) Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the command completion code. This value can be useful, for example, when developing LSAM Multi-Step Job scripts, to condition actions that might be performed depending on the completion code value. 
+
+    Failure Code (command completion code) Dynamic Variable: Optionally, specify an LSAM Dynamic Variable name (without curly braces) that will store the command completion code. This value can be useful, for example, when developing LSAM Multi-Step Job scripts, to condition actions that might be performed depending on the completion code value. 
+
 - FAILIFZERO        
   - *NO
   - *YES
-     - Fail If Zero (report job status as failed):
+
+    Fail If Zero (report job status as failed):
        - *NO = allow the command to complete normally when a file is found with zero records. 
        - *YES = request the command report a failure when the file is found with zero records.
     
     (Refer also the notes about parameter interactions.)
+
 - CRTSTRTIME 
   - 0 (zero)
   - +/- 99999.99 hours, where .99 refers to hundredths of an hour: 0.25 = 15 minutes.
-     - The File Create Time must occur after this Start Time value (converted to a time stamp relative to midnight of the Reference Date).
+
+    The File Create Time must occur after this Start Time value (converted to a time stamp relative to midnight of the Reference Date).
        - Zero means to ignore this parameter.
        - A negative value indicates the number of hours before midnight.
        - A positive value indicates the number f hours after midnight.
        - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTSTRTIME with a format of hhhhh:mm (+/- hours and minutes).
+
 - CRTENDTIME
   - 0 (zero)
   - +/- 99999.99 hours, where .99 refers to hundredths of an hour: 0.25 = 15 minutes.
-     - The File Create Time must occur before this End Time value (converted to a time stamp relative to midnight of the Reference Date).
-        - Zero means to ignore this parameter.
-        - A negative value indicates the number of hours before midnight.
-        - A positive value indicates the number of hours after midnight.
-        - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTENDTIME with a format of hhhhh:mm (+/- hours and minutes.
+
+    The File Create Time must occur before this End Time value (converted to a time stamp relative to midnight of the Reference Date).
+      - Zero means to ignore this parameter.
+      - A negative value indicates the number of hours before midnight.
+      - A positive value indicates the number of hours after midnight.
+      - Batch Jobs can use the OpCon job's Variables Tab to load $@CRTENDTIME with a format of hhhhh:mm (+/- hours and minutes.
+
 - CRTREFDATE
   - *DEFAULT
   - *SCHED
   - *JOB
   - CCYYMMDD
   - {dvtoken}
-     - File Create Time Reference Date for midnight: Designates what date is used for midnight. Midnight is considered to be at the start of the specified date.
-        - For OpCon jobs, *DEFAULT refers to the Schedule Date of the job.
-        - Outside of OpCon (job type is T or A), *DEFAULT refers to the current IBM i system date.
-        - *SCHED = use the Schedule Date (only valid for OpCon jobs).
-        - *JOB = use the IBM i Job Date.
-        - CCYYMMDD = an actual date may be specified, e.g., 20160601 = June 1, 2016.
-        - An LSAM Dynamic Variable (with curly braces) can be translated at run time to provide an actual date in the CCYYMMDD format.
 
-  For Enterprise Manager File Arrival jobs, use the job master Variables tab to put the desired Value into the variable $@CRTREFDATE.
+    File Create Time Reference Date for midnight: Designates what date is used for midnight. Midnight is considered to be at the start of the specified date.
+      - For OpCon jobs, *DEFAULT refers to the Schedule Date of the job.
+      - Outside of OpCon (job type is T or A), *DEFAULT refers to the current IBM i system date.
+      - *SCHED = use the Schedule Date (only valid for OpCon jobs).
+      - *JOB = use the IBM i Job Date.
+      - CCYYMMDD = an actual date may be specified, e.g., 20160601 = June 1, 2016.
+      - An LSAM Dynamic Variable (with curly braces) can be translated at run time to provide an actual date in the CCYYMMDD format.
+    For Enterprise Manager File Arrival jobs, use the job master Variables tab to put the desired Value into the variable $@CRTREFDATE.
+
 - JOBENDTIME
   - 0 (zero)
   - +/- 99999.99 hours, where .99 refers to hundredths of an hour: 0.25 = 15 minutes.
 
-  The Job End Time, when specified, replaces using the File Create End Time as the default last time that a file check can occur. (The +/- value is converted to
-a time stamp relative to midnight of the Job Reference Date). 
-- Zero means to ignore this parameter. 
-- A negative value indicates the number of hours before midnight.
-- A positive value indicates the number of hours after midnight.
- 
-Enterprise Manager File Arrival or Batch Jobs can use the OpCon job's Variables Tab to load $@JOBENDTIME with a format of hhhhh:mm (+/- hours and minutes or using a decimal format such as +14.5 = 14 hours and 30 minutes after Midnight).
+    The Job End Time, when specified, replaces using the File Create End Time as the default last time that a file check can occur. (The +/- value is converted to a time stamp relative to midnight of the Job Reference Date). 
+      - Zero means to ignore this parameter. 
+      - A negative value indicates the number of hours before midnight.
+      - A positive value indicates the number of hours after midnight.
+  Enterprise Manager File Arrival or Batch Jobs can use the OpCon job's Variables Tab to load $@JOBENDTIME with a format of hhhhh:mm (+/- hours and minutes or using a decimal format such as +14.5 = 14 hours and 30 minutes after Midnight).
 
 - JOBREFDATE
   - *DEFAULT
   - *SCHED
   - *JOB
   - CCYYMMDD
-  -   {dvtoken}
+  - {dvtoken}
 
-  Job End Time Reference Date for midnight: Designates what date is used for midnight. Midnight is considered to be at the start of the specified date.
-  - For OpCon jobs, *DEFAULT refers to the Schedule Date of the job.
-  - Outside of OpCon (job type is T or A), *DEFAULT refers to the current IBM i system date.
-  - *SCHED = use the Schedule Date (only valid for OpCon jobs).
-  - *JOB = use the IBM i Job Date.
-  - CCYYMMDD = an actual date may be specified, e.g., 20160601 = June 1, 2016.
+    Job End Time Reference Date for midnight: Designates what date is used for midnight. Midnight is considered to be at the start of the specified date.
+      - For OpCon jobs, *DEFAULT refers to the Schedule Date of the job.
+      - Outside of OpCon (job type is T or A), *DEFAULT refers to the current IBM i system date.
+      - *SCHED = use the Schedule Date (only valid for OpCon jobs).
+      - *JOB = use the IBM i Job Date.
+      - CCYYMMDD = an actual date may be specified, e.g., 20160601 = June 1, 2016.
   
-  An LSAM Dynamic Variable (with curly braces) can be translated at run time to provide an actual date in the CCYYMMDD format. For Enterprise Manager File Arrival jobs,
-use the job master Variables tab to put the desired Value into the variable $@JOBREFDATE.
+    An LSAM Dynamic Variable (with curly braces) can be translated at run time to provide an actual date in the CCYYMMDD format. For Enterprise Manager File Arrival jobs, use the job master Variables tab to put the desired Value into the variable $@JOBREFDATE.
+
 -  RECHKFREQ
   - 0 (zero)
   - 999 seconds
 
-  Frequency to re-check for file existence:
-  -  Zero means to check once for a matching file name (optionally qualifying it by the Start/End Create time).
-  - Greater than zero indicates the number of seconds to wait between repeated checks for file existence. Check looping will not start until at or after the Start time,
-and it will end once the End time has been reached. 
+    Frequency to re-check for file existence:
+      -  Zero means to check once for a matching file name (optionally qualifying it by the Start/End Create time).
+      - Greater than zero indicates the number of seconds to wait between repeated checks for file existence. Check looping will not start until at or after the Start time, and it will end once the End time has been reached. 
 
-The Job End time is either specified by its own parameter, or it will default to the File Create End Time. If both are zero, then a job with a non-zero RECHKFREQ will continue running for 24 hours from the IBM i system job start time.
+    The Job End time is either specified by its own parameter, or it will default to the File Create End Time. If both are zero, then a job with a non-zero RECHKFREQ will continue running for 24 hours from the IBM i system job start time.
+
 - STABLEDUR
   - 0 (zero)
   - 999 seconds
   
-  File size stable for this duration in seconds: Specify the number of seconds that the file size (number of records) must remain the same. The command will
-repeat the check of the number of records after waiting for this number of seconds, until a second check produces the same number of records as the previous check.
-If the number of records remains zero, then the FAILIFZERO parameter controls the final command status.
+    File size stable for this duration in seconds: Specify the number of seconds that the file size (number of records) must remain the same. The command will repeat the check of the number of records after waiting for this number of seconds, until a second check produces the same number of records as the previous check. If the number of records remains zero, then the FAILIFZERO parameter controls the final command status.
+
 - AUTUSER
   - *JOB
   - User Profile name
   - {dvtoken}
 
-Specify the User whose authority to the file will be verified (using the AUT authority values).
-- If this parameter is blank or the default value of *JOB, then the user profile assigned to the job that is executing the command will be used, IF AUT values are specified.
-- If AUT values are not specified, then this parameter is ignored. But if AUT values are specified, then this User name will be referenced.
-- An LSAM Dynamic Variable token can be used to provide the User Name.
+    Specify the User whose authority to the file will be verified (using the AUT authority values).
+       - If this parameter is blank or the default value of *JOB, then the user profile assigned to the job that is executing the command will be used, IF AUT values are specified.
+       - If AUT values are not specified, then this parameter is ignored. But if AUT values are specified, then this User name will be referenced.
+       - An LSAM Dynamic Variable token can be used to provide the User Name.
  
-For OpCon Enterprise Manager File Arrival jobs, the User name specified in the job master record is applied to this parameter. The File Arrival job itself
-always runs under the authority of the SMANET Agent user profile. For Batch Jobs, specifiy the job user name that has authority to use the LSAM CHK* command utility, and then put the name of the user whose authority must be checked into the AUTUSER command parameter.  
+    For OpCon Enterprise Manager File Arrival jobs, the User name specified in the job master record is applied to this parameter. The File Arrival job itself always runs under the authority of the SMANET Agent user profile. For Batch Jobs, specifiy the job user name that has authority to use the LSAM CHK* command utility, and then put the name of the user whose authority must be checked into the AUTUSER command parameter.  
+
 - AUT
   - *NONE
   - *CHANGE
@@ -354,16 +375,16 @@ always runs under the authority of the SMANET Agent user profile. For Batch Jobs
   - *UPD
   - *EXECUTE
 
-  List one or more authority values that will be used to verify if the AUTUSER has this/these authorities to use the file. For more information about these authority
-values and their use/meaning, please consult IBM i documentation for the GRTOBJAUT command.
+    List one or more authority values that will be used to verify if the AUTUSER has this/these authorities to use the file. For more information about these authority values and their use/meaning, please consult IBM i documentation for the GRTOBJAUT command.
  
-  If AUT shows a value of *NONE, then the AUTUSER will be ignored and no authority check will be performed.
+    If AUT shows a value of *NONE, then the AUTUSER will be ignored and no authority check will be performed.
 
-  If any of the specified authority rights are not assigned to the AUTUSER, the command will fail with error code CKF0007. 
+    If any of the specified authority rights are not assigned to the AUTUSER, the command will fail with error code CKF0007. 
 
-:::note 
-  For Enterprise Manager File Arrival jobs, the list of authorities can be specified for DB2 tables using the Value column of the job's Variables table, specifying a variable name of $@AUT. Otherwise, the authority for DB2 tables will be set to approximate the READ, WRITE and EXEC stream file authority options supported by the Enterprise Manager job.
-:::
+    :::note 
+    For Enterprise Manager File Arrival jobs, the list of authorities can be specified for DB2 tables using the Value column of the job's Variables table, specifying a variable name of $@AUT. Otherwise, the authority for DB2 tables will be set to approximate the READ, WRITE and EXEC stream file authority options supported by the Enterprise Manager job.
+    :::
+
 - OPCONJOB
   - O
   - Y
@@ -382,20 +403,19 @@ values and their use/meaning, please consult IBM i documentation for the GRTOBJA
   - 0
   - T
 
-  Report Job Status as failed when file check fails:
-  - Y = Yes or 1: The command will report a failed job status if a file is not found, or the file Create Time does not fall within the Start/End times.
-  - N = No or zero (0): The command will always report a normal job completion status even when no matching file is found. When using N, the final command status
-should be stored in an LSAM Dynamic Variable and/or an OpCon Property so that it can be tested.
-  - T = file not found by End Time, but ignore and end normally. 
-  - If the file check command is reporting an internal program failure, then this override flag is ignored and the command will always report the failure.
+    Report Job Status as failed when file check fails:
+      - Y = Yes or 1: The command will report a failed job status if a file is not found, or the file Create Time does not fall within the Start/End times.
+      - N = No or zero (0): The command will always report a normal job completion status even when no matching file is found. When using N, the final command status should be stored in an LSAM Dynamic Variable and/or an OpCon Property so that it can be tested.
+      - T = file not found by End Time, but ignore and end normally. 
+      - If the file check command is reporting an internal program failure, then this override flag is ignored and the command will always report the failure.
 
-  The OpCon Enterprise Manager File Arrival job supports different Fail Condition options, including this one. This FAILONERR option can be combined (in some cases) with the FAILIFZERO option in an Enterprise Manager File Arrival job by adding the $@FAILIFZERO variable name to the job's Variables tab and specifying that parameter's Value. (Refer also the discussion about using LSAM Feedback.)
+    The OpCon Enterprise Manager File Arrival job supports different Fail Condition options, including this one. This FAILONERR option can be combined (in some cases) with the FAILIFZERO option in an Enterprise Manager File Arrival job by adding the $@FAILIFZERO variable name to the job's Variables tab and specifying that parameter's Value. (Refer also the discussion about using LSAM Feedback.)
 
 - GPL 
   - *DEFAULT Actual LSAM environment name
   - *DEFAULT Actual SMAGPL library name
 
-  Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to identify the SMAGPL library where the LSAM Environment library list can be found.
+     Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to identify the SMAGPL library where the LSAM Environment library list can be found.
 
 
 ##### CHKFILE command parameter values
@@ -549,7 +569,7 @@ Both commands process their parameters in the following order.
 
     a.  When the re-check frequency is left at zero, then the File Arrival job performs a one-time File Check (which was the original mode of these IBM i CHK* commands, so it is still supported by leaving the re-check frequency set to its default value of zero).
 
-    b.  The Job End Time is either specified in its own parameter, or if that value is zero, then the File Create End Time is used also for the Job End Time. If both time values are zero, then the Job End Time will be assumed to be 24 hours from the IBM i system job start time.\
+    b.  The Job End Time is either specified in its own parameter, or if that value is zero, then the File Create End Time is used also for the Job End Time. If both time values are zero, then the Job End Time will be assumed to be 24 hours from the IBM i system job start time.
     :::caution
     When using the re-check frequency, leaving the End time set to zero will cause the file check loop to repeat until 24 hours after the IBM i system job start time (or until a qualified file is found).
     :::
@@ -591,7 +611,7 @@ The FAILIFZERO parameter typically has the opposite effect of the FAILONERR para
 Following are some additional details about how the File Arrival processing may behave.
 
 1. When the job starts, the watcher program looks for a file that matches the file name, or a generic file name. If a file is found that has a Create time stamp that falls within the Start/End times, then the job ends normally (unless FAILIFZERO forces it to end
-    abnormally).
+abnormally).
 
 2. When a generic name pattern was provided, the watcher program searches through the list of matching names. For each matching name, it checks if the file Create time stamp falls within the Start/End times. The first matching name that was created within the Start/End times causes the job to end normally (and that file name is provided in the optional OpCon Property and/or LSAM Dynamic Variable, as well as being reported to the $ARRIVED FILE NAME for OpCon jobs).
 
@@ -701,9 +721,9 @@ Whether using a local IBM i automation tool, or an OpCon job, the IBM i job log 
 
 ##### CHKFILE/CHKIFSFIL informational messages
 Message ID
-- CKF0996:      CHKFILE/CHKIFSFIL both use this message ID to add commonly reported diagnostic information to the job log.
-- CKF0997:      CHKIFSFIL uses this message ID to document the type of forced program error used to make the job end abnormally (as when a file is not found). It reports which RPG Halt Indicator was used: H1 = command parameters require the job to fail; H2 = the program was aborted due to an unexpected error condition. Halt indicator H2 may require assistance from SMA Support.
-- CKF0998:      CHKFILE uses this message ID to document the type of forced program error used to make the job end abnormally (as when a file is not found). It reports which RPG Halt Indicator was used: H1 = command parameters require the job to fail; H2 = the program was aborted due to an unexpected error condition. Halt indicator H2 may require assistance from SMA Support.
+- **CKF0996**: CHKFILE/CHKIFSFIL both use this message ID to add commonly reported diagnostic information to the job log.
+- **CKF0997**: CHKIFSFIL uses this message ID to document the type of forced program error used to make the job end abnormally (as when a file is not found). It reports which RPG Halt Indicator was used: H1 = command parameters require the job to fail; H2 = the program was aborted due to an unexpected error condition. Halt indicator H2 may require assistance from SMA Support.
+- **CKF0998**: CHKFILE uses this message ID to document the type of forced program error used to make the job end abnormally (as when a file is not found). It reports which RPG Halt Indicator was used: H1 = command parameters require the job to fail; H2 = the program was aborted due to an unexpected error condition. Halt indicator H2 may require assistance from SMA Support.
 
 Remember to use the "View Output" function for OpCon jobs as a convenient way to quickly access the IBM i job log report for discovering these additional information messages.
 
