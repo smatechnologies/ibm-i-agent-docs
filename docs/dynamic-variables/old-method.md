@@ -150,96 +150,118 @@ If the utility program fails, it will log messages in the LSALOGF30 LSAM log fil
 /*                                                               */
 /*****************************************************************/
 PGM     PARM(&DVVALUE  &DVNAME)
+
           DCL VAR(&DVVALUE)  TYPE(*CHAR) LEN(128)
           DCL VAR(&DVNAME)   TYPE(*CHAR) LEN(12)
           DCL VAR(&DVVALUEX) TYPE(*CHAR) LEN(129)
           DCL VAR(&DVWHERE)  TYPE(*CHAR) LEN(256)
-DCL VAR(&DVWHEREX) TYPE(*CHAR) LEN(257)
-DCL VAR(&QQCMPNUM) TYPE(*CHAR) LEN(1) VALUE('N')
-DCL VAR(&QQERROR)  TYPE(*CHAR) LEN(7)
-DCL VAR(&SVVALUE)  TYPE(*CHAR) LEN(128)
-DCL VAR(&MSGID)    TYPE(*CHAR) LEN(7)
-DCL VAR(&MSGF)     TYPE(*CHAR) LEN(10)
-DCL VAR(&MSGFLIB)  TYPE(*CHAR) LEN(10)
-DCL VAR(&MSGDTA)   TYPE(*CHAR) LEN(256)
+          DCL VAR(&DVWHEREX) TYPE(*CHAR) LEN(257)
+          DCL VAR(&QQCMPNUM) TYPE(*CHAR) LEN(1) VALUE('N')
+          DCL VAR(&QQERROR)  TYPE(*CHAR) LEN(7)
+          DCL VAR(&SVVALUE)  TYPE(*CHAR) LEN(128)
+
+          DCL VAR(&MSGID)    TYPE(*CHAR) LEN(7)
+          DCL VAR(&MSGF)     TYPE(*CHAR) LEN(10)
+          DCL VAR(&MSGFLIB)  TYPE(*CHAR) LEN(10)
+          DCL VAR(&MSGDTA)   TYPE(*CHAR) LEN(256)
+
 /*--------------------------------------------------------------*/
 /* Original value is returned in case of error. Programmer may  */
 /* decide to return some other value, depending on where the    */
 /* Dynamic Variable token is being used.                        */
-CHGVAR VAR(&SVVALUE) VALUE(&DVVALUE)
+
+            CHGVAR VAR(&SVVALUE) VALUE(&DVVALUE)
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-SELECT
+            SELECT
+
 /*--------------------------------------------------------------*/
 /* Example of file-field retrieval with WHERE clause for keys   */
 /*--------------------------------------------------------------*/
-WHEN COND(&DVNAME *EQ 'LSAMAXJOB') THEN(DO)
-CHGVAR VAR(&DVVALUEX) VALUE(&DVVALUE *CAT 'X')
-CHGVAR VAR(&DVWHERE) VALUE('WHERE LSAPAR1 = +
-''LSAMAXJOB''')
-CHGVAR VAR(&DVWHEREX) VALUE(&DVWHERE *CAT 'X')
-/* If returned value should compress numbers to only digits, */
-/* change the &QQCMPNUM variable to a value of 'Y' (= Yes). */
-CHGVAR VAR(&QQCMPNUM) VALUE('Y')
+
+            WHEN COND(&DVNAME *EQ 'LSAMAXJOB') THEN(DO)
+
+            CHGVAR VAR(&DVVALUEX) VALUE(&DVVALUE *CAT 'X')
+
+            CHGVAR VAR(&DVWHERE) VALUE('WHERE LSAPAR1 = +
+                             ''LSAMAXJOB''')
+            CHGVAR VAR(&DVWHEREX) VALUE(&DVWHERE *CAT 'X')
+
+/* If returned value should compress numbers to only digits,   */
+/* change the &QQCMPNUM variable to a value of 'Y' (= Yes).    */
+
+            CHGVAR VAR(&QQCMPNUM) VALUE('Y')
 /* If LIBRRARY will rely on *LIBL, pass blanks to RPG program...*/
-CALL DYNVARSQLR PARM(&DVVALUEX &DVNAME ' ' +
-'LSAPARF00' 'LSAPAR2' &DVWHEREX &QQCMPNUM &QQERROR)
-IF COND(&QQERROR *NE ' ') THEN(DO)
-CHGVAR VAR(&MSGDTA) VALUE('DYNVARSQLC received +
-error code ' *CAT &QQERROR *CAT +
-' from DB retriever program DYNVARSLQR'
-SNDPGMMSG MSGID(CPF9898) MSGF(QSYS/QCPFMSG) +
-MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
-MSGTYPE(*INFO)
-CHGVAR VAR(&DVVALUE) VALUE(&SVVALUE)
-GOTO CMDLBL(ENDPGM)
-ENDDO
+
+            CALL DYNVARSQLR PARM(&DVVALUEX &DVNAME ' ' +
+             'LSAPARF00' 'LSAPAR2' &DVWHEREX &QQCMPNUM &QQERROR)
+
+            IF COND(&QQERROR *NE ' ') THEN(DO)
+              CHGVAR VAR(&MSGDTA) VALUE('DYNVARSQLC received +
+                       error code ' *CAT &QQERROR *CAT +
+                       ' from DB retriever program DYNVARSLQR'
+            SNDPGMMSG MSGID(CPF9898) MSGF(QSYS/QCPFMSG) +
+                       MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
+                       MSGTYPE(*INFO)
+            CHGVAR VAR(&DVVALUE) VALUE(&SVVALUE)
+            GOTO CMDLBL(ENDPGM)
+          ENDDO
 /* To return only part of a field value, use the %SST function, */
-/* for example: VALUE(%SST(&DVVALUEX 10 45)) returns 45 */
+/* for example: VALUE(%SST(&DVVALUEX 10 45)) returns 45         */
 /* characters starting at position 10 of the &DVVALUEX variable.*/
-CHGVAR VAR(&DVVALUE) VALUE(&DVVALUEX)
-ENDDO
+
+          CHGVAR VAR(&DVVALUE) VALUE(&DVVALUEX)
+
+        ENDDO
 /*--------------------------------------------------------------*/
-/* Example of data area value retrieval: Date last LSAM purge */
+/* Example of data area value retrieval: Date last LSAM purge   */
 /*--------------------------------------------------------------*/
-WHEN COND(&DVNAME *EQ 'LSAMNG') THEN(DO)
-/* The RTVDTAARA command optionally supports a start position */
-/* and length of the data to retrieve from a data area. */
-RTVDTAARA DTAARA(LSAMNG *ALL) RTNVAR(&DVVALUE)
-MONMSG MSGID(CPF0000) EXEC(DO)
-RCVMSG MSGTYPE(*EXCP) RMV(*YES) +
-MSGDTA(&MSGDTA) MSGID(&MSGID) +
-MSGF(&MSGF) MSGFLIB(&MSGFLIB)
-SNDPGMMSG MSGID(&MSGID) MSGF(&MSGFLIB/&MSGF) +
-MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
-MSGTYPE(*INFO)
-CHGVAR VAR(&MSGDTA) VALUE('DYNVARSQLC received
-error code ' *CAT &MSGID *CAT +
-' from RTVDTAARA command'
-SNDPGMMSG MSGID(CPF9898) MSGF(QSYS/QCPFMSG) +
-MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
-MSGTYPE(*INFO)
-CHGVAR VAR(&DVVALUE) VALUE(&SVVALUE)
-GOTO CMDLBL(BYPASSDTAR)
-ENDDO
-/* If returned value should compress numbers to only digits, */
-/* load the value into &DVVALUEX, set the &QQFILE variable to */
+
+               WHEN COND(&DVNAME *EQ 'LSAMNG') THEN(DO)
+            
+/* The RTVDTAARA command optionally supports a start position   */
+/* and length of the data to retrieve from a data area.         */
+
+             RTVDTAARA DTAARA(LSAMNG *ALL) RTNVAR(&DVVALUE)  
+             MONMSG MSGID(CPF0000) EXEC(DO)
+               RCVMSG MSGTYPE(*EXCP) RMV(*YES) +
+                       MSGDTA(&MSGDTA) MSGID(&MSGID) +
+                       MSGF(&MSGF) MSGFLIB(&MSGFLIB)
+             SNDPGMMSG MSGID(&MSGID) MSGF(&MSGFLIB/&MSGF) +
+                       MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
+                       MSGTYPE(*INFO)
+             CHGVAR VAR(&MSGDTA) VALUE('DYNVARSQLC received
+                       error code ' *CAT &MSGID *CAT +
+                       ' from RTVDTAARA command'
+             SNDPGMMSG MSGID(CPF9898) MSGF(QSYS/QCPFMSG) +
+                       MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
+                       MSGTYPE(*INFO)
+             CHGVAR VAR(&DVVALUE) VALUE(&SVVALUE)
+             GOTO CMDLBL(BYPASSDTAR)
+           ENDDO
+
+/* If returned value should compress numbers to only digits,    */
+/* load the value into &DVVALUEX, set the &QQFILE variable to   */
 /* the special value of '*COMPRESS', then call DYNVARSQLR. After*/
-/* the program returns, if &QQERROR is blank, reload the value */
-/* back to &DVVALUE. */
-CHGVAR VAR(&DVVALUEX) VALUE(&DVVALUE *CAT 'X')
+/* the program returns, if &QQERROR is blank, reload the value  */
+/* back to &DVVALUE.                                            */
+
+              CHGVAR VAR(&DVVALUEX) VALUE(&DVVALUE *CAT 'X')
+
 /* If LIBRRARY will rely on *LIBL, pass blanks to RPG program...*/
-CALL DYNVARSQLR PARM(&DVVALUEX &DVNAME ' ' +
-'*COMPRESS' ' ' &DVWHEREX &QQCMPNUM &QQERROR)
-IF COND(&QQERROR *NE ' ') THEN(DO)
-CHGVAR VAR(&MSGDTA) VALUE('DYNVARSQLC received +
-error code ' *CAT &QQERROR *CAT +
-' from DB retriever program DYNVARSLQR'
-SNDPGMMSG MSGID(CPF9898) MSGF(QSYS/QCPFMSG) +
-MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
-MSGTYPE(*INFO)
-CHGVAR VAR(&DVVALUE) VALUE(&SVVALUE)
-GOTO CMDLBL(ENDPGM)
+
+              CALL DYNVARSQLR PARM(&DVVALUEX &DVNAME ' ' +
+               '*COMPRESS' ' ' &DVWHEREX &QQCMPNUM &QQERROR)
+
+              IF COND(&QQERROR *NE ' ') THEN(DO)
+            CHGVAR VAR(&MSGDTA) VALUE('DYNVARSQLC received +
+                     error code ' *CAT &QQERROR *CAT +
+                     ' from DB retriever program DYNVARSLQR'
+              SNDPGMMSG MSGID(CPF9898) MSGF(QSYS/QCPFMSG) +
+                        MSGDTA(&MSGDTA) TOUSR(*SYSOPR) +
+                        MSGTYPE(*INFO)
+              CHGVAR VAR(&DVVALUE) VALUE(&SVVALUE)
+              GOTO CMDLBL(ENDPGM)
 ENDDO
 ...+...1...+...2...+...3...+...4...+...5...+...6...+...7
 ```
