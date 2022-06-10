@@ -10,7 +10,7 @@ Some of the information in this topic is critical for IBM i LSAM user sites that
 
 This topic also highlights some of the IBM i LSAM features that could potentially be made vulnerable to security breaches. It explains the vulnerabilities and discusses possible strategies for protecting IBM i when these features are used.
 
-Access to maintenance of LSAM object authority, should that be required, is available from the LSAM menu 9. PTF and Security Menu. This menu is explained in [LSAM Software Maintenance (PTFs)](/maintenance/ptf), but the function to Work with object authority is explained in this topic.
+Access to maintenance of LSAM object authority, should that be required, is available from the LSAM menu 9. PTF and Security Menu. This menu is explained in [LSAM Software Maintenance (PTFs)](../maintenance/ptf.md), but the function to Work with object authority is explained in this topic.
 
 ## LSAM Security Strategy
 

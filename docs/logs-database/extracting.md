@@ -22,7 +22,7 @@ SMAFT(0) FTPJOB(0) EXPIMP(0)]
 ```
 :::
 
-In the example above, three command parameter keywords are shown with no value included. The two parameters CLRLOG() and RESTART() are no longer supported, and they exist only to support any uses of this command from previous versions of the LSAM software. The SEL_OPTS\_\_() keyword has no function; it is a hidden parameter that exists only to control the format of the prompting text (as illustrated in an example below), so that the conditional extract option keywords can be labeled with a heading.
+In the example above, three command parameter keywords are shown with no value included. The two parameters CLRLOG() and RESTART() are no longer supported, and they exist only to support any uses of this command from previous versions of the LSAM software. The SEL_OPTS__() keyword has no function; it is a hidden parameter that exists only to control the format of the prompting text (as illustrated in an example below), so that the conditional extract option keywords can be labeled with a heading.
 
 All of the SEL option keywords that follow the LOGLIB(SEL) keyword have no effect when the LOGLIB() keyword is set to either value (LOG) or (LIB). But when the value LOGLIB(SEL) is specified, at least one of the following LSAM feature option fields should be set to a value of (1), otherwise no file extract will be performed.
 
@@ -48,7 +48,6 @@ Prompted SMASUP Command (Default)
 F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display  
    F24=More keys
 ```
-
 To view and manage the SEL (selection) parameters, type the letters "SEL" in the field "Save selected, logs or library" and then press <**Enter**>. When this LOGLIB() parameter has been changed from LOG or LIB to SEL, pressing Enter will not cause the command to execute but will only redisplay the command prompt with additional keywords.
 
 Prompted SMASUP Command (SEL Fields)
@@ -93,9 +92,9 @@ Save Export/Import logs? . . . .   0             0=no, 1=Logs, 2
 
 ##### Menu Pathways
 
-- Main Menu \> LSAM management menu (\#6) \> option 4 \> F15
-- Main Menu \> LSAM management menu (\#6) \> option 4 \> F2 \> F15
-- Main Menu \> LSAM management menu (\#6) \> option 5 \> F15
+- Main Menu > LSAM management menu (#6) > option 4 > F15
+- Main Menu > LSAM management menu (#6) > option 4 > F2 > F15
+- Main Menu > LSAM management menu (#6) > option 5 > F15
 
 ##### Options
 
@@ -145,7 +144,7 @@ One typical method of using FTP to transfer the save file from IBM i to a PC Win
 :::note
 The ftp command format used in the following example assumes that the IBM i FTP Server attributes have been set to use the name formatting for the IBM i DB2 library system, that is, SITE NAMEFMT 0. To change the FTP Server attributes from the UNIX path name format (SITE NAMEFMT 1), use this command:```CHGFTPA NAMEFMT(*LIB) LISTFMT(*DFT)```It is possible to prompt the CHGFTPA command using function key F4 to view the current settings of the FTP Server. If changes are not needed to those settings, exit the command prompt using function key F3=Exit.
 :::
-2. Use menu path: **Start \> Run**.
+2. Use menu path: **Start > Run**.
 3. Type **cmd**.
 4. Click **OK**.
 5. If desired, change the drive reference to a convenient location on the personal computer hard disk by entering the drive letter followed by a colon (:).
@@ -158,15 +157,9 @@ C:\other_directory\>cd C:\
 :::
 7. At the prompt, enter **ftp** \<LSAM Machine Name or TCP/IP
     address\>.
-8. Log in as **QSECOFR** with the appropriate \<QSECOFR password\> or
-    it may be possible to log in and retrieve the logs save file with
-    the user profile name that created the logs save file, such as an
-    LSAM Administrator user profile.
+8. Log in as **QSECOFR** with the appropriate \<QSECOFR password\> or it may be possible to log in and retrieve the logs save file with the user profile name that created the logs save file, such as an LSAM Administrator user profile.
 9. Enter **bin** to select a binary transfer type.
-10. Enter **GET SMALOG/L601101648** (using the actual log file name
-    reported in the SMASUP command completion message) to retrieve the
-    logs save file, using the actual log file name from the extract
-    process completion message.
+10. Enter **GET SMALOG/L601101648** (using the actual log file name reported in the SMASUP command completion message) to retrieve the logs save file, using the actual log file name from the extract process completion message.
 11. Enter **quit** to exit the FTP utility.
 12. Enter **exit** to close the command entry window.
 

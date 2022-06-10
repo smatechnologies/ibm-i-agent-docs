@@ -19,7 +19,7 @@ The OpCon **Concepts** online help provides illustrations and instructions for c
 1. The IBM i LSAM environment (defined by an IBM i library list, within a given IBM i partition) must be registered in an OpCon machine master record, using a machine name that matches the name entered in the IBM i LSAM Parameters (LSAM main menu, option 7). Only one copy of the Agent is required to automate an IBM i partition, however, it is allowed to have more than one copy of the Agent installed (in case there is only one IBM i partition and a test LSAM environment is desired).
 2. The IBM i LSAM server jobs must be active when it is time for OpCon to connect and monitor jobs. This can be accomplished by using the LSAM sub-menu 6, option 1, and it can also be accomplished by any means that supports executing IBM i commands, using the LSAM command STRSMASYS (refer to [Commands and Utilities](../commands-utilities/commands.md)).
 3. It is necessary to register all the IBM i user profiles who will be assigned to IBM i job master records. Follow the OpCon Concepts instructions for completing this task. These user profiles require permission to run jobs in the IBM i machine (they are granted authority to use the OpCon machine master record).
-    - If the IBM i LSAM server job user profile SMANET does not retain its default *ALLOBJ authority, then it would also be necessary to grant SMANET the authority to \*USE each of these same user profiles that will run IBM i jobs.
+    - If the IBM i LSAM server job user profile SMANET does not retain its default *ALLOBJ authority, then it would also be necessary to grant SMANET the authority to *USE each of these same user profiles that will run IBM i jobs.
 4. Create a job master record in an OpCon schedule. In addition to the standard OpCon schedule and job definition requirements, the following job parameters that are unique to IBM i jobs require special attention:
     1. Select the job type of IBM i. The lower portion of the job master record will change to match IBM i job requirements.
     2. Select the IBM i machine name where the job will execute.
@@ -68,7 +68,6 @@ Jobs that failed in the IBM i system will show one or two IBM i message IDs. The
 ```
 DSPMSGD SMA0000 SMADTA/SMAMSGF
 ```
-
 (where the 0000 is replaced by an actual message ID number).
 
 The second message ID that is frequently appended to the OpCon job completion code is an IBM i system message that the IBM i Agent has been able to retrieve from information about the job failure. Its format would typically be CPF0000, where the zeros are replaced by some digits and/or characters (A-E). Since these message may vary widely, detailed information about the messages can be obtained first by viewing the primary message text that is stored in the OpCon Job Detailed Information (refer to next topic), and then, if necessary, by viewing the secondary message text using the IBM i DSPMSGD command (as above, except that the message file is usually QSYS/QCPFMSG).

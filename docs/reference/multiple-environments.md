@@ -19,7 +19,7 @@ There are two approaches that SMA supports for installing an alternate LSAM envi
 
 Installing a new copy of the LSAM (especially using the LI040005 installation save file) has the advantage of using the least amount of disk space for the alternate environment. However, the CPYLIB method offers the advantage of preserving existing automation strategies that may have already been configured in the source environment.
 
-:::note
+:::tip
 When using the CPYLIB method, it is necessary to perform two operations in the source environment before beginning the copy process:
 
 1. Be sure to install all the latest available PTFs from SMA. One or more of these are required for the CPYLIB procedure to work correctly.
@@ -58,10 +58,11 @@ This procedure requires that the user is logged on to the IBM i partition as eit
 7. Press <**Enter**> to continue with data entry of the new library list.
 8. **Type** the library names and optional descriptions that describe the library list for the new environment.
 9. Type field: Type one of the three values listed at the top of the screen to designate which library represents each of these three library roles: SMADTA, SMAPTF and SMAPGM. Each Type value may be used only once, and all three values must be assigned. The values must be listed in order (1=SMADTA, 2=SMAPTF, 3=SMAPGM) somewhere in the library list. There may be more than three libraries in the list. If there are more than three, all the other library names should have blanks under the Type column.
-:::note
+:::tip
 Libraries do not have to exist at the time they are added to this list, but they must
 exist when the LSAM environment is entered or started. Do not forget to include the designated
 SMAGPL library (or libraries, if UTL not equal GPL) at or near the top of the library list.
+:::
 
 10. Press <**Enter**> to submit the new library list **for editing**.
 11. If all data entry edits were passed, press <**Enter**> to store the new library list in the control tables.
@@ -109,7 +110,7 @@ The next step requires an understanding of how to configure OpCon options at the
     a. Specify that the machine type is IBM i.
 22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command). Be sure to specify the new environment name for the ENV parameter of this command:
 ```
-STRSMA ENV(alt_environment_name)
+STRSMA ENV(alt_environment_name)warning
 ```
 or
 ```

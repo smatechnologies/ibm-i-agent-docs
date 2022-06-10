@@ -12,8 +12,7 @@ The STRSMA command may be used when the LSAM environment library list is not in 
 
 The command LSAMENU is more direct because it skips the splash display, and it may also be a convenient tool for programming or scripting since it supports an optional parameter that allows an LSAM sub-menu to be specified for direct access. From outside of the LSAM library list, the LSAMENU command requires that the LSAM Environment name be specified using its ENV() keyword parameter.
 
-Throughout the **IBM i LSAM** online help, wherever the STRSMA command is specified, in most cases it will be acceptable to replace that with the command LSAMENU, as long as the differences in the command
-parameters are observed and the LSAM environment library list is available when the LSAMENU command is used.
+Throughout the **IBM i LSAM** online help, wherever the STRSMA command is specified, in most cases it will be acceptable to replace that with the command LSAMENU, as long as the differences in the command parameters are observed and the LSAM environment library list is available when the LSAMENU command is used.
 
 ### The STRSMA Command
 
@@ -35,9 +34,7 @@ The ENV parameter can be specified by position without the keyword:
 ```shell
 SMAGPL/STRSMA SMADEFAULT
 ```
-
 **- or -**
-
 ```shell
 SMAGPL/STRSMA <alternate_environment>
 ```
@@ -71,14 +68,12 @@ Additionally, the parameters can be specified by position without the keywords, 
 ```shell
 SMAGPL/LSAMENU *DEFAULT 3
 ```
-
 **- or -**
-
 ```shell
 SMAGPL/LSAMENU <alternate_environment> 3
 ```
 
-If the environment value is not specified, the current library list will be used to determine the LSAM environment, or in a batch job the \*DEFAULT environment will be used. If the current library list of an interactive job does not support an LSAM environment, the command will assume *SELECT for the environment and will present a list of available LSAM environments.
+If the environment value is not specified, the current library list will be used to determine the LSAM environment, or in a batch job the *DEFAULT environment will be used. If the current library list of an interactive job does not support an LSAM environment, the command will assume *SELECT for the environment and will present a list of available LSAM environments.
 SMAGPL/LSAMENU
 
 When no menu number is specified, the LSAM Main Menu will be shown. It is not necessary to use the SMAGPL/ library qualifier if the current library list includes the LSAM libraries.
@@ -182,7 +177,7 @@ Log in to the LSAM menu system or set the interactive library list to match the 
 Stop the LSAM using either of the methods below.
 
 :::note
-For either option, please verify the Subsystem SMASBS has ended. Do this by using the IBM i command WRKSBSJOB, using the correct name for the LSAM subsystem (the default name is SMASBS), or by using the LSAM menu function. Refer to [Check LSAM Subsystem Status](#Check) described below.
+For either option, please verify the Subsystem SMASBS has ended. Do this by using the IBM i command WRKSBSJOB, using the correct name for the LSAM subsystem (the default name is SMASBS), or by using the LSAM menu function. Refer to [Check LSAM Subsystem Status](../operations/lsam.md#check-lsam-subsystem-status) described below.
 :::
 
 #### Option One: Stop the LSAM through SMA Menus
@@ -210,8 +205,7 @@ choices for automatically setting the library list when using command entry outs
 
 ### LSAM Communication Idle Timeout
 
-The IBM i LSAM sockets communications program actively monitors TCP/IP communications. When the LSAM does not receive communication from OpCon for a specified amount of time (according to the communications timing
-parameters described above), the LSAM sends a warning message to the IBM i Operator Message queue.
+The IBM i LSAM sockets communications program actively monitors TCP/IP communications. When the LSAM does not receive communication from OpCon for a specified amount of time (according to the communications timing parameters described above), the LSAM sends a warning message to the IBM i Operator Message queue.
 
 :::tip Example
 The following is a warning message to the IBM i Operator Message queue when communication between the LSAM and OpCon/xps is idle:
@@ -225,13 +219,11 @@ Severity: 40
 Message . . . . : OpCon/xps LSAM communications idle time exceeded on port &1. Lost connection? The OpCon/xps IBM i LSA sockets communications program has not received any data or any request to connect for longer than the idle time specified in the LSAM Parameters control file. This warning usually occurs when the TCP/IP connection has been interrupted. The communication program will continue to monitor for a connection on the specified port, however, under some circumstances it might be necessary to stop and restart the LSAM communications program.
 :::
 
-Upon receiving this warning message, contact the OpCon system administrator to check data communications between OpCon/xps and the IBM
-i LSAM.
+Upon receiving this warning message, contact the OpCon system administrator to check data communications between OpCon/xps and the IBM i LSAM.
 
 This message repeats at the end of every idle interval until data communications has been restored.
 
-The IBM i LSAM sockets communications program will remain in a state that is ready for communications with OpCon/xps. When OpCon/xps is able to resume communications, the connection will be automatically restored 
-without needing to stop and restart the IBM i LSAM server programs. 
+The IBM i LSAM sockets communications program will remain in a state that is ready for communications with OpCon/xps. When OpCon/xps is able to resume communications, the connection will be automatically restored without needing to stop and restart the IBM i LSAM server programs. 
 
 ## LSAM Management Screens and Windows
 
@@ -264,7 +256,7 @@ without needing to stop and restart the IBM i LSAM server programs.
 ```
 ### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6)
+Main Menu > LSAM management menu (#6)
 
 #### Fields
 
@@ -339,12 +331,11 @@ Work with Active Jobs Screen
 
 #### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> Check LSAM subsystem status (\#3)
+Main Menu > LSAM management menu (#6) > Check LSAM subsystem status (#3)
 
 ### Manage LSAM Logging
 
-The IBM i LSAM supports active control over its logging capabilities. Logging is a local function useful to system administrators, IT auditors, programmers and support technicians. For a complete description of how to use the logging features, refer to [Log File and Database Management](/logs-database/overview)
-.
+The IBM i LSAM supports active control over its logging capabilities. Logging is a local function useful to system administrators, IT auditors, programmers and support technicians. For a complete description of how to use the logging features, refer to [Log File and Database Management](/logs-database/overview).
 
 ### View LSAM Logs
 
@@ -352,11 +343,9 @@ This menu option provides direct access to the list of available LSAM log viewer
 
 ### Work with LSAM Servers (WRKSMASVR)
 
-This menu option presents a convenient display that shows the actual running status of each LSAM server job. Options at the top may be used to start or end individual server jobs or groups of jobs. This is not
-the normal method recommended for managing the LSAM server jobs. Therefore, this Work With function is not documented here.
+This menu option presents a convenient display that shows the actual running status of each LSAM server job. Options at the top may be used to start or end individual server jobs or groups of jobs. This is not the normal method recommended for managing the LSAM server jobs. Therefore, this Work With function is not documented here.
 
-However, the groups of server jobs correspond to the categories of LSAM server jobs that are managed by the LSAM PTF application process. Use option 5 to view the details of a PTF control record (LSAM sub-menu 9,
-option 1) to see the LSAM processes that must be stopped in order to apply a given PTF. In most cases, PTFs are applied cumulatively and the management of the LSAM server jobs is automatic.
+However, the groups of server jobs correspond to the categories of LSAM server jobs that are managed by the LSAM PTF application process. Use option 5 to view the details of a PTF control record (LSAM sub-menu 9, option 1) to see the LSAM processes that must be stopped in order to apply a given PTF. In most cases, PTFs are applied cumulatively and the management of the LSAM server jobs is automatic.
 
 It may be helpful to view this display in case there is any question about whether the LSAM server jobs are performing normally. However, better detail, such as an indication of a job being stuck in a MSGW (message wait) error status, is available from this same menu using option 3.
 
@@ -366,20 +355,15 @@ This is the same function that is documented in detail in the Configuration topi
 
 ### Alternate Job Notify Menu
 
-This option provides access to a sub-sub-menu of functions that support a different method for the LSAM to detect when any jobs in the IBM i system have started or ended. The Alternate Job Notify feature is
-provided for special purposes only, including supporting the True Passive mode of Job Tracking and for use by SMA Support to perform exceptional diagnostic procedures. User instructions are provided in the following section of this document.
+This option provides access to a sub-sub-menu of functions that support a different method for the LSAM to detect when any jobs in the IBM i system have started or ended. The Alternate Job Notify feature is provided for special purposes only, including supporting the True Passive mode of Job Tracking and for use by SMA Support to perform exceptional diagnostic procedures. User instructions are provided in the following section of this document.
 
 ## Alternate Job Notify Service
 
-This optional feature of the IBM i Agent for OpCon (also called the IBM i LSAM) is not required for normal operation of the Agent, unless the Job Tracking feature will be configured with any records using the
-Passive mode.
+This optional feature of the IBM i Agent for OpCon (also called the IBM i LSAM) is not required for normal operation of the Agent, unless the Job Tracking feature will be configured with any records using the Passive mode.
 
 The Job Notify service was originally designed for some SMA clients who have third-party applications running in their IBM i system that interferes with the normal operation of the LSAM's job completion message processing. In those cases, the Alternate Job Notify server may be useful for restoring the LSAM's communication with OpCon to 100% accuracy about completed jobs.
 
-The symptom of the problem that the full operational mode of the Alternate Job Notify service will solve is an IBM i job still showing as active on an OpCon schedule after it has been confirmed (for example, by
-a human operator) that the job has already completed. This same symptom can occur in rare situations when some of the LSAM server jobs might encounter an error condition and are stuck in the MSGW (message waiting)
-status. If an operator confirms that the LSAM servers are operating normally, and other IBM i jobs are being reported as complete, then this might be a situation that would benefit from using the Alternate Job
-Notify server. The final confirmation of this symptom is when it is always the same job (or only certain jobs) that are not being reported to OpCon as completed.
+The symptom of the problem that the full operational mode of the Alternate Job Notify service will solve is an IBM i job still showing as active on an OpCon schedule after it has been confirmed (for example, by a human operator) that the job has already completed. This same symptom can occur in rare situations when some of the LSAM server jobs might encounter an error condition and are stuck in the MSGW (message waiting) status. If an operator confirms that the LSAM servers are operating normally, and other IBM i jobs are being reported as complete, then this might be a situation that would benefit from using the Alternate Job Notify server. The final confirmation of this symptom is when it is always the same job (or only certain jobs) that are not being reported to OpCon as completed.
 
 SMA suggests the client should consult with SMA Support before considering implementing the Alternate Job Notify service. There is no need to impose this additional overhead on system capacity unless the specific problem it fixes has been confirmed, or unless the client needs to use the Passive mode of job tracking. It is important to understand the multi-step procedure for activating Job Notification, which is done separately for each IBM i subsystem where jobs must be monitored.
 
@@ -389,8 +373,7 @@ The Job Notify service is actually comprised of two different IBM i LSAM server 
 
 #### Job Notify Service for Passive Job Tracking
 
-The JOBNFY4 job uses the job queue entry messages to update the LSAM Job Tracking master log file with the actual IBM i full job ID, after that job has already passed through the Job Tracking exit program in "passive" mode. Just after the job enters a job queue, the system notification message is able to provide critical detail about the job being tracked. This IBM i system information is combined with OpCon
-schedule and Job Master information that enables the full operation of OpCon automation, but without interrupting the native IBM i job submission process (as would be the case with this LSAM's standard Job Tracking and Job Queuing methods).
+The JOBNFY4 job uses the job queue entry messages to update the LSAM Job Tracking master log file with the actual IBM i full job ID, after that job has already passed through the Job Tracking exit program in "passive" mode. Just after the job enters a job queue, the system notification message is able to provide critical detail about the job being tracked. This IBM i system information is combined with OpConschedule and Job Master information that enables the full operation of OpCon automation, but without interrupting the native IBM i job submission process (as would be the case with this LSAM's standard Job Tracking and Job Queuing methods).
 
 The Job End message processing of the JOBNFY server is also critical for Passive Job Tracking. This is because the LSAM job start services were not used to initiate the IBM i job, and therefore the standard IBM i job completion message will not be sent to the job completion message queue that the LSAM is monitoring. Instead, the Job Notify service forwards the IBM i Job End message to the LSAM job completion message queue.
 
@@ -751,7 +734,7 @@ F3=Exit   F5=Refresh   F11=Sort   F12=Cancel   F17=Top   F18=Bott
 
 ###### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 2
+Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 2
 
 ###### Options
 
@@ -786,7 +769,7 @@ Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> op
 
 ###### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> Alternate Job Notify menu (\#8) \> option 2 \> option 5
+Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 2 > option 5
 
 ###### Functions
 

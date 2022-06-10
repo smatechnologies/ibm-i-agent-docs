@@ -6,11 +6,11 @@ sidebar_label: 'IBM i LSAM Messages'
 
 The table below presents LSAM status messages forwarded to the SAM. The message descriptions are displayed in Operations in the Enterprise Manager following the job status.
 
-| Status | Return Code | Meaning |
-| :---:  | :---:       | ---     |
-| 0 | SMA0030    | Job not found|
-| 1 | SMA0001    | Job Description in run request is invalid|
-| 1 | SMA0002    | Job Queue in run request is invalid|
+| Status         | Return Code | Meaning 
+| :---:          | :---:       | ---     
+| 0              | SMA0030     | Job not found
+| 1              | SMA0001     | Job Description in run request is invalid
+| 1              | SMA0002     | Job Queue in run request is invalid
 | 1 | SMA0003    | Job Output Queue in run request is invalid|
 | 1 | SMA0004(a) | User ID in run request is invalid|
 | 1 | SMA0004(b) | SBMDBFCMD failed, unable to complete user authority check|

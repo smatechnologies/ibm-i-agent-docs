@@ -56,7 +56,7 @@ The frequency setting is the number of data communications transactions the prog
 The default values supplied with the IBM i LSAM software suggest that a good starting point is to set both wait times to 1 second and the frequency count to 20. If the LSAM performance needs to be improved to handle more transactions per second, then the control data queue frequency count should be increased. On the other hand, if the LSAM job 
 scheduling communications program seems to be utilizing too many CPU seconds, the input wait timeout value could be increased, one second at a time.
 
-:::note
+:::tip
 Changes made to LSAM performance parameters will only take effect if the LSAM server program(s) are stopped and restarted. It is possible to manually stop just one of the LSAM server programs and then cause it to be restarted by using the LSAM management menu (menu 6), option 1 to Start LSAM. The start-up process knows how to identify which server job needs to be restarted. However, in most cases it is preferred to use option 2 from this menu to stop all the LSAM server programs and then restart them. This method is preferred because it helps to assure that no transaction would be interrupted abnormally.
 :::
 

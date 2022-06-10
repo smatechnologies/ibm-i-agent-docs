@@ -4,7 +4,7 @@ sidebar_label: 'Copy Files from Test to Production'
 
 # Copy Files from Test to Production
 
-:::note Revision Note
+:::tip Revision Note
 Previously published versions of this Reference Information topic described manual procedures for copying database files between LSAM environments. That method is not recommended because it is no longer reliable. Instead, this topic documents how to use LSAM menu functions to easily engage complex programs that are able to transfer data reliably.
 :::
 
@@ -70,12 +70,12 @@ This is a step-by-step outline of how to perform LSAM data exporting and importi
 11. When the selected save file has been accepted for import, the display shows instructions to press <**Enter**> to continue.
 12. The display will return to the list of save files available for importing. Either repeat steps 8) and 9) to set up additional import batches, or press <**Enter**> (with no options typed) or <**F12**> to return to the list of batches available for import.
 13. Type **8** next to the batch that should be imported, then press <**Enter**> to continue.
-    :::note 
+    :::tip 
     If the target (import) LSAM environment does not match the LSAM version and DB (database) level of the source (export) LSAM environment, an error message is displayed and the import process is not allowed. In this case it is possible to exit the import process and complete cumulative PTF application to bring the target LSAM environment up to the same level as the source environment. Then it is possible to return to this procedure and complete importing the batch.
     :::
 14. When the import is performed within the same IBM i partition as the export, a warning will appear on the display for Initiate Data Import Batch. In this case, choose an option for the field label "RSTLIB (1) or Skip (0)?" Typically, option **0** is a good choice because it avoids the unnecessary step of restoring the import work library from the save file, since that library already exists on the system. Type any other processing option changes, then press <**Enter**> to continue.
 15. The system displays a final confirmation screen for the import batch after editing the batch control details. If the values appear acceptable, press <**F14**> to start the actual import process.
-    :::note
+    :::tip
     The import process performs updates to the target IBM i LSAM database. During this process, a backup save file will be created to contain any data records that will be replaced by the import process. (It is possible to rollback an import batch using option 9 from the Work with Import Batches display, in case the import causes any problems or appears to corrupt data.)
     :::
 16. If the import process was submitted to batch, a message appears at the bottom of the display naming the submitted job. Use this job name to find and review the import posting report.
@@ -907,7 +907,7 @@ It is important to find and review the posting report that is generated during t
 
 In case the import process produces undesirable results, it is usually possible to remove the imported data and restore the LSAM database to its previous state by using option 9=Rollback from the Work with Import Batches list display.
 
-:::note
+:::tip
 It is possible to automate the data import process, for example by configuring IBM i jobs in an OpCon schedule, using the LSAM command LSAGETIMP, as documented below. Combined with the LSAM command LSAEXPDTA, plus an intermediate file transfer step, the whole process of exporting and importing data could be automated, that is, after records are manually selected from master files in the source LSAM environment.
 
 SMA may choose to utilize the data Export/Import tools for the purpose of offering pre-configured data that could be inserted into an LSAM database in order to facilitate the process of configuring the LSAM to automate certain third-party applications. SMA will notify clients about the availability of pre-configured data during the OpCon product installation process.

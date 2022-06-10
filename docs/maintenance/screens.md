@@ -111,7 +111,6 @@ The job description must include the correct initial library list that matches t
   Do not use the special value of *JOBD for the job queue name, whenever the LSAM server job description (SMALSAJ00) is being used, because the LSAM server subsystem will likely be suspended if any PTF requires that, and this would cause the PTF installation job to be ended abnormally. This is why the default values for the job queue are QGPL/QBATCH, although any IBM i subsystem that is appropriate for batch jobs can be used (that is, a job queue that is connected to that subsystem can be used).
   :::
 
-
 #### Functions
 
 - **F3=Exit**: Quits the list display and returns to the menu. Changes made to the values on display will not be applied to the control file.
@@ -131,7 +130,7 @@ Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
 ##### Fields
 - **LSAM, SMAGPL, UTIL**: At the top, left of the display appear three fields that report the content of control data areas defining the LSAM environment:
   -   LSAM = the LSAM Name, known in OpCon as the Machine Name
-  -   SMAGPL = the name of the DB2 library that contains the Agent's convenience utilities; usually SMAGPL (or its equivalent), some older sites had used     QGPL to hold these LSAM tools
+  -   SMAGPL = the name of the DB2 library that contains the Agent's convenience utilities; usually SMAGPL (or its equivalent), some older sites had used QGPL to hold these LSAM tools
   -   UTIL = the name of the SMAGPL library where the LSAM PTF tools are stored. 
 - **PTF LVL**: There are three different patch levels listed at the top, middle of the display, just under the screen title:
   -   LSAM PTF LVL: This is the critical PTF Level that must be reported by users to SMA Support, when requested. This is the master patch level of the overall Agent software.

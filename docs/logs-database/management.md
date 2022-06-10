@@ -4,7 +4,7 @@ sidebar_label: 'Manage LSAM Logging'
 
 # Manage LSAM Logging
 
-The IBM i LSAM supports active control over its logging capabilities. In general, logging is a local function that is not part of LSAM communications with OpCon, but instead it is a tool that is useful to system administrators, programmers, and support technicians\... as well as for providing proof of automation to auditors. The IBM i LSAM has the ability to log transaction management events at virtually every point in the input/output flow of its communications process. Each of these logging capabilities can be controlled separately. Use the logging control functions to:
+The IBM i LSAM supports active control over its logging capabilities. In general, logging is a local function that is not part of LSAM communications with OpCon, but instead it is a tool that is useful to system administrators, programmers, and support technicians... as well as for providing proof of automation to auditors. The IBM i LSAM has the ability to log transaction management events at virtually every point in the input/output flow of its communications process. Each of these logging capabilities can be controlled separately. Use the logging control functions to:
 
 - Request that the system start logging a function immediately.
 - Request that the system start logging a function at the next new start of the function.
@@ -22,7 +22,7 @@ Managing LSAM logging starts with a Server Logging status display from which fun
 
 ##### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> option 4
+Main Menu > LSAM management menu (#6) > option 4
 
 ##### Fields
 
@@ -62,7 +62,7 @@ Pressing <**F2**> from the initial LSAM logging management display causes the ma
 
 ##### Menu Pathways
 
-Main Menu \> LSAM management menu (\#6) \> Option 4 \>F2=Manage Utility Logging
+Main Menu > LSAM management menu (#6) > Option 4 >F2=Manage Utility Logging
 
 ##### Options
 
@@ -83,14 +83,14 @@ This summary screen shows the options for each control field to the right, in th
 
 ## Viewing the LSAM Log Files
 
-Many of the LSAM log viewer programs may be accessed from a sub-menu that can be accessed from the Manage LSAM Logging function using function key <**F9**> or from the LSAM Menu \#6, option 5.
+Many of the LSAM log viewer programs may be accessed from a sub-menu that can be accessed from the Manage LSAM Logging function using function key <**F9**> or from the LSAM Menu (#6, option 5.
 
 - **Screen Title**: View LSAM Logs
 - **Screen ID**: MNGLOGR2
 
 ##### Menu Pathways
 
-- Main Menu \> LSAM management menu (\#6) \> Manage LSAM logging (\#4) \>F9
+- Main Menu > LSAM management menu (#6) > Manage LSAM logging (#4) >F9
 - From command entry, using the LSAM environment library list, enter any one of the commands that appears on the View logs sub-menu.
 
 ##### Fields
@@ -106,7 +106,7 @@ Type a number (1 -- 14) into the Selection entry field and press <**Enter**> to 
 
 Most of the individual log viewers are not documented in this online help. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. When the system is well understood, the log viewer instructions are obvious, and in most cases they offer well-labeled formatting of each type of transaction that may appear in the detail display of a given log entry.
 
-For more information about the log files displayed by each viewer utility, refer to the [Viewing the LSAM Log Files](#Viewing)  display. There is a helpful flow chart that shows the location of many log files in the overall LSAM transaction management process. Refer to [Strategic Location of Log Files](#Strategi).
+For more information about the log files displayed by each viewer utility, refer to the [Viewing the LSAM Log Files](../logs-database/management.md#viewing-the-lsam-log-files)  display. There is a helpful flow chart that shows the location of many log files in the overall LSAM transaction management process. Refer to [Strategic Location of Log Files](../logs-database/locations.md#strategic-location-of-log-files).
 
 ##### Functions
 
@@ -124,9 +124,9 @@ The spool file management control file stores information about spool files that
 The list is created by two functions of the LSAM servers. The LSAM job scheduling server records a record for each spool file management entry received from OpCon/xps. Immediately afterward, the LSAM spool file management server may update these records when a spool file must be copied to a new user or output queue. The spool file management server will also add new records to the list whenever a record of type *ALL requires that a spool file be copied. The new record will show the name
 of each spool file that is copied and then also show the job and spool file number of the copy that was created.
 
-An example of the spool file control record detail, corresponding to the line above where option 5 has been entered, is illustrated in the screen below. Notice that the selected line is one of a group of spool files corresponding to the original IBM i job name 126957/USER01/JOBQA01. There is also a column of data labeled LR\# which is the log record number. This number helps to identify multiple actions that were performed on the same spool file, in this case a file named QPRTLIBL. There are three entries for file QPRTLIBL associated with this job. Each control record explains whether the original spool file was updated in place or whether it was copied to a new user or new output queue.
+An example of the spool file control record detail, corresponding to the line above where option 5 has been entered, is illustrated in the screen below. Notice that the selected line is one of a group of spool files corresponding to the original IBM i job name 126957/USER01/JOBQA01. There is also a column of data labeled LR(# which is the log record number. This number helps to identify multiple actions that were performed on the same spool file, in this case a file named QPRTLIBL. There are three entries for file QPRTLIBL associated with this job. Each control record explains whether the original spool file was updated in place or whether it was copied to a new user or new output queue.
 
-In this example, the third record (LR\# 003) was actually created in response to one of the \*ALL control records (this is not obvious in the list, but the details of all the records would make this apparent). The detail display (option 5) can be used to analyze the actions taken for each spool file entry. This detailed information can be compared to the original configuration of the OpCon/xps job in order to evaluate how the LSAM responded to the OpCon/xps spool file management instructions.
+In this example, the third record (LR(# 003) was actually created in response to one of the *ALL control records (this is not obvious in the list, but the details of all the records would make this apparent). The detail display (option 5) can be used to analyze the actions taken for each spool file entry. This detailed information can be compared to the original configuration of the OpCon/xps job in order to evaluate how the LSAM responded to the OpCon/xps spool file management instructions.
 
 The display of entry details is also helpful for finding any spool file copies. Copied spool files do not belong to the original job that produced them. Rather, IBM i assigns copied spool files to a special system job called QPRTJOB. There is a separate instance (separate IBM i job number) of the QPRTJOB job for each IBM i user profile that has ever had a spool file copy made. The QPRTJOB job number persists, even though it is not an actual active job; the job name, user and number are used
 over and over each time a new copy is made of an existing spool file.

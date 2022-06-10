@@ -30,7 +30,7 @@ The LSAM server program that checks message queue SMAMSGQ (in the SMADTA library
 
 However, SMA technical personnel could add records to this file to accommodate the unique needs of third-party software, in cases where non-IBM messages would be issued by that software to report the job completion status. To modify this file, please contact SMA technical support.
 
-:::note
+:::tip
 Job completion messages are routed to the LSAM's own message queue, SMAMSGQ (located in the SMADTA library, or its equivalent in another LSAM environment) by the LSAM automatically setting the MSGQ parameter on the SBMJOB command. There are various IBM messages that may be sent only to the system operator message queue (typically QSYS/QSYSOPR) when, for example, an operator performs an ENDJOB command. In such cases, since the job itself did not report the completion status, the MSGQ parameter of the SBMJOB command cannot be honored. Certain third-party software may create similar complex situations that could require a custom solution from SMA to accommodate those jobs. Please contact SMA technical support for further information.
 
 Please also refer to the LSAM Parameters option to use Job Completion Message Management, described in IBM i LSAM Configuration. This option supports user-defined responses when third-party software may sometimes cause other types of messages requiring response to be sent to the job completion message queue.
@@ -54,7 +54,7 @@ Three generic programs are distributed with library SMAPGM for use in testing Op
 | GCRTFIL    | Generic test program: Create &FILE at &LIB|
 | GP         | Generic program: Delay job for &Parm secs. (4.0)|
 
-:::note
+:::tip
 Please verify the authority of the test job user to execute the test programs. Most of the IBM i LSAM software is distributed with \*PUBLIC authority set to \*REVOKE. The LSAM default user profile set in the LSAM Parameters (LSAM main menu, function 7) which is QSYSOPR may not have been granted authority to use these programs. If not, QSECOFR can grant *USE authority to these programs for QSYSOPR (or another test user configured in OpCon), either using the GRTOBJAUT command or using option 2 from the WRKOBJ command.
 :::
 

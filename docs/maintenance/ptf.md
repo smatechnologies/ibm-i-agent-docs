@@ -4,8 +4,7 @@ sidebar_label: 'LSAM Software Maintenance (PTFs)'
 
 # LSAM Software Maintenance (PTFs)
 
-This topic explains how to use the LSAM menu-driven tools that should be used to update the IBM i LSAM software product whenever SMA issues program corrections or enhancements in between distributed
-versions of the product.
+This topic explains how to use the LSAM menu-driven tools that should be used to update the IBM i LSAM software product whenever SMA issues program corrections or enhancements in between distributed versions of the product.
 
 Since LSAM version 18.1, it is important to note the two key fields of information that represent the software patch level of this Agent software:
 
@@ -105,7 +104,7 @@ The control list for LSAM PTF application is maintained in LSAM database files. 
 - List options or function keys from within the Work with LSAM PTFs function.
 - Individual options on LSAM menu 9.
 - Using LSAM commands from any command entry line or batch job where the LSAM environment library list has been established, including in OpCon-scheduled jobs for IBM i.
-**\>
+**>
 The instructions below for obtaining and applying PTFs refer to the individual menu options on LSAM menu 9. The corresponding options and function keys that may be used to perform the same operations from within the Work with LSAM PTFs function are clearly labeled. The stand-alone commands that represent each menu option are show in the menu option description line.
 
 There is a single LSAM command (and menu function), SMAPTFINS, that can be used to execute the entire PTF acquisition and application process from a single request. This option becomes available as soon as the PTF options and configuration have been completed from LSAM menu 9, option 7. SMA recommends using this command (and/or menu option 2 on the LSAM sub-menu 9) as the best way to install, load and apply PTFs all in one step. This comprehensive command includes each of the individual procedures outlined below, so its command parameters may be understood by studying the individual steps of PTF application that follow.
