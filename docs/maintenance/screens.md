@@ -81,9 +81,7 @@ Main Menu > PTF and Security menu (#9) > PTF options configuration (#7)
 - **FTP URL or IP address**: For the PTF source "FTP" enter the URL or IP address of the [SMA Technologies]{.GeneralCompanyName} secured ftp server, or of a local network ftp server. The LSAM software is distributed with the actual correct value for the [SMA Technologies]{.GeneralCompanyName} secured ftp server location; however, if the connection address does not work, please contact SMA Support to confirm if the server address may have changed.
 - **Source directory or path**: Refer to the "Options for PTF Distribution" topic in this section for detailed instructions about the form of the directory 
 or path value that is required, depending on the method chosen for the PTF Source.
-- **PTF -- LSAM server stop option**: Each PTF control record is marked if it requires the LSAM server jobs to be suspended while programs and/or files are being replaced. Note that the LSAM stop action will not be repeated for each PTF when a collection of cumulative PTFs is being installed at once, but the PTF 
-installation program will leave the LSAM server job(s) stopped until the installation of all PTFs in the cumulative collection is completed. If necessary, the 
-PTF installation process will perform one of the following actions:  
+- **PTF -- LSAM server stop option**: Each PTF control record is marked if it requires the LSAM server jobs to be suspended while programs and/or files are being replaced. Note that the LSAM stop action will not be repeated for each PTF when a collection of cumulative PTFs is being installed at once, but the PTF installation program will leave the LSAM server job(s) stopped until the installation of all PTFs in the cumulative collection is completed. If necessary, the PTF installation process will perform one of the following actions:  
   -   A = Stop all LSAM server jobs if any one server job is required to be stopped.
   -   I = Stop only the server job that is affected by each individual PTF.
   -   F = Do not perform any automatic stopping of the LSAM server jobs, but stop the PTF installation process with a failure error message if a PTF needs any LSAM server job to be stopped.
@@ -100,8 +98,7 @@ ENV(lsam-environment-name).
 obtaining the LSAM PTF save files; however, in most cases this option should be left set to Y = Yes.  
   -   Y = Yes, continue with restoring and loading the LSAM PTF control files after the LSAM PTF save files have been transferred to the local IBM i partition.
   -   N = No, stop the PTF Install process after obtaining the LSAM PTF save files, so that problem diagnosis can be performed before continuing to restore and load the save file content into the LSAM database.
-- **Job description, Library**: When the LSAM PTF installation process will be submitted to a batch job, these control values make it easy to set up the batch  |
-job definition; however, these values can be changed each time the PTF Install process is started.
+- **Job description, Library**: When the LSAM PTF installation process will be submitted to a batch job, these control values make it easy to set up the batch job definition; however, these values can be changed each time the PTF Install process is started.
 :::note
 The job description must include the correct initial library list that matches the current LSAM environment (usually named SMADEFAULT). Be sure to change the library location of the job description if a non-default LSAM environment is being used.
 :::
@@ -206,8 +203,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
 ##### Fields
 - **LSAM environment**: The name of the current LSAM environment; governs the content of the list display. 
 - **LSAM PTF LVL**: This is the master PTF Level control number assigned to this PTF. Each PTF has a unique PTF Level assigned to it. This information is global for the LSAM and not specific to the one PTF on display.
-- **DB LVL**: This is the database level that is assigned to this PTF. Many PTFs may be applied at the same database level. The DB LVL governs the LSAM 
-Data Export/Import tools, controlling when two LSAM environments are matched and may exchange data. This information is global for the LSAM and not specific to the one PTF on display. 
+- **DB LVL**: This is the database level that is assigned to this PTF. Many PTFs may be applied at the same database level. The DB LVL governs the LSAM Data Export/Import tools, controlling when two LSAM environments are matched and may exchange data. This information is global for the LSAM and not specific to the one PTF on display. 
 - **SMAGPL/UTIL libs**: The third line of headings on this display format starts with the names of the two libraries that are used for the SMAGPL and UTIL purposes (as described in the Work with PTF list display). These two logical locations are usually assigned to the same library name. This information is global for the LSAM and not specific to the one PTF on display.
 - **SMAGPL/UTIL LVL**: This is the highest PTF Level that was last applied to the SMAGPL and UTIL library location(s). The SMAGPL/UTIL PTF level may be helpful to SMA Technical Support personnel. This information is global for the LSAM and not specific to the one PTF on display.
 - **PTF Name / Seq #**: The identifying name of the PTF, followed by the PTF sequence number that controls the critical order of PTF application.
@@ -267,8 +263,7 @@ The list of all objects affected by a PTF supports an important option that will
 
 ##### Fields
 - **LSAM,Ver,PTF LVL**: The LSAM environment name is shown, followed by the LSAM version installed in this environment and the current PTF level (which is either the latest PTF name applied, or the latest PTF that was rolled back).
-- **UTIL,Ver,PTF LVL**: The actual name of the SMAGPL library or its replacement is shown, followed by the LSAM version installed in this utility library 
-(should be the same as the LSAM version) and the current PTF level (which is either the latest PTF name applied, or the latest PTF that was rolled back) that was applied to the SMAGPL library.
+- **UTIL,Ver,PTF LVL**: The actual name of the SMAGPL library or its replacement is shown, followed by the LSAM version installed in this utility library (should be the same as the LSAM version) and the current PTF level (which is either the latest PTF name applied, or the latest PTF that was rolled back) that was applied to the SMAGPL library.
 - **SMAGPL**: The name of the actual library used to store the LSAM environment management utilities. This may be the same as the utility library (SMAGPL), or  |
 it may be the IBM i QGPL library.
 - **Subset**: Shows the current subset rule in effect. Us function key <**F15**> to change the subset rule that controls the list content on display.
