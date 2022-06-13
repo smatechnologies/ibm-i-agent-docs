@@ -10,7 +10,7 @@ The instructions for defining an LSAM environment are summarized below. There is
 
 Following the basic instructions for defining an environment is an important explanation about how the LSAM utility library, SMAGPL, is used. The discussion includes an explanation about the option of using (or retaining) the IBM library QGPL for LSAM environment management.
 
-:::note
+:::tip
 SMA no longer recommends sharing the SMAGPL library between more than one LSAM environment. Each LSAM environment should have its own SMAGPL library. This constraint prevents potential difficulties with managing software patches (PTFs).
 :::
 

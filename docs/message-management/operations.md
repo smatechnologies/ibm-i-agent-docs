@@ -8,7 +8,7 @@ sidebar_label: 'Message Management Operations'
 
 The Start Message Management option tells the LSAM to monitor for messages. Message management can be started automatically whenever the LSAM servers are started. The automatic start option is documented below under the topic F22=Job Parms. The following procedure describes how to manually start message management when the automatic option is not being used.
 
-:::note
+:::tip
 Please review the discussion below about Starting Message Management for important information about the warm or cold start mode.
 :::
 

@@ -294,7 +294,7 @@ formats.
    The LSAM utility command SMAMMPSTS can be used to change the Status of a Parameters record to either Active or Inactive, as part of an automation strategy. Refer to 
 the discussion of this parameter in the Commands and Utilities section of this Agent documentation.                   
 
-:::note
+:::tip
    -   New records are initially set to a status of I =inactive to allow time for configuration of message data capture and captured data response rules, if any are desired. It may also be necessary to create multiple  different responses to a single message. After all file maintenance is complete, set the status of all new Parameters records to A = active, using option 2=Change.                   
    -   Refer to [Commands and Utilities](/commands-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
 :::    
@@ -304,14 +304,14 @@ the discussion of this parameter in the Commands and Utilities section of this A
 - Job Name: The name of the IBM i job that must have issued the message before the LSAM will respond to the message. A partial job name may be used, such as JOB*, where any job name that begins with the letters before the asterisk (*) will be accepted. The other special value of *ALL means that the job name will not be checked to qualify a message for processing. 
 - Job User: The name of the IBM i user profile from the job that issued the message, which must match before the LSAM will respond to the message. A partial user name may be used, such as USER*, where any user name that begins with the letters before the asterisk (*) will be accepted. The other special value of *ALL means that the user name will not be checked to qualify a message for processing.
 - Sequence: This field is the lowest order (7th) record key value that combines with the other key fields to assure that each Parameters record can be uniquely identified. The sequence number also controls the order of execution when more than one Parameters record uses the same other 6 key fields. The other key field values are: Message Queue, MSGQ Library, Message ID, Message File, Job Name and User Name.              
-:::note
+:::tip
 This field must not be confused with the Rec Key #, which is a number that is unique within the entire Parameters master file. The Rec Key # is an easy way to uniquely identify a Parameters record, such as in  the SETMSGTHR (set message threshold) command, instead of having to type all seven of the character key fields.            
 :::
 - Compare Text (variable in message): 
   -   Use this field to specify a text string that will be compared to the trapped message primary text (or secondary text, or both texts in a combined buffer) in order to qualify the message for handling by the LSAM Message Management server. Using Dynamic Variables, up to 999 characters can be specified as the Compare Text, or up to 30 characters can be typed directly into this field. Typed text can also be combined with Dynamic Variables. 
   -   Normally this field is set to blanks, meaning that no checking of message content is performed. Dynamic Variable tokens can be used in this field, so that the tokens will be replaced at run time with a value to search for in the message text.                        
   -   To use trailing blanks as part of the Compare Text, specify a non-zero value in the Length field. (To use all blanks as the Compare Text, specify a Dynamic Variable that will produce a blank result, and then the length field, described below, can be used to designate how many blanks form the Compare Text field.)                                                       
-:::note
+:::tip
 In earlier LSAM versions, a special value of *NOVAR was used to mean that no checking of message content is performed. This old value is still supported, but the new standard is to leave the field blank.                           
 :::
 
@@ -357,7 +357,7 @@ In earlier LSAM versions, a special value of *NOVAR was used to mean that no che
   -   This field contains the first several characters of the optional command to be executed when the message is detected. The command can be an OpCon event command name and its parameters, or it can be any IBM i command and parameters. Use the function keys <**F4**>, <**F6**>, <**F8**>, and <**F10**> as desired for assistance in formatting the commands and Dynamic Variable or $VAR tokens that may be entered in this field.
   -   To enter more command 
     characters, press function key F13 or PageDown. Function keys **F4** or **F8** can also be used to prompt a command. After the command string is returned to this display, if the command string is longer than 210 characters, this field will be protected and displayed in cyan blue. In that case, it will become possible to press the **PageDown** function key to branch to a full screen display where long commands may be modified and extended. 
-  :::note
+  :::tip
   Also refer to the discussion below about predefined OpCon Event Command variables that are supported by the LSAM in this field. 
   :::
 
@@ -367,7 +367,7 @@ This is an ISO-standard date field. The default value for this field which means
 This is an ISO-standard date field. The default value for this field which means "not used" is 0001-01-01, where the digits are CCYY-MM-DD (century, year, month, day). When the date is set to an actual value, a message will not be processed if the message issue date occurs after this date.
 -  Effective start time: 
    -   The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
-   :::note
+   :::tip
    The function of this field varies depending on the setting of the Link option (listed below), as follows:
    -   When the time field is NOT linked to the date field.
    -   When the time is set to a valid value (00:00:01 - 24:00:00), a message will not be processed unless its issue time is equal to, or greater than this time on a given day. However, if the start time is greater than the end time (and the end     time is not zeros), this indicates that the time frame crosses the midnight boundary into the next day, so the comparison logic is opposite, and the message time must be less than or equal to this start time.    
@@ -376,7 +376,7 @@ This is an ISO-standard date field. The default value for this field which means
 - Effective end time: 
    -   The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
 
-    :::note
+    :::tip
     The function of this field varies depending on the setting of the Link option (listed below), as follows
     :::
    -   When the time field is NOT linked to the date field.
@@ -400,7 +400,7 @@ This is an ISO-standard date field. The default value for this field which means
 - Threshold DynVar, Count: 
    -   The first field holds the name of an LSAM Dynamic Variable where the activity count for this Parameters record is maintained. When this display format is presented for an existing Parameters record, the current count found in the Dynamic Variable is shown in the cyan blue field to the right of the Dynamic Variable name. 
    -   When this field is blank, there will be no threshold controls. But when a threshold is specified, the count of message activity for a Parameters record is always stored in a Dynamic Variable that has been defined as numeric, with 7 digits and no decimal places. 
-   :::note
+   :::tip
    The message threshold count can be changed manually by the utility commands SETMSGTHR (reset count) and ADDMSGTHR (add to count).
    :::
 - Threshold limit:
@@ -425,7 +425,7 @@ This is an ISO-standard date field. The default value for this field which means
 
 -   **F3=Exit**: Quits the window and returns to the list of trapped  messages without completing any updates.
 -   **F4=Prompt Evt**: When the cursor is positioned in the Event command field, <**F4**> causes a window of OpCon Event commands to appear from which a value may be selected and returned to this field.
-    :::note
+    :::tip
     Using <**F4**> for this field is especially helpful, because after an Event is selected from the event list, the program uses the IBM i command prompting to show the parameters that are appropriate for each Event. When <**Enter**> is pressed from the command prompting window, the Event command string is then inserted into the Event command field with all the correct formatting and punctuation. When CPYTOMSGIN is selected from the list of Event commands, a second prompt window will appear from which may be selected the raw OpCon/xps Event command syntax.
     :::
 -   **F5=Refresh**: This function key will restore the current display format (TRPMSGR2A, 2B or 2C) to its original state that was first presented when the Add, Change or Copy function was started. Using F5=Refresh is isolated to the current display, for example, using F5 on display format 2B does not affect format 2A. However, it is
@@ -434,13 +434,13 @@ This is an ISO-standard date field. The default value for this field which means
 -   **F8=Prompt CMD**: When the cursor is positioned in the Event command field, <**F8**> causes the job to branch into IBM i command prompting. If an IBM i command name was typed before <**F8**> was pressed, then that specific command will be prompt. Otherwise, a general command search window will appear to help find the desired command. (Note that this IBM command prompting will not allow a command to be executed.)
 -   **F10=Capture**: This function key causes a branch to Work with Message Data Capture Definitions. From the list of existing Capture Definitions, option 1=Select may be used to return a Capture ID into the field on the Message Management Parameters record. Using F10 is recommended for this field because of the increased possibility of keystroke errors when long ID names may be used. It is possible to add new Capture Definitions while branching with this function key, and then to select the new ID for use.
 -   **F10=$VAR (TRPMSGR2A, TRPMSGR6)**: When the cursor is positioned within a field that supports the Agent's special $VARIABLES, F10 causes a window of supported $VARs to pop up. Position the cursor over the desired $VAR name and press Enter to insert that variable into the location where the cursor was located on the screen format A display.
-    :::note
+    :::tip
     F10=$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.
     :::
 -   **F10=Capt AppID (TRPMSGR2C)**: This function key causes a branch to Work with Message Data Capture Definitions. From the list of existing Capture Definitions, option 1=Select may be used to return a Capture ID into the field on the Message Management Parameters record. Using F10 is recommended for this field because of the
     increased possibility of keystroke errors when long ID names may be used. It is possible to add new Capture Definitions while branching with this function key, and then to select the new ID for use.
 -   **F12=Prev page, Cancel**: From display formats TRPMSGR2B and 2C, this function key returns the display to the previous display format (2A or 2B). Use the Enter key and F12 to move among the three display formats. However, F12 pressed from display format 2A will cause an exit from the maintenance function (without updating any data) and the display returns to the "Work with" list display. F3=Exit can be used to cancel all updates and return to the list display from any of the display formats.
-    :::note
+    :::tip
     Using the Enter key from display format 2C will commit all changes from all three display formats to the database.
     :::
 -   **F20=Reset Thr**: Similar to the SETMSGTHR command, this function key can be used to force the threshold count (stored in an LSAM Dynamic Variable) to be reset to zeros. Resetting the threshold count to zeros makes the dates of last activity have no meaning; the dates are only used when the threshold count is 1 or greater.
@@ -468,7 +468,7 @@ message.
 -  $MSGQ LIB:         The library location of the message queue.
 -  $SCHEDULE DATE:    The date of the OpCon schedule under which the job that issued the message was started, in the (*ISO0) format of CCYYMMDD.
 -  $SCHEDULE NAME:    The name of the OpCon/xps schedule under which the job that issued a message was started.
-:::note 
+:::tip 
 The content of the $MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of $MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the $MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.
 
 To use OpCon token variables, other than the variables listed above, include them in the Event Command text by surrounding them with braces (curly brackets) {{ }}. OpCon/xps will recognize the braces (curly brackets) in the same way as it recognizes square brackets \[\[ \]\]. This rule was established to support operating systems such as IBM i where the native EBCDIC character set does not support typing of square brackets. Do not use any brackets when using one of the variable names in the table above, because the LSAM Message Manager will replace the
@@ -477,7 +477,7 @@ variable with its value and leave the brackets in the text. This could cause a p
 However, to have OpCon replace any of the other token variables that it
 can manage use the braces (curly brackets) to surround the token name.
 
-:::note EXAMPLE
+:::tip EXAMPLE
 Syntax for circular OpCon/xps Token variables in an background LSAM Message Management Event command.
 ```
 {{$SCHEDULE DATE}} 
@@ -709,7 +709,7 @@ The Monitor Queue type of record shows the following characteristics that are di
 -   The Message ID, Message File, Job Name and Job User fields are filled by the system with asterisks, and the Sequence number is zeros.
 -   The Answer Type is forced to "Q" to indicate that this record will cause no event or message response by itself.
 -   Other fields that further define LSAM generic message management are not displayed because they are not used with Answer Type Q.
-    :::note
+    :::tip
     It is possible for the F6=Add function and the option 2=Change function to be used to create or change an LSAM message management parameter record into a Monitor Queue type of record by typing a letter "Q" into the Answer Type field. In other words, it is not necessary to use F7=Add Queue to create this special type of record. However, once an LSAM Message Management Parameter record has been changed into this special type, it cannot be changed back to another Answer Type. It can only be deleted.
     :::
 
@@ -722,7 +722,7 @@ The Monitor Queue type of record shows the following characteristics that are di
 Rules for capturing message data elements are assembled into logical groups identified by an Application ID (similar to screen data captures by Operator Replay scripts and report data captures by the SCANSPLF utility). One or more message data capture rules may be associated with each Application ID, where multiple rules are  identified by a sequence number. The Application ID may be entered into the field of that name on the Message Management Parameters master record, as explained above in
 that screen documentation. A single Application ID may be shared by more than one Message Management Parameters record.
 
-:::note
+:::tip
 It may be easier to use the F10=Capture function key from the Message management parameters Create, Copy or Change screens when selecting an Application ID because this helps avoid keystroke errors when long IDs are used. As noted in Menu Pathways here, this same Work With function may be used via that F10 function key.
 :::
 
@@ -794,15 +794,15 @@ Main Menu \> Message Management menu (\#2) \> Work with Message Data Capture Def
   -   S = secondary message (Help) text only
   -   B = both: primary and secondary text are assembled into a single buffer, with one space character between the last non-blank character of the primary text and the start of the     secondary text
 -  Message data from pos.: The start position in the message text buffer where data capture will begin. (The first position is 1, not 0.)
-:::note
+:::tip
 If the Scan Label is used, then this From-position marks the location where the search will  start for the Scan Label.
 :::
 - Message data to pos.: The end position of the data capture; may be used instead of Length.
-:::note 
+:::tip 
 If the Scan Label is used, then this To-position marks the position within the text buffer where the search for the Scan Label will end.
 :::
 - Length of data string: The length of data, starting with the From-position, that will be captured from the text buffer.
-:::note
+:::tip
 This field is required when the Scan Label is used, in order to determine how much data to capture, starting with the "Data position from LBL."
 :::
 - Scan label string:
@@ -820,7 +820,7 @@ This field is required when the Scan Label is used, in order to determine how mu
   -   0 = not numeric
   -   1 = yes, compress numeric data
   -   This flag indicates whether the captured data should be a simple character string, exactly as it appears in the message text buffer, or whether the data should be scrubbed to remove all except the digits. This flag is useful when a numeric value may be found in the message data, but the number included some formatting characters as it appeared in the message text. Setting this flag to 1 allows the real numeric value to be saved and later used in numeric computations.
-  :::note
+  :::tip
   When numeric data is compressed, the number is saved as a whole number. There is no record of any decimal positions, so those are only implied. To preserve the number of decimal positions in captured data, use a Captured Data Response Rule to store the captured numeric data into an LSAM Dynamic Variable, having created the Dynamic Variable as a numeric field with a number of decimal places specified. (Refer to the SETDYNVAR command or the "Maintain dynamic variables" function from LSAM menus (on many LSAM menus) in Events and Utilities.)
 
 ###### Functions

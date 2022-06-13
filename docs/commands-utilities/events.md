@@ -27,7 +27,7 @@ The SMAFAILJOB command is especially useful for the Agent's Multi-Step Script jo
 
 The following example shows two steps that are part of a Multi-Step Job Script, illustrating how the SMAFAILJOB command can force the Script job to end in case the next command step should fail.
 
-:::note EXAMPLE 
+:::tip EXAMPLE 
 Forcing a Multi-Step Script Job to fail if a critical Step fails: 
 ```
 STEP#      LABEL      COMMAND 
@@ -54,7 +54,7 @@ The syntax for Event commands that are not represented by individual IBM i LSAM 
 
 ### Example Program Using CPYTOMSGIN
 
-:::note EXAMPLE 
+:::tip EXAMPLE 
 A sample Control Language program follows:
 ```
 00010 PGM
@@ -76,7 +76,7 @@ Remember that OpCon Property names could be global properties, or they could be 
 
 Here is an example of pushing the value from an IBM i LSAM Dynamic Variable up to an OpCon global property:
 
-:::note EXAMPLE 
+:::tip EXAMPLE 
 Sending an IBM i value to an OpCon Property
 ```
 CPYTOMSGIN CPYMSGIN('$PROPERTY:SET,my_opcon_property,{DISKPERCNT}')

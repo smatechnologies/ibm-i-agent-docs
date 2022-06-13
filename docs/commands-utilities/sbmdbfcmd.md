@@ -40,7 +40,7 @@ sbmdbfcmd 'mylib/myfile(mymember)'
 ```
 It is possible to experiment with this command and its syntax from a command entry line within the LSAM menu system. A documentary version of an actual IBM i command exists for this purpose. Type in the command with a string and press <**Enter**>, or type just the command and press <**F4**> to enter the quoted string into a prompted FILE parameter field and then press <**Enter**>. An example of using the documentary command is offered below.
 
-:::note
+:::tip
 The string that names the library/file (source_member) MUST be enclosed in single quotes. The SBMDBFCMD substitution processing will fail if the quotes are missing. Double quotes are not supported.
 :::
 

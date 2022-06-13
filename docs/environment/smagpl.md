@@ -8,7 +8,7 @@ This section explains the standards for the IBM i LSAM environment, as of versio
 
 The discussion assumes the reader is familiar with the topics of IBM i library lists.
 
-:::note
+:::tip
 SMA Statement of Direction:
  
 Without making any commitment to deliver any specific software capability, SMA nevertheless states its intention to revise the definition of its IBM i Agent software environment. This statement is made to assist clients with decisions about how they will configure their IBM i partitions when installing one or more copies of the IBM i Agent.

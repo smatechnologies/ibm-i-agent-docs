@@ -114,7 +114,7 @@ programmed into other software applications so that those other applications can
   - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the Enterprise Manager "File Arrival" job sub-type for IBM i jobs, when the file name begins with a forward slash '/' denoting an IFS disk location outside of DB2.
 - **CHKFILE**: Check for file in the DB2 database
   - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the Enterprise Manager "File Arrival" job sub-type for IBM i jobs, when the file name begins with a DB2 Library name (which must begin with an alpha character, and the forward slash '/' is not used, denoting a disk location inside of DB2).
-:::note 
+:::tip 
 The IBM i command CHKOBJ may also be used, especially for objecttypes other than files.
 :::
 - **SBMDBFCMD**: Submit command from database file 

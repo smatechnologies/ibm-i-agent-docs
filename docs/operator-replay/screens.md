@@ -30,7 +30,7 @@ Main Menu \> Operator replay menu (#4) \> Operator Replay configuration (#5)
   - Mode 2: This mode requires an actual virtual display device name.
   - Mode 3: Type "*USER" into the device name field.
   - Mode 4: Type "*CMD" into the device name field.
-  :::note
+  :::tip
   To allow command line parameter overrides when in User mode, type both values into this field: "*USER *CMD"
   :::
 -  Telnet device exit program number:
@@ -51,7 +51,7 @@ For use by technical support personnel only. This option causes additional log e
   - The number of microseconds to wait in between reading segments of the screen buffer that the system is writing. A tuning option for the script execution program, this value should only be changed by trained technical support personnel. SMA Technologies recommends using 0.1 seconds for this field (instead of a whole 1 second, previously offered as the default value).
 - Receiving data timeout:
   - The number of microseconds to wait before deciding that the system is no longer replying to the script execution. A tuning option for the script execution program, this value should only be changed by trained technical support personnel.
-  :::note
+  :::tip
   This value can be overridden at the script step level.
   :::
 - Script loop detect limit:
@@ -101,7 +101,7 @@ managed by the script execution program.
 - **F17=View debug log**: For technical support only, view the contents of the Operator Replay debug log file (available if Script job debug logging was set to Y=yes during any script execution). This screen is not documented in this online help.
 - **F20=Clear debug log**: For technical support only, use this function to clear the Operator Replay debug log file (OPRLOGF20) after a previous test and before the next test, in order to help isolate test data.
 
-:::note
+:::tip
 The LSAM automatic log file clear routines do not clear the Operator Replay debug log file. This is the responsibility of the technical support personnel who may have set the debug log flag to Y. The Operator Replay debug logging function must be set back to N=no after diagnostic work has been completed, in order to avoid the consumption of large amounts of the client's disk space. The debug log file should be cleared using F20 from this display after a copy of the file has been extracted. Refer to [Delivering the LSAM File Extract to SMA Technical Support](/logs-database/extracting#delivering-the-lsam-file-extract-to-sma-technical-support).
 :::
 
@@ -391,7 +391,7 @@ Enter=Confirm   F12=Cancel
 - **Screen Title**: Change Operator Replay Step Detail
 - **Screen ID**: OPRRPYR10-4
 
-:::note
+:::tip
 The screen denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal "Rec ID" does not appear in the Add or Copy modes.
 :::
 
@@ -501,7 +501,7 @@ Fctn Selection
            More...
 F12=Cancel
 ```
-:::note
+:::tip
 The special function key value ACK does not generate any data sent to the Host system. It is used to clear the script driver program's screen image buffer, typically after a *STATUS message was received from the host. (Status messages do not require any response by a human operator, but the driver program may need to clear them in order to manage step timeouts.)
 :::
 
@@ -559,7 +559,7 @@ F12=Cancel
 - **Page Up/Page Down**: When the window shows "More..." at the bottom, right-hand corner, use the Paging keys to show other valid values from the entire list.
 - **Enter**: Returns the currently highlighted variable as a token and inserts it into the supported field where the cursor was last positioned.
 - **F12=Cancel**: Quits the window and returns to the step details screen without selecting a variable.
-:::note
+:::tip
 The special characters that are reserved to designate token/variable fields and cursor control characters are specified in control records within the LSAM Parameters table LSAPARF00.
 The Token/Variable Separator and the Cursor Control Separator characters can be maintained by the Operator Replay Configuration function, however, SMA Technologies recommends against changing these characters (except for the one-time conversion recommended after upgrading to LSAM version 04.00.03 from a prior version). If these special characters must be changed, it is required to observe the following caution. Also, please contact SMA Technologies Support for advice. 
 If these special characters are changed in the control file, then every existing Operator Replay script that uses them must also be updated. The Operator Replay script execution program relies on the contents of the control file to recognize which characters designate token/variable fields and cursor control characters. A special warning/utility screen appears after pressing <**Enter**> on the Operator Replay configuration maintenance screen, if any of the three Separator hex character sequences has changed. Use the function key <**F14**> to confirm the change and allow a conversion program to scan all Script Step records, replacing the old separator characters with the new characters. This keeps the control file synchronized with the Step record content, which is required for successful execution of an Operator Replay Script.
@@ -696,7 +696,7 @@ Main Menu \> Operator replay menu (#4) \> Operator Replay logs (#3) \> Option (#
 The Operator Replay Display Log function is explained in detail above under OR Script Operation > [Viewing Operator Replay Logs](../operator-replay/operations.md#view-operator-replay-log-files).
 
 ### Tokens/Variables Management
-:::note
+:::tip
 SMA Technologies recommends using Dynamic Variables instead of the older, simple Operator Replay token/variables. Documentation of this older variable type is retained to support existing users. Dynamic Variables are explained in detail in Events and Utilities menu.
 
 The terms Token and Variable may be used interchangeably, but the actual meaning assigned to these terms is: A Variable is an entry in the LSAM table of Operator Replay Variables, and it includes its name, a description and its current value setting. A Token represents the Variable in the one of the Operator Replay Step detail record fields. The format of a Token is |variable_name|, where the vertical bars (pipes) are the special character used to separate the Token from other text in the string to send field. The special character assigned to denote Operator Replay Tokens is specified in the Operator Replay configuration function, LSAM menu 4, option 7.
@@ -831,7 +831,7 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 - **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press <**Enter**> to proceed to the Change detail screen.
 - **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press <**Enter**> to proceed to the Copy detail screen.
 - **4=Delete**: To delete one or more records, type 4 next to each record. Press <**Enter**> to proceed to the Delete confirmation window.
-  :::note
+  :::tip
   The Screen Capture definition records do not have to be deleted to change their position; use option 2=Change to update the sequence number to a different position in the list.
   :::
 - **5=Display**: To display record details, type 5 next to each record. Press <**Enter**> to proceed to the display details screen. Typing option 5 next to many or all records at once before pressing <**Enter**> is a convenient way to review all the definition details at once. Press <**Enter**> to advance as each detail screen is presented.
@@ -913,7 +913,7 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 - **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press <**Enter**> to proceed to the Change detail screen.
 - **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press <**Enter**> to proceed to the Copy detail screen.
 - **4=Delete**: To delete one or more records, type 4 next to each record. Press <**Enter**> to proceed to the Delete confirmation window.
-  :::note
+  :::tip
   The Capture Response Rule records do not have to be deleted to change their position; use option 2=Change to update the sequence number to a different position in the list.
   :::
 - **5=Display**: To display record details, type 5 next to each record. Press <**Enter**> to proceed to the display details screen. Typing option 5 next to many or all records at once before pressing <**Enter**> is a convenient way to review all the definition details at once. Press <**Enter**> to advance as each detail screen is presented.
@@ -950,7 +950,7 @@ attention to the Continuation field value, because the order of records is criti
   -   CMD = an additional rules record is providing an additional response command to execute, associated with the qualification rules of the comparison record or group of records immediately preceding this record. This continuation record will be ignored for comparison rules, it exists only to support multiple commands that are part of a single response group.
   -   For more information on this field and examples, refer to [Events and Utilities Menu](../events-utilities/menu.md).
 - Compress numeric: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits. Compressed numeric values do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the captured data and the comparison data when the option for compressing numeric data will be used.
-  :::note
+  :::tip
   This flag also affects how data will be stored for a Dynamic Variable token name, if specified.
   :::
 - Store to-> DynVar (Dynamic Variable): Type a name into this field to cause the current captured data value to be stored in an LSAM Dynamic Variable of this name. This function can only store dynamic variables of type-V (general use). To create or update dynamic variables of type-L (for updating an IBM i job local data area image for LSAM captured or tracked/queued jobs, use the SETDYNVAR command in the Response command field and include a different Dynamic Variable name (that may be entered into this field) as the value for the type-L variable.

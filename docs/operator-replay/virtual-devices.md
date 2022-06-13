@@ -6,7 +6,7 @@ sidebar_label: 'Managing Virtual Devices'
 
 The management of virtual display devices operates independently from the optional application of TLS Security to the connection between the Script Driver program and the IBM i Telnet Server. Any supported mode of virtual device selection will work with or without TLS Security engaged.
 
-:::note
+:::tip
 Three modes of virtual device management require the IBM i Telnet exit program. SMA technologies recognizes that its clients may already have a Telnet Exit program registered in their IBM i partition(s). Use the IBM i command WRKREGINF to examine the exit point named QIBM-QTG-DEVINIT. If there is already an exist program registered, please contact SMA Support for assistance. SMA Technologies recommends that we collaborate with the producer of the other Telnet Exit program to determine how the features required by the OpCon Agent for IBM i can be merged with other Telnet security routines that the client is already using. For example, the IBM i LSAM Telnet Exit Program logic can be implemented as a sub-program, sub-procedure, module or service program, delivering a specific device name to the third-party Telnet exit program.
 :::
 
@@ -146,7 +146,7 @@ CHGSYSVAL SYSVAL(QAUTOVRT) VALUE(0)
 ```
 Disabling these automatic creation options does not prevent manual creation of virtual devices. It also does not cause the system to automatically delete any existing virtual device descriptions.
 
-:::note
+:::tip
 Changing these system values affects other IBM i products and programs requiring automatic configuration. This includes TELNET, 5250 display station pass-through, and any other programs using the virtual terminal APIs.
 :::
 
@@ -165,7 +165,7 @@ To manually create virtual devices for Operator Replay do the following:
 CRTCTLVWS CTLD(QPACTL01) ONLINE(*YES)
 TEXT('Virtual Controller for virtual terminals')
 ```
-:::note
+:::tip
 The IBM i naming convention QPACTLnn must be used for naming virtual controllers, where nn is a decimal number starting at 01.
 :::
 2. Use the Create Device Description (Display) (CRTDEVDSP) command to create a virtual terminal as follows:
@@ -175,7 +175,7 @@ CRTDEVDSP DEVD(LSAOPRRPY) DEVCLS(*VRT) TYPE(V100) MODEL(*ASCII)
 EMLDEV(*TYPE) ONLINE(*YES) CTL(QPACTL01)
 TEXT('SMA LSAM virtual device for Operator Replay')
 ```
-:::note
+:::tip
 IBM recommends using the IBM i/ naming convention, QPADEVxxxx, for naming virtual device descriptions, where xxxx are alphanumeric characters from 0000 to ZZZZ. In
 the example above the device parameter conforming to this rule would be:DEVD(QPADEV0001)
 
@@ -381,7 +381,7 @@ Operator Replay Configuration:
 
 When configuring an Operator Replay job in an OpCon job master record, first type the Script name into the command line box that is labeled "Script" and then type the special separate character that is set in the LSAM global Configuration options (LSAM Main menu, option 7). The default value for the separator character is a pipe (or vertical bar). After the separator, type each command keyword and include a value, as illustrated in the following example.
 
-:::note Example
+:::tip Example
 Set the OpCon IBM i job sub-type to "Operator Replay."
 
 The command line entry box label changes to "Script."
@@ -405,7 +405,7 @@ The command line DEVICE and IPADDR parameters provided by the OpCon job start re
 
 The Operator Replay Logs function supports an alternate view using function key F10 to show the Device and IP Address that were assigned each Replay record. It is the type 'H' records in the User Management master file that provide this Log view support data. Type 'H' records are deleted by the LSAM's daily log file purge server job (LSAMNG) according to the LSAM Parameters daily log file retention period. The collection of Type 'H' and type 'T' (if any are active) records can also be viewed for each user by using function key F13=Use History from the User Management list display (LSAM sub-menu 4, menu option 1).
 
-:::note
+:::tip
 It is possible to enter both *USER and *CMD in the Telnet Device Name field of Operator Replay Configuration if it is desired to allow a Command Line option to override the User Management configuration as an exception. But a successful connection to a virtual workstation will only be achieved if all the rules are met for either the *USER or *CMD mode, and both a Device Name and IP Address are resolved at run time.
 :::
 
@@ -728,7 +728,7 @@ Please carefully consider the detailed instructions for using this display, foll
  
   Any valid IBM i job name may be typed into this field, or the default job name may be left. 
  
-  :::note
+  :::tip
   The Job User name is not prompted by this display, but it can be overridden with an appropriate value when the SBMJOB command prompt appears. If the Job User name is not specified, then the default for the SBMJOB command is to use the current interactive job user. The requirement for the submitted job is that the Job User must have authority to execute the LSAM's SMATESVB command (and the command driver program), and it must also have authority to use these IBM i commands: ADDEXITPGM, RMVEXITPGM, STRTCPSVR, ENDTCPSVR.
   :::
 
@@ -802,7 +802,7 @@ Each condition above requires knowledge and use of IBM IBM i commands and proced
 If any of the above error conditions occur, one or more of the following symptoms might be observed:
 
 - A message will be sent to the IBM i operator message queue (QSYSOPR)
-  :::note Example
+  :::tip Example
   Subsystem QINTER disabled user profile RPYUSER on device LSAOPRRPY.
   Subsystem QINTER varied off work station LSAOPRRPY for user RPYUSER.
   :::

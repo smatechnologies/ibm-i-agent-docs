@@ -181,7 +181,7 @@ job for selection for tracking or queuing.|
 
 #### Delete Job Tracking Parameters
 
-:::note
+:::tip
 Format of Confirm Delete list will vary to match current <**F11**> sort sequence of List display.
 :::
 
@@ -740,7 +740,7 @@ Main Menu \> Job track menu (#1) \> Display captured jobs (DSPCAPJOB) (#10) \> O
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
-:::note
+:::tip
 Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
 :::
 
@@ -881,7 +881,7 @@ Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \>
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
-:::note
+:::tip
 Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
 :::
 
@@ -897,11 +897,11 @@ Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever v
 - FMT:         The system date format in effect when the job was captured. This is the format of the Job DATE field.
 - CapJob fields: The IBM i job ID of the workstation or batch job that performed the capture action.
 - INLLIBL + : The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.
-:::note
+:::tip
  The Initial library list cannot be maintained from this display-only field. Use F14=Edit LIBL to perform any changes. 
 :::
 - CMD line + : The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
-:::note
+:::tip
 The command line text cannot be maintained from this display-only field. Use F13=Change CMD to perform any changes.
 :::  
 
@@ -921,7 +921,7 @@ The command line text cannot be maintained from this display-only field. Use F13
 - Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 2 = Change \> F13=Change CMD
 - Pressing <**F13**> starts a Source Edit Utility (SEU) session that can be used to update the source file member where the full command line is stored.
 
-:::note
+:::tip
 The SEU edit screen is not documented in this online help. Refer to IBM documentation for information about how to perform source member editing with SEU. The LSAM permits any other form of IBM i source physical file member editing to be used, including WebSphere from a PC workstation. The field value for CMD SrcMbr names the member in file SMADTA/DBFCMDSRC that can be edited in order to update the captured job's command line. (The SMADTA library may have a different name if an alternate LSAM environment is being used.)
 :::
 
@@ -1074,11 +1074,11 @@ Most of the job definition parameters are taken verbatim from the IBM i SBMJOB c
 - FMT: The system date format in effect when the job was captured. This is the format of the Job DATE field. 
 - CapJob fields: The IBM i job ID of the workstation or batch job that performed the capture action.       
 - INLLIBL +: The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.                                           |
-:::note
+:::tip
 The Initial library list cannot be maintained from this display-only field. Use F14=Edit LIBL to perform any changes. 
 :::
 - CMD line +: The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
-:::note
+:::tip
 The command line text cannot be maintained from this display-only field. Use F13=Change CMD to perform any changes.
 :::
 
@@ -1141,7 +1141,7 @@ Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB)
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
-:::note
+:::tip
 Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
 :::
 

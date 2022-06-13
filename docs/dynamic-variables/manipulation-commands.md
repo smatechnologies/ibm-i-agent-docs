@@ -22,12 +22,12 @@ However, a more convenient and extendable way to preset Dynamic Variable values 
 
 This command may be used to add a new Dynamic Variable to the LSAM table and to set its value, or it may be used to change the value of an existing Dynamic Variable. Making reference to the Dynamic Variable master file fields described below in the Maintain Dynamic Variables section of this topic, this description of the SETDYNVAR command parameters provides information about additional considerations when using the command.
 
-:::note
+:::tip
 The VALUE keyword of the SETDYNVAR command cannot be used to set a dynamic variable value to blanks (all spaces). Instead of relying on spaces, such as when testing dynamic variable values, choose an initial value (perhaps 'INIT') and set the dynamic variable to this value before any other configured procedures might store a new result value.
 :::
 
 Consider the following examples of using the SETDYNVAR command wherever IBM i commands are supported by the LSAM:
-:::note Example
+:::tip Example
 ```
 SETDYNVAR command with CMPNUM
 SETDYNVAR VARNAM(VARNAME1) VALUE('$123,456.78') VARTYP(V)
@@ -41,7 +41,7 @@ The example above shows a command that will add a new Dynamic Variable named "VA
 As this example command is executed, an initial value is set. The example shows a value string enclosed in quotes that represents a monetary amount string of $US with six whole numbers (dollars) and two decimal places (cents). This string value might have been provided by an OpCon Property or by a different LSAM Dynamic Variable, depending on where this example command was actually being executed. But the value that will be stored as the initial value of the variable is only the eight digits, like this: 12345678 because the CMPNUM (compress numeric) parameter is set to 'Y' = Yes.
 
 Refer to additional information above about how to create and use user-defined programs to calculate Dynamic Variable token values at run time. User-defined programs receive the Dynamic Variable name and the current variable value as input parameters.
-:::note Example
+:::tip Example
 SETDYNVAR command increases a numeric value.
 Step 1: A numeric Dynamic Variable is added to the LSAM table:
 ```
@@ -60,7 +60,7 @@ The example 2 above illustrates the procedure for creating and using a Dynamic V
 In the example above, Step 1 shows a command that will add a new Dynamic Variable named "VARNAME2" to the LSAM table, if there is not already a variable with this name. (If the variable did exist, it could have its attributes changed by this command.) The type of variable is 'V' meaning a general-use variable. The keyword NUMSIZ is set to 7, and that is what tells the LSAM that this variable should be handled as a numeric variable instead of just being a plain character string. Numeric variables may be increased or decreased in value as explained above, and the LSAM uses special rules when returning a value to replace the Dynamic Variable Token when the variable is defined as numeric. The NUMDEC keyword indicates that there are no decimal places, and this is the correct indication for creating a numeric value that will be used as a counter because counter or threshold fields should only contain whole 
 numbers (integers) without any decimal places. The default for the POSSYM (positive symbol) keyword is 'B' = none, but that is shown here to illustrate that no positive sign should be returned by the LSAM when a numeric variable is being used as a threshold counter.
 
-:::note
+:::tip
 Use the LSAM command DSPDYNVAR to display the value string that will be returned by the LSAM to replace a Dynamic Variable token. This tool is helpful for experimenting with different Dynamic Variable definitions to discover which definition will return the value string that is required for a given application.
 :::
 
@@ -218,7 +218,7 @@ previously created by SETHEXDV into the upgraded format of the *HEX Function Cod
 
 To convert a hexadecimal Dynamic Variable that was added using SETHEXDV, use the Work with Dynamic Variables option from any LSAM sub-menu. Find each hex variable by using the unique name that was assigned to it, such as "CR" for Carriage Return, where the actual stored value was X'0D'. Type option 2=Change next to each variable, one at a time, and on the maintenance display type "*HEX" into the Function Code field.
 
-:::note
+:::tip
 It will be necessary to retype the hexadecimal value, using the notation style of X'0D' (using Carriage Return as an example). If the Value Calculator Program Library fields shows a value of *LIBL, clear out that unnecessary value.
 :::
 
@@ -238,7 +238,7 @@ WAITDYNVAR command. But if two values were specified in the command, then the ap
 In the following example of the WAITDYNVAR command, the optional parameter for keyword VALUE2 can be left blank, if only one value is to
 be tested. The timing parameters demonstrate a maximum wait time of 60 minutes, that is, a DELAY time of 10 seconds multiplied by 360 loops (repeated checking of the named Dynamic Variable).
 
-:::note Example
+:::tip Example
 ```
 WAITDYNVAR VARNAM(dyn_var_name) VALUE1(value_string)
 VALUE2(value_string) DELAY(10) NBRLOOPS(360)
@@ -258,7 +258,7 @@ VALUE2(value_string) DELAY(10) NBRLOOPS(360)
 - **NBRLOOPS**: 1 to 99999
   - The number of times to check the value of the Dynamic Variable, before each wait period, before the command will report 'FAIL' if the specified values are not found.
 
-:::note
+:::tip
 *Constraint - the Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Type-L variables (for LDA manipulation) cannot be used.
 :::
 
@@ -278,7 +278,7 @@ This is the method illustrated in a WAITDYNVA R application example, below.
 
 A program can call the LSAM program GETDYNVAR, using the following syntax, where the value of the Dynamic Variable will be returned in the third parameter, or a non-blank error code may be returned in the first parameter. Consider the following example from a Control Language program:
 
-:::note Example
+:::tip Example
 ```
 DCL VAR(&RETURN) TYPE(*CHAR) LEN(7)
 DCL VAR(&DYNVAR) TYPE(*CHAR) LEN(12)
@@ -319,7 +319,7 @@ Consider the case where an Operator Replay script executes a green screen menu o
 To fully automate this process, the name of the submitted job must be known. In this example, we will assume that the Script user name is USER1. One way to automate this whole process would be to use the following tools and steps.
 
 1. Register (create) an Operator Replay Token/Variable that will be used as a variable Branch-To Label value. The example token name used here will be BTOLBL1. The initial value should be the name of the script label where the script should branch if the submitted job fails: Assume for this example that it will be 'SBMJOBFAIL'. 
-:::note Hint 
+:::tip Hint 
 Set initial values of variables using Captured Data Response Rules that execute at or near the first steps of an Operator Replay script, in order to avoid any possible timing issues later in the script execution.
 :::
 
@@ -387,7 +387,7 @@ At the SBMJOBFAIL labeled step, one technique that is helpful is to force the Op
 
 The LOGDYNVAR command and the table of values that it maintains (also called LOGDYNVAR in library SMADTA) were originally created to store a series of captured data values that would each be stored into the same Dynamic Variable. If this command is used to record a copy of the Value each time the Dynamic Variable is updated, then the series of values could later be queried to produce statistical results such as an average, for example, of system CPU or Disk utilization.
 
-:::note
+:::tip
 Any text string value can be stored into the LOGDYNVAR file, so it can be used in the following methods.
 :::
 
@@ -420,13 +420,13 @@ CODE('MY-CODEA-CPU-UTIL') +
 DESC('CPU utilization from DSPSYSSTS')
 ```
 
-:::note
+:::tip
 Any value can be used for the DVNAME key value, but if it contains special characters or spaces, or it begins with a non-alpha character, then it must be contained within a pair of single quotes in the LOGDYNVAR DVNAME( ) keyword.
 :::
 
 After one or more values has been stored in association with the same key value (which could be the Dynamic Variable name), then another Dynamic Variable can be used to query the series of values by using the User Program special value of *DB2. This allows a  predefined SQL SELECT statement to be executed whenever the new Dynamic Variable token will be replaced. Following is an example of the SQL syntax that can be used to produce a single average value for the new Dynamic Variable:
 
-:::note Example
+:::tip Example
 ```
 SELECT 'CPU avg: ' CONCAT AVG(DEC(DVVALUE,4,1))
   FROM SMADTA/LOGDYNVAR

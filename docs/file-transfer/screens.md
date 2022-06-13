@@ -195,7 +195,7 @@ F24=More keys
 
 This screen is an IBM i command prompting screen. It behaves according to the operating system rules for prompted commands (similar, but not the same as screens that are presented by LSAM programs). The function controlled by each command parameter (screen field) is shown in the table below.
 
-:::note
+:::tip
 It is only possible to choose the CLEAR (\*YES) option for a log file if that logging feature is already stopped. If it is not stopped, the CLEAR function will fail and logging may not start up correctly. If the file is not being cleared, it does not matter if logging is already started.
 :::
 

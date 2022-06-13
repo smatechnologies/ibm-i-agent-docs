@@ -8,7 +8,7 @@ Dynamic Variables can have their value defined by a Dynamic Variable {TOKEN} sto
 
 A Dynamic Variable master record cannot be configured with a nested {TOKEN} using the SETDYNVAR command because any Dynamic Variable token appearing in the VALUE( ) parameter will be replaced by the SETDYNVAR command processing program, so that only the value of that token will be placed into the Variable master record and not the {TOKEN} itself. Instead, use the Dynamic Variable maintenance function available from multiple sub-menus of the LSAM green screen menu system.
 
-:::note
+:::tip
 One or more Dynamic Variable {TOKENS} are now allowed in the VALUE field of numeric variables. Previously, there was strict enforcement allowing only actual numeric digits to be entered when creating, changing or copying Dynamic Variable master records. Now {TOKENS} are allowed, and actual digits can be interspersed with one or more tokens, but non-numeric values are still not allowed outside of the token special characters.
 :::
 
@@ -18,7 +18,7 @@ The goal of this example is to retrieve the current system date and then return 
 
 First, a Dynamic Variable of type *SYSVAL will have the name of QDATE so that its token will return the IBM i partition's current system date.
 
-:::note
+:::tip
 The IBM i system value of QDATETIME might be more useful for the application described in this Use Case. However, the system value of QDATE is used to illustrate some additional capabilities of Dynamic Variables and also the warning that the IBM i command DSPSYSVAL often returns value strings that are formatted differently than when the Agent's Dynamic Variable token replacement module is using IBM APIs to retrieve system values.
 :::
 

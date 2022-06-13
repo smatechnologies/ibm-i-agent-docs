@@ -4,7 +4,7 @@ sidebar_label: 'Events and Utilities Menu'
 
 # Events and Utilities Menu
 
-:::note
+:::tip
 Before OpCon event commands can be sent, a user id and password must be defined. Please refer to the section below describing the External Event Password.
 :::
 

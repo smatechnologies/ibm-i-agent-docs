@@ -82,6 +82,6 @@ F11=Display elapsed data   F12=Cancel   F23=More options   F24=More keys
   - Press function key F9=Display message details to view a screen that often lists the name of the program that issued the message, and it may also identify the line of the program where the message event occurred.
   - If an operator must respond to an error message, and there are no other instructions applying to the error, an answer of "D" = dump may produce a helpful formatted program dump report among the printed output of the job that issued the message. Attempt to locate and save the dump report. The first page of the dump report often contains helpful diagnostic information about program errors.
 
-:::note
+:::tip
 The LSAM software is distributed with program observation turned off, so most LSAM programs will not produce a complete program dump showing program variables. An SMA Support technician may need to offer the client a specially compiled version of a failing program if an error arises that is difficult to diagnose, so that a full formatted program dump may be obtained the next time the error occurs.
 :::

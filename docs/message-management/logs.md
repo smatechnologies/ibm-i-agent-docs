@@ -212,7 +212,7 @@ PAGEDOWN/UP   F3=Exit   F5=Refresh   F9=WRKJOB   F12=Cancel
 - Message ID: This is the IBM i ID of the message that was trapped by the Message Management Parameters record linked to the Application ID that performed this message data capture.
 - MSGQ Lib:The library location of the Message Queue named above.
 - MSGF: The name of the IBM i Message File that contains the definition of the Message ID that was trapped. 
-  :::note
+  :::tip
   The remaining fields on this display are the same as documented for the SCANSPLF utility in [Events and Utilities Menu](../events-utilities/email.md).
   :::
 

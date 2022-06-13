@@ -52,10 +52,10 @@ It may seem challenging at first to correctly configure all the data elements re
     a.  **Add Schedule Instance Properties**: View the examples provided in the Screens and Windows section of this document, in particular under the Client eMail Management Configuration screen, for descriptions and recommendations about the names of the four Schedule Instance Properties that will be required to complete this Schedule. Use OpCon Schedule maintenance to add these four Properties to a single "instance" line within the Schedule definition. That is, all four properties are registered in a single instance, separated by a semi-colon. The initial value of each property can be a symbolic value, one that will obviously show that a Property has not yet been updated by the GENEMLREQ command in case of failure.
 
     b.  **Job 1**: Create an IBM i job that will execute the GENEMLREQ command. This job will require reference to the IBM i LSAM library list. The job could be a simple batch job that specifies the GENEMLREQ command in the Call command line of the OpCon job master. However, in many cases it might be more convenient to cause the GENEMLREQ command to execute as a Captured Data Response Rule command, triggered by steps of an Operator Replay script where the Client data can be collected into LSAM Dynamic Variables that will become the GENEMLREQ parameter keyword values.
-    :::note note1 
+    :::tip note1 
     It is necessary to set the OPCONJOB parameter of the GENEMLREQ command to a value of '1' in order to cause the GENEMLREQ command to complete the four executions of the $PROPERTY:SET event command, required to transfer the names of the temporary files from the LSAM Client eMail control and master files to the Schedule Instance Properties configured above.
     :::
-    :::note note2
+    :::tip note2
     The IBM i LSAM configuration parameters for SMA File Transfer (LSAM sub-menu 8, option 7) are used to identify the CCSID (character set) of the EBCDIC data used to compose the message text source, and of the ASCII stream file that will be composed as the GENEMLREQ routines assemble and translate the final message text format. This method assures that international character sets will be honored.
     :::
 
@@ -70,7 +70,7 @@ It may seem challenging at first to correctly configure all the data elements re
 2. Before using the other IBM i LSAM Client eMail menu functions, start by executing option 7 on the Client eMail Management sub-menu. This will establish the default parameter values that will determine how the GENEMLREQ command must be specified, and it may also influence how the Client eMail Data (also called the Client Acronym master file) is maintained. The Client eMail configuration parameters are the ones that are considered likely to be consistent whenever the GENEMLREQ command is used, although it is always possible to override these values using the keywords of the GENEMLREQ command for exceptional circumstances. Careful setting of these central configuration values makes it easier to specify the GENEMLREQ command parameters.
 3. Create one or more Client eMail Data master records. Refer to the Screens and Windows section of this document for detailed information about this function.
 4. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7. The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: {DYNVAR1}
-:::note
+:::tip
 Any LSAM Dynamic Variables that will be used within a message source text member must be manually registered in the LSAM Dynamic Variables table efore they can be used by the GENEMLREQ command during actually e-mail message formatting. Numeric variable formatting rules of any type are permitted for Dynamic Variables used in the  context of an e-mail message.
 :::
 5. The final step in preparing for execution of the GENEMLREQ command is to determine the proper settings for each of the command's many parameter keywords. These are fully documented in the next section of this document. It is helpful to pay close attention to the following possible sources for many of these parameters, where the table of parameter values below identifies which sources are appropriate for each keyword, and what keyword value tells the command to use each source:
@@ -135,7 +135,7 @@ The Use Code is an optional means of grouping together Client Acronym master rec
  
  Member name = the name of a source member in the LSAM source-physicalMSGTXTSRC.
 
-:::note
+:::tip
 This command supports translation of Dynamic Variable tokens that are included in the source member. Refer to the section on Message Text Source Member maintenance, below.
 :::
 
@@ -153,7 +153,7 @@ The name of the temporary file that will contain the formatted message content t
 
 Any name, up to 10 characters, may be specified, but allowing the command to generate a name prevents overlaying another file in case two jobs are executing at or near the same time. If a file name is used more than once by two different jobs, the content of the file will be overlaid by the latter job.
 
-:::note
+:::tip
 The actual name of the temporary file created in the IBM i IFS disk space, and after transferring the file to a MS Windows computer, will include a suffix of '.txt'. Only the 10-character root name of the file is specified in this field, as if the file were being created in the DB2 database. (The file is composed using an ASCII stream file in the IFS in order to provide the best support for line and paragraph formatting of the message content.)
 :::
 
@@ -173,7 +173,7 @@ When no message text source member is used, a character string up to 128
 characters, enclosed in single quotes, should be specified in this
 parameter to be used as the message content.
 
-:::note
+:::tip
 This is the only parameter of this command that supports translation of a Dynamic Variable token, no matter where the command is executed. It is possible to compose message content up to 1024 character by listing multiple Dynamic Variable tokens in this field, even though the parameter value only supports 128 characters as the command is submitted.
 :::
 
@@ -314,7 +314,7 @@ This flag controls the extended actions of the GENEMLREQ command.
 The command GETCLTEML (Get Client eMail Address) is a special purpose command just for the purpose of retrieving the e-mail address field from one Client Acronym master record and storing it into an LSAM Dynamic Variable. This function would be useful for the purpose of assembling an OpCon event command such as $NOTIFY:EMAIL from a Captured Data Response Rule, where the Dynamic Variable token can be included as the event command parameter where any of the e-mail address values is specified
 (to, cc. or bcc.).
 
-:::note
+:::tip
 The GENEMLREQ command is often preferred over the $NOTIFY:EMAIL event command because event commands do not allow commas (as may be desired in the message text) and because the mail messages generated by the event command will also include some internal technical data at the start of the message.
 :::
 

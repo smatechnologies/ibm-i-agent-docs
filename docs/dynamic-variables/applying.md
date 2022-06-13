@@ -50,7 +50,7 @@ Any leading spaces will be trimmed, and the first non-blank character will be co
 
 Use a Length greater than zero to include any trailing spaces, up to the full Length of the returned value.
 
-:::note
+:::tip
 If the default Start plus Length will exceed the limit of position 128 of the value string, then the {TOKEN} replacement will fail and the Agent general-purpose log file (LSALOGF30), plus any optional tool-specific log, will report the reason for the token replacement failure.
 :::
 
@@ -58,7 +58,7 @@ If the default Start plus Length will exceed the limit of position 128 of the va
 
 Specifying both a Start position and a Length will cause any space characters within that segment of the variable's current (or calculated) value to be included when the {TOKEN} is replaced. This applies to both leading spaces and trailing spaces.
 
-:::note
+:::tip
 If the Start position and Length will exceed the limit of position 128 of the value string, then the {TOKEN} replacement will fail and the Agent general-purpose log file (LSALOGF30), plus any optional tool-specific log, will report the reason for the token replacement failure.
 :::
 

@@ -152,7 +152,7 @@ There are two user profiles associated with these IBM i FTP jobs. First is the I
 
 The other user profile require for the FTP job sub-type is specified under the Call Information tab of the FTP job, under the sub-tab called Transfer Information. The field name is FTP User. The FTP User may be any length up to 128 characters. This user name must be registered in the LSAM database, using the user Management function, so that the LSAM job scheduler server can find the encrypted FTP user password that has been stored in an LSAM validation list.
 
-:::note
+:::tip
 The OpCon/xps EM job master field for the FTP user supports selection of a user name from the existing list of registered OpCon/xps users. However, the FTP user field also allows keying in of unregistered names. The registration of a user profile for OpCon/xps is unrelated to the requirement that the FTP user must be registered in the LSAM database.
 :::
 

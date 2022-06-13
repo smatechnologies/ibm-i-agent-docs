@@ -20,7 +20,7 @@ The following settings are **critical** to the operation of the LSAM with OpCon.
 - LSAM Name: The LSAM and SMANetCom use this value for communication.
   - The LSAM Name setting must be all capital letters and/or numbers and it must match the setting on the Machines screen of the OpCon EM (Enterprise Manager, the User Interface).
   - The SAM Server must be able to ping this name, unless the IBM i LSAM IP address will be used in the EM machine table in place of the LSAM server name.
-    :::note
+    :::tip
     If using multiple environments, assign a unique name to each LSAM environment.
     :::
 - Internet Address: This value is the IP Address of the IBM i system. Use the <**F4**> function key to view a list of valid IP addresses for this system.
@@ -32,7 +32,7 @@ The following settings are **critical** to the operation of the LSAM with OpCon.
 - SMA Subsystem Name: This value should only be changed for multiple IBM i LSAM environments; otherwise, leave it as the default value (SMASBS).
 - Keep socket open (Y/N): For optimal LSAM performance, SMA recommends using the value Y (yes). This setting must match the setting on the EM's Machines screen. For more information, refer to [Discussion of Keep Socket Open Parameter](#Discussi).
 
-:::note
+:::tip
 In the past, changing the value to N (no) was sometimes proposed as a solution when a site was experiencing unstable communication between the LSAM and SMANetCom, or if data was being lost. However, if either of these symptoms appear, please contact the Support team at SMA Technologies for assistance. SMA Technologies does not recommend trying to use this interface with the Keep socket open value set to N (no).
 :::
 - **Screen Title**: LSAM Configuration Parameters (3 Pages)
@@ -137,7 +137,7 @@ Certain parameters must conform to the following rules for IBM i passwords. Addi
 3. Repeat steps 1-2.
 4. Press <**Enter**> to update the LSAM's configuration.
 
-:::note
+:::tip
 The update is stored immediately in the LSAM Parameters control file, however, any change in control values does not take effect in the LSAM server jobs until they are stopped and restarted.
 :::
 
@@ -566,7 +566,7 @@ The Keep Socket Open parameter controls the performance of the IBM i LSAM socket
 The setting of this parameter must match the equivalent parameter in the machine table of OpCon/xps Administration. When the advanced General values parameter for a machine has been set to: Close socket during synchronization = False, then the matching IBM i LSAM must be set to: Keep socket open = Y (yes), and vice versa. Failure to match these parameter values can cause a loss of data.
 :::
 
-:::note
+:::tip
 In most cases, set Keep Socket Open = Y. Do not change this value unless instructed to do so by SMA technical support. This value supports the highest possible rates of communications. However, if a communications link with an IBM i LSAM must be set to close the socket between each transaction, then some other performance parameters in the OpCon/xps machine table must be set to less aggressive values. These parameters and their settings are illustrated in the following table.
 :::
 
@@ -599,7 +599,7 @@ If it is decided that a job being held in a job queue that has an error (either 
 
 If an IBM i system operator deletes a job from an IBM i job queue, OpCon/xps will not be able to report the failed status of that job, but will continue to show the job as active until the next OpCon/xps job status poll interval. After OpCon/xps sends a job status poll (transaction TX2) to the LSAM, the LSAM will be able to discover that the job is either not found or is in *OUTQ (output queue) status.
 
-:::note
+:::tip
 It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon/xps. The interval that controls how often OpCon/xps sends a job status request is set using the OpCon/xps **Administration function -> Options table -> Time Settings -> Minutes between checking running jobs**.
 :::
 
@@ -659,7 +659,7 @@ The LSAM job scheduler and status server tasks detect when a job is stuck in a M
 
 Whenever the LSAM server jobs detect the MSGW status, they always send LSAM Feedback information (field code 5801) to OpCon, at the same time as the job status displayed in the Enterprise Manager is updated with the MSGW status.
 
-:::note
+:::tip
 LSAM Feedback support was added to the IBM i LSAM with PTF # 403178. At the same time, depending on the OpCon version, it was also necessary to execute some SQL statements to update the SMALOOKUP control file in the OpCon database in order to add definitions for the field code 5801. Those SQL statements were documented in the IBM i LSAM PTF Post-Install Instructions. Newer versions of OpCon would already have this field code added.
 :::
 
@@ -738,7 +738,7 @@ $CONSOLE:DISPLAY,This message text is being sent on **{{$DATE}}**,SYSTEM,MESSAGE
 
 It is possible that in some environments, the default translation tables involved in certain types of data exchange will prevent a correct translation of the braces (curly brackets){ }. In this case, the ability to specify user-defined translation tables could be helpful. For more information about translation tables, refer to [Discussion of Translation Tables](#Discussi4).
 
-:::note
+:::tip
 Dynamic Variables, supported by the IBM i LSAM in places such as a job's call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.
 :::
 
@@ -772,7 +772,7 @@ Remember that the APP() keyword of the SCANSPLF command is case-sensitive.
 Refer to the following Note to learn about ways to diagnose this special
 use of the SCANSPLF utility included with a Call command.
 
-:::note
+:::tip
 The details about the SCANSPLF command that was assigned to evaluate a job's completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this online help). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
 :::
 
@@ -808,7 +808,7 @@ The maximum length supported for each parameter of the LDA() keyword is shown as
 LDA(225:14:{DYNVARNAM1})
 :::
 
-:::note
+:::tip
 The special characters that denote a Dynamic Variable token {} may be different on your system, depending on the native character sets used in your workstation and in your IBM i operating system. The appearance of the character may vary, but the hexadecimal value is what is important. This value is controlled by the LSAM Job Tracking Configuration (menu 1, option 7).
 :::
 

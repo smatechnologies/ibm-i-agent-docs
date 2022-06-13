@@ -350,7 +350,7 @@ supported a library list of only 25 names, remain compatible.
 '**Page Down**\> continues to display subsequent pages of input-capable
 rows until the 250[th]{style="font-size: 80%;vertical-align: super;"} row is on display.
 
-:::note
+:::tip
 The PageDown key is available as long as the indicator "More..." appears at the lower right-hand corner of the screen. On the 250th row the "More..." indicator changes to display "Bottom"
 :::
 
@@ -373,7 +373,7 @@ If the updated library list passes all edits, the sorted library list is
 presented for review. This provides a chance to make any corrections to
 the order of the libraries.
 
-:::note
+:::tip
 Library names entered at the top line, numbered zero, become the entry on line 10 after '**Enter**\> is pressed.
 :::
 
@@ -396,7 +396,7 @@ the libraries being assigned these Type values must be in this order),
 and only one library may be assigned to each value: SMADTA, SMAPTF and
 SMAPGM.
 
-:::note
+:::tip
 Library lists that are being created for use during Restricted Mode operations do not need to have the Type values assigned.
 :::
 

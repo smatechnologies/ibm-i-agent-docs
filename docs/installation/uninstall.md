@@ -8,7 +8,7 @@ If it becomes necessary to remove the IBM i LSAM, use this procedure as a guide 
 
 ## Stop the LSAM
 
-:::note
+:::tip
 Be sure that any procedures under the control of OpCon have completed. Assure that any procedures formerly controlled by OpCon under IBM i are appropriately managed outside of the control of OpCon.
 :::
 

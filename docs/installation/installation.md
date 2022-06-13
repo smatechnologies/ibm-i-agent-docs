@@ -45,7 +45,7 @@ When the client operates only one IBM i LPAR, the only option for testing automa
 
 For single LPAR environments, SMA recommends cloning the production copy of the LSAM (the SMADEFAULT environment). After following the cloning instructions below, complete the configuration steps to make sure the cloned environment is working at the original 04.00.03 level. Then use the version 18.1 Upgrade procedure to advance the test LSAM environment to the new version and perform a review of the LSAM functions to make sure the test environment is working as expected.
 
-:::note
+:::tip
 The licensing of the Agents (LSAMs) installed under any operating system is managed according to how many instances of that operating system Agent are actively connected to the OpCon application server at once. This means that if the client had only one IBM i LSAM license, it will not be possible to connect both the production copy of the LSAM and a test copy of the LSAM to the OpCon server at the same time. In this case, the client should contact their SMA sales or account representative to request an additional IBM i LSAM license.
 :::
 
@@ -67,7 +67,7 @@ Whether installing a new LSAM or upgrading an existing LSAM, it may be necessary
 
 Good news! IBM i LSAM version 18.1 is compatible with all currently supported versions of OpCon. It is not necessary to upgrade OpCon to take advantage of many of the latest LSAM enhancements, but some of the newest features added to the LSAM may only work (or work best) with OpCon version 17.1.3 or newer. Some of the newer LSAM features might require a manual update to the SQL Server database supporting an older version of OpCon. SMA recommends that clients using versions of OpCon older than 17.1.3 should discuss the circumstances with their SMA Technologies Consultant or contact SMA Support for advice.
 
-:::note
+:::tip
 In particular, the configurations for supporting TLS Secured communication links are sensitive to the version of OpCon, and the OpCon database will likely require execution of an SQL update procedure to activate support for TLS security of the SMA File Transfer jobs.
 
 There is a Post-Install Instruction below that explains how to complete this update.
@@ -112,7 +112,7 @@ These activities can fail if the value of QALWOBJRST is not set to *ALL. Use thi
 - Complete the software installation or upgrade.
 - To ensure system security, return the QALWOBJRST value to your normal setting (recorded above) after completing the software installation.
 
-:::note
+:::tip
 IBM i LSAM administrators must remember to manage this system value also during application of LSAM software patches (PTFs).
 :::
 
@@ -235,7 +235,7 @@ The SMARGZ command will either be executed automatically during the next Mainten
 
 Existing users of the IBM i LSAM are advised to use the following steps, or a similar procedure, to create a backup of the existing LSAM installation. Although SMA has invested great effort to ensure that the install procedure will perform a proper upgrade of existing installations, it is wise to protect the existing LSAM database in case some unexpected circumstance may arise that is unique to a client site.
 
-:::note
+:::tip
 It is required to manually stop the LSAM server jobs before starting the upgrade installation. For many backup strategies it is also necessary to remove object locks by ending the LSAM server jobs. This can be done using the LSAM sub-menu 6, option 2. There is also the LSAM utility command SMAGPL/ENDSMASYS that can be executed, specifying the LSAM environment name after the command name, such as:
 ```
 SMAGPL/ENDSMASYS SMADEFAULT
@@ -326,7 +326,7 @@ From a Windows machine, use the following steps:
 7. Click **OK**.
 8. Change the drive reference to the "OpCon Installation Media" by entering the Drive Letter followed by a colon (:). When using an installation save file that was transferred electronically instead of on an installation media, change the drive reference to the hard disk (or network) location of the installation save file.
 
-:::note Example
+:::tip Example
 ```
 C:\your_default_directory> D:
 D:\>
@@ -335,7 +335,7 @@ D:\>
 
 9. Change the directory to the "IBM i LSAM installation directory". When using an installation save file that was transferred electronically or a custom installation media, the directories shown in the following example will probably have different names.
 
-:::note Example
+:::tip Example
 ```
 D:\>cd Install\LSAM\IBM i LSAM
 D:\Install\LSAM\IBM i LSAM>
@@ -349,7 +349,7 @@ D:\Install\LSAM\IBM i LSAM>
 14. Enter **quit** to exit the FTP utility.
 15. Enter **exit** to close the command entry window.
 
-:::note Example
+:::tip Example
 ```
 The following shows a typical FTP procedure in a DOS command window for
 a new install.
@@ -382,7 +382,7 @@ D:\Install\LSAM\IBM i LSAM>exit
 
   Optionally, this step may be skipped because the SMASETUP command below will create the user profiles if they do not exist, and the LSAM installation tools will still operate correctly. Creating the user profiles in advance presents an opportunity to customize the user profiles according to local standards.
 
-:::note
+:::tip
 It is normally possible to copy the following text and paste it into the IBM i workstation command entry line, then modify the parameter values as required.
 :::
 ```
@@ -395,7 +395,7 @@ CRTUSRPRF USRPRF(SMASAV) PASSWORD(smasav_password) INLPGM(*NONE)
   INLMNU(*SIGNOFF) TEXT('SMA restricted mode user profile')
   SPCAUT(*JOBCTL *SPLCTL *SAVSYS)
 ```
-:::note
+:::tip
 The *ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#Introduc) as well as in the [LSAM Security and Object Authority](../security/strategy.md) section of the **IBM i LSAM** online help.
 :::
 
@@ -407,7 +407,7 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
   ```
   ... where "ppp" is the LSAM PTF level of the newest Installation Save file.
 
-  :::note
+  :::tip
   Messages are displayed indicating the results of the restoration. Disregard messages about security or data format changes. If messages appear at the bottom of the command entry display, a white plus sign (+) is displayed in the lower right-hand corner indicating if there are additional messages about the current command. Place the cursor on the message line and press the ***PageDown*** button to view any additional messages. Please report any  unexpected messages to the SMA Technologies Support team for assistance.
     
     ***Do not continue with this install procedure if there are unexpected messages.***
@@ -428,7 +428,7 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
     ```
 
 ##### Run the Installation Procedure
-:::note
+:::tip
 Before starting the SMASETUP command, it may be necessary to review the information about the standard LSAM utilities library, presented below the step-by-step instructions.
 
 This note is especially important for two types of users:
@@ -725,7 +725,7 @@ ENV(IBMILSAM1) SMADTA(SMADTA1) SMAPTF(SMAPTF1)
 SMAPGM(SMAPGM1)
 ```
 
-:::note
+:::tip
 To use the batch installation command for installing an alternate LSAM environment, the environment's library list must be defined in the keywords SMADTA, SMAPTF and SMAPGM. In the example above, the suffix "1" is used to designate the LSAM environment library names for the proposed IBMILSAM1 environment.
 :::
 
@@ -835,7 +835,7 @@ Provided here are the steps to follow after installation.
 
       i.  Currently, the ftp server may also be accessed directly from a browser or from a file transfer tool (such as FileZilla) at this URL: files.smasolutions.it.
 
-   :::note
+   :::tip
    This URL for SMA's secure ftp server will be changing. View the Support page of SMA's latest web site or contact the SMA Support team for assistance with accessing the current secure ftp server.
    :::
 
@@ -885,7 +885,7 @@ If user SMANET is allowed to keep the suggested *ALLOBJ authority, it is not nec
 
 The batch job user profile specified in the OpCon job master record, for Batch Jobs and some other job sub-types, must also be granted authority to use the basic IBM i work management objects, otherwise the LSAM will report a failure to start the job. (NOTE: When jobs cannot be started by the LSAM, there will be no job log report to view using the OpCon JORS function "view output." Instead, diagnostic information is available from the active job log of the LSAM server job TXMMNG.
 
-:::note
+:::tip
 For additional information about diagnosing job start failures, see [Guide to Job Failure Diagnosis](../operations/automation.md#guide-to-job-failure-diagnosis).
 :::
 
@@ -911,7 +911,7 @@ To begin using the LSAM, refer to [IBM i LSAM Configuration](../configuration/co
 
 2. From IBM i command entry, enter the command SMAGPL/STRSMA to access the LSAM Main Menu. (Qualifying the command with library SMAGPL may not be necessary, if QGPL is used.)
 
-   :::note
+   :::tip
    To enter an alternate LSAM environment instead of the default environment, press <**F4**> = Prompt instead of <**Enter**> with the STRSMA command, and specify either the name of the LSAM environment, or the value *SELECT to pick an environment from the list.
    :::
 
@@ -933,7 +933,7 @@ CALL SMAPGM/GP PARM('0001')
 ```
    The GP program executes a simple DLYJOB (delay job) function for as many seconds (up to 9999) as are specified in the parameter. Do not specify a large number of seconds, because the job could take a very long time to end.
 
-:::note
+:::tip
 Another good command for testing OpCon jobs will actually print a report of the IBM i job's library list. Using this command and viewing the report it produces could help to debug or confirm that the IBM i library list management is working as expected when jobs are started from OpCon: 
 ```
 DSPLIBL OUTPUT(*PRINT)

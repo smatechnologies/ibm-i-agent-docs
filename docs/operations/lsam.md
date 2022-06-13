@@ -82,7 +82,7 @@ When no menu number is specified, the LSAM Main Menu will be shown. It is not ne
 ##### Start the LSAM Interactive Menu System
 
 1. In the command line, enter **SMAGPL/STRSMA**. The LSAM Menu system welcome screen appears.
-:::note
+:::tip
 This display will show Load source: LI181027U PTF181027 when the LI181027U install file is used.
 :::
 
@@ -156,7 +156,7 @@ Begin processing OpCon/xps jobs by starting the LSAM using either of the two fol
 2. Start the LSAM through the menu system with the following steps.
 
     a.  At the command line, enter **SMAGPL/STRSMA**.
-    :::note
+    :::tip
     If using multiple environments, refer to The STRSMA Command.
     :::
 
@@ -167,7 +167,7 @@ Begin processing OpCon/xps jobs by starting the LSAM using either of the two fol
 #### Option Two: Start the LSAM Manually
 
 1. To start the LSAM manually, enter **SMAGPL/STRSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter. If ENV is specified, the job's library list does not matter.
-:::note
+:::tip
 Log in to the LSAM menu system or set the interactive library list to match the LSAM environment that will be managed. Use the command SMASETLIBL to view a list of choices for automatically setting the library list when using command entry outside of the LSAM menu system. For more information on the SMASETLIBL command, refer to SMASETLIBL. If the library list is set, the ENV parameter default value of *CURRENT may be used.
 :::
 2. The optional ENV parameter enables the copy of the command in library SMAGPL to be used from the IBM iSeries Navigator to start the LSAM without having to log on to a green screen workstation.
@@ -176,7 +176,7 @@ Log in to the LSAM menu system or set the interactive library list to match the 
 
 Stop the LSAM using either of the methods below.
 
-:::note
+:::tip
 For either option, please verify the Subsystem SMASBS has ended. Do this by using the IBM i command WRKSBSJOB, using the correct name for the LSAM subsystem (the default name is SMASBS), or by using the LSAM menu function. Refer to [Check LSAM Subsystem Status](../operations/lsam.md#check-lsam-subsystem-status) described below.
 :::
 
@@ -186,7 +186,7 @@ For either option, please verify the Subsystem SMASBS has ended. Do this by usin
 2. Stop the LSAM through SMA menus with the following steps.
     
     a.  In the command line, enter **SMAGPL/STRSMA**.
-    :::note
+    :::tip
     If using multiple environments, refer to The STRSMA Command.
     :::
 
@@ -197,7 +197,7 @@ For either option, please verify the Subsystem SMASBS has ended. Do this by usin
 #### Option Two: Stop the LSAM Manually
 
 1. To end the LSAM manually, enter **SMAGPL/ENDSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter. If ENV is specified, the job's library list does not  matter.
-:::note
+:::tip
 Log in to the LSAM menu system or set the interactive library list to match the LSAM environment to be managed. Use the command SMASETLIBL to see a list of
 choices for automatically setting the library list when using command entry outside of the LSAM menu system. Refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about the SMASETLIBL command. If the library list is set, the ENV parameter default value of *CURRENT may be used.
 :::

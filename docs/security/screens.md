@@ -79,7 +79,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F15=S
 
 - **6. User**: blank - Type a user profile name that has been assigned to any of the three available User ID n fields. This field also accepts a value of *PUBLIC in order to subset the list based on Pubic Aut not equal  *EXCLUDE. 
 
-:::note
+:::tip
  The User ID 1 field is used by the LSAM to define the set of authorities for the system operator, QSYSOPR. Type  QSYSOPR in this field to see which objects have this assignment. |
 :::
 

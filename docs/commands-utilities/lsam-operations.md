@@ -55,7 +55,7 @@ The STRSMA command supports the interactive specification of an IBM i LSAM envir
 
 
 
-:::note Example
+:::tip Example
 To specify the environment value when entering the LSAM menu system and to suppress the animation of the splash display, the syntax would be:
 ```
 STRSMA ENV(<environment_name>) ANIMATE(*NO)
@@ -165,7 +165,7 @@ LSAMENU command routes to the *SELECT logic.    |
 | MENUNBR (Optional LSAM sub-menu number) | 0         | -   **0**: Show the LSAM Main menu upon first entry into the LSAM  menu system. This is the default value.    |
 |                           |           | -   **1-6,8**: Currently, the LSAM main menu supports sub-menus only as menu options 1-6 and 8. Function 7 is a direct call to the LSAM Parameters maintenance program and it is not allowed as a parameter of the LSAMENU command.      |
 
-:::note EXAMPLE
+:::tip EXAMPLE
 To specify the environment value and to enter directly to the LSAM Operations submenu
 without using command keywords the syntax would be:
 ```

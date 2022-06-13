@@ -8,7 +8,7 @@ The IBM i LSAM Message Management server performs the task of surveying message 
 
 During the process of scanning message queues, the LSAM server job TRPMSG maintains a control file (TRPMSGF10) where it stores the message key of the last message read from each message queue. As the server program repeats its cycle of checking each message queue, it uses the stored last message key to make sure that it does not process the same message twice. As long as this server job is active, the cycle of checking message queues works well and the stored message keys are normally reliable.
 
-:::note
+:::tip
 The message keys that are stored by the LSAM Message Management server could become unreliable if messages are manually deleted from a monitored message queue before the server programs have processed that message and at least one more message that is newer than the message being manually deleted. Avoid manually deleting new messages from a monitored message queue.
 :::
 
@@ -245,7 +245,7 @@ possible that in some environments, the behavior of the LSAM job completion mess
 
 Consider this next example when deciding whether or not to use this LSAM processing option.
 
-:::note Example
+:::tip Example
 An old programming technique, not recommended for use in IBM i programs, used the MSGQ parameter of the SBMJOB command to identify the name of the user profile that submitted a job. This value was retrieved by a program (using the SBMMSGQ parameter of the RTVJOBA command) and used to send inquiry messages about system operations, requiring a reply from a user before the program could continue operations. IBM i permits that the MSGQ parameter of the SBMJOB command can be changed to any value where job completion messages should be routed, therefore, this parameter cannot be relied upon to identify the name of the user profile submitting a job.
  
 The IBM i LSAM sets this SBMJOB parameter to MSGQ(SMADTA/SMAMSGQ), where SMADTA could be a different name of the database library in an alternate LSAM environment.
@@ -278,7 +278,7 @@ There are two additional methods for providing responses to inquiry messages, in
 
 Either of the two alternate message reply methods may be used for both LSAM general message management or for the special application of message management rules to the LSAM's job completion message server program.
 
-:::note
+:::tip
 The two alternate methods of computing a reply for inquiry messages are not available at this time for job-level message management, specified for IBM i job master records in the OpCon schedule. However, it is possible to create an LSAM Message Management Parameter record that applies only to a specific job name, achieving the same effect.
 :::
 
@@ -340,7 +340,7 @@ parameters of the LSAM's subsystem, such as allocating more or dedicated system 
 
 Any IBM command could be used for an Event command, including user-defined commands or commands from third-party application software that is installed in the IBM i system. The only requirement for non-system commands is that the LSAM Message Management server job must be able to find the command. Therefore, if the command does not exist in either the system library list or the LSAM environment library list, the command should be qualified by its library location name, such as:
 
-:::note EXAMPLE
+:::tip EXAMPLE
 ```
 APPLIB/APPCMD KEYWORD1(value1) KEYWORD2(value2)
 ```
@@ -375,7 +375,7 @@ OpCon/xps job master maintenance only supports the prompting and updating of OpC
 
 To register an IBM-format command in the OpCon/xps job master record, select the OpCon/xps Event command named $CONSOLE:DISPLAY. Then, when replacing the <**message**\> parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
 
-:::note EXAMPLE
+:::tip EXAMPLE
 ```
 $CONSOLE:DISPLAY,QCMD:WRKJOB OUTPUT(*PRINT)
 ```
@@ -389,7 +389,7 @@ Be sure to take note of the rules and restrictions explained above, under: LSAM 
 
 The LSAM Message Management server program supports replacement of LSAM Dynamic Variables. Therefore, any or all of the IBM-format command that is registered in the OpCon/xps job master record for message management could be an LSAM Dynamic Variable token. Consider the following example:
 
-:::note EXAMPLE
+:::tip EXAMPLE
 ```
 $CONSOLE:DISPLAY,QCMD:{DYNVAR1}
 ```
@@ -426,7 +426,7 @@ Message Data Capture can be used to enable tight integration between OpCon and t
 12. Type option **2** to select the appropriate Message Management  Parameters record that will use the Message Data Capture definition.
 13. Use the **TAB** key to move the cursor into the field named **Captured Application ID**. Type in the same name of the Application Identifier as was just added above.
 
-    :::note
+    :::tip
     It is possible to press the function key F10=Capture to display a list of existing capture Application IDs and then type option 1=Select, after which the Enter key may be pressed to return that value to the Message Management Parameters record. This helps prevent typing errors on long names.
     :::
 
@@ -443,7 +443,7 @@ function key **F11=Response rules** has been added to the maintenance function w
 2. Enter **2** to choose the **Message management menu** in the LSAM Main Menu.
 3. Enter **11** to choose **Work with Captured Data Response Rules** in the Message management menu.
 
-    :::note
+    :::tip
     This same function may be accessed using function key F11=Capture from the Work with Message Data Capture Definitions function, outlines above.
     :::
 
@@ -459,7 +459,7 @@ function key **F11=Response rules** has been added to the maintenance function w
 11. Type a value for the Compress numeric field. Specify Y = yes if the captured and compare data values are numeric, otherwise specify N = no. This flag must correspond to the similar flag found on the associated Message Data Capture Rule.
 12. *(Optional)* Specify the names of a Dynamic Variable and/or an Operator Replay Token variable that will be used to store the captured data value.
 
-    :::note
+    :::tip
     If Compress numeric is set to "Y" = yes on the Response Rule, then the data stored in the optional Dynamic Variable will also be stored as only the digits of the number.
     :::
 

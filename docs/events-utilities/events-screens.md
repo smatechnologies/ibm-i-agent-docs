@@ -48,7 +48,7 @@ Main Menu \> Events and Utilities (#3) \> External Management (#1)
 
 **Slection**: Enter an Option number or the Command name to select an event.
 
-:::note
+:::tip
 The option numbers are not assigned to Command names on a permanent basis. SMA may update the available list of Event Commands, which makes the Option number subject to change. This number is a sequential number that is assigned to each line at the time the information is assembled for display. When planning to use Operator Replay to select a command from this list, always specify the Command name instead of the Option number, otherwise it is necessary to go back and update the Operator Replay Scripts whenever the Event Command list is updated by SMA.
 :::
 

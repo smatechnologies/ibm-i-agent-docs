@@ -11,7 +11,7 @@ Code," and it refers to the unique functions of Dynamic Variable value
 replacement whenever a special value beginning with an asterisk * is
 entered into this field.
 
-:::note
+:::tip
 At this time, when a Function Code is used in the Value Calc Pgm field, the Value Calc program library field is ignored. The library name field may be used for additional modifiers of a Function Code in future versions of the LSAM software.
 :::
 
@@ -58,10 +58,10 @@ field include:
     required to adapt the API return value to an appropriate use. Use
     the LSAM command DSPDYNVAR to test how any system value will be
     presented when the {TOKEN} is replaced. 
-:::note 
+:::tip 
 In previous patch levels of the IBM i LSAM software, it was required that the Dynamic Variable name itself must match a valid system value name. However, that rule prevented the ability to apply varying formats to the same system value. Any existing Dynamic Variables that conformed to the original rule will still be supported, until the next time that Dynamic Variable Maintenance is used to change or copy these older variables, at which time the data entry edits will enforce the new rule. Dynamic Variable names may still match IBM i system value names, but now the value retrieval routines will ignore the name of the Dynamic Variable whenever the Function Code Field 2 is not blank for a *SYSVAL Function Code.
 :::
-:::note
+:::tip
 The system values returned to the Dynamic Variable token replacement module, using an IBM i API, often differ in format from the values that appear on an inter-active workstation when using the DSPSYSVAL command. Use the LSAM DSPDYNVAR command (or option 6 in the list of Dynamic Variables) to test a *SYSVAL Dynamic Variable before using it in production. Dynamic Variable reformatting, and/or nesting of the *SYSVAL {TOKEN} can be used to trim and/or reformat the system values for use in LSAM automation functions.
 :::
 - **\*HEX**: This Function Code replaces a temporary LSAM utility command called SETHEXDV, for the purpose of storing and retrieving low-level hexadecimal characters. These are characters that are mostly those used for formatting text such as an email text message 
@@ -71,7 +71,7 @@ that needs to separate the content into paragraphs. The *HEX Function Code contr
 
 Dynamic Variables that store date values can be transformed into many different edited or unedited formats using the *DATE option supportedby the Dynamic Variable master record field called [Value Calculator Program Name].
 
-:::note IMPORTANT
+:::tip IMPORTANT
 *DATE reformatting can only be performed if a Dynamic Variable is defined in advance using green screen maintenance.
 :::
 
@@ -158,11 +158,11 @@ Examples of System Value names include QDATE (the current system date), which is
 
 Refer to the topic about nested Dynamic Variable tokens, below, for an example of using a System Value {TOKEN} as the Value of another Dynamic Variable.
 
-:::note
+:::tip
 In previous patch levels of the IBM i LSAM software, it is required that the Dynamic Variable name itself must match a valid system value name. However, that rule prevented the ability to apply varying formats to the same system value. Any existing Dynamic Variables that conformed to the original rule will still be supported, until the next time that Dynamic Variable Maintenance is used to change or copy these older variables, at which time the data entry edits will enforce the new rule. Dynamic Variable names may still match IBM i system value names, but now the value retrieval routines will ignore the name of the Dynamic Variable whenever the Function Code Field 2 is not blank for a *SYSVAL Function Code.
 :::
 
-:::note Important
+:::tip Important
 The system values returned to the Dynamic Variable token replacement module, using an IBM i API, often differ in format from the values that appear on an interactive workstation when using the DSPSYSVAL command. Use the LSAM DSPDYNVAR command (or option 6 in the list of Dynamic Variables) to test a *SYSVAL Dynamic Variable before using it in production. Dynamic Variable reformatting, and/or nesting of the *SYSVAL {TOKEN} can be used to trim and/or reformat the system values for use in LSAM automation functions.
 :::
 
@@ -191,7 +191,7 @@ Before the official designation of multiple Function Codes for Dynamic Variables
 
 When *DTAARA is specified for the Dynamic Variable Function Code, the second display format will be format R7, with fields that can be used to name the data area and its library location. The only other values that can be defined for data areas are the trim control numbers. A starting location and a length value can be typed. If both fields are left at zero, the value returned for the Dynamic Variable token will be the first 128 characters of the data area.
 
-:::note Hint
+:::tip Hint
 To fetch more than 128 characters from a big data area, use additional Dynamic Variables with the *DTAARA function code, then enter a Trim Start number that is higher than 128 for the additional Dynamic Variables. To utilize the longer total string of data, enter two or more {TOKENS} in any LSAM automation tool fields that can support more than 128 characters.
 :::
 
@@ -204,7 +204,7 @@ If either of the Trim control fields is set to a non-zero value, the other field
 
 Before the official designation of multiple Function Codes for Dynamic Variables, there was a prototype DB2 method for fetching data from a DB2 database table that was based on users modify a model program provided by SMA. With the new Function Code method it is much easier to define DB2 value fetch rules by using the second page of Dynamic Variable Maintenance to define the SQL query components that will fetch the Value returned for a *DB2 {TOKEN}.
 
-:::note
+:::tip
 The old DB2 program-based method is still supported for any existing configurations, and the user instructions for the old method have been retained below, following the new method instructions.
 :::
 

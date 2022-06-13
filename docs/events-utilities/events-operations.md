@@ -5,7 +5,7 @@ sidebar_label: 'Events Operations'
 
 ## Setting Up an Event User ID and Password
 
-:::note
+:::tip
 The wrapping of the syntax in this document does not indicate the location of a carriage return; the ↵ indicates the location of a carriage return.
 :::
 
@@ -19,6 +19,6 @@ An LSAM screen now provides the user with the ability to easily send external ev
 4. Enter a valid OpCon/xps user for **User Name** in the next menu.
 5. <**Tab**\> to **Password** field and enter *a* valid external event password associated with the User Name above.
 6. <**Tab**\> to second **Password** field and enter a valid external event password associated with the User Name above. This step confirms the password.
-:::note
+:::tip
 The User Name and Password fields have a 10-character limit.
 :::

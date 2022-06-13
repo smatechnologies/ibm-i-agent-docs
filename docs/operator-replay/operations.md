@@ -46,7 +46,7 @@ Information and instructions from IBM about "Securing Telnet with SSL" can be fo
 
 SMA Technologies does not normally provide training about the IBM i operating system or its feature configuration, and SMA Technologies does not provide support for the IBM i operating system. It is entirely the responsibility of the user to correctly configure the operating system requirements mentioned in this documentation. The correct operation of OpCon Agent for IBM i -- Operator Replay feature depends on a correct configuration of the operating system, and this OpCon Agent's logging features for Operator Replay are able to demonstrate and prove that it is performing correctly. The Agent's logs may or may not provide helpful hints, as error codes reported by the operating system are captured in those logs. However, due to the necessary secretive nature of TLS Security, not every incorrect IBM i configuration problem will be detected by this OpCon Agent's programs.
 
-:::note
+:::tip
 The IBM i DCM handles Client and Server digital certificates, themselves, in the same way. The way in which a Client/Server certificate will be used is determined when a certificate is assigned to an application. The DCM presents separate lists for Server and Client applications.
 :::
 
@@ -78,7 +78,7 @@ Using the IBM i LSAM menu system, sub-menu 4, option 7, update these two fields 
 - Telnet port number . . . : <u>00992</u>    *(Port 23 = unsecure,     port 992 = secure)*
 - TLS security?: <u>Y</u> * Y=yes,     N=no*
 
-:::note
+:::tip
 Remember to change the Telnet port number each time the TLS security option is changed between Y and N. Failure to make these changes together will cause the Operator Replay Script driver program to fail. 
 
 Some client sites may have changed their IBM i port assignments for the Telnet Pors to different numbers, as an additional way to hide and secure unauthorized access to the IBM i partition.
@@ -109,7 +109,7 @@ Preparing to run Replay scripts begins with registering user profiles to tell th
 It is very important to carefully secure access to the maintenance and use of Operator Replay scripts. Depending on the user profiles registered, this form of OpCon/xps job could create security risks for the system.
 :::
 
-:::note
+:::tip
 The User management function supports other features available with the LSAM software, besides Operator Replay. For example, FTP jobs defined in OpCon/xps for execution in IBM i require that the FTP user be registered using this maintenance function.
 :::
 
@@ -165,7 +165,7 @@ There are two ways to create new scripts: Either create a new script from scratc
     a.  In the **Step description** field, type a text description for the script (up to 40 characters).
 
     b.  Under the String and function to send heading, in the **String to send** field, type a string to send. Press <**F4**> for a list of cursor control characters that can be added to the string, or <**F6**> for a list of Operator Replay variable tokens that can be inserted into the string, or <**F8**> to get help selecting and formatting an IBM i command.
-    :::note Example
+    :::tip Example
     Entering the string SMAGPL/STRSMA takes the Replay job to the LSAM Main Menu.
     :::
 
@@ -179,7 +179,7 @@ There are two ways to create new scripts: Either create a new script from scratc
     c.  Under the String and function to send heading, in the **Function to send** field, type a function to send or press <**F4**>. When <**F4**> is pressed, move the cursor to the preferred item and press <**Enter**>. A commonly used function to send is the **ENTER** function.
 
     d.  Under the Script branching logic, optionally, specify a **Branch Type**, if this step may cause a branch in script logic. Branching only takes place if the (following) Control Strings qualify this step for execution. If a Branch Type is specified, also type the **Branch-to script** and **Branch-to label** field values. When <**F6**> is pressed from either of these fields, an available Operator Replay Token name may be selected in place of an actual script or label name. From the F6 window, move the cursor to the preferred token name and press <**Enter**>. The selected value will be placed into the field where the cursor is located. (Refer to the discussion below about Script Branching Rules for more information.)
-    :::note
+    :::tip
     Control strings are optional. They are used to verify characters in certain parts of the screen. If verification fails, the script may optionally fail, or the step may be skipped.
     :::
 
@@ -232,7 +232,7 @@ Copying an entire script is another way to Create new scripts:
 5. Press <**Enter**>.
 6. The **Operator Replay Step** screen appears.
 7. Press <**F6**> (Add) to create a new step on the Operator replay script step screen.
-:::note
+:::tip
 The screen for adding step data is the same as for Creating a new script, above. The next available sequence number for the script is automatically assigned, but the proposed sequence number can be modified in order to relocate the copied step into the correct position within the script.
 :::
 8. Press <**Enter**> to record the new step data.
@@ -247,7 +247,7 @@ The screen for adding step data is the same as for Creating a new script, above.
 6. The **Operator Replay Step** screen appears.
 7. Type **2** next to the step record that is modified on the Operator replay script step screen.
 8. Press <**Enter**> to continue.
-:::note
+:::tip
 The screen for modifying step data is the same as the screen for creating a new script. The sequence number can be changed to relocate any step to another location within a script. If the sequence number is changed, any associated Capture Data records will also be changed automatically.
 :::
 9. Press <**Enter\>** to record any changes.
@@ -262,7 +262,7 @@ The screen for modifying step data is the same as the screen for creating a new 
 6. The **Operator Replay Step** screen appears.
 7. Type **3** next to the step record that is modified on the Operator replay script step screen.
 8. Press <**Enter**> to continue.
-:::note
+:::tip
 The screen for copying step data is the same as the screen for creating a new script. The next available sequence number for the script is automatically assigned, but the proposed sequence number can be changed in order to relocate the copied step into the correct position within the script. Capture Data records from the source script step will NOT be copied to the new Step record. 
 :::
 9. Press <**Enter**> to record the new step data.
@@ -318,7 +318,7 @@ For information on defining an IBM i Job, refer to [IBM i Job Details](https://h
 
 Optionally, rules may be defined externally to the Operator Replay script that specify data to be captured from screen formats received by the Operator Replay script execution driver program. For each element of captured data there may be one or more Captured Data Response Rules defined.
 
-:::note Example
+:::tip Example
 Data Capture and Response Rules can be used to dynamically vary the way an
 Operator Replay script responds to screen formats! An explanation follows...
 An important example of how these features may be used is when an Operator Replay script step
@@ -328,7 +328,7 @@ the response of the Operator Replay script to each screen that is presented, bas
 of the screen format at execution time.
 :::
 
-:::note
+:::tip
 More detail about how Captured Data Response Rules function may be found in Events and Utilities, related to the SCANSPLF command.
 :::
 
@@ -345,7 +345,7 @@ More detail about how Captured Data Response Rules function may be found in Even
 4. Press <**F6**> to Add a new Screen Capture definition record in the Work with Screen Capture definitions screen.
 5. The **Create Screen Capture Definition** screen appears.
 6. Type the Name and Sequence number of an existing step in an existing Operator Replay script on the Create Screen Capture Definition screen.
-:::note
+:::tip
 The Script Name and Sequence Number must match an existing Operator Replay script. Therefore, it may be easier to use the <**F10**> function key from within the Sequence
 maintenance screen, as described below, to let the system automatically assign the correct values for these two fields.
 :::
@@ -390,12 +390,12 @@ maintenance screen, as described below, to let the system automatically assign t
 4. Press <**F6**> to Add a new Capture Response Rule record in the Work with Capture Response Rules screen.
 5. The **Create Capture Response Rule** screen appears.
 6. On the Create Capture Response Rule screen, type the Capture Identifier and Capture Sequence number, using an existing Operator Replay Script name for the Capture Identifier and the Sequence number of an existing step in the script as the Capture Sequence number. Function key <**F4**> may be used to select a valid Script Name and Step Sequence number from a list window, as long as the Type field value has first been set to a value of "C" (= Capture Screen data).
-:::note
+:::tip
 For use with Operator Replay, the Capture ID and Sequence must match an existing Script Name and Step Sequence Number. Therefore, it may be easier to use the <**F10**>
 function key from within the Step maintenance screen, as described above, followed by the <**F11**> function key to access Response rules, to let the system automatically assign the correct values for these two fields. This method is fully described below.
 :::
 7. Type a value of 'C' (= Capture screen data) for the Type field. The setting of this field controls what data will appear in the prompt window when <**F4**> is pressed from either the Capture Identifier or the Capture Sequence number field.
-:::note
+:::tip
 The Type field must be set to "C" to specify Operator Replay screen capture. The value of "S" is reserved for use with the SCANSPLF command, when report data will be captured and stored in the LSAM database.
 :::
 8. Assign a unique Response Sequence number to each response rule. The order of the sequence number determines which response rule will be executed first.

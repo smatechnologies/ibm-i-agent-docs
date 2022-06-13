@@ -6,7 +6,7 @@ sidebar_label: 'Procedure to Manage LSAM Debug/Audit Logging'
 
 This section presents a simplified method for starting, stopping, and retrieving LSAM debug log information. Please ask advice from SMA Support in order to decide which logging features to use and what log file content is needed to help solve a problem. More information about debug/audit logging may be found in the section titled Manage LSAM Logging, below.
 
-:::note
+:::tip
 It is not necessary to stop and restart the LSAM server programs when starting or stopping the debug logging features for the main job scheduling server programs.
 :::
 
@@ -17,7 +17,7 @@ At the same time, these logging options may be permanently useful to sites for t
 ## Turn On Debug Logging
 
 1. Log into the IBM i wit a user profile that has LSAM administration privileges.
-:::note
+:::tip
 The LSAM does not need to be started or stopped at this point.
 :::
 2. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
@@ -50,14 +50,14 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
 
     a.  Use <**F14**> to store the logging option in the LSAM Parameters, so that it will not take effect until the next time that the LSAM server jobs (or other feature) are restarted.
 
-    :::note
+    :::tip
     The LSAM does not need to be started or stopped to turn off debug logging.
     :::
 
 ## View and Retrieve the Debug Log Files
 
 1. Log into the IBM i with a user profile that has LSAM administration privileges.
-    :::note
+    :::tip
     The LSAM does not need to be started or stopped at this point, but the interactive job must be set to use the LSAM environment library list.
     :::
 2. All log files may be viewed from one of the functions on the View LSAM logs sub-menu, explained below. The log viewer sub-menu is accessed by selection option 6 from the LSAM main menu, then option 5 from the LSAM Management sub-menu.

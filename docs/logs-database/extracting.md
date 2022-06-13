@@ -14,7 +14,7 @@ Changes have been made to the SMASUP command used in the past, now eliminating t
 
 As an IBM i command, the SMASUP command can be executed from anywhere that IBM i commands are supported. However, unlike some LSAM environment management commands that include library list management, this command does not manage a job's library list, therefore the LSAM environment libraries must be included in the library list of any job that will execute this command. The command syntax show below includes the library location of the command, although this may not be required in most circumstances where this command would be executed.
 
-:::note Example
+:::tip Example
 ```
 SMAPGM/SMASUP LOGLIB(SEL) CLRLOG() RESTART() SEL_OPTS__() JOBTRK(0) 
 MSGMGT(0) UTIL(0) OPRRPY(0) RSTMOD(0) JOBSCH(0) JORS(0) SPLF(0) 
@@ -126,7 +126,7 @@ The same completion message will also be sent to the IBM i Operator Message Queu
 
 Record the name of the save file displayed in the completion message because it will be needed during the FTP (or other file transfer) process of copying the save file and sending it to SMA Support.
 
-:::note
+:::tip
 It is usually necessary to turn on the LSAM logging functions, using the documented Manage LSAM Logging function, before a useful log file extract can be performed. Trace logging is not performed during normal LSAM operations because it could impact system performance. SMA technical support can provide detailed instructions about which type of logging to enable and which LSAM functions to execute before a log file extract is completed.
 :::
 
@@ -141,18 +141,18 @@ One typical method of using FTP to transfer the save file from IBM i to a PC Win
 ### FTP the Logs Save File
 
 1. From a Microsoft Windows system, use FTP to transfer the logs save file to a personal computer hard disk directory from the IBM i library SMALOG. The save file is transferred to the MS Windows machine by a binary FTP transfer from IBM i acting as the FTP server, using the following steps.
-:::note
+:::tip
 The ftp command format used in the following example assumes that the IBM i FTP Server attributes have been set to use the name formatting for the IBM i DB2 library system, that is, SITE NAMEFMT 0. To change the FTP Server attributes from the UNIX path name format (SITE NAMEFMT 1), use this command:```CHGFTPA NAMEFMT(*LIB) LISTFMT(*DFT)```It is possible to prompt the CHGFTPA command using function key F4 to view the current settings of the FTP Server. If changes are not needed to those settings, exit the command prompt using function key F3=Exit.
 :::
 2. Use menu path: **Start > Run**.
 3. Type **cmd**.
 4. Click **OK**.
 5. If desired, change the drive reference to a convenient location on the personal computer hard disk by entering the drive letter followed by a colon (:).
-:::note
+:::tip
 C:\other_directory\>cd C:\
 :::
 6. As desired, change the directory to a location where it will be easy to find the transferred file, for example, the root directory of drive C(:)
-:::note
+:::tip
 C:\other_directory\>cd C:\
 :::
 7. At the prompt, enter **ftp** \<LSAM Machine Name or TCP/IP
@@ -163,7 +163,7 @@ C:\other_directory\>cd C:\
 11. Enter **quit** to exit the FTP utility.
 12. Enter **exit** to close the command entry window.
 
-:::note Example
+:::tip Example
 ```
 The following shows a typical FTP procedure in a DOS command window.
 C:\>ftp <LSAM Machine Name or TCP/IP address>

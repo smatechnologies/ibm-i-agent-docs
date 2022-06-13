@@ -29,7 +29,7 @@ The LSAM capability to log captured data and execute Captured Data Response Rule
 
 To use the SCANSPLF utility it is necessary to choose an Application ID (APP) and to create one or more SPLF (spool file) scanning rules that are assigned to this APP. A SPLF Scan Rule must be defined for each discrete value that will be specified in the SCANSPLF command keyword PARAMETERS string, although the SCANSPLF command also allows a special PARAMETERS keyword value of \*RULES that waives the requirement for Scan Rules to match the command PARAMETERS keyword values.
 
-:::note
+:::tip
 Previous versions of the LSAM required a separate Application ID master record. Now, the Application ID has become the primary key field of each Scan Rule master record. There is still a menu option to work with a list of unique Application IDs, but this is only a convenience tool for discovering sets of Scan Rules.
 :::
 
@@ -57,7 +57,7 @@ After a SPLF Scan Rule has been created, use the LSAM Menu 3, function 5: Work w
 5. The **Create Capture Response Rule** screen appears.
 6. On the Create Capture Response Rule screen, type the Capture Identifier and Capture Sequence number, using an existing SCANSPLF Application ID and the number of one of the SPLF Scan Rules. Function key <**F4**> may be used to select a valid Application ID and Sequence number from a list window, as long as the Type field value has first been set to a value of "S" (= SCANSPLF data).
 7. Type a value of 'S' (= SCANSPLF capture data) for the Type field. The setting of this field controls what data will appear in the prompt window when <**F4**> is pressed from either the Capture Identifier or the Capture Sequence number field.
-:::note
+:::tip
 The Type field must be set to "S" to specify SCANSPLF data capture. The value of "C" is reserved for use with the Operator Replay screen data capture function.
 :::
 8. Assign a unique Response Sequence number to each response rule. The order of the sequence number determines which response rule will be executed first.

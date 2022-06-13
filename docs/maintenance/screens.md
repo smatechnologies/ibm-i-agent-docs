@@ -99,12 +99,12 @@ obtaining the LSAM PTF save files; however, in most cases this option should be 
   -   Y = Yes, continue with restoring and loading the LSAM PTF control files after the LSAM PTF save files have been transferred to the local IBM i partition.
   -   N = No, stop the PTF Install process after obtaining the LSAM PTF save files, so that problem diagnosis can be performed before continuing to restore and load the save file content into the LSAM database.
 - **Job description, Library**: When the LSAM PTF installation process will be submitted to a batch job, these control values make it easy to set up the batch job definition; however, these values can be changed each time the PTF Install process is started.
-:::note
+:::tip
 The job description must include the correct initial library list that matches the current LSAM environment (usually named SMADEFAULT). Be sure to change the library location of the job description if a non-default LSAM environment is being used.
 :::
 
 - **Job queue, Library**: When the LSAM PTF installation process will be submitted to a batch job, these control values make it easy to set up the batch job definition; however, these values can be changed each time the PTF Install process is started.
-  :::note Important Note
+  :::tip Important Note
   Do not use the special value of *JOBD for the job queue name, whenever the LSAM server job description (SMALSAJ00) is being used, because the LSAM server subsystem will likely be suspended if any PTF requires that, and this would cause the PTF installation job to be ended abnormally. This is why the default values for the job queue are QGPL/QBATCH, although any IBM i subsystem that is appropriate for batch jobs can be used (that is, a job queue that is connected to that subsystem can be used).
   :::
 

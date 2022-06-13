@@ -23,7 +23,7 @@ Each PTF is accompanied by its own instruction documentation that may be availab
 
 The strategy for updating the IBM i LSAM software includes a method for updating program objects, and sometimes also a method for updating database files. As a rule, PTFs will not be used for database updates. Instead, database updates are better handled as part of an LSAM software version upgrade. If there are database file changes, they will be made in place in the SMADTA library (or the equivalent library in an alternate LSAM environment). Program changes are made to the LSAM base programs library, SMAPGM (or its equivalent). During the PTF application process a save file of replaced objects is automatically created in order to support the PTF rollback option. Some PTFs may not be eligible for rollback, in which case the PTF control record will show this special status and prevent the use of the rollback function.
 
-:::note
+:::tip
 For versions of the IBM i (IBM i) LSAM prior to version 04.00.03, the library SMAPTF was used to install the replacement program objects delivered by PTFs. The new standard for LSAM software maintenance now only stores one copy of each program object, either in the SMAPGM library or in the SMAGPL utilities library (and/or the IBM i QGPL library, if that option was selected foo LSAM environment management tools). The PTF rollback feature makes it safe to replace the base version of the LSAM software. Now the SMAPTF library is used only to store the PTF rollback save files.
 :::
 
@@ -109,7 +109,7 @@ The instructions below for obtaining and applying PTFs refer to the individual m
 
 There is a single LSAM command (and menu function), SMAPTFINS, that can be used to execute the entire PTF acquisition and application process from a single request. This option becomes available as soon as the PTF options and configuration have been completed from LSAM menu 9, option 7. SMA recommends using this command (and/or menu option 2 on the LSAM sub-menu 9) as the best way to install, load and apply PTFs all in one step. This comprehensive command includes each of the individual procedures outlined below, so its command parameters may be understood by studying the individual steps of PTF application that follow.
 
-:::note
+:::tip
 When using the SMAPTFINS command, only user profile QSECOFR may perform this function because the PTF application steps may periodically require QSECOFR authority. In some cases, it might be acceptable for an LSAM Administrator with *ALLOBJ authority to apply PTFs.
 :::
 

@@ -55,7 +55,7 @@ normally. For these systems, set this control field to N = No to allow the Agent
 
 ## Work with SCANSPLF Applications
 
-:::note
+:::tip
 In previous versions of the IBM i LSAM, there was a separate Application master file that had to be maintained. Now, the Application ID has become just the primary key field that helps gather Scan Rule records into groups. There is still a Work with SCANSPLF Applications function on the LSAM menu \# 3, but it is now only a convenience tool used to find applications and to copy or delete whole Application sets of Scan Rules at once.
 :::
 
@@ -213,7 +213,7 @@ Main Menu \> Events and Utilities menu (#3) \> Work with SPLF Scan Rules (#4) \>
 
 Refer to the How To section of this topic for examples of how the following field rules can be used.
 
-:::note
+:::tip
 The order of the fields listed in the table below will vary, depending on the setting of the "Scan Rule maint fmt 1- or 2-page" option in the "LSAM Utilities Configuration" screen (documented in previous pages of this section).
 :::
 
@@ -265,7 +265,7 @@ field that each cause a different result:
 - (scan) Value, *PARM, *CAPT, DVar: This field is used to specify or describe the scan value. The scan value will be the captured data value stored in the Captured Data Log file and referenced by any captured data response rules. When applicable, this scan value will be compared to the value found in the report at the specified location in order to determine if the scan rule has been matched or not matched. The scan values that may be specified include:
   - A specific value = Any character string may be specified as the value that should be compared to the scan value found at the specified location in the report. For example, this type of rule can be used to find a flag in a financial report that may say "OUT OF BALANCE" in order to cause the SCANSPLF command to fail, so that the OpCon/xps job that executed the SCANSPLF command will show up on the OpCon/xps Schedule as a failed job, triggering an operator response. Leading blank characters
 may be left in the scan value field if they must be included in the scan rule match. Use the scan value length to also include trailing blank characters.
-:::note
+:::tip
 Special values *PARM and *CAPT must be all capital letters.
 :::
 
@@ -279,7 +279,7 @@ Special values *PARM and *CAPT must be all capital letters.
   -   For the special scan value of *CAPT, use the scan value length combined with the From-position to specify the data that should be captured from the report. For *CAPT, if the scan value length is zeros, the the To-position must also be specified with the From-position in order to determine how much data to capture.
   -   Dynamic Variables are handled the same as typed scan values. The scan program first replaces a Dynamic Variable token with the variable's value at run time, then it subjects the scan value to the scan value length, as described above for specific values. Leave the scan value length at zero to allow the scan program to adapt to the actual length of the Dynamic Variable's value at run time. If a scan value length is specified, then the possible values of the Dynamic Variable must be well understood in advance in order to predict the results of the SCANSPLF match rules.
 - Bypass parm value: This field is used only when the SCANSPLF command will provide input values in its PARAMETERS keyword. If the specified bypass value is found in the input PARAMETERS position corresponding to this scan rule sequence number, then the input parameter will be considered matched by default and the report will not actually be scanned in order to set this scan rule to a status of matched.
-:::note Example
+:::tip Example
 For a given application, such as a financial report balancing task, the SCANSPLF command might be assembled by an automatic routine executing on the OpCon/xps server. In this example, assume that there are four input parameter values: debit item count, debit total amount, credit item count, credit total amount. If any of these values is not found in the source data used by the SCANSPLF command assembly routine, then that routine is allowed to insert a place-holder value that indicates, "thisvalue is not supplied today - ignore this parameter position." An example of such a value might be *empty*. In this case, the Bypass parm value should be set to this same value, *empty*. To make the bypass value work, the administrator configuring the LSAM SPLF Scan Rules must coordinate this special value with the programmer responsible for building the automated routines that will assemble the SCANSPLF command string for the OpCon/xps job. 
 - Bypass value length: Optionally, specify the length of the characters string used for the Bypass parm value. If this length is left at zeros, the scan program will assume that the Bypass parm value length ends with the last non-blank character. Leaving this value as zeros is the usual practice.
 - Compress numeric: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits.  Compressed monomeric do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the reference value (which may be an input PARAMETER from the SCANSPLF command) and the scan value found in the report when the option for compressing numeric data will be used. 
@@ -378,14 +378,14 @@ Main Menu \> Events and Utilities menu (#3) \> Work with Captured Data Response 
   -   CMD = an additional rules record is providing an additional response command to execute, associated with the qualification rules of the comparison record or     group of records immediately preceding this record. This continuation record will be ignored for comparison rules, it exists only to support multiple commands that are part of a single response group.
   -   (For more information on this field and examples, refer to the How To discussion above.) 
 - Compress numeric: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits. Compressed numeric values do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the captured data and the comparison data when the option for compressing numeric data will be used.
-:::note
+:::tip
 The setting of this flag also controls how captured data will be stored into a DynamicVariable, if one is named in the field below.
 :::
 - Store CAPT to-> DynVar: 
   - Typing a name into this field causes the captured data response rule module to create or update an LSAM Dynamic Variable in the LSAM table using the value of the captured data. This field is limited to only type-V (general use) Dynamic Variables. The LSAM command SETDYNVAR is executed by the response rules module to support this field.
   -  This variable value is set before the response command is processed, meaning that the response command can use the same dynamic variable name in order to have
 access to the currently captured value.
-  :::note
+  :::tip
   The format of the captured data that is stored in the Dynamic Variable is affected by the Compress numeric option, above.
   :::
   - (To create or update a type-L Dynamic Variable, insert a SETDYNVAR command into the response command line. This could be done on a separate response rule record that is associated with the same SPLF Scan Rule or Operator Replay screen capture rule.)

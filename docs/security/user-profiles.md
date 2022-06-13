@@ -8,7 +8,7 @@ sidebar_label: 'LSAM User Profiles'
 
 The IBM i LSAM Installation instructions and this **IBM i LSAM** online help state that the standard IBM i system operator user profile, QSYSOPR, should be able to operate the LSAM software, performing the functions of starting and stopping the LSAM server jobs. An IBM i LSAM user site may or may not wish to authorize the system   operator to perform other functions supported by the LSAM menu system. Most of the LSAM menu functions are for configuration tasks or diagnostic purposes, and these might be restricted to users who have been authorized, according to the procedures described in this topic.
 
-:::note Technical Notes
+:::tip Technical Notes
 The QSYSOPR user profile is specifically enabled to start or stop the LSAM server subsystem and jobs as of LSAM version 03.31.03, with PTF \# 16318 applied. Prior versions of the LSAM may require manual security maintenance procedures to enable QSYSOPR to perform these functions.
 :::
 
@@ -30,12 +30,12 @@ Similarly, to disable QSYSOPR and prevent this system operator profile from mana
 The default installation of the IBM i LSAM requires that there exist an LSAM Administrator user profile that has *ALLOBJ authority. QSECOFR may be used for this purpose. Since the LSAM Operator is a user profile with restricted privileges, the following rules apply:
 
 - When the LSAM software is installed, it is required that the installation be performed by QSECOFR. A user profile with equivalent authority may be used, but during the installation process, a check is made of the required user profiles, so *SECADM authority is required in addition to *ALLOBJ authority.
-:::note
+:::tip
 For versions of the IBM i LSAM prior to 04.00.03, it was required that QSECOFR be the first user to enter the LSAM menu processor using command STRSMA. This is no longer a requirement because the LSAM installation program now completes all essential configuration steps based on the parameters requested by the installation program.
 :::
 
 - The LSAM Parameters must first be configured by an LSAM Administrator before the LSAM Operator will be allowed to start the LSAM server programs.
-:::note
+:::tip
 The LSAM installation program requires enough basic configuration parameters that it should be possible for an operator to start the LSAM server programs immediately after the LSAM installation has been completed. However, SMA Technologies recommends that the LSAM Parameters (main menu, option 7) be reviewed first to assure that the LSAM performs as expected. Some of the LSAM Parameter values are required in order to complete the configuration of an OpCon/xps machine table record that defines the LSAM.
 :::
 - Only an LSAM Administrator user profile may perform LSAM configuration functions.

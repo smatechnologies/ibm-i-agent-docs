@@ -6,7 +6,7 @@ sidebar_label: 'Additional Information for OR Scripts'
 ## Cursor Control Strings
 
 - Backspace: Moves the cursor one column to the left, erasing a character (destructive backspace).
-:::note
+:::tip
 Backspace must be contained within the confines of a single input-capable field. Attempting to use Backspace to move left from the first column of an input-capable field generates an error (use Cursor Left to accomplish a move to the left outside of a field definition).
 - Cursor Down: Moves the cursor down one row. When the cursor starts from the lowest row of the screen size, the cursor wraps to the same column position in row 1.
 - Cursor Left: Moves the cursor one column to the left (without erasing a character like backspace would do). When the cursor starts from column 1, it wraps to the last column of the previous row. From row 1, column 1, the cursor wraps to the last column of the lowest row. 
@@ -20,11 +20,11 @@ Backspace must be contained within the confines of a single input-capable field.
 ## Functions to Send
 
 - ATTN: Sends an interrogative Attention signal to the display manager program in IBM i, causing whatever response has been defined for the Attention key. The Attention key usually suspends the screen dialog that was in progress. It interrupts screen dialog by presenting another screen's format that would not have been part of the defined dialog. Attention keys have a default action provided by IBM i (typically presenting a menu of options), but they may be changed using system control values and job attributes. They may also be overridden within a specific job by using the SETATNPGM command within that job.
-:::note
+:::tip
 SETATNPGM only takes effect for programs at, or lower in the invocation stack than the level where the command is issued. If the program returns to a higher level in the invocation stack, the system or job default setting for the attention key takes effect and the setting performed by the SETATNPGM command is abandoned.
 :::
 - ENTER: The default keyboard action that causes the input buffer contents to be returned to the IBM i program, usually without requesting any other special function.
-:::note
+:::tip
 The action caused by the following function keys (F1-F24) may vary, depending on how the IBM i display format was  defined: User-created display formats can specify whether each function key returns the input buffer contents along with the function key command, or just return the function key command without returning any data that 
  might have been entered by the display user (or display user intercept program). Some typical assignments that are made into function keys, such as by IBM i command entry/prompt screens, are listed in Function Keys.
 :::
@@ -54,10 +54,10 @@ The action caused by the following function keys (F1-F24) may vary, depending on
 - F24: Command/function key F24 (aid byte hexadecimal value 'BC')
 - HOME: The Home function key may be user-assigned to a specific location on the screen, or it may return the cursor to the first column of the first input-capable field on the screen.
 - PAGEDN: Page Down (formerly known as Scroll Up) requests that the screen host program (or the system function that manages a display subfile) present the next available page of information available for a list that is on the screen (aid byte hexadecimal value 'F5').
-:::note
+:::tip
 If Page Down is returned when the end of a list is already on the display, there may be a non-fatal error message returned.                        |
 - PAGEUP: Page Up (formerly known as Scroll Down) requests that the screen host program (or the system function that manages a display subfile) present the previous available page of information available for a list that is on the screen (aid byte hexadecimal value 'F4').
-:::note
+:::tip
 If Page Up is returned when the beginning of a list is already on the display, there may be a non-fatal error message
 returned.
 :::

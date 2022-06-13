@@ -160,7 +160,7 @@ special ON_ERROR Action code.            |
     not be used during restricted mode operations. This provides for
     retaining Actions for use on alternate days.
 
-:::note
+:::tip
 Reclaims of storage might only be performed once a quarter, while a full system save is performed every month.
 :::
 

@@ -39,7 +39,7 @@ The 256-byte SQL "WHERE" clause parameter is intended to deliver the file record
 
 In the following example of the SQL statement syntax, the WHERE clause is not automatically included, but must be typed by the author of the actual CL program that will prepare the WHERE clause.
 
-:::note Example
+:::tip Example
 SQL statement format processed by DYNVARSQLR program:
 ```
 SELECT CHAR(field) FROM library/file
@@ -57,7 +57,7 @@ However, in any case, the utility program will return only one value. This means
 
 If the utility program fails, it will log messages in the LSALOGF30 LSAM log file (viewed from LSAM sub-menu 6, option 5, log viewer 4) and to the QSYSOPR message queue. It will also return an error code in the ERROR parameter. When an error occurs, the utility program will leave the Value field untouched; that is, the Value parameter will be returned without any change to its initial value.
 
-:::note Example
+:::tip Example
 ```
 /*****************************************************************/
 /*                                                               */

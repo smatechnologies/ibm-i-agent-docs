@@ -1,36 +1,35 @@
 ---
 slug: '/'
-sidebar_label: 'Product Name'
+sidebar_label: 'IBM i LSAM Administration'
 ---
 
-# IBM i Agent
+# IBM i LSAM Administration
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Copyright © 2020 SMA Technologies
+All rights reserved.
 
-## Getting Started
+No part of this publication may be reproduced, transmitted, transcribed, stored in retrieval system or translated into any language or computer language, in any form or by any means, electronic, mechanical, optical, chemical, manual or otherwise, without specific prior written permission from SMA Technologies. 
 
-Get started by **creating a new site**.
+SMA Technologies makes no representation or warranties with respect to contents hereof. This manual is designed as a user's resource guide to the functions of OpCon. SMA Technologies reserves the right to revise this publication in the future without obligation by SMA Technologies to notify any person in advance of such revisions.
 
-Or **try Docusaurus immediately** with **[new.docusaurus.io](https://new.docusaurus.io)**.
+For further information about SMA Technologies' documentation, please contact:
 
-## Generate a new site
+| SMA Technologies |
+| :--------------: |
+| 15333 John F Kennedy Blvd |
+| Suite #300 |
+| Houston, Texas 77032 |
+| Tel: 281-446-5000 |
+| Toll Free: 877-762-6584 |
+| Fax: 281-446-7492 |
+| Email: (<a href="mailto:support@smatechnologies.com">Email Support at support@smatechnologies.com</a>) |
+| Website: [smatechnologies.com](https://smatechnologies.com/) |
 
-Generate a new Docusaurus site using the **classic template**:
 
-```shell
-npx @docusaurus/init@latest init my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+IBM PC is a trademark of International Business Machines.
+INFOConnect is a registered trademark of Attachmate Corp.
+Microsoft, Windows, MS, and MS-DOS are trademarks of Microsoft Corp.
+Crystal Reports is a trademark of Crystal Decisions.
+Unisys is a trademark of Unisys Corporation.
+Episys is a trademark of Jack Henry & Associates Inc.
+Other trademarks appearing in the guide are trademarks of their respective companies.

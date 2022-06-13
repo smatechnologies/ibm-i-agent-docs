@@ -13,7 +13,7 @@ message body of an eMail message.
 
 To prepare the CR+LF value, use the SETHEXDV command to store the value string represented by this notation: X'0D25' as two characters that will be the value used to replace a token such as {CRLF}. Users who understand EBCDIC hexadecimal characters and their uses can create many other types of formatting sequences; however, it will be necessary to test whether these will pass through the OpCon Event command processor program in the OpCon server, after the EBCDIC hex values have been translated to the ASCII character set that OpCon uses. 
 
-:::note HINT
+:::tip HINT
 Use the command SMAGPL/CPYTOMSGIN to test any Event command, since that LSAM command supports translating Dynamic Variable tokens. The LSAM sub-menu 3, option 1, supports a sub-prompt of most OpCon Event commands within the CPYMSGIN keyword field of the CPYTOMSGIN command, so it's easy to correctly format the OpCon Event command string. Insert a {DynVar} token anywhere within the Event command text string, although the hex values are only useful in the Subject Line or the Message Body parameters of the $NOTIFY:EMAIL Event command.
 :::
 
@@ -61,7 +61,7 @@ SMAPGM/LOGDYNVAR DVNAME(DVORKEYNAME1)  +
   DESC('CPU utilization from DSPSYSSTS')
 ```
 
-:::note
+:::tip
 Any value can be used for the DVNAME key value, but if it contains special characters or spaces, or it begins with a non-alpha character, then it must be contained within a pair of single quotes.
 :::
 
@@ -69,7 +69,7 @@ After one or more values has been stored in association with the same key value 
 
 Following is an example of the SQL syntax that can be used to produce a single average value for the new Dynamic Variable. The data and SQL clauses used in this example are explained in the notes that follow the example.
 
-:::note EXAMPLE
+:::tip EXAMPLE
 ```
 SELECT 'CPU avg: ' CONCAT AVG(DEC(DVVALUE,4,1))
 FROM SMADTA/LOGDYNVAR

@@ -20,7 +20,7 @@ The IBM i LSAM software and its supporting database are installed with the \*PUB
 
 The restriction of access to the LSAM operations does not necessarily impede the function of the LSAM. Once the LSAM server jobs have been started, the LSAM's user profile SMANET is still able to process job start requests from OpCon/xps. Details about the authorities required to run jobs for OpCon/xps are provided in this topic and in the IBM i LSAM Installation instructions, under Install the LSAM, steps 23 - 26. These steps provide important information that must be read and understood. Please contact SMA Support with any questions about the installation steps.
 
-:::note
+:::tip
 Technical support personnel might need to know that certain LSAM programs were created to run with the program owner's authority, rather than the program user's authority. This permits the LSAM server programs to complete some required internal maintenance as jobs are executed, without allowing unauthorized users access to the LSAM database files.
 :::
 

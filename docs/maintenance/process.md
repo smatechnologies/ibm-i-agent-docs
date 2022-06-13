@@ -16,7 +16,7 @@ It is often the case that a CD containing LSAM patch resources will be inserted 
 
 Once the LSAM PTF resources are copied to the SMAGPL library, all that remains are the two simple steps of loading the PTF information, and then applying the cumulative PTFs all at once.
 
-:::note
+:::tip
 SMA Installers should consult with the SMA TPM before conducting a product installation to review the latest available procedures that will be most appropriate for the circumstances of the installation.
 :::
 
@@ -132,7 +132,7 @@ Notice that it is required to end the Source directory path string with a forwar
 
 NTC is the abbreviation used by the LSAM to represent IBM's iSeries™ NetServer™. With iSeries Netserver personal computers that run Windows[®]{style="font-size: 80%;vertical-align: super;"} or Linux[®]{style="font-size: 80%;vertical-align: super;"} software can seamlessly access data and printers that are managed by the IBM i operating system. It is also possible for users and programs within IBM i to access data stored on the personal computers.
 
-:::note
+:::tip
 Sites that are not already using iSeries NetServer may not want to configure and use this class of IBM i services only for the purpose of the occasional LSAM PTF download. The NetServer services can impact overall system performance. If the decision is made to user NetServer only for this purpose, then consider ending the NetServer services once the PTF download process has been completed. This can be done, for example, from the System i Navigator.
 :::
 

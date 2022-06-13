@@ -124,7 +124,7 @@ The SMA File Transfer protocol includes specification of a Common Character set 
 
 However, the IBM i SMAFT implementation anticipates that foreign language environments may actually be using a unique CCSID for the ASCII character sets on their personal computers and/or UNIX operating environments. Therefore, the IBM i SMAFT Parameters supports specification of a default CCSID for each of the ASCII and EBCDIC character sets. This enables the IBM i SMAFT programs to produce predictable results when translating character sets according to the method described above.
 
-:::note
+:::tip
 Do not confuse the translation tables specified in the SMAFT Parameters with the CCSID codes. The translation tables are used only for the SMAFT communications protocol between the SMAFT Agent and Server running on different systems, where the common language is ASCII but the IBM i programs must translate the ASCII protocol text into EBCDIC for the communications programs to interpret them. The CCSID codes are used as a default value for the transferred data packets sent and received by SMA File Transfer. The IBM i SMAFT programs use CCSID translation routines (APIs) to accomplish data packet translation, rather than referring to translation tables.
 :::
 

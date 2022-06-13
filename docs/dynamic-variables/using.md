@@ -28,7 +28,7 @@ When adding or changing a Captured Data Response  Rule record, function key <**F
 
 It is important to understand that the response rule module stores the captured data value into the named variable before the response command is evaluated or executed. This makes it possible to rely on the captured value as part of the decision to determine whether a rule should be executed. This also implies that the variable named in the response rule record could be used in the response command in order to include the value of the data captured by the associated automation tool.
 
-:::note
+:::tip
 Older versions of the IBM i LSAM (before October of 2012) used to evaluate the Compare and Reference data values before deciding if captured data should be stored into an optionally named Dynamic Variable. However, this logic was changed using the Agent's software patching tools due to the overwhelming user response that the captured data should be available from a Dynamic Variable {TOKEN} to be used effectively for a majority of response rule use cases. This change also improved the forensic evidence in the Agent's log files that proves the outcome of an automated decision.
 :::
 

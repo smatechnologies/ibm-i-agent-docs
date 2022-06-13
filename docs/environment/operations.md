@@ -7,7 +7,7 @@ sidebar_label: 'Environment Management Operations'
 ## Create or Maintain an LSAM Environment Definition
 
 1. It is required to complete the Multiple Environment installation instructions before using a new environment.
-:::note
+:::tip
 Refer to Installing Multiple Environments. It is not necessary to install a multiple environment just to set up a library list for use with Restricted Mode operations (or for any other utility use of LSAM library list management that might be useful). In this case, the environment name is just a label for the library list.
 :::
 2. In the command line, enter **SMAGPL/SMALIBMGT**. For more information, refer to [SMALIBMGT](#SMALIBMG).
@@ -15,7 +15,7 @@ Refer to Installing Multiple Environments. It is not necessary to install a mult
 4. To change an existing environment: Type any changes on the existing line where the environment is already defined and press <**Enter**\> to record the changes.
 5. Build or maintain the library list for the environment by enter **5** next to the environment name and pressing <**Enter**\>.
 6. Type new or changed library list information on the library list display, and then press <**Enter**\> to edit the data.
-:::note
+:::tip
 Be sure to specify the library Type symbols in the correct order. Refer to the
 SMALIBMGTcommand for more information about library Types. Also, all LSAM environment
 library lists must include the SMAGPL library (or equivalent) for the LSAM programs

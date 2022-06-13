@@ -47,7 +47,7 @@ The higher level decision about Finished OK versus Failed can be further refined
 
 As the OpCon general standards for File Arrival jobs evolve, the full capabilities that are unique to the IBM i Agent File Arrival commands can be engaged by setting any command keyword value from the Variables Tab of an OpCon job. This makes it possible to engage any of this Agent's capabilities that are not already supported by the OpCon EM job definition panel.
 
-:::note
+:::tip
 The two variable prefix characters "$@" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of "$@". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the chapter about [Utilities Screens and Windows]../events-utilities/utilities-screens.md) for more information about changing the prefix characters.
 :::
 
@@ -381,7 +381,7 @@ The command parameter summary shown next defines each parameter and lists possib
 
     If any of the specified authority rights are not assigned to the AUTUSER, the command will fail with error code CKF0007. 
 
-    :::note 
+    :::tip 
     For Enterprise Manager File Arrival jobs, the list of authorities can be specified for DB2 tables using the Value column of the job's Variables table, specifying a variable name of $@AUT. Otherwise, the authority for DB2 tables will be set to approximate the READ, WRITE and EXEC stream file authority options supported by the Enterprise Manager job.
     :::
 
@@ -555,7 +555,7 @@ Both commands process their parameters in the following order.
 
     c.  Failure Code (command completion code) is set to CKF0000 (the message ID which implies that no completion code has been received).
 
-    :::note
+    :::tip
     Code CKF0010 is the normal completion code for a valid file found.
     :::
 
@@ -588,7 +588,7 @@ Both commands process their parameters in the following order.
 
     b.  The IBM i LSAM utility command LFEEDBACK is executed as necessary, sending a text message that includes the final command status code to OpCon, and possibly also a zero data message that includes code CKF0005. All LSAM Feedback from these commands is type 5802 = user-defined LSAM Feedback from the LFEEDBACK command. Response to LSAM Feedback is defined under the Events tab of an OpCon job.
 
-    :::note Hint
+    :::tip Hint
     Use an LSAM Feedback match value for specific codes like this: %CKF0006% for example.
     :::
 
@@ -639,13 +639,13 @@ When the Start or End times are used, the value that must be provided for these 
 
 "Midnight" refers to the very start of the day designated by the midnight date. Therefore, if today's date is derived as Midnight, then a value of (15) or (+15) will refer to 3:00 PM today. A value of (-15) will refer to 9:00 AM yesterday. Similarly, a value of 14.5 will refer to 2:30 today (that is, 14 hours and 30 minutes after Midnight).
 
-:::note Hint
+:::tip Hint
 For OpCon jobs, whether for the EM File Arrival job or a simple IBM i Batch Job, the Variables tab can optionally support a format of +/- hhhhh:mm, where +14:30 would mean 14 hours and 30 minutes after Midnight. It is also possible to specify decimal values (as above) in the Variables tab Values column, but this is not necessary since the times can be specified with decimal values in the Batch Job command line, or by using the easily managed user interface of the newer EM File Arrival job. For OpCon jobs when the EM File Arrival job is being used, the only way to specify the CRTREFDATE is to use the Variables tab and specify one of the valid date values in the Value column for the variable named $@CRTREFDATE.
 :::
 
 The CRTREFDATE parameter can be used to control which date is used as the Midnight date. Please refer to the command parameters Values tables above for the various ways that midnight can be designated, or what it means when this parameter is not specified and will use its *DEFAULT value. Specific values that are supported include *SCHED (= the Schedule Date for an OpCon job) and *JOB (= the IBM i Job Date), in addition to either an actual date specified in the format 'CCYYMMDD' (including the single quotes). It is also possible to put an LSAM Dynamic Variable token into this command parameter (surrounded by single quotes).
 
-:::note Hint
+:::tip Hint
 For OpCon jobs when the EM File Arrival job is being used, the only way to specify the CRTREFDATE is to use the Variables tab and specify one of the valid date values in the Value column for the variable named $@CRTREFDATE.]
 :::
 
@@ -658,7 +658,7 @@ Other rules about how the Start and End times control the file checking commands
 
 The JOBENDTIME and JOBREFDATE are processed in exactly the same manner as the File Create Start/End Times. But for EM File Arrival jobs, these two parameters can only be specified by providing Values under the Variables tab for the two parameter names $@JOBENDTIME and $@JOBREFDATE.
 
-:::note Important
+:::tip Important
 Within the IBM i system, if a file was created during Standard Time, but then the File Arrival job executes during Daylight Saving Time, the green screen display of the Creation Date/Time will differ by one hour from the Create time supplied by the API services utilized by the File Arrival job. (The same holds true for the opposite case, that the file was created during Daylight Saving Time but the File Arrival job executes during Standard Time.) In other words, the API services compensate for the time differences, but the user view from the green screen commands can confuse the user about what would be the correct time to specify for a File Create Start/End Time value.
 :::
 

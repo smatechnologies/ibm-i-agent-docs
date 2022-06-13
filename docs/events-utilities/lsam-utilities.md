@@ -57,7 +57,7 @@ When the SCANSPLF command is included in the job Call command line after a speci
 
 When the SCANSPLF command is used along with additional SBMJOB job parameters, the SCANSPLF command and its own parameters must follow any job definition parameters. That is, the SCANSPLF command string must be the last string of non-blank characters in the Call information field, following the Job parameters separator character, as in the following example:
 
-:::note EXAMPLE
+:::tip EXAMPLE
 ```
 WRKJOB JOB(*) OUTPUT(*PRINT) 
 OPTION(*ALL)|CCSID(297)  
@@ -72,7 +72,7 @@ For important additional information about the special character that is used to
 ### SCANSPLF Command Syntax
 
 The SCANSPLF command entered in an IBM i command line, either from IBM i or from the Call information in an IBM i job on an OpCon/xps schedule, requires the syntax illustrated in the following example:
-:::note  EXAMPLE
+:::tip  EXAMPLE
 ```
 SCANSPLF APP('App ID: lower case and spl chars') DATE(20010101)
 OPCONJOB(Y) PARAMETERS('*empty*:12345:*empty*:67890')
@@ -208,14 +208,14 @@ learn how these dynamic variable parameters can be used.
 
 Since the SCANOUTQ command is a driver to select spool files to be scanned by the SCANSPLF command, then the functions of this SCANOUTQ command can be understood by studying the syntax and the parameter fields table that follows.
 
-:::note
+:::tip
 It is not possible to use the SCANOUTQ command in an OpCon IBM i job master record as an extension to the Call command line, as with SCANSPLF. However, the SCANOUTQ command can be executed by a separate IBM i batch job in an OpCon schedule.
 :::
 
 ### SCANOUTQ Command Syntax
 
 The SCANOUTQ command entered in an IBM i command line, either from IBM i or from the Call information in an IBM i job on an OpCon/xps schedule, requires the syntax illustrated in the following example:
-:::note EXAMPLE
+:::tip EXAMPLE
 ```
 SCANOUTQ OUTQ(MYLIB/MYOUTQ)
    APP('App ID: lower case and spl chars')
@@ -356,7 +356,7 @@ The example starts with some one-time configuration steps to create components t
   SETDYNVAR VARNAM(EXJOBNAM) VARTYP(V) DESC('Spool file Job Name from
   SCANOUTQ')
   ```
-  :::note
+  :::tip
   The use of these Dynamic Variables implies that the spool file processing must handle only one spool file at a time, otherwise another job could overlay the Dynamic Variable values. The SCANOUTQ command is designed to perform serial processing of one spool file at a time. SMA Technologies has a design objective to implement multi-instance dynamic variable support, which would then make it possible to support multi-threaded processing of the same job definition, that is, it would be possible to have OpCon execute multiple copies of the same job or schedule (using the multi-instance flag?) at the same time. Please contact SMA Technologies Support if you have an immediate need for this enhancement.
   :::
 
@@ -369,7 +369,7 @@ The example starts with some one-time configuration steps to create components t
     The LSAM Scan Rules maintenance display is illustrated in the SPLF Scan Rule Example figure. The effect of this Scan Rule, itself, is only to capture the first line on the first page, up to 80 characters. This captured data is not useful for this example, but some Scan Rule must be specified to provide a link between the
     SCANOUTQ command and the Response Rule(s) defined below. The practice of storing some identifying information about the report being processed may prove useful in the future, in case this automation is being audited, for example, for diagnostic purposes.
 
-    :::note
+    :::tip
     The Required Rule flag is set to 'N' = no. This flag is not being used in this application. This example employs the options that both the SCANOUTQ command and the SCANSPLF command should always end normally. These ending options are useful only when the report content is being compared to some reference value, and the SCANOUTQ job must report a positive or negative scan outcome to OpCon as a job completion status.
     :::
 
@@ -587,13 +587,13 @@ The Compare Data Line field can support up to 1920 characters of data. This leng
 
 The Captured Data Response Rules record supports entry of an LSAM Dynamic Variable name and also of an LSAM Operator Replay token variable name. Dynamic Variables are described in detail below and also in the topic about Job Tracking. Operator Replay token variables are explained in detail in the topic about Operator Replay. This discussion here is focused only on the function of the fields used by a Captured Data Response Rule to store captured data into LSAM variables.
 
-:::note
+:::tip
 Operator Replay token variables are an old form of variable that is no longer used, since the more powerful Dynamic Variable tokens can now be used in every place the old tokens were used. Always choose Dynamic Variables!
 :::
 
 When the response rule is actually executed, which happens whenever captured data (explained above) is being stored in the Captured Data Log file, the data that is captured is available to the Response Rule execution module. If the response rule has named either type of variable (Dynamic Variable or Operator Replay token variable), the associated variable loading command (SETDYNVAR or ADDRPYTOK) is executed to set the variable value in the appropriate LSAM table using the current captured data value. Each of these commands will create the variable master record if it does not already exist.
 
-:::note
+:::tip
 If the Captured Data Response Rule has the flag set that specifies to compress numeric data, then the value stored in an LSAM Dynamic Variable will also be the compressed numeric data. This means that any punctuation such as used for monetary amounts will be eliminated in the variable, though it exists in the originally captured data. Also refer to the sub-section below about scrubbing single quotes or commas from text strings.
 :::
 
@@ -623,7 +623,7 @@ Similarly, there are two independent LSAM commands that can complete the same pr
 
 - SETCAPVAR = set an LSAM Dynamic Variable to the value of the identified Captured Data element.
 - SETCAPTOK = set an LSAM Operator Replay token variable to the value of the identified Captured Data element.
-:::note
+:::tip
 Operator Replay token variables, though still supported for existing users, are replaced by Dynamic Variables, so always use Dynamic Variables in future applications.
 :::
 These two commands could be used anywhere that IBM i command execution is possible, as long as the executing job has reference to the LSAM environment library list. But these commands do not provide infinite control over the exact captured data value instance that will be retrieved, due to the fact that multiple captured data elements could exist for the same Capture ID and Capture Sequence key values, with only their date/time stamps (time of capture) being different. Therefore, as
@@ -1033,7 +1033,7 @@ File OPRLOGF40 is where captured data is stored by either the SCANSPLF command o
 
 An Operator Replay script screen data capture rule always stores data in the data capture log file. But the SCANSPLF command can only store data in this log file when it finds a match to a SPLF Scan Rule. The reason that the SCANSPLF command does not store captured data for mismatched rules is that there is no guarantee that the desired scan rule data would ever be found in the report, and it is not possible to compute the actual page, line and row where the scan data was located.
 
-:::note TECHNICAL NOTE
+:::tip TECHNICAL NOTE
 The execution of optional Captured Data Response Rules could have been implemented as the result of a trigger added to the Data Capture log file. Instead, the search and execution of Response Rules has been implemented in a single, centralized program module that is shared (compiled by copy) by all programs that write to this log file. This choice was made due to its relative efficiency, its ease of maintenance and to keep database maintenance simpler.
 :::
 
@@ -1063,7 +1063,7 @@ master files. When the SMARGZ command is used this way, a collection of save fil
 
 More information about the SMARGZ and SMASUP commands is provided in [Log File and Database Management](/logs-database/overview) and [Commands and Utilities](/commands-utilities/commands).
 
-:::note TECHNICAL NOTE
+:::tip TECHNICAL NOTE
 In order to use the LSAM menu functions to view historical log data, it would be necessary to restore the backed up log files from a save file produced by the SMASUP command to a temporary staging library. The LSAM menu functions can be used to view the log file contents if the staging library is added above SMADTA in the job's library list.
 :::
 
@@ -1113,6 +1113,6 @@ daily operational log file saves and D for debug/audit log file saves), while th
 Next, the contents of the restored save file can themselves be restored to the same temporary library (except for full library saves completed by the SMASUP command in LIB mode - as when SMARGZ executes SMASUP) using the RSTOBJ command. (Full library saves must be restored to a separate, temporary library using the RSTLIB command.) After the files are restored, start the LSAM menu system (command STRSMA, or LSAMENU). To use the LSAM log file viewer programs for examining the restored log
 files, add the temporary library to the top of the library list (using the IBM i command ADDLIBLE). While the library list is altered, the LSAM menu-driven log file viewers will show the contents of the restored log files instead of the current versions of those files. After the investigation is complete, remember to remove the temporary library from the interactive job's library list, or just exit out of the LSAM menu system.
 
-:::note TECHNICAL NOTE
+:::tip TECHNICAL NOTE
 Some of the restored log and master files may require that a logical view be duplicated from the live SMADTA library to the temporary library, in order to support the LSAM log viewer programs. Please contact SMA Support for advice if this becomes necessary.
 :::

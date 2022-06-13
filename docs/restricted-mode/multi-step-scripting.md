@@ -167,7 +167,7 @@ Individual script steps may optionally include a comparison rule that is used to
 
 - The Comparison Rule uses a Boolean operator or the English letters that represent Boolean operations to govern how the Data is compared to the
 Reference.
-:::note Example
+:::tip Example
   In this formula: A > B (if A is greater than B)
 
   ...the letter A represents the Compare Reference, and

@@ -12,7 +12,7 @@ There are IBM i commands installed with the SMA Agent for IBM i that can be used
 
 This section of the topic provides a detailed explanation and instructions for using the LSAM Commands that communicate with OpCon, listed at the start of the Commands Table, above.
 
-:::note
+:::tip
 Most commands that communicate with OpCon must originate from within an IBM i job that was started by OpCon, or is being tracked by OpCon. The LFEEDBACK command is enhanced with a JOB() parameter that supports naming a job that is monitored by OpCon.
 :::
 
