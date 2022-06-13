@@ -250,7 +250,7 @@ The screen for adding step data is the same as for Creating a new script, above.
 :::tip
 The screen for modifying step data is the same as the screen for creating a new script. The sequence number can be changed to relocate any step to another location within a script. If the sequence number is changed, any associated Capture Data records will also be changed automatically.
 :::
-9. Press <**Enter\>** to record any changes.
+9. Press <**Enter>** to record any changes.
 
 #### Copy a Step
 

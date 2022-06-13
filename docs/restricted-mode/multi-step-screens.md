@@ -12,7 +12,7 @@ The Restricted Mode and Multi-Step Job Menu is documented above.
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Option (#5)
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#5)
 
 ##### Options
 
@@ -45,10 +45,10 @@ The screen is used to illustrate the Display, Change, Copy and Add functions.
 
 ##### Menu Pathways
 
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> F6= Add
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 2 = Change
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 3 = Copy
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 5 = Display
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > F6= Add
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 2 = Change
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 3 = Copy
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 5 = Display
 
 ##### Functions
 
@@ -73,7 +73,7 @@ The screen is used to illustrate the Display, Change, Copy and Add functions.
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Option 4=Delete
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 4=Delete
 
 ##### Functions
 
@@ -84,35 +84,35 @@ Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Option 4=Delete
 ### Script Steps Flow Chart (option 9)
 
 Script Steps Flow Chart
-
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-[MLTR11R1                ]{style="color: #008000;"}Multi-Step Job Script Flow Chart              [00/00/00]{style="color: #008000;"}   [USERNAME                    Starting Script:]{style="color: #008000;"} [TEST1]{style="color: #ff00ff;"}                    [00:00:00]{style="color: #008000;"}
-  [                                                     Search content:]{style="color: #008000;"} [          ]{style="color: #ffcc00;text-decoration: underline;"}   Script/Label  BR/STEP Command
+```
+MLTR11R1                Multi-Step Job Script Flow Chart              00/00/00   
+USERNAME                    Starting Script: TEST1                    00:00:00
+                                                      Search content:__________    
+ Script/Label  BR/STEP Command
   TEST1                 Export testing
-  \|..              0010   DLYJOB DLY(1)
-  \|..              0020   SMASUBR SCRIPT(TEST3) RSTLABEL(LBL3A) JOBTYPE(T) /\* Co
-  \|..           SMASUBR    Script: TEST3  Label: LBL3A
-  \|..                         WARNING: Branch Label not found
-  \|..RESTART030    0030   SMADTA/DBFCMDSRC(MJSTEP1) = MJLBL01:   SNDMSG MSG('Tes
-  \|..              0040   SMAGOTO SCRIPT(TEST2) STEP(RESTART020)
-  \|..           SMAGOTO    Script: TEST2  Label: RESTART020
-  \|..           \-\--\>          (See analysis of GOTO target above/below)
+  |..              0010   DLYJOB DLY(1)
+  |..              0020   SMASUBR SCRIPT(TEST3) RSTLABEL(LBL3A) JOBTYPE(T) /* Co
+  |..           SMASUBR    Script: TEST3  Label: LBL3A
+  |..                         WARNING: Branch Label not found
+  |..RESTART030    0030   SMADTA/DBFCMDSRC(MJSTEP1) = MJLBL01:   SNDMSG MSG('Tes
+  |..              0040   SMAGOTO SCRIPT(TEST2) STEP(RESTART020)
+  |..           SMAGOTO    Script: TEST2  Label: RESTART020
+  |..           --->          (See analysis of GOTO target above/below)
   END
 
   TEST2                 Second test as sub-script from TEST1
-  \|..RESTART020    0020   DLYJOB DLY(1)
-  \|..              0030   SMAGOTO SCRIPT(TEST1) STEP(RESTART030)
-  \|..           SMAGOTO    Script: TEST1  Label: RESTART030
-  \|..           \-\--\>          (See analysis of GOTO target above/below)
+  |..RESTART020    0020   DLYJOB DLY(1)
+  |..              0030   SMAGOTO SCRIPT(TEST1) STEP(RESTART030)
+  |..           SMAGOTO    Script: TEST1  Label: RESTART030
+  |..           --->          (See analysis of GOTO target above/below)
   END
-  Bottom
+                                                                           Bottom
   F3=Exit F5=Refresh F9=Print F10=Fold/Unfold F11=View F12=Cancel F16=Search Nxt
-  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Option 9=Flow chart
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 9=Flow chart
 
 ##### Functions
 
@@ -141,7 +141,7 @@ Also refer to the alternate list format for Scripts of type SRCMBR described on 
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script Steps
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script Steps
 
 ##### Options
 
@@ -173,7 +173,7 @@ Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scri
 - **Script Name**: The name of the Script whose Steps appear in the list.
 - **Type**: The Script type code of STEPS or SRCMBR. When the Script type is SRCMBR, the list shows the (partial) contents of each record found in the referenced source file member.
 - **Description** The description from the Script master record.
-- **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to search all the master records for the first record that contains the value. The entire master record is searched, not just the fields appearing on the list display. After a new search is started, use the **\<F16\>** function key to continue the search to the next record.
+- **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to search all the master records for the first record that contains the value. The entire master record is searched, not just the fields appearing on the list display. After a new search is started, use the <**F16**> function key to continue the search to the next record.
 - **Opt**: Type one of the options listed near the top of the display next to one or more of the listed lines, then press <**Enter**> to start executing each option, one by one.
 - **Seq #**: The sequence number assigned to each Script. Function key F7 can be used, when necessary, to automatically re-sequence all of the Steps in the current Script.
 - **S (Status)**: The status of a Step master record can be "I" = Inactive (will not be considered during Script execution, except for a LABEL if it is not blank). Otherwise, if the status is blank or "A", the Script Step is active.
@@ -192,7 +192,7 @@ Also refer to the alternate list format for Scripts of type STEPS, described abo
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script Steps
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script Steps
 
 ##### Options
 
@@ -225,10 +225,10 @@ The screen is used to illustrate the Display, Change, Copy and Add functions. Fo
 
 ##### Menu Pathways
 
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script steps \> F6= Add
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script steps \>Option 2 = Change
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script steps \> Option 3 = Copy
-- Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script steps \>Option 5 = Display
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > F6= Add
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps \>Option 2 = Change
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > Option 3 = Copy
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps \>Option 5 = Display
 
 ##### Functions
 
@@ -292,7 +292,7 @@ The Multi-Step Job Script driver program will recognize exactly spelled tokens a
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Multi-step Job Scripts \> Option 1 = Script steps \> Add/Change/Copy/Display \>
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > Add/Change/Copy/Display \>
 F13=Full CMD
 
 ##### Functions
@@ -318,7 +318,7 @@ F13=Full CMD
 
 ##### Menu Pathways
 
-Main Menu \> Restricted Mode and Multi-Step Job menu (#5) \> Option 1=Script steps \> Option 4=Delete
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 1=Script steps > Option 4=Delete
 
 ##### Functions
 

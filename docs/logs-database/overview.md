@@ -4,7 +4,7 @@ sidebar_label: 'Log File and Database Management'
 
 # Log File and Database Management
 
-:::note REVISION NOTE
+:::tip REVISION NOTE
 This topic was previously titled "Debug Mode." It still describes how to turn debug/audit logging on and off, but the LSAM debug/audit file management has been enhanced with additional tools that help maintain disk utilization and that make it easier to extract log and/or master files to send to SMA Support.
 :::
 

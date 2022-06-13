@@ -11,20 +11,20 @@ sidebar_label: 'OR Script Screens and Windows'
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Replay configuration (#5)
+Main Menu > Operator replay menu (#4) > Operator Replay configuration (#5)
 
 ###### Fields
 
 **TCP/IP and Device Configuration**
-- Telnet device modes:  
+- **Telnet device modes**:  
   - The list of optional Telnet device modes is introduced by the F1=Help text, and it is fully explained in the [Managing Virtual Devices](../operator-replay/virtual-devices.md) section near the end of the Operator Replay Scripts chapter.
-  - NOTE: MODEs 2-4: Use F1=Help to view an introduction to the Telnet Exit Program use and configuration. See [Managing Virtual Devices](../operator-replay/virtual-devices.md) near the end of the Operator Replay Scripts chapter for complete instructions.
-- IP Address: 
+  - NOTE**: MODEs 2-4: Use F1=Help to view an introduction to the Telnet Exit Program use and configuration. See [Managing Virtual Devices](../operator-replay/virtual-devices.md) near the end of the Operator Replay Scripts chapter for complete instructions.
+- **IP Address**: 
   - This address is used to start an emulated interactive user session, using IP Telnet protocol. The default value for this field is the typical *LOOPBACK interface address of 127.0.0.1. Use F4=Prompt to see a list of valid values that IBM i supplies from existing configured IP lines. SMA Technologies recommends using loopback interfaces instead of physical line descriptions for Operator Replay Script jobs to ease the configuration and improve system efficiency.
   - An IP Address is always required by the Operator Replay Script driver program. However, the IP Address might be provided from either User Management, from the OpCon job start request (as an extension to the Script name) or from the STROPRRPY command when it is used for testing. When an alternate source for the IP Address has been configured, this field value in the Configuration screen is usually ignored, unless it may be used by reference to a *DEFAULT value in the IPADDR( ) parameter of the STROPRPRY command.
-- Telnet port: 
+- **Telnet port**: 
   - The default telnet port of 23 should be specified, unless IBM i has been configured to support Telnet services at a different port. This is the port where the emulated interactive user session will be started by the Operator Replay control program.
-- Telnet device name: 
+- **Telnet device name**: 
   - Enter a virtual display device name or one of the functional values:
   - Mode 1: Leave this field blank. The system will select or create an available virtual display device.
   - Mode 2: This mode requires an actual virtual display device name.
@@ -33,64 +33,64 @@ Main Menu \> Operator replay menu (#4) \> Operator Replay configuration (#5)
   :::tip
   To allow command line parameter overrides when in User mode, type both values into this field: "*USER *CMD"
   :::
--  Telnet device exit program number:
+- ** Telnet device exit program number:
   - This is a protected display field, showing the default exit program number that will be used by the Agent when adding or removing the exit program entry in the IBM i registry. 
   - In case of the unlikely event that this unique number is already in use by some other software application, use function key F13 to unlock this field and type in a different, valid exit program number. (Valid values are mostly below the default value, since this was intentionally set to very near the upper limit.)
 
 **General Configuration Options**
-- Script job logging:
+- **Script job logging:
   - Controls whether the interactive user emulation session will be recorded in the LSAM's Operator Replay log file. Use this feature whenever a new script is added, or to diagnose suspected problems with a script. There will always be a log index entry made for every script that is executed, but only:
     - Y = yes, record each Script execution in its own log file data member, corresponding to the log index entry.
-- Script job debug logging:
+- **Script job debug logging:
 For use by technical support personnel only. This option causes additional log entries to be added to a special trace file, OPRLOGF20. Refer to more information about this function under the F17 and F18 function key descriptions.
-- Telnet exit pgm trace log:
+- **Telnet exit pgm trace log:
   - For use by technical support personnel only. This option causes additional log entries to be added to a special trace file, OPRLOGF20. Refer to more information about this function under the F19 and F20 function key descriptions.
-- Post-send delay:
+- **Post-send delay:
   - The number of microseconds to wait after sending a reply to a screen format, before attempting to read the system response to the sent data. A tuning option for the script execution program, this value should only be changed by trained technical support personnel.
-- Inter-read delay:
+- **Inter-read delay:
   - The number of microseconds to wait in between reading segments of the screen buffer that the system is writing. A tuning option for the script execution program, this value should only be changed by trained technical support personnel. SMA Technologies recommends using 0.1 seconds for this field (instead of a whole 1 second, previously offered as the default value).
-- Receiving data timeout:
+- **Receiving data timeout:
   - The number of microseconds to wait before deciding that the system is no longer replying to the script execution. A tuning option for the script execution program, this value should only be changed by trained technical support personnel.
   :::tip
   This value can be overridden at the script step level.
   :::
-- Script loop detect limit:
+- **Script loop detect limit:
   - Number of repeats by Script Branching Logic to same or lower Step sequence number allowed within same Script name before script execution is aborted with an error message reporting too many loops.
   - The Script Step master records support an override value to this limit, in case a script must intentionally loop back to the same step more times than this global loop limit would allow.
-- Separator data columns:
+- **Separator data columns:
   - Each of the three separator hex character values shows a maintainable value field in yellow. To the right is the current value in the control file, shown in turquoise. The displayable character equivalent of each hex character sequence is displayed as a single pink character. Use the LSAM command LSATBLTEST to test results for hex character sequences, especially when US English (CCSID 37) is NOT the IBM i default character set.
 
 **Hexadecimal control characters**
-- Token/variable separator:
+- **Token/variable separator:
   - The special character that is inserted by the script maintenance program to designate a character string that is actually a token or variable field that will have its value substituted from the user-defined list of tokens.
   - If this value is changed, it could affect all the existing scripts. A warning and utility function screen will follow.
   - This value should only be changed by trained technical support personnel, and then only if required to work around a conflict in the character sequences being
 managed by the script execution program. 
-- Cursor control separator 1:
+- **Cursor control separator 1:
   - The special character that is inserted by the script maintenance program to designate the start of a character string that will be used to move the cursor on the emulated green screen image during script execution.
   - If this value is changed, it could affect all the existing scripts. A warning and utility function screen will follow.
   - This value should only be changed by trained technical support personnel, and then only if required to work around a conflict in the character sequences being managed by the script execution program.
   - This value is a pair of displayable characters used to represent the hexadecimal value of the actual single character used as the separator.
-- Cursor control separator 2:
+- **Cursor control separator 2:
   - The special character that is inserted by the script maintenance program to designate the end of a character string that will be used to move the cursor on the emulated green screen image during script execution.
   - If this value is changed, it could affect all the existing scripts. A warning and utility function screen will follow.
   - This value should only be changed by trained technical support personnel, and then only if required to work around a conflict in the character sequences being managed by the script execution program.
   - This value is a pair of displayable characters used to represent the hexadecimal value of the actual single character used as the separator.
 
 **Displayed Data Translation**
-- Displayed data translation:
+- **Displayed data translation:
   - Refer to the discussion below about the purpose for these table names. Note the option to use CCSID character set numbers instead of translations; this option may produce better results in countries outside of the United States of America. SMA Technologies Support can help with the analysis of any translation problems.
 
 **"Attempt to Recover Interactive Job" Display -- Local Language**
-- Instructions: 
+- **Instructions**: 
   - If an Operator Replay Script job ended abnormally, depending on the system value QDEVRCYACN, the next attempt to access the same display device might be intercepted by a job recovery message. The Operator Replay script driver will attempt to recognize and bypass this message if the display matches these configuration values. This will prevent another script job failure and it will also reduce the requirement for manual operator intervention to restore the status of the display device.
   - It might be necessary to view the Operator Replay log display and examine the detailed log of screen output to determine the exact values required in these Configuration fields. But after the first incident, if the Row, Column and Text are configured correctly, then the script driver program will be able to successfully bypass future incidents of this type. 
   - The default title text shown in the display is intended to match the screen title that appears in a default US EBCDIC partition. Update this text to match what is found in the Operator Replay log details display.
-- Row of title:
+- **Row of title:
   - 1 (the row location of the screen title in a default US EBCDIC partition)
-- Column of title:
+- **Column of title:
   - 24 (the column where text begins in a default US EBCDIC partition
-- Local title text:
+- **Local title text:
   - Attempt to recover interactive job
 
 ###### Functions
@@ -129,7 +129,7 @@ However, LSAM i nstallations that were upgraded to version 04.00.03 from prior v
 
 ###### Fields
 
--  New/Old:  The New values will be inserted into the Script Steps if conversion is confirmed, replacing the Old values (when they are different). For more  information, refer to the field descriptions for [Operator Replay Configuration](../operator-replay/screens.md).
+- ** New/Old**:  The New values will be inserted into the Script Steps if conversion is confirmed, replacing the Old values (when they are different). For more  information, refer to the field descriptions for [Operator Replay Configuration](../operator-replay/screens.md).
 
 ###### Functions
 
@@ -152,19 +152,19 @@ X'79'. Please contact SMA Technologies Support for more information.
 ### Operator Replay Script List
 
 - **Screen Title**: Operator Replay Scripts
-- **Screen ID**: OPRRPYR10-1
+- **Screen ID****: OPRRPYR10-1
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2)
+Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2)
 
 ###### Fields
 
--  Position to Script Name:   This is used to quickly search for a particular script. Type the first characters of the script name and press <**Enter**>.
--  Opt:                       <**Tab**> to a row in the table and enter an option. The options are listed below.
--  Name:                      Shows the name of the scripts. Select the name of the script to change, copy, or delete.
--  User:                      Shows the creator of each individual script.
--  Description:              Shows the existing description of the script. Add a description or modify the existing description.
+- **Position to Script Name**:   This is used to quickly search for a particular script. Type the first characters of the script name and press <**Enter**>.
+- **Opt**:                       <**Tab**> to a row in the table and enter an option. The options are listed below.
+- **Name**:                      Shows the name of the scripts. Select the name of the script to change, copy, or delete.
+- **User**:                      Shows the creator of each individual script.
+- **Description**:              Shows the existing description of the script. Add a description or modify the existing description.
 
 ###### Options
 
@@ -240,8 +240,8 @@ field added and the Name field cannot be changed.
   Enter=Confirm   F12=Cancel
 ```
 ###### Fields
-- Name:          The name of the script(s) that is deleted.
-- Description:   A description of the script(s) that is deleted.
+- **Name**:          The name of the script(s) that is deleted.
+- **Description**:   A description of the script(s) that is deleted.
 
 ###### Functions
 
@@ -299,18 +299,18 @@ A list of the symbolic field labels used for each Step record is documented unde
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 7 (Capt chart)
+Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 7 (Capt chart)
 
 ###### Fields
 
-- Script:           Under the screen title is the name of the Operator Replay Script that is being analyzed by this list display.
-- Search content:   Type a value to be used as a search argument. Press <**Enter**> or <**F16**> to start a new search. All fields in a step record will be searched, not only the data displayed on the list. Use option 5=Display to discover the matching field that may not appear in the list.
-- Opt:              <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function.
-- Step:             The Script Step number is shown for lines colored yellow (left-most indent).
-- Capt ID:          The Capture ID is shown for lines in blue (indented 1 space under a Step).
-- RspSeq#:         The Response Rule sequence number is shown for lines in pink (indented 2 spaces under a step).
-- Var-Tok:          The Dynamic Variable name (or an Operator Replay Token name) is shown for lines in cyan (indented 3 spaces under a step).
-- View:             Press function key <**F11**> to rotate the list display among 5 different views. Each view shows a summary of a different part of each record type. Rotate the views to quickly analyze what is configured for each record type.
+- **Script**:           Under the screen title is the name of the Operator Replay Script that is being analyzed by this list display.
+- **Search content**:   Type a value to be used as a search argument. Press <**Enter**> or <**F16**> to start a new search. All fields in a step record will be searched, not only the data displayed on the list. Use option 5=Display to discover the matching field that may not appear in the list.
+- **Opt**:              <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function.
+- **Step**:             The Script Step number is shown for lines colored yellow (left-most indent).
+- **Capt ID**:          The Capture ID is shown for lines in blue (indented 1 space under a Step).
+- **RspSeq#**:         The Response Rule sequence number is shown for lines in pink (indented 2 spaces under a step).
+- **Var-Tok**:          The Dynamic Variable name (or an Operator Replay Token name) is shown for lines in cyan (indented 3 spaces under a step).
+- **View**:             Press function key <**F11**> to rotate the list display among 5 different views. Each view shows a summary of a different part of each record type. Rotate the views to quickly analyze what is configured for each record type.
 
 ###### Option
 
@@ -332,15 +332,15 @@ Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps)
+Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 (Script steps)
 
 ###### Fields
 
-- Search content:                    Type a value to be used as a search argument. Press <**Enter**> or <**F16**> to start a new search. All fields in a step record will be searched, not only the data displayed on the list. Use option 5=Display to discover the matching field that may not appear in the list.
-- Opt:                               <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function.
-- Seq:                               Sequence number controls the order in which steps are performed as part of a script.
-- Label:                             An optional label assigned to a step that becomes the target of a branching operation.
-- Comments/String to send + F-Key:   A description of what each step in a script accomplishes. When <**F11**> is pressed, the list shows the String to send data and the Function key.
+- **Search content**:                    Type a value to be used as a search argument. Press <**Enter**> or <**F16**> to start a new search. All fields in a step record will be searched, not only the data displayed on the list. Use option 5=Display to discover the matching field that may not appear in the list.
+- **Opt**:                               <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function.
+- **Seq**:                               Sequence number controls the order in which steps are performed as part of a script.
+- **Label**:                             An optional label assigned to a step that becomes the target of a branching operation.
+- **Comments/String to send + F-Key**:   A description of what each step in a script accomplishes. When <**F11**> is pressed, the list shows the String to send data and the Function key.
 
 ###### Options
 
@@ -379,8 +379,8 @@ Enter=Confirm   F12=Cancel
 
 ###### Fields
 
-- Seq:        The sequence number of the step record to be deleted.
-- Comments:   A description the step record
+- **Seq**:        The sequence number of the step record to be deleted.
+- **Comments**:   A description the step record
 
 ###### Functions
 
@@ -397,10 +397,10 @@ The screen denotes the functions Add, Change, Copy or Display in the title line.
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 2 (Change)
-- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 3 (Copy)
-- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> F6 (Add)
-- Main Menu \> Operator replay menu (#4) \> Operator Replay scripts (#2) \> Option 1 (Script steps) \> Operator Replay Step List \> Option 5 (Display)
+- Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 (Script steps) > Operator Replay Step List > Option 2 (Change)
+- Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 (Script steps) > Operator Replay Step List > Option 3 (Copy)
+- Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 (Script steps) > Operator Replay Step List > F6 (Add)
+- Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 (Script steps) > Operator Replay Step List > Option 5 (Display)
 
 ###### Fields
 
@@ -619,18 +619,18 @@ Use option 5=Display to view more information about any job, including the error
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Replay logs (#3)
+Main Menu > Operator replay menu (#4) > Operator Replay logs (#3)
 
 ###### Fields
 
-- Opt:          <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function. Type 5 to view the log information for the execution of the script.
-- Script:       The name of the Script that was executed at each date and time.
-- Rpy User:     The name of the IBM i User ID that was specified to run the script.
-- Date:         The date when this Script was executed.
-- Time:         The time when this Script was executed.
-- Job Name:     The name of the IBM i job that controlled the script execution.
-- Job User:     The name of the IBM i user that controlled the script execution.
-- Job Number:   The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
+- **Opt**:          <**Tab**> to the line of a step record and type an option number. Press <**Enter**> to perform the option function. Type 5 to view the log information for the execution of the script.
+- **Script**:       The name of the Script that was executed at each date and time.
+- **Rpy User**:     The name of the IBM i User ID that was specified to run the script.
+- **Date**:         The date when this Script was executed.
+- **Time**:         The time when this Script was executed.
+- **Job Name**:     The name of the IBM i job that controlled the script execution.
+- **Job User**:     The name of the IBM i user that controlled the script execution.
+- **Job Number**:   The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
 
 ###### Options
 
@@ -669,19 +669,19 @@ USERNAME                                    
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Replay logs (#3) \> Option (#5)
+Main Menu > Operator replay menu (#4) > Operator Replay logs (#3) > Option (#5)
 
 ###### Fields
 
-- Script name:                  The name of the Script that was executed at each date and time.
-- Replay job user name:         The name of the IBM i User ID that was specified to run the script.
-- Replay job return code:       The code returned by the script control job. The interpretation of the code appears to the right of the code in pink text.
-- OPRLOGF10 data member name:   For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter "O" followed by digits 2 through 10 of the SAM job name (if OpCon/xps executed the job in normal mode "O") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode "A").
-- Job date:                     The date when this Script was executed.
-- Job time:                     The time when this Script was executed.
-- IBM i control job name:       The name of the IBM i job that controlled the script execution.
-- IBM i control job user:       The name of the IBM i user that controlled the script execution.
-- IBM i control job number:     The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
+- **Script name**:                  The name of the Script that was executed at each date and time.
+- **Replay job user name**:         The name of the IBM i User ID that was specified to run the script.
+- **Replay job return code**:       The code returned by the script control job. The interpretation of the code appears to the right of the code in pink text.
+- **OPRLOGF10 data member name**:   For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter "O" followed by digits 2 through 10 of the SAM job name (if OpCon/xps executed the job in normal mode "O") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode "A").
+- **Job date**:                     The date when this Script was executed.
+- **Job time**:                     The time when this Script was executed.
+- **IBM i control job name**:       The name of the IBM i job that controlled the script execution.
+- **IBM i control job user**:       The name of the IBM i user that controlled the script execution.
+- **IBM i control job number**:     The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
 
 ###### Functions
 
@@ -719,14 +719,14 @@ An Operator Replay variable can be added, or have its value reset, using the IBM
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Operator Token/Variable management (#4)
+Main Menu > Operator replay menu (#4) > Operator Token/Variable management (#4)
 
 ###### Fields
 
-- Position to Token Name:   To quickly search for a particular token or variable, enter the first characters of the name and press <**Enter**>.
-- Opt:                      Type a valid option value and press <**Enter**> to execute the function for one or more entries in the list.
-- Token Name:               The identifier of the token or variable.
-- Token Description:        A description of the token or variable.
+- **Position to Token Name**:   To quickly search for a particular token or variable, enter the first characters of the name and press <**Enter**>.
+- **Opt**:                      Type a valid option value and press <**Enter**> to execute the function for one or more entries in the list.
+- **Token Name**:               The identifier of the token or variable.
+- **Token Description**:        A description of the token or variable.
 
 ###### Options
 
@@ -750,9 +750,9 @@ The Add and Change Token windows appear the same, except for the title.
 
 ###### Fields
 
-- Token Name:    Y
-- Token Value:   Y
-- Description:   N
+- **Token Name**:    Y
+- **Token Value**:   Y
+- **Description**:   N
 
 ###### Functions
 
@@ -775,8 +775,8 @@ Enter=Confirm   F12=Cancel
 
 ###### Fields
 
-- Token Name:          The name of the deleted token or variable.
-- Token Description:   A description of the deleted token or variable.
+- **Token Name**:          The name of the deleted token or variable.
+- **Token Description**:   A description of the deleted token or variable.
 
 ###### Functions
 
@@ -799,22 +799,22 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script step list (Opt 1) \> F6=Add **- or -** option 2=Change **- or -** option 3=Copy \> F10=Capt Defn.
-- Main Menu \> Operator replay menu (#4) \> Work with Screen Capture Definitions (#5)
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script step list (Opt 1) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy > F10=Capt Defn.
+- Main Menu > Operator replay menu (#4) > Work with Screen Capture Definitions (#5)
 
 ###### Fields
 
--  Script:          When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
--  (Script) Seq:    When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the sequence number of the Operator Replay Step is fixed and it appears in the heading of this list display.
--  Search content:   Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
--  Opt:              Type option from list displayed near the top of this screen. Refer to options definitions, below.
--  Rpy Script:       Replay Script name: Each screen capture definition is associated with a specific Operator Replay script name.
--  /Seq:             Replay Script Step Sequence number: Each screen capture definition is associated with a specific Operator Replay script step Sequence number. The screen capture operation is performed after the screen format is received, but before the string to send or the function key is executed.
--  Application ID:   A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
--  Seq:              The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
--  Row:              For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
--  Col:              The column within the Row (above) where the data capture starts.
--  Len:              The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
+- ** Script**:          When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
+- ** (Script) Seq**:    When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the sequence number of the Operator Replay Step is fixed and it appears in the heading of this list display.
+- ** Search content**:   Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
+- ** Opt**:              Type option from list displayed near the top of this screen. Refer to options definitions, below.
+- ** Rpy Script**:       Replay Script name: Each screen capture definition is associated with a specific Operator Replay script name.
+- ** /Seq**:             Replay Script Step Sequence number: Each screen capture definition is associated with a specific Operator Replay script step Sequence number. The screen capture operation is performed after the screen format is received, but before the string to send or the function key is executed.
+- ** Application ID**:   A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
+- ** Seq**:              The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
+- ** Row**:              For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
+- ** Col**:              The column within the Row (above) where the data capture starts.
+- ** Len**:              The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
 
 ###### Functions
 
@@ -844,20 +844,20 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script Steps (Opt 1) \> F6=Add **- or -** option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
-- Main Menu \> Operator replay menu (#4) \> Work with Screen Capture definitions (#5) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script Steps (Opt 1) > F6=Add **- or -** option 2=Change *- or -* option 3=Copy > F10=Capt Defn > F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu > Operator replay menu (#4) > Work with Screen Capture definitions (#5) > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F10=Capt Defn > F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
 
 ###### Fields
 
-- Application ID:                      When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. This field does not appear for Add or Change.
-- Capt Seq:                            When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. This field does not appear for Add or Change.
-- Script name:                          Operator Replay Script name: Each screen capture definition is associated with a specific Operator Replay script name. When this screen is accessed using F10 from the Operator Script Step, the value for this field is supplied and protected. When this screen is accessed directly from the LSAM menu, a valid Script Name must be manually entered.
-- Script Sequence:                     Replay Script Step Sequence number: Each screen capture definition is associated with a specific Operator Replay script step Sequence number. When this screen is accessed using F10 from the Operator Step, the value for this field is supplied and protected. When this screen is accessed directly from the LSAM menu, a valid Script Sequence number must be manually entered.
-- Application ID:                       A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
-- Capture sequence:                     The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
-- Screen row start pos(-ition):        For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
-- Screen col(-umn) start pos(-ition):   The column within the Row (above) where the data capture starts.
-- Length of data string:                The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
+- **Application ID**:                      When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. This field does not appear for Add or Change.
+- **Capt Seq**:                            When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. This field does not appear for Add or Change.
+- **Script name**:                          Operator Replay Script name: Each screen capture definition is associated with a specific Operator Replay script name. When this screen is accessed using F10 from the Operator Script Step, the value for this field is supplied and protected. When this screen is accessed directly from the LSAM menu, a valid Script Name must be manually entered.
+- **Script Sequence**:                     Replay Script Step Sequence number: Each screen capture definition is associated with a specific Operator Replay script step Sequence number. When this screen is accessed using F10 from the Operator Step, the value for this field is supplied and protected. When this screen is accessed directly from the LSAM menu, a valid Script Sequence number must be manually entered.
+- **Application ID**:                       A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
+- **Capture sequence**:                     The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
+- **Screen row start pos(-ition)**:        For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
+- **Screen col(-umn) start pos(-ition)**:   The column within the Row (above) where the data capture starts.
+- **Length of data string**:                The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
 
 ###### Functions
 
@@ -877,24 +877,24 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script steps (Opt 1) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F11=Response rules.
-- Main Menu \> Operator replay menu (#4) \> Work with Captured Data Response Rules (#6).
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script steps (Opt 1) > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F10=Capt Defn > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F11=Response rules.
+- Main Menu > Operator replay menu (#4) > Work with Captured Data Response Rules (#6).
 
 ###### Fields
 
-- Script:            When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display. (Function key F15=Subset is not shown and the subset type cannot be changed.)
-- (Script) Seq:      When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the number of the Operator Replay Step Sequence is fixed and it appears in the heading of this list display. (Function key F15=Subset is not shown and the subset type cannot be changed.)
-- Subset to Type:    When this Work With list has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
-- Search content:     Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
-- Opt:                Type option from list displayed near the top of this screen. Refer to options definitions, below.
-- Capture ID (APP):   A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field serves Operator Replay screen capture as the means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
-- Seq:               The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
-- T:                  Type: C = screen capture, S = SCANSPLF data capture.
-- RS#:               Rule Sequence Number: The order in which each response rule will be executed.
-- Script:             When the Type field is C, this shows the ID of the Operator Replay script with which the response rules are associated. (This column becomes the Spool file name for records of Type S.)
-- Step #:            When the Type field is C, this shows the Script Step sequence number associated with each response rule. (This column becomes the Spool file number for records of Type S.)
-- (Job Name):         When the Type field is S, this column will appear to show the Job Name for the Scan Rule associated with each response rule. (This column is not ued for Operator Replay screen data capture and response.)
-- Command:            The command text (first few characters shown) that will be executed in response to captured data, if the comparison data rule qualifies.
+- **Script**:            When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display. (Function key F15=Subset is not shown and the subset type cannot be changed.)
+- **(Script) Seq**:      When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the number of the Operator Replay Step Sequence is fixed and it appears in the heading of this list display. (Function key F15=Subset is not shown and the subset type cannot be changed.)
+- **Subset to Type**:    When this Work With list has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
+- **Search content**:     Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
+- **Opt**:                Type option from list displayed near the top of this screen. Refer to options definitions, below.
+- **Capture ID (APP)**:   A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field serves Operator Replay screen capture as the means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
+- **Seq**:               The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
+- **T**:                  Type: C = screen capture, S = SCANSPLF data capture.
+- **RS#**:               Rule Sequence Number: The order in which each response rule will be executed.
+- **Script**:             When the Type field is C, this shows the ID of the Operator Replay script with which the response rules are associated. (This column becomes the Spool file name for records of Type S.)
+- **Step #**:            When the Type field is C, this shows the Script Step sequence number associated with each response rule. (This column becomes the Spool file number for records of Type S.)
+- **(Job Name)**:         When the Type field is S, this column will appear to show the Job Name for the Scan Rule associated with each response rule. (This column is not ued for Operator Replay screen data capture and response.)
+- **Command**:            The command text (first few characters shown) that will be executed in response to captured data, if the comparison data rule qualifies.
 
 ###### Functions
 
@@ -927,21 +927,21 @@ Refer to the topic on Events and Utilities menu, for more information about the 
 
 ###### Menu Pathways
 
-- Main Menu \> Operator replay menu (#4) \> Operator Replay Scripts (#2) \> Script steps (Opt 1) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F10=Capt Defn \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy \> F11=Response rules \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
-- Main Menu \> Operator replay menu (#4) \> Work with Captured Data Response Rules (#6) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script steps (Opt 1) > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F10=Capt Defn > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F11=Response rules > F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+- Main Menu > Operator replay menu (#4) > Work with Captured Data Response Rules (#6) > F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
 
 ###### Fields
 
-- Script: When this maintenance screen has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
-- (Script) Seq: When this maintenance screen has been called using function key F10 from the Operator Replay Step record screen, the number of the Operator Replay Step 
+- **Script**: When this maintenance screen has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
+- **(Script) Seq**: When this maintenance screen has been called using function key F10 from the Operator Replay Step record screen, the number of the Operator Replay Step 
 Sequence is fixed and it appears in the heading of this list display.
-- From fields (Resp Seq): When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. When this program is called from the Operator Replay Step maintenance, only the Response Sequence appears in the From field list. A new value must be assigned to the new Response Rule record being created in Copy mode, using the Response Sequence input field (below).
-- Capture Identifier: A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. For Copy and Change operations, this key field is protected from update. This field and the Capture Seq field (next) identify the rule to which this response record will react.
-- Capture sequence: The sequence of the data capture rule to which this response will react. For Copy and Change operations, this key field is protected from update. This number determines the order in which data capture rules are executed.
-- Capture Type: The type of the data capture: C = screen capture, S = SCANSPLF data capture, M = Message data capture. Type C is required for Screen Captures from Operator Replay scripts. For Copy and Change operations, this field is protected from update.
-- Response sequence: Response Sequence Number: The order in which each response rule will be executed. When changing an existing rule's sequence number, pay close 
+- **From fields (Resp Seq)**: When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. When this program is called from the Operator Replay Step maintenance, only the Response Sequence appears in the From field list. A new value must be assigned to the new Response Rule record being created in Copy mode, using the Response Sequence input field (below).
+- **Capture Identifier**: A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. For Copy and Change operations, this key field is protected from update. This field and the Capture Seq field (next) identify the rule to which this response record will react.
+- **Capture sequence**: The sequence of the data capture rule to which this response will react. For Copy and Change operations, this key field is protected from update. This number determines the order in which data capture rules are executed.
+- **Capture Type**: The type of the data capture: C = screen capture, S = SCANSPLF data capture, M = Message data capture. Type C is required for Screen Captures from Operator Replay scripts. For Copy and Change operations, this field is protected from update.
+- **Response sequence**: Response Sequence Number: The order in which each response rule will be executed. When changing an existing rule's sequence number, pay close 
 attention to the Continuation field value, because the order of records is critical when the Continuation field is used to group multiple response qualifications (using Compare data) and commands.
-- Continuation: 
+- **Continuation**: 
   -   Continuation field values are: blanks, CMD, AND, OR.
   -   A value that supports multiple groups of commands and/or rules that may be qualified for execution in response to a single record of captured data. In summary, the values work like this:
   -   blank = Starts a new group of  comparison rules and commands, separate and unrelated from other rules groups.
@@ -949,31 +949,31 @@ attention to the Continuation field value, because the order of records is criti
   -   AND = connects more than one qualification rule into a single group.
   -   CMD = an additional rules record is providing an additional response command to execute, associated with the qualification rules of the comparison record or group of records immediately preceding this record. This continuation record will be ignored for comparison rules, it exists only to support multiple commands that are part of a single response group.
   -   For more information on this field and examples, refer to [Events and Utilities Menu](../events-utilities/menu.md).
-- Compress numeric: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits. Compressed numeric values do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the captured data and the comparison data when the option for compressing numeric data will be used.
+- Compress numeric**: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits. Compressed numeric values do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the captured data and the comparison data when the option for compressing numeric data will be used.
   :::tip
   This flag also affects how data will be stored for a Dynamic Variable token name, if specified.
   :::
-- Store to-> DynVar (Dynamic Variable): Type a name into this field to cause the current captured data value to be stored in an LSAM Dynamic Variable of this name. This function can only store dynamic variables of type-V (general use). To create or update dynamic variables of type-L (for updating an IBM i job local data area image for LSAM captured or tracked/queued jobs, use the SETDYNVAR command in the Response command field and include a different Dynamic Variable name (that may be entered into this field) as the value for the type-L variable.
-- Store to-> Oper Rply Var (Operator Replay token/variable): Type a name into this field to cause the current captured data value to be stored in an LSAM Operator Replay Token variable of this name. The captured data response function linked to Operator Replay script execution completes the task of storing the captured data into this variable field before the script step is executed. Therefore, it is possible to use this variable in fields that define the script step execution, responding to
+- **Store to-> DynVar (Dynamic Variable)**: Type a name into this field to cause the current captured data value to be stored in an LSAM Dynamic Variable of this name. This function can only store dynamic variables of type-V (general use). To create or update dynamic variables of type-L (for updating an IBM i job local data area image for LSAM captured or tracked/queued jobs, use the SETDYNVAR command in the Response command field and include a different Dynamic Variable name (that may be entered into this field) as the value for the type-L variable.
+- **Store to-> Oper Rply Var (Operator Replay token/variable)**: Type a name into this field to cause the current captured data value to be stored in an LSAM Operator Replay Token variable of this name. The captured data response function linked to Operator Replay script execution completes the task of storing the captured data into this variable field before the script step is executed. Therefore, it is possible to use this variable in fields that define the script step execution, responding to
  the screen that is on display as the data was captured.
-- Response cmd (part 1); F13=Full CMD 
+- **Response cmd (part 1); F13=Full CMD 
   -   The first 214 characters of the response command string may be  entered in this field. If the command is longer than 214 characters, press <**F13=Full CMD**> to branch to a screen where a much longer command string may be entered. Function key <**F4=Prompt**> may be used to get IBM i help with command prompting. Unlike the Compare data lines, the entire command string will appear in the F13=Full CMD screen. Be careful if a partial command shows in this field in Change mode; in this case it is recommended that F13=Full CMD be used to be sure that the final command syntax is correct after any changes. 
   -   Dynamic Variables may be used in place of all or part of the command line syntax. For more informatin about Dynamic Variables, refer to [Dynamic Variables](../dynamic-variables/overview.md).
 
-- Comp reference value: 
+- **Comp reference value**: 
    - The compare reference value is a field containing a character string or a reference to a value store in another file, for use in qualifying     this Rule for execution. If the referenced value does not match the Compare data according to the Compare rule, then the Capture Response Rule Response command will not be executed.
    -   *CAPT = Use the captured data as the reference data (this is the original default for comparing data, in prior versions).
    -   DynVar = The LSAM Dynamic Variable named in this field will be compared to the Compare data. (Do not type 'DynVar' but instead type the name of a Dynamic Variable. Use function key F8 to select from a list of existing dynamic variables.)
    -   char = a specific string typed in this field will be compared to the Compare data.
 
-- Comp reference length: Specifies the length of data to be used from the Comp reference value, starting at position 1 of the reference value. If this field is zero, then the trimmed length of the reference value will be used. (Trimming means that any trailing blanks will not be considered, only data from position 1 through the last non-blank character will determine the length of the Comp reference value.) 
+- **Comp reference length**: Specifies the length of data to be used from the Comp reference value, starting at position 1 of the reference value. If this field is zero, then the trimmed length of the reference value will be used. (Trimming means that any trailing blanks will not be considered, only data from position 1 through the last non-blank character will determine the length of the Comp reference value.) 
 
-- Compare rule:
+- **Compare rule:
    -   Specifies the type of compare to use between the Comp reference value (which will be factor 1) and the Compare data (which will be factor 2). For example, if GT is specified, then the Comp reference value must be greater than the Compare data in order for this Capture Response Rule to be executed.
    -   EQ = equal, NE = not equal, GT = greater than, LT = less than, GE = greater than or equal, LE = less than or equal.
 
-- Capture length: This is a protected field that shos the length specified for the captured data. The value will appear in Copy and Change mode. In Add (Create) mode, a value will be supplied if the F4=Prompt key is used to select a valid Capture ID and Sequence. Use this field as a reference when defining the Compare data.
-- Compare data lines 1-5; PagDown=6-24
+- **Capture length**: This is a protected field that shos the length specified for the captured data. The value will appear in Copy and Change mode. In Add (Create) mode, a value will be supplied if the F4=Prompt key is used to select a valid Capture ID and Sequence. Use this field as a reference when defining the Compare data.
+- **Compare data lines 1-5; PagDown=6-24
   -   The compare data is used to match with the original capture data according to the compare rule. The compare data may be typed directly into this field. Use PageDown to show and update lines 6-24; lines 1-5 only appear on the main maintenance screen. Up to 1920 characters may be specified.
   -   If it should be desired to compare an entire 24 X 80 screen, that is, all 1920 characters, it would be possible to copy and paste the reference screen image (lines 1-5 separately from lines 6-24) into this field. However, keep in mind that only the displayable characters are compared. That is, field attributes such as color (and any EBCID character value less than X'40' ) will not be considered; a space character is used in place of non-display values.
   -   Special values may be typed into this field, instead of actual compare data:
@@ -1008,22 +1008,22 @@ Display format OPRR50R2 supports function key F10 for selecting $Variable tokens
 
 The Operator Replay Script driver program will recognize exactly spelled tokens and then replace them with the values shown in the following table; however, the values for OpCon properties, such as $SCHEDULE values, can only be replaced if the Script job was started by OpCon. They are not valid when Scripts are executed independently of OpCon, for example, if a Script is being executed in a test mode directly from a job started by the IBM i SBMJOB command, or if the STROPRRY command is executed from a user's interactive job command line.
 
-- $FREQUENCY NAME:   The name of the OpCon Frequency assigned to the OpCon job that started the Script driver job (twhich is executing the Script (not the Job ID of the interactive workstation job),.
-- $IBM JOB ID:       The full IBM i job ID for the job which is executing the Script (not the Job ID of the interactive workstation job), in the format of 123456/USER/NAME.
-- $IBM JOB NAME:     The IBM i Job Name of the job which is executing the Script (not the Job ID of the interactive workstation job).
-- $IBM JOB NBR:      The IBM i Job Number of the job which is executing the Script (not the Job ID of the interactive workstation job).
-- $IBM JOB USER:     The IBM i User Profile that is part of the Job ID which is executing the Script (not the Job ID of the interactive workstation job).
-- $JOBID:            The OpCon job identified, a 10-digit number, of the OpCon job that started the Script job.
-- $JOBID CMP:        The OpCon job name and job identifier, joined into a single string with blanks compressed out, for the OpCon job that started the Script job.
-- $JOBID LONG:       The OpCon job name, followed by the job identifier, with all blanks retained in the string, for the OpCon job that started the Script job.
-- $JOB NAME:         The short format of the OpCon job name, for the job that started the Script job.
-- $JOB LONG NAME:    The long format of the complete OpCon job name, for the job that started the Script job.
-- $MACHINE NAME:     The OpCon name for the Agent (LSAM) machine in which the Script job is executing.
-- $SCHEDULE DATE:    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
-- $SCHEDULE NAME:    The name of the OpCon schedule under which the current job was started.
-- $SCRIPT ID:        The name of the Operator Replay Script. This combines with the $STEP SEQ\# to uniquely identify a Step record in the Agent's database table.
-- $SCRIPT USER:      The name of the IBM i User Profile that was used to log into the green screen workstation session. Since this User name can be assigned from various sources, this variable is helpful for documenting this detail about the Script execution, and for finding jobs that were initiated by this User name.
-- $STEP SEQ\#:       The unique number assigned to a Step master record from the Operator Replay Script. This combines with the $SCRIPT ID to uniquely identify a Step record in the Agent's database table.
+- **$FREQUENCY NAME**:   The name of the OpCon Frequency assigned to the OpCon job that started the Script driver job (twhich is executing the Script (not the Job ID of the interactive workstation job),.
+- **$IBM JOB ID**:       The full IBM i job ID for the job which is executing the Script (not the Job ID of the interactive workstation job), in the format of 123456/USER/NAME.
+- **$IBM JOB NAME**:     The IBM i Job Name of the job which is executing the Script (not the Job ID of the interactive workstation job).
+- **$IBM JOB NBR**:      The IBM i Job Number of the job which is executing the Script (not the Job ID of the interactive workstation job).
+- **$IBM JOB USER**:     The IBM i User Profile that is part of the Job ID which is executing the Script (not the Job ID of the interactive workstation job).
+- **$JOBID**:            The OpCon job identified, a 10-digit number, of the OpCon job that started the Script job.
+- **$JOBID CMP**:        The OpCon job name and job identifier, joined into a single string with blanks compressed out, for the OpCon job that started the Script job.
+- **$JOBID LONG**:       The OpCon job name, followed by the job identifier, with all blanks retained in the string, for the OpCon job that started the Script job.
+- **$JOB NAME**:         The short format of the OpCon job name, for the job that started the Script job.
+- **$JOB LONG NAME**:    The long format of the complete OpCon job name, for the job that started the Script job.
+- **$MACHINE NAME**:     The OpCon name for the Agent (LSAM) machine in which the Script job is executing.
+- **$SCHEDULE DATE**:    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
+- **$SCHEDULE NAME**:    The name of the OpCon schedule under which the current job was started.
+- **$SCRIPT ID**:        The name of the Operator Replay Script. This combines with the $STEP SEQ\# to uniquely identify a Step record in the Agent's database table.
+- **$SCRIPT USER**:      The name of the IBM i User Profile that was used to log into the green screen workstation session. Since this User name can be assigned from various sources, this variable is helpful for documenting this detail about the Script execution, and for finding jobs that were initiated by this User name.
+- **$STEP SEQ\#**:       The unique number assigned to a Step master record from the Operator Replay Script. This combines with the $SCRIPT ID to uniquely identify a Step record in the Agent's database table.
 
 ### Display Captured Data Log
 
@@ -1038,20 +1038,20 @@ Refer to the topic on Events and Utilities menu, for more information about ways
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Display Captured Data log (#8).
+Main Menu > Operator replay menu (#4) > Display Captured Data log (#8).
 
 ###### Fields
 
-- Subset to Type:   When this list display has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
-- Search content:    Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
-- Opt:               Type option from list displayed near the top of this screen. Refer to options definitions, below.
-- Capture ID:        A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
-- Seq:               The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
-- MM-DD-HH.MM:       A portion of the time stamp of the log entry, showing the month, day, hours and minutes.
-- T:                 Type: C = screen capture, S = SCANSPLF data capture.
-- Script/SPLF:       The name of the Operator Replay Script, or the name of the spool file that was processed by the SCANSPLF command. The value shown here is defined by the value in the T (Type) field.
-- Number:            For an Operator Replay Script, the Sequence number of the Step when the screen data was captured. For a spool file, the spool file number within the job where the spool file was found.
-- JobNbr:            The IBM i Job Number of the job that executed the Operator Replay script or the SCANSPLF command. This number helps to distinguish among list entries that belong to the same, or to different jobs.
+- **Subset to Type**:   When this list display has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
+- **Search content**:    Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
+- **Opt**:               Type option from list displayed near the top of this screen. Refer to options definitions, below.
+- **Capture ID**:        A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
+- **Seq**:               The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
+- **MM-DD-HH.MM**:       A portion of the time stamp of the log entry, showing the month, day, hours and minutes.
+- **T**:                 Type: C = screen capture, S = SCANSPLF data capture.
+- **Script/SPLF**:       The name of the Operator Replay Script, or the name of the spool file that was processed by the SCANSPLF command. The value shown here is defined by the value in the T (Type) field.
+- **Number**:            For an Operator Replay Script, the Sequence number of the Step when the screen data was captured. For a spool file, the spool file number within the job where the spool file was found.
+- **JobNbr**:            The IBM i Job Number of the job that executed the Operator Replay script or the SCANSPLF command. This number helps to distinguish among list entries that belong to the same, or to different jobs.
 
 ###### Functions
 
@@ -1076,26 +1076,26 @@ Main Menu \> Operator replay menu (#4) \> Display Captured Data log (#8).
 
 ###### Menu Pathways
 
-Main Menu \> Operator replay menu (#4) \> Display Captured Data log (#8) \> option 5=Display.
+Main Menu > Operator replay menu (#4) > Display Captured Data log (#8) > option 5=Display.
 
 ###### Fields
-- Log record RRN: The relative record number of this record in physical file OPRLOGF40
-- Type:  
+- **Log record RRN**: The relative record number of this record in physical file OPRLOGF40
+- **Type**:  
    -   C = Operator Replay screen data capture
    -   S = SCANSPLF report spool file scanning
    -   M = Message data capture
-- Capture ID: The identifier assigned to a group of data capture rules. For Operator Replay screen data capture, this label is in addition to the Script Name and Sequence number.
-- (Capture) Seq: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
-- Scrn Row: For screen data capture, this is the row where the data capture operation started.
-- Col(-umn): The column within the Row (above) where the data capture started.
-- Length: The length of data that was captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data.)
-- Capture Job ID: The IBM i full job name that made the Captured Data log entry. This is the job that will be shown if the function key F9=WRKJOB is pressed.
-- Date: The log file entry date, in CCYYMMDD format. Used to purge the log file, based on the LSAM log file retention days (refer to LSAM Parameters).
-- Time stamp: The IBM i system time when the log entry was written. 
-- Script Name: The Operator Replay Script name that triggered this data capture.
-- Step number: The Sequence number of the Operator Replay script step being executed when the data  was captured.
-- Numeric: Y = yes, N = No: Indicates whether numeric data compression was specified for the captured data.
-- Rows 1-12 Rows 13-24 2..5...10....5...20: The row and columns of the capture data are labeled. Press PageDown or PageUp to toggle between the display of rows 1-12 and 13-24. Either eye vision, or manipulation of the cursor may be used to help identify the exact column for each character of captured data, based on the numbered ruler line just above the first line of captured data. The ruler starts with number 2 and ends with number 78 (due to 5250 workstation display constraints), however, the actual captured data occupies columns 1 to 80 on the lines below the ruler. Thus, workstations that display the column location of the cursor should match the character location in the ruler line.
+- **Capture ID**: The identifier assigned to a group of data capture rules. For Operator Replay screen data capture, this label is in addition to the Script Name and Sequence number.
+- **(Capture) Seq**: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
+- **Scrn Row**: For screen data capture, this is the row where the data capture operation started.
+- **Col(-umn)**: The column within the Row (above) where the data capture started.
+- **Length**: The length of data that was captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data.)
+- **Capture Job ID**: The IBM i full job name that made the Captured Data log entry. This is the job that will be shown if the function key F9=WRKJOB is pressed.
+- **Date**: The log file entry date, in CCYYMMDD format. Used to purge the log file, based on the LSAM log file retention days (refer to LSAM Parameters).
+- **Time stamp**: The IBM i system time when the log entry was written. 
+- **Script Name**: The Operator Replay Script name that triggered this data capture.
+- **Step number**: The Sequence number of the Operator Replay script step being executed when the data  was captured.
+- **Numeric**: Y = yes, N = No: Indicates whether numeric data compression was specified for the captured data.
+- **Rows 1-12 Rows 13-24 2..5...10....5...20**: The row and columns of the capture data are labeled. Press PageDown or PageUp to toggle between the display of rows 1-12 and 13-24. Either eye vision, or manipulation of the cursor may be used to help identify the exact column for each character of captured data, based on the numbered ruler line just above the first line of captured data. The ruler starts with number 2 and ends with number 78 (due to 5250 workstation display constraints), however, the actual captured data occupies columns 1 to 80 on the lines below the ruler. Thus, workstations that display the column location of the cursor should match the character location in the ruler line.
 
 ###### Functions
 
@@ -1120,41 +1120,41 @@ Following is a table of Entry_Code values that may be observed in the list of de
 ### Entry_Code Values Appearing in Captured Data Debug Log Viewer
 #### Entry_Code
   **SCANSPLF command log entries**
-- SCANSPLFST: The SCANSPLF command has started its function.
-- SCAN_PARMS: The PARAMETERS keyword value string sent to the program by the SCANSPLF command.
-- SCANSPLF_E: A fatal error was encountered and the SCANSPLF command has not completed its function. Refer to the log entry detail for a status code and more information about the reason for the failure.
-- SCAN_PASS:  A successful match of all required scan values; the SCANSPLF command ends normally.
-- SCAN_FAIL:  Not all required scan values were matched; the SCANSPLF ends abnormally and, if started by OpCon/xps, a list of mismatched values is sent to the OpCon/xps job information.
-- SCAN_NOMCH: A log entry showing one of the required scan values that was not matched in the report.
-- SCANSPLFEN: Marks the end of the SCANSPLF command. A final completion status code may be found in the details of this log entry.
-- SCAN_ABEND: The SCANSPLF command processor failed before completing all scans. The abnormal termination code is found in the log entry details.
-- PARM_COUNT: A log entry indicating the number of scan values found in the input parameter after parsing the PARAMETERS keyword value of the SCANSPLF command. This entry may show that no input scan values were submitted, but that the program will continue to use any registered scan values found in the SPLF Scan Rules table.
-- PARSE_PARM: A log entry showing how the results after scanning the PARAMETERS keyword value of input scan values. The details entry shows the contents of the array where the input scan values are divided into even-spaced locations.
-- SCAN_BYPAS: A scan value bypass rule registered in the SPLF Scan Rules table was found and recognized. This scan value will be marked as matched, even though bypassed.
-- SCANSPLF_J: A log entry showing information about the actual job selected while searching for the target spool file.
-- SCANSPLF_F: A log entry showing information about the actual spool file (report) found for scanning.
-- SCAN_LOG: A program debug entry providing non-critical, general information about conditions detected by the SCANSPLFR program. Refer to the entry details for more information.
-- SCAN_MATCH: A log entry registering a matched scan value.
-- SCAN_LBLNO: An indicated scan label was found, but the associated value after the label did not match the supplied scan reference value.
+- **SCANSPLFST**: The SCANSPLF command has started its function.
+- **SCAN_PARMS**: The PARAMETERS keyword value string sent to the program by the SCANSPLF command.
+- **SCANSPLF_E**: A fatal error was encountered and the SCANSPLF command has not completed its function. Refer to the log entry detail for a status code and more information about the reason for the failure.
+- **SCAN_PASS**:  A successful match of all required scan values; the SCANSPLF command ends normally.
+- **SCAN_FAIL**:  Not all required scan values were matched; the SCANSPLF ends abnormally and, if started by OpCon/xps, a list of mismatched values is sent to the OpCon/xps job information.
+- **SCAN_NOMCH**: A log entry showing one of the required scan values that was not matched in the report.
+- **SCANSPLFEN**: Marks the end of the SCANSPLF command. A final completion status code may be found in the details of this log entry.
+- **SCAN_ABEND**: The SCANSPLF command processor failed before completing all scans. The abnormal termination code is found in the log entry details.
+- **PARM_COUNT**: A log entry indicating the number of scan values found in the input parameter after parsing the PARAMETERS keyword value of the SCANSPLF command. This entry may show that no input scan values were submitted, but that the program will continue to use any registered scan values found in the SPLF Scan Rules table.
+- **PARSE_PARM**: A log entry showing how the results after scanning the PARAMETERS keyword value of input scan values. The details entry shows the contents of the array where the input scan values are divided into even-spaced locations.
+- **SCAN_BYPAS**: A scan value bypass rule registered in the SPLF Scan Rules table was found and recognized. This scan value will be marked as matched, even though bypassed.
+- **SCANSPLF_J**: A log entry showing information about the actual job selected while searching for the target spool file.
+- **SCANSPLF_F**: A log entry showing information about the actual spool file (report) found for scanning.
+- **SCAN_LOG**: A program debug entry providing non-critical, general information about conditions detected by the SCANSPLFR program. Refer to the entry details for more information.
+- **SCAN_MATCH**: A log entry registering a matched scan value.
+- **SCAN_LBLNO**: An indicated scan label was found, but the associated value after the label did not match the supplied scan reference value.
 
   **Operator Replay script entries for data capture operations**
-- CAPTDATA: A log entry recording the data captured from a screen image.
-- CAPTERR: A log entry reporting a program error code encountered while attempting to capture screen data. Refer to the log entry details for the exact error message that was trapped.
+- **CAPTDATA**: A log entry recording the data captured from a screen image.
+- **CAPTERR**: A log entry reporting a program error code encountered while attempting to capture screen data. Refer to the log entry details for the exact error message that was trapped.
 
   **Message Data entries for data capture operations**
-- M_MSG_BUF:  The log entry shows the message data buffer used for data capture. The buffer may contain only the primary message text, only the secondary (Help) message text, or both text types concatenated with one space character between them.
-- M_CAPTURE:  The log entry shows the portion of data that was captured from the message text buffer. This data would be referred to, for example, when the special value of \*CAPT is used in a Captured Data Response Rule.
-- M_CAPTRSPE: An error occurred during the attempt to process Captured Data Response Rules after some Message Data was captured.
-- M_DYNV_ERR: A Dynamic Variable token could not be replaced during the processing of Message Data capture.
-- M_DYNV_PRE: During Message Data capture, the string that contains a Dynamic Variable token before the token is replaced. This is the string that contains an optional Scan Label that will be used to identify the message data desired for capture.
-- M_DYNV_RPL: During Message Data capture, the string value after a Dynamic Variable token was replaced.
+- **M_MSG_BUF**:  The log entry shows the message data buffer used for data capture. The buffer may contain only the primary message text, only the secondary (Help) message text, or both text types concatenated with one space character between them.
+- **M_CAPTURE**:  The log entry shows the portion of data that was captured from the message text buffer. This data would be referred to, for example, when the special value of *CAPT is used in a Captured Data Response Rule.
+- **M_CAPTRSPE**: An error occurred during the attempt to process Captured Data Response Rules after some Message Data was captured.
+- **M_DYNV_ERR**: A Dynamic Variable token could not be replaced during the processing of Message Data capture.
+- **M_DYNV_PRE**: During Message Data capture, the string that contains a Dynamic Variable token before the token is replaced. This is the string that contains an optional Scan Label that will be used to identify the message data desired for capture.
+- **M_DYNV_RPL**: During Message Data capture, the string value after a Dynamic Variable token was replaced.
 
   **Common entries for Captured Data Response Rule processing**
-- RESPCMD0: Documents the original response command string from the rules record, before processing any embedded variables.
-- RESPCMD1: Documents the response command string after any Dynamic Variables were replaced.
-- RESPDATA: The log entry details show the profile of the Captured Data Response Rule that was processed successfully. The details also include the final form of the response command, including resolution of any variable values.
-- RESPERR: The captured data response rule processor module is reporting an error encountered during processing. The response rule was probably not completed. Refer to the log entry for details about the error. The details also include a profile of the Captured Data Response Rule that was being processed.
-- ADDRPYTOK:  Log of the command that sets an Operator Replay Token variable value, based on that field in the Response Rule record.
-- OVARERR: Documents an error that occurred when the ADDRPYTOK command was executed.
-- SETDYNVAR:  Log of the command that sets a Dynamic Variable value, based on that field in the Response Rule record.
-- DVARERR: Documents an error that occurred when the SETDYNVAR command was executed.
+- **RESPCMD0**: Documents the original response command string from the rules record, before processing any embedded variables.
+- **RESPCMD1**: Documents the response command string after any Dynamic Variables were replaced.
+- **RESPDATA**: The log entry details show the profile of the Captured Data Response Rule that was processed successfully. The details also include the final form of the response command, including resolution of any variable values.
+- **RESPERR**: The captured data response rule processor module is reporting an error encountered during processing. The response rule was probably not completed. Refer to the log entry for details about the error. The details also include a profile of the Captured Data Response Rule that was being processed.
+- **ADDRPYTOK**:  Log of the command that sets an Operator Replay Token variable value, based on that field in the Response Rule record.
+- **OVARERR**: Documents an error that occurred when the ADDRPYTOK command was executed.
+- **SETDYNVAR**:  Log of the command that sets a Dynamic Variable value, based on that field in the Response Rule record.
+- **DVARERR**: Documents an error that occurred when the SETDYNVAR command was executed.

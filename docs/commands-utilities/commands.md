@@ -161,25 +161,25 @@ The IBM i command CHKOBJ may also be used, especially for objecttypes other than
 - **ENDJOBTRK**: End Job Tracking
   - Same as Job Tracking Menu function # 4.
 - **ENDLOGCMD**: End LSAM server logging, end debug mode
-  - Executed in prompted mode from the LSAM Management Menu, function #4, **<F8\>** (ENDSMALOG).
+  - Executed in prompted mode from the LSAM Management Menu, function #4, <**F8**> (ENDSMALOG).
 - **ENDMSGMNG**: End Message Management (end message trapping)
   - Same as Message Management Menu function # 4.
 - **ENDSMALOG**: End LSAM logging, debug mode
-  - Executed by the LSAM Management Menu, function # 4, **<F8\>** (ENDSMALOG).
+  - Executed by the LSAM Management Menu, function # 4, <**F8**> (ENDSMALOG).
 - **ENDSMASYS**: End LSAM server programs
   - Same as LSAM Management Menu function # 2, but supports an optional KEEPSBS parameter used by the SMARGZ command.
 - **JOBTRKSTS**: Show Job Tracking Status
   - Shows the Job Tracking status window, as in Job Tracking Menu function #5.
 - **SBMJOB, SBMJOB2, SMASBMJOB**: LSAM copies of the IBM i SBMJOB command, with alternate uses.  Warning: Do not use these commands. It is difficult to control what happens to submitted jobs when Job Tracking is turned on.
-  - Used for Job Tracking, in conjunction with the Exit Program numbers shown in the LSAM Environment Management function **<F9\>** (Exit Pgm#). These specially prepared versions of the SBMJOB command create special system entries that help control job tracking.
+  - Used for Job Tracking, in conjunction with the Exit Program numbers shown in the LSAM Environment Management function <**F9**> (Exit Pgm#). These specially prepared versions of the SBMJOB command create special system entries that help control job tracking.
 - **STRJOBTRK**: Start Job Tracking
   - Same as Job Tracking Menu function #3.
 - **STRLOGCMD**: Start LSAM server logging, start debug mode
-  - Executed in prompted mode from the LSAM Management Menu, function # 4, **<F7\>** (STRSMALOG).
+  - Executed in prompted mode from the LSAM Management Menu, function # 4, <**F7**> (STRSMALOG).
 - **STRMSGMNG**: Start Message Management (start message trapping)
   - Same as Message Management Menu function # 3.
 - **STRSMALOG**: Start LSAM logging, debug mode
-  - Executed by the LSAM Management Menu, function # 4, **<F7\>** (STRSMALOG).
+  - Executed by the LSAM Management Menu, function # 4, <**F7**> (STRSMALOG).
 - **STRSMAMNU**: **NO LONGER USED.** This command shows an informational display, only.
   - This command was used to start entry into the LSAM master menu. It has been replaced by command STRSMA.
 - **TRPMSGSTS**: Show Message Manager job status

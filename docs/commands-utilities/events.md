@@ -98,7 +98,7 @@ In order to allow the LSAM to send valid events to the SAM-SS, a valid User ID a
 1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **3** to choose the **Event management** menu in the SMA Main Menu.
 3. Enter **2** to choose the **External Event Pass Word** option in the Event Management Menu.
-4. On the External Event Pass Word screen, **<Tab\>** to the following fields and enter the following data:
+4. On the External Event Pass Word screen, <**Tab**> to the following fields and enter the following data:
 
     a.  **User Name**: type a valid OpCon/xps user name.     
     

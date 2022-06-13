@@ -46,7 +46,7 @@ The STRSMA command supports the interactive specification of an IBM i LSAM envir
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained below, under command SMALIBINQ.            |
 |                           |           | -   The value of *SELECT has been set as the backup default value for the command processor subprograms, in case a user should specify an incorrect value for the environment parameter.            |
-|                           |           | -   **<NAME\>**: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
+|                           |           | -   <**NAME**>: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
 |                           |           | -   **Example**: To log on to the original IBM i LSAM environment, type: STRSMA SMADEFAULT.  |
 |                           |           | -   Or, just type STRSMA as long as the SMA-distributed default environment remains set to SMADEFAULT.           |
 | ANIMATE (Show animated splash display)  | *YES     | -   **\*YES**: Adds an entertaining animation of character graphics. This animation is useful for demonstrations and for illustrating that the LSAM application is not just legacy code, but a state-of-the-art software suite that utilizes many creative IBM i techniques.           |
@@ -161,7 +161,7 @@ LSAMENU command routes to the *SELECT logic.    |
 |                           |           | -   **\*SELECT**: Indicates the system should present a list of available environment names for the user to select from.                 |
 |                           |           | -   The details of the selection function are explained under command SMALIBINQ.    |
 |                           |           | -   The value of *SELECT has been set as the backup default value for the command processor subprogram, in case a user should specify an incorrect  value for the environment parameter.            |
-|                           |           | -   **<NAME\>**: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
+|                           |           | -   <**NAME**>: If an environment name is already known, a user can sign on to the LSAM menus for that environment by directly typing (or programming) a command string that is made up of the command name and the environment name.     |
 | MENUNBR (Optional LSAM sub-menu number) | 0         | -   **0**: Show the LSAM Main menu upon first entry into the LSAM  menu system. This is the default value.    |
 |                           |           | -   **1-6,8**: Currently, the LSAM main menu supports sub-menus only as menu options 1-6 and 8. Function 7 is a direct call to the LSAM Parameters maintenance program and it is not allowed as a parameter of the LSAMENU command.      |
 
