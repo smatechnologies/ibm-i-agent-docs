@@ -203,8 +203,10 @@ module.exports = {
       items: [
         'reference/machine-messages',
         'reference/function-keys',
-        'reference/multiple-environments',
-        'reference/programs-files',
+        'reference/multiple-environments-introduction',
+        'reference/multiple-environments-how-to-add-an-lsam-environment',
+        'reference/multiple-environments-lsam-environment-screens-and-windows',
+        'reference/ibm-i-lsam-programs-and-files-listing-lsam-files-and-programs',
         'reference/copying-files',
         'reference/performance',
         'reference/jors',
