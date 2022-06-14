@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Installing Multiple Environments Introduction'
+sidebar_label: 'Installing Multiple Environments'
 ---
 
 # Installing Multiple Environments

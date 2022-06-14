@@ -343,7 +343,7 @@ Restricted Mode operations. For more information, refer to
 [SMALIBMGT](/environment/commands#SMALIBMG)
 . Regarding the discussion about Multiple Environment Management,
 refer to [LSAM Environment Management](/environment/index) and
-[Installing Multiple Environments](/reference/multiple-environments)
+[Installing Multiple Environments](../reference/multiple-environments.md)
 .
 
 - **Screen Title**: Restricted Mode Update SMASAV

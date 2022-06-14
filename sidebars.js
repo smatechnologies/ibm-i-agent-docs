@@ -203,7 +203,7 @@ module.exports = {
       items: [
         'reference/machine-messages',
         'reference/function-keys',
-        'reference/multiple-environments-introduction',
+        'reference/multiple-environments',
         'reference/multiple-environments-how-to-add-an-lsam-environment',
         'reference/multiple-environments-lsam-environment-screens-and-windows',
         'reference/lsam-programs-and-files',
