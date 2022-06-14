@@ -1,12 +1,12 @@
 ---
 sidebar_label: 'Components'
 ---
-
+ 
 # Components
 
 ## Core Programs and Files
 
-A summary of the programs and files installed for the IBM i LSAM is available in [IBM i LSAM Programs and Files](../reference/programs-files.md).
+A summary of the programs and files installed for the IBM i LSAM is available in [LSAM Programs and Files](../reference/copying-files.md).
 
 ## Primary Server Jobs
 

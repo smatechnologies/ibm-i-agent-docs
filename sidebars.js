@@ -206,7 +206,7 @@ module.exports = {
         'reference/multiple-environments-introduction',
         'reference/multiple-environments-how-to-add-an-lsam-environment',
         'reference/multiple-environments-lsam-environment-screens-and-windows',
-        'reference/ibm-i-lsam-programs-and-files-listing-lsam-files-and-programs',
+        'reference/lsam-programs-and-files',
         'reference/copying-files',
         'reference/performance',
         'reference/jors',
