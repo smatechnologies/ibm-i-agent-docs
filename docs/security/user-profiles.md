@@ -9,7 +9,7 @@ sidebar_label: 'LSAM User Profiles'
 The IBM i LSAM Installation instructions and this **IBM i LSAM** online help state that the standard IBM i system operator user profile, QSYSOPR, should be able to operate the LSAM software, performing the functions of starting and stopping the LSAM server jobs. An IBM i LSAM user site may or may not wish to authorize the system   operator to perform other functions supported by the LSAM menu system. Most of the LSAM menu functions are for configuration tasks or diagnostic purposes, and these might be restricted to users who have been authorized, according to the procedures described in this topic.
 
 :::tip Technical Notes
-The QSYSOPR user profile is specifically enabled to start or stop the LSAM server subsystem and jobs as of LSAM version 03.31.03, with PTF \# 16318 applied. Prior versions of the LSAM may require manual security maintenance procedures to enable QSYSOPR to perform these functions.
+The QSYSOPR user profile is specifically enabled to start or stop the LSAM server subsystem and jobs as of LSAM version 03.31.03, with PTF # 16318 applied. Prior versions of the LSAM may require manual security maintenance procedures to enable QSYSOPR to perform these functions.
 :::
 
 The strategy for an IBM i LSAM operator prevents the operator from performing LSAM configuration or master file maintenance tasks. These tasks must be performed by a user with LSAM administration authorities, as described in a following section of this topic.
@@ -46,7 +46,7 @@ It is possible to create a limited LSAM Administrator user profile, or other cat
 
 Strategies for creating limited LSAM Administrator user profiles are discussed in the following sections of this document.
 
-### LSAM Administrator Use of *ALLOBJ Authority
+## LSAM Administrator Use of *ALLOBJ Authority
 
 *ALLOBJ authority is the easy way to enable the LSAM Administrator to complete various pre-programmed tasks such as:
 
@@ -64,7 +64,7 @@ The LSAM Administrator also requires access to some other normally restricted IB
 SMA has made an effort in this topic to provide general guidance about the security and authorities required to operate the LSAM software. However, not every detail of the LSAM software analysis is documented in this topic, for reasons of system security and protection of proprietary design information. LSAM user sites that need to implement high security restrictions are advised to contact SMA Support for additional technical information that may be available to the security officers of licensed
 SMA software user sites. 
 
-### *SECADM Authority is No Longer Needed
+## *SECADM Authority is No Longer Needed
 
 Previous documentation about the LSAM Administrator authorities specified that *SECADM (security administration) authority was required for an LSAM Administrator to use some of the LSAM menu functions. This authority should no longer be required. For example, the validation list method of managing security for certain LSAM functions is controlled by IBM i object authority, so special security administration authority is not required to manage this feature. However, following a default
 installation of the LSAM software, this feature is restricted for use only by QSECOFR or an LSAM Administrator with *ALLOBJ authority.

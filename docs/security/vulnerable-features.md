@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Potentially Vulnerable Features'
+sidebar_label: 'Potentially Vulnerable LSAM Features'
 ---
 
 # Potentially Vulnerable LSAM Features
