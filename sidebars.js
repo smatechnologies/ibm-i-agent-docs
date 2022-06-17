@@ -14,6 +14,14 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'IBM i LSAM Overview',
+      collapsed: true,
+      items: [
+        'ibm-i-lsam-overview/ibm-i-lsam-overview',
+      ], 
+    },    
+    {
+      type: 'category', 
       label: 'Install',
       collapsed: true,
       items: [
