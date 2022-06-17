@@ -10,25 +10,21 @@ sidebar_label: 'Restricted Mode Screens and Windows'
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > Setup options (\#1)
+Main Menu > Restricted mode menu (#5) > Setup options (#1)
 
 ##### Fields
 
-  | Field | Default | Description |
-  | ----- | ------- | ----------- |
-  | Op    |   None  |  <**Tab**> to a row in the table and enter an option.|
-  | Script Name  |    n/a |   The name of the Script to be changed, copied, or deleted. |
+  | Field        | Default | Description                                               |
+  | -----        | ------- | -----------                                               |
+  | Op           |   None  | <**Tab**> to a row in the table and enter an option.      |
+  | Script Name  |   n/a   | The name of the Script to be changed, copied, or deleted. |
 
 ##### Options
 
-- **1=Select**: Type 1 next to the Script name and press <**Enter**> to
-    work with Options (script steps).
-- **3=Copy**: Type 3 next to the Script name to be copied and press
-    <**Enter**> to proceed to the new script name window.
-- **4=Delete**: Type 4 next to the Script to be removed from the
-    system and press <**Enter**> to proceed to the Confirm Delete screen.
-- **8=Export**: Initiate dialog to export this script and all its
-    steps.
+- **1=Select**: Type 1 next to the Script name and press <**Enter**> to work with Options (script steps).
+- **3=Copy**: Type 3 next to the Script name to be copied and press <**Enter**> to proceed to the new script name window.
+- **4=Delete**: Type 4 next to the Script to be removed from the system and press <**Enter**> to proceed to the Confirm Delete screen.
+- **8=Export**: Initiate dialog to export this script and all its steps.
 
 ##### Functions
 
@@ -59,21 +55,13 @@ Confirm Delete Scripts
 
 ##### Functions
 
-**F12=Cancel**: Quits the delete confirmation window without deleting
-any records and returns to the list of Scripts.
+**F12=Cancel**: Quits the delete confirmation window without deleting any records and returns to the list of Scripts.
 
 ### Add New Script
 
-A window is displayed for typing in a new Script name when function
-<**F6**> (Add) is pressed. This occurs before the program displays the
-Restricted mode options detail screen where the new Script Actions will
-be defined.
+A window is displayed for typing in a new Script name when function <**F6**> (Add) is pressed. This occurs before the program displays the Restricted mode options detail screen where the new Script Actions will be defined.
 
-The same format of the New Script Name window is displayed for both
-function <**F6**> (Add) and function <**F3**> (Copy). The only
-difference will be the title line of the window, where the title line
-for <**F3**> (Copy) will show the name of the Script that is being
-copied.
+The same format of the New Script Name window is displayed for both function <**F6**> (Add) and function <**F3**> (Copy). The only difference will be the title line of the window, where the title line for <**F3**> (Copy) will show the name of the Script that is being copied.
 
 Add New Script Window
 ```
@@ -101,25 +89,21 @@ SAVRSTD20W3
 
 ##### Menu Pathways
 
-- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
-    F6=Add
-- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
-    Copy Script option (\#3)
+- Main Menu > Restricted mode menu (#5) > Setup options (#1) > F6=Add
+- Main Menu > Restricted mode menu (#5) > Setup options (#1) > Copy Script option (#3)
 
 ##### Fields
 
 
 | Field           | Default   | Required | Description         |
-| ------- | -----| ------| -------|
+| -------         | -------   | -------- | -----------         |
 | New script name | \*DEFAULT | Y        | A user-defined name for each group of Action codes. It is recommended that the most commonly used Restricted Mode script be named "*DEFAULT" in order to support the default action of the STRSAVRST command.            |
 |                 |           |          | **Note:** Users of a prior release of the LSAM who already had a single Restricted Mode script defined will have that script automatically converted to a script name of *DEFAULT. This will ensure that their system uses the STRSAVRST command the same way it did in the prior release (the STRSAVRST is submitted by OpCon/xps scheduling without any script name parameter).         |
 
 ##### Functions
 
-- **F3=Exit**: Quits the Add New/Copy Script window without updating
-    and returns to the menu.
-- **F12=Cancel**: Quits the Add New/Copy Script windows without
-    updating and returns to the list of Scripts.
+- **F3=Exit**: Quits the Add New/Copy Script window without updating and returns to the menu.
+- **F12=Cancel**: Quits the Add New/Copy Script windows without updating and returns to the list of Scripts.
 
 ## Select Options (Script Steps)
 
@@ -128,8 +112,8 @@ SAVRSTD20W3
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > Setup options (\#1) > Select
-Script, options (\#1)
+Main Menu > Restricted mode menu (#5) > Setup options (#1) > Select
+Script, options (#1)
 
 ##### Fields
 
@@ -149,34 +133,21 @@ special ON_ERROR Action code.            |
 | | | -   HLD = held, will not be executed when restricted mode operations are run.    |
 | Description |         | User description of each sequenced step    |
 
-
-
 ##### Options
 
-- **2=Change**: Type 2 next to the Action to be changed and press
-    <**Enter**> to proceed to the options details screen.
-
-- **3=Hold**: Change the status of an Action to HLD, so that it will
-    not be used during restricted mode operations. This provides for
-    retaining Actions for use on alternate days.
-
+- **2=Change**: Type 2 next to the Action to be changed and press <**Enter**> to proceed to the options details screen.
+- **3=Hold**: Change the status of an Action to HLD, so that it will not be used during restricted mode operations. This provides for retaining Actions for use on alternate days.
 :::tip
 Reclaims of storage might only be performed once a quarter, while a full system save is performed every month.
 :::
-
-- **4=Delete**: Type 4 next to the Action to be removed from the
-    system and press <**Enter**> to proceed to the Confirm Delete screen.
-
-- **6=Release**: Change the status of a step to RDY (ready), so that
-    it will be executed during restricted mode operations.
+- **4=Delete**: Type 4 next to the Action to be removed from the system and press <**Enter**> to proceed to the Confirm Delete screen.
+- **6=Release**: Change the status of a step to RDY (ready), so that it will be executed during restricted mode operations.
 
 ##### Functions
 
 - **F3=Exit**: Quits the list display and returns to the menu.
-- **F6=Add**: Proceeds to the options detail screen for adding a new
-    Action.
-- **F11=Alt View**: Toggles between Descriptions and Commands
-    displayed for each step.
+- **F6=Add**: Proceeds to the options detail screen for adding a new Action.
+- **F11=Alt View**: Toggles between Descriptions and Commands displayed for each step.
 - **F12=Cancel**: Quits the list display and returns to the menu.
 
 ### Windows
@@ -195,30 +166,26 @@ Enter=Confirm F12=Cancel
 
 ##### Fields
 
-  | Field |        Description |
-  |------------- | -------------------------------------- |
-  |Action       | User-defined name for the Action.|
-  |Description  | Explanation of what the action does. |
+  | Field       | Description                            |
+  |------       | -------------------------------------- |
+  |Action       | User-defined name for the Action.      |
+  |Description  | Explanation of what the action does.   |
 
 ##### Functions
 
-**F12=Cancel**: Quits the delete confirmation window without deleting
-any records and returns to the list of Actions.
+**F12=Cancel**: Quits the delete confirmation window without deleting any records and returns to the list of Actions.
 
 ### Restricted Mode Options Detail
 
-The same format of Options Detail screen is displayed for both option
-2=Change and function <**F6**> (Add).
+The same format of Options Detail screen is displayed for both option 2=Change and function <**F6**> (Add).
 
 - **Screen Title**: Restricted Mode Options Detail
 - **Screen ID**: SAVRSTD20-2
 
 ##### Menu Pathways
 
-- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
-    F6=Add
-- Main Menu > Restricted mode menu (\#5) > Setup options (\#1) >
-    option 2=Change
+- Main Menu > Restricted mode menu (#5) > Setup options (#1) > F6=Add
+- Main Menu > Restricted mode menu (#5) > Setup options (#1) > option 2=Change
 
 ##### Fields
 
@@ -245,26 +212,20 @@ There is a special Action code name ON_ERROR that is reserved as an optional ste
 
 ##### Functions
 
-- **F3=Exit**: Quits the options details display without updating and
-    returns to the menu.
-- **F4=Prompt**: In the Command line field, go to IBM i command
-    prompting. When <**Enter**> is pressed from the command prompt screen,
-    the resulting command text will be inserted into this field.
-- **F12=Cancel**: Quits the options details display without updating
-    and returns to the list of Actions.
+- **F3=Exit**: Quits the options details display without updating and returns to the menu.
+- **F4=Prompt**: In the Command line field, go to IBM i command prompting. When <**Enter**> is pressed from the command prompt screen, the resulting command text will be inserted into this field.
+- **F12=Cancel**: Quits the options details display without updating and returns to the list of Actions.
 
 ## Setup Restricted Mode Environment
 
-In Setup Environment, define the environment for executing Restricted
-Mode operations by specifying an environment library list and an option
-for managing any exceptional messages that may arise.
+In Setup Environment, define the environment for executing Restricted Mode operations by specifying an environment library list and an option for managing any exceptional messages that may arise.
 
 - **Screen Title**: Restricted Mode Evnironment
 - **Screen ID**: SAVRSTD21
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > Setup environment (\#2)
+Main Menu > Restricted mode menu (#5) > Setup environment (#2)
 
 ##### Fields
 
@@ -286,73 +247,28 @@ Main Menu > Restricted mode menu (\#5) > Setup environment (\#2)
 
 ##### Functions
 
-- **F3=Exit**: Quits the environment details display without updating
-    and returns to the menu.
-- **F4=Prompt**: From the Environment field, the prompting function
-    presents a new screen that lists all available environments. It is
-    possible to view the library list that defines each environment.
-    Select the environment and library list that has been created for
-    use with Restricted Mode operations. If no environment and library
-    list has been set up for Restricted Mode operations, use <**F6**>
-    (Add/maint env) to perform environment maintenance now. Then repeat
-    the <**F4**> (Prompt) to select the new environment for insertion into
-    the Environment field.
-- **F5=Refresh**: Retrieves the latest information from the LSAM
-    environment master files and updates the display.
-- **F6=Add/maint env**: This function key supports access to the LSAM
-    Environment maintenance functions, where new environment records may
-    be created and library lists may be constructed or updated. Refer to
-    [LSAM Environment Management](/environment/index)
-    for more information about managing LSAM environments.
-- **F12=Cancel**: Quits the environment details display without
-    updating and returns to the list of Actions.
-- **F15=Update SMASAV**: Access to a function required to prepare the
-    user profile SMASAV and a control data area QGPL/RSTENVIRON for use
-    with Restricted Mode operations.
-- **PageDown**: Use the Page control keys to view more libraries if
-    the complete list is not displayed on the first page.
+- **F3=Exit**: Quits the environment details display without updating and returns to the menu.
+- **F4=Prompt**: From the Environment field, the prompting function presents a new screen that lists all available environments. It is possible to view the library list that defines each environment. Select the environment and library list that has been created for use with Restricted Mode operations. If no environment and library list has been set up for Restricted Mode operations, use <**F6**> (Add/maint env) to perform environment maintenance now. Then repeat the <**F4**> (Prompt) to select the new environment for insertion into the Environment field.
+- **F5=Refresh**: Retrieves the latest information from the LSAM environment master files and updates the display.
+- **F6=Add/maint env**: This function key supports access to the LSAM Environment maintenance functions, where new environment records may be created and library lists may be constructed or updated. Refer to [LSAM Environment Management](../environment/index.md) for more information about managing LSAM environments.
+- **F12=Cancel**: Quits the environment details display without updating and returns to the list of Actions.
+- **F15=Update SMASAV**: Access to a function required to prepare the user profile SMASAV and a control data area QGPL/RSTENVIRON for use with Restricted Mode operations.
+- **PageDown**: Use the Page control keys to view more libraries if the complete list is not displayed on the first page.
 
 ### F15=Update SMASAV
 
-The instructions for preparing the LSAM to use Restricted Mode
-operations indicate that the following screen represents a step that is
-required to configure the LSAM software. The effect of using this screen
-to perform the update is that the system will know which LSAM
-environment should be used as a reference point to initiate Restricted
-Mode operations when the special user SMASAV signs on to the IBM i
-system for this purpose. This function will also update the SMASAV user
-profile with correct information about where to find the required
-Initial Program.
+The instructions for preparing the LSAM to use Restricted Mode operations indicate that the following screen represents a step that is required to configure the LSAM software. The effect of using this screen to perform the update is that the system will know which LSAM environment should be used as a reference point to initiate Restricted Mode operations when the special user SMASAV signs on to the IBM i system for this purpose. This function will also update the SMASAV user profile with correct information about where to find the required Initial Program.
 
-It is recommended to always perform this function before using the
-Restricted Mode for the first time, or at any time after updating or
-changing the LSAM environment or programs. It is also required to
-complete this function by pressing <**Enter**> when this display shows
-that the Restricted Mode controlling environment is either blank or is
-not the same as the Current environment. However, it is not necessary to
-press <**Enter**> when viewing this display from a test environment
-and that environment should not be in control of Restricted Mode
-operations.
+It is recommended to always perform this function before using the Restricted Mode for the first time, or at any time after updating or changing the LSAM environment or programs. It is also required to complete this function by pressing <**Enter**> when this display shows that the Restricted Mode controlling environment is either blank or is not the same as the Current environment. However, it is not necessary to press <**Enter**> when viewing this display from a test environment and that environment should not be in control of Restricted Mode operations.
 
-As a general rule, the default LSAM environment should be the one that
-is set to control Restricted Mode. Note that this environment name will
-not be the same as the Restricted Mode environment itself, shown on the
-previous display format (above). This is because the environment name is
-only a label for the special library list which will be in effect during
-Restricted Mode operations. For more information, refer to
-[SMALIBMGT](/environment/commands#SMALIBMG)
-. Regarding the discussion about Multiple Environment Management,
-refer to [LSAM Environment Management](/environment/index) and
-[Installing Multiple Environments](../reference/multiple-environments.md)
-.
+As a general rule, the default LSAM environment should be the one that is set to control Restricted Mode. Note that this environment name will not be the same as the Restricted Mode environment itself, shown on the previous display format (above). This is because the environment name is only a label for the special library list which will be in effect during Restricted Mode operations. For more information, refer to [SMALIBMGT](../environment/commands.md#SMALIBMG). Regarding the discussion about Multiple Environment Management, refer to [LSAM Environment Management](../environment/index.md) and [Installing Multiple Environments](../reference/multiple-environments.md).
 
 - **Screen Title**: Restricted Mode Update SMASAV
 - **Screen ID**: SAVRSTD21-2
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > Setup environment (\#2) >
-F15=Update SMASAV
+Main Menu > Restricted mode menu (#5) > Setup environment (#2) > F15=Update SMASAV
 
 ##### Fields
 
@@ -381,7 +297,7 @@ Shows a list of each Script name and job for which a history has been recorded.
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > History of last use (\#3)
+Main Menu > Restricted mode menu (#5) > History of last use (#3)
 
 ##### Fields
 
@@ -395,7 +311,7 @@ Main Menu > Restricted mode menu (\#5) > History of last use (\#3)
 
 ##### Options
 
-- **1=Select**: Type 1 next to a Script/Job and press <**Enter**>  key to view its history detail.
+- **1=Select**: Type 1 next to a Script/Job and press <**Enter**> key to view its history detail.
 - **9=WRKJOB**: Type 9 next to a Script/Job and press <**Enter**> to view the IBM i WRKJOB menu.
 
 ##### Functions
@@ -416,7 +332,7 @@ Shows a list of script options and/or program-defined steps that were performed,
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > History of the last use (\#3) > option (\#1)
+Main Menu > Restricted mode menu (#5) > History of the last use (#3) > option (#1)
 
 ##### Options
 
@@ -451,7 +367,7 @@ Shows extended detail about the activity selected from the list of steps in a jo
 
 ##### Menu Pathways
 
-Main Menu > Restricted mode menu (\#5) > History of the last use (\#3) > option (\#1) > option (\#5)
+Main Menu > Restricted mode menu (#5) > History of the last use (#3) > option (#1) > option (#5)
 
 ##### Fields
 

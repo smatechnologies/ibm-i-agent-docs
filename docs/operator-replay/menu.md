@@ -31,7 +31,7 @@ USERNAME                                    �
 
 ##### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4)
+Main Menu > Operator replay menu (#4)
 
 ##### Field
 

@@ -392,7 +392,7 @@ either or both of the STROPRRPY command parameters as shown in this example:
 MYSCRIPT DEVICE(DSP02) IPADDR('127.0.0.2')
 ```
 
-NOTE: When the Agent's Operator Replay Configuration mode is 4, allowing only the *CMD
+**NOTE**: When the Agent's Operator Replay Configuration mode is 4, allowing only the *CMD
 option, then BOTH of the parameters are required. If either parameter is missing, the script job will
 likely fail. The only time that a single parameter is allowed here is when both *USER and *CMD
 modes are allowed. In that case, the *USER data will be selected unless there is one of the parameters
@@ -418,7 +418,7 @@ For the Operator Replay Virtual Display management *USER Mode (3) it is necessar
 
 ##### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay user (\#1) \> option 2=Change
+Main Menu > Operator replay menu (#4) > Operator Replay user (#1) > option 2=Change
 
 Figure: LSAM sub-menu 4, menu option 1, list option 2=Change
 ```
@@ -436,12 +436,9 @@ ___________________________________________________________________
        
 WARNING: User name and password Fields are case-sensitive. Limits are:
     LSAM FEATURE       USER NAME SIZE, CASE       PASSWORD SIZE, CASE
-
     Operator Replay:   10; CAPS (rmt 128 mix?)    10/128 (SYSAL), Mixed
-
-    UI FTP User\....:   UI size, Mixed            128/remote limit, Mixed
-
-    LSAM PTF ...:   128/remote limit, Mixed       128/remote limit, Mixed
+    UI FTP User....:   UI size, Mixed             128/remote limit, Mixed
+    LSAM PTF ftp...:   128/remote limit, Mixed    128/remote limit, Mixed
 
 Operator Replay Device per IP Address   See F1=Instructions.
 
@@ -459,10 +456,11 @@ The F1=Dev/IpAddr instructions below (adapted from this screen format's Help tex
 This display format is used only to register a device name and an IP address. This display function does not create either a virtual device description or an IP address interface. Those can be created manually or with the assistance of the Agent's configuration prompts, accessed from the Operator Replay Configuration function, as described below. These objects do not have to exist when they are registered in the User Management function, but they must exist before this type of User profile can be used for an Operator Replay job.
 
 ##### Fields
-
-- *All fields*:   This display format is described in detail in the Screens and Windows section under the general topic of Operator Replay. This table is focused on the Device Name and IP Address fields.
-- Device Name:    Used only for Operator Replay Device Selection Mode 3, the Device Name must match exactly a virtual display device that is configured in advance before it can be used by an Operator Replay Script job. See the discussion below about using the Operator Replay Configuration function key F23 for easy prompting of appropriate values for the virtual display device.
-- IP Address:     Used only for Operator Replay Device Selection Mode 3, the IP Address must match exactly an IBM i TCP/IP Interface address that is configured in advance before it can be used by an Operator Replay Script job. See the discussion below about using the Operator Replay Configuration function key F23 for easy prompting of appropriate values for configuring a *LOOPBACK IP Address Interface. (Other types of Interfaces may also be used, but SMA recommends a Loopback address because it does not require a line description, so it is easier to configure and requires less system overhead to operate.)
+| Fields | Description |
+| ------ | ----------- |
+| *All fields* |   This display format is described in detail in the Screens and Windows section under the general topic of Operator Replay. This table is focused on the Device Name and IP Address fields.
+| Device Name |    Used only for Operator Replay Device Selection Mode 3, the Device Name must match exactly a virtual display device that is configured in advance before it can be used by an Operator Replay Script job. See the discussion below about using the Operator Replay Configuration function key F23 for easy prompting of appropriate values for the virtual display device.
+| IP Address |     Used only for Operator Replay Device Selection Mode 3, the IP Address must match exactly an IBM i TCP/IP Interface address that is configured in advance before it can be used by an Operator Replay Script job. See the discussion below about using the Operator Replay Configuration function key F23 for easy prompting of appropriate values for configuring a *LOOPBACK IP Address Interface. (Other types of Interfaces may also be used, but SMA recommends a Loopback address because it does not require a line description, so it is easier to configure and requires less system overhead to operate.)
 
 More detailed information about using the Device Name and IP Address for Operator Replay is presented in the following topics.
 

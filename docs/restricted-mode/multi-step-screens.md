@@ -226,9 +226,9 @@ The screen is used to illustrate the Display, Change, Copy and Add functions. Fo
 ##### Menu Pathways
 
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > F6= Add
-- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps \>Option 2 = Change
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps >Option 2 = Change
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > Option 3 = Copy
-- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps \>Option 5 = Display
+- Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps >Option 5 = Display
 
 ##### Functions
 
@@ -269,21 +269,21 @@ Display formats MLTJOBR10-5 and MLTJOBR10-5A support function key F10 for select
 The Multi-Step Job Script driver program will recognize exactly spelled tokens and then replace them with the values shown in the following table; however, the values for OpCon properties, such as $SCHEDULE values, can only be replaced if the Script job was started by OpCon. They are not valid when Scripts are executed independently of OpCon, for example, if a Script is executed by a Message Management Parameters command or a Response Rule linked to Message Management.
 
 ##### Variable 
--  $ERRMSGID:         The 7-character message ID reported by IBM i when any Script Step fails. This value can also be referenced from the currently active ON_ERROR management command.
--  $ERRMSGTXT:        The primary message text of the 7-character message ID reported by IBM i when any Script Step fails. This value can also be referenced from the currently active ON_ERROR management command.
--  $FREQUENCY NAME:   The name of the OpCon Frequency assigned to the OpCon job that started the Script job.
--  $IBM JOB ID:       The full IBM i job ID for the job in which the Script is executing, in the format of 123456/USER/NAME.
--  $IBM JOB NAME:     The IBM i Job Name of the job in which the Script is executing.
--  $IBM JOB NBR:      The IBM i Job Number of the job in which the Script is executing.
--  $IBM JOB USER:     The IBM i User Profile that is part of the Job ID in which the Script is executing.
--  $JOBID:            The OpCon job identified, a 10-digit number, of the OpCon job that started the Script job.
--  $JOBID CMP:        The OpCon job name and job identifier, joined into a single string with blanks compressed out, for the OpCon job that started the Script job.
--  $JOBID LONG:       The OpCon job name, followed by the job identifier, with all blanks retained in the string, for the OpCon job that started the Script job.
--  $JOB NAME:         The short format of the OpCon job name, for the job that started the Script job.
--  $JOB LONG NAME:    The long format of the complete OpCon job name, for the job that started the Script job.
--  $MACHINE NAME:     The OpCon name for the Agent (LSAM) machine in which the Script job is executing.
--  $SCHEDULE DATE:    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
--  $SCHEDULE NAME:    The name of the OpCon schedule under which the current job was started.
+- **$ERRMSGID**:        The 7-character message ID reported by IBM i when any Script Step fails. This value can also be referenced from the currently active ON_ERROR management command.
+- **$ERRMSGTXT**:       The primary message text of the 7-character message ID reported by IBM i when any Script Step fails. This value can also be referenced from the currently active ON_ERROR management command.
+- **$FREQUENCY NAME**:  The name of the OpCon Frequency assigned to the OpCon job that started the Script job.
+- **$IBM JOB ID**:      The full IBM i job ID for the job in which the Script is executing, in the format of 123456/USER/NAME.
+- **$IBM JOB NAME**:    The IBM i Job Name of the job in which the Script is executing.
+- **$IBM JOB NBR**:     The IBM i Job Number of the job in which the Script is executing.
+- **$IBM JOB USER**:    The IBM i User Profile that is part of the Job ID in which the Script is executing.
+- **$JOBID**:           The OpCon job identified, a 10-digit number, of the OpCon job that started the Script job.
+- **$JOBID CMP**:       The OpCon job name and job identifier, joined into a single string with blanks compressed out, for the OpCon job that started the Script job.
+- **$JOBID LONG**:      The OpCon job name, followed by the job identifier, with all blanks retained in the string, for the OpCon job that started the Script job.
+- **$JOB NAME**:        The short format of the OpCon job name, for the job that started the Script job.
+- **$JOB LONG NAME**:   The long format of the complete OpCon job name, for the job that started the Script job.
+- **$MACHINE NAME**:    The OpCon name for the Agent (LSAM) machine in which the Script job is executing.
+- **$SCHEDULE DATE**:   The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
+- **$SCHEDULE NAME**:   The name of the OpCon schedule under which the current job was started.
 
 ### Multi-Step Job Script Step Full Command Maintenance and Display
 

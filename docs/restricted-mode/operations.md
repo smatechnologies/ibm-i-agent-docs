@@ -134,8 +134,7 @@ Command **SMAGPL/SMASTRSYS** must be used to restart LSAM communication with OpC
 
 If the IBM i system startup program was not called at the **STRSYS** step, or if the IBM i system startup program does not include this STRSMASYS command, then the last required step in a Restricted Mode Script restarts all the LSAM server programs, including restoring communication with OpCon.
 
-Be sure to specify the name of the LSAM environment that will be started. The STRSMASYS command executes the SMASETLIBL command to establish a correct library list for the LSAM environment named. The value of *DEFAULT or a specific LSAM environment name may be used for the environment, but the values of *CURRENT or *SELECT may not be used
-with this command in the Operator Replay scripts. The format for this command is:
+Be sure to specify the name of the LSAM environment that will be started. The STRSMASYS command executes the SMASETLIBL command to establish a correct library list for the LSAM environment named. The value of *DEFAULT or a specific LSAM environment name may be used for the environment, but the values of *CURRENT or *SELECT may not be used with this command in the Operator Replay scripts. The format for this command is:
 ```
 SMAGPL/STRSMASYS ENV(*DEFAULT)
 ```
@@ -152,8 +151,7 @@ This document includes an excerpt from IBM documentation, following, as a conven
 Specifies whether the request should be confirmed before the system is powered down.
 
 ##### *ENVVAR
-The value in environment variable QIBM_PWRDWNSYS_CONFIRM is used to determine whether the request should be confirmed. If the value is set to *INTERACT, *YES, or *NO, the action described below for that value is taken. If the environment variable is not defined or not set to one of these values, then a confirmation panel is displayed when the
-PWRDWNSYS command is issued in an interactive job. System initiated power downs do not use the environment variable.
+The value in environment variable QIBM_PWRDWNSYS_CONFIRM is used to determine whether the request should be confirmed. If the value is set to *INTERACT, *YES, or *NO, the action described below for that value is taken. If the environment variable is not defined or not set to one of these values, then a confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. System initiated power downs do not use the environment variable.
 
 ##### *INTERACT
 
@@ -169,8 +167,7 @@ There is no confirmation when the PWRDWNSYS command is issued.
 
 ### Optional ON_ERROR Script Action Code
 
-There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is listed in a Script, the Restricted Mode operations program will register the command that has been assigned to this Action code as the current operation to be performed in case any
-subsequent step in the Script might fail. 
+There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is listed in a Script, the Restricted Mode operations program will register the command that has been assigned to this Action code as the current operation to be performed in case any subsequent step in the Script might fail. 
 
 If the ON_ERROR command is executed after a failed step, it will be executed after the Restricted Mode operations program has performed most of the AutoRecovr steps. This takes place after normal system operations have been restored and the LSAM service programs have been restarted. Refer to below for an exact definition of how the Restricted Mode program will recover from a failed Script.
 

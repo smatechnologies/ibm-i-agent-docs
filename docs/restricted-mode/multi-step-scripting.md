@@ -23,8 +23,7 @@ The STRMLTJOB command may be used immediately after this feature is installed in
 
 #### IBM i Authority Requirements
 
-It is important, as always, to remember that LSAM scripting tools such as the STRMLTJOB command and the script steps master file are very powerful, so their IBM i object authority must be carefully managed. The command, its programs and the master files and log file are all installed with \*PUBLIC authority revoked. These objects are owned by
-the SMANET user profile. SMA recommends using the LSAM object authority management tool (LSAM sub-menu 9, option 8) to grant individual authorities to user profiles that do not already have authority to use objects owned by SMANET.
+It is important, as always, to remember that LSAM scripting tools such as the STRMLTJOB command and the script steps master file are very powerful, so their IBM i object authority must be carefully managed. The command, its programs and the master files and log file are all installed with \*PUBLIC authority revoked. These objects are owned by the SMANET user profile. SMA recommends using the LSAM object authority management tool (LSAM sub-menu 9, option 8) to grant individual authorities to user profiles that do not already have authority to use objects owned by SMANET.
 
 Similar considerations apply to any IBM i source files that will be used to store Control Language command lines that will be executed by the STRMLTJOB script driver program.
 
@@ -45,7 +44,7 @@ SMAGPL/STRMLTJOB (*CMD): *USE authority
 
 SMAGPL/STRMLTJOBC (*PGM): *USE authority
 
-SMAPGM/MLTJOBR00 (*PGM): \*USE authority
+SMAPGM/MLTJOBR00 (*PGM): *USE authority
 
 SMADTA/MLTJOBF00 (*FILE): Object *USE authority and READ data
 authority
@@ -100,8 +99,7 @@ The STRMLTJOB command performs its own built-in management of adding the LSAM li
 
 #### JOBTYPE Command Parameter
 
-When using the STRMLTJOB command in test mode, that is, when manually executing this command outside of the control of OpCon, be sure to change the JOBTYPE parameter of the STRMLTJOB command to a value of "T" which means "Test." The default value is "O" which means that OpCon is starting the command. This option prevents useless messages
-from being sent to the OpCon server. 
+When using the STRMLTJOB command in test mode, that is, when manually executing this command outside of the control of OpCon, be sure to change the JOBTYPE parameter of the STRMLTJOB command to a value of "T" which means "Test." The default value is "O" which means that OpCon is starting the command. This option prevents useless messages from being sent to the OpCon server. 
 
 #### OpCon Job Status
 
@@ -140,11 +138,9 @@ The ON_RESTART step will not be performed when a Script is started at the *FIRST
 
 When a restart is being requested, the Script driver will find and perform the ON_RESTART Step command as its first operation, then it will locate the RSTLABEL Step and resume Script processing, step-by-step, from that label.
 
-Care must be taken when including an ON_RESTART label in a Script, especially if the Script would ever be called from another Script, using a sub-call to the STRMLTJOB command. If the RSTLABEL parameter on that command specifies a Step label value other than *FIRST, the Script driver will perform the ON_RESTART Step of the sub-script before
-branching to the requested label. Therefore, any Scripts that will be used in the sub-script mode, as if they were subroutines for the main Script, should probably not include an ON_RESTART Step label. 
+Care must be taken when including an ON_RESTART label in a Script, especially if the Script would ever be called from another Script, using a sub-call to the STRMLTJOB command. If the RSTLABEL parameter on that command specifies a Step label value other than *FIRST, the Script driver will perform the ON_RESTART Step of the sub-script before branching to the requested label. Therefore, any Scripts that will be used in the sub-script mode, as if they were subroutines for the main Script, should probably not include an ON_RESTART Step label. 
 
-An ON_RESTART Step can take advantage of any of the Step record capabilities. If restart logic requires complex logic, or if multiple commands must be executed, then a separate utility Script could be designed that would be called from the single ON_RESTART Step of the primary script using the STRMLTJOB command as the command to execute
-from the ON_RESTART Step record. (Refer to the discussion of Script Branching capabilities.) If the ON_RESTART Step (and/or any sub-script it calls) should fail, the Fail option flag for this record will decide if the Script should fail or should ignore the error and continue. It is not possible to register an ON_ERROR Step in the Script driver program before the ON_RESTART Step is executed, therefore, if an ON_ERROR process is desired, it should be included as part of the proposed utility sub-script that will actually perform the restart setup steps.
+An ON_RESTART Step can take advantage of any of the Step record capabilities. If restart logic requires complex logic, or if multiple commands must be executed, then a separate utility Script could be designed that would be called from the single ON_RESTART Step of the primary script using the STRMLTJOB command as the command to execute from the ON_RESTART Step record. (Refer to the discussion of Script Branching capabilities.) If the ON_RESTART Step (and/or any sub-script it calls) should fail, the Fail option flag for this record will decide if the Script should fail or should ignore the error and continue. It is not possible to register an ON_ERROR Step in the Script driver program before the ON_RESTART Step is executed, therefore, if an ON_ERROR process is desired, it should be included as part of the proposed utility sub-script that will actually perform the restart setup steps.
 
 #### Job Status Logging
 
@@ -154,8 +150,7 @@ The STRMLTJOB command parameter JOBLOG( ) is used to enable (Y) or disable (N) t
 
 #### LSAM Dynamic Variables
 
-The script driver program supports translating Dynamic Variable tokens to their run-time values, regardless of the step command source. This means that Dynamic Variable tokens can be used in the script step command field (as well as in the qualifier fields of Compare Reference and Compare Data), and they can be used in any source file member
-records -- both in a single source member that contains the entire, multiple script steps, as well as in a source member that contains a long command for a single script step master record.
+The script driver program supports translating Dynamic Variable tokens to their run-time values, regardless of the step command source. This means that Dynamic Variable tokens can be used in the script step command field (as well as in the qualifier fields of Compare Reference and Compare Data), and they can be used in any source file member records -- both in a single source member that contains the entire, multiple script steps, as well as in a source member that contains a long command for a single script step master record.
 
 #### Step Qualifiers
 
@@ -215,8 +210,7 @@ The SMAGOTO pseudo-command supports a SCRIPT name parameter. When this parameter
 
 A flag field on the Step master record tells the script driver program how to react if the step's command execution fails.
 
-A value of "F" indicates that the script job should be forced to fail, so that it will also show as a failed job on the OpCon schedule. An error code of MLT0101 indicates this type of forced failure. When a script job fails, if the JOBLOG parameter was set to "Y", then detailed information messages from the script driver program can be
-viewed in the job log report using the OpCon Job Output Retrieval function.
+A value of "F" indicates that the script job should be forced to fail, so that it will also show as a failed job on the OpCon schedule. An error code of MLT0101 indicates this type of forced failure. When a script job fails, if the JOBLOG parameter was set to "Y", then detailed information messages from the script driver program can be viewed in the job log report using the OpCon Job Output Retrieval function.
 
 A value of "I" indicates that the script driver should ignore the error and continue processing the next script step. The ON_ERROR registered command (if any) is still executed when a step command error is ignored, since this makes it possible to trigger some external action, even if the script is allowed to continue.
 
@@ -244,8 +238,7 @@ If the ON_ERROR registered command fails during its execution, the ON_ERROR regi
 
 The ON_ERROR registered command could request a complex set of instructions should be executed if the command is a STRMLTJOB command that requests execution of another script. (This is the sub-routine technique described above, where the script driver program control will return to the original script after the secondary script has completed execution.) Results of a sub-routine script can be returned to the primary script using an LSAM Dynamic Variable, which could then be used by the primary script to govern its subsequent behavior. For some error conditions, the SMAGOTO pseudo-command could be used instead, in order to redirect the script driver to continue processing with a completely different script.
 
-Another useful technique for the ON_ERROR registered command might be to specify a *CURRENT script LABEL in the SMAGOTO pseudo-command, which would redirect the script logic to a segment of the script where multiple steps could be dedicated to managing error conditions. The other steps in the script can be configured to flow past the reserved
-LABEL location in the script by executing a SMAGOTO command that branches to a LABEL farther ahead in the script.
+Another useful technique for the ON_ERROR registered command might be to specify a *CURRENT script LABEL in the SMAGOTO pseudo-command, which would redirect the script logic to a segment of the script where multiple steps could be dedicated to managing error conditions. The other steps in the script can be configured to flow past the reserved LABEL location in the script by executing a SMAGOTO command that branches to a LABEL farther ahead in the script.
 
 Note that the Step Active/Inactive Flag (described above) would cause the script driver program to ignore a step record that contains the reserved ON_ERROR LABEL value. In this case, the ignored ON_ERROR command would never be registered by the script driver program.
 

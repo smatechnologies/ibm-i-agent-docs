@@ -26,15 +26,15 @@ USERNAME                                                              HH:MM:SS
                                                                                
                                                                                
 Selection or command                                     (C) SMA 1995,2005     
-===>                                                                           
-                                                                               
+===> _________________________________________________________________________
+___________________________________________________________________________
 F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
 F13=Information Assistant  F16=System main menu                                
 ```
 
 ###### Menu Pathways
 
-Main Menu \> Restricted mode and Multi-step job menu (\#5)
+Main Menu > Restricted mode and Multi-step job menu (#5)
 
 ###### Fields
 
