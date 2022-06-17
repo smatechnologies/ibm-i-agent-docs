@@ -1,7 +1,17 @@
 module.exports = {
   mySidebar: [
     'index',
-    'release-notes',
+    {
+      type: 'category', 
+      label: 'IBM i LSAM Release Notes',
+      collapsed: true,
+      items: [
+        'ibm-i-lsam-release-notes/overview',
+        'ibm-i-lsam-release-notes/version-18.1-new-features',
+        'ibm-i-lsam-release-notes/version-04.00.03-new-features',
+        'ibm-i-lsam-release-notes/version-04.00.03-fixes',
+      ], 
+    },
     {
       type: 'category', 
       label: 'Install',

@@ -36,16 +36,16 @@ PTF and Security Menu
  F13=Information Assistant  F16=System main menu                                
 ```
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9)
 
-##### Options
+#### Options
 
 - As listed on menu example, above.
 - The option 8. Work with object authority is described in LSAM Security and Object Authority.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the master menu.
 - **F4=Prompt**: Prompts for keywords for any command entered in the Select or command line.
@@ -57,19 +57,18 @@ Main Menu > PTF and Security menu (#9)
 
 ## PTF Options Configuration
 
-- **Screen Title**: PTF Process Defaults Configuration
-- **Screen ID**: LSAPTFD301
+### LSAPTFD301 - PTF Process Defaults Configuration
 
 The PTF Options Configuration function must be reviewed and possibly updated before attempting to use any of the other PTF functions in LSAM Menu # 9. The impact of the control values maintained by this function is discussed above, among the operational guidance topics.
 
 Special attention is called to the first data entry field on this display: PTF Source. Although there are four different methods supported for distributing and installing LSAM PTFs, most clients of SMA Technologies are using the "IFS" method because it does not require penetration of firewalls protecting the IBM i
 partition, and because this well-documented installation method is fast and easy to use. However, sites that operate a large number of IBM i partitions inside of a secured local network could take advantage of the fully automated distribution and installation method that is supported by the PTF source of "FTP."
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > PTF options configuration (#7)
 
-##### Fields
+#### Fields
 - **PTF Source**: LSAM PTF installation files can be distributed and made available to the IBM i partition in four different ways. SMA Technologies recommends using the IFS method. Refer to "Options for PTF Distribution" in this section for an explanation of the requirements for using any of these options.
   -   FTP = LSAM PTF installation save files can be downloaded directly from an ftp server operated by SMA Technologies, as a first step in a fully automated solution for obtaining and then installing the LSAM PTFs. 
   -   OPT = On demand, SMA Technologies can prepare an optical disk that contains the LSAM PTF save files. The LSAM administrator would insert the optical disk into a drive that is attached to the IBM i partition, before starting the LSAM PTF installation process.
@@ -90,7 +89,7 @@ or path value that is required, depending on the method chosen for the PTF Sourc
   -   M = LSAM server jobs will only be restarted when manually requested, using either an LSAM menu option or the LSAM command: SMAGPL/STRSMASYS
 ENV(lsam-environment-name).
 
-##### PTF Process Default Values:
+#### PTF Process Default Values:
 - **Submit job?**: The LSAM PTF installation process can be submitted as a batch job, which is usually more efficient and helps to prevent a performance impact on interactive workstation system users. This control file option can be changed each time the LSAM PTF install process is started.
   -   Y = Yes, do submit the PTF install process to a batch job.
   -   N = No, use the current interactive job of the LSAM administrator who has requested the PTF installation and execute the task immediately within the interactive workstation job. (This interactive method is sometimes preferred during the first execution of PTF installation just after an LSAM has been installed, in order to more quickly discover the cause for any error in the task, such as incorrect job configuration options.)
@@ -115,16 +114,15 @@ The job description must include the correct initial library list that matches t
 
 ## Work with LSAM PTFs
 
-- **Screen Title**: Work with LSAM PTFs
-- **Screen ID**: LSAPTFR1
+### LSAPTFR1 - Work with LSAM PTFs
 
 The Work with LSAM PTFs function lists all the PTF information that has been requested and loaded from the LSAM PTF source. In addition to the available (unapplied) PTF control information, this list shows the status of applied PTFs for the current LSAM environment. The PTF control data is stored in the SMAGPL library.
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
 
-##### Fields
+#### Fields
 - **LSAM, SMAGPL, UTIL**: At the top, left of the display appear three fields that report the content of control data areas defining the LSAM environment:
   -   LSAM = the LSAM Name, known in OpCon as the Machine Name
   -   SMAGPL = the name of the DB2 library that contains the Agent's convenience utilities; usually SMAGPL (or its equivalent), some older sites had used QGPL to hold these LSAM tools
@@ -149,7 +147,7 @@ Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
 - **Doc**: Documentation changes have been published in coordination with this PTF. Consult the PTF instructions for information about how to obtain the documentation updates. Usually, documentation updates are made available in online help; sometimes the **IBM i LSAM** online help is republished at a newer point version to include a substantial online help enhancement.
 - **Description**: A short description of the PTF is provided for this list display. The short description information may or may not include a special warning about the PTF. Use option 5=Display to see the long description of the PTF, in order to learn more about the changes that the PTF will make to the LSAM software, such as the key problem that a PTF may solve.
 
-##### Options
+#### Options
 
 - **4=Rollback**: Selects a PTF for rollback. When <**Enter**> is pressed, the LSAM PTF rollback command (SMAPTFRBK) prompt screen will appear, requesting additional information or verification of the rollback parameters. This option is the same as using the LSAM menu PTF rollback function.
 - **5=Display**: Select a PTF record to view the full detailed profile of the PTF, including the long description. (Use option 7=Details to see a list of objects included in the PTF.)
@@ -157,7 +155,7 @@ Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
 - **7=Details**: Select a PTF to view a list of the LSAM software objects affected by this PTF.
 - **8=Instr**: If a PTF shows a '1' in the PIn column, option 8 may be used to view the PTF source file member that contains the post-install instructions text.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the list display and returns to the menu. Any options already completed will still apply.
 - **F5=Refresh**: Reload the display from the database file, clearing any pending options that were previously entered but not executed. This function key also resets any search rule that is in effect, but it does not reset the current subset rule.
@@ -178,29 +176,28 @@ Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
 
 Use the function F15=Subset to limit the records appearing in the list of LSAM PTFs.
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1) > F15=Subset
 
-##### Fields
+#### Fields
 | Field          | Default      |  Description
 | -----          | -------      |  -----------
 | Select subset  |  current subset rule | Type a number from the list of options in the window to select the subset rule. Option 9 (show all) is used to clear subset rules and show a list of all the LSAM PTFs.
 
-##### Functions
+#### Functions
 
 ***F12=Cancel***: Quits the subset window and return to the list display without changing the subset rule.
 
-### Display LSAM PTF Control
+## Display LSAM PTF Control
 
-- **Screen Title**: LSAM PTF Control
-- **Screen ID**: LSAPTFR2
+### LSAPTFR2 - LSAM PTF Control
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
 
-##### Fields
+#### Fields
 - **LSAM environment**: The name of the current LSAM environment; governs the content of the list display. 
 - **LSAM PTF LVL**: This is the master PTF Level control number assigned to this PTF. Each PTF has a unique PTF Level assigned to it. This information is global for the LSAM and not specific to the one PTF on display.
 - **DB LVL**: This is the database level that is assigned to this PTF. Many PTFs may be applied at the same database level. The DB LVL governs the LSAM Data Export/Import tools, controlling when two LSAM environments are matched and may exchange data. This information is global for the LSAM and not specific to the one PTF on display. 
@@ -238,7 +235,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
 - **PTF short desc**: The short description of a PTF that appears on the PTF List display. SMA uses this field to highlight critical information about a PTF.
 - **PTF long desc**: A longer description of the PTF that helps understand what problem is fixed or what enhancement is offered by a PTF.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the PTF control record display and returns to the menu.
 - **F6=(Re-)Apply**: If a PTF is at an eligible status, this function key is the same as option 6=Apply on the list display. After a dependency check, a prompt screen will appear for the command SMAAPYPTF.
@@ -251,17 +248,16 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
 
 ## Option 7/Function Key7=Details
 
-- **Screen Title**: Details List for PTF ptfname
-- **Screen ID**: LSAPTFR3
+### LSAPTFR3 - Details List for PTF ptfname
 
 The list of all objects affected by a PTF supports an important option that will list all PTFs affecting the object selected with option 9. The list shown for option 9 is the same as the primary list of PTFs, except that the title line indicates it is a list of PTFs for just one object.
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1) > option 7=Details
 - Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1) > option 5=Display > F7=Details
 
-##### Fields
+#### Fields
 - **LSAM,Ver,PTF LVL**: The LSAM environment name is shown, followed by the LSAM version installed in this environment and the current PTF level (which is either the latest PTF name applied, or the latest PTF that was rolled back).
 - **UTIL,Ver,PTF LVL**: The actual name of the SMAGPL library or its replacement is shown, followed by the LSAM version installed in this utility library (should be the same as the LSAM version) and the current PTF level (which is either the latest PTF name applied, or the latest PTF that was rolled back) that was applied to the SMAGPL library.
 - **SMAGPL**: The name of the actual library used to store the LSAM environment management utilities. This may be the same as the utility library (SMAGPL), or  |
@@ -279,12 +275,12 @@ it may be the IBM i QGPL library.
 - **Attribute**: The IBM i mnemonic for the object sub-type, such as CLLE or RPGLE for type *PGM.
 - **Case ID**: The SMA support incident tracking number or enhancement project ID. 
 
-##### Options
+#### Options
 
 - **5=Display**: Show a detailed definition of the PTF control information for the selected object.
 - **9=All PTFs**: Displays a list of all objects affected by a PTF. The list shown for option 9 is the same as the primary list of PTFs, documented above, except that the titl line indicates it is a list of PTFs for just one object.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the list display and returns to the menu. Any options already completed will still apply.
 - **F5=Refresh**: Reload the display from the database file, clearing any pending options that were previously entered but not executed. This function key also resets any search rule that is in effect, but it does not reset the current subset rule.
@@ -294,18 +290,17 @@ it may be the IBM i QGPL library.
 - **F17=Top**: Move the list display to the first record in the list.
 - **F18=Bottom**: Move the list display to the last record in the list.
 
-### Display PTF Object Details
+## Display PTF Object Details
 
-- **Screen Title**: Detail Record for PTF OOOOOOOOOO
-- **Screen ID**: LSAPTFR4
+### LSAPTFR4 - Detail Record for PTF OOOOOOOOOO
 
 The detail screen for a PTF object supports convenient branching function keys. F20-Show all PTFs for Obj is the same as option 9=All PTFs from the object list display.
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > option 7=commands > option 2=Change **- or -** option 3=Copy **- or -** F6=Add
 
-##### Fields
+#### Fields
 - **Detail Record for PTF**: The name of the PTF controlling the object in this details display.
 - **LSAM environment**: The name of the current LSAM environment.
 - **Version, PTF LVL**: Under the LSAM environment name, shows the LSAM software version of the current environment, followed by the name of the latest PTF applied.
@@ -334,7 +329,7 @@ application process to fail.
 - **IFS object name**: When the disk location is IFS, this is the name of the object. 
 - **IFS directory path**: When the disk location is IFS, this is the directory where the object will be replaced. (The PTF applications tools will handle any path replacement required when an alternate LSAM environment is being used.) 
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the detail display and returns to the menu.
 - **F11=View PTF ID**: Branches to a display of the PTF control information for the PTF controlling this object.
