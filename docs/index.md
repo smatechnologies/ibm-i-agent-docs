@@ -5,7 +5,7 @@ sidebar_label: 'IBM i LSAM Administration'
 
 # IBM i LSAM Administration
 
-Copyright © 2020 SMA Technologies
+Copyright © 2022 SMA Technologies
 All rights reserved.
 
 No part of this publication may be reproduced, transmitted, transcribed, stored in retrieval system or translated into any language or computer language, in any form or by any means, electronic, mechanical, optical, chemical, manual or otherwise, without specific prior written permission from SMA Technologies. 
@@ -16,9 +16,9 @@ For further information about SMA Technologies' documentation, please contact:
 
 | SMA Technologies |
 | :--------------: |
-| 15333 John F Kennedy Blvd |
-| Suite #300 |
-| Houston, Texas 77032 |
+| 1201 Fannin St |
+| Suite #202 |
+| Houston, Texas 77002 |
 | Tel: 281-446-5000 |
 | Toll Free: 877-762-6584 |
 | Fax: 281-446-7492 |
