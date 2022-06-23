@@ -1,9 +1,36 @@
 ---
 sidebar_label: 'Events Screens and Windows'
 ---
-# Events Screens and Windows
 
-## External Events Password
+# IBM i LSAM XML External Event Commands
+The IBM i LSAM now provides the user with the ability to send XML External Event Commands to the SAM-SS. This document explains the new XML External Event Commands and how to convert existing CSV External Event Commands to the XML format.
+
+## Summary
+Previously in the IBM i Agent, only CSV (Comma-separated values) External Event Commands could be configured in Message Management Parameters, Operator Reply Scripts, and Multi-step Job Scripts. With this enhancement, while the CSV command formats can still be used, the Agent also supports configuring External Event Commands with 30 or more new XML formats. The system gives the user the ability to convert existing CSV External Event Commands to XML External Event Commands with the press of a function key.
+
+### XML Events Management Options
+A new screen was added to Event Management to allow the user to select between 1. XML External Event Command or 2. CSV External Event Commands.
+
+## Events Screens and Windows
+
+### Event Management
+
+#### LSAEVTR02-0 - Event Management (3 Pages)
+
+#### Fields
+- **Selection entry**: Type a number from the list of options and press <**Enter**> to view that log.
+
+#### Functions
+- **F3=Exit**: Quits the managed messages list and returns to the menu.
+- **F12=Cancel**: Quits the tracked jobs list and returns to the menu.
+
+#### Menu Pathways
+- Main Menu > Events and Utilities (#3) > External Management (#1) > (#1) XML - Event Commands (or #2 CSV - Event Commands)
+
+:::tip
+The option numbers are not assigned to Command names on a permanent basis. SMA Technologies may update the available list of Event Commands, which makes the Option number subject to change. This number is a sequential number that is assigned to each line at the time the information is assembled for display. When planning to use Operator Replay to select a command from this list, always specify the Command name instead of the Option number, otherwise it is necessary to go back and update the Operator Replay Scripts whenever the Event Command list is updated by SMA Technologies.
+:::
+### External Events Password
 
 ```
 
@@ -19,11 +46,11 @@ Type choices, press Enter
   F12 = Cancel
 ```
 
-### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Events and Utilities (#3) \> External Event Password (#2)
+Main Menu > Events and Utilities (#3) > External Event Password (#2)
 
-### Fields
+#### Fields
 
 | Field       | Default     | Description |
 | ----------- | ----------- | -------|
@@ -31,20 +58,19 @@ Main Menu \> Events and Utilities (#3) \> External Event Password (#2)
 | Password    | None        | The password that corresponds to the user name, as registered in the OpCon/xps system. |
 | Password (repeat) | None | This value must match exactly the value entered in the first password field. |
  
-### Functions
+#### Functions
 
 **F12=Cancel**: Quits the user/password window and returns to the Event Management menu.
 
 ## Event Management
 
-- **Screen Title**: Event Management (3 Pages)
-- **Screen ID**: LSAEVTR02
+## LSAEVTR02 - Event Management (3 Pages)
 
-### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Events and Utilities (#3) \> External Management (#1)
+Main Menu > Events and Utilities (#3) > External Management (#1)
 
-### Fields
+#### Fields
 
 **Slection**: Enter an Option number or the Command name to select an event.
 
@@ -52,7 +78,7 @@ Main Menu \> Events and Utilities (#3) \> External Management (#1)
 The option numbers are not assigned to Command names on a permanent basis. SMA may update the available list of Event Commands, which makes the Option number subject to change. This number is a sequential number that is assigned to each line at the time the information is assembled for display. When planning to use Operator Replay to select a command from this list, always specify the Command name instead of the Option number, otherwise it is necessary to go back and update the Operator Replay Scripts whenever the Event Command list is updated by SMA.
 :::
 
-### XML Events Management Options
+## XML Event Management Commands
 
 #### Calendar
 XCALADD - Calendar Add
@@ -297,7 +323,7 @@ XTOKSET - Token Set
 *	To set a token, enter a valid token name and value. Refer to Properties in the Concepts documentation.
 
 
-### CSV Events Management Options
+## CSV Events Management Options
 
 #### Job
 JOBBAD - Job Bad
@@ -391,7 +417,7 @@ TOKSET - Token Set
 *	To set a token, enter a valid token name and value. Refer to Properties in the Concepts documentation.
 
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Events list and returns to the menu.
 - **F12=Cancel**: Quits the Events list and returns to the menu.
@@ -421,21 +447,20 @@ Press Enter to apply change or F12=Cancel.
 Select type number: __
 F12=Cancel
 ```
-##### Fields
+#### Fields
 
   | Field             | Default | Description
   | ----------------  | ------- | ---------------------------------------------- |
   Select type number  |   None   | Type one of the numbers appearing in the list of command types to set the subset value, or clear this input field and press <**Enter**> to remove subset rule.
   
 
-##### Functions
+#### Functions
 
 - **F12=Cancel**: Quits the subset window and returns to the Event Management list.
 - When sub-setting is in effect, the appearance of the Event Management screen changes slightly. The figure below shows a subsetted list of just the events for Command Type Job, and the <**F17**> function key legend has changed to show its new capability.
 - While in the subset mode, <**F17**> can be used to change the Command Type being used for the subset. In order to clear the subset mode and return the Even Management list to a full display, just clear the Type Number value from the input field in the subset window and press <**Enter**>. This updates the subset window and returns to the main list display.
 
-- **Screen Title**: Event Management
-- **Screen ID**: LSAEVTR02
+## LSAEVTR02 - Event Management
 
 #### CPYTOMSGIN Command Prompting Window
 
