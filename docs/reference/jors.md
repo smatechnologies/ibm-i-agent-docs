@@ -32,7 +32,7 @@ The internal performance parameters are stored in a data area called LSAJOR in t
 
 Data area . . . . . . . :   LSAJOR
   Library . . . . . . . :     SMADTA
-Type  . . . . . . . . . :   \*CHAR
+Type  . . . . . . . . . :   *CHAR
 Length  . . . . . . . . :   10
 Text  . . . . . . . . . :   LSAJOR job control & timing parms
 

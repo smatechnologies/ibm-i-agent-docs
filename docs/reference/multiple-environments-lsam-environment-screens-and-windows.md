@@ -11,10 +11,9 @@ When the LSAINIT command is executed to configure and align all controls for a c
 
 More detail about the configuration fields described below may be found in the Configuration topic of this online help. There may be additional LSAM environment settings that should be changed, but these can be managed after the new LSAM environment has been properly initialized, using LSAM menu functions such as option 7 on the main LSAM menu: LSAM Parameters.
 
-- **Screen Title**: Initialize IBM i LSAM
-- **Screen ID**: LSAINITR1
+## LSAINITR1 - Initialize IBM i LSAM
 
-###### Fields
+#### Fields
 
 For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](../configuration/configuration.md) of this online help.
 
@@ -29,7 +28,7 @@ For a detailed explanation of the fields appearing in these inquiry screens, ple
 - **SMAFT Server Port**: If the SMA File Transfer protocol will be used, assign a unique port number that will represent a connection to this LSAM environment. The default value of 3301 is typically assigned to the SMADEFAULT environment, so for a test environment using library SMAGPL1 perhaps a value of 3311 could be assigned to the SMAFT port.
 - **Auto-start SMAFT?**: If the SMA File Transfer protocol will be used, set this flag to a value of "**Y**" so that the SMAFT server job will be started automatically whenever the other LSAM server jobs are started in the LSAM subsystem.
 
-###### Functions
+#### Functions
 
 - **F3/F12=Quit**: Either of these function keys terminates the program, so that the LSAM initiation work will not be completed.
 - **F4=Prompt**: This prompt function key may be used with either the LSAM Environment name field or with the Internet Address field to display a list of values from which one may be selected and returned to either field.

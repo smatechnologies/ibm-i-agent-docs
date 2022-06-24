@@ -8,7 +8,6 @@ sidebar_label: 'IBM i Function Keys'
 
 The following list of common function key assignments reflects the way that SMA has typically assigned function keys in the IBM i LSAM software. A general attempt has been made to conform to the typical function key assignments found in many of the IBM i display formats. This gives a consistent look and feel within the LSAM software and between the LSAM software and applications from other vendors who have chosen to conform to the typical IBM assignments.
 
-
 | Function Key  | Name                   | Description |
 | :----------:  | :---:                  | ----------- |
 |     F1        | Help                   | Shows help text, when it's available.|

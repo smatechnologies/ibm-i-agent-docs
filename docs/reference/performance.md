@@ -81,7 +81,7 @@ There are two sets of control data queue performance parameters for JORS. One se
 The default values supplied for the JORS server jobs are set to lazy values, the idea being that JORS is a low priority activity. That is, the computer does not have to work as hard to keep up with the pace of human user activity (manually initiated JORS requests, one at a time) as it does when it is trying to aggressively manage a large load of
 concurrent job starts and status reports being managed by the computerized OpCon/xps SAM service. If there is a need to improve JORS responsiveness, these performance parameters could be adjusted according to the principles described in the section above about job scheduling performance.
 
-### Job Scheduling Performance Parameters
+## Job Scheduling Performance Parameters
 
 Parameters in this group are different from the Job Scheduling Communications Performance Parameters. There is one actual performance parameter that governs how the LSAM job completion message monitor server program behaves.
 
