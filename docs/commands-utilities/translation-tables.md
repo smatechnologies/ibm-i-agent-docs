@@ -58,7 +58,7 @@ translation settings before using the <**Enter**> key or any function key.
 
 When the LSATBLTEST command is entered, the following utility display appears.
 
-##### LSATBLTEST Utility Command Display (F11-EBCDIC Mode)
+#### LSATBLTEST Utility Command Display (F11-EBCDIC Mode)
 ```
  LSATBLR1                 Test LSAM Translation Tables                 MM/DD/YY 
  USERNAME               Translation Mode: EBCDIC -> ASCII              HH:MM:SS 
@@ -86,7 +86,7 @@ When the LSATBLTEST command is entered, the following utility display appears.
 ```
 Function key F10 enables the Hex1/Hex2 fields for input, instead of the EBCDIC character input field.
 
-##### LSATBLTEST Utility Command Display (F11-ASCII Mode)
+#### LSATBLTEST Utility Command Display (F11-ASCII Mode)
 ```
  LSATBLR1                 Test LSAM Translation Tables                 MM/DD/YY 
  USERNAME               Translation Mode: ASCII -> EBCDIC              HH:MM:SS 
@@ -115,11 +115,11 @@ Function key F10 enables the Hex1/Hex2 fields for input, instead of the EBCDIC c
 
 There is no support for F10=Hex or F14=Send msg in the ASCII mode, since this mode is for local testing only, and it is always driven by entering the hexadecimal equivalent of ASCII characters into the ASCII and ASCII-Hex2 fields.
 
-###### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 
-##### Fields
+#### Fields
 
 | Field                | Default              | Description          |
 | -----                | -----                | -----                |
@@ -145,7 +145,7 @@ Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 |                      |                      | -   Refer to EBCDIC hex character lines, above, for more information about the hexadecimal character display.         |
 |                     |                      | -   When <**F11**> puts the test program into     ASCII-\>EBCDIC local test mode, these ASCII hex lines can be used to enter the equivalent of ASCII characters that should be translated to the EBCDIC lines above when the <**Enter**>     key is pressed.  |
 
-###### Functions
+#### Functions
 
 - **Enter**: After a value has been typed in the EBCDIC character entry field, pressing the <**Enter**> key causes the utility program to perform a local translation of the data using the translation table named in the EBCDIC-to-ASCII fields. In ASCII->EBCDIC mode, pressing <**Enter**> causes the ASCII hex values to be translated to the EBCDIC display and hex lines. The <**Enter**> key does not cause any data to be sent or received externally to this program.
 - **F3=Exit**: Not displayed in the function key legend, this key quits the list display and returns to the command line where the LSATBLTEST command was entered.
@@ -157,11 +157,11 @@ Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 - **F17=Receive msg**: This function key is used to check for new input into the LSATBLT00 data queue. Data is placed into this data queue by the special TESTLSATBL command when it has been run by an OpCon job. F17=Receive message allows test messages to be sent and analyzed outside of the regular flow of LSAM operations. This feature can help determine what characters should be typed into an OpCon job master record in order for the EBCDIC result to be understood by the LSAM server programs and by IBM i. Used with Use option C=CCSID, it demonstrates SMAFT file data translation.
 - **F20=Re-translate**: After any other function has been performed on this utility display, function key <**F20**> makes it possible to type in a new translation table name or a new CCSID code and discover a new result using the same data from the most recent translation test. The translation table or CCSID codes that will be used by the F20=re-translate function depends on the most recent operation performed. If the <**Enter**> key or function key <**F14**> was last executed, the EBCDIC-to-ASCII table is used. If function key <**F17**> was last executed, the ASCII-to-EBCDIC table is used. Refer to the Fields table above for an explanation of how the CCSID codes may be used when the Use option is C.
 
-#### TESTLSATBL Utility Command
+### TESTLSATBL Utility Command
 
 The command TESTLSATBL has been created only for one special purpose. This command may be used from within an OpCon job master record, in the Call command line of a Batch job type, to send a message directly from OpCon/xps to the LSATBLTEST utility display documented above. This command will not function as expected when used outside of the OpCon/xps-to-LSAM job scheduler work flow because the LSAM server programs have been specially coded to respond in a unique way to this command name. The command by itself merely logs a normal completion message into the job log of any job where the command runs, and the OpCon normal completion status does not reflect whether the test message was actually received by the LSATBLTESTdisplay tool, documented above. 
 
-##### Command Syntax
+#### Command Syntax
 ```
 TESTLSATBL TEXT('any ASCII text or special character')
 ```
@@ -174,7 +174,7 @@ used in different countries.
 
 One of the typical problems encountered in OpCon environments is that there may be language-specific characters allowed as names of programs or other object types under a version IBM i that has been configured for national language support. In some cases it is difficult to determine which characters must be typed in an OpCon job master record in order to cause them to be correctly translated by the LSAM into the characters expected by IBM i. In some cases where the default IBM i system translation table is not working well, it might be necessary to configure the LSAM to utilize a user-defined alternate translation table or to identify a pair of CCSID codes that produce the desired result from translation. In this case, the LSATBLTEST utility should be used to carefully prove the results of the proposed new configuration.
 
-##### TESTLSATBL Job Results Under IBM i
+### TESTLSATBL Job Results Under IBM i
 
 The special TESTLSATBL command provided with LSAM software is used to trigger a reserved, direct routing of test data from an OpCon job to the LSATBLTEST utility data queue, LSATBLT00 in SMADTA (or the equivalent library). The LSAM sockets communications server program for job scheduling tests for this command and performs special data routing functions that preserve test data for handling only by the LSAM LSATBLTEST command.
 
@@ -186,11 +186,11 @@ The LSAM sockets communications program generates an immediate and direct normal
 SMA recommends that a separate, test LSAM environment be utilized for the purpose of fully testing a new translation table or a pair of CCSID codes before that configuration is specified in the live LSAM environment, even if the translation testing tool represents acceptable results.
 :::
 
-#### Strategy for Translation Table Testing
+### Strategy for Translation Table Testing
 
 SMA has provided the two LSAM software commands (documented above) that engage special utilities for the purpose of diagnosing problems with translation tables and/or pairs of CCSID codes. These tools can also be used to test a proposed user-defined translation table in a test LSAM environment before that translation table is used in a live production environment. This section offers some details about how the LSAM translation table testing utilities will behave, specific to the task of developing user-defined translation tables.
 
-##### Creating User-defined Translation Tables
+### Creating User-defined Translation Tables
 
 IBM supports the creation of user-defined translation tables under IBM i. IBM supplies documentation that explains how to perform the following steps that might be useful in the process of developing new translation tables that would more aptly serve a unique environment:
 
@@ -204,9 +204,9 @@ As an example of this process, assume that we wish to translate braces (curly br
 To create a new table that translates EBCDIC characters into ASCII characters, we start with the IBM i system-supplied translation table called QASCII from library QSYS. Using the WRKTBL command to view this table in a list, option 5=Display may then be entered to view the contents of the table. The following example shows the view of the
 table, paged down to the position where the braces (curly brackets) character occurs in the EBCDIC character set (X'D0').
 
-##### QSYS/QASCII Table View
+### QSYS/QASCII Table View
 
-##### QSYS/QASCII Display Conversion Table
+#### QSYS/QASCII Display Conversion Table
 ```
                              Display Conversion Table                            
                                                                                 
@@ -237,7 +237,7 @@ Notice that the X'D0' translation has been highlighted in red, near the bottom o
 
 We use the IBM i command RTVTBLSRC (retrieve table to source file member) to extract the data from the existing IBM QASCII table. In the following example, we have instructed the command to put the source member into a library we created called SMAUTILITY, and we had also created in advance a source file called QTBLSRC (duplicated from the model IBM provides in the QGPL library). Notice where the target translation character of X'7D' occurs, highlighted in red at display columns 33-34 in source member line 0000.07.
 
-##### QSYS/QASCII Table Source Member
+#### QSYS/QASCII Table Source Member
 ```
 Columns . . . :    1  71           Browse                    SMAUTILITY/QTBLSRC    
 SEU==>                                                                  QASCII
@@ -255,7 +255,7 @@ SEU==>                                     
 ```
 Before we modify this source member, we copy it to a new source member name, TSTASCII. The new source member TSTASCII is then modified at columns 33-34 of line 7. The following example shows that the prior value of '7D' has been replaced by the new value '5D'.
 
-##### Modified TSTASCII Table Source Member
+#### Modified TSTASCII Table Source Member
 ```
 Columns . . . :    1  71           Browse                   SMAUTILITY/QTBLSRC    
 SEU==>                                                                TSTASCII
@@ -277,7 +277,7 @@ The new table is viewed by using the IBM i command WRKTBL and entering option 5=
 
 We will use this example of a translation table modification in the following illustration of how the IBM i LSAM translation table testing utilities can be used to prove translation results both before and after the table modification was implemented.
 
-##### TSTSMADATA/TSTASCII Translation Table View
+#### TSTSMADATA/TSTASCII Translation Table View
 ```
   
                             Display Conversion Table
@@ -303,12 +303,12 @@ Input  Output              Input  Output           
                                                                       More...
 F3=Exit   F12=Cancel   F17=Position to
 ```
-##### Proving Translation Table Modifications with LSATBLTEST
+### Proving Translation Table Modifications with LSATBLTEST
 
 Continuing with the example of a translation table explained above, we start by testing the existing configuration of the IBM i LSAM. As the LSATBLTEST example below shows, the default translation table QSYS/QASCII has translated EBCDIC right braces (curly brackets) from X'D0' into ASCII X'7D'. (The red highlights of the hexadecimal
 characters in the following example do not appear on the real display, they are for this document only.)
 
-##### LSATBLTEST Displays Default Translation Results
+#### LSATBLTEST Displays Default Translation Results
 ```
 LSATBLR1                 Test LSAM Translation Tables                 00/00/00   
 USERNAME              Translation Mode: EBCDIC -> ASCII               00:00:00
@@ -348,7 +348,7 @@ Before we experiment with changes to the translation table, take note of a speci
 To prove the results of the modified TSTASCII translation table, we can go back to the LSATBLTEST utility program display and type in some new values, then press <**Enter**> to test the translation table completely within the utility itself. We start with the default QSYS/QASCII translation table and test how a simple OpCon Token string
 is translated.
 
-##### LSAM Translation Table Test of Default QASCII Table
+#### LSAM Translation Table Test of Default QASCII Table
 ```
 LSATBLR1                 Test LSAM Translation Tables                 00/00/00   
 USERNAME              Translation Mode: EBCDIC -> ASCII               00:00:00
@@ -379,7 +379,7 @@ Notice in the example above that the hexadecimal equivalents of the right braces
 
 To continue the test, we change the name of the EBCDIC-to-ASCII translation table and the library where our test table is located. Then we can press the <**F20**> function key to retest translation of the same test character string without having to type the data a second time. As the results show in the illustration below, the braces (curly brackets) have now been translated into ASCII X'5D'. 
 
-##### LSAM Translation Table Test of Modified TSTQASCII Table
+#### LSAM Translation Table Test of Modified TSTQASCII Table
 ```
 LSATBLR1                 Test LSAM Translation Tables                 00/00/00   
 USERNAME              Translation Mode: EBCDIC -\> ASCII               00:00:00
@@ -408,15 +408,15 @@ USERNAME              Translation Mode: EBCDIC -\> ASCII    �
 
 For the purpose of this illustration, we have changed only the translation of the right brace (curly bracket) character. We might expect that we would also want to modify the translation of the left brace (curly bracket) character as well, in order to produce a resulting Token field string that would be valid for OpCon to interpret. In many environments, as explained above, it may not be necessary to change the translation of braces (curly brackets) to square brackets. However, when national language support has been configured under IBM i, and depending on the type of keyboard used with a 5250 workstation emulation program, it might be necessary to develop some similar modification to a translation table in order to make it simple for system users to configure OpCon Event commands from inside the LSAM configuration screens, such as when maintaining LSAM Message Management Parameters.
 
-##### Proving Translation Table Modifications with TESTLSATBL
+### Proving Translation Table Modifications with TESTLSATBL
 
 It is equally important to prove that translation table changes work when data is sent from OpCon to the IBM i LSAM servers.
 
-###### Local Testing of ASCII->EBCDIC
+### Local Testing of ASCII->EBCDIC
 
 For a quick test that does not require configuring an OpCon job, use the <**F11**> function key to put the LSATBLTEST program into ASCII->EBCDIC mode. Then type hex characters that represent the ASCII source data for translation and press <**Enter**> to test different tables and CCSID code sets.
 
-###### Utilizing OpCon for Testing of ASCII->EBCDIC
+### Utilizing OpCon for Testing of ASCII->EBCDIC
 
 The special LSAM command TESTLSATBL used in an OpCon batch job for IBM i is a good way to test ASCII characters that are typed within the Microsoft Windows environment of the SMA Enterprise Manager.
 
@@ -438,7 +438,7 @@ As explained previously, the LSAM job scheduling communications server program r
 
 It is important to remember that the LSAM communications server has sent exactly the ASCII character string that was received from OpCon/xps. The special translation table testing protocol implemented by the LSAM prevents the LSAM server programs from touching the test character string. It is sent in tact so that we can experiment with different translation tables while using the LSAM's LSATBLTEST utility display.
 
-##### IBM i LSAM LSATBLTEST Command Shows Results from TESTLSATBL Job
+#### IBM i LSAM LSATBLTEST Command Shows Results from TESTLSATBL Job
 ```
 LSATBLR1                 Test LSAM Translation Tables                 00/00/00
 USERNAME              Translation Mode: EBCDIC -> ASCII               00:00:00
@@ -471,7 +471,7 @@ Once the IBM i LSAM utility program LSATBLTEST has retrieved a test message sent
 
 The example above shows how the default translation tables used by the IBM i LSAM interpreted the incoming message. To experiment with another ASCII-to-EBCDIC translation table, be sure the Use code is set to T, then just type in a different table name and library name, as necessary, and press F20=Re-translate. The utility program will continue to show the source ASCII hexadecimal characters at the bottom, but the new EBCDIC translation will be updated according to the translation table specified.
 
-##### Translation Table Technical Considerations
+### Translation Table Technical Considerations
 
 The IBM i LSAM translation tables are not the only source of data translation in the testing processes that have been explained in this document. There are at least two other locations in the flow of the data that must be considered before making final decisions about translation tables.
 

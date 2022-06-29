@@ -4,8 +4,7 @@ sidebar_label: 'File Arrival Jobs using CHKFILE and CHKIFSFIL'
 
 # File Arrival Jobs using CHKFILE and CHKIFSFIL
 
-Previously, the IBM i LSAM utility commands CHKFILE and CHKIFSFIL could only be used for a simple, one-time, instant check for the existence of a file. One or two additional parameters were supported to provide feedback about user authority or locked objects. These commands could not easily be used to watch for a file arrival. The current version of IBM i Agent software supports a long list of optional command parameters for these commands, enabling a File Arrival job type along with
-additional file qualifiers.
+Previously, the IBM i LSAM utility commands CHKFILE and CHKIFSFIL could only be used for a simple, one-time, instant check for the existence of a file. One or two additional parameters were supported to provide feedback about user authority or locked objects. These commands could not easily be used to watch for a file arrival. The current version of IBM i Agent software supports a long list of optional command parameters for these commands, enabling a File Arrival job type along with additional file qualifiers.
 
 Since OpCon introduced the Windows (MSLSAM) job sub-type of a File Arrival job, a new standard was established for integrating file watching directly into OpCon schedules. This replaced many of the functions of the older, separate File Watcher service of the OpCon Windows Resource Monitor -- although there were certain services provided by the File Watcher that are still being replaced as the Windows job sub-type model evolves.
 
@@ -418,9 +417,9 @@ The command parameter summary shown next defines each parameter and lists possib
      Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to identify the SMAGPL library where the LSAM Environment library list can be found.
 
 
-##### CHKFILE command parameter values
+## CHKFILE command parameter values
 
-## Using CHKIFSFIL for IFS Stream Files
+### Using CHKIFSFIL for IFS Stream Files
 
 The File Name field of an IBM i File Arrival job sub-type in the OpCon EM is checked by the Agent to determine whether the file exists in the DB2 database, or whether it is located outside of DB2 in another IFS file system, such as the root '/' file system. It is the leading forward slash character '/' that designates an IFS file outside of DB2. When a non-DB2 IFS format will be processed, the Agent uses the EM job definition panel fields to compose the Agent's CHKIFSFIL command for execution in an IBM i batch job.
 
@@ -459,7 +458,7 @@ The command parameter summary shown next defines each parameter and lists possib
 
 ### CHKIFSFIL Command Parameter Summary
 
-##### CHKIFSFIL Command Parameter Values
+#### CHKIFSFIL Command Parameter Values
 | Parameter Keyword   | Values               | Description          |
 | -----------------   | ------               | -----------          |
 | PATHNAME            | Fully qualified IFS path including the file name. File name can be generic. | The file name and/or extension can use generic search characters, including a question mark (?) for single character masking and an asterisk (*) for a variable number of characters. An example of a generic file name mask might be: L?C*.* 
@@ -534,8 +533,6 @@ The command parameter summary shown next defines each parameter and lists possib
 | ENV                 | *DEFAULT Actual LSAM environment name  | Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to set the LSAM library list according to the LSAM Environment name. |
 | GPL                 | *DEFAULT Actual SMAGPL library name | Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to identify the SMAGPL library where the LSAM Environment library list can be found. |
 | KEEPWRKLIB (Keep work library) | N or 0 = No / Y or 1 = Yes  | This command uses a permanent DB2 work library instead of QTEMP to store the IFS directory search results. The temporary work library is deleted at the end of the command execution, unless the command fails (and failures are not ignored) or unless this parameter tells the command to Keep the Work Library. |
-
-
 
 ## Interaction of Command Parameters
 
@@ -688,7 +685,7 @@ The command completion status is reflected by one of the following IBM i message
 - **CKF0010 = The command reports normal completion: a matching file name was found with a qualifying create time and there are no lock or authority conflicts.**
 - CKF0099 = Unexpected, this type of error will always cause the command to be reported as failed, regardless of the FAILONERR override setting. When a command reports this completion code, it may be necessary to contact SMA Support for assistance to prevent this type of command failure in the future.
 
-##### CHKFILE/CHKIFSFIL command completion codes
+#### CHKFILE/CHKIFSFIL command completion codes
 Message ID 
 -  CKF0000:       CHKFILE/CHKIFSFIL has initialized the command completion code = no result
 -  CKF0001:       CHKFILE/CHKIFSFIL file name not found
@@ -719,7 +716,7 @@ In newer versions of OpCon (such as 16.x and newer), the job completion code can
 
 Whether using a local IBM i automation tool, or an OpCon job, the IBM i job log from the job where these commands are executed, will typically contain the job completion codes listed above. In addition, more information about job failures will be provided by IBM i messages and by the following LSAM File Arrival message IDs that deliver informational text:
 
-##### CHKFILE/CHKIFSFIL informational messages
+#### CHKFILE/CHKIFSFIL informational messages
 Message ID
 - **CKF0996**: CHKFILE/CHKIFSFIL both use this message ID to add commonly reported diagnostic information to the job log.
 - **CKF0997**: CHKIFSFIL uses this message ID to document the type of forced program error used to make the job end abnormally (as when a file is not found). It reports which RPG Halt Indicator was used: H1 = command parameters require the job to fail; H2 = the program was aborted due to an unexpected error condition. Halt indicator H2 may require assistance from SMA Support.
