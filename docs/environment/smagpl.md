@@ -73,7 +73,7 @@ For convenience, some sites may choose to update User Profile initial library li
 Using LSAM commands from the SMAGPL library will update the PRODUCT library of the users library list. This will normally not cause any problem. However, system administrators and programmers should be aware that the PRODUCT libraries are always higher on the users library list than the USER portion of the library list, that is, they are just below the SYSTEM portion of the library list.
 :::
 
-#### An Alternate Strategy for LSAM Management Commands
+### An Alternate Strategy for LSAM Management Commands
 
 One or more commands from the SMAGPL library that are assigned a Product Library could be copied to library QGPL in order to make it easier for system users to gain quick access to the LSAM environment or its menu system.
 
