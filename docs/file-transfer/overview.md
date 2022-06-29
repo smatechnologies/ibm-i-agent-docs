@@ -118,7 +118,7 @@ File Transfer jobs; otherwise the data could become corrupted by the IBM i CCSID
 
 Due to the wide variety of international character sets supported by IBM's IBM i operating system, the IBM i SMA File Transfer communications programs always attempt to discover and honor the CCSID that pertains to each SMAFT source or target  file. For example, if a non-IBM remote SMAFT Server sends a text file with ASCII characters, the IBM i Agent job will attempt to translate from the (default) ASCII CCSID code specified in the IBM i SMAFT Parameters to the actual CCSID code of the target file. SMA File Transfer users can, therefore, take specific control over file transfer process by using tools such as OpCon/xps jobs that run before the SMAFT job to do things like create new files and assign them a specific CCSID code.
 
-#### Common Character Set and the IBM i SMAFT Default Character Sets
+### Common Character Set and the IBM i SMAFT Default Character Sets
 
 The SMA File Transfer protocol includes specification of a Common Character set that can be used when two computer systems normally use different character sets. In virtually all cases, if two systems have different character sets, ASCII will be specified as the common character set. In most cases where character sets of data are different, the difference will be between EBCDIC and ASCII.
 
@@ -136,6 +136,6 @@ This flow chart illustrates the primary components of an SMA File Transfer job, 
 
 The flow chart represents a PULL file transfer, where OpCon starts a SMAFT Agent job that contacts a remote Server and requests that the remote Server send the file to the Agent. OpCon also supports a PUSH model, where the Agent job performs the tasks illustrated within the Source Machine, and in that case the remote machine performs the tasks illustrated for the target machine; in other words, the IBM i SMAFT Agent job contacts the remote Server and notifies it that a file will be sent to it. However, for a PUSH transfer, the Agent is still responsible for reporting the job status to OpCon.
 
-#### IBM i SMA File Transfer Flow Chart
+### IBM i SMA File Transfer Flow Chart
 
 ![IBM i SMA File Transfer Flow Chart](../Resources/Images/IBM-i/IBM-i-SMA-File-Transfer-Flow-Chart-2.png "IBM i SMA File Transfer Flow Chart")
