@@ -7,14 +7,13 @@ The Restricted Mode and Multi-Step Job Menu is documented above.
 
 ## Maintain Multi-Step Job Scripts
 
-- **Screen Title**: Multi-Step Job Scripts
-- **Screen ID**: MLTJOBR10-1
+### MLTJOBR10-1 - Multi-Step Job Scripts
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#5)
 
-##### Options
+#### Options
 
 - **1=Script steps**: Use this option to work with the Step master records that define a Script.
 - **2=Change, 3=Copy** : Use these options to maintain or create just the Script master records. Option 3 works like function key F6=Add. (Use option 1 to work with the list of Steps, in order to change or copy the Step master records.)
@@ -23,7 +22,7 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#5)
 - **8=Export**: Initiate dialog to export this script, its steps, and all associated data.
 - **9=Flow chart**: Branches to an analytic display of the script flow, including any sub-scripts that are called by the primary script. The flow chart view offers additional options for studying a script, including a Fold option that will display an entire command line within the list. The flow chart can be also be printed.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F5=Refresh**: Reloads the list from the current values in the master file.
@@ -31,33 +30,32 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#5)
 - **F12=Cancel**: Returns to the sub-menu.
 - **F16=Search next**: Starts or repeats a search looking for match to the value entered in the Search field. Each whole master record is searched, not just the values appearing on the list display.
 
-##### Fields
+#### Fields
 
 - **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to search all the master records for the first record that contains the value. The entire master record is searched, not just the fields appearing on the list display. After a new search is started, use the <**F16**> function key to continue the search to the next record.
 - **Opt**: Type one of the options listed near the top of the display next to one or more of the listed lines, then press <**Enter**> to start executing each option, one by one.
 
-### Multi-Step Job Script Master Record Display
+## Multi-Step Job Script Master Record Display
 
-- **Screen Title**: Multi-step Job Script
-- **Screen ID**: MLTJOBR10-3
+### MLTJOBR10-3 - Multi-step Job Script
 
 The screen is used to illustrate the Display, Change, Copy and Add functions.
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > F6= Add
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 2 = Change
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 3 = Copy
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 5 = Display
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the LSAM sub-menu. Any changes typed on the screen are not updated on the master record.
 - **F5=Refresh**: Appears only for Change, Copy or Add. Restores the field values to their original settings as they first appeared when this display format was accessed.
 - **F12=Cancel**: Returns to the Script Steps master records list without updating the current master record.
 - **F15=View/Maintain LDA**: Branch to the LDA displays. For Add, Copy or Change, the program branches to the Maintain screen, but while in Display mode it branches to Display LDA.
 
-##### Fields
+#### Fields
 
 - **Script name**: The name of the Script. This is the value that will be used by the STRMLTJOB command or the SMAGOTO pseudo-command to reference any Script. An existing Script Name may be changed, using option 2=Change.
 - **Script Type**: The Script Type indicates whether the script steps are contained in associated STEPS master records, or in a SCRMBR where the Source file, library and member fields point to an IBM i source file member that contains the CL commands that will be executed instead of using Script Step master records.
@@ -71,11 +69,11 @@ The screen is used to illustrate the Display, Change, Copy and Add functions.
 - **Screen Title**: Multi-step Job Scripts
 - **Screen ID**: MLTJOBR10-4
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 4=Delete
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F12=Cancel**: Returns to the list of Scripts. All previous requests to delete Scripts are discarded.
@@ -83,7 +81,7 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 4=Delete
 
 ### Script Steps Flow Chart (option 9)
 
-Script Steps Flow Chart
+#### Script Steps Flow Chart
 ```
 MLTR11R1                Multi-Step Job Script Flow Chart              00/00/00   
 USERNAME                    Starting Script: TEST1                    00:00:00
@@ -110,11 +108,11 @@ USERNAME                    Starting Script: TEST1    �
   F3=Exit F5=Refresh F9=Print F10=Fold/Unfold F11=View F12=Cancel F16=Search Nxt
 ```
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 9=Flow chart
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F5=Refresh**: Reloads the data and repeats this display.
@@ -136,21 +134,20 @@ That function and this Multi-Step Job Scripting feature both share the same LSAM
 
 Also refer to the alternate list format for Scripts of type SRCMBR described on the screen.
 
-- **Screen Title**: Multi-step Job Script Steps
-- **Screen ID**: MLTJOBR10-2
+### MLTJOBR10-2 - Multi-step Job Script Steps
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script Steps
 
-##### Options
+#### Options
 
 - **2=Change, 3=Copy**: Use these options to maintain or create individual step records. Option 3 works like function key F6=Add.
 - **4=Delete**: Type this option and press <**Enter**> to add one or more records to a list of pending delete requests. After the Enter key is pressed, a confirmation list will appear requesting confirmation of all delete requests before Step master records are actually removed.
 - **5=Display**: Branches to a display of all the fields defining one Step master record.
 - **6=DspSrc**: This option works only with Step records that refer to an external source library/file(member) instead of using the Command field on the step record itself. The contents of the external source member will be displayed, using one of the IBM i source file member display tools that are available on a user's system. Use function key <**F11**> to vary the View of this list until the Command line and/or Library/File(Member) value is shown for each Step, in order to determine which Step lines can use option 6.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F5=Refresh**: The display program updates all the information about every listed record by re-reading the entire Steps master file.
@@ -168,7 +165,7 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Script
 
 - **F16=Search (next)**: When a value was typed in the Search Content key, after the Enter key is used to find the first match, this function key F16 will continue the search to find the next matching record.
 
-##### Fields
+#### Fields
 
 - **Script Name**: The name of the Script whose Steps appear in the list.
 - **Type**: The Script type code of STEPS or SRCMBR. When the Script type is SRCMBR, the list shows the (partial) contents of each record found in the referenced source file member.
@@ -183,54 +180,52 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Script
 - **Step Description/Command text/Qualifier/**: Depending on the current View selected by function key F11, this field will display the Step Description, the first part of the Command field text, the LIBRARY/FILE(MEMBER) of a Step that does not use its own Command text, or a shortened summary of the Qualifier rule.
 - **View**: This Header-only field identifies the current list view that was selected using the F11 function key. (Refer to F11, above, for more information.)
 
-### Display Multi-Step Job Script Source Member Records
+## Display Multi-Step Job Script Source Member Records
 
 Also refer to the alternate list format for Scripts of type STEPS, described above.
 
-- **Screen Title**: Multi-step Job Script Steps
-- **Screen ID**: MLTJOBR10-2
+### MLTJOBR10-2 - Multi-step Job Script Steps
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script Steps
 
-##### Options
+#### Options
 
 **5=Display**: Branches to a display of all the fields defining one Step master record, where the complete source line content is displayed.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F5=Refresh**: The display program updates all the information about every listed record by re-reading the entire Steps master file.
 - **F12=Cancel**: Returns to the sub-menu.
 - **F16=Search (next)**: When a value was typed in the Search Content key, after the Enter key is used to find the first match, this function key F16 will continue the search to find the next matching record.
 
-##### Fields
+#### Fields
 
 - **Script Name**: The name of the Script for which Steps appear in the list.
 - **Type**: The Script type code of STEPS or SRCMBR. When the Script type is SRCMBR, the list shows the (partial) contents of each record found in the referenced source file member.
 - **Description**: The description from the Script master record.
 - **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to search all the master records for the first record that contains the value. The entire master record is searched, not just the fields appearing on the list display. After a new search is started, use the <**F16**> function key to continue the search to the next record.
 - **Opt**: Type one of the options listed near the top of the display next to one or more of the listed lines, then press <**Enter**> to start executing each option, one by one.
-- **Seq \#**: The sequence number assigned to each record in the source file member. Decimal places are not marked in this display, but the last two digits occur to the right of the decimal point.
+- **Seq #**: The sequence number assigned to each record in the source file member. Decimal places are not marked in this display, but the last two digits occur to the right of the decimal point.
 - **Label**: The display program searches each source member record for any TAG:, and if one is found, it is displayed in this column. This display logic can be used to confirm that TAGS: will also be found during actual script execution. If there is an unusual appearance of a tag, or if a tag is not found by this list display, then the source member record must be edited until the TAG: will be found by this LSAM tool.
 - **Source member command**: The first part of the source member record is show in this list display. Use option 5=Display to view the entire source member line, which may occupy up to 80 or 100 bytes, depending on the record size of the source file. (The Command line field on the Step Details display is used for display purposes only, to show the content of source member records.)
 
-### Multi-Step Job Script Step Maintenance and Display
+## Multi-Step Job Script Step Maintenance and Display
 
-- **Screen Title**: Display Multi-step Job Script Step Detail
-- **Screen ID**: MLTJOBR10-5
+### MLTJOBR10-5 - Display Multi-step Job Script Step Detail
 
 The screen is used to illustrate the Display, Change, Copy and Add functions. For SRCMBR records, only option 5=Display is available.
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > F6= Add
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps >Option 2 = Change
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > Option 3 = Copy
 - Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps >Option 5 = Display
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F4=Prompt**: From the Compare Rule field, F4 requests a list window from which a valid Compare operator value may be selected. From the Command field, this function key calls the IBM i command prompter so that a properly formatted command can be returned. The IBM i command name should be typed before pressing F4 for best results.
@@ -242,7 +237,7 @@ The screen is used to illustrate the Display, Change, Copy and Add functions. Fo
 - **F12=Cancel**: Returns to the list display without updating the master file.
 - **F13=Full CMD**: This function key causes a program branch to a separate display that is dedicated to managing the entire Command line, supporting up to the maximum of 1024 characters. (For commands requiring a longer character string, use an external Source File, Library and Member.) In Change and Copy modes, if the Command string is already longer than the partial field shown on the primary Step record display, then the primary display field is protected and function key F13 must be used to maintain the longer, full Command string.
 
-##### Fields
+#### Fields
 
 - **Script Name**: The name of the Script for which Step appears on this display.
 - **Script Key #**: This field is for used by technical support personnel. It shows the internal primary key that links the Step record to its Script master record. (This technique allows the Script name to be changed.)
@@ -262,13 +257,13 @@ The screen is used to illustrate the Display, Change, Copy and Add functions. Fo
 - **Last maintenance user, timestamp**: Shows the IBM i user profile that last used the LSAM maintenance program to change the master record, and the timestamp when this maintenance was performed.
 - **Internal primary key**: An SQL auto-assigned record number field. This data may be used by technical support personnel.
 
-#### F10=$VAR Pop-up Window Values
+### F10=$VAR Pop-up Window Values
 
 Display formats MLTJOBR10-5 and MLTJOBR10-5A support function key F10 for selecting $Variable tokens that can be inserted into supported fields. These tokens do not require any special characters around them. Instead, they should be left inserted with the US dollar sign ($) at the beginning, all capital letters and spaces just where they are shown.
 
 The Multi-Step Job Script driver program will recognize exactly spelled tokens and then replace them with the values shown in the following table; however, the values for OpCon properties, such as $SCHEDULE values, can only be replaced if the Script job was started by OpCon. They are not valid when Scripts are executed independently of OpCon, for example, if a Script is executed by a Message Management Parameters command or a Response Rule linked to Message Management.
 
-##### Variable 
+#### Variable 
 - **$ERRMSGID**:        The 7-character message ID reported by IBM i when any Script Step fails. This value can also be referenced from the currently active ON_ERROR management command.
 - **$ERRMSGTXT**:       The primary message text of the 7-character message ID reported by IBM i when any Script Step fails. This value can also be referenced from the currently active ON_ERROR management command.
 - **$FREQUENCY NAME**:  The name of the OpCon Frequency assigned to the OpCon job that started the Script job.
@@ -285,17 +280,16 @@ The Multi-Step Job Script driver program will recognize exactly spelled tokens a
 - **$SCHEDULE DATE**:   The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
 - **$SCHEDULE NAME**:   The name of the OpCon schedule under which the current job was started.
 
-### Multi-Step Job Script Step Full Command Maintenance and Display
+## Multi-Step Job Script Step Full Command Maintenance and Display
 
-- **Screen Title**: Multi-Step Job Step Command
-- **Screen ID**: MLTJOBR10-5A
+### MLTJOBR10-5A - Multi-Step Job Step Command
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Multi-step Job Scripts > Option 1 = Script steps > Add/Change/Copy/Display \>
 F13=Full CMD
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu, any pending updates are lost.
 - **F4=Prompt**: This function key calls the IBM i command prompter so that a properly formatted command can be returned. The IBM i command name should be typed before pressing F4 for best results.
@@ -306,21 +300,20 @@ F13=Full CMD
 - **F12=Cancel**: Returns to the primary Step record display without updating the Command field.
 - **Enter=update/return**: Press Enter to return to the primary Step master record display. In Add, Change or Copy modes, any changes made to the Command text will be stored to the master record when the Enter key is pressed.
 
-##### Fields
+#### Fields
 
 - **Script Name**: The name of the Script whose Step appears on this display.
 - **Step sequence number**: The sequence number assigned to each step record. For source member records, this is the sequence number assigned to the record in the source file member. Decimal places are not marked in this display, but the last two digits occur to the right of the decimal point.
 
-### Delete Multi-Step Job Script Steps
+## Delete Multi-Step Job Script Steps
 
-- **Screen Title**: Multi-step Job Script Steps
-- **Screen ID**: MLTJOBR10-6
+### MLTJOBR10-6 - Multi-step Job Script Steps
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 1=Script steps > Option 4=Delete
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the sub-menu.
 - **F12=Cancel**: Returns to the list of Script Steps. All previous requests to delete Steps are discarded.
@@ -330,7 +323,7 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 1=Script steps
 
 The STRMLTJOB command, located in the SMAGPL library, is used to execute multi-step job scripts. It can be executed from OpCon using a simple IBM i batch job, and it can also be executed in test mode (not connected to OpCon) from an IBM i command line or from a submitted batch job by setting the JOBTYPE parameter to "T" for test mode.
 
-STRMLTJOB Command Prompt with Keywords
+#### STRMLTJOB Command Prompt with Keywords
 ```
                        Start Multi-step Job (STRMLTJOB)                        
                                                                                
@@ -346,7 +339,7 @@ LSAM General Purpose Library . .   *DEFAULT      Character value
 
 Additional important information about the use and impact of the command parameters may be found in the "More Information..." section above, in this part of the topic about Multi-Step Jobs.
 
-##### Command Parameters
+#### Command Parameters
 
 - **SCRIPT: Script name**: The name of the script whose steps will be executed.
 - **RSTLABL: Restart label**: The name of a label assigned to the script step where the job execution should start.
