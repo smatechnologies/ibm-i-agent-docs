@@ -28,8 +28,7 @@ All of the SEL option keywords that follow the LOGLIB(SEL) keyword have no effec
 
 The keywords for each parameter shown in the following two figures are listed above in the SMASUP command syntax.
 
-Prompted SMASUP Command (Default)
-
+#### Prompted SMASUP Command (Default)
 ```
        Extract LSAM Logs and Files (SMASUP)
           
@@ -50,7 +49,7 @@ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this 
 ```
 To view and manage the SEL (selection) parameters, type the letters "SEL" in the field "Save selected, logs or library" and then press <**Enter**>. When this LOGLIB() parameter has been changed from LOG or LIB to SEL, pressing Enter will not cause the command to execute but will only redisplay the command prompt with additional keywords.
 
-Prompted SMASUP Command (SEL Fields)
+#### Prompted SMASUP Command (SEL Fields)
 ```
      Extract LSAM Logs and Files (SMASUP)
         
@@ -85,18 +84,15 @@ Save Export/Import logs? . . . .   0             0=no, 1=Logs, 2
 
 ## F15 = Extract Log Files (SMASUP Command)
 
-- **Screen Title**: Extract LSAM Logs and Files
-- **Screen ID**:
-  - MNGLOGR3
-  - MNGLOGR4
+### MNGLOGR3 or MNGLOGR4 - Extract LSAM Logs and Files
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > LSAM management menu (#6) > option 4 > F15
 - Main Menu > LSAM management menu (#6) > option 4 > F2 > F15
 - Main Menu > LSAM management menu (#6) > option 5 > F15
 
-##### Options
+#### Options
 
 The IBM i command DSPSAVF can be used to see the content of the extract save file that will be created in the SMALOG library. This display will show exactly which files are saved for each combination of extract options and LSAM features, according to the following options selected for each LSAM feature:
 
@@ -105,14 +101,14 @@ The IBM i command DSPSAVF can be used to see the content of the extract save fil
 - **2=Save log files & master files**: A pre-programmed list of log and master files that pertain to each LSAM feature will be saved in the extract save file.
 - **3=Save master files only**: A pre-programmed list of log and master files that pertain to each LSAM feature will be saved in the extract save file.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the LSAM menu system.
 - **F5=Refresh**: The display program updates all the information about every control record. This refresh option is important when trying to verify the results of the option 8 Test Notify job. 
 - **F12=Cancel**: Returns to the previous LSAM display from which the F15 was executed, without performing any file extract.
 - **Enter**: After the desired field options are typed, press Enter to  submit or start the file extract operation. As documented elsewhere in the **IBM i LSAM** online help, a completion message will be displayed both in the QSYSOPR message queue and the user's (or workstation's) message queue, reporting the exact name of the save  file that was created in library SMALOG. Use this save file name when transferring the save file from the IBM i DB2 database to an external computer (such as a personal computer), from which the save file can then be easily sent to the SMA ftp server location that pertains to each client.
 
-##### Fields
+#### Fields
 
  The fields on the Extract LSAM Logs and Files display format are self-explanatory.
 
@@ -149,14 +145,13 @@ The ftp command format used in the following example assumes that the IBM i FTP 
 4. Click **OK**.
 5. If desired, change the drive reference to a convenient location on the personal computer hard disk by entering the drive letter followed by a colon (:).
 :::tip
-C:\other_directory\>cd C:\
+C:\other_directory>cd C:\
 :::
 6. As desired, change the directory to a location where it will be easy to find the transferred file, for example, the root directory of drive C(:)
 :::tip
-C:\other_directory\>cd C:\
+C:\other_directory>cd C:\
 :::
-7. At the prompt, enter **ftp** \<LSAM Machine Name or TCP/IP
-    address\>.
+7. At the prompt, enter **ftp** \<LSAM Machine Name or TCP/IP address>.
 8. Log in as **QSECOFR** with the appropriate \<QSECOFR password\> or it may be possible to log in and retrieve the logs save file with the user profile name that created the logs save file, such as an LSAM Administrator user profile.
 9. Enter **bin** to select a binary transfer type.
 10. Enter **GET SMALOG/L601101648** (using the actual log file name reported in the SMASUP command completion message) to retrieve the logs save file, using the actual log file name from the extract process completion message.

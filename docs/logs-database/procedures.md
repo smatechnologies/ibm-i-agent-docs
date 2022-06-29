@@ -69,7 +69,7 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
 
     b.  The formatted viewers available from the LSAM menu system (described in the next section) make the log data much easier to understand. These viewers can also be executed from a command line using the commands listed in the following table.
 
-### Basic LSAM Log Viewer Commands and Physical File Names
+#### Basic LSAM Log Viewer Commands and Physical File Names
   | Type of Log |                                                                                         LSAM viewer command     |  Physical file name |
   | --------------------------------------------------------------------------------------------------- | --------------------- | ----------------------------- |
   | Job scheduling communications trace log                                                             |      LSACMNLOG                 CMNLOGF00  |
