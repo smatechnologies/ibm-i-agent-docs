@@ -51,7 +51,7 @@ You can specify jobs by their job name, job user, job type and subsystem. When s
 
 When multiple job selection criteria are specified, all jobs matching any of the criteria are monitored.
 
-#### Selecting the Metrics
+### Selecting the Metrics
 
 For each type of monitor, Management Central offers several measurements, known as metrics, to help you pinpoint different aspects of system activity. A metric is a measurement of a particular characteristic of a system resource or the performance of a program or a system.
 
@@ -61,13 +61,13 @@ In the example above, the top half of the display shows that "Job Status" was se
 
 Notice that the "General" tab is selected, under the "Job Status" title in the middle of the display. In this lower half of the display, "Waiting for message" is the type of Job Status that was selected from the list on the left and then clicking on the lower Add\--\> button moved it into the "Selected statuses" box.
 
-#### Specifying the Threshold Values
+### Specifying the Threshold Values
 
 Setting a threshold for a metric that is being collected by a monitor allows you to be notified and, optionally, to specify actions to be taken when a certain value (called the *trigger value*) is reached. You can also specify actions to be taken when a second value (called the *reset value*) is reached.
 
 Threshold values are not specified for this example. Instead, use the Threshold run command, as follows.
 
-#### Specifying Threshold Run Commands
+### Specifying Threshold Run Commands
 
 A *threshold* is a setting for a metric that is being collected by a monitor. *Threshold commands* run automatically on your endpoint system when threshold events occur. Threshold commands are different from any threshold actions you may have set. Threshold actions happen on your PC or central system, while threshold commands run on your endpoint systems.
 
@@ -90,19 +90,19 @@ You can specify any message text you wish, but keep in mind the following guidel
 - The Navigator Monitor will not be using a Message ID for this message that is sent to the QSYSOPR message queue, therefore, a special identifier string of "SMA5802" appears in the first position in order to make it possible for the LSAM Message Management system to accurately identify this message using the Primary message text comparison rules.
 - There is a table of supported variable fields, such as &JOBNAME, listed below in this document section. For this example, probably only the job identifier variables will be useful, although the Subsystem name could be added. Assembling these variables at the very end of the Primary message text will make it easy to define the LSAM Message Data Capture Rule that can pick out the job ID information (which will be 28 characters long, at the most) so that it can later be stored by a linked Response Rule into an LSAM Dynamic Variable.
 
-#### Specifying the Collection Interval
+### Specifying the Collection Interval
 
 When you are setting thresholds for the metrics you have selected to monitor, you should consider how often you want the data to be collected. The lowest value of 30 seconds would provide the most aggressive possible response to any job stuck in MSGW status.
 
 ![Specifying Monitor Collection Interval](../Resources/Images/IBM-i/6_13.png "Specifying Monitor Collection Interval")
 
-#### Specifying Event Logging and Actions
+### Specifying Event Logging and Actions
 
 When you have specified the threshold values for your monitor, you can click the Action tab to select event logging and the PC actions to be taken when a threshold is triggered or reset.
 
 This aspect of Monitors is not required for this example. You can research this topic using IBM documentation and decide if it will be useful for you.
 
-#### Applying Thresholds and Actions for a Monitor
+### Applying Thresholds and Actions for a Monitor
 
 When you have specified your threshold values and chosen to log events, you can select whether to always apply these thresholds and actions, or to apply them only on the days and times you choose.
 
@@ -110,7 +110,7 @@ Click the "OK" button to complete the registration of a new monitor. When you ar
 
 ![Managing the Monitor Status](../Resources/Images/IBM-i/6_14.png "Managing the Monitor Status")
 
-### IBM i LSAM Configuration
+## IBM i LSAM Configuration
 
 All of the instructions for adding LSAM Message Management Parameters, Capture Rules and Response Rules are provided in the **IBM i LSAM** online help.
 
@@ -158,7 +158,7 @@ In the example above, the IBM i server job name of QZRCSRVS could be used in the
 |&MSGSEV               |   2   | Message severity causing the trigger/reset|
 |&MSGTYPE              |   2   | Message type causing the trigger/reset|
 
-#### Notes for List of Replacement Variables
+### Notes for List of Replacement Variables
 
 1. Refer to on-line help for additional information. To see Online help for a job monitor:
     - Left-click the (?) question mark icon on the monitors threshold tab window.

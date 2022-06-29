@@ -38,7 +38,6 @@ When the LSAM is running, one subsystem and multiple primary server jobs are act
 -   LSAM debug log files are managed by this process when the Backup and Reorganize options allow the LSAM to automatically schedule the SMARGZ command. (Optionally, the SMARGZ command can be configured to run as a job in an OpCon/xps schedule.)
 
 ## Optional Server Jobs
-
 Some LSAM server jobs are separately controlled by their own option
 flags, set in various LSAM menu functions.
 
