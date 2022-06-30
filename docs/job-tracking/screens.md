@@ -4,9 +4,7 @@ sidebar_label: 'Job Tracking and Queuing Screens and Windows'
 # Job Tracking and Queuing Screens and Windows
 
 ## Job Track Menu
-
 ```
-
 SYSTEMNAME                     JOB TRACK MENU                       00/00/00
 USERNAME                                                            22:55:39
 
@@ -24,7 +22,7 @@ USERNAME                                    
   10.Display captured jobs (DSPCAPJOB)
   11.Work with captured jobs (WRKCAPJOB)
    Selection or command
-   ===\>_______________________________________________________________________
+   ===>_______________________________________________________________________
   ____________________________________________________________________________
    F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel
    F13=Information Assistant   F16=System main menu
@@ -55,7 +53,7 @@ press Enter to continue.
 
 The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options. 
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the master menu.
 - **F4=Prompt**: Prompts for keywords for any command entered in the Select or command line.
@@ -71,17 +69,16 @@ Use function key <**F11**> to alternate between two useful views of the list of 
 When option 4=Delete is used, the list of records selected for deletion will appear in whichever format was in effect when the option code was entered. Accordingly, pressing <**F11**> to alter the view will erase the program's record of any previous option codes that were entered, including any records selected for deletion (that were not yet confirmed for deletion). Thus, function key <**F11**> has the same effect as function key <**F5**> = Refresh, in addition to changing the displayed
 list format.
 
-- **Screen Title**: Job Tracking Parameters (2 Views)
-- **Screen ID**: TRKPARR1
+### TRKPARR1 - Job Tracking Parameters (2 Views)
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Job track menu (#1) > Job track parameters (#1)
 
-##### Fields
+#### Fields
 
 - Search content: Type any content that is part of a Job Track Parameter record and press <**Enter**>. Can be used to search for jobs, schedules, or any other field  value.
-- Opt:            <**Tab**> to a row in the table, type an option number and press <**Enter**> to perform that function for the selected line.
+- Opt:  <**Tab**> to a row in the table, type an option number and press <**Enter**> to perform that function for the selected line.
 - Job Name: The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number. The name portion is common to as many instances of the same job definition as may be executed. The IBM i permits more than one instance of the same job name to be executed concurrently.
 - TYP: Tracking types:
   -   **T** = Tracking: OpCon support, no parameter overrides or dependencies
@@ -106,7 +103,7 @@ Main Menu > Job track menu (#1) > Job track parameters (#1)
 - Job Name:        The name portion of the IBM i job which is also the job name on the OpCon schedule.
 
 
-##### Options
+#### Options
 
 - **2=Change**: To proceed to the Job Tracking Parameters window, type
     2 next to the job tracking definition and press <**Enter**>.
@@ -118,7 +115,7 @@ Main Menu > Job track menu (#1) > Job track parameters (#1)
 - **5=Display**: To display the full details of a list entry, type 5
     next to the job tracking definition(s) and press <**Enter**>.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the list of job tracking names and returns to the
     menu.
@@ -137,23 +134,20 @@ Main Menu > Job track menu (#1) > Job track parameters (#1)
     keys remain active, regardless of the function key legend currently
     on display.
 
-### Maintain/Display Job Tracking Parameters
+## Maintain/Display Job Tracking Parameters
 
 The description for the Add, Copy, Change and Display screens are the same for all, using a similar display except that the Display format does not allow data input. The screen example appears on the next page.
 
-##### Menu Pathways
+#### Menu Pathways
 
-- Main Menu \> Job track menu (#1) \> Job track parameters (#1) \>     F6=Add
-- Main Menu \> Job track menu (#1) \> Job track parameters (#1) \>     option 2=Change
-- Main Menu \> Job track menu (#1) \> Job track parameters (#1) \>     option 3=Copy
-- Main Menu \> Job track menu (#1) \> Job track parameters (#1) \>     option 5=Display
+- Main Menu > Job track menu (#1) > Job track parameters (#1) >     F6=Add
+- Main Menu > Job track menu (#1) > Job track parameters (#1) >     option 2=Change
+- Main Menu > Job track menu (#1) > Job track parameters (#1) >     option 3=Copy
+- Main Menu > Job track menu (#1) > Job track parameters (#1) >     option 5=Display
 
-- **Screen Title**: Maintain Job Tracking Parameters
-- **Screen ID**: TRKPARR1
+### TRKPARR1 - Maintain Job Tracking Parameters
 
-##### Fields
-
-
+#### Fields
 | Parameter          | Default               | Description           |
 | ---------          | -------------         | -----------------     |
 | Job Name           | IBM i Name Rules (Refer to [IBM i NameRules](../configuration/configuration.md#IBM2))  | The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number. The name portion is common to as many instances of the same job  definition as may be executed. The IBM i permits more than one instance of the same job name to be executed concurrently.         |
@@ -178,27 +172,24 @@ job for selection for tracking or queuing.|
 | | | -   **P** = Prevent auto-tracking    |
 | | | -   **blank** = does not specifically allow or prevent auto-tracking     |
 
-
-#### Delete Job Tracking Parameters
+## Delete Job Tracking Parameters
 
 :::tip
 Format of Confirm Delete list will vary to match current <**F11**> sort sequence of List display.
 :::
 
-- **Screen Title**: Job Tracking Parameters
-- **Screen ID**: TRKPARR1
+### TRKPARR1 - Job Tracking Parameters
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Job track parameters (#1) \>
-option 4=Delete
+Main Menu > Job track menu (#1) > Job track parameters (#1) > option 4=Delete
 
-##### Fields
+#### Fields
 
 Refer to field descriptions for Job Tracking Parameters list display,
 above.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the list of job tracking names and returns to the
     menu.
@@ -211,12 +202,11 @@ above.
 
 ## Job Track Logs (WRKTRKJOB)
 
-- **Screen Title**: Job Track Logs
-- **Screen ID**: LSALOGR1
+### LSALOGR1 - Job Track Logs
 
-##### Menu Pathways
+#### Menu Pathways
 
-- Main Menu \> Job track menu (#1) \> Job track logs (#2)
+- Main Menu > Job track menu (#1) > Job track logs (#2)
 - **From Command Entry, enter the command WRKTRKJOB.** This command
     may be entered from any command entry line, as long as the library
     QGPL is in the interactive job's library list. It is not necessary
@@ -226,8 +216,7 @@ above.
     LSAM environments, only one environment at a time can control job
     tracking.)
 
-##### Fields
-
+#### Fields
 
 | Parameter           | Default              | Description          |
 | ----------          | -------              | -----------          |
@@ -247,13 +236,13 @@ above.
 | | | -   Definitions for message IDs may normally be found in message files stored in the DB2/400 database. SMA* messages may be found in message file SMAMSGF.    |
 | | | -   Using option 5=Display details will usually reveal some text that explains the error message ID.              |
 
-##### Options
+#### Options
 
 - **4=Cancel job**: Set job tracking to cancelled status and prevent job from being released. Option 4 causes the program to branch to the same job detail display as option 5, but showing a red function key instruction at line 22, requiring that F23=CNLJOB be pressed to confirm the cancel job action.
 - **5=Display detail**: Shows job definition details and any error or status message information.
 - **6=Release job**: Manually release job from LSAM tracking (using IBM i SBMJOB) either before OpCon/xps releases the job or when OpCon/xps has rejected the job tracking request (message ID SMA0014).
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the tracked jobs list and returns to the menu.
 - **F5=Refresh**: Retrieves the latest tracked job information and updates the display.
@@ -264,16 +253,15 @@ above.
 - **F18=Bottom**: Causes the display to jump to the last entry in the list. This is the equivalent of the last record in the log file, but the sort order controls which records are listed last. This function key is very helpful when the file is big.
 - **F24=More keys**: Toggles the function key legend between the two different lists of function keys that are available for this display.
 
-### Option 5 = Display (Job Track Log Detail)
+## Option 5 = Display (Job Track Log Detail)
 
-- **Screen Title**: Job Track Log Detail
-- **Screen ID**: LSALOGR2
+### LSALOGR2 - Job Track Log Detail
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Job track logs (#2) \> 5=Display detail
+Main Menu > Job track menu (#1) > Job track logs (#2) > 5=Display detail
 
-##### Fields
+#### Fields
 
 Log keys
 - Log date: The date on which this log entry was made.
@@ -327,7 +315,7 @@ SAM Parameters
 - SAM job number: A unique number assigned by OpCon/xps to track each job it monitors.
 
 
-#### Job Tracking Status Codes
+### Job Tracking Status Codes
 
 |  Code  | Text | Meaning | Permitted actions |
 |  ----  | ---- | ------- | ----------------- |
@@ -341,7 +329,7 @@ SAM Parameters
 |  T     | LSAM_TRACKING   | The LSAM has recognized the job and stored it for tracking, but a response has not yet been received from OpCon/xps. | Release job, Cancel job |
 |  X     |   SAM_RLS_TX1   | OpCon/xps has sent a start job transaction (TX1) but the LSAM has not actually released the job to IBM i. This is normally a transient job status, so the log entry just records the time when this action happened. | None |
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the job details display and returns to the menu.
 - **F12=Cancel**: Quits the job details display and returns to the list of tracked jobs.
@@ -352,17 +340,15 @@ SAM Parameters
 - **F22=RLSJOB**: Press \<F22\>, when it is available, to request the manual release of a queued job from the LSAM Job Tracking master file. After the HOLD window response is given, this program will use the LSAM Job Tracking master file data to construct an IBM i SBMJOB command, and then execute the command. As a result, the actual IBM i job will either be on hold in an IBM i job queue (as specified by the job details), or if not held, the job will immediately begin execution in the specified IBM i subsystem. **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking     master record status is set to K=killed, preventing any future release of this job, either by OpCon/xps or manually. (A canceled job cannot be recovered. Its task must be submitted as a new job.)
 - **PageDown=More details**: Press \<PageDown\> to see additional internal and IBM i data that define the tracked job.
 
-### Option 5 - Page Down = More Details
+## Option 5 - Page Down = More Details
 
-- **Screen Title**: Job Track Log Detail - More Detail
-- **Screen ID**: LSALOGR7
+### LSALOGR7 - Job Track Log Detail - More Detail
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Job track logs (#2) \> 5=Display details \> PageDown
+Main Menu > Job track menu (#1) > Job track logs (#2) > 5=Display details > PageDown
 
-##### Fields
-
+#### Fields
 
 | Field Type    | Field            | Description                     |
 | -----------   | ------           | -------------- |
@@ -395,8 +381,7 @@ Main Menu \> Job track menu (#1) \> Job track logs (#2) \> 5=Display details \> 
 |               | Print text       | The PRTTXT parameter value, specifying the line of characters that will appear on all generated spool file reports to label them.          |
 |               | Routing data     | The RTGDTA parameter, matched to a routing entry in the subsystem where the job will execute in order to determine the values and resources available as the job starts execution.                      |
 
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the job details display and returns to the menu.
 - **F12=Cancel**: Quits the job details display and returns to the list of tracked jobs.
@@ -408,13 +393,13 @@ Main Menu \> Job track menu (#1) \> Job track logs (#2) \> 5=Display details \> 
 - **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking master record status is set to K=killed, preventing any future release of this job, either by OpCon/xps or manually. (A cancelled job cannot be recovered. Its task must be submitted as a new job.)
 - **PageUp=Prev detail**: Press \<PageUp\> to return to the previous panel of Job Track Log Detail information.
 
-### Option 6 = Release Job (F22)
+## Option 6 = Release Job (F22)
 
-#### HOLD Option Window
+### HOLD Option Window
 
 When option 6=Release job is entered from the Job Track Log list, or \<F22\> is pressed from the Job Track Detail display to manually release a job, the HOLD option window is displayed:
 
-Release Job - HOLD Option Window
+#### Release Job - HOLD Option Window
 ```
 
 RLSJOB Attributes
@@ -423,66 +408,63 @@ RLSJOB Attributes
     F12=Cancel
 ```
 
-##### Fields
+#### Fields
 
 **HOLD (Y/N)?**: Type a 'Y' = yes and press \<Enter\> to cause the job to be submitted in a released state under IBM i, so that it will run immediately. When 'N' = no is typed and \<Enter\> is pressed, the job will be submitted, but it will be held by IBM i in the specified job queue, and the job must be manually released from the  IBM i job queue.  Choose the option to HOLD the job in order to modify any parameter of the job's definition under IBM i before it is released to run.
 
-##### Functions
+#### Functions
 
 **F12=Cancel**: Quits the HOLD option window, cancels the job release action, and returns to the display where the release job action was initiated.
 
-#### Job Track Log Detail -- View CMD
+## Job Track Log Detail -- View CMD
 
 Pressing <**F13**> from the Job Track Log Detail display provides a greatly extended viewing area for longer Call commands that could not fit in the two lines of the detail summary display.
 
-- **Screen Title**: Job Track Log Detail - View CMD
-- **Screen ID**: LSALOGR3
+### LSALOGR3 - Job Track Log Detail - View CMD
 
-##### Fields
+#### Fields
 
 - The fields appearing on this display are the same as explained above for the summary display of Job Track Log Detail.
 - Call command: If the call command is very long, the PageDown function key appears on the first page of this extended display at the same time as a plus sign (+) appears at the lower right corner. If PageDown has been used, this same screen shows a continuation of the Call command text, the PageUp function key appears in the command key legend, and a minus sign (-) appears at the beginning of the continued command text field.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
 - **F12=Cancel**: Quits the display of the extended Call command text and returns to the Job Track Log Detail summary display.
 - **PageUp**: Appears after PageDown has been used, to move back to previous text in the Call command string.
 - **PageDown**: Appears when there is more Call command text than can be shown on a single display panel.
 
-#### Job Track Log Detail -- View LIBL
+## Job Track Log Detail -- View LIBL
 
 Pressing <**F14**> from the Job Track Log Detail display provides a greatly extended viewing area for longer library lists that could not fit in the primary detail summary display.
 
-- **Screen Title**: Job Track Log Detail - View LIBL
-- **Screen ID**: LSALOGR3
+### LSALOGR3 - Job Track Log Detail - View LIBL
 
-##### Fields
+#### Fields
 
 - The fields appearing on this display are the same as explained above for the summary display of Job Track Log Detail.
 - **Initial LIBL**: If the job's initial library list is very long, the PageDown function key appears on the first page of this extended display at the same time as a plus sign (+) appears at the lower right corner. If PageDown has been used, this same screen shows a continuation of the library list, the PageUp function key appears in the command key legend, and a minus sign (-) appears at the beginning of the continued library list text field.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
 - **F12=Cancel**: Quits the display of the extended initial LIBL and returns to the Job Track Log Detail summary display.
 - **PageUp**: Appears after PageDown has been used, to move back to previous entries in the library list.
 - **PageDown**: Appears when there are more library list entries than can be shown on a single display panel.
 
-#### Job Track Log Detail -- View LDA
+## Job Track Log Detail -- View LDA
 
 Pressing <**F15**> from the Job Track Log Detail display provides access to a display of the captured job's local data area (LDA) content. This screen is a list of the 15 lines (1024 character) of the LDA content, but the screen may show a "no records" message if the LDA was either not captured or is completely blank. Function key \<F10\> may be used to toggle the display between a character-only mode that shows the whole LDA on one screen (but non-display characters in the LDA will appear as blanks), and a hex mode that shows the hexadecimal equivalents for each LDA byte position in over/under mode.
 
-- **Screen Title**: Job Track Log Detail - LDA Content (2 Views)
-- **Screen ID**: LSALOGR3
+### LSALOGR3 - Job Track Log Detail - LDA Content (2 Views)
 
-##### Fields
+#### Fields
 
 - Ruler/Character number:    A ruler appears across the top of the list display to help identify the ordinal position of each character in the LDA. The numbers on the left of the display name the first character position of content appearing on each line.
 - Displayable character:     Displayable character content of the LDA content is shown in normal green, next to each character number that appears on the left side.
 - Hexadecimal equivalents:   Hexadecimal equivalents of each character in the LDA content appear in over/under mode at each character position. This representative view of the hexadecimal characters helps to identify content such as packed numeric data, or other binary data or control characters that cannot be represented on a 5250 (green screen) workstation display as single, displayable characters.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
 - **F12=Cancel**: Quits the display of the LDA content view and returns to the Job Track Log Detail summary display.
@@ -499,9 +481,9 @@ When using multiple LSAM environments, it is only possible to start job tracking
 The reason for this restriction is that job tracking is a system-wide function that is managed by manipulating the exit points for the system command to submit jobs (SBMJOB). The exit program for LSAM job tracking can only be registered for one LSAM environment at a time. Job Tracking must be stopped in one environment before starting it from another environment. As with all tasksinvolving multiple environments, this requires careful coordination with the SAM-SS of OpCon.
 :::
 
-##### Menu Pathways
+#### Menu Pathways
 
-- Main Menu \> Job track menu (#1) \> Start job track (#3)
+- Main Menu > Job track menu (#1) > Start job track (#3)
 - From Command Entry, set the current library list for the LSAM environment (SMASETLIBL), or use the command entry line from within the LSAM menu system, then enter the command STRJOBTRK.
 
 ### Start Job Tracking Messages
@@ -528,9 +510,9 @@ When this error occurs, contact SMA Support for assistance. Additional informati
 
 The End Job Track option tells the LSAM to discontinue monitoring Tracked and Queued Jobs. Stopping job tracking also disables the Capture Job function. When job tracking is stopped, the LSAM removes its entries from the IBM i exit program registry.
 
-##### Menu Pathways
+#### Menu Pathways
 
-- Main Menu \> Job track menu (#1) \> End job track (#4)
+- Main Menu > Job track menu (#1) > End job track (#4)
 - From Command Entry, set the current library list for the LSAM environment (SMASETLIBL), or use the command entry line from within the LSAM menu system. Then enter the command ENDJOBTRK.
 
 ### End Job Tracking Messages
@@ -558,7 +540,7 @@ When this error occurs, contact SMA Support for assistance. Additional informati
 
 The pop-up Job Tack Status window displays the job track status. Options include STARTED and STOPPED.
 
-Check Job Track Status Window
+#### Check Job Track Status Window
 ```
 
   Job track status :  STOPPED
@@ -567,9 +549,9 @@ Check Job Track Status Window
 
 ```
 
-##### Menu Pathways
+#### Menu Pathways
 
-- Main Menu \> Job track menu (#1) \> Check Job Track Status (#5)
+- Main Menu > Job track menu (#1) > Check Job Track Status (#5)
 - From Command Entry, set the current library list for the LSAM environment (SMASETLIBL), or use the command entry line from within the LSAM menu system, then enter the command JOBTRKSTS.
 
 ## Job Tracking with Multiple LSAM Environments
@@ -578,7 +560,7 @@ Only one LSAM environment within an instance of the IBM i operating system is al
 
 The LSAM programs help to recognize whenever there is a conflict of job tracking control with another LSAM environment. When the job track status is checked, it is apparent that job tracking is being managed by a different environment if there is an error message at the bottom of the status window. The following figure illustrates this warning.
 
-Check Job Tack Status Window - With Error
+#### Check Job Tack Status Window - With Error
 ```
 
   Job track status :   STOPPED
@@ -590,14 +572,13 @@ Check Job Tack Status Window - With Error
 
 ## Job Tracking Configuration
 
-- **Screen Title**: Job Tracking Configuration
-- **Screen ID**: TRKJOBD301
+### TRKJOBD301 - Job Tracking Configuration
 
-##### Menu Pathway
+#### Menu Pathway
 
-Main Menu \> Job track menu (#1) \> Job tracking configuration (#7)
+Main Menu > Job track menu (#1) > Job tracking configuration (#7)
 
-##### Fields
+#### Fields
 
 :::warning
 The required procedure for changing the exit program number is to first stop job tracking, then change the number, then restart job tracking. The new number will not take effect until the next time that job tracking is started, and the old number (if not the default value) cannot be found for stopping job tracking if the number has been changed while job tracking is still active.
@@ -614,7 +595,7 @@ The required procedure for changing the exit program number is to first stop job
 | Tracked Job parameter separator character - HEX  | 00-FF           | 6A         | A pair of characters representing the hexadecimal value of the EBCDIC keyboard character that marks the division of this LSAM's Job Tracking ID information fields that are sent to OpCon. The same values and separator are returned to the LSAM when OpCon sends job control transactions after a $JOB event command initiates cooperative job tracking. The default value of a vertical bar, or "pipe" character is strongly recommended (e.g., \|). |
 | | | **Note**: Attention to this character is usually on required in non-U.S. environments. Please contact  SMA Support for assistance if Job Tracking is not working  correctly.      |
 | Auto-start job tracking | Y=Yes,N=No      | Y          | This option tells the LSAM server start and stop programs whether to also start or stop Job Tracking at the same time as all other LSAM server jobs are managed. |
-| Allow \*RQS msg for SBMJOB | 0=No,1=Yes   | 0          | This option controls the behavior of the Job Tracking command processor exit program when processing the SBMJOB command. The default behavior of the LSAM will be to directly call QCMD when submitting jobs that do not qualify for job tracking. When the option is set to '1' = Yes, the LSAM will provide improved support for the IBM i Command Entry screen function keys F9=Retrieve and F4=Prompt, while Job Tracking is started. However, this new option should be turned off (set to '0'=No) in environments where request message processing cannot be used to perform the SBMJOB command. This condition would typically only be discovered by experimentation. |
+| Allow *RQS msg for SBMJOB | 0=No,1=Yes   | 0          | This option controls the behavior of the Job Tracking command processor exit program when processing the SBMJOB command. The default behavior of the LSAM will be to directly call QCMD when submitting jobs that do not qualify for job tracking. When the option is set to '1' = Yes, the LSAM will provide improved support for the IBM i Command Entry screen function keys F9=Retrieve and F4=Prompt, while Job Tracking is started. However, this new option should be turned off (set to '0'=No) in environments where request message processing cannot be used to perform the SBMJOB command. This condition would typically only be discovered by experimentation. |
 | Expand JOBD/JOBQ obj refs | 0=No, 1=Yes           | 1          | Many times the SBMJOB command parameters use cross-references to other IBM i objects in order to identify which job description and/or job queue should be used for a job. In most cases, these cross-references should be resolved by the Job Tracking programs as the tracking process starts, especially because the job start process is typically suspended from its original job, and then resumed from an LSAM server job      |
 | Allow automatic tracking | 0=None, 1=Positive, 2=Negative| 0          | This control field governs how Automatic Job Tracking will decide which jobs in the IBM i partition will be selected for automatic tracking. The impact of this control field is described above in this topic, under "How Job Tracking Works -> Automatic Job Tracking." |
 | Expand JOBD/JOBQ obj refs | 0=No, 1=Yes          | 0          | -   This option tells the Job Tracking exit program whether to replace *LIBL in the Job Description
@@ -623,7 +604,7 @@ Library name and the Job Queue Library name of the intercepted SBMJOB command. I
 | | | |-   (The SBMJOB parameter values that are managed by the LSAM Job Tracking exit program are the values present in the original SBMJOB command, not the finally resolved job definition parameters that are replaced by IBM i only when the job is actually processed for placement on a job queue - which happens after the LSAM Job Tracking exit program.) |
 
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quit the display without update and return to the menu.
 - **F5=Refresh**: Restore the current control file values to the screen, overlaying any typed input.
@@ -635,15 +616,13 @@ Library name and the Job Queue Library name of the intercepted SBMJOB command. I
 
 The screen includes detailed instructions about how to use this function. More information about using the Capture Job feature can be found above under Operating Job Tracking and How LSAM job tracking works.
 
-- **Screen Title**: Start Capture Job
-- **Screen ID**: STRCAPJOB1
+### STRCAPJOB1 - Start Capture Job
 
-##### Menu Pathway
+#### Menu Pathway
 
-Main Menu \> Job track menu (#1) \> Start job capture (STRCAPJOB) (#8)
+Main Menu > Job track menu (#1) > Start job capture (STRCAPJOB) (#8)
 
-##### Fields
-
+#### Fields
 
 | Field               | Values     | Default | Description         |
 | -----               | ------     | ------- | -----------         |
@@ -654,8 +633,7 @@ Main Menu \> Job track menu (#1) \> Start job capture (STRCAPJOB) (#8)
 | Add job or workstation | IBM i name |         | Type the name of an IBM i workstation (device or emulation session/job name) or the name of any IBM i job that will be executing the SBMJOB command that needs to be captured.           |
 | Active job capture list | IBM i name |         | A list of up to 21 names of workstations or jobs that can be concurrently active for capturing jobs. This list is only effective while LSAM Job Tracking is STARTED.         |
 
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quit the display without update and return to the menu.
 - **F5=Refresh**: Restore the current control file values to the screen, overlaying any typed input.
@@ -667,14 +645,13 @@ Main Menu \> Job track menu (#1) \> Start job capture (STRCAPJOB) (#8)
 
 The screen includes detailed instructions about how to use this function. More information about using the Capture Job feature can be found above under Operating Job Tracking and How LSAM job tracking works.
 
-- **Screen Title**: End Capture Job
-- **Screen ID**: STRCAPJOB1
+### STRCAPJOB1 - End Capture Job
 
-##### Menu Pathway
+#### Menu Pathway
 
-Main Menu \> Job track menu (#1) \> End job capture (ENDCAPJOB) (#9)
+Main Menu > Job track menu (#1) > End job capture (ENDCAPJOB) (#9)
 
-##### Fields
+#### Fields
 
 
 | Field               | Values     | Default | Description         |
@@ -686,8 +663,7 @@ Main Menu \> Job track menu (#1) \> End job capture (ENDCAPJOB) (#9)
 | End job or workstation | IBM i name |         | Type the name of an IBM i workstation or job that appears in the Active job capture list in order to remove that device or job from the list. LSAM job tracking does not have to be stopped in order to complete this maintenance. Ending job capture for a workstation or job takes effect immediately. |
 | Active job capture list | IBM i name |         | A list of up to 21 names of workstations or jobs that can be concurrently active for capturing jobs. This list is only effective while LSAM Job Tracking is STARTED.      |
 
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quit the display without update and return to the menu.
 - **F5=Refresh**: Restore the current control file values to the screen, overlaying any typed input.
@@ -699,26 +675,25 @@ Main Menu \> Job track menu (#1) \> End job capture (ENDCAPJOB) (#9)
 
 The Display function allows a view of captured job information without allowing changes to the jobs. This function may be appropriate for a wider group of user profiles than the WRKCAPJOB command/function that does allow changes.
 
-- **Screen Title**: Display Captured Jobs
-- **Screen ID**: DSPCAPR1
+### DSPCAPR1 - Display Captured Jobs
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Display captured jobs (DSPCAPJOB) (#10)
+Main Menu > Job track menu (#1) > Display captured jobs (DSPCAPJOB) (#10)
 
-##### Options
+#### Options
 
 **5=Detail**: View the details of a captured job.
 
-##### Fields
+#### Fields
 
--  Opt:              Input field where an available option may be typed to act upon a record in the list.
--  Search content:   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
--  Capture ID:       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
--  Job name:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
--  CMD line... :      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
+-  **Opt**:              Input field where an available option may be typed to act upon a record in the list.
+-  **Search content**:   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
+-  **Capture ID**:       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
+-  **Job name**:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
+-  **CMD line...**:      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F5=Refresh**: Reload the list display with data from the master file.
@@ -727,16 +702,15 @@ Main Menu \> Job track menu (#1) \> Display captured jobs (DSPCAPJOB) (#10)
 - **F17=Top**: Causes the list to display from the first record. The list is sorted in order of the Capture ID.
 - **F18=Bottom**: Causes the list to display the last record in the file.
 
-### Option 5 = Display Captured Job Detail
+## Option 5 = Display Captured Job Detail
 
-- **Screen Title**: Capture Job Detail
-- **Screen ID**: DSPCAPR2
+### DSPCAPR2 - Capture Job Detail
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Display captured jobs (DSPCAPJOB) (#10) \> Option 5 = Display
+Main Menu > Job track menu (#1) > Display captured jobs (DSPCAPJOB) (#10) > Option 5 = Display
 
-##### Fields
+#### Fields
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
@@ -745,18 +719,18 @@ Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever v
 :::
 
 **Internal Data**
-- Capture ID      The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
--  Cap date        The system date when this job was captured.
+- **Capture ID**:      The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
+- **Cap date**:        The system date when this job was captured.
 
 **IBM i Parameters**
--  Cap time        The system time when this job was captured.
--  CMD SrcMbr      The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored.
--  FMT             The system date format in effect when the job was captured. This is the format of the Job DATE field.
--  CapJob fields   The IBM i job ID of the workstation or batch job that performed the capture action.
--  INLLIBL +       The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line and function key F14=More LIBL appears at the bottom of the display.
--  CMD line +      The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line and function key F13=More CMD appears at the bottom of the display.
+-  **Cap time**:        The system time when this job was captured.
+-  **CMD SrcMbr**:      The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored.
+-  **FMT**:             The system date format in effect when the job was captured. This is the format of the Job DATE field.
+-  **CapJob fields**:   The IBM i job ID of the workstation or batch job that performed the capture action.
+-  **INLLIBL +**:       The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line and function key F14=More LIBL appears at the bottom of the display.
+-  **CMD line +**:      The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line and function key F13=More CMD appears at the bottom of the display.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: (Not displayed, but available.) Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
@@ -764,68 +738,63 @@ Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever v
 - **F14=More LIBL**: Appears if there are more entries in the initial library list than can be shown on this display. Press <**F14**> to go to a dedicated screen where the entire initial library list may be viewed.
 - **F15=View LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed using this function key. An examination of the LDA contents may be important if Dynamic Variables (type L) will be used to update the LDA contents when the captured job is executed by OpCon/xps.
 
-#### F13 = More CMD (View CMD)
+## F13 = More CMD (View CMD)
 
-- **Screen Title**: Capture Job Detail - View CMD
-- **Screen ID**: DSPCAPR3
+### DSPCAPR3 - Capture Job Detail - View CMD
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Display captured jobs (DSPCAPJOB) (#10) \> Option 5 = Display \> F13=More CMD
+Main Menu > Job track menu (#1) > Display captured jobs (DSPCAPJOB) (#10) > Option 5 = Display > F13=More CMD
 
-##### Fields
+#### Fields
 
--  Capture ID:   The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
--  Job name:     The IBM i name assigned to the job when it was originally submitted.
--  1 -- 20000:   The range of the command line characters (out of a possible total 20,000 characters) that appear on this screen at once.
--  \- / +:       The minus sign (-) and the plus sign (+) will appear at the beginning or end of the command line text to indicate that there is more data in either direction. When the minus sign appears, the PageUp function key is active; when the plus sign (+) appears, the PageDown key is active.
+-  **Capture ID**:   The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
+-  **Job name**:     The IBM i name assigned to the job when it was originally submitted.
+-  **1 -- 20000**:   The range of the command line characters (out of a possible total 20,000 characters) that appear on this screen at once.
+-  **\- / +**:       The minus sign (-) and the plus sign (+) will appear at the beginning or end of the command line text to indicate that there is more data in either direction. When the minus sign appears, the PageUp function key is active; when the plus sign (+) appears, the PageDown key is active.
  
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
 - **PageUp**: View lower numbered character positions of the command line text.
 - **PageDown**: View higher numbered character positions of the command line text.
 
-#### F14 = More LIBL (View LIBL)
+## F14 = More LIBL (View LIBL)
 
-- **Screen Title**: Capture Job Detail - View LIBL
-- **Screen ID**: DSPCAPR4
+### DSPCAPR4 - Capture Job Detail - View LIBL
 
-##### Menu Pathways
+#### Menu Pathways
  
-Main Menu \> Job track menu (#1) \> Display captured jobs (DSPCAPJOB) (#10) \> Option 5 = Display \> F13=More CMD
+Main Menu > Job track menu (#1) > Display captured jobs (DSPCAPJOB) (#10) > Option 5 = Display > F13=More CMD
 
-##### Fields
+#### Fields
 
--  Capture ID:   The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
--  Job name:     The IBM i name assigned to the job when it was originally submitted.
--  \- / +:       The minus sign (-) and the plus sign (+) will appear at the beginning or end of the library list to indicate that there is more data in either direction. When the minus sign appears, the PageUp function key is active; when the plus sign (+) appears, the PageDown key is active.
+-  **Capture ID**:   The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
+-  **Job name**:     The IBM i name assigned to the job when it was originally submitted.
+-  **\- / +**:       The minus sign (-) and the plus sign (+) will appear at the beginning or end of the library list to indicate that there is more data in either direction. When the minus sign appears, the PageUp function key is active; when the plus sign (+) appears, the PageDown key is active.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
 - **PageUp**: View library names towards the beginning of the library list.
 - **PageDown**: View library names towards the end of the library list.
 
-#### F15 = View LDA
+## F15 = View LDA
 
 Pressing <**F15**> from the Display Captured Job Detail display provides access to a display of the captured job's local data area (LDA) content. This screen is a list of the 15 lines (1024 characters) of the LDA content, but the screen may show completely blank content. Function key \<F10\> may be used to toggle the display between a
 character-only mode that shows the whole LDA on one screen (but non-display characters in the LDA will appear as blanks), and a hex mode that shows the hexadecimal equivalents for each LDA byte position in over/under mode.
 
-- **Screen Title**: Capture Job Detail - LDA Content (2 Views)
-- **Screen ID**: DSPCAPR6
+### DSPCAPR6 - Capture Job Detail - LDA Content (2 Views)
 
-##### Fields
+#### Fields
 
--  Ruler/Character number:    A ruler appears across the top of the list display to help identify the ordinal position of each character in the LDA. The numbers on the left of the display name the first character position of content appearing on each line.
--  Displayable character:     Displayable character content of the LDA content is shown in normal green, next to each character number that appears on the left side.
--  Hexadecimal equivalents:   The hexadecimal equivalents of each character in the LDA content appear in over/under mode at each character position. This representative view of the hexadecimal characters helps to identify content such as packed numeric data, or other binary data or control characters that cannot be represented on a 5250 (green screen) workstation display as single, displayable characters.
+-  **Ruler/Character number**:    A ruler appears across the top of the list display to help identify the ordinal position of each character in the LDA. The numbers on the left of the display name the first character position of content appearing on each line.
+-  **Displayable character**:     Displayable character content of the LDA content is shown in normal green, next to each character number that appears on the left side.
+-  **Hexadecimal equivalents**:   The hexadecimal equivalents of each character in the LDA content appear in over/under mode at each character position. This representative view of the hexadecimal characters helps to identify content such as packed numeric data, or other binary data or control characters that cannot be represented on a 5250 (green screen) workstation display as single, displayable characters.
   
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
@@ -837,29 +806,28 @@ character-only mode that shows the whole LDA on one screen (but non-display char
 
 The "Work with" function allows data of captured job information to be accessed for update. This function, driven by the WRKCAPJOB command, should probably be restricted to a limited number of user profiles. It may not be appropriate for as wide group of user profiles as the display-only DSPCAPJOB command/function that does not allow changes.
 
-- **Screen Title**: Work with Captured Jobs
-- **Screen ID**: WRKCAPR1
+### WRKCAPR1 - Work with Captured Jobs
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11)
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11)
 
-##### Options
+#### Options
 
 - **2=Change**: Update the job parameters; also provides access to special update functions for the initial library list, the command line and the LDA content.
 - **3=Copy**: Select a record as the source data for creating a new captured job definition without having to run the Capture Job process again.
 - **4=Delete**: Select one or more records to be deleted, along with all of their associated job definition data (stored in multiple LSAM master files). A subsequent prompt screen will present a list of all records selected for deletion before the delete action is confirmed and completed.
 - **5=Detail**: View the details of a captured job (without being concerned about updating them).
 
-##### Fields
+#### Fields
 
--  Opt:              Input field where an available option may be typed to act upon a record in the list.
--  Search content:   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
--  Capture ID:       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
--  Job name :         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
--  CMD line...:      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)  
+-  **Opt**:              Input field where an available option may be typed to act upon a record in the list.
+-  **Search content**:   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
+-  **Capture ID**:       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
+-  **Job name**:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
+-  **CMD line...**:      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)  
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F5=Refresh**: Reload the list display with data from the master file.
@@ -868,16 +836,15 @@ Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11)
 - **F17=Top**: Causes the list to display from the first record. The list is sorted in order of the Capture ID.
 - **F18=Bottom**: Causes the list to display the last record in the file.
 
-### Option 2 = Change (Maintain) Captured Job
+## Option 2 = Change (Maintain) Captured Job
 
-- **Screen Title**: Maintain Job Detail
-- **Screen ID**: WRKCAPR8
+### WRKCAPR8 - Maintain Job Detail
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 2 = Change
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 2 = Change
 
-##### Fields
+#### Fields
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
@@ -885,27 +852,26 @@ Most of the job definition parameters are taken verbatim from the IBM i SBMJOB c
 Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
 :::
 
-
 **Internal Data**
 
-- Capture ID: The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.          
-- Cap date:   The system date when this job was captured.      
-- Cap time:   The system time when this job was captured.      
-- CMD SrcMbr: The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored. 
+- **Capture ID**: The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.          
+- **Cap date**:   The system date when this job was captured.      
+- **Cap time**:   The system time when this job was captured.      
+- **CMD SrcMbr**: The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored. 
 
 **IBM i Parameters** 
-- FMT:         The system date format in effect when the job was captured. This is the format of the Job DATE field.
-- CapJob fields: The IBM i job ID of the workstation or batch job that performed the capture action.
-- INLLIBL + : The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.
+- **FMT**:         The system date format in effect when the job was captured. This is the format of the Job DATE field.
+- **CapJob fields**: The IBM i job ID of the workstation or batch job that performed the capture action.
+- **INLLIBL +**: The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.
 :::tip
  The Initial library list cannot be maintained from this display-only field. Use F14=Edit LIBL to perform any changes. 
 :::
-- CMD line + : The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
+- **CMD line +**: The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
 :::tip
 The command line text cannot be maintained from this display-only field. Use F13=Change CMD to perform any changes.
 :::  
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: (Not displayed, but available.) Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
@@ -914,42 +880,41 @@ The command line text cannot be maintained from this display-only field. Use F13
 - **F15=Change LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed and updated using this function key.
 - **F21=CHKJOB**: Press <**F21**> to request an edit from IBM i of the job's parameters. Any error messages returned by IBM i will display at the bottom of the screen. Data entry made on this screen is NOT edited when <**Enter**> is pressed to update the record. <**F21**> must be used before the <**Enter**> key is pressed in order to help assure that a captured job definition will be updated with valid data.
 
-#### F13 = Change CMD
+### F13 = Change CMD
 
-##### Menu Pathways
+#### Menu Pathways
 
-- Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 2 = Change \> F13=Change CMD
+- Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 2 = Change > F13=Change CMD
 - Pressing <**F13**> starts a Source Edit Utility (SEU) session that can be used to update the source file member where the full command line is stored.
 
 :::tip
 The SEU edit screen is not documented in this online help. Refer to IBM documentation for information about how to perform source member editing with SEU. The LSAM permits any other form of IBM i source physical file member editing to be used, including WebSphere from a PC workstation. The field value for CMD SrcMbr names the member in file SMADTA/DBFCMDSRC that can be edited in order to update the captured job's command line. (The SMADTA library may have a different name if an alternate LSAM environment is being used.)
 :::
 
-#### F14 = Edit LIBL
+## F14 = Edit LIBL
 
 In the Edit LIBL display, after new values have been typed and the <**Enter**> key has been pressed once, the sorted and updated library list is presented a second time for confirmation before an update is completed. The <**Enter**> key must be pressed a second time with no changes made to the screen in order for the data update to be completed. (This works like the IBM i EDTLIBL command in this respect.)
 
-- **Screen Title**: Capture Job Detail - Edit LIBL
-- **Screen ID**: WRKCAPR5
+### WRKCAPR5 - Capture Job Detail - Edit LIBL
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 2 = Change \> F14=Edit LIBL
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 2 = Change > F14=Edit LIBL
 
-##### Fields
+#### Fields
 
--  Capture ID:        The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so duplicate copies of the same job name can be stored with different job parameters.
--  Sequence number:   10 -- 2500, similar to the IBM i EDTLIBL display. Different values can be typed into this field to cause the order of libraries in the list to change. The sequence number field is renumbered by tens every time the <**Enter**> key is pressed, after the library names have been sorted into the requested order.
--  Library:           The name of any library that should be in the job's initial library list. For the Capture Job application (unlike the IBM i EDTLIBL command), a single value of \*JOBD, or any other value permitted by the INLLIBL parameter of the SBMJOB command, may be used instead of actual library names.
+-  **Capture ID**:        The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so duplicate copies of the same job name can be stored with different job parameters.
+-  **Sequence number**:   10 -- 2500, similar to the IBM i EDTLIBL display. Different values can be typed into this field to cause the order of libraries in the list to change. The sequence number field is renumbered by tens every time the <**Enter**> key is pressed, after the library names have been sorted into the requested order.
+-  **Library**:           The name of any library that should be in the job's initial library list. For the Capture Job application (unlike the IBM i EDTLIBL command), a single value of \*JOBD, or any other value permitted by the INLLIBL parameter of the SBMJOB command, may be used instead of actual library names.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
 - **PageUp**: View library names towards the beginning of the library list.
 - **PageDown**: View library names towards the end of the library list.
 
-#### F15 = Change LDA
+## F15 = Change LDA
 
 Pressing <**F15**> from the Change Captured Job Detail display provides access to a display of the captured job's local data area (LDA) content. This screen is a list of the 15 lines (1024 characters) of the LDA content. Function key \<F10\> may be used to toggle the display between a character-only mode that shows the whole LDA on one screen (but non-display characters in the LDA will appear as blanks), and a hex mode that shows the hexadecimal equivalents for each LDA byte position in over/under mode.
 
@@ -993,17 +958,17 @@ USERNAME                   Capture ID: OOOOOOOOOOOO     
 F3=Exit   F10=Hex/Char   F12=Cancel
 ```
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 2 = Change \> F15=Change LDA
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 2 = Change > F15=Change LDA
 
-##### Fields
+#### Fields
 
-- Ruler/Character number:    A ruler appears across the top of the list display to help identify the ordinal position of each character in the LDA. The numbers on the left of the display name the first character position of content appearing on each line.
-- Displayable character:     Displayable character content of the LDA content is shown in normal green, next to each character number that appears on the left side.
-- Hexadecimal equivalents:   Hexadecimal equivalents of each character in the LDA content appear in over/under mode at each character position. This representative view of the hexadecimal characters helps to identify content such as packed numeric data, or other binary data or control characters that cannot be represented on a 5250 (green screen) workstation display as single, displayable characters.
+- **Ruler/Character number**:    A ruler appears across the top of the list display to help identify the ordinal position of each character in the LDA. The numbers on the left of the display name the first character position of content appearing on each line.
+- **Displayable character**:     Displayable character content of the LDA content is shown in normal green, next to each character number that appears on the left side.
+- **Hexadecimal equivalents**:   Hexadecimal equivalents of each character in the LDA content appear in over/under mode at each character position. This representative view of the hexadecimal characters helps to identify content such as packed numeric data, or other binary data or control characters that cannot be represented on a 5250 (green screen) workstation display as single, displayable characters.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
@@ -1013,12 +978,11 @@ Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \>
 - **PageUp**: (not shown) May be used if PageDown was previously used to show more lines while in Hex display mode.
 - **PageDown**: (not shown) May be used if "More..." appears at the bottom of the display while in Hex display mode.
 
-#### F19 = Rollback
+## F19 = Rollback
 
-Pressing <**F19**> from the Change LDA display presents a window that lists all the prior versions of this LDA that were previously saved to disk. A prior version may be selected to view it in the Change LDA display, and if it is acceptable, pressing \<Enter\> will cause the LDA content to be updated to that content version. (This new update will also be preserved in the update history of the LDA.)
+Pressing <**F19**> from the Change LDA display presents a window that lists all the prior versions of this LDA that were previously saved to disk. A prior version may be selected to view it in the Change LDA display, and if it is acceptable, pressing <**Enter**> will cause the LDA content to be updated to that content version. (This new update will also be preserved in the update history of the LDA.)
 
 #### Select Previous LDA Image
-
 ```
            Select previous LDA image
 
@@ -1035,54 +999,52 @@ Pressing <**F19**> from the Change LDA display presents a window that lists all 
   F12=Cancel
 ```
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 2 = Change \> F15=Change LDA \> F19=Rollback
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 2 = Change > F15=Change LDA > F19=Rollback
 
-##### Fields
+#### Fields
 
--  SEQ #:              A program-generated number used for selecting the desired previous LDA image.
--  RECORD TIME STAMP:   The date and time the LDA image was last updated.
--  Sequence number:     Use this field to type the SEQ # of the LDA image to be selected for return to the calling display.
+-  **SEQ #**:              A program-generated number used for selecting the desired previous LDA image.
+-  **RECORD TIME STAMP**:   The date and time the LDA image was last updated.
+-  **Sequence number**:     Use this field to type the SEQ # of the LDA image to be selected for return to the calling display.
 
-
-##### Functions
+#### Functions
 
 **F12=Cancel**: Quits the display and returns to the previous screen.
 
-### Option 3 = Copy Captured Job
+## Option 3 = Copy Captured Job
 
-- **Screen Title**: Copy Job Detail
-- **Screen ID**: WRKCAPR8
+### WRKCAPR8 - Copy Job Detail
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 3 = Copy
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 3 = Copy
 
-###### Fields
+#### Fields
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
 **Internal Data**
-- Capture ID (from):  The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
-- To: Capture ID:  A new capture ID must be provided. The program suggests a new ID based on the source ID. When the trailing characters of the source ID are blank, the program inserts zeros to fill the field and increments a counter in the last character position(s) that will make the new ID unique. The proposed ID may be changed, but the new record being created by the Copy function must have a unique ID. 
-- Cap date: The system date when this job was captured.
-- Cap time: The system time when this job was captured.
+- **Capture ID (from)**:  The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
+- **To: Capture ID**:  A new capture ID must be provided. The program suggests a new ID based on the source ID. When the trailing characters of the source ID are blank, the program inserts zeros to fill the field and increments a counter in the last character position(s) that will make the new ID unique. The proposed ID may be changed, but the new record being created by the Copy function must have a unique ID. 
+- **Cap date**: The system date when this job was captured.
+- **Cap time**: The system time when this job was captured.
 
 **IBM i Parameters**  
-- CMD SrcMbr: The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored. A new member will be created for the copied command line.
-- FMT: The system date format in effect when the job was captured. This is the format of the Job DATE field. 
-- CapJob fields: The IBM i job ID of the workstation or batch job that performed the capture action.       
-- INLLIBL +: The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.                                           |
+- **CMD SrcMbr**: The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored. A new member will be created for the copied command line.
+- **FMT**: The system date format in effect when the job was captured. This is the format of the Job DATE field. 
+- **CapJob fields**: The IBM i job ID of the workstation or batch job that performed the capture action.       
+- **INLLIBL +**: The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.                                           |
 :::tip
 The Initial library list cannot be maintained from this display-only field. Use F14=Edit LIBL to perform any changes. 
 :::
-- CMD line +: The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
+- **CMD line +**: The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
 :::tip
 The command line text cannot be maintained from this display-only field. Use F13=Change CMD to perform any changes.
 :::
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: (Not displayed, but available.) Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
@@ -1091,74 +1053,69 @@ The command line text cannot be maintained from this display-only field. Use F13
 - **F15=Change LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed and updated using this function key.
 - **F21=CHKJOB**: Press <**F21**> to request an edit from IBM i of the job's parameters. Any error messages returned by IBM i will display at the bottom of the screen. Data entry made on this screen is NOT edited when <**Enter**> is pressed to update the record.<**F21**> must be used before the <**Enter**> key is pressed in order to help assure that a captured job definition will be updated with valid data.
 
-### Option 4 = Delete Captured Job
+## Option 4 = Delete Captured Job
 
 The job parameter fields are displayed in turquoise instead of yellow in this Work With menu function to indicate that the fields are protected from input. They display in yellow on the Change Job Details screen.
 
-- **Screen Title**: Delete Capture Job
-- **Screen ID**: WRKCAPR2
+### WRKCAPR2 - Delete Capture Job
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB) (#11) \> Option 4 = Delete
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 4 = Delete
 
-##### Fields
+#### Fields
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields. Data fields on this screen appear in turquoise to indicate that they cannot be changed.
 
 **Internal Data**
--  Capture ID:      The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
--  Cap date:        The system date when this job was captured.
--  Cap time:        The system time when this job was captured.
--  CMD SrcMbr:      The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored. (The command line source member will be removed as the delete action is completed.)
+-  **Capture ID**:      The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
+-  **Cap date**:        The system date when this job was captured.
+-  **Cap time**:        The system time when this job was captured.
+-  **CMD SrcMbr**:      The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored. (The command line source member will be removed as the delete action is completed.)
 
 **IBM i Parameters**
--  FMT:             The system date format in effect when the job was captured. This is the format of the Job DATE field.
--  CapJob fields:   The IBM i job ID of the workstation or batch job that performed the capture action.
--  INLLIBL +:       The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.
--  CMD line +:      The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
-  
-
-##### Functions
+-  **FMT**:             The system date format in effect when the job was captured. This is the format of the Job DATE field.
+-  **CapJob fields**:   The IBM i job ID of the workstation or batch job that performed the capture action.
+-  **INLLIBL +**:       The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line.
+-  **CMD line +**:      The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line.
+ 
+#### Functions
 
 - **F3=Exit**: (Not displayed, but available.) Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen. The record will not be deleted.
 - **F23=DLTJOB**: Confirm the delete request for this individual captured job definition and all data pertaining to it in other LSAM master files. Pressing F23 from this screen begins the actual delete action.
 
-### Option 5 = Display Captured Job Detail
+## Option 5 = Display Captured Job Detail
 
 The job parameter fields are displayed in turquoise instead of yellow in this Work With menu function to indicate that the fields are protected from input. They display in yellow on the Change Job Details screen.
 
-- **Screen Title**: Capture Job Detail
-- **Screen ID**: WRKCAPR2
+### WRKCAPR2 - Capture Job Detail
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Job track menu (#1) \> Work with captured jobs (WRKCAPJOB)
-(#11) \> Option 5 = Display
+Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Option 5 = Display
 
-##### Fields
+#### Fields
 
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
 :::tip
-Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
+Captured jobs always convert a SBMJOB parameter value of *CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
 :::
 
 **Internal Data**
--  Capture ID:      The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
--  Cap date:        The system date when this job was captured.
--  Cap time:        The system time when this job was captured.
--  CMD SrcMbr:      The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored.
+-  **Capture ID**:      The key identifier of the record, specified when the job was captured. A Captured Job ID can use up to the 12 characters. Two additional characters more than a job name are allowed so that duplicate copies of the same job name can be stored with different job parameters.
+-  **Cap date**:        The system date when this job was captured.
+-  **Cap time**:        The system time when this job was captured.
+-  **CMD SrcMbr**:      The name assigned by LSAM internal routines to the source member in the LSAM command source physical file DBFCMDSRC where the command line text is stored.
 
 **IBM i Parameters**
--  FMT:             The system date format in effect when the job was captured. This is the format of the Job DATE field.
--  CapJob fields:   The IBM i job ID of the workstation or batch job that performed the capture action.
--  INLLIBL +:       The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line and function key F14=More LIBL appears at the bottom of the display.
--  CMD line +:      The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line and function key F13=More CMD appears at the bottom of the display.
+-  **FMT**:             The system date format in effect when the job was captured. This is the format of the Job DATE field.
+-  **CapJob fields**:   The IBM i job ID of the workstation or batch job that performed the capture action.
+-  **INLLIBL +**:       The first several characters of the initial library list are shown. If there is more data in the list than can be shown on this display, the plus sign (+) appears at the end of the line and function key F14=More LIBL appears at the bottom of the display.
+-  **CMD line +**:      The first several characters of the command line are shown. If there is more data in the command line than can be shown on this display, the plus sign (+) appears at the end of the line and function key F13=More CMD appears at the bottom of the display.
   
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: (Not displayed, but available.) Quits the display and returns to the menu.
 - **F12=Cancel**: Quits the display and returns to the previous screen.
