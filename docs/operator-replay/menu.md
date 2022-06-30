@@ -29,15 +29,15 @@ USERNAME                                    �
 
 ```
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Operator replay menu (#4)
 
-##### Field
+#### Field
 
 Selection or command
 
-##### Options
+#### Options
 
 - 1=Operator Replay user
 - 2=Operator Replay scripts
@@ -51,7 +51,7 @@ Selection or command
 
 The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options. 
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the master menu.
 - **F4=Prompt**: Prompts for keywords for any command entered in the Select or command line.

@@ -3,8 +3,7 @@ sidebar_label: 'User Management (Multi-Purpose)'
 ---
 # User Management (Multi-Purpose)
 
-User Management is the LSAM function that defines user profiles that are valid for use with Operator Replay scripts. (This maintenance also supports other LSAM operations, such as executing FTP jobs.) Any valid IBM i user profile may be used as long the user is granted all privileges needed to perform every step that is included in a script. Also make sure that the SMANET user profile is granted *USE privilege for every user profile that is registered for Operator Replay, if user
-SMANET does not retain *ALLOBJ authority.
+User Management is the LSAM function that defines user profiles that are valid for use with Operator Replay scripts. (This maintenance also supports other LSAM operations, such as executing FTP jobs.) Any valid IBM i user profile may be used as long the user is granted all privileges needed to perform every step that is included in a script. Also make sure that the SMANET user profile is granted *USE privilege for every user profile that is registered for Operator Replay, if user SMANET does not retain *ALLOBJ authority.
 
 ## User Management for Operator Replay
 
@@ -14,55 +13,50 @@ Unlike various other job types defined by the OpCon/xps EM, Operator Replay jobs
 
 The authority of the Operator Replay Script User also applies to the virtual workstation that must be used for an Operator Replay job. The user profile assigned within the LSAM to the Script must have authority to use whichever virtual workstation will be assigned to the job that the LSAM's Operator Replay control job will start.  Refer to additional discussion of this topic under the section about [Managing Virtual Devices](#Managing), where the optional Telnet exit program is described. The Telnet exit program is used for managing restrictions on which user can use a device, and for eliminating dependency on IBM i automatic creation of virtual display devices.
 
-- **Screen Title**: User Management
-- **Screen ID**: LSAUSRR00
+### LSAUSRR00 - User Management
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay user (\#1)
+Main Menu > Operator replay menu (#4) > Operator Replay user (#1)
 
-##### Fields
+#### Fields
 - Position to User Name:   To quickly search for a particular user, enter the first characters of the user name, and then press <**Enter**>.
 - Opt:                     <**Tab**> to a row in the table and type an option next to one or more user names, and press <**Enter**> to perform each option entered.
 - User Name:               The User Name specified does not have to exist when it is entered in the maintenance functions of this section, but it must be created as a valid IBM i user ID before it can be used by the LSAM.
 - Description:             A description that helps explain the identity and purpose of this user.
 
-##### Options
+#### Options
 
 - **2=Change**: Type 2 in the **Opt** field next to the User Name(s) to be changed and press <**Enter**> to proceed to the Change User window.
 - **4=Delete**: Type 4 in the **Opt** field next to the User Name(s) to be deleted and press <**Enter**> to proceed to the Delete User confirmation window.
 - **5=Display**: Type 5 in the **Opt** field next to the User Name(s) to be viewed and press <**Enter**> to proceed to a detailed view of each record. The detail record display shows the entire user name when the name length exceeds 30 characters.
 
-##### Functions
+#### Functions
 
 **F6=Add**: Press <**F6**> to proceed to the Add User screen.
 
-### Add User Screen
+## Add User Screen
 
-- **Screen Title**: Add User
-- **Screen ID**: LSAUSRR00-1
+### LSAUSRR00-1 - Add User
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay user (\#1) \>
-F6=Add
+Main Menu > Operator replay menu (#4) > Operator Replay user (#1) > F6=Add
 
-##### Options
+#### Options
 
 None
 
-### Functions
+#### Functions
 
-**F12=Cancel**: Quits the Add User window without adding new data to the
-system.
+**F12=Cancel**: Quits the Add User window without adding new data to the system.
 
-##### Fields
+#### Fields
 
 <**Tab**> to move from one field to the next. Observe the rules in the
 Add User Fields table (below) as new data is typed.
 
-#### Add User Fields
-
+### Add User Fields
 
 | Parameter       | Default Value    | Required | Description      |
 | -------         | ---------------  | -------- | -------          |
@@ -78,38 +72,36 @@ Add User Fields table (below) as new data is typed.
 | | | | SMA recommends configuring IP addresses with the Interface type of *LOOPBACK, since this type of Interface does not require a line description object. However, any valid IP address value that is configured in the partition can be used, as long as it is understood that there is a one-to-one relationship between the IP Address and a Device Name.  Specifying an external IP address or even an inter-system virtual LAN IP Address would restrict Operator Replay jobs to serial (one at a time) execution, since the virtual device can only be used for one job at a time. |
 | | | | Please refer to [Managing Virtual Devices](../operator-replay/virtual-devices.md) near the end of the Operator Replay Scripts section for more information about when to use this IP Address field.   |
 
-### Change User Screen
+## Change User Screen
 
-- **Screen Title**: Change User
-- **Screen ID**: LSAUSRR00-1
+### LSAUSRR00-1 - Change User
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay user (\#1) \> Option 2
+Main Menu > Operator replay menu (#4) > Operator Replay user (#1) > Option 2
 
-##### Options
+#### Options
 
 None
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Add User screen without adding new data to the system. Returns to LSAM menu.
 - **F12=Cancel**: Quits the Add User screen without adding new data to the system. Returns to user list.
 
-##### Fields
+#### Fields
 
 Refer to the Fields table for Add User. Change User does not allow changing the User Name. To change a user, first delete the original record then add a new record.
 
-### Delete User Screen
+## Delete User Screen
 
-- **Screen Title**: Delete User
-- **Screen ID**: LSAUSRR00-2
+### LSAUSRR00-2 - Delete User
 
-###### Menu Pathways
+##### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay user (\#1) \> option 4
+Main Menu > Operator replay menu (#4) > Operator Replay user (#1) > option 4
 
-###### Fields
+#### Fields
 
 Output-only fields identify each user record that is deleted from the LSAM database.
 
@@ -117,30 +109,29 @@ Column
 - User Name:     First 30 characters of User Name to be deleted from LSAM register.
 - Description:   Description within LSAM of user profile.
 
-##### Options
+#### Options
 
 None
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Delete User screen without deleting any records. Returns to LSAM menu.
 - **F12=Cancel**: Quits the Delete User screen without deleting any records. Returns to list of users.
 
-### Display User Screen
+## Display User Screen
 
-- **Screen Title**: Display User
-- **Screen ID**: LSAUSRR00-2
+### LSAUSRR00-2 - Display User
 
-##### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Operator replay menu (\#4) \> Operator Replay user (\#1) \> Option 5
+Main Menu > Operator replay menu (#4) > Operator Replay user (#1) > Option 5
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Display User screen and returns to LSAM menu.
 - **F12=Cancel**: Quits the Display User screen and returns to list of users.
 
-##### Fields
+#### Fields
 
 Up to the full 128 characters are displayed for the User Name.
 
