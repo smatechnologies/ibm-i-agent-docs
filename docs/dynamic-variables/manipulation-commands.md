@@ -96,7 +96,7 @@ _____
                                                                        More            ...
 ```
 
-##### Prompted SETDYNVAR Command - 2 of 2
+#### Prompted SETDYNVAR Command - 2 of 2
 ```
                     Set/Add Dynamic Variable (SETDYNVAR)
 
@@ -118,7 +118,7 @@ Variable description . . . . . .   __________________________________________
                                                                       Bottom
 ```
 
-##### Prompted SETDYNVAR Command - With Keywords - 1 of 2
+#### Prompted SETDYNVAR Command - With Keywords - 1 of 2
 ```
                       Set/Add Dynamic Variable (SETDYNVAR)
                                                                        
@@ -142,7 +142,7 @@ Group separator; Comma/Quote ed  COMMA          ','
                                                                   More...
 ```
 
-##### Prompted SETDYNVAR Command - With Keywords - 2 of 2
+#### Prompted SETDYNVAR Command - With Keywords - 2 of 2
 ```
 Set/Add Dynamic Variable (SETDYNVAR)
 
@@ -246,7 +246,6 @@ VALUE2(value_string) DELAY(10) NBRLOOPS(360)
 :::
 
 **KEYWORD DESCRIPTIONS**:
-
 - **VARNAM:** Dynamic Variable name (refer to Constraint below)*
   - The nameof an existing Dynamic Variable. If the Variable does not exist in the Dynamic Variable table file when the command executes it will return a 'FAIL' result code.
 - **VALUE1:** Required value string or number, up to 128 characters.
@@ -262,19 +261,19 @@ VALUE2(value_string) DELAY(10) NBRLOOPS(360)
 *Constraint - the Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Type-L variables (for LDA manipulation) cannot be used.
 :::
 
-### WAITDYNVAR Example Applications
+## WAITDYNVAR Example Applications
 
 This command could be used in any software running under IBM i, as long as the LSAM library list is in effect. Any program using this command must be able to retrieve and test the value of the IBM i LSAM reserved Dynamic Variable named WAITDYNVAR (the same as the command name) in order to determine if this command has returned a value of 'PASS' (either Value string was found) or 'FAIL' (neither Value string was found within the specified time limits).
 
-#### Methods Available for Retrieving Dynamic Variables
+### Methods Available for Retrieving Dynamic Variables
 
-##### Specify a Dynamic Variable Token with Fields of a Response Rule
+#### Specify a Dynamic Variable Token with Fields of a Response Rule
 
 Perhaps the most obvious use of the WAITDYNVAR command is to execute it within a group of Captured Data Response Rules. In this case, the values of dynamic variables can be tested by specifying Dynamic Variable Tokens with fields such as Compare Reference or Compare Data.
 
 This is the method illustrated in a WAITDYNVA R application example, below.
 
-##### A User Program Executes the LSAM GETDYNVAR Command
+#### A User Program Executes the LSAM GETDYNVAR Command
 
 A program can call the LSAM program GETDYNVAR, using the following syntax, where the value of the Dynamic Variable will be returned in the third parameter, or a non-blank error code may be returned in the first parameter. Consider the following example from a Control Language program:
 
@@ -298,7 +297,7 @@ ENDDO
 
 Notice in the example above that the &DYNVAL parameter is 129 characters long, although the maximum size of a Dynamic Variable is limited to 128 characters. Byte position 129 of this third program parameter is reserved for a non-blank character (such as 'X') in order to protect against the limitations of long character parameter passing to/from a Control Language program.
 
-##### A User or Program Executes the LSAM Command DSPDYNVAR
+#### A User or Program Executes the LSAM Command DSPDYNVAR
 
 This command may not be useful in many scripted applications, except it could be used by an Operator Replay script and then the results could become captured data for processing by response rules.
 
@@ -306,7 +305,7 @@ The LSAM command DSPDYNVAR can be used to return a completion message that inclu
 
 ACHCLTMAIL VALUE = YES Last updated: 2012-06-08-14.38.49.574000
 
-##### Database Queries or an SQL Statement
+#### Database Queries or an SQL Statement
 
 These can be used to fetch the field VTOKVAL from file SMADTA/LSAVARF00 where the field VTOKNAM is equal to the Dynamic Variable name. However, this method does not take advantage of the Dynamic Variable's ability to format numeric values.
 
@@ -403,7 +402,7 @@ Values captured from messages, reports and workstation displays can be easily st
 
 Here is the layout of the LOGDYNVAR table:
 
-| Field       |    Type     | Length   | **Description**
+| Field       |    Type     | Length   | Description
 | ----------- | ----------- | -------- | -----------------------------------------------
 | DVRECDATE   | TIMESTAMP   |  26      | Automatically assigned
 | DVPRIMARY   | NUMERIC     |   9      | Automatically assigned
