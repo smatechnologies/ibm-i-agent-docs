@@ -404,7 +404,7 @@ Message Data Capture can be used to enable tight integration between OpCon and t
 
 #### How to Configure Message Data Capture
 
-1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on STRSMA and LSAMENU command parameters, refer to the [STRSMA Command](../operations/lsam.#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on STRSMA and LSAMENU command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **2** to choose the **Message management menu** in the LSAM Main Menu.
 3. Enter **10** to choose **Work with Message Data Capture Definitions** in the Message management menu.
 4. Viewing the Work with Message Data Capture Definitions list, take note of existing Application Identifiers (if any) so that a unique name may be chosen for the new Application.
