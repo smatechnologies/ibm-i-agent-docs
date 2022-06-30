@@ -20,7 +20,7 @@ Environment name . . . . . . . .   *SELECT       *SELECT, *DEFAULT or name
 Display completion message?  . .   *VERBOSE      *SILENT, *VERBOSE        
 LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name         
 ```
-The environment name parameter (ENV) supports three possible values, the same as are supported by the STRSMA command (except that the default in this case is different). Refer to the [STRSMA Command](../operations/lsam.#the-strsma-command) for more information about the environment parameter and its values.
+The environment name parameter (ENV) supports three possible values, the same as are supported by the STRSMA command (except that the default in this case is different). Refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) for more information about the environment parameter and its values.
 
 The default ENV parameter value for the SMASETLIBL command is (*SELECT). This value was chosen as the default because in many cases where this command is being used, there is a choice to be made, and it is much easier to specify a correct environment name by selecting it from a list. (In contrast, the STRSMA command was set to use (*DEFAULT) as the default, so that former users of the IBM i LSAM would not need any special training about LSAM environment management in order to successfully enter the LSAM menu system.)
 
