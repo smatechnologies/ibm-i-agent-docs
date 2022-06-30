@@ -11,40 +11,38 @@ When the Message Management Logs function is selected from the menu, an initial 
 
 The OpCon/xps job-level message management log shows the information that was sent by SAM-SS and saved by the LSAM when the job start request was received. This information is used to format job-specific responses that also appear in the activity log (as entry type OpConJob) if the message is actually encountered.
 
--   **Screen Title**: Message Management Logs
--   **Screen ID**: LSALOGR10-0
+### LSALOGR10-0 - Message Management Logs
 
-###### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Message management menu (#2) \> Message management logs (#2)
+Main Menu > Message management menu (#2) > Message management logs (#2)
 
-###### Fields
+#### Fields
 
 | Field            |  Default | Description |
 | -----------------| ---------| ---------------------------------------------------------------------------------- |
 | Selection entry  |          | Type a number from the list of options and press <**Enter**> to view that log.|
 
-###### Functions
+#### Functions
 
 -   **F3=Exit**: Quits the managed messages list and returns to the menu.
 -   **F12=Cancel**: Quits the tracked jobs list and returns to the menu.
 
-###### Options
+#### Options
 
 -   1 = Display message management activity log (LSALOGF10)
 -   2 = Display OpCon/xps job-level message management log (TRPMSGF20)
 
-#### Message Management Activity Log List
+## Message Management Activity Log List
 
--   **Screen Title**: Message Management Activity Log
--   **Screen ID**: LSALOGR10-1
+### LSALOGR10-1 - Message Management Activity Log
 
-###### Menu Pathways
+#### Menu Pathways
 
--   Main Menu \> Message management menu (#2) \> Message management logs (#2) \> 1 (or 2)
+-   Main Menu > Message management menu (#2) > Message management logs (#2) > 1 (or 2)
 -   The list and the details display the same for either of the Message Management log options, with the exception of the Reply Type column on the list that will show the actual Reply... when the OpCon/xps job-level message management log is listed.
 
-###### Fields
+#### Fields
 
 | Field            | Default                | Description            |
 | -----            | -------                | -----------            | 
@@ -67,7 +65,7 @@ Main Menu \> Message management menu (#2) \> Message management logs (#2)
 |                  |                        | -   InfoText = show in Blue, the Message Management facility adds log entries for actions that may be subject to audit, such as the replacement of any Dynamic Variable that was included in a message Event command. |
 | Reply...         | Appears only for the OpCon/xps job-level management log | Shows either the 6-character reply value, or the first portion of the Event command string, depending on the response type (Rsp). |
 
-###### Functions
+#### Functions
 
 -   **F3=Exit**: Quits the managed messages list and returns to the     menu.
 -   **F5=Refresh**: Retrieves the latest managed message log information and updates the display.
@@ -79,18 +77,17 @@ Main Menu \> Message management menu (#2) \> Message management logs (#2)
 -   **F18=Bottom**: Causes the display to jump to the last entry in the list. This is the equivalent of the last record in the log file. The sort order controls which records are listed last. This function key is very helpful when the file is big.
 -   **F24=More keys**: Toggles the function key legend between the two different lists of function keys that are available for this display.
 
-###### Options
+#### Options
 
 5 = Display detail
 
-##### Message Management Activity Log Detail
+## Message Management Activity Log Detail
 
 This detail display appears the same for the OpCon job-level management log, although the content of the fields will vary.
 
--   **Screen Title**: Message Management Activity Log Detail
--   **Screen ID**: LSALOGR10-2
+### LSALOGR10-2 - Message Management Activity Log Detail
 
-###### Fields
+#### Fields
 
 - Log timestamp: The time stamp when the message was logged, that is, when the LSAM responded to the message.
 - Log key: An internal record ID number assigned by the IBM i DB2 database manager.
@@ -145,7 +142,7 @@ respond to the message. A value of zeros for an EQ comparison means that the var
 real value was used. 
   -   If the plus sign (+) shows, the command is longer than will fit on this display. In that case, use the <***PageDown***> key to see the full command line.
  
-###### Functions
+#### Functions
 
 -   **F3=Exit**: Quits the message management log details display and returns to the menu.
 -   **F8=More msg**: When a plus sign(+) shows there is more text in the message buffer, this key causes a branch to a different display where the whole message text buffer may be viewed.
@@ -153,26 +150,24 @@ real value was used.
 -   **F12=Cancel**: Quits the message management log details display and returns to the list of managed messages.
 -   **PageDown**: If a plus sign(+) shows at the end of the Event CMD line, use this key to branch to a view of the entire command string.
 
-### Display Captured Message Data Log
+## Display Captured Message Data Log
 
--   **Screen Title**: Display Captured Data Log
--   **Screen ID**: OPRL40R1
+### OPRL40R1 - Display Captured Data Log
 
-###### Menu Pathways
+#### Menu Pathways
 
--   Main Menu \> Message management menu (#2) \> Display Captured Message Data Log (# 8)
+-   Main Menu > Message management menu (#2) > Display Captured Message Data Log (# 8)
 -   The list and the details display the same here as documented for this function in Events and Utilities. The only difference between SCANSPLF captured data and Message captured data (here) is found on the Details viewed when using option **5=Display**. This difference is documented next.
 
 #### Display Captured Data Log Detail
 
 This detail display appears identical to the same display documented in Events and Utilities, except that some fields in the top rows of the display have different labels because they apply to Message Data. The screen example below is followed by a partial Fields table that identifies the unique labels. Other information about this details display may be found in Events and Utilities Menu.
 
-###### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Message management menu (#2) \> Display Captured Message
-Data Log (# 8) \> 5=Display
+Main Menu > Message management menu (#2) > Display Captured Message Data Log (# 8) > 5=Display
  
-###### Display Captured Data Log Detail
+#### Display Captured Data Log Detail
 ```
   OPRL40R5               Display Captured Data Log Detail              00/00/00   
   USERNAME           Log record RRN:       5   Type: M                 00:00:00 
@@ -196,7 +191,7 @@ ________________________________________________________________________________
 ________________________________________________________________________________   
 PAGEDOWN/UP   F3=Exit   F5=Refresh   F9=WRKJOB   F12=Cancel
 ```
-###### Fields
+#### Fields
 - Log record RRN: This is the relative record number from physical file OPRLOGF40.                                
 - Type:
   -   C = Operator Replay screen data capture. 
@@ -221,6 +216,6 @@ PAGEDOWN/UP   F3=Exit   F5=Refresh   F9=WRKJOB   F12=Cancel
 
 The Display Data Capture Debug Log function is identical to the description provided in Events and Utilities, except that these log entries are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to Events and Utilities Menu to see the screen documentation for the Data Capture Debug log  and an explanation of the log entries. The Data Capture Debug Log display is also documented in Operator Replay Scripts, but again, those log entries would be only for captured screen data.
 
-###### Menu Pathways
+#### Menu Pathways
 
-Main Menu \> Message Management menu (#2) \> Display Capture Debug Log (# 9)
+Main Menu > Message Management menu (#2) > Display Capture Debug Log (# 9)
