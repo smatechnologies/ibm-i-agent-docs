@@ -3,105 +3,174 @@ sidebar_label: 'Client eMail Management'
 ---
 # Client eMail Management
 
-This LSAM feature makes it possible to generate email requests that will be processed by the OpCon server, using content that is managed by the LSAM automation tools. This feature supports cleaner and more elaborate email content than is possible with the simpler OpCon email event command or an OpCon notification definition. This method requires quite a bit of configuration in advance, but once it is set up, it is not hard to reuse for various email events.
+## Client eMail Feature Replacement
 
-:::caution
-Beginning with OpCon 15.0 and higher, SMA has changed its support for OpCon auxiliary utilities that are used by this LSAM feature. Any user of this feature who is upgrading from a prior release of OpCon is requested to contact SMA Support for special instructions about retaining or installing new copies of the OpCon utility programs that can be used until a future release of OpCon updates the support for the LSAM feature.
+The IBM i LSAM continues to support an auxiliary automation feature that facilitates composition of email messages to be sent to clients of OpCon user sites. As of Agent version 18.1.112, this feature has been greatly simplified, but generally without losing its capabilities or requiring immediate changes to existing message configurations.  Changes might be required in command lines that execute the GENEMLREQ command because several command parameters were removed.
+
+(*See notes below about possible exceptions that might require review. These include attention to the From email address, elimination of some GENEMLREQ command parameters, and some new limits on the size of the email message body.*)
+
+The original version of this feature was complicated due to the constraints of the original OpCon External Events command syntax, which relied on commas to separate the parameters of an Event command. This prevented the $NOTIFY:EMAIL event command from including financial currency amounts that used a comma as a grouping separate, such as $123,456.78. It was necessary to send email message text content to the OpCon server (which provides a centralize link to email services) by a separate and complex path of events.
+
+With the introduction of the XML formatting syntax for External Event Commands (documented in a separate section of this document), it now becomes possible to use the $NOTIFY:EMAIL Event command by engaging the Agent’s IBM-styled command “XNTYEMAIL” (Notify by Email using XML).
+
+Users of the original Client eMail feature should carefully consider the discussion of [Instructions for Users of Original Client eMail](#instructions-for-users-of-original-client-email).
+
+**Agent version 21.1:** Not included in this Agent version 18.1 documentation are additional improvements and extensions that will become available after upgrading to the Agent version 21.1.
+
+### Retained with the Simplified Client Email Feature
+
+- The Client Master file and system of Client Acronyms (as keys) are retained, and no changes are required.
+- The email message body may still be defined by source members stored in the EMLTXTSRC source file. However, the text of the message body is now constrained to less than 3,840 characters by the program field buffers within the Agent’s program that communicates with the OpCon server.
+  - Please report to SMA Support if there is a need for a longer email message. But remember that this email feature was intended to generate simple and short notification messages, rather than complete letters to the site's clients. Otherwise, the existing client email message text source members will be supported without any changes required.
+
+### Changes to the Former Client eMail Feature
+
+- Uses the XML format of the OpCon $NOTIFY:EMAIL External Event command instead of a separate communications path between the IBM i Agent and the OpCon server.
+- A large nuyarn mber of feature control fields, matching similar GENEMLREQ command parameters, are eliminated.
+  - This change implies that some Agent automation rules or scripts would need updating to eliminate command parameters that are no longer supported. See the list of deleted command parameters, below.
+- This Agent email feature can no longer provide its own FROM email address for each email, since the OpCon $NOTIFY:EMAIL External Event command does not support this as one of its command parameters.
+  - The TO, CC and BCC addresses are still supported as before.
+  - To manage the FROM address, use the global setting for the OpCon server where the site's "FROM email address" may be registered. This means that all messages sent by the IBM i Agent's Client eMail feature will be labelled with the same, universal site source email address. This change might imply some change in procedures for the site, in case a site client might reply to the generated email.
+  - SMA also suggests that any custom REPLY TO email address could be embedded within the message body as a work-around for this limitation.
+- The IBM i Agent communications programs that connect with the OpCon server have their internal transaction buffers enlarged to accommodate up to 3,840 bytes (expanded from 1,280) to support an ample length for the aggregated parameters of the $NOTIFY:EMAIL command.
+  - The email message body could contain up to 3,000+ characters, however, the total size of the event command must be considered, allowing for the message title and the message addresses, plus any optional characters for the path to one or two attachments.
+
+### Instructions for Users of Original Client eMail
+
+Users who have started using the Client eMail feature at or after LSAM version 18.1.112 (LSAM version 18.1, PTF level 112) can skip this section of documentation.  It is provided as a guide only for users of the original Client eMail feature. New users should continue with the [Client eMail Process Overview](#client-email-process-overview).
+
+Revising the introduction to Client eMail Management in the IBM i LSAM Administration Guide (18.1.055), this eMail management tool now does depend on the OpCon External Event command $NOTIFY:EMAL. This Agent’s adoption of the XML format for OpCon External Event commands makes it much easier and simpler to continue producing nicely formatted email messages. For example, the XML format supports properly edited financial amounts, with no restrictions on the use of the comma as a grouping separator.
+
+The CAUTION in the previous user instructions no longer applies. After version 18.1.112 cumulative LSAM PTFs for the OpCon Agent for IBM i are installed, there is no need to maintain the old, retired stand-alone OpCon utility “SMASendMail.exe”.
+
+Another important change that must be made is to any OpCon Schedules that were previously required to manage the IBM i Agent’s Client eMail requests. Consider the following new procedure for using the Agent’s existing (revised, simplified) GENEMLREQ command.
+
+1. No OpCon Schedule is required.
+2. No file transfer jobs are required to send email request parameters or the email message content file.
+3. There is no need for a job to execute the retired “SMASendMail” utility.
+4. All that is required to get an email message sent is to execute the Agent’s GENEMLREQ.  This command engages the IBM i Agent XNTYEMAIL External Event email command. The external event command will be automatically configured by the GENEMLREQ command processor program (GENEMLREQR).
+
+The XNTYEMAIL command may now be used by the IBM i Agent directly.  This new command should be convenient for generating email notification within the OpCon-controlled environment, especially when the message content should include the comma character, as for edited financial amounts like $123,456.00. It is only necessary to use the GENEMLREQ command whenever the site will benefit from the Agent’s automation of addressing and message content that is provided by the revised Client eMail feature, driven by its Client Acronym key system.
+
+**Deleted Client eMail Flow Chart**
+
+The former flow chart is no longer useful. The only parts of the chart that are still used are at the top, left, which identifies database input to the GENEMLREQ command: Control data, Client Acronym master file, and the optional Message Content source file. The revised GENEMLREQ command does conduct processing of this data in order to format the XNTYEMAIL External Event command, but it no longer generates any auxiliary files,  There are now no temporary files stored in either the IBM i file systems or the OpCon application server directories.
+
+The processing of the XNTYEMAIL External Event command is now handled entirely by the OpCon application server’s normal management of incoming External Event commands.
+
+**Changes to Prepararion for eMail Tasks**
+
+All of the previously published steps are replaced.
+
+The only preparation task now required, if it has not already been done, is to register an External Event command user for the IBM i Agent, and then assign a password (old method) or a security token (new method) that must be captured (copied) as it is generated within the OpCon user interface and then pasted into the IBM i Agent’s “External Event Token” function which is option 2 in the LSAM sub-menu 3.
+
+:::warning 
+If a new OpCon security token for the OpCon External Event user is not captured (such as by a Windows copy function) just as it has been generated by the OpCon user interface, then a new token must be generated so that the token value can be captured for prompt pasting into the LSAM External Event Token registration.
 :::
 
-The master file, CLTEMLF00, contains up to 10 characters used as an acronym to represent clients or other entities who should receive email notifications as the LSAM completes certain processes. This master file may store multiple records per client acronym in order to gather one or more lists of email addresses. Multiple records are managed by a sequence number, and they can be grouped together by a Use Code, for example, when a single record cannot hold all of the email addresses
-that should be used for one mail event.
+**Deleted GENEMLREQ Command Parameters**
 
-The LSAM command GENEMLREQ (Generate eMail Request) is used to combine information from the Client eMail control record and the Client (Acronym) eMail master file, together with run-time parameters, completely defining the content and processing of an eMail request. This command can be used alone, or in the command line of various LSAM features, most usefully in the command line of a Captured Data Response Request where LSAM Dynamic Variables can be inserted into any of the
-GENEMLREQ command parameters.
+The following command parameters were deleted from, or added to the GENEMLREQ command.
 
-The GENEMLREQ command is designed to work with a proscribed OpCon Schedule that must contain at least four tasks, as described below. It is also necessary to use Schedule Instance properties with these jobs, as documented below.
+:::warning
+If any of the deletede command parameters were used as the GENEMLREQ command was registered in the Agent’s automation tools (including Response Rules and/or the Multi-Step Job script steps), they must be removed from the registered commands to avoid a failure of the command.  Contact SMA Support if assistance is desired for locating all instances of the GENEMLREQ command.  It is possible to use SQL queries against certain Agent master files to quickly discover a list of all instances, such as files OPRRPYF50 (Captured Data Response Rules) and MLTJOBF10 (Multi-Step Job Step master records).
+:::
 
-1. The first task may be a batch job that executes the GENEMLREQ command, but more typically it might be an Operator Replay script execution that triggers a Captured Data Response Rule where the GENEMLREQ command is defined.
-2. A file transfer job moves the email request parameters file to the OpCon server.
-3. Another file transfer job moves the separate email message content file from the IBM i disk space to the OpCon (or other Windows) server disk space.
-4. The fourth task (or a later task in a dependent schedule) must be a call to the MS Windows utility from SMA called SMASendMail.
+- MSGTXTFILE
+- MSGDYNVAR
+- EMLMSGPROI
+- EMLMSGPROP
+- PARMFILE
+- RMDYNVAR
+- EMLPRMPROI
+- EMLPRMPROP
+- FILEPATH
+- EMLUSER
+- EMLPWDPATH
+- EMLSVRURL
+- EMLSVRPORT
+- EMLSECURE
+- FROMADDR
 
-The output from the GENEMLREQ command is designed specifically for use with the SMASendMail utility. Currently, the SMASendMail utility is a manually installed utility that can be downloaded from SMA's Support Portal, under the content library called Automation Toolkit. However, this process is expected to change soon, so please contact SMA Support to request this utility.
+**Changed Support for a FROM eMail Address**
 
-It is important to understand the components and the flow of the Client eMail generation service. This application requires a carefully coordinated combination of LSAM master files, OpCon schedule jobs with Schedule Instance properties and an SMA utility program (SMASendMail). The flow chart following is offered to illustrate all the components of this application.
+The original Client eMail feature provided support for specifying a FROM email address from multiple sources.  However, since the new GENEMLREQ command now relies on the XML formatted External Event command XNTYEMAIL, this event command does not support specifying an email FROM address. 
 
-Client eMail Flow Chart
+Now, the email FROM address can be allowed, by default, to use the universal FROM address registered in the OpCon application server. 
 
-![Client eMail Flow Chart](../Resources/Images/IBM-i/Client-eMail-Flow-Chart.png "Client eMail Flow Chart")
+Another alternative is to add text to the email message body that instructs the recipient what email address to use if it is necessary to reply to the email message.
 
-## How to Prepare for eMail Tasks
+**New Support for eMail Attachments**
 
-Certain resources must be installed and technical data must be gathered in order to use the Client eMail generation request command, GENEMLREQ. This outline assumes an understanding of how the OpCon server was installed and how to use OpCon features, as well as assuming an understanding of how to use e-mail servers. Refer to the flow chart on the previous page for orientation to where each of the following elements is used.
+Following are new, optional command parameters that have been added to the GENEMLREQ command, based on optional parameters that the OpCon server supports for the $NOTIFY:EMAIL External Event command.
 
-1. Identify the e-mail server that will be used, obtaining the URL, and learn what e-mail services are supported. Identify the TCP/IP port number(s) available and learn which types of e-mail security (TLS, SSL or none) are supported at each port number.
+- ATTACHMNT1 – The path name within the OpCon application server where a document or other file type is located, which object should be included as an attachment to the final email that will be sent.
+This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.
 
-    a.  Be sure to identify the user name and password that is required
-        in order to request Send Mail service from the e-mail server.
+- ATTACHMNT2 – The path name within the OpCon application server where a document or other file type is located, which object should be included as a second attachment to the final email that will be sent.
+This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.
 
-2. Obtain and install the SMA utility called SMASendMail. This utility is comprised of a program and some example files. Please contact SMA Support for special instructions to obtain and install this utility. Then, take note of the OpCon server directory where this utility is installed, so that the installation path can be registered in the LSAM eMail Management control data.
-3. If not already done, update the IBM i LSAM (agent) version 04.00.03 software in the IBM i partition using the LSAM's PTF tools. Verify that PTFs 403067 - 403069 have been installed.
-4. Manually create a directory structure (using command 'mkdir') within the IBM i IFS (Integrated File System) disk space, where the message text temporary files will be constructed. The recommended IFS path would be one of these two alternatives, depending on the site standards for IFS organization: '/SMA/ClientMail/' or '/home/SMA/ClientMail/'.
+## Client eMail Process Overview
+
+This LSAM feature makes it possible to generate email requests that will be processed by the OpCon server, using content that is managed by the LSAM automation tools. This feature supports automatic preparation of elaborate and rich email content.  The original purpose of this feature was to enable OpCon client sites to trigger one or more email messages that are useful and appropriate for customers of the OpCon user site.  
+
+:::tip Example
+For example, banks that process ACH transaction file batches to and from the Federal Reserve system can notify other financial institutions they serve about the status of batches belonging to each of their customers.  The messages can automatically include well edited transaction item counts and amounts, in addition to documenting the processing dates and times, as well as including any one-time special notices to the customers.
+:::
+
+The Client master file, CLTEMLF00, contains up to 10 characters used as an acronym to represent clients or other entities who should receive email notifications as the LSAM completes certain processes. This master file may store multiple records per client acronym in order to gather one or more lists of email addresses. Multiple records are managed by a sequence number, and they can be grouped together by a Use Code, for example, when a single record cannot hold all of the email addresses that should be used for one mail event.
+
+The LSAM command GENEMLREQ (Generate eMail Request) is used to combine information from the Client eMail control record and the Client (Acronym) eMail master file, together with run-time parameters, completely defining the content and processing of an eMail request. This command can be used alone, or in the command line of various LSAM features, most usefully in the command line of a Captured Data Response Request where LSAM Dynamic Variables can be inserted into any of the GENEMLREQ command parameters.  The Agent's multi-step job scripting tool provides equally excellent support for preparing and executing GENEMLREQ commands.
+
+:::note
+As of LSAM version 18.1.112 (and newer versions), the following procedures are a much simpler replacement for the more complex original version of this feature.
+:::
+
+All steps in the original Client eMail instructions that referred to an OpCon Schedule are deleted. No OpCon Schedule is required, although often the GENEMLREQ command could be executed or triggered by some IBM i job that is part of an OpCon Schedule.
+
+1. First time users, and clients who have upgraded from the original Client eMail feature, must review the IBM i LSAM configuration for the Client eMail service. This function is found via LSAM sub-menu 3, sub-sub-menu 11, option 7.
+2. Maintain Client eMail Data master records.
+3. An email message body text could be just a short message that is contained within the GENEMLREQ command itself. However, using an IBM i source physical file member to store the message body text adds support for text formatting options and for including Dynamic Variable tokens (that are replaced at run time with the current token value).
+:::note
+It is required to pre-define Agent Dynamic Variables that are referenced by tokens embedded within IBM i source file members containing message text.
+:::
+4. Carefully evaluate the parameters of the GENEMLREQ command, wherever that command has been included with the IBM i Agent’s automation tools, such as Response Rules and the Multi-Step Job step records.
+:::note
+Users of the original Client eMail feature should review existing executions of the GENEMLREQ command, since support for many of the original command parameters was removed.
+:::
+5. The Agent’s log files provide (improved) sources of diagnostic information.  Views of these log files are accessed from the LSAM menu system, as described later in this documentation.
 
 ## How to Configure an eMail Task
 
-It may seem challenging at first to correctly configure all the data elements required to successfully generate an e-mail request. Please contact SMA Support if  assistance is desired the first time working through this process. Once a working model has been established, then it will be easy to repeat this model for many different applications.
-
-1. Create an OpCon Schedule that will include the following jobs. These jobs can be made serially dependent, although the two file transfer jobs could be run in any order or in parallel. View the flow chart, above, for orientation to the construction and use of this Schedule. The user is responsible for determining details about how and when the GENEMLREQ command will be executed, and how the Schedule will be built and executed.
-
-    a.  **Add Schedule Instance Properties**: View the examples provided in the Screens and Windows section of this document, in particular under the Client eMail Management Configuration screen, for descriptions and recommendations about the names of the four Schedule Instance Properties that will be required to complete this Schedule. Use OpCon Schedule maintenance to add these four Properties to a single "instance" line within the Schedule definition. That is, all four properties are registered in a single instance, separated by a semi-colon. The initial value of each property can be a symbolic value, one that will obviously show that a Property has not yet been updated by the GENEMLREQ command in case of failure.
-
-    b.  **Job 1**: Create an IBM i job that will execute the GENEMLREQ command. This job will require reference to the IBM i LSAM library list. The job could be a simple batch job that specifies the GENEMLREQ command in the Call command line of the OpCon job master. However, in many cases it might be more convenient to cause the GENEMLREQ command to execute as a Captured Data Response Rule command, triggered by steps of an Operator Replay script where the Client data can be collected into LSAM Dynamic Variables that will become the GENEMLREQ parameter keyword values.
-    :::tip note1 
-    It is necessary to set the OPCONJOB parameter of the GENEMLREQ command to a value of '1' in order to cause the GENEMLREQ command to complete the four executions of the $PROPERTY:SET event command, required to transfer the names of the temporary files from the LSAM Client eMail control and master files to the Schedule Instance Properties configured above.
-    :::
-    :::tip note2
-    The IBM i LSAM configuration parameters for SMA File Transfer (LSAM sub-menu 8, option 7) are used to identify the CCSID (character set) of the EBCDIC data used to compose the message text source, and of the ASCII stream file that will be composed as the GENEMLREQ routines assemble and translate the final message text format. This method assures that international character sets will be honored.
-    :::
-
-    c.  **Job 2**: A file transfer job is required to transfer the mail task temporary file from the DB2 library location to the MS Windows machine where the SMASendMail.exe program will be executed. The SMA File Transfer function is appropriate for this task. The source file is a DB2 EBCDIC Text file, and the target (destination) file is an ASCII Text file. Use two of the Schedule Instance Properties to identify the path + file name of the source and target files when defining this transfer job.
-
-    d.  **Job 3**: A file transfer job is required to transfer the message text stream file from the IBM i IFS disk space to the MS Windows machine where the SMASendMail.exe program will be executed. The source file is an ASCII Text stream file, and the target (destination) file is also an ASCII Text file. Use the other two Schedule Instance Properties to identify the path + file name of the source and target files when defining this file transfer job.
-
-    e.  **Job 4**: A MS Windows job is required to execute the SMASendMail.exe program. Refer to the installation directory paths noted above under the Preparation steps for the path values required to configure this job. Refer to the example files provided with the SMASendMail utility (included in the ZIP file along with the .exe program) for examples of how the program parameters may be configured. This SMASendMail program was designed so that all the required parameters may be included in the temporary parameters text file that will be constructed by the GENEMLREQ command, in which case it may only be necessary to include the parameter keyword (refer to the program examples for the correct syntax of this parameter keyword) and the temporary file name. Use one of the Schedule Instance Properties  for the path + file name value that will be assigned to the parameter keyword.
-
-    f.  **Jobs 5 and 6**: After a prototype test Schedule has been established, the production versions of this schedule should include two MS Windows jobs that will only be executed if Job 4 completes successfully. These jobs must delete the temporary files in the MS Windows disk space. Use the Schedule Instance Properties to specify each of the path + file names that must be deleted when the job is done.
-
-2. Before using the other IBM i LSAM Client eMail menu functions, start by executing option 7 on the Client eMail Management sub-menu. This will establish the default parameter values that will determine how the GENEMLREQ command must be specified, and it may also influence how the Client eMail Data (also called the Client Acronym master file) is maintained. The Client eMail configuration parameters are the ones that are considered likely to be consistent whenever the GENEMLREQ command is used, although it is always possible to override these values using the keywords of the GENEMLREQ command for exceptional circumstances. Careful setting of these central configuration values makes it easier to specify the GENEMLREQ command parameters.
-3. Create one or more Client eMail Data master records. Refer to the Screens and Windows section of this document for detailed information about this function.
-4. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7. The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: {DYNVAR1}
+1. Create one or more Client eMail Data master records. Refer to the Screens and Windows section of this document for detailed information about this function.
+2. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (*The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7.*) The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: {DYNVAR1}
 :::tip
-Any LSAM Dynamic Variables that will be used within a message source text member must be manually registered in the LSAM Dynamic Variables table efore they can be used by the GENEMLREQ command during actually e-mail message formatting. Numeric variable formatting rules of any type are permitted for Dynamic Variables used in the  context of an e-mail message.
+Any LSAM Dynamic Variables that will be used within a message source text member must be manually registered in the LSAM Dynamic Variables table efore they can be used by the GENEMLREQ command during run-time e-mail message formatting. Numeric variable formatting rules of any type are permitted for Dynamic Variables used in the context of an e-mail message.
 :::
-5. The final step in preparing for execution of the GENEMLREQ command is to determine the proper settings for each of the command's many parameter keywords. These are fully documented in the next section of this document. It is helpful to pay close attention to the following possible sources for many of these parameters, where the table of parameter values below identifies which sources are appropriate for each keyword, and what keyword value tells the command to use each source:
+3. The final step in preparing for execution of the GENEMLREQ command is to determine the proper settings for each of the command's parameter keywords. These are fully documented in the next section of this document. It is helpful to pay close attention to the following possible sources for some of these parameters, where the table of parameter values below identifies which sources are appropriate for each keyword, and what keyword value tells the command to use each source:
     - Client eMail configuration values (sub-menu option 7)
     - Client eMail Data master record values (sub-menu option 1)
     - GENEMLREQ command parameters that specify their own values
-    - *EXTERNAL = a special parameter keyword value that refers to the OpCon command line where the SMASendMail.exe program is executed. When this special value is used, it will be required to include that parameter on the program command line. Refer to the examples of the SMASendMail command line provided in the files that were delivered with the program in order to determine how each command line parameter must be specified for the MS Windows job.
-6. Following execution of the GENEMLREQ command (Job 1 in the suggested OpCon Schedule outlined above), diagnostic information about any failures will be found using the LSAM sub-menu options 4 and 5. Note that additional information about problems with LSAM Dynamic Variable replacement can also be found the LSAM submitted job log file, LSALOGF30, viewed using LSAM sub-menu 6, option 5, log viewer 4.
+  
+4. Following execution of the GENEMLREQ command, diagnostic information about any failures will be found using the LSAM sub-menu options 4 and 5. Additional information about problems with LSAM Dynamic Variable replacement can also be found the LSAM submitted job log file, LSALOGF30, viewed using LSAM sub-menu 6, option 5, log viewer 4.
 
 ## Client eMail Utility Commands
 
 ### GENEMLREQ Command (Generate eMail Request)
 
-The command GENEMLREQ (Generate eMail Request) combines input from the Client eMail feature control file, from the Client Acronym master file and from the command parameters themselves to identify all the elements required to produce a nicely formatted e-mail message that may include any data that was captured and formatted by other IBM i LSAM functions. There are many parameters for this command, but most of them can be set to rely on (1) \*DEFAULT values from the control file or (2) \*ACRONYM values from the Client Acronym master file. In addition, it is anticipated that the remaining parameter values would mostly be represented by LSAM Dynamic Variable tokens. However, the command processor itself does not translate Dynamic Variable token values inserted into the command parameters, except for the MESSAGE() parameter when it may be used (even though some of the other command parameters require that a name of a Dynamic Variable - NOT in token format - must be specified). Therefore, it may be most convenient to execute this command from a Captured Data Response Rule, where the Response Command line does support translation of Dynamic Variable tokens wherever they may appear in the command line.
+The command GENEMLREQ (Generate eMail Request) combines input from the Client eMail feature control file, from the Client Acronym master file and from the command parameters themselves to identify all the elements required to produce a nicely formatted e-mail message that may include any data that was captured and formatted by other IBM i LSAM functions. 
+
+Command parameters that do not directly support Dynamic Variable tokens could still be supported by Dynamic Variable tokens if the command is executee from a Captured Data Response Rule or a Multi-Step Job Step, where the command line does support translation of Dynamic Variable tokens just before executing the command.
 
 #### Command Syntax
 
 In the following example of the GENEMLREQ command, the command default value is shown for every parameter (when a default is available). The default value may be assumed when it is not explicitly specified. Many of the command parameters support long strings, up to 128 characters, which prevents the IBM i command prompter from showing the command value prompts.
-```
-GENEMLREQ SUBJECT('Subject text string')
-ACRONYM(\*CMD) SEQ(0) USECODE(\*NONE) MSGMBR(\*ACRONYM)
-MSGTXTFILE(\*DEFAULT) MESSAGE(\*ACRONYM) MSGDYNVAR(EMLMSGVAR)
-EMLMSGPROI(\*DEFAULT) EMLMSGPROP(\*DEFAULT)
-PARMFILE(\*DEFAULT) RMDYNVAR(EMLPRMVAR)
-EMLPRMPROI(\*DEFAULT) EMLPRMPROP(\*DEFAULT) FILEPATH(\*DEFAULT)
-EMLUSER(\*EXTERNAL) EMLPWDPATH(\*EXTERNAL) EMLSVRURL(\*DEFAULT)
-EMLSVRPORT(587) EMLSECURE(\*DFT) FROMADDR(\*DEFAULT) TOADDR(\*DEFAULT)
-CCADDR(\*NONE) BCCADDR(\*NONE) OPCONJOB('1')
-```
+:::note COMMAND SYNTAX
+  GENEMLREQ SUBJECT('Subject text string') ACRONYM(\*CMD) SEQ(0) USECODE(\*NONE) MSGMBR(\*ACRONYM)
+  MESSAGE(\*ACRONYM) TOADDR(\*DEFAULT) CCADDR(\*NONE) BCCADDR(\*NONE) OPCONJOB('1')
+:::
 
-The command syntax illustrated above is not a working example of this command, since some of the default values are in conflict with each other (for example, \*CMD versus \*ACRONYM). The possible sources of each parameter value are defined in the following table of command parameters.
+The possible sources of each parameter value are defined in the following table of command parameters.
 
 #### Table of GENEMLREQ Command Parameters
 
@@ -139,28 +208,6 @@ The Use Code is an optional means of grouping together Client Acronym master rec
 This command supports translation of Dynamic Variable tokens that are included in the source member. Refer to the section on Message Text Source Member maintenance, below.
 :::
 
-**MSGTXTFILE**: \*DEFAULT **- or -** 10-character root name of temporary file.
-
-The name of the temporary file that will contain the formatted message content text.
-
-\*DEFAULT = a name will be automatically constructed starting with the capital letter "M" followed by DDHHMMSSm, where:
-
-- DD = 2-digit day of month
-- HH = 2-digit hour of the day
-- MM = 2-digit minutes of the hour
-- SS = 2-digit seconds after the min.
-- m = 1-digit tenth of a second
-
-Any name, up to 10 characters, may be specified, but allowing the command to generate a name prevents overlaying another file in case two jobs are executing at or near the same time. If a file name is used more than once by two different jobs, the content of the file will be overlaid by the latter job.
-
-:::tip
-The actual name of the temporary file created in the IBM i IFS disk space, and after transferring the file to a MS Windows computer, will include a suffix of '.txt'. Only the 10-character root name of the file is specified in this field, as if the file were being created in the DB2 database. (The file is composed using an ASCII stream file in the IFS in order to provide the best support for line and paragraph formatting of the message content.)
-:::
-
-The file will be located in the IFS path specified in the IBM i Client 
-eMail configuration. (This location has no override in the command
-parameters.)
-
 **MESSAGE**: \*ACRONYM **- or -** Message content text.
 
 This parameter is ignored unless one of the following parameters is
@@ -176,103 +223,6 @@ parameter to be used as the message content.
 :::tip
 This is the only parameter of this command that supports translation of a Dynamic Variable token, no matter where the command is executed. It is possible to compose message content up to 1024 character by listing multiple Dynamic Variable tokens in this field, even though the parameter value only supports 128 characters as the command is submitted.
 :::
-
-**MSGDYNVAR**: User-specified Dynamic Variable name **- or -** the default of 'EMLMSGVAR'.
-
-A value must be provided for this parameter. This is the name of the LSAM Dynamic Variable where the 10-character root name of the message text temporary file will be stored for later reference. If the default file name is used this could allow content to be overlaid in case two e-mail jobs are running at the same time.
-
-**EMLMSGPROI**: \*DEFAULT **- or -** OpCon Property receiving IBM i message text file name.
-
-This is the name of an OpCon Schedule Instance Property that is used to receive the full path and file name where the message content text will be retrieved during a file transfer operation. The location referenced will be in the /root file system of the IBM i IFS disk space.
-
-\*DEFAULT = Use the name designated in the IBM i Client eMail configuration.
-
-**EMLMSGPROP**: \*DEFAULT **- or -** OpCon Property receiving MS Windows message text file name.
-
-This is the name of an OpCon Schedule Instance Property that is used to receive the full path and file name where the message content text will be placed after a file transfer operation. The location referenced will be an MS Windows directory and file name.
-
-\*DEFAULT = Use the name designated in the IBM i Client eMail configuration.
-
-**PARMFILE**: \*DEFAULT **- or -** 10-character root name of temporary file.
-
-The name of the temporary file that will contain the task definition values for the SMASendMail utility.
-
-\*DEFAULT = a name will be automatically constructed starting with the capital letter "P" followed by DDHHMMSSm, where:
-
-- DD = 2-digit day of month
-- HH = 2-digit hour of the day
-- MM = 2-digit minutes of the hour
-- SS = 2-digit seconds after the min.
-- m = 1-digit tenth of a second
-
-Any name, up to 10 characters, may be specified, but allowing the command to generate a name prevents overlaying another file in case two jobs are executing at or near the same time. If a file name is used more than once by two different jobs, the content of the file will be overlaid by the latter job.
-
-The file will be located in the DB2 library specified in the IBM i Client eMail configuration. (This location has no override in the command parameters.)
-
-**PRMDYNVAR**: User-specified Dynamic Variable name **- or -** the default of EMLPRMVAR.
-
-A value must be provided for this parameter. This is the name of the LSAM Dynamic Variable where the 10-character name of the SMASendMail parameters will be stored for later reference. If the default file name is used this could allow content to be overlaid in case two e-mail jobs are running at the same time.
-
-**EMLPRMPROI**: \*DEFAULT **- or -** OpCon Property receiving IBM i mail task parameters file name.
-
-This is the name of an OpCon Schedule Instance Property that is used to receive the library and file name where the mail task parameters will be retrieved during a file transfer operation. The location referenced will be in the IBM i DB2 database.
-
-\*DEFAULT = Use the name designated in the IBM i Client eMail configuration.
-
-**EMLPRMPROP**: \*DEFAULT **- or -** OpCon Property receiving MS Windows mail task parameters file name.
-
-This is the name of an OpCon Schedule Instance Property that is used to receive the full path and file name where the mail task parameters will be placed after a file transfer operation. The location referenced will be an MS Windows directory and file name.
-
-\*DEFAULT = Use the name designated in the IBM i Client eMail configuration.
-
-**FILEPATH**: \*DEFAULT **- or -** Temporary file location path for MS Windows.
-
-This is the \\path\\ (including the trailing slash) where the two temporary files will be located in an MS Windows system after the file transfer operations.
-
-\*DEFAULT = Use the value designated in the IBM i Client eMail configuration.
-
-**EMLUSER**: \*EXTERNAL **- or -** eMail server user name.
-
-The name of the user profile that has permission to log into the eMail server.
-
-\*EXTERNAL = Do not include this value in the mail task parameters file, it will be specified on the command line where the SMASendMail.exe program is executed.
-
-**EMLPWDPATH**: \*EXTERNAL **- or -** MS Windows \\path\\file where the encrypted mail server user's password was stored.
-
-The full MS Windows directory path and actual file name where the mail server user's password was stored. The password must be stored using the utility SMAEncryptPassword.exe (located in the directory \\OpConxps\\Email Monitor\\, as documented in [Encrypting Passwords](https://help.smatechnologies.com/opcon/core/latest/Files/UI/Enterprise-Manager/Encrypting-Passwords.md#top) in the **Enterprise Manager** online help).
-
-\*EXTERNAL = Do not include this value in the mail task parameters file, it will be specified on the command line where the SMASendMail.exe program is executed.
-
-**EMLSRVURL**: \*DEFAULT **- or -** URL where the e-mail server is contacted.
-
-The URL string, such as "smtp.gmail.com", where the e-mail server is contacted by the program SMASendMail.
-
-\*DEFAULT = use the value specified in the IBM i Client eMail configuration.
-
-**EMLSVRPORT**: 0 (= default) **- or -** up to 5 digits designating the service requested at the e-mail server URL.
-
-Specify the TCP/IP port number of the mail server requested from the mail server. This port number typically varies according to the type of security requested (refer to security parameter, next).
-
-0 (default) = use the value specified in the IBM i Client eMail configuration.
-
-**EMLSECURE**:
-
-- \*DFT
-- \*NONE
-- \*TLS
-- \*SSL
-
-Specify the type of security used to protect the e-mail message content during transmission.
-
-\*DFT = use the value specified in the IBM i Client eMail configuration.
-
-\*NONE = do not include the security setting in the mail task parameters file.
-
-**FROMADDR**: \*DEFAULT **- or -** e-mail address for the FROM: field.
-
-Specify the e-mail address of the e-mail sender, as appears in the message FROM: field.
-
-\*DEFAULT = use the value specified in the IBM i Client eMail configuration.
 
 **TOADDR**: \*DEFAULT **- or -** e-mail address or addresses where the message will be sent.
 
@@ -311,25 +261,21 @@ This flag controls the extended actions of the GENEMLREQ command.
 
 ### GETCLTEML Command (Get Client eMail Address)
 
-The command GETCLTEML (Get Client eMail Address) is a special purpose command just for the purpose of retrieving the e-mail address field from one Client Acronym master record and storing it into an LSAM Dynamic Variable. This function would be useful for the purpose of assembling an OpCon event command such as $NOTIFY:EMAIL from a Captured Data Response Rule, where the Dynamic Variable token can be included as the event command parameter where any of the e-mail address values is specified
-(to, cc. or bcc.).
-
-:::tip
-The GENEMLREQ command is often preferred over the $NOTIFY:EMAIL event command because event commands do not allow commas (as may be desired in the message text) and because the mail messages generated by the event command will also include some internal technical data at the start of the message.
-:::
+The command GETCLTEML (Get Client eMail Address) is a special purpose command that can retrieve the e-mail address field from one Client Acronym master record and store it into an LSAM Dynamic Variable. This function would be useful for the purpose of assembling an OpCon event command such as XMLNTYEMAIL from a Captured Data Response Rule or a Multi-Step Job Script Step, where the Dynamic Variable token can be included as the event command parameter where any of the e-mail address values is specified (to, cc. or bcc.).
 
 #### Command Syntax
 
 In the following example of the GETCLTEML command some sample values are illustrated. The command parameters do not support default values except for the MSGSEQ parameter which would default to zeros. 
-```
+:::note COMMAND SYNTAX
 GETCLTEML ACRONYM(ACRVALUE) VARNAM(DYNVARNAME) MSGSEQ(010)
 USECODE(USECODEVAL)
-```
+:::
+
 Zeros can be a valid value for a Client Acronym master record sequence number, but if the USECODE is not blanks, then zeros means to use of the first Client Acronym master record that matches the USECODE value, regardless of the sequence number assigned to that master record. It is recommended to provide a specific value for the MSGSEQ if the USECODE applies only to records that have non-zero sequence numbers. 
 
-Note that this command, unlike the GENEMLREQ command, will only access one Client Acronym master record. This is because the e-mail address field of a single record is 128 characters long and this is the same as the maximum value length that can be assigned to an LSAM Dynamic Variable.
+Note that this command, unlike the GENEMLREQ command, will only access one Client Acronym master record per execution.
 
-#### Table of GETCLTEML Command Parameters
+#### GETCLTEML Command Parameters
 
 **ACRONYM**: 1 to 10 characters
 
@@ -388,7 +334,7 @@ F13=Information Assistant   F16=System main menu
 ##### Options
 
 - The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options.
-- **Option 3**(GENEMLREQ) is for testing, and documentation of this command appears above.
+- **Option 3** (GENEMLREQ) is for testing, and documentation of this command appears above.
 - **Option 6** is documented in the existing **IBM i LSAM** online help, especially in the topic about Job Tracking.
 
 ##### Functions
@@ -487,8 +433,7 @@ F13=Information Assistant   F16=System main menu
 
 - **F3=Exit**: Do not update the data, return to the LSAM menu.
 - **F5=Refresh**: Restore the display to its original condition, removing any changes that were typed but not yet committed with the Enter key.
-- **F10=WRKMBRPDM**: This function key is displayed only in Change or Copy mode, and not in Display mode. When F10 is pressed, the program exits to the IBM i list display of members in the source physical file called MSGTXTSRC, permitting addition of new text members and/or changes to existing text members. This function may also be used just to identify the name of an existing source member that would then be typed into the Default msg txt SrcMbr field. For details about F10=WRKMBRPDM, refer to the display for menu option 2.
-- **F12=Cancel**: Do not update the data, return to the list display.
+- **F10=WRKMBRPDM**: This function key is displayed only in Add, Change or Copy mode, and not in Display mode. When F10 is pressed, the program exits to the IBM i list display of members in the source physical file called MSGTXTSRC, permitting addition of new text members and/or changes to existing text members. This function may also be used just to identify the name of an existing source member that would then be typed into the Default msg txt SrcMbr field. For details about F10=WRKMBRPDM, refer to the display for menu option 2.
 
 ### Work with Message Text Source Members
 
@@ -611,8 +556,8 @@ This function also provides convenient access to the Display of Error Log inform
 - **1=Error log**: Type this option and press <**Enter**> to branch directly to a subset list of the Error Log entries (if any) that pertain only to the selected job.
 - **2=WRKJOB**: Type this option and press <**Enter**> to branch to an IBM i Work with Job menu, in order to examine information such as the job log for the job where the GENEMLREQ command was executed.
 - **5=Detail**: Type this option and press <**Enter**> to branch to a series of formatted pages that display all the job definition details, and any failure reason text, for this execution of the GENEMLREQ job. The values displayed vary, depending on the record type (refer to the list of record types in the Fields table, above).
-- **6=View Parms**: Type this option and press <**Enter**> to branch to an IBM i display (DSPPFM) of the content of the DB2 database temporary file where the mail task parameters were written for use with the SMASendMail program.
-- **7=View message**: Type this option and press <**Enter**> to branch to an IBM i display (DSPF) of the ASCII stream file where the formatted message text was assembled, prior to transmitting the stream file to the MS Windows system where it would be used by the SMASendMail command.
+- **6=View Parms**: This option is no longer supported.
+- **7=View message**: This option is no longer supported.
 
 ##### Functions
 
@@ -623,8 +568,9 @@ This function also provides convenient access to the Display of Error Log inform
 - **F17=Top, F18=Bottom**: These function keys are used to reposition the list display to the beginning or the end of the master file.
 
 ### Display eMail Activity Detail
+##### Display eMail Activity - Page 1 of 2
 
-- **Screen Title**: Display eMail Activity Detail
+- **Screen Title**: Display eMail Activity Detail, Page 1 of 2
 - **Screen ID**: EMLLOGR5A
 
 ##### Menu Pathways
@@ -635,8 +581,7 @@ This function also provides convenient access to the Display of Error Log inform
 ##### Fields
 
 [Common header fields]
-
-(Also apply to formats B, C and D)
+(Apply to formats A and B)
 
 - **Log time stamp**: A date and time stamp when this log record was written
 - **Rec ID**: The type of log entry - refer to the Fields table for the Activity Log list display, above.
@@ -647,74 +592,43 @@ This function also provides convenient access to the Display of Error Log inform
 - **Job Status**: A message code or a mnemonic character string representing the type of failure. Consult SMA Support for assistance with interpreting mnemonic codes, but the failure text on the right usually explains the code.
 - **Error Text**: An explanation provided by the program of why the GENEMLREQ command failed.
 - **eMail Subject Line**: The value provided by the SUBJECT keyword of the GENEMLREQ command.
-- Fields that are unique to this format
+
+[Fields that are unique to this format A]
+
 - **Acronym**: The 1-10 character key representing an eMail Client
 - **Seq**: The sequence number used to identify separate e-mail address records within a single Acronym.
 - **Use Code**: A code used to create sub-groups of records within a single Acronym, such as when there are different e-mail addresses used for different types of communication.
 - **Msg Txt Src**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not a normalized in the database at this time.)
-- **Msg Txt File**: The 10-character root name of the .txt file where the formatted message text was stored in the IBM i IFS disk space. Use function key F23 to view the contents of this file.
-- **Msg Txt DVar**: The name of the LSAM Dynamic Variable where the 10-character root name of the message text temporary file is stored for reference.
+- **Msg Txt Src**: The 10-character name of the IBM i source file member that stores the message text. ((KEEP THIS)) -->
 - **Command Message value**: The value specified in the MESSAGE keyword of the GENEMLREQ command. (Refer to the command definition, above, for more information.)
-- **Msg Text DB2 OpCon Prop**: The full name of the OpCon Schedule Instance property where the path and name of the message text temporary file is stored by a $PROPERTY:SET event command that the GENEMLREQ program executes. This SI.Property is required by the file transfer jobs in order to know the path and name of the source file to be transferred.
-- **Msg Text OpCon Proprty**: The full name of the OpCon Schedule Instance property where the path and name of the message text temporary file is stored by a $PROPERTY:SET event command that the GENEMLREQ program executes. This SI.Property is required by the file transfer jobs in order to know the path and name of the target file in the MS Windows system that will receive the message text to be transferred.
 
 ##### Functions
 
-(These also apply to formats B, C and D)
+(These also apply to format B)
 
 - **F3=Exit**: Do not update the data, return to the LSAM menu.
 - **F12=Cancel**: Do not update the data, return to the list display.
 - **F20=ErrLog**: This function key will cause the display to branch to a different LSAM list display that will select only the error log records pertaining to the job identified on the current Details display.
 - **F21=WRKJOB**: This function key triggers a branch to an IBM i Work with Job menu, in order to examine information such as the job log for the job where the GENEMLREQ command was executed.
-- **F22=Parms**: This function key triggers a branch to an IBM i display (DSPPFM) of the content of the DB2 database temporary file where the mail task parameters were written for use with the SMASendMail program.
-- **F23=MsgTxt**: This function key triggers a branch to an IBM i display (DSPF) of the ASCII stream file where the formatted message text was assembled, prior to transmitting the stream file to the MS Windows system where it would be used by the SMASendMail command.
 - **PageUp/Down**: The Page Up and Page Down keys are prompted, depending on which of the four screen formats is on display. Use these function keys to move among the four parts of a log entry.
 
-- **Screen Title**: Display eMail Activity Detail
+##### Display eMail Activity - Page 2 of 2
+- **Screen Title**: Display eMail Activity Detail, Page 2 of 2
 - **Screen ID**: EMLLOGR5B
 
 ##### Fields
 
 Fields that are unique to this format
 
-- **Parm Temp File**: The 10-character name of the DB2 file where the SMASendMail task parameters were stored in the IBM DB2 database. Use function key F22 to view the contents of this file.
-- **Parm Temp File DVar**: The name of the LSAM Dynamic Variable where  the 10-character name of the mail task parameters temporary file is stored for reference.
-- **Parameters File Path**: The \\path\\ value in the MS Windows system (usually the OpCon server machine) where both the mail task parameters file and the message text temporary file are stored after the file transfer operation.
-  - The \\Binn\\ sub-directory under the OpCon installation directory is the typical place for this type of temporary file storage.
-- **Parm DB2 OpCon Proprty**: The full name of the OpCon Schedule Instance property where the path and name of the mail task parameters temporary file is stored by a $PROPERTY:SET event command that the GENEMLREQ program executes. This SI.Property is required by the file transfer jobs in order to know the path and name of the source file to be transferred.
-- **Parm File OpCon Proprt**: The full name of the OpCon Schedule Instance property where the path and name of the mail task parameters temporary file is stored by a $PROPERTY:SET event command that the GENEMLREQ program executes. This SI.Property is required by the file transfer jobs in order to know the path and name of the target file in the MS Windows system that will receive the message text to be transferred.
-
-- **Screen Title**: Display eMail Activity Detail
-- **Screen ID**: EMLLOGR5C
-
-##### Fields
-
-Fields that are unique to this format
-
-- **From Address**: The e-mail address from which the message is sent
 - **To Address**: The e-mail address to which the message is sent
 - **CC Address**: An option carbon copy address to which a copy of the message is sent
 - **BCC**: An optional blind carbon copy address to which a copy of the message is sent, but other recipients do not see this address
 
-- **Screen Title**: Display eMail Activity Detail
-- **Screen ID**: EMLLOGR5D
+### Display Error Log
 
-##### Fields
+**Screen Title**: Display Client eMail Error Log
 
-Fields that are unique to this format
-
-- **eMail Svr Port**: The TCP/IP port number of the service at the e-mail server that will receive the request to send the message
-- **eMail Svr /Secure**: The security option selected for protecting the privacy of the message
-- **eMail Server URL**: The WWW URL identifying the e-mail server
-- **eMail Server User ID**: The name of the user that was authorized to request message send services from the e-mail server. This may be in the form of an e-mail address, or any other form as required by the named e-mail server.
-- **Password Path/File**: The full path and file name that was used by the SMAEncryptPassword program to store an encrypted version of the password require for the e-mail server user.
-
-### Display Error Log (by Job, from Activity Log)
-
-This function provides convenient access to the Display of Error Log information, using a formatted display instead of the simple IBM i command DSPPFM that is used for menu option 5. However, this method of access to the error log information limits the error log records to only those that pertain to the selected GENEMLREQ job, therefore, some error log entries that might be available for failed GENEMLREQ jobs would not appear except when using menu option 5.
-
-- **Screen Title**: Display Client eMail Error Log
-- **Screen ID**: EMLLOGR2
+**Screen ID**: EMLLOGR2
 
 ##### Menu Pathways
 
@@ -726,8 +640,11 @@ This function provides convenient access to the Display of Error Log information
 ##### Fields
 
 - **Prim key**: A numeric primary key assigned to this Error Log record.
-- **Xref Prim key**: The primary key assigned to the first Activity Log record for this e-mail. All entries for the same e-mail task will cross-reference the first primary key (of the Activity Log, not of the Error Log) in order to show the association of log entries, even when multiple jobs may write interspersed entries. This
-    cross-reference also separates multiple executions of the GENEMLREQ command from the same IBM i job.
+- **Xref Prim key**: The primary key assigned to the first Activity Log record for this e-mail. All entries for the same e-mail task will cross-reference the first primary key (of the Activity Log, not of the Error Log) in order to show the association of log entries, even when multiple jobs may write interspersed entries. This cross-reference also separates multiple executions of the GENEMLREQ command from the same IBM i job.
+- **IBM Job ID**: The number/user/jobname of the IBM i job where the GENEMLREQ command was executed.
+- **Acronym**: The 1-10 character key representing an eMail Client.
+- **Seq**: The sequence number used to identify separate e-mail address records within a single Acronym.
+- **Use Code**: A code used to create sub-groups of records within a single Acronym, such as when there are different e-mail addresses used for different types of communication.
 - **DD-HH.MM.SS**: A truncated form of the record logging date and time, showing the day of the month and the hours, minutes and seconds of the entry. A primary record key (shown on the details display) assures that records will appear in ASCENDING date+time sequence, where the most recent record appears at the bottom of the list.
 - **TP**: The record entry type. Values are:
   - ER = an error description.
@@ -781,7 +698,7 @@ This function supports unrestricted access to the full content of the GENEMLREQ 
 
 The sample display below shows the file content positioned to column 94, where the Record Type code appears, followed by the beginning of the plain text log entry.
 
-The illustration below includes an example of a real error message, but the color was changed from green to red in this document in order to call attention to the entries. The actual DSPPFM display format always uses the same color for all records in the file.
+The illustration below includes an example of a real error messages.  The IBM i command that displays the unformatted record data has been positioned to column 94, which is where the record type code appears.  This view is convenient for surveying the file content, identifying the type of each message while also displaying as much message text as possible.
 
 ##### Display Client eMail Activity Log
 ```

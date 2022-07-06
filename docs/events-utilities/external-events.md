@@ -1,6 +1,32 @@
 ---
-sidebar_label: 'Events Screens and Windows'
+sidebar_label: 'External Events'
 ---
+# External Events
+
+"External Events" is the OpCon term that identifies the specifically formatted command strings that OpCon Agents and other authorized users are permitted to transmit to the OpCon central application server.  External Event commands address many categories of actions, for example, adding or changing a job in a schedule, or initiating an email message that the OpCon server will transmit to inside or outside of the OpCon network.
+
+To enable the IBM i Agent to successfully submit External Event commands it is necessary to first assign an OpCon user, within the OpCon server administration, that has authority to execute External Event commands.  The user must be allowed to work with IBM i machines.  There is a separate password or (more recently) an authority token that must be generated for the OpCon user's permission for External Events.  The password or token is different from the OpCon user's primary password or token used to access an OpCon user interface.  The password or token must be captured (copied) immediately so that it can be pasted into the IBM i Agent's "External Event Token" storage, using the LSAM sub-menu 3, option 2.
+
+## Setting Up an Event User ID and Password
+
+:::tip
+The wrapping of the syntax in this document does not indicate the location of a carriage return; the ↵ indicates the location of a carriage return.
+:::
+
+An LSAM screen now provides the user with the ability to easily send external events to the SAM-SS for processing. In order to allow the LSAM to send valid events to the SAM-SS, a valid user ID and password must be defined to the LSAM.
+
+### Define a Valid User ID and Password
+
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
+2. Enter **3** to choose the **Event management** menu in the SMA Main Menu.
+3. Enter **2** to choose the **External Event Password** option in the Event Menu.
+4. Enter a valid OpCon/xps user for **User Name** in the next menu.
+5. <**Tab**\> to **Password** field and enter *a* valid external event password associated with the User Name above.
+6. <**Tab**\> to second **Password** field and enter a valid external event password associated with the User Name above. This step confirms the password.
+:::tip
+The User Name and Password fields have a 10-character limit.
+:::
+
 # Events Screens and Windows
 
 ## External Events Password

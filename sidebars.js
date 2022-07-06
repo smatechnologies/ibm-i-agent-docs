@@ -124,12 +124,11 @@ module.exports = {
       collapsed: true,
       items: [
         'events-utilities/menu',
-        'events-utilities/events-operations',
-        'events-utilities/utilities-operations',
-        'events-utilities/lsam-utilities',
-        'events-utilities/events-screens',
-        'events-utilities/utilities-screens',
-        'events-utilities/email',
+        'events-utilities/external-events',
+        'events-utilities/scansplf-scanoutq',
+        'events-utilities/captured-data-response-rules',
+        'events-utilities/system-variables',
+        'events-utilities/client-email',
       ], 
     },
     {
