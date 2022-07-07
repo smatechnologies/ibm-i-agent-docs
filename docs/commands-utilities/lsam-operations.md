@@ -21,7 +21,7 @@ The LSAM utility commands such as STRSMA that are critical for management of mul
 
 The STRSMA command supports the interactive specification of an IBM i LSAM environment. To begin the LSAM environment specification or selection process, from IBM i command entry, type the command **SMAGPL/STRSMA** and press <**F4**> (Prompt) to see the possible parameter values:
 
-##### IBM i LSAM Interactive Menu
+#### IBM i LSAM Interactive Menu
 ```
 
                        Start SMA for Environment (STRSMA)                       
@@ -52,8 +52,6 @@ The STRSMA command supports the interactive specification of an IBM i LSAM envir
 | ANIMATE (Show animated splash display)  | *YES     | -   **\*YES**: Adds an entertaining animation of character graphics. This animation is useful for demonstrations and for illustrating that the LSAM application is not just legacy code, but a state-of-the-art software suite that utilizes many creative IBM i techniques.           |
 |                           |           | **Note**: The animation of character graphics adds two seconds to the process of signing in to an LSAM environment.      |
 |                           |           | -   It may be desirable to specify **\*NO** for this parameter value when using the STRSMA command as part of an Operator Replay script. This would avoid the two-second delay and allow the script to execute more efficiently. An alternative command for use with an Operator Replay script would be the command LSAMENU.      |
-
-
 
 :::tip Example
 To specify the environment value when entering the LSAM menu system and to suppress the animation of the splash display, the syntax would be:
@@ -102,7 +100,6 @@ With our without the initial animation, the STRSMA command always starts with a 
 An example of the STRSMA splash display follows.
 
 #### LSAM Welcome Screen
-
 ```
  SYSTEMNAME     W E L C O M E   T O   T H E   I B M  i   A G E N T     MM/DD/YY 
  USERNAME       Env: SMADEFAULT  SMA Default                           HH:MM:SS 
@@ -150,7 +147,7 @@ Optional sub-menu number . . . .   0             Optional sub-menu number
 LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name              
 ```
 
-##### System and User Configuration Requirements for the LSAM Menu
+#### System and User Configuration Requirements for the LSAM Menu
 
 | Parameter                 | Default   | Description and Values    |
 | -------- | ------ | --------- |

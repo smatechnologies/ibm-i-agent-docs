@@ -36,7 +36,6 @@ FN CODE = *DATE
 
 VALUE = {QDATE}
 ```
-
 On display page 2 of Dynamic Variable Maintenance for this *DATE Variable type, the date FROM-format must be defined to match the format
 of the System Date that the IBM i partition will provide for the system value of QDATE. This date format will be different than what is shown when using the interactive command DSPSYSVAL to show the value for QDATE, because IBM adds the default date formatting characters to the interactive display, but it does not add the formatting characters when the LSAM program uses an IBM i API to request a system value.
 

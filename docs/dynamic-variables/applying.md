@@ -8,8 +8,7 @@ The purpose of this discussion is to explain how to control the value that will 
 
 ## Testing Dynamic Variable Formatting with DSPDNYVAR
 
-It is possible to create test Dynamic Variables and to experiment with the settings of the variable definition fields using the LSAM command DSPDYNVAR (described in Commands and Utilities). This command returns the value of the named Dynamic Variable as a completion message, so the command is best used from an IBM i interactive workstation session (such as provided by green screen workstation emulation programs on personal computers, for example). To set or change a variable definition, use
-either the maintenance screens, illustrated in the preceding section of this topic, or the SETDYNVAR command, illustrated in the Utility Commands section of this Dynamic Variables chapter, below.
+It is possible to create test Dynamic Variables and to experiment with the settings of the variable definition fields using the LSAM command DSPDYNVAR (described in Commands and Utilities). This command returns the value of the named Dynamic Variable as a completion message, so the command is best used from an IBM i interactive workstation session (such as provided by green screen workstation emulation programs on personal computers, for example). To set or change a variable definition, use either the maintenance screens, illustrated in the preceding section of this topic, or the SETDYNVAR command, illustrated in the Utility Commands section of this Dynamic Variables chapter, below.
 
 The user is encouraged to experiment with setting different variable definitions until the DSPDYNVAR command returns a value in the format that is desired for the particular LSAM function where a {DVTOKEN} will be used. This experimentation is especially important when the variable will be defined as numeric. Remember that variables of type V must be used for this type of experiment, but that the variable values will work the same for type L variables that are used to change the LDA (local
 data area) contents of IBM i jobs. 
@@ -145,7 +144,7 @@ On some financial reports the currency symbol is located in a fixed position rel
 
 Notice that there are 5 asterisks representing 5 space characters. This result happens because there are already six positions to the left of the decimal point that are occupied by numeric digits and the Grouping Separator character.
 
-#### When to Use Numeric Editing Fields
+### When to Use Numeric Editing Fields
 
 In summary, choose the numeric formatting rules that will be required by the LSAM function where the Dynamic Variable token is being replaced.
 
@@ -156,7 +155,7 @@ However, if the numeric value of a Dynamic Variable will be used in a message se
 
 One other important use of Dynamic Variables is to store a counter that is being incremented in different steps. The counter may be compared to  a threshold value, such as used with LSAM Message Management. In this case, it is not important whether there are leading zeros or no leading zeros because it is the actual numeric values that will be used in the threshold check routines. For thresholds there are no decimal places allowed, so it is important that zero decimal places are specified for the counter variable. Finally, the negative sign could be important, in case a counter is ever being decreased and could go lower than zero. In that case, it might be important that the default negative sign be presented by the LSAM Dynamic Variable read routine when retrieving the counter value, because a negative (-2) must never be considered equal to a positive threshold value of 2.
 
-#### Support for Special Numeric Editing: User-defined Variable Values
+### Support for Special Numeric Editing: User-defined Variable Values
 
 The master record that defines Dynamic Variables supports a flexible set of numeric edit codes, but there may be special formatting desired, such as engaging IBM's user-defined edit codes (values 5 - 9). In this case it would be necessary to specify a user-defined program to return the correctly formatted value.
 
@@ -169,7 +168,7 @@ As described above under the topic of Captured Data Response Rules, it is possib
 - **Single Quotes**: Single quotes included in captured data, such as message text, green screen workstation displays or reports, can prevent storage of captured data into Dynamic Variables. The single quote interferes with delimiting character strings in IBM i command parameter values. This problem may also occur in other functions that may replace a Dynamic Variable token with its character string value.
 - **Commas**: If a comma is included in the value of a dynamic variable it can interfere with the syntax of OpCon Event commands whenever that dynamic variable is included as one of the command parameter values. At this time, commas are reserved characters in OpCon Event commands that are used to separate the command parameters.
 
-#### Preventing Special Character Errors
+### Preventing Special Character Errors
 
 Single quotes and commas can be escaped or replaced by specifying one of the following reserved values in the COMMA parameter of the SETDYNVAR command, or in the "Group separator; chr ed" field of Dynamic Variable master record maintenance (which is the same field that is updated by the COMMA command parameter).
 

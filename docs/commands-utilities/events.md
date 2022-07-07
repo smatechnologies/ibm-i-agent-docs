@@ -63,7 +63,6 @@ A sample Control Language program follows:
 ```
 :::
 
-
 In the example above, the < > characters are used only to mark the locations where field names are identified. Both the field name and the < > characters must be replaced by the required parameter value. If the specified Event command allows that a field is optional and the value will be left out of the command, the commas that delimit the field position must still be retained. Two consecutive commas with no value between them tells OpCon/xps that the null value should be assigned to the field in that position.
 
 ## Application Example: Sending IBM i values to OpCon Properties
@@ -103,7 +102,7 @@ In order to allow the LSAM to send valid events to the SAM-SS, a valid User ID a
     a.  **User Name**: type a valid OpCon/xps user name.     
     
     b.  **Password**: type a valid external event password for the User Name above.
-
+    
     c.  **Password**: type a valid external event password again to verify the password.
 
 ## Direct Event Commands

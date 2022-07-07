@@ -62,7 +62,7 @@ When the cursor is in the Internet Address field, press <**F4**> to view a list 
  :              Bottom :
  : F12=Cancel .........:
 ```
-##### F9=View LIBL
+#### F9=View LIBL
 
 From the LSAM Parameters display, press <**F9**> to view the library list in effect for this LSAM environment. This function is useful with multiple LSAM environments. An example of the default library list for the SMADEFAULT environment is shown below.
 
@@ -130,7 +130,7 @@ Certain parameters must conform to the following rules for IBM i passwords. Addi
 - A password may contain any character string
 - A password may not exceed 10 characters. IBM i does provide support for longer passwords - up to 128 characters (optionally supported by the LSAM for some features), but there are still parts of the LSAM software that are limited to only 10 characters. (Please contact SMA Support to report any LSAM limitations on passwords that interfere with applications that could otherwise be automated by OpCon.)
 
-##### Update Configuration Variables
+### Update Configuration Variables
 
 1. <**Tab**> to the relevant field.
 2. Type a new value for the parameter. Refer to the table below for more information about each parameter.
@@ -154,7 +154,7 @@ The update is stored immediately in the LSAM Parameters control file, however, a
   
 <a name="Heading_Information"></a>
 
-##### IBM i LSAM Configuration Settings: Heading Information
+### IBM i LSAM Configuration Settings: Heading Information
 
 | Field | Description |
 | ----- | ----------- |
@@ -166,7 +166,7 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 
 ### LSAM Control Parameters
 
-##### IBM i LSAM Configuration Settings: Control Parameters
+#### IBM i LSAM Configuration Settings: Control Parameters
 | Field       | Default     | Valid Values    | Required (Y/N)   | Description |
 | -----       | -------     | ------------    | --------------   | ----------- |
 | LSAM Name   | IBMILSAM    | IBM i Name (Refer to [IBM i Name Rules](#IBM2) | Y           | - This field identifies each LSAM environment to OpCon/xps. |
@@ -201,15 +201,13 @@ The update is stored immediately in the LSAM Parameters control file, however, a
 |             |             |              |            | - For multiple environments, each LSAM must have a unique port number. |
 |             |             |              |            | **Caution**: Avoid port numbers ranging from 0 to 1023 due to common conventions. |
 
-\* If one table field specifies a CCSID number, then both table fields
+* If one table field specifies a CCSID number, then both table fields
 must specify a CCSID number. Refer to the topic of Character Translation
 under the Extended Discussion of Parameters, below.
 
 ### Job Default Parameters
 
-
-##### Job Parameters
-
+#### Job Parameters
 | Field        | Default   | Valid Values | Required (Y/N) | Description  |
 | -----        | -------   | ------------ | -------------- | -----------  |
 | User Name    | QSYSOPR   | IBM i Name Rules (Refer to [IBM i Rules](#IBM2)| N        | - This field contains the name of the user whose authority governs the privileges granted to the LSAM jobs. This is useful whenever a user name is not being provided from OpCon. |
@@ -263,16 +261,14 @@ under the Extended Discussion of Parameters, below.
 |       |           |              |          | - *SECLVL logs the full message help text plus incident-specific parameter values. This logging type uses more system resources. |
 |       |           |              |          | - *NOLIST does not log any message text. SMA Technologies recommends this value for this special-purpose override. |
 
-: IBM i LSAM Configuration Settings: Job Parameters
-
-### LSAM Database Maintenance
+## LSAM Database Maintenance
 
 For more information, refer to [Log File and Database Management](../logs-database/overview.md)
  and [JORS and Spool File Server](../reference/jors.md).
 
-#### IBM i LSAM Configuration Settings: LSAM Log Management
+### IBM i LSAM Configuration Settings: LSAM Log Management
 
-##### LSAM Database Maintenance
+#### LSAM Database Maintenance
 | Field        | Default | Valid Values | Required (Y/N) | Description  |
 | -----        | ------- | ------------ | -------------- | -----------  |
 | Automatic delete-global | Y       | Y = yes / N = no  | Y            | - This field determines if the LSAM automatically purges LSAM daily log files. |
@@ -314,7 +310,7 @@ deleting the save files. |
 |              |         |              |              | - A value of 999 means do not delete. The save files will remain stored until removed by a manual process or by a job scheduled in OpCon. |
 |              |         |              |              | - The LSAM command SMARGZ can be used to drive the save file delete process. (Refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about the SMARGZ command.) |
 
-### Job Scheduling Performing Parameters
+## Job Scheduling Performing Parameters
 
 The following table of job scheduling performance parameters describes some flags that can be used to bypass LSAM errors that would normally reject an OpCon/xps job start request. SMA recommends that these errors should not be bypassed. There are many strategies that could be used instead of bypassing errors. Please contact SMA Support for advice before setting these bypass flags to Y=yes.
 
@@ -322,10 +318,9 @@ The following table of job scheduling performance parameters describes some flag
 Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to incorrectly report the actual job status. It also creates an opportunity for the LSAM to report that a job has failed when it has actually completed normally. In order to prevent incorrect job failure messages the LSAM server program performance must be carefully tuned. Please review the discussion below about the Job message idle timer parameter and also Tuning LSAM performance.
 :::
 
-#### IBM i LSAM Configuration Settings: Job Scheduling Performance Parameters
+### IBM i LSAM Configuration Settings: Job Scheduling Performance Parameters
 
-##### Job Scheduling Performance Parameters
-
+#### Job Scheduling Performance Parameters
 | Field        | Default | Valid Values | Required (Y/N) | Description  |
 | -----        | ------- | ------------ | -------------- | -----------  |
 | Bypass errors (warn only) | N/A     |(Informational Output Only) | N/A          | This group of flags supports user-defined options for the behavior of the LSAM when it attempts to control scheduled jobs. Refer to [Discussion of Bypass Flags](#Discussi2).    |
@@ -350,14 +345,13 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 |              |         |              |              | - After typing this character in the Call command line, additional job definition parameters (as supported by the IBM i SBMJOB command) may be added to the job. In addition, it is also allowed to type in a SCANSPLF command and its parameters that will be used to evaluate the job log report after a job finishes normally, in order to produce a final determination of the job completion status that will be reported to the OpCon/xps schedule. |
 |              |         |              |              | - When the SCANSPLF command is used along with additional job parameters, the SCANSPLF command and its own parameters must follow any job definition parameters. That is, the SCANSPLF command string must be the last string of non-blank characters in the Call command field, following the Job parms separator character. ||
 
-### Communication Performance Parameters
+## Communication Performance Parameters
 
 There are two sets of communications performance parameters. The first set is for the job scheduling server and the second set is for the JORS (job output retrieval) server. The parameter definitions are similar for each set. For more information about the LSAM JORS server job, refer to [JORS and Spool File Server](../reference/jors.md).
 
-#### IBM i LSAM Configuration Settings: Communication Performance Parameters
+### IBM i LSAM Configuration Settings: Communication Performance Parameters
 
-##### Communication Performance Parameters
-
+#### Communication Performance Parameters
 | Field        | Default | Valid Values | Required (Y/N) | Description  |
 | -----        | ------- | ------------ | -------------- | -----------  |
 | Keep Socket Open (Y/N) | Y       | Y or N       | Y            | - This field determines if the communication socket remains open after transactions. |
@@ -384,21 +378,16 @@ There are two sets of communications performance parameters. The first set is fo
 |              |         |              |                     | Either set the first line IP# to the special value of *ALL, or enter one or more allowed IP addresses to restrict the connection. |
 |              |         |              |                     | **Note**: Only one OpCon server can connect to the LSAM at once. Secondary connection attempts will be rejected, reported to the active OpCon server SAM Log and to the local IBM i partition's QSYSOPR message queue. The original active OpCon server connection will remain active. |
 
-
-: IBM i LSAM Configuration Settings: Communication Performance
-Parameters
-
-# TLS Security Options
+## TLS Security Options
 
 For more information, refer to [Extended Discussion of Parameters](../configuration/configuration.md#extended-discussion-of-parameters) that provides instructions for implementing TLS Secured communication connections with this Agent. Those instructions must be understood to choose correct values for the
 fields in this table.
 
 Remember that changes to the TLS Security options will only take effect after the LSAM Server jobs have been stopped and restarted.
 
-## IBM i LSAM Configuration Settings: Job Scheduling and JORS TLS Security Options
+### IBM i LSAM Configuration Settings: Job Scheduling and JORS TLS Security Options
 
-### TLS Security Options
-
+#### TLS Security Options
 | Field       | Default Values | Valid       | Required (Y/N) | Description |
 | -----       | -------------- | -----       | -------------- | ----------- |
 | Use TLS Security? | N           | Y=yes N=no  | Y           | - This field determines if the LSAM will engage a digital certificate and complete a TLS Security handshake with the OpCon server. |
@@ -410,19 +399,19 @@ Remember that changes to the TLS Security options will only take effect after th
 | TLS DCM Application Description   | (see default text on screen) | Any text    | N           | This field supports a description of the Digital  Certificate Manager application, for information purposes only. |
 |  TLS DCM Application ID | (see default text on screen) | Must match the IBM i DCM App ID | Y           | This Digital Certificate Manager Application ID must match the Application ID that was registered in the local IBM i Certificate Store for this Agent's certificate. The Agent uses this key value to request the digital certificate data that it needs to complete a TLS Security handshake with the OpCon application server. |
 
-### Extended Discussion of Parameters
+## Extended Discussion of Parameters
 
 Additional explanation and examples are provided to help understand how to set and use certain of the LSAM parameters listed above.
 
-### TLS Security Implementation
+## TLS Security Implementation
 
-#### Introduction to TLS Security for the IBM i Agent
+### Introduction to TLS Security for the IBM i Agent
 
 This discussion offers supplemental information in addition to what is provided in [Communication Settings](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Machines.md#Communic)  in the **Concepts** online help, and other referenced sections of documentation that explain each part of implementing TLS Security in the OpCon network. The ready should look for information about configuring the OpCon Server communications programs,  including SMANetcom, and the MSLSAM (Windows Agent).
 
 This section is focused on guidelines for implementing compliant and compatible TLS Security for the OpCon Agent for IBM i (= the IBM i LSAM), in cooperation with the OpCon Server itself and, if SMA File Transfer with Windows is required, also in cooperation with the MSLSAM. It is typically possible to also use TLS Security with most of the other OpCon Agents, but please consult OpCon documentation for instructions about specific operations required to implement digital certificates and client/server authentication within those other Agents.
 
-#### Implementing Digital Certificates for TLS Security
+### Implementing Digital Certificates for TLS Security
 
 In general, SMA does not provide specific instructions for generating or installing the digital certificates that are required to support TLS-secured data communication connections. However, the following guidelines are provided as a checklist to help ensure that minimal requirements are not missed.
 
@@ -473,7 +462,7 @@ application.
 a.  The same TLS Client/Server certificate could be used for all four Applications.
 b.  The client may choose to use two to four separate TLS Client/Server certificates, depending on the entity's security standards or common practices.
 
-#### Steps to Implement TLS Security for the IBM i LSAM
+### Steps to Implement TLS Security for the IBM i LSAM
 
 The following instructions apply specifically to the data communication connection between the IBM i LSAM and the OpCon SAM, used for Job Scheduling and (for this LSAM) the JORS Server. For information that is specific to the SMA File Transfer protocol or the Operator Replay Script driver use of the Telnet Server, refer to TLS Security details within those chapters of this Agent documentation.
 
@@ -605,7 +594,7 @@ It may take some time for the LSAM to report a failed status for a job that was 
 
 In previous versions of he IBM i LSAM software, it was possible for the server jobs to issue the error message ID SMA0097. If this error code appears next to an IBM i job in an OpCon schedule, this indicates that the LSAM software needs to be updated with the latest software patches.
 
-#### Job Status for Attempted Job Starts (TX1)
+### Job Status for Attempted Job Starts (TX1)
 
 If the IBM i LSAM Parameters switches (SMA0008 or SMA0007) are set to "Y" = Yes, allowing job queue error conditions to be bypassed, the LSAM will return a special job status to the OpCon/xps Schedule, rather than rejecting the job request. The job will appear to be active, however, it will show the special status message "JOBQ HELD" as illustrated in the example below. When this status appears, the job will not start executing until an operator intervenes and manually releases the held job queue. Once the job queue is released, the job should run normally and OpCon/xps and the LSAM will continue normal operations automatically.
 
@@ -622,7 +611,7 @@ When a job has been allowed to bypass error code SMA0007 and enter a job queue t
 2. The message sent to the SAM Log will read:
     - "JOBQ not linked to SBS: library/jobq preventing job: jobname #1234567890"\ (The SAM job name and job number are shown at the end of the message.)
 
-#### Job Status After OpCon/xps Status Request (TX2)
+### Job Status After OpCon/xps Status Request (TX2)
 
 If a job remains stuck in a job queue and does not achieve active status, the LSAM job status check program will either report that the job queue is still HELD (as shown above), or for any other reasons, the job status will appear as in the following example:
 
@@ -640,7 +629,7 @@ If an operator is able to repair any of these causes, the submitted job should s
 
 A [job queue] in HELD status is handled differently, as explained above. When the job queue is released, the job should start and the OpCon/xps job monitoring will return to normal status codes.
 
-#### SMA0007 Bypass Logic
+### SMA0007 Bypass Logic
 
 The LSAM job scheduler server program (LSASCHR00, job TXMMNG) checks the job queue for a job start request to make sure the job queue is attached to a subsystem. This check prevents OpCon/xps from submitting a job that will never be executed. The default action of the LSAM server (bypass flag value 'N') when it finds a job queue that is not attached to a subsystem is to fail the job start request with error code SMA0007. If the bypass flag value is set to 'Y', the job is submitted but the LSAM continues to report a special error condition to OpCon/xps SAM that shows next to the job in the OpCon/xps schedule.
 
@@ -653,7 +642,7 @@ During the process of checking the job queue status, if the LSAM server program 
 
 The first message is used to clearly identify that this message and the one following it have come from the LSAM job scheduler server program, SMA0007 logic. The first message is used to report the message identifier that will appear next in the operator message queue. The second message, which cannot be anticipated in this document, will contain the information returned by IBM i when the API for retrieving job queue information failed. The second message may prove helpful in diagnosing the unexpected circumstances that caused the API to fail. When these messages appear in the system operator message queue, if it is not clear what action to take, please report them to SMA Support for assistance.
 
-#### SMA5801 Notification of Job MSGW Status and LSAM Feedback
+### SMA5801 Notification of Job MSGW Status and LSAM Feedback
 
 The LSAM job scheduler and status server tasks detect when a job is stuck in a MSGW (message waiting) status. This detection can occur immediate as a job starts, if the job immediately reports an error, or periodically after the job as started, whenever the OpCon server sends a job status request (TX2). The frequency of job status requests is controlled by OpCon performance options (refer to the OpCon **Concepts** online help).
 
@@ -665,11 +654,11 @@ LSAM Feedback support was added to the IBM i LSAM with PTF # 403178. At the same
 
 There are two different ways to configure a response when a job is reported by the LSAM as stuck in the MSGW status. First, OpCon Event commands can be triggered by the Job Events assigned to the OpCon job master record. Second, the local LSAM server jobs can be configured to trigger Message Management rules by generated a message ID SMA5801.
 
-##### OpCon Job Events Triggered by LSAM Feedback
+### OpCon Job Events Triggered by LSAM Feedback
 
 LSAM Feedback is one of three methods that can be used to trigger Job Events for IBM i jobs, when the Job Event tab of the job master record shows the "MSGW Status for Active Job" Feedback option. To configure any OpCon Event command that will execute whenever a job is stuck in the MSGW status, update the LSAM Feedback Value field with the character string %MSGW% (include the percent sign % so that the letters MSGW will match the value string sent by the LSAM regardless of its position in the value text). One or more Event commands can be triggered whenever the LSAM job scheduler server jobs send the LSAM Feedback value text to OpCon.
 
-##### Local LSAM Response to MSGW via Message Management
+### Local LSAM Response to MSGW via Message Management
 
 At the same time that LSAM Feedback is generated, the LSAM job scheduler and job status server jobs can also be configured to generate message ID SMA5801. This option is activated by changing the SMA5801 MSGQ+LIB fields from blanks to a valid message queue name and a message queue library name. To deactivate this option, set these two fields back to blanks.
 
@@ -682,7 +671,7 @@ conditionally execute any action within the IBM i partition as well as any OpCon
 
 The response to message ID SMA5801 does not connect directly to the pending message that caused the job's MSGW status. That original message will still require a response, either manual or automatic. Separate Message Management Parameters must be added if the original message is one that might be repeated in the future. This means that one  strategy for using the SMA5801 message is to support learning among the IBM i operations team, helping to call attention to messages that might benefit from future automation. Remember that the MSGW status could be for an error message or it could be for any normal program-generated message that requires an operator response.
 
-#### Bypass Command Validate
+### Bypass Command Validate
 
 The LSAM job scheduler server program (LSASCHR00, job TXMMNG) previously always attempted to validate the syntax of the command line in IBM i jobs submitted by OpCon/xps. However, the LSAM server program did not support logic that would accommodate unique initial library lists that could be specified for jobs, and it was also unable to easily accommodate specific object authorities in environments that require the LSAM server user profile (SMANET) to be restricted.
 
@@ -716,7 +705,7 @@ all forms of communication between the LSAM and OpCon.
 Great caution must be exercised when selecting the translation tables or CCSIDs used by the LSAM. The translation must always support the existing OpCon transaction protocol rules; therefore, the reserved characters utilized by the OpCon transaction protocol must be understood. Standard XML protocol characters are among those that must be protected. SMA recommends that a test LSAM environment be used to fully prove a new translation table before attempting to use it for live operations. Please contact the SMA Support team if assistance is needed to adapt OpCon translation.
 :::
 
-#### OpCon/xps Event Command Characters
+### OpCon/xps Event Command Characters
 
 A typical problem experienced by IBM i LSAM users when specifying OpCon/xps Even commands is the difficulty of trying to insert square brackets [[ ]] around the token fields that can be supported by OpCon/xps Event processing.
  
@@ -742,21 +731,21 @@ It is possible that in some environments, the default translation tables involve
 Dynamic Variables, supported by the IBM i LSAM in places such as a job's call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.
 :::
 
-### Extending the IBM i Call Command with Special Parameters
+## Extending the IBM i Call Command with Special Parameters
 
-#### Job Parameters Separator Character
+### Job Parameters Separator Character
 
 A special character can optionally be used to add more job definition parameters to the Call command line field of an OpCon job master record for IBM i jobs. The special character will be typed in the ASCII character set used by the machine where the OpCon Enterprise Manager is executing. Before the LSAM job scheduling server actually processes the special character it will be translated to EBCDIC according to the translation table specified above in the LSAM Parameters.
 
 IBM i jobs can have additional Job Description attributes added, and various job management functions that are optionally provided by the IBM i LSAM can be engaged, as explained in the next sections.
 
-#### Adding Job Description Parameters to an IBM i Job in OpCon
+### Adding Job Description Parameters to an IBM i Job in OpCon
 
 After typing the separator character in the Call command line, additional IBM i job description parameters may be added to the job. Any parameters that are not already supported by specific fields of the OpCon job master record may be specified using the same keywords and syntax as is supported by the IBM i SBMJOB command. For example, in some environments it might be helpful to specify a unique character set as the default for the job, using the CCSID  parameter, as for the French EBCDIC character set: CCSID(297). Assuming the special character is the pipe character ( \| ) - however that may appear in this document - the Call command field might look like this:
 ```
 WRKJOB JOB(*) OUTPUT(*PRINT) OPTION(*ALL)|CCSID(297)
 ```
-#### Using SCANSPLF to Evaluate an IBM i Job Completion Status
+### Using SCANSPLF to Evaluate an IBM i Job Completion Status
 
 In addition to adding job parameters after the separator character, it is also allowed to type in a SCANSPLF command and its parameters that will be used to evaluate the job log report after a job finishes normally. This special use of the SCANSPLF command is specifically dedicated to the evaluation of the job log report produced only by each execution of the job where this command was added to the command line. 
 
@@ -776,7 +765,7 @@ use of the SCANSPLF utility included with a Call command.
 The details about the SCANSPLF command that was assigned to evaluate a job's completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this online help). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
 :::
 
-#### Setting an IBM i Job's LDA Value
+### Setting an IBM i Job's LDA Value
 
 A new option has been added to the IBM i LSAM job scheduler server program that supports building a job's local data area (LDA) by adding one or more **LDA()** keywords after the separator character. When used, this special keyword must follow any job description parameters, but it must precede the special use of the SCANSPLF command, as explained above.
 
@@ -828,7 +817,7 @@ Notice that this format for the LDA() keyword does not enclose DynVarName in the
 
 When using the LDA() keyword in an OpCon IBM i job Call command line, remember that LSAM Dynamic Variables are able to call a user-defined program to calculate the value for each Dynamic Variable at run time. This might be a good way to fetch specialized LDA content from a third-party software  application and then feed that content (in 128-character pieces) to the LSAM so that the LDA content will be added to the job that OpCon is starting. 
 
-##### Example of Using the LDA() Keyword with Other Call Command Extensions
+### Example of Using the LDA() Keyword with Other Call Command Extensions
 
 Here is an example of an OpCon job master record for an IBM i job, showing all three possible job definition extensions used at once:
 

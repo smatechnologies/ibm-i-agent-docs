@@ -169,10 +169,9 @@ Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
 - **F21=Post inst**: Show a list of all available post-install instruction source members. NOTE: The IBM i SEU function is used to show the list of data members in the LSAM source physical file where post-install instructions are store, one member for each affected PTF Name. This SEU function appears to allow option 2=Edit to change the source members, and while clients may wish to use this access to add their own critical notes, SMA does not recommend changing the distributed instructions. SMA cannot be responsible for damage to the software or LSAM database that may result from altering the instructions.
 - **F24=More keys**: Press this function key to toggle between lists of available function keys. All available function keys may be used, even when not shown.
 
-#### F15=Subset PTF List Window
+## F15=Subset PTF List Window
 
-- **Screen Title**: Subset PTF List
-- **Screen ID**: LSAPTFW1
+### LSAPTFW1 - Subset PTF List
 
 Use the function F15=Subset to limit the records appearing in the list of LSAM PTFs.
 

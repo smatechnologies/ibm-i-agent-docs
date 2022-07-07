@@ -81,7 +81,7 @@ When the selected Machine is running IBM i and the file or table being transferr
 
 **LIBRARY/FILE(MEMBER)**
 
-\...where (MEMBER) is optional. The concept of a file data member is unique to IBM i. Most DB2 UDB database files, and all SQL tables have only one (implied) data member, so it is usually not necessary to specify the member name. The exception is when data is read from, or written to a source physical file, such as program source files that store multiple members for each program's source code.
+...where (MEMBER) is optional. The concept of a file data member is unique to IBM i. Most DB2 UDB database files, and all SQL tables have only one (implied) data member, so it is usually not necessary to specify the member name. The exception is when data is read from, or written to a source physical file, such as program source files that store multiple members for each program's source code.
 
 Consider the following application notes when SMA File Transfer is used with files controlled by IBM i:
 

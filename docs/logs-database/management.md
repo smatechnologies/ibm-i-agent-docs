@@ -17,14 +17,13 @@ The setting of log controls by the start and end commands is "sticky." This mean
 
 Managing LSAM logging starts with a Server Logging status display from which function keys are used to implement the Start or End requests that are typed into the Option fields. The function key <**F2**> is used to toggle between the LSAM server job logging functions and a separate display format where other LSAM utility logging options are gathered into a single management display.
 
-- **Screen Title**: Manage LSAM Server Logging
-- **Screen ID**: MNGLOGR1
+### MNGLOGR1 - Manage LSAM Server Logging
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > LSAM management menu (#6) > option 4
 
-##### Fields
+#### Fields
 
 - **Opt**: Type an option next to any/all of the lines, then press Enter to register the request under the Pending column, or press <**F7**> and/or <**F8**> to implement the actions immediately.  
   - VALUES: 1 = Start, 4 = End.
@@ -36,12 +35,12 @@ Main Menu > LSAM management menu (#6) > option 4
   - VALUES: Start, End.
   - Pressing Enter does not cause any change to the LSAM Parameters control file or to any active LSAM server jobs. The Pending column is a good way to edit the planned logging changes before they are implemented, either by pressing <**F7**> or <**F8**> to cause an immediate change to the active LSAM server jobs (and to store  the new values in the LSAM Parameters control file), or by pressing F14 to only store the values in the LSAM Parameter  control for later reference the next time that the LSAM server jobs are restarted.
 
-##### Options
+#### Options
 
 - **1=Start**: Mark a logging function for starting.
 - **4=End**: Mark a logging function for ending.
 
-##### Function
+#### Function
 
 - **F2=Manage Utility logging**: Branch to display format R6 to manage logging of other LSAM features and utilities.
 - **F3=Exit**: Returns to the LSAM menu system.
@@ -57,23 +56,22 @@ Main Menu > LSAM management menu (#6) > option 4
 
 Pressing <**F2**> from the initial LSAM logging management display causes the maintenance program to switch to a different display where the debug/audit logging for LSAM utility features can be managed. These LSAM utility logging options are also each managed when selecting option 7 (in most cases) from the sub-menu where each LSAM feature is managed. The effect of maintenance is the same from those locations as from this summary display.
  
-- **Screen Title**: Manage LSAM Utility Logging
-- **Screen ID**: MNGLOGR6
+### MNGLOGR6 - Manage LSAM Utility Logging
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > LSAM management menu (#6) > Option 4 >F2=Manage Utility Logging
 
-##### Options
+#### Options
 
 This summary screen shows the options for each control field to the right, in the blue prompting text. There is also a column of pink values under the "Dft" heading that shows the setting that SMA recommends for normal operations.
 
-##### Fields
+#### Fields
 
 - **Value input field**: Type one of the control values that is shown in blue to the right of each input field, then press Enter to store that new value in the LSAM Parameters control file.
 - **DFT (default)**: The default value is displayed as the typical standard setting that SMA recommends. This helps to avoid setting on a "trace logging" function by accident.
 
-##### Functions
+#### Functions
 
 - **F2=Manage Server logging**: Branch back to display format R1 to manage logging of the LSAM server jobs.
 - **F3=Exit**: Returns to the LSAM menu system.
@@ -85,15 +83,14 @@ This summary screen shows the options for each control field to the right, in th
 
 Many of the LSAM log viewer programs may be accessed from a sub-menu that can be accessed from the Manage LSAM Logging function using function key <**F9**> or from the LSAM Menu (#6, option 5.
 
-- **Screen Title**: View LSAM Logs
-- **Screen ID**: MNGLOGR2
+### MNGLOGR2 - View LSAM Logs
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > LSAM management menu (#6) > Manage LSAM logging (#4) >F9
 - From command entry, using the LSAM environment library list, enter any one of the commands that appears on the View logs sub-menu.
 
-##### Fields
+#### Fields
 
 Type a number (1 -- 14) into the Selection entry field and press <**Enter**> to execute the selected viewer.
 
@@ -102,24 +99,23 @@ Type a number (1 -- 14) into the Selection entry field and press <**Enter**> to 
 | -------         | ------------                 | ------------------              |
 | Selection entry | none (1 - 14) | Type the number of the view function to use into this field. Press <**Enter**> to start the viewer.               |
 
-##### Options
+#### Options
 
 Most of the individual log viewers are not documented in this online help. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. When the system is well understood, the log viewer instructions are obvious, and in most cases they offer well-labeled formatting of each type of transaction that may appear in the detail display of a given log entry.
 
 For more information about the log files displayed by each viewer utility, refer to the [Viewing the LSAM Log Files](../logs-database/management.md#viewing-the-lsam-log-files)  display. There is a helpful flow chart that shows the location of many log files in the overall LSAM transaction management process. Refer to [Strategic Location of Log Files](../logs-database/locations.md#strategic-location-of-log-files).
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Abandons the Manage LSAM logging function and returns to the menu.
 - **F12=Cancel**: Returns to the Manage LSAM Logging status display.
 - **F15=Extract log files**: Used to deliver log file content to SMA Support. Refer to explanation, below.
 
-### Display Spool File Management Control File (LSAJORCTL)
+## Display Spool File Management Control File (LSAJORCTL)
 
 The spool file management control file stores information about spool files that have been copied. It is possible to use function keys from the detail display of certain control file records to examine the job that controls the copy of the spool file and also to view the copied spool file itself.
 
-- **Screen Title**: Spool File Management Control
-- **Screen ID**: JORCTLR1
+### JORCTLR1 - Spool File Management Control
 
 The list is created by two functions of the LSAM servers. The LSAM job scheduling server records a record for each spool file management entry received from OpCon/xps. Immediately afterward, the LSAM spool file management server may update these records when a spool file must be copied to a new user or output queue. The spool file management server will also add new records to the list whenever a record of type *ALL requires that a spool file be copied. The new record will show the name
 of each spool file that is copied and then also show the job and spool file number of the copy that was created.
@@ -131,13 +127,12 @@ In this example, the third record (LR(# 003) was actually created in response to
 The display of entry details is also helpful for finding any spool file copies. Copied spool files do not belong to the original job that produced them. Rather, IBM i assigns copied spool files to a special system job called QPRTJOB. There is a separate instance (separate IBM i job number) of the QPRTJOB job for each IBM i user profile that has ever had a spool file copy made. The QPRTJOB job number persists, even though it is not an actual active job; the job name, user and number are used
 over and over each time a new copy is made of an existing spool file.
 
-- **Screen Title**: Spool File Management Log Detail
-- **Screen ID**: JORCTLR2
+### JORCTLR2 - Spool File Management Log Detail
 
 The screen shows the detail of a spool file management control record, with added run-time information, converting this record into an activity log record. When the two Target fields near the bottom of the display show any data, this is an indication that the spool file has been copied to a new user or a new output queue. The Target job ID shows the target user name, not the name of the original Job user (displayed near the top of this screen). There is also a Target spool file number that may be
 used to find the actual copy of the spool file within the target job. This task is made easier by the function keys explained below.
 
-##### Functions
+#### Functions
 
 - **F8=Work orig job**: Shows an IBM i WRKJOB menu for the job that created the original spool file. On the WRKJOB menu, option 4 can be used to list and view all the spool files that were created by the original job, including the spool file represented by the log record on this detail display.
 - **F9=Work QPRTJOB**: Shows an IBM i WRKJOB menu for the Target job ID listed on the detail display.

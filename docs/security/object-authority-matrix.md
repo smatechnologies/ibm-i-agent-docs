@@ -13,7 +13,7 @@ The basis for a revised object authority matrix is provided by SMA in a pair of 
 The default authority rules for LSAM object authority are these:
 
 - All libraries and objects are owned by user SMANET, except where the object authority table designates QSECOFR as the owner of certain programs.
-- \*PUBLIC is granted *USE authority to the LSAM libraries, but is excluded from any authority to most of the objects they contain. In other words, all authority for *PUBLIC is revoked for all objects, and only the authorities specified in the object authority table are granted.
+- *PUBLIC is granted *USE authority to the LSAM libraries, but is excluded from any authority to most of the objects they contain. In other words, all authority for *PUBLIC is revoked for all objects, and only the authorities specified in the object authority table are granted.
 - The LSAM Restricted Mode user profile, SMASAV, is granted certain authorities that are defined in the object authority table.
 - The IBM i system operator, QSYSOPR, is registered in the default LSAM object authority tables with authority to use only some very basic LSAM features that are normally required for daily (or periodic) LSAM operation. The name of this user profile could be replaced in the object authority table, for example, with a
     user-defined operator name such as SMAOPER.

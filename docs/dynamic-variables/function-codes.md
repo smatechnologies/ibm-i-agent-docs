@@ -2,70 +2,32 @@
 
 ## What is a "Function Code" for LSAM Dynamic Variables?
 
-The "Value calc pgm" field of an LSAM Dynamic Variable master record
-is also used by the LSAM to support special values that govern how the
-value for a Dynamic Variable will be prepared when it will replace a
-Dynamic Variable {TOKEN}. The Value Calc Pgm field label shows its
-alternative purpose by this label: "/Fn Code." This means "Function
-Code," and it refers to the unique functions of Dynamic Variable value
-replacement whenever a special value beginning with an asterisk * is
-entered into this field.
+The "Value calc pgm" field of an LSAM Dynamic Variable master record is also used by the LSAM to support special values that govern how the value for a Dynamic Variable will be prepared when it will replace a Dynamic Variable {TOKEN}. The Value Calc Pgm field label shows its alternative purpose by this label: "/Fn Code." This means "Function Code," and it refers to the unique functions of Dynamic Variable value replacement whenever a special value beginning with an asterisk * is entered into this field.
 
 :::tip
 At this time, when a Function Code is used in the Value Calc Pgm field, the Value Calc program library field is ignored. The library name field may be used for additional modifiers of a Function Code in future versions of the LSAM software.
 :::
 
-The special function codes that can be entered into the Value Calc Pgm
-field include:
+The special function codes that can be entered into the Value Calc Pgm field include:
 
 ### Function Codes that use a second definition display
 
-- **\*DTAARA**: The dynamic variable {TOKEN} will be replaced by the
-    contents of a DB2 data area that is defined in page 2 of dynamic
-    variable maintenance. The original value stored in the Value field
-    of the dynamic variable master record is returned whenever the
-    specified data area cannot be found at run time. Preset the dynamic
-    variable Value field so that fetch errors can be detected at run
-    time.
-- **\*DB2** : The dynamic variable {TOKEN} will be replaced by the
-    contents of a DB2 table column value that is defined in page 2 of
-    dynamic variable maintenance, using SQL search criteria. The
-    original value stored in the Value field of the dynamic variable
-    master record is returned whenever the specified SQL query fails to
-    fetch the specified DB2 value. Preset the dynamic variable Value
-    field so that fetch errors can be detected at run time.
-- **\*DATE**: The stored Value string will be formatted as a date
-    value, using page 2 of Dynamic Variable maintenance. The value will
-    also support date math (adding or subtracting years, months or
-    days).
+- **\*DTAARA**: The dynamic variable {TOKEN} will be replaced by the contents of a DB2 data area that is defined in page 2 of dynamic variable maintenance. The original value stored in the Value field of the dynamic variable master record is returned whenever the specified data area cannot be found at run time. Preset the dynamic variable Value field so that fetch errors can be detected at run time.
+- **\*DB2** : The dynamic variable {TOKEN} will be replaced by the contents of a DB2 table column value that is defined in page 2 of dynamic variable maintenance, using SQL search criteria. The original value stored in the Value field of the dynamic variable master record is returned whenever the specified SQL query fails to fetch the specified DB2 value. Preset the dynamic variable Value field so that fetch errors can be detected at run time.
+- **\*DATE**: The stored Value string will be formatted as a date value, using page 2 of Dynamic Variable maintenance. The value will also support date math (adding or subtracting years, months or days).
 
 ### Function Codes that do not use a second definition display
 
-- **PGM (+ LIB) name**: This original use of the Value Calculator
-    Program/Library fields is discussed in a separate section.
-- **\*TIME**: The stored Value string will be managed as a time value
-    (with or without time string edit characters), supporting optional
-    time math (adding or substracting hours, minutes or seconds).
-- **\*SYSVAL**: The dynamic variable name must match a valid IBM i
-    system value, and the current system value will be used to replace
-    the dynamic variable {TOKEN} at run time. The name of the system
-    value to be retrieved must be entered into the Function Code Field
-    2, to the right of the Function Code value. (This is the field that
-    is alternately used for the Library name of a user-defined Value
-    Calculator Program.) The value returned by this special function is
-    a program API value, not always formatted in the same way as
-    displayed by the IBM i command DSPSYSVAL. Experimentation is
-    required to adapt the API return value to an appropriate use. Use
-    the LSAM command DSPDYNVAR to test how any system value will be
-    presented when the {TOKEN} is replaced. 
+- **PGM (+ LIB) name**: This original use of the Value Calculator Program/Library fields is discussed in a separate section.
+- **\*TIME**: The stored Value string will be managed as a time value (with or without time string edit characters), supporting optional time math (adding or substracting hours, minutes or seconds).
+- **\*SYSVAL**: The dynamic variable name must match a valid IBM i system value, and the current system value will be used to replace the dynamic variable {TOKEN} at run time. The name of the system value to be retrieved must be entered into the Function Code Field 2, to the right of the Function Code value. (This is the field that is alternately used for the Library name of a user-defined Value Calculator Program.) The value returned by this special function is a program API value, not always formatted in the same way as displayed by the IBM i command DSPSYSVAL. Experimentation is required to adapt the API return value to an appropriate use. Use the LSAM command DSPDYNVAR to test how any system value will be presented when the {TOKEN} is replaced. 
 :::tip 
 In previous patch levels of the IBM i LSAM software, it was required that the Dynamic Variable name itself must match a valid system value name. However, that rule prevented the ability to apply varying formats to the same system value. Any existing Dynamic Variables that conformed to the original rule will still be supported, until the next time that Dynamic Variable Maintenance is used to change or copy these older variables, at which time the data entry edits will enforce the new rule. Dynamic Variable names may still match IBM i system value names, but now the value retrieval routines will ignore the name of the Dynamic Variable whenever the Function Code Field 2 is not blank for a *SYSVAL Function Code.
 :::
 :::tip
 The system values returned to the Dynamic Variable token replacement module, using an IBM i API, often differ in format from the values that appear on an inter-active workstation when using the DSPSYSVAL command. Use the LSAM DSPDYNVAR command (or option 6 in the list of Dynamic Variables) to test a *SYSVAL Dynamic Variable before using it in production. Dynamic Variable reformatting, and/or nesting of the *SYSVAL {TOKEN} can be used to trim and/or reformat the system values for use in LSAM automation functions.
 :::
-- **\*HEX**: This Function Code replaces a temporary LSAM utility command called SETHEXDV, for the purpose of storing and retrieving low-level hexadecimal characters. These are characters that are mostly those used for formatting text such as an email text message 
-that needs to separate the content into paragraphs. The *HEX Function Code controls how the Agent Dynamic Variable token replacement module manages the stored value characters. It also controls how the DSPDYNVAR value test command behaves, and how the Work with Dynamic Variables option 2=Change or option 5=Display will show the stored value.
+- **\*HEX**: This Function Code replaces a temporary LSAM utility command called SETHEXDV, for the purpose of storing and retrieving low-level hexadecimal characters. These are characters that are mostly those used for formatting text such as an email text message that needs to separate the content into paragraphs. The *HEX Function Code controls how the Agent Dynamic Variable token replacement module manages the stored value characters. It also controls how the DSPDYNVAR value test command behaves, and how the Work with Dynamic Variables option 2=Change or option 5=Display will show the stored value.
 
 ## *DATE Function Code with Reformatting
 
@@ -88,10 +50,7 @@ A very common use for this feature is to translate a common date format, such as
 ### Date Format Usage Notes and Hints
 
 - If the captured date was in punctuated ISO format (for example, 2017-05-04), then it is not necessary (nor possible) to use *DATE     reformatting. Instead, just specify the "compress numeric" option when storing the date value, either in the SETDYNVAR command or when configuring a Response Rule.
-- The *DATE reformatting cannot be specified for a numeric Dynamic Variable unless the 1=FROM format is also marked for FMT-0. This is prevented by the Dynamic Variable value update program, because a numeric Dynamic Variable will not allow a punctuated date character 
-string to be stored as its Value. To use both the punctuated date and the all-numeric date, create two different Dynamic Variable 
-master records. Store or capture the punctuated format of the date into a character-format Dynamic Variable. Then, store the punctuated 
-date value into the *DATE numeric-format Dynamic Variable using one of two methods:
+- The *DATE reformatting cannot be specified for a numeric Dynamic Variable unless the 1=FROM format is also marked for FMT-0. This is prevented by the Dynamic Variable value update program, because a numeric Dynamic Variable will not allow a punctuated date character string to be stored as its Value. To use both the punctuated date and the all-numeric date, create two different Dynamic Variable master records. Store or capture the punctuated format of the date into a character-format Dynamic Variable. Then, store the punctuated date value into the *DATE numeric-format Dynamic Variable using one of two methods:
   - Use the SETDYNVAR command where the Value parameter will contain a Dynamic Variable {TOKEN} that names the character Dynamic Variable and be sure to specify CMPNUM(Y) in the SETDYNVAR command parameters.
   - If the original, punctuated date is captured data, use a Capture Data Response Rule to store the captured value into the numeric Dynamic Variable by specifying a value of "Y" in the Response Rule "CompNum" field.
 - It is possible to specify only the 1=FROM value to indicate what is the format of the current date in the variable's VALUE field, and not use the 2=TO reformatting option. Using this configuration is a way to isolate the dynamic variable so that date math can (optionally) still be used on the VALUE as it was originally stored, and no other changes will be made at run time. For example, if the date of November 13, 2017, was originally stored in the *USA format of 11/13/17, date math can be performed on this value to change it to the same date in the previous month: 10/13/17, and then the changed value will be used to replace the variable {TOKEN} at run  time, still in the mm/dd/yy format.
@@ -281,15 +240,15 @@ It is possible to include many different combinations of SQL clauses, either bef
 The Trim Start and Length values work as described above, under the Data Area topic, except that for *DB2 definitions, the rules apply to the final, possibly CONCATenated Value string that is fetched from the data
 base.
 
-#### *DB2 Hints and Suggestions
+### *DB2 Hints and Suggestions
 
-##### *Test DB2 Access Definitions Using the DSPDYNVAR Command*
+#### *Test DB2 Access Definitions Using the DSPDYNVAR Command*
 
 When listing Dynamic Variables from the LSAM menu options, the display option 6=DSPDYNVAR works the same as using the LSAM command DSPDYNVAR from an IBM i command line. The value that would result from replacing a token based on a given Dynamic Variable will be displayed in the message line at the bottom of the workstation display.
 
 Whenever the desired value for a *DB2 Access Definition does not produce the desired value, or it produces an error code, more  information about the SQL statement that was produced and any error messages can be easily displayed from the LSAM log file LSALOGF30, as described above. Log entries marked "DQ:" will show the SQL statement that was constructed, and entries marked "DE:" show any error messages that will usually explain what was wrong with the SQL statement.
 
-##### *Preset Dynamic Variable Values When Using *DB2 Access Definitions*
+#### *Preset Dynamic Variable Values When Using *DB2 Access Definitions*
 
 The Value field for a Dynamic Variable will not be updated whenever a user-defined value calculator program or any Function Code such as *DB2 is used.
 

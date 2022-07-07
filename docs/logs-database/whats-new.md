@@ -20,9 +20,9 @@ At the same time, the LSAM now supports retrieval of incomplete job log reports 
 
 To properly manage the LSAM logging function, it is important to understand the different types of log files:
 
-- **Daily operational logs** are logging operations that cannot be turned off by the user. They are required for correct operation of the LSAM features, or to store a critical history of operations.
-- **Debug/Audit logging** is a capability that can be turned on or off by LSAM administrators. This type of logging supports diagnosis of new or failing automation procedures and it also provides a detailed audit trail of automation.
-- **Trace logging** is an exceptional kind of logging that generates a very large amount of data in a very short time. This type of logging should only be used when specially requested.
+- **Daily operational logs**: are logging operations that cannot be turned off by the user. They are required for correct operation of the LSAM features, or to store a critical history of operations.
+- **Debug/Audit logging**: is a capability that can be turned on or off by LSAM administrators. This type of logging supports diagnosis of new or failing automation procedures and it also provides a detailed audit trail of automation.
+- **Trace logging**: is an exceptional kind of logging that generates a very large amount of data in a very short time. This type of logging should only be used when specially requested.
 
 ## LSAM Periodic Database Maintenance Improvements
 

@@ -9,14 +9,14 @@ description of many of the LSAM functions documented in other topics.
 
 The fields available in the menu function are mostly the same as the fields available for use in the SETDYNVAR command (documented above, in this topic).
 
-- **Screen Title**: Work with Dynamic Variables
-- **Screen ID**: LSAVARR1
+### LSAVARR1 - Work with Dynamic Variables
 
-##### Menu Pathways
+
+#### Menu Pathways
 
 Main Menu > Job track menu (#1) > Maintain dynamic variables (#6)
 
-##### Options
+#### Options
 
 - **2=Change**: Select a record for update. Press <**Enter**> to continue to the individual record maintenance screen.
 - **3=Copy**: Select a record to copy into a new dynamic variable. Press <**Enter**> to continue to the Copy record screen where all the record fields, including the key values, may be updated, starting with the values from the original record.
@@ -24,14 +24,14 @@ Main Menu > Job track menu (#1) > Maintain dynamic variables (#6)
 - **5=Display**: View the details of a dynamic variable.
 - **6-DSPDYNVAR(V)**: Option 6 executes the LSAM testing command called DSPDYNVAR (display dynamic variable value). This option only works on Dynamic Variables of type V; it cannot be used on variables of type L. The current value of the Dynamic Variable appears in a completion message at the bottom of the screen, along with the date of last update. The value is formatted according to the current rules, making this a useful way to prove that numeric formatting is producing the desired result.
 
-##### Fields
+#### Fields
 - **Search content**: Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
 - **Variable Name**:  The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
 - **Seq**: This record sequence number may be zeros for records of type V because it has no meaning for this record type. For records of type L, this sequence number is used to create unique records keys when there is more than one dynamic variable assigned to the same Variable Name (there may be multiple updates specified for the LDA content of a single job).
 - **Typ**: The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.
 - **Description**: Any text used to describe the dynamic variable. This text is useful mostly for this list of variables, so that each can be easily identified. When the command SETDYNVAR is used to add a new dynamic variable, the Description will be the IBM i job ID (number/user/name) of the job that executed the SETDYNVAR command.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
 - **F5=Refresh**: Reload the list display with data from the master file.
@@ -42,18 +42,17 @@ Main Menu > Job track menu (#1) > Maintain dynamic variables (#6)
 - **F17=Top**: Causes the list to display from the first record. The list is sorted in order of the Variable Name and Sequence within name.
 - **F18=Bottom**: Causes the list to display the last record in the file.
 
-### F6 = Add (Create) Dynamic Variable
+## F6 = Add (Create) Dynamic Variable
 
-- **Screen Title**: Create Dynamic Variable
-- **Screen ID**: LSAVARR5
+### LSAVARR5 - Create Dynamic Variable
 
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > F6=Add
 
 Main Menu > Events and Utilities menu (#3) > Maintain dynamic variables (#6) > F6=Add
 
-##### Fields
+#### Fields
 
 The variable name cannot be changed when the screen format is shown in Change mode, but the sequence number may be changed. The original sequence number shows at the top of the Change screen, and a new value may be specified in the Sequence number input field on the first line of record details.
 
@@ -92,8 +91,7 @@ numeric field size.  |
 | Currency symbol position (relative distance) | 1 - 99         | 1              | Combined with the reference point specified above, this value determines the number of positions to the left of the number string where the currency symbol will appear. A value of 1 means that the currency symbol will appear immediately to the left of the left-most digit (or other character,  if a positive/negative sign is used) in the numeric string.  |
 | Time of last update | IBM i time stamp | Program defined | Either the time when the add/change/copy function was completed for this record, or the last time the record was updated by the SETDYNVAR command. |
 
-
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F4=Prompt**: F4 causes a window of possible values for the Variable Name to be displayed. The list of values is derived from the master file of LDA Content, and each unique LDA Key value is included in the window list. The LDA Key values are the Captured Job IDs. This list is offered as a convenience to make it easy to match type L dynamic variables to any existing captured job's LDA content.
@@ -102,7 +100,7 @@ numeric field size.  |
 
 ### F4=Prompt (Select LDA image key)
 
-##### Select LDA Image Key
+#### Select LDA Image Key
 ```
        Select LDA image key
 Type line number of LDA image key.
@@ -117,11 +115,11 @@ Press Enter to select value.
 Line number:         0
 F12=Cancel
 ```
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > F6=Add > F4=Prompt
 
-##### Fields
+#### Fields
 
 | Field         | Values        | Description |
 | -----         | ------        | ----------- |
@@ -129,68 +127,65 @@ Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > F6=Add > F4=
 | LDA KEY       |               | A list of all the unique Captured Job ID values found in the LDA Content master file that has been loaded by one or more job captured processes. This is the key value that must match between a type L dynamic variable and the LDA content master record in order for type L dynamic variables to be useful. |
 | Line number   | 1 - maximum list value | Type the Line# of the desired LDA KEY value to be returned to the calling screen. |
 
-##### Functions
+#### Functions
 
 - **F12=Cancel**: Quits the display without selecting a value and returns to the previous screen.
 
-### Option 2 = Change Dynamic Variable
+## Option 2 = Change Dynamic Variable
 
-- **Screen Title**: Create Dynamic Variable
-- **Screen ID**: LSAVARR5
+### LSAVARR5 - Create Dynamic Variable
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > 2=Change
 - Main Menu > Events and Utilities menu (#3) > Maintain dynamic variables (#6) > 2=Change
 
-##### Fields
+#### Fields
 
 - Refer to field description table for option F6=Add, above.
 - The variable name cannot be changed, but the sequence number may be changed. The original sequence number shows at the top of the Change screen, and a new value may be specified in the Sequence number input field on the first line of record details. (Note: Sequence numbers are only useful for variables of type L, where there may be more than one variable assigned to the same job name that is stored in the Variable Name field.)
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F5=Refresh**: Reload the with data from the master file.
 - **F12=Cancel**: Quits the display without update (unless an update was already completed by a prior <**Enter**> key) and returns to the previous screen.
 
-### Option 3 = Copy Dynamic Variable
+## Option 3 = Copy Dynamic Variable
 
-- **Screen Title**: Copy Dynamic Variable
-- **Screen ID**: LSAVARR5
+### LSAVARR5 - Copy Dynamic Variable
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > 3=Copy
 - Main Menu > Events and Utilities menu (#3) > Maintain dynamic variables (#6) > 3=Copy
 
-##### Fields
+#### Fields
 
 - Refer to field description table for option F6=Add, above.
 - When copying a record, the source record Variable Name and Sequence Number are displayed under the screen heading. New values must be specified for both fields in the "To:" input fields under the headings, except that type L dynamic variables may use the same Variable Name as long as a new sequence number is assigned.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F4=Prompt**: F4 causes a window of possible values for the Variable Name to be displayed. The list of values is derived from the master file of LDA Content, and each unique LDA Key value is included in the window list. The LDA Key values are the Captured Job IDs. This list is offered as a convenience to make it easy to match type L dynamic variables to any existing captured job's LDA content. (Refer to example of prompt window above, under F6=Add.)
 - **F5=Refresh**: Reload the with data from the master file.
 - **F12=Cancel**: Quits the display without update (unless an update was already completed by a prior <**Enter**> key) and returns to the previous screen.
 
-### Option 5 = Display Dynamic Variable Detail
+## Option 5 = Display Dynamic Variable Detail
 
-- **Screen Title**: Display Dynamic Variable
-- **Screen ID**: LSAVARR5
+### LSAVARR5 - Display Dynamic Variable
 
-##### Menu Pathways
+#### Menu Pathways
 
 - Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > 5=Display
 - Main Menu > Events and Utilities menu (#3) > Maintain dynamic variables (#6) > 5=Display
 
-##### Fields
+#### Fields
 
 - Refer to field description table for option F6=Add, above.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the display and returns to the menu.
 - **F5=Refresh**: Reload the with data from the master file.

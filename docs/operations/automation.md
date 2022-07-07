@@ -74,7 +74,7 @@ The second message ID that is frequently appended to the OpCon job completion co
 
 Before connecting to an IBM i console to view message details, problems may be solved by using the following additional tools that are available from the OpCon EM user interface.
 
-#### OpCon Job Detailed Information
+### OpCon Job Detailed Information
 
 The IBM i Agent always tries to obtain and send up to the OpCon server the primary text that explains each message code appearing in the short job completion message code. To find this information, use a right mouse click on the OpCon daily job icon to launch the daily job context menu. Select "Job Information" from the top of the context menu, using a left mouse click. A new Job Information window will appear.
 
@@ -84,7 +84,7 @@ The text that shows (when available) is the IBM i primary message text. The IBM 
 
 For jobs that did start, but failed during execution, more information about the failure messages is usually available from the IBM i job log report, which can be accessed directly from the EM user interface using the following procedure.
 
-#### OpCon View Job Output Tool
+### OpCon View Job Output Tool
 
 OpCon supports direct access to the job log of IBM i jobs, from the EM user interface. To see a job log report, use a right mouse click on the OpCon daily job icon to launch the daily job context menu. Select "View Job Output" from the context menu, using a left mouse click. A new window will appear, but it will not show any information for one or more seconds because it is waiting for the IBM i Agent to fetch control information about the job log report.
 
@@ -106,7 +106,7 @@ Unless experience leads the user more directly to a source of information, the f
 
 When a job could not be started, the OpCon diagnostic tools above can be consulted, but they will usually not provide enough information to explain the exact cause of failure to start. Also, there will not be any IBM i job log report for a job that was not started.
 
-#### IBM i LSAM Logging Options
+### IBM i LSAM Logging Options
 
 In order to use the following procedures, it is necessary to have activated the IBM i LSAM logging features. As of this version of the online help, new installations of the LSAM software will have the normal logging features turned on by default. However, prior installations had different default settings, and any LSAM client may have chosen to turn off LSAM logging.
 
@@ -116,7 +116,7 @@ When starting LSAM logging, be sure to avoid activating any of the "trace loggin
 
 The normal LSAM server job logging functions can be started (or stopped) while the LSAM server jobs are active. If the logging was not active while an error occurred, it may be necessary to turn on the logging and then repeat the job start action that generated the error in order to trap the error information in the LSAM log files. However, the LSAM server IBM i job logs are not controlled by the LSAM's own debug/audit logging feature.
 
-#### The IBM i LSAM Submitted Job Log
+### The IBM i LSAM Submitted Job Log
 
 The IBM i Agent always logs information about each job start request that it receives from OpCon into a file named LSALOGF30. The LSAM menu system provides a log viewer that makes it easy to find and open this file for viewing. (In a pending LSAM enhancement, the viewer for this file will also offer improved log record interpretation, but the current log file contents are always text that is well formatted and easy to read.)
 
@@ -130,7 +130,7 @@ It can be important to examine the SBMJOB command string that the LSAM job sched
 
 In addition, if there is any error during the actual process of submitting a job, the LSAM will retrieve the failure message and add an error entry to the log file just under the SBMJOB command image. Unfortunately, the final failure message that IBM i reports to the LSAM server job is often only a conclusion, and it does not provide enough detail to understand the true cause of the error. However, in this case, the next step will reveal that actual cause of failure.
 
-#### The LSAM Job Scheduler's Job Log
+### The LSAM Job Scheduler's Job Log
 
 Detailed messages that may be generated when the IBM i LSAM tries to submit a job for OpCon will be recorded in the active job log of the LSAM server job named TXMMNG. In some cases, clients may have changed the LSAM server job description (SMADTA/SMALSAJ00) in order to reduce job log entries for these server jobs, but the default setting for the job log level would normally allow error messages to appear in the server job's job log.
 
@@ -140,7 +140,7 @@ From the Work with Job menu, select option 10 to view the active job log. When t
 
 When an OpCon job for IBM i has failed to start, the details about what caused the failure usually appear in one or more messages within the active job log of the IBM i LSAM server job TXMMNG. For example, during early days of using the OpCon product, it is common that some user profile does not have authority to use certain IBM i objects required for the job to run. Another common error is that the library list of the job is incorrect, so that the program to be called will not be found. These are the kinds of detail that will be revealed in the TXMMNG job log, and once the error is identified it is very easy to fix the problem and restart the failed job from the OpCon EM user interface.
 
-#### The IBM i LSAM Job Scheduling Communications Log
+### The IBM i LSAM Job Scheduling Communications Log
 
 Despite the effectiveness of the steps above in identifying errors, there are rare cases when the true cause of the error is not a problem with user configuration of an OpCon job master, but instead some problem might be occurring in the communication between the OpCon SAM (schedule activity monitor) and the IBM i LSAM.
 
@@ -152,6 +152,6 @@ This log file viewer presents a list display that is supported by function keys 
 
 Option 5=Display will branch to a detailed display of each log entry selected. The detailed log information display is usually supported by extensive formatting and label or code translations. This makes it much easier to understand the contents of a log entry, rather than trying to interpret the log data from the raw list display.
 
-#### Contact SMA Support
+### Contact SMA Support
 
 When the OpCon and IBM i LSAM procedures above do not reveal the cause of job errors, clients are encouraged to contact the Support team at SMA for assistance. SMA can connect clients with experts in OpCon software and in the IBM i operating system in order to help with the diagnosis.

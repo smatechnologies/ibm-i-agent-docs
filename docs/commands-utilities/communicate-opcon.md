@@ -23,13 +23,12 @@ LSAM Feedback is a feature of OpCon jobs that defines Event commands to be trigg
 The IBM i LSAM can execute the LFEEDBACK command from Response Rules linked to SCANSPLF Scan Rules, to Operator Replay Script steps or to Message Management Parameters. This command can also be executed from any other access to an IBM i command processor, as long as the job fits one of the following profiles. It is important to properly manage the JOB() parameter according to the job's environment.
 
 - The job was started by OpCon or is tracked by OpCon: can use JOB(*) for the current job, or use JOB(123456/USERID/JOBNAME) to reference other jobs.
-
 - The job was not started by OpCon, but the job uses the LSAM environment library list: must provide a specific Job ID as JOB(123456/USERID/JOBNAME).
-
 - The job was not started by OpCon, and the job does not use the LSAM environment library list: use the LSAM command-hosting command SMAGPL/LSAMCMD and put the LFEEDBACK command into the hosting command's CMD() parameter, and must provide a specific JOB ID, using the following representative syntax:
-    ```
-    SMAGPL/LSAMCMD CMD('LFEEDBACK TEXT(''Feedback text'') JOB(123456/USERID/JOBNAME)')
-    ```
+```
+SMAGPL/LSAMCMD CMD('LFEEDBACK TEXT(''Feedback text'') 
+JOB(123456/USERID/JOBNAME)')
+```
 
 When a job using this command was started or tracked by OpCon, then the command's JOB( ) parameter can be left set to its default value of (*) which indicates "use the current job." The command can also be used from outside of a job started or tracked by OpCon as long as the JOB( ) parameter names a job that OpCon did start, or is tracking. Execution of this command from jobs outside of OpCon control will allow the LFEEDBACK command to execute, but OpCon will discard the LSAM feedback text string because it will not recognize the job. For unrecognized jobs, there will be no Event triggered by OpCon.
 
@@ -39,10 +38,11 @@ The LFEEDBACK command could also be executed directly as the main command of an 
 
 The syntax of the LFEEDBACK command is illustrated below, followed by an explanation of its keyword parameters:
 ```
-SMAPGM/LFEEDBACK TEXT('My feedback text') MSGSEQ(0) STSMSGID(SMA0035)
+SMAPGM/LFEEDBACK TEXT('My feedback text') 
+MSGSEQ(0) STSMSGID(SMA0035)
 JOB(123456/USERID/JOBNAME)
 ```
-### Command Parameters
+#### Command Parameters
 
 - **TEXT**: Must be enclosed by a pair of single quotes (unless only one word with no spaces is used that starts with an alphabetic character), and any enclosed single quotes must be escaped by doubling the single quote character. This text must include the key word or words that were used to configure the LSAM Feedback Trigger in the OpCon job master record, otherwise no Event will be triggered.
 - **MSGSEQ**: This parameter should always be left set to a value of zero. Its purpose is only for internal use by SMA programs, as it controls how the OpCon database will store LSAM Feedback Field Codes.
@@ -65,13 +65,13 @@ For client sites using a version of OpCon that has not been updated to at least 
 
 The separate purpose and implementation of these two forms of LSAM Feedback are described next.
 
-#### SMA5801 Notification of Job MSGW Status and LSAM Feedback
+### SMA5801 Notification of Job MSGW Status and LSAM Feedback
 
 The field code 5801 is fully described in the Configuration topic of this online help, under the topic with the title above, located under the heading of "Extended Discussion of Parameters."
 
 In summary, when the LSAM Parameters (main menu, option 7) have designated a valid message queue for the SMA5801 option, then the LSAM will send predefined LSAM Feedback information whenever it detects that a job started or tracked by OpCon is stuck in the MSGW (message waiting for response) status. The OpCon job master record shows a special entry in the LSAM Feedback options just for this 5801 MSGW trigger: "Active job in MSGW status". The user can register any form of Event command to be triggered when this category of feedback is received. The Event triggered may vary, depending on the nature of the job.
 
-#### 5802 User-defined LSAM Feedback
+### 5802 User-defined LSAM Feedback
 
 When the LFEEDBACK command is used, it sends any text string that the user defines to OpCon for processing according to LSAM Feedback Triggers that were added to the OpCon job master record. For the command to work, the type of LSAM Feedback selected in OpCon must be: "User-defined text from LFEEDBACK command". In addition, the compare text assigned to each Event definition must match all or a designated part of the TEXT value specified for the LFEEDBACK command. For more information about LSAM Feedback, please refer to the **Concepts** online help (scan for LSAM Feedback).
 
@@ -99,7 +99,7 @@ Depending on another context, where the SMAJOBMSG command can be used, such as M
 SMAJOBMSG TEXT('Found error $ERRMSGID : $ERRMSGTXT') MSGSEQ(0)
 STSMSGID(SMA0035) JOB(\*) FLDCOD(61)
 ```
-### Command Parameters
+#### Command Parameters
 
 - **TEXT**: Must be enclosed by a pair of single quotes (unless only one word with no spaces is used that starts with an alphabetic character), and any enclosed single quotes must be escaped by doubling the single quote character. This text can include any helpful information about a job. It is typical that a Dynamic Variable token would be used by a Captured Data Response Rule, often to send the captured data to OpCon so it can be displayed in the history of Detailed Job Messages. (The Dynamic Variable token is replaced by the actual variable data value as the SMAJOBMSG command is submitted for processing by the LSAM Response Rules engine.)
 - **MSGSEQ**: This parameter should always be left set to a value of zero. Its purpose is only for internal use by SMA programs, as it controls how the OpCon database will store LSAM Feedback Field Codes. The zero value allows OpCon to record multiple Job Detail messages without overlaying any previous message.
@@ -142,6 +142,6 @@ Here is an example of the command syntax, followed by a table explaining the com
 ```
 SMASTATUS MESSAGE('Step=JOBSTEP01')
 ```
-### Command Parameters
+#### Command Parameters
 
 **MESSAGE**: Must be enclosed by a pair of single quotes (unless only one word with no spaces is used that starts with an alphabetic character), and any enclosed single quotes must be escaped by doubling the single quote character. This text can include any helpful information about the  current job status.

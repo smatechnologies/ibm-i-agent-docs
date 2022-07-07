@@ -3,8 +3,7 @@ sidebar_label: 'Message Management Menu'
 ---
 # Message Management Menu
 
-Message Management Menu
-
+#### Message Management Menu
 ```
  SYSTEMNAME                   MESSAGE MANAGEMENT MENU                    MM/DD/YY 
  USERNAME                                                                HH:MM:SS 
@@ -31,15 +30,15 @@ Message Management Menu
  F13=Information Assistant  F16=System main menu                                
  ```
   
-##### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Message management menu (#2)
 
-##### Options
+#### Options
 
 The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options.
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Returns to the master menu.
 - **F4=Prompt**: Prompts for keywords for any command entered in the Select or command line.

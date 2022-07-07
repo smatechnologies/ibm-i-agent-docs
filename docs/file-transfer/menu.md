@@ -32,7 +32,7 @@ sidebar_label: 'SMA File Transfer Menu'
 
 ##### Menu Pathways
 
-Main Menu \> SMA File Transfer menu (\#8)
+Main Menu > SMA File Transfer menu (#8)
 
 ##### Options
 
@@ -100,7 +100,7 @@ Unless directed by SMA Support, please do not execute any of the options on the 
  
 ##### Menu Pathways
 
-Main Menu \> SMA File Transfer menu (\#8) \> Work with SMAFT jobs (\#3)
+Main Menu > SMA File Transfer menu (#8) > Work with SMAFT jobs (#3)
 
 ## Manage SMAFT Logging
 
@@ -108,7 +108,7 @@ The IBM i LSAM supports active control over SMAFT logging capabilities. Logging 
 
 ### View LSAM Logs
 
-This menu option provides direct access to the list of available LSAM log viewers. This is the same function that is available from the LSAM Management menu option \# 5. It is reproduced here for the convenience of technical support personnel who may be diagnosing SMA File Transfer jobs. For more information about how to use the log views, refer to [Viewing the LSAM Log Files](../logs-database/management.md#viewing-the-lsam-log-files).
+This menu option provides direct access to the list of available LSAM log viewers. This is the same function that is available from the LSAM Management menu option # 5. It is reproduced here for the convenience of technical support personnel who may be diagnosing SMA File Transfer jobs. For more information about how to use the log views, refer to [Viewing the LSAM Log Files](../logs-database/management.md#viewing-the-lsam-log-files).
 
 ### View SMAFT Logs
 

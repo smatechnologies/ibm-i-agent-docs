@@ -118,8 +118,8 @@ Next, make sure that the SMANET user profile has been granted privileges to use 
 ### Set Up an Operator Replay User
 
 1. Create the required user profile under IBM i using processes defined by the site.
-2. Grant \*USE privileges to the SMANET user for the IBM i user profile created.
-3. In the command line, enter **SMAGPL/STRSMA**. For more information on **STRSMA** command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+2. Grant *USE privileges to the SMANET user for the IBM i user profile created.
+3. In the command line, enter **SMAGPL/STRSMA**. For more information on **STRSMA** command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 4. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 5. Enter **1** to choose **User management** in the Operator Replay Menu.
 6. Press <**F6**> on the User management menu.
@@ -138,7 +138,7 @@ There are two ways to create new scripts: Either create a new script from scratc
 
 ### Create an Operator Replay Script
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 
@@ -204,7 +204,7 @@ There are two ways to create new scripts: Either create a new script from scratc
 
 Copying an entire script is another way to Create new scripts:
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay** menu in the SMA Main Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the Operator Replay Menu.
 4. Type **3** next to the existing script that is copied, in the Operator replay script menu.
@@ -254,7 +254,7 @@ The screen for modifying step data is the same as the screen for creating a new 
 
 #### Copy a Step
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the Operator Replay Menu.
 4. Type **2** next to the script that is modified in the Operator Replay Script menu.
@@ -269,7 +269,7 @@ The screen for copying step data is the same as the screen for creating a new sc
 
 #### Delete a Step
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the Operator Replay Menu.
 4. Type **2** next to the script that is modified in the Operator Replay Script menu.
@@ -286,7 +286,7 @@ The following procedure deletes a script including all step records in the scrip
 
 #### Delete an Entire Script
 
-1. In the command line, enter **STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the Operator Replay Menu.
 4. Type **4** next to the script(s) that is modified in the Operator Replay Script menu.
@@ -308,7 +308,7 @@ An Operator Replay script is normally executed by adding an IBM i (IBMi) job to 
 
 In addition, the LSAM will automatically enforce the following values that are essential for correct operation of Operator Replay. These values may be left set as the default values in the job master:
 
-- For Library ~ Init Lib List: The LSAM will force this to \*JOBD at run time.
+- For Library ~ Init Lib List: The LSAM will force this to *JOBD at run time.
 - For Job Description ~ Name: The LSAM will force this to SMALSAJ00 at run time.
 - For Job Description ~ Library: The LSAM will force this to the location of SMALSAJ00.
 
@@ -319,13 +319,8 @@ For information on defining an IBM i Job, refer to [IBM i Job Details](https://h
 Optionally, rules may be defined externally to the Operator Replay script that specify data to be captured from screen formats received by the Operator Replay script execution driver program. For each element of captured data there may be one or more Captured Data Response Rules defined.
 
 :::tip Example
-Data Capture and Response Rules can be used to dynamically vary the way an
-Operator Replay script responds to screen formats! An explanation follows...
-An important example of how these features may be used is when an Operator Replay script step
-String to send includes a token for a variable. A captured data response rule can be created that
-will update the value of the variable before it is used. This makes it possible to dynamically vary
-the response of the Operator Replay script to each screen that is presented, based on the content
-of the screen format at execution time.
+Data Capture and Response Rules can be used to dynamically vary the way an Operator Replay script responds to screen formats! An explanation follows...
+An important example of how these features may be used is when an Operator Replay script step String to send includes a token for a variable. A captured data response rule can be created that will update the value of the variable before it is used. This makes it possible to dynamically vary the response of the Operator Replay script to each screen that is presented, based on the content of the screen format at execution time.
 :::
 
 :::tip
@@ -339,7 +334,7 @@ More detail about how Captured Data Response Rules function may be found in Even
 
 #### Adding a Data Capture Rule from the LSAM Menu System
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **5** to choose **Work with Screen Capture definitions** in the Operator Replay Menu.
 4. Press <**F6**> to Add a new Screen Capture definition record in the Work with Screen Capture definitions screen.
@@ -384,7 +379,7 @@ maintenance screen, as described below, to let the system automatically assign t
 
 #### Adding a Data Capture Rule from the LSAM Menu System
 
-1. In the command line, enter **STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **6** to choose **Work with Captured Data Response Rules** in the Operator Replay Menu.
 4. Press <**F6**> to Add a new Capture Response Rule record in the Work with Capture Response Rules screen.
@@ -399,7 +394,7 @@ function key from within the Step maintenance screen, as described above, follow
 The Type field must be set to "C" to specify Operator Replay screen capture. The value of "S" is reserved for use with the SCANSPLF command, when report data will be captured and stored in the LSAM database.
 :::
 8. Assign a unique Response Sequence number to each response rule. The order of the sequence number determines which response rule will be executed first.
-9. Type a value for the Compare rule. Refer to more information under [OR Script Screens and Windows](#OR2). A simple value set that allows a response rule to always execute is "EQ" (equal) to the compare data special value of \*ANY.
+9. Type a value for the Compare rule. Refer to more information under [OR Script Screens and Windows](#OR2). A simple value set that allows a response rule to always execute is "EQ" (equal) to the compare data special value of *ANY.
 10. Type a Continuation field value if more than one comparison rule must apply. Otherwise, leave this field blank to specify one, simple response rule. Refer to more information under [OR Script Screens and Windows](#OR2).
 11. *(Optional)* Specify the names of a Dynamic Variable and/or an Operator Replay Token variable that will be used to store the captured data value.
 12. Type a value for the Compress numeric field. Specify Y = yes if the captured and compare data values are numeric, otherwise specify N = no.
@@ -459,7 +454,7 @@ The basic steps for implementing branching logic are these:
 
     b.  The Token value might have been set by a job that ran previously, or it can be set manually.
 
-    c.  The Token value can be determined at the time this step is being executed by adding Screen Capture Definitions for this screen format and assigned a Captured Data Response rule that will execute the SETDYNVAR command (explicitly, or implicitly using the Store To-\> field) to set the Token value. (Refer to a description of Captured Data Response Rules above.)
+    c.  The Token value can be determined at the time this step is being executed by adding Screen Capture Definitions for this screen format and assigned a Captured Data Response rule that will execute the SETDYNVAR command (explicitly, or implicitly using the Store To-> field) to set the Token value. (Refer to a description of Captured Data Response Rules above.)
 
 6. Go back, as necessary, and apply labels to any additional steps that will be used as branch-to points, taking note of each Script Name and Label.
 7. Audit the resulting logic using option 9=flow chart from the Operator Replay Script list display.
@@ -484,15 +479,15 @@ When following the steps described above in the how-to outline, consider the fol
 - **Control strings** are used to determine whether a script step should be executed. Up to two control strings may be specified for each step record. Each control string has its own row, column and length value. If the length value is zeros, the script execution program assumes that the control value length is equal to the control characters specified, but not including any trailing spaces (blanks). If more than two control strings are needed to accommodate all possible test conditions, it is possible to enter more than one step record that will apply to the same screen format being processed as long as only one step record will actually perform the final function to send operation. Each step record may specify different rules for its pair of Top and Bottom control strings. For example, the **Compress Numeric** option may be set to Y=yes to cause the two values compared to be stripped of all non-numeric characters so that only the resulting absolute numeric values are used (decimal places are not indicated by a decimal point, so both values must used the same number of decimal places). Each Top or Bottom Control String has its own comparison rule. Any of the six boolean operators may be used:
   - **EQ** = equal (=)
 
-  - **NE** = not equal (\<\>)
+  - **NE** = not equal (<\>)
 
-  - **GT** = greater than (\>)
+  - **GT** = greater than (>)
 
-  - **LT** = less than (\<)
+  - **LT** = less than (<)
 
-  - **GE** = greater than or equal to (\>=)
+  - **GE** = greater than or equal to (>=)
 
-  - **LE** = less than or equal to (\<=)
+  - **LE** = less than or equal to (<=)
 
 - It is possible to create script steps that perform any one function available on a step, without actually sending a data string or a function key to the IBM i workstation processor. In fact, it is allowed to create a script step that does nothing, although the script analyzer flow chart tool will display a warning message if such a step is found. The LSAM script execution program continues to process step records and execute only the individual instructions found on each step; it will not respond to the current workstation screen format until either a string to send or a function key to send is found in a step. Once a function key to send is found, processing for the current screen format is completed and any subsequent steps in the script will be assumed to apply to the next screen format received.
 
@@ -604,12 +599,12 @@ USERNAME                    Starting Script: TESTONE    
  but which would show on the 132-column printed report. 
 - Script/Label:  Either a Script name or an (optional) Step Label value is shown in this column. Lines are indented depending on the nesting levels (up to 9) that may occur when an EXSR branching instruction is in effect. This column also shows vertical bars equal to the number of the nesting level for each Step in the current Script. Other signs that can appear in this column include: 
   -   .. Two dots are used to show that the line is information about a Step within a Script. 
-  -   \+ A plus sign is used whenever there is a change in the current Script name from a GOTO or EXSR branch. 
-  -   \- A minus sign (or dash) is used wherever the nesting level decreases by one because the end of a Script implies a RETURN from an EXSR branch. This sign also indicates a return to a previous Script name.
-- BR/SEQ\#:  
+  -   + A plus sign is used whenever there is a change in the current Script name from a GOTO or EXSR branch. 
+  -   - A minus sign (or dash) is used wherever the nesting level decreases by one because the end of a Script implies a RETURN from an EXSR branch. This sign also indicates a return to a previous Script name.
+- BR/SEQ#:  
   -   Branching operation: EXSR or GOTO 
-  -   SEQuence \#: Shows the sequence number assigned to each Step. 
-  -   \*\*\*\*: Four asterisks appear in place of a sequence number to indicate certain errors. Refer to the text under the Description column for the error information.
+  -   SEQuence #: Shows the sequence number assigned to each Step. 
+  -   ****: Four asterisks appear in place of a sequence number to indicate certain errors. Refer to the text under the Description column for the error information.
   -  ++++: Four plus signs are used for errors like an invalid change in User Name when a branching instruction leads to a Script that has a different User name than the original Script. Changing of Script User names is not  allowed.
 - TIMER: The optional Receive wait timer override value appears when assigned. 
 - Description/Command: 
@@ -617,7 +612,6 @@ USERNAME                    Starting Script: TESTONE    
   -   Steps: The command syntax executed by a Step is displayed (not the Comments) 
   -   Branching: An extra line is shown when a Step includes a branching instruction. This column displays the target Script and Script label. 
   -   other: Warning or Error message text may appear in this column.
-
 
 #### Flow Chart Diagnostic Errors
 
@@ -636,8 +630,6 @@ The flow chart program cannot discover every error or illogical condition that c
 -  WARNING: Branch Script/Label not found:                       This error is displayed when a branch operation specifies a Script name and/or a Label name that cannot be found in any of the Script master files. This error must be fixed before a Script can actually be executed.
 -  WARNING: Branch loop detected, skipping repeat:               The flow chart program uses the same logic as the Script execution program to detect whenever a branch operation will cause the same Step to be executed in a Script more than once. The flow chart program will not list the same Step twice, in order to limit the size of the analysis display or report. It is allowed to loop to the same Script Step more than once, but the Script execution program uses the Operator Replay control file value for the Script loop detect limit to determine if Script execution is in a run-away loop that must be stopped to protect the system.
 -  WARNING: Branch-to Script User does not match, fatal error:   When branching operations are used, the target Script must be registered for the same User profile as was specified for the original Script. Actually, the flow chart uses the Script master record to determine the original User name, but at run time, the Script execution program allows the USER parameter of the STROPRRPY command to override the User name. In this case, if one Script tries to branch to another Script whose registered User name does not match, the Script execution job will be forced to fail as a security measure. Therefore, in practice, when branching is being used, the registered User name of the original Script should match the intended job user name in order for the flow chart program edits to be useful.
-
- 
 
 #### Analysis of Example Flow Chart
 
@@ -665,8 +657,7 @@ A separate example of the printed flow chart, obtained by pressing F9=Print from
 
 - SCRIPTABCD includes examples of two warning messages. First is a Script Step number 0040 with no actions of any kind. This means it has no String to send, no Function to send, no Branching instructions and no Label assigned to it. In other words, this Step has no function at all, except as a place holder, perhaps. The warning message suggests that maybe something has been overlooked at this step. However, script steps are not required to perform any action; it is allowed to have a script step that does nothing. Script steps like this may be used to store a receive timer override, or they may serve as a connecting point that links to Captured Data Rules and Response Rules. Compare this to Step number 0050, which also has no actions to perform, but this Step does serve as a potential target for a branching operation of another Script.
 
-- Finally, after Step sequence number 0060 of SCRIPTABCD is executed, the flow chart analysis program discovers that this is the last Step in that Script. When the last Step is reached, the program checks to see if the Script execution has been nested to a level higher than one. In this case, the implied RETURN operation shows that the execution was at nested level two, so the program returns to the first nesting level and resumes execution of Script TESTONE at the next step after the one that performed the EXSR operation (sequence number 0040, near the top of the list). In this example the only step remaining is Step sequence number 0050, which will execute a SIGNOFF command, ending Script execution. Note that if a SIGNOFF
-    command is encountered while Script execution is nested at levels above one, the Script job will still end at that point and any steps remaining in the Scripts at lower nesting levels will be ignored.
+- Finally, after Step sequence number 0060 of SCRIPTABCD is executed, the flow chart analysis program discovers that this is the last Step in that Script. When the last Step is reached, the program checks to see if the Script execution has been nested to a level higher than one. In this case, the implied RETURN operation shows that the execution was at nested level two, so the program returns to the first nesting level and resumes execution of Script TESTONE at the next step after the one that performed the EXSR operation (sequence number 0040, near the top of the list). In this example the only step remaining is Step sequence number 0050, which will execute a SIGNOFF command, ending Script execution. Note that if a SIGNOFF command is encountered while Script execution is nested at levels above one, the Script job will still end at that point and any steps remaining in the Scripts at lower nesting levels will be ignored.
     
 ### F11 = Show/Hide COND (Conditional Control Strings)
 
@@ -700,8 +691,7 @@ USERNAME                   Starting Script: ACHUPTEST   �
 ```
 ## Viewing Operator Replay Logs
 
-The Operator Replay log files capture all the interactive input and output that occurs during script execution. Logging of Operator Replay scripts is optional and controlled by the Operator Replay configuration option called ''Script job logging". This option can be set to "N" (no) after scripts have been verified in order to improve the performance of the scripts and reduce performance impact on the system. When a new script is being used the first few times, or if a problem
-arises with script execution, SMA recommends that script logging be set to "Y" (yes). Script log file history retention is restricted to the number of days specified in the general LSAM Parameters.
+The Operator Replay log files capture all the interactive input and output that occurs during script execution. Logging of Operator Replay scripts is optional and controlled by the Operator Replay configuration option called ''Script job logging". This option can be set to "N" (no) after scripts have been verified in order to improve the performance of the scripts and reduce performance impact on the system. When a new script is being used the first few times, or if a problem arises with script execution, SMA recommends that script logging be set to "Y" (yes). Script log file history retention is restricted to the number of days specified in the general LSAM Parameters.
 
 Each Operator Replay script step is displayed showing the screen images received and the functions executed on the IBM i computer. There is one Operator Replay log entry for every unique job that has executed an Operator Replay script. Each log entry provides access to a unique data member in the script log file. There is typically one script job per log file data member, but it is possible for multiple script jobs to appear in the same log file data member. This occurs when the Operator Replay command specifies the JOBTYPE of "A" for interactive green screen testing of Operator Replay scripts. In this case, multiple script jobs are recorded back to back in a single log file data member unless the tester logs off and starts a new IBM i workstation interactive job before each new script test.
 
@@ -721,11 +711,9 @@ The view of log file entries for each screen format received is useful for debug
 
 ### Operator Replay Log Example
 
-The Operator Replay Display Log example below shows an artificially extended example that includes the last few lines of output from one display panel, followed by a String To Send entry, and then another entire screen output sequence followed by a Function To Send entry. The Operator Replay Sent data is black in this example, but the actual display shows these entries in white or highlighted (for non-color displays). Other colors are used to separate the various types of log
-entries made as the Operator Replay script execution program documents all of its actions, as follows:
+The Operator Replay Display Log example below shows an artificially extended example that includes the last few lines of output from one display panel, followed by a String To Send entry, and then another entire screen output sequence followed by a Function To Send entry. The Operator Replay Sent data is black in this example, but the actual display shows these entries in white or highlighted (for non-color displays). Other colors are used to separate the various types of log entries made as the Operator Replay script execution program documents all of its actions, as follows:
 
-- Green = reserved for IBM i workstation management output to the display screen, that is, the content of the screen format currently
-    on display.
+- Green = reserved for IBM i workstation management output to the display screen, that is, the content of the screen format currently on display.
 
 - Yellow = a log marker line after the last line (24) of display format content, including the timestamp of when the screen format was received.
 
@@ -737,10 +725,9 @@ entries made as the Operator Replay script execution program documents all of it
 
 - Red = Script error messages.
 
-Most log data will appear to show the same screen format multiple times, usually twice per format. This happens because the Operator Replay script execution program performs the String to send action separately from the Function to send action. The screen format content is logged when it is first received, before any actions are performed. After the IBM i workstation management receives a String to send, it typically echoes back the screen format so that the keyboard data will appear on
-the screen. More than one String to send operation could be performed before a Function to send operation is completed. Sending a function key (which can be the <**Enter**> key) completes the Operator Replay response to an individual screen format, although the Operator Replay script execution program may still perform branching operations from the same Script Step record after the function key is sent.
+Most log data will appear to show the same screen format multiple times, usually twice per format. This happens because the Operator Replay script execution program performs the String to send action separately from the Function to send action. The screen format content is logged when it is first received, before any actions are performed. After the IBM i workstation management receives a String to send, it typically echoes back the screen format so that the keyboard data will appear on the screen. More than one String to send operation could be performed before a Function to send operation is completed. Sending a function key (which can be the <**Enter**> key) completes the Operator Replay response to an individual screen format, although the Operator Replay script execution program may still perform branching operations from the same Script Step record after the function key is sent.
 
-Operator Replay Display Log
+#### Operator Replay Display Log
 ```
 OPRRPYR10                 Operator replay display log                  00/00/00
 USERNAME           Environment: SMADEFAULT  Version: 03.31.20          16:33:48
@@ -798,14 +785,13 @@ USERNAME           Environment: SMADEFAULT  Version: 03.31.20  
 
 If the String to send is longer than 48 characters, the log display will show as many String to send entries as necessary to show the entire sent string of data, in 48-character segments.
  
-The log display shows only 74 characters of the screen format content at a time in order to allow room for the row numbers to be inserted to the left. Use function keys <**F20=Right**> and <**F19=Left**> to shift the display window in order to observe all of the display content. The column number header and footer will also shift with the display content. (Note that the other entry types appearing on the display that are not screen content do not shift left and right; they always remain fully visible.) The log data member content begins after the column heading line and it ends before the **More.../Bottom** subfile indicator on line 22.
+The log display shows only 74 characters of the screen format content at a time in order to allow room for the row numbers to be inserted to the left. Use function keys <**F20=Right**> and <**F19=Left**> to shift the display window in order to observe all of the display content. The column number header and footer will also shift with the display content. (Note that the other entry types appearing on the display that are not screen content do not shift left and right; they always remain fully visible.) The log data member content begins after the column heading line and it ends before the **More...Bottom** subfile indicator on line 22.
 
 #### Analysis of Example Log Content
 
 The example log data member display above is artificially long in order o illustrate many different types of possible log entries. The interactive screen dialog shown above is not real, though it resembles realistic possibilities.
 
-The heading of the Operator replay display log screen includes information about the script that was executing. The header information continues until the top ruler line that shows column numbers. Included in the header line is the name of the data member (example value is O123456) which is stored in file OPRLOGF10. The Operator Replay Log control record stores the name of this member, and the data member contents are then made available for display and analysis using the
-function key tools on this log display. 
+The heading of the Operator replay display log screen includes information about the script that was executing. The header information continues until the top ruler line that shows column numbers. Included in the header line is the name of the data member (example value is O123456) which is stored in file OPRLOGF10. The Operator Replay Log control record stores the name of this member, and the data member contents are then made available for display and analysis using the function key tools on this log display. 
 
 The yellow line labeled with timestamp 12:31:45 marks the end of the last previous screen format received by the Operator Replay execution program, at this point in the view of the log data. Following the yellow end-of-format marker line is a blue line indicating the ID of the first Script Step that will be used to respond to the current display format. The example shows that the original Script name of TESTSCRIPT is still the source of Steps to execute, the Step sequence number is 0035, there is no label assigned to this step, and there is no Script branching in effect at this point because the nesting level is still at 1 of the original script name.
 
@@ -826,12 +812,9 @@ The Script branching instruction was EXSR (execute subroutine), meaning that the
 
 The log shows that the EXSR branching operation used an Operator Replay Token for both the Branch-to Script and the Branch-to Label. The log shows the values found for each Token. After the Token variable replacement, the next log entry shows that the Operator Replay script execution program was able to find label LABEL2-1 within script TESTTWO, and that the named label value was found at Script Step 20 (probably not the first sequence number) in the target script. Now the Operator Replay script execution program is ready to execute that Step 20 in Script TESTTWO.
 
-Even though the intention of an EXSR branching operation was that the Operator Replay script execution program should eventually return to the original Script name that started the job, the log shows that the Branch-to target Step had a String to send of the SIGNOFF command. This means that once this command is executed, the Operator Replay job will end. Perhaps the Top Control String processed previously was an intentional control value test of an optional Step, making it possible
-to abort the Script but with a normal end of job status because a SIGNOFF command will be requested.
+Even though the intention of an EXSR branching operation was that the Operator Replay script execution program should eventually return to the original Script name that started the job, the log shows that the Branch-to target Step had a String to send of the SIGNOFF command. This means that once this command is executed, the Operator Replay job will end. Perhaps the Top Control String processed previously was an intentional control value test of an optional Step, making it possible to abort the Script but with a normal end of job status because a SIGNOFF command will be requested.
 
-One final important point illustrated in the String to send near the end of this log display is the sequence of characters that follow the SIGNOFF command. There is a tilde (~) character, followed by the letters FE followed by a backward accent (') character. The two special characters surrounding the FE are the Operator Replay cursor control sequence identifiers, as recommended elsewhere in this topic. Inside of these two special characters, the letters FE represent keyboard key
-"field exit". In effect, this keyboard key typically causes the IBM i workstation manager to make sure that the input field is completely clear of other characters, following the SIGNOFF command. Using field exit after a String to send is a good practice, especially when using conditional Step execution or Script logic branching, because sometimes the screen format may contain other data already typed into the current input field, especially if an error is reported by IBM i after the
-failure of a command to execute.
+One final important point illustrated in the String to send near the end of this log display is the sequence of characters that follow the SIGNOFF command. There is a tilde (~) character, followed by the letters FE followed by a backward accent (') character. The two special characters surrounding the FE are the Operator Replay cursor control sequence identifiers, as recommended elsewhere in this topic. Inside of these two special characters, the letters FE represent keyboard key "field exit". In effect, this keyboard key typically causes the IBM i workstation manager to make sure that the input field is completely clear of other characters, following the SIGNOFF command. Using field exit after a String to send is a good practice, especially when using conditional Step execution or Script logic branching, because sometimes the screen format may contain other data already typed into the current input field, especially if an error is reported by IBM i after the failure of a command to execute.
 
 The Operator Replay cursor movement control characters are specified in the Operator Replay configuration function (LSAM menu 4, option 7). The previous default standard for the IBM i LSAM was to use a pair of curly brackets { } as the cursor  movement control characters. However, since the LSAM introduced Dynamic Variables, the curly brackets have now been reserved for that special purpose. Therefore, if a Dynamic Variable will ever be used in an Operator Replay String to send (as  explained above), the cursor movement control characters must be different, otherwise the Operator Replay script execution program will mistake the Dynamic Variable Token as a cursor movement command. This is why SMA has now implemented the tilde and the backward accent as a default recommendation for the Operator Replay cursor movement control characters. The Operator Replay configuration function, discussed below, provides more explanation, including a description of an optional utility function that can be used to automatically convert cursor movement control characters in existing Operator Replay Scripts if it ever becomes necessary to change the control characters (such as when existing SMA clients upgrade the IBM i LSAM from a prior release and wish to convert to the new standard for the cursor movement control characters).
 
@@ -839,7 +822,7 @@ The Operator Replay cursor movement control characters are specified in the Oper
 
 The example above is an illustration of the command parameters for the STRSMA command. The example shows:
 
-- That the ANIMATE parameter has been set to (\*NO) to avoid the two-second delay that occurs during the splash screen animation. (NOTE: Newer versions of the STRSMA splash screen no longer display animation. The ANIMATE( ) keyword of this command is now ignored.)
+- That the ANIMATE parameter has been set to (*NO) to avoid the two-second delay that occurs during the splash screen animation. (NOTE: Newer versions of the STRSMA splash screen no longer display animation. The ANIMATE( ) keyword of this command is now ignored.)
 
 - It does not show the requirement that the next sequential step in the script must be a simple ENTER function in order to bypass the LSAM sign on splash display and continue to the LSAM Master Menu.
 

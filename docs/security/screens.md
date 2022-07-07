@@ -8,16 +8,15 @@ The LSAM menu 9: PTF and Security menu, is documented in [LSAM Software Maintena
 
 ## Work with Object Authority
 
-- **Screen Title**: Work with LSAM DB2 Special Object Authorities
-- **Screen ID**: LSAAUTR1
+### LSAAUTR1 - Work with LSAM DB2 Special Object Authorities
 
 The Work with object authority function lists objects that require authority beyond the basic, restricted LSAM object authority profile. The list also includes objects that are located in the LSAM utility library, SMAGPL, even if they do not require special authority. Objects marked in the GPL column are always located in the SMAGPL library if the GPL option is 2, but they may be located in the IBM i QGPL library (or another utility library - not commonly used) if the option is 1.
 
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
 
-##### Fields
+#### Fields
 
 - **Subset**: Shows the current subset rule in effect. Use function key <**F15**> to change the subset rule that controls the list content on display.
 - **Search content**: Type in a value that will be used to search the entire content of every record on the display (limited only by the current subset rule). Even data that does not appear in the list display is searched. Use option 5=Display to see all the details for a record discovered by the search. Function key <**F16**> can be used to continue a search after the first record is found.
@@ -31,7 +30,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
 - **USRPRF**: The User Profile attribute assigned to objects of type *PGM (program). When this field is set to the value of *OWNER, a program will execute using the object owner's authority, rather than the calling user's authority. This technique is required in order for the LSAM to perform certain system control functions without requiring that the authorized user have extended authority.
 - **Public Aut**: The authority assigned to the *PUBLIC user profile category.
 
-### Options
+#### Options
 
 - **1=Apply**: Selects an object to which all the assigned authorities will be applied when the <**Enter**> key is pressed.
 - **2=Change**: Change the object authority rules for an object.
@@ -45,7 +44,7 @@ Do not remove objects that SMA Technologies has designated in the distributed ve
 - **7=Commands**: Allowed only for objects that have the CMD flag set to '1', this option branches to the Work with external object authority commands function, where additional commands may be registered to customize the authority of a given object.
 - **8/9=Copy cmds fr/to**: These two options are used as a pair to select one object as 8=from and another object as 9=to, in order to copy all the external commands from one object to another. These options may only be used when both objects have the CMD option flag set to '1'. Be sure to use option 2=Change to set on the CMD option for the To-object before attempting to copy commands to it from another object that already has a set of external commands.
 
-### Functions
+#### Functions
 
 - **F3=Exit**: Quits the list display and returns to the menu. Any options already completed will still apply.
 - **F5=Refresh**: Reload the display from the database file, clearing any pending options that were previously entered but not executed. This function key also resets any search rule that is in effect, but it does not reset the current subset rule.
@@ -61,16 +60,16 @@ Do not remove objects that SMA Technologies has designated in the distributed ve
 
 ## F15=Subset Object List Window
 
-- **Screen Title**: Subset Object List
-- **Screen ID**: LSAAUTW1
+### LSAAUTW1 - Subset Object List
+
 
 Use the function F15=Subset to limit the records appearing in the list of LSAM Object Authorities.
 
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F15=Subset
 
-### Fields
+#### Fields
 
 - **Select subset**:  current subset rule - Type a number from the list of options in the window to select the subset rule. Option 7  (show all) is used to  clear subset rules and show a list of the entire LSAM object authority master file. 
 - **2. SMAGPL Loc**: blank - When subset option 1 has been selected, optionally type a 1 or a 2 in this field to subset the objects to one specific location. Blank in this field shows all objects that are located in any LSAM utility library. Values are:
@@ -83,22 +82,21 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F15=S
  The User ID 1 field is used by the LSAM to define the set of authorities for the system operator, QSYSOPR. Type  QSYSOPR in this field to see which objects have this assignment. |
 :::
 
-### Functions
+#### Functions
 
 **F12=Cancel**: Quits the subset window and return to the list display without changing the subset rule.
 
 ## Add/Change/Copy Object Authority Details
 
-- **Screen Title**: Maintain LSAM DB2 Object Authority Details: COPY
-- **Screen ID**: LSAAUTR3
+### LSAAUTR3 - Maintain LSAM DB2 Object Authority Details: COPY
 
 The Maintain Object Authority Details screen is show in Add, Change or Copy mode. Add and Copy mode will add a new record to the file, but in Copy mode, care must be taken to change the key fields (Object name, object type and object attribute) to avoid attempting to add a duplicate record. In change mode, the key fields may not be changed.
 
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy.
 
-### Fields
+#### Fields
 
 
 | Field | Default | Description   
@@ -121,7 +119,7 @@ designated as owned by QSECOFR so that the owner's authority can be used to comp
 | Date last maint | system time stamp | The date and time that the object authority record was 
 last updated.|
 
-### Functions
+#### Functions
 
 - **F3=Exit**: Quits the maintenance function without update and returns to the menu.
 - **F5=Refresh**: Restores the field content to the last updated values of the master record. This function key will not roll back a record to values before the last completed update, but it can clear data that was entered before the <**Enter**> key was pressed.
@@ -129,16 +127,15 @@ last updated.|
 
 ## Option 7=Work with Object Authority Commands
 
-- **Screen Title**: Work with LSAM DB2 Object Authority Commands
-- **Screen ID**: LSAAUTCR1
+### LSAAUTCR1 - Work with LSAM DB2 Object Authority Commands
 
 The option to work with object authority (external) commands is only available for objects that have the EXT flag field set to a value of '1'. This screen is used to add, change, copy or delete any number of commands that will be executed every time an LSAM utility is request to set the authority of the named object. A separate LSAM database file keyed by the object name, type and attribute is used to store all the external commands for an object. When F6=Add or options 2=Change or 3=Copy are used, the detail screen for command entry supports the function key F4=Prompt that engages the IBM i command prompting routines so that command keywords and parameter values can be easily formatted. The IBM i help text for commands is also available during this prompting mode.
 
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > option 7=commands
 
-### Fields
+#### Fields
 
 - **@ library**: The name of the LSAM database library where the object authority management files are stored.
 - **Search content**:   Type in a value that will be used to search the entire content of every record on the display (limited only by the current subset rule). Even data that does not appear in the list display is searched. Use option 5=Display to see all the details for a record discovered by the search. Function key <**F16**> can be used to continue a search after the first record is found.
@@ -148,14 +145,14 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > optio
 - **Opt**:              Type one of the options listed at the top of the display to act on an individual record in the list. More than one option may be typed at once before the <**Enter**> key is pressed to initiate the option actions.
 - **Command text**:     The first several characters of the external command. Use option 5=Display to view the entire command.
 
-### Options
+#### Options
 
 - **2=Change**: Change the command, starting with the existing command on file.
 - **3=Copy**: Copy the selected command to a new external command record linked to the same object name. This makes it easy to build another, similar command by only changing one or more parameters of the copied command. To copy commands from one object name to another, use options 8 and 9 on the list of LSAM special object authorities (described above).
 - **4=Delete**: Remove the external command from the LSAM master file.
 - **5=Display**: Display entire command syntax.
 
-### Functions
+#### Functions
 
 - **F3=Exit**: Quits the list display and returns to the menu. Any options already completed will still apply.
 - **F5=Refresh**: Reload the display from the database file, clearing any pending options that were previously entered but not executed. This function key also resets any search rule that is in effect, but it does not reset the current subset rule.
@@ -167,16 +164,15 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > optio
 
 ## Add/Change/Copy Object Authority Commands
 
-- **Screen Title**: Maintain LSAM DB2 Object Authority Command: CHANGE
-- **Screen ID**: LSAAUTCR3
+### LSAAUTCR3 - Maintain LSAM DB2 Object Authority Command: CHANGE
 
 The detail screen for command entry supports the function key F4=Prompt that engages the IBM i command prompting routines so that command keywords and parameter values can be easily formatted. The IBM i help text for commands is also available during this prompting mode.
 
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > option 7=commands > option 2=Change **- or -** option 3=Copy *- or -* F6=Add
 
-### Fields
+#### Fields
 
 - **Mode**:          Add, Change or Copy, based on the option or function key executed from the list of external commands.
 - **@ library**:     The name of the LSAM database library where the object authority management files are stored.
@@ -187,7 +183,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > optio
 - **Command**:       The entire external command is shown on this screen. The final command format cannot be longer than what will fit in this one, large data entry field.
 - **Maint**:         The system time stamp when this command record was last updated.
 
-### Functions
+#### Functions
 
 - **F3=Exit**: Quits the detail display and returns to the menu. Any updates already completed will still apply.
 - **F4=Prompt**: Branches to the IBM i command prompting mode. The prompt screen is entirely controlled by IBM i command processing and is not documented here. When <**Enter**> is pressed from the prompting screen, the completed command parameter fields will be returned to the command detail screen in the proper command format. The command record is not updated until <**Enter**> is pressed from the detail screen after prompting has been completed.
@@ -225,17 +221,17 @@ F3=Exit  F12=Cancel
 ```
 This sub-menu provides convenient support for clients who need to add site-specific object authorities, or to change the SMA defaults for the IBM i LSAM. SMA does not recommend changing the default object authorities of LSAM software, but it recognizes that high security sites may have important reasons to do so. The menu options in the example above offer an explanation of the available procedures. Please contact SMA Support for more information, if required.
 
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F21=Backup/Restore menu
 
-### Fields
+#### Fields
 
  |  Field      | Description
  | ----------- | --------------------------------------------------------------------------------
  | Selection   | Type one of the four options and press <**Enter**> to execute that function.
 
-### Functions
+#### Functions
 
 - **F3=Exit**: Quits the sub-menu display and returns to the previous menu. Any functions already completed will still apply.
 - **F12=Cancel**: Quit the sub-menu display and return to the Work with ...Object Authorities list display.

@@ -21,7 +21,7 @@ module.exports = {
     },    
     {
       type: 'category', 
-      label: 'Install',
+      label: 'IBM i Agent 18.1 Installation/Upgrade Instructions',
       collapsed: true,
       items: [
         'installation/installation',

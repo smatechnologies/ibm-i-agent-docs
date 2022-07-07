@@ -5,80 +5,68 @@ sidebar_label: 'External Events'
 
 "External Events" is the OpCon term that identifies the specifically formatted command strings that OpCon Agents and other authorized users are permitted to transmit to the OpCon central application server.  External Event commands address many categories of actions, for example, adding or changing a job in a schedule, or initiating an email message that the OpCon server will transmit to inside or outside of the OpCon network.
 
-To enable the IBM i Agent to successfully submit External Event commands it is necessary to first assign an OpCon user, within the OpCon server administration, that has authority to execute External Event commands.  The user must be allowed to work with IBM i machines.  There is a separate password or (more recently) an authority token that must be generated for the OpCon user's permission for External Events.  The password or token is different from the OpCon user's primary password or token used to access an OpCon user interface.  The password or token must be captured (copied) immediately so that it can be pasted into the IBM i Agent's "External Event Token" storage, using the LSAM sub-menu 3, option 2.
+## External Event Command Syntax: CSV vs. XML
+
+The IBM i Agent now supports both the original CSV (Comma-separated values) syntax, and also the newer XML formats. The XML format is preferred because it does not constrain the content of Event command parameters.  By comparison, the CSV format prevents the use of a comma within any Event command parameter, causing issues expecially with the $NOTIFY:EMAIL command's message text parameter.  The Agent's master file data entry screens give the user the ability to convert existing CSV External Event Commands to XML External Event Commands with the press of a function key.
 
 ## Setting Up an Event User ID and Password
 
-:::tip
-The wrapping of the syntax in this document does not indicate the location of a carriage return; the ↵ indicates the location of a carriage return.
-:::
+To enable the IBM i Agent to successfully submit External Event commands it is necessary to first assign an OpCon user, within the OpCon server administration, that has authority to execute External Event commands.  The user must be allowed to work with IBM i machines.  There is a separate password or (more recently) an authority token that must be generated for the OpCon user's permission for External Events.  The password or token is different from the OpCon user's primary password or token used to access an OpCon user interface.  The password or token must be captured (copied) immediately so that it can be pasted into the IBM i Agent's "External Event Token" storage, using the LSAM sub-menu 3, option 2.
 
-An LSAM screen now provides the user with the ability to easily send external events to the SAM-SS for processing. In order to allow the LSAM to send valid events to the SAM-SS, a valid user ID and password must be defined to the LSAM.
+### Registering an Event User ID and Password
 
-### Define a Valid User ID and Password
+After using OpCon User administration to generate a password or token for an IBM i User, the password or token must have been copied immediately as it was generated so that the value can be registered within the IBM i Agent's database.  The following procedure stores the password or token in an encrypted format, for internal use by the Agent's automation routines.
 
 1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **3** to choose the **Event management** menu in the SMA Main Menu.
-3. Enter **2** to choose the **External Event Password** option in the Event Menu.
-4. Enter a valid OpCon/xps user for **User Name** in the next menu.
-5. <**Tab**\> to **Password** field and enter *a* valid external event password associated with the User Name above.
-6. <**Tab**\> to second **Password** field and enter a valid external event password associated with the User Name above. This step confirms the password.
-:::tip
-The User Name and Password fields have a 10-character limit.
-:::
+3. Enter **2** to choose the **External Event Token** option in the Event Menu.
+4. A dedicated form of the Agent's User Management registration program allows only one External Event User ID to be registered.  
+  - If an External Event User has not yet been registered, it can be added.
+  - If an External Event User is already registered, it can have its description and token (or password) udpated.
+4. For new registrations, enter the registered OpCon External Event User name.
+5. <**Tab**\> to the **Token** field and paste in the token (or password) value copied from the OpCon User Administration process.
+6. <**Tab**\> to second **Token** field and paste in the same token value to confirms it to the program edit process.
+7. Press <**Enter**> to complete the addition or change.
 
-# Events Screens and Windows
+## Events Screens and Windows
 
-## External Events Password
+### LSAEVTR02-0 - Event Management: Select format
 
-```
+An initial screen allows the user to select between 1. XML External Event Commands or 2. CSV External Event Commands.
 
-Type choices, press Enter
+#### Fields
+- **Selection entry**: Type a number from the list of options and press <**Enter**> to view Event commnands in the chosen format.
 
-  User Name ....:  ___________
+#### Functions
+- **F3=Exit**: Quits the list and returns to the menu.
+- **F12=Cancel**: Quits the list and returns to the menu.
 
-  Password  ....:
+#### Menu Pathways
+- Main Menu > Events and Utilities (#3) > External Management (#1) 
 
-  Password  ....:
+### LSAEVTR02 - Event Management: List display
 
-  (User and Pwd: 10 long max)
-  F12 = Cancel
-```
+A list of Event commands is offered for manual testing of the commands.  Following the prompted command data entry, pressing <**Enter**> will cause that command to be sent by the Agen to the OpCon server.  
 
-### Menu Pathways
+One common use of this function is to verify that the External Event User and Token are properly registered. The XCONDSP (or CSV: CONDSP) command is recommended for simple connection testing since it sends an obvious message to the SAM log that can be viewed from the OpCon user interface.
 
-Main Menu \> Events and Utilities (#3) \> External Event Password (#2)
+#### Menu Pathways
 
-### Fields
+Main Menu > Events and Utilities (#3) > External Management (#1) > (#1) XML - Event Commands, or (#2) CSV - Event Commands.
 
-| Field       | Default     | Description |
-| ----------- | ----------- | -------|
-| User Name   | None        | A valid OpCon/xps user name |
-| Password    | None        | The password that corresponds to the user name, as registered in the OpCon/xps system. |
-| Password (repeat) | None | This value must match exactly the value entered in the first password field. |
- 
-### Functions
+#### Fields
 
-**F12=Cancel**: Quits the user/password window and returns to the Event Management menu.
-
-## Event Management
-
-- **Screen Title**: Event Management (3 Pages)
-- **Screen ID**: LSAEVTR02
-
-### Menu Pathways
-
-Main Menu \> Events and Utilities (#3) \> External Management (#1)
-
-### Fields
-
-**Slection**: Enter an Option number or the Command name to select an event.
+**Selection**: Enter an Option number or the Command name to select an event.
 
 :::tip
-The option numbers are not assigned to Command names on a permanent basis. SMA may update the available list of Event Commands, which makes the Option number subject to change. This number is a sequential number that is assigned to each line at the time the information is assembled for display. When planning to use Operator Replay to select a command from this list, always specify the Command name instead of the Option number, otherwise it is necessary to go back and update the Operator Replay Scripts whenever the Event Command list is updated by SMA.
+The option numbers are not assigned to Command names on a permanent basis. SMA may update the available list of Event Commands, which makes the Option number subject to change. This number is a sequential number that is assigned to each line at the time the information is assembled for display. If planning to use Operator Replay to select a command from this list, always specify the Command name instead of the Option number, otherwise it is necessary to go back and update the Operator Replay Scripts whenever the Event Command list is updated by SMA.
 :::
 
-### XML Events Management Options
+#### Functions
+- **F3=Exit**: Quits the list and returns to the menu.
+- **F12=Cancel**: Quits the list and returns to the menu.
+
+## XML Event Management Commands
 
 #### Calendar
 XCALADD - Calendar Add
@@ -323,7 +311,7 @@ XTOKSET - Token Set
 *	To set a token, enter a valid token name and value. Refer to Properties in the Concepts documentation.
 
 
-### CSV Events Management Options
+## CSV Events Management Options
 
 #### Job
 JOBBAD - Job Bad
@@ -417,19 +405,19 @@ TOKSET - Token Set
 *	To set a token, enter a valid token name and value. Refer to Properties in the Concepts documentation.
 
 
-##### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Events list and returns to the menu.
 - **F12=Cancel**: Quits the Events list and returns to the menu.
 - **F17=Subset**: Requests the Subset window to either establish or remove a subset rule that limits the commands on display according to their Command Type.
 
-### Windows
+## Event Management: Windows
 
-#### Subset by Command Type
+### Subset by Command Type
 
 Pressing <**F17**> from the list of Event commands branches to a window display where a subset rule may be selected to limit the commands on the main list display.
 
-##### Events Subset Window
+### Events Subset Window
 ```
           Subset by Command Type
 Type a number, or blank to clear subset.
@@ -447,21 +435,20 @@ Press Enter to apply change or F12=Cancel.
 Select type number: __
 F12=Cancel
 ```
-##### Fields
+#### Fields
 
   | Field             | Default | Description
   | ----------------  | ------- | ---------------------------------------------- |
   Select type number  |   None   | Type one of the numbers appearing in the list of command types to set the subset value, or clear this input field and press <**Enter**> to remove subset rule.
   
 
-##### Functions
+#### Functions
 
 - **F12=Cancel**: Quits the subset window and returns to the Event Management list.
 - When sub-setting is in effect, the appearance of the Event Management screen changes slightly. The figure below shows a subsetted list of just the events for Command Type Job, and the <**F17**> function key legend has changed to show its new capability.
 - While in the subset mode, <**F17**> can be used to change the Command Type being used for the subset. In order to clear the subset mode and return the Even Management list to a full display, just clear the Type Number value from the input field in the subset window and press <**Enter**>. This updates the subset window and returns to the main list display.
 
-- **Screen Title**: Event Management
-- **Screen ID**: LSAEVTR02
+### LSAEVTR02 - Event Management: CPYTOMSGIN Events prompt
 
 #### CPYTOMSGIN Command Prompting Window
 

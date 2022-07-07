@@ -8,7 +8,9 @@ sidebar_label: 'Restricted Mode Operations'
 ### Setup Steps to Prepare for Restricted Mode
 
 1. Enable the SMASAV user profile using the following command:
-    **CHGUSRPRF USRPRF(SMASAV) STATUS(*ENABLED)**.
+    ```
+    CHGUSRPRF USRPRF(SMASAV) STATUS(*ENABLED)
+    ```
     :::tip 
     The default password for user profile SMASAV is SMASAV. The site should consider changing this password.
     :::
@@ -146,22 +148,22 @@ For IBM i 6.1 (formerly known as IBM i V6R1) or a newer version of the operating
 
 This document includes an excerpt from IBM documentation, following, as a convenience in order to fully explain the IBM i 6.1 CONFIRM option.
 
-#### Confirm (CONFIRM)
+### Confirm (CONFIRM)
 
 Specifies whether the request should be confirmed before the system is powered down.
 
-##### *ENVVAR
+### *ENVVAR
 The value in environment variable QIBM_PWRDWNSYS_CONFIRM is used to determine whether the request should be confirmed. If the value is set to *INTERACT, *YES, or *NO, the action described below for that value is taken. If the environment variable is not defined or not set to one of these values, then a confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. System initiated power downs do not use the environment variable.
 
-##### *INTERACT
+### *INTERACT
 
 A confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. There is no confirmation when the PWRDWNSYS command is issued in a non-interactive job.
 
-##### *YES
+### *YES
 
 A confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. An inquiry message is sent to QSYSOPR when the PWRDWNSYS command is issued in a non-interactive job.
 
-##### *NO
+### *NO
 
 There is no confirmation when the PWRDWNSYS command is issued.
 
