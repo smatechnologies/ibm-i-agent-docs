@@ -127,8 +127,9 @@ Certain parameters must conform to the following rules for IBM i names.
 
 Certain parameters must conform to the following rules for IBM i passwords. Additional rules may be assigned with IBM i system security control values (refer to IBM reference SC41-5302, Security Reference).
 
-- A password may contain any character string
-- A password may not exceed 10 characters. IBM i does provide support for longer passwords - up to 128 characters (optionally supported by the LSAM for some features), but there are still parts of the LSAM software that are limited to only 10 characters. (Please contact SMA Support to report any LSAM limitations on passwords that interfere with applications that could otherwise be automated by OpCon.)
+- A password may contain any character string that passes the target system security requirements.
+- A password may contain up to 128 characters.  
+   - Please contact SMA Support to report any LSAM limitations on passwords that interfere with applications that could otherwise be automated by OpCon.
 
 ### Update Configuration Variables
 
@@ -310,7 +311,7 @@ deleting the save files. |
 |              |         |              |              | - A value of 999 means do not delete. The save files will remain stored until removed by a manual process or by a job scheduled in OpCon. |
 |              |         |              |              | - The LSAM command SMARGZ can be used to drive the save file delete process. (Refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about the SMARGZ command.) |
 
-## Job Scheduling Performing Parameters
+## Job Scheduling Performance Parameters
 
 The following table of job scheduling performance parameters describes some flags that can be used to bypass LSAM errors that would normally reject an OpCon/xps job start request. SMA recommends that these errors should not be bypassed. There are many strategies that could be used instead of bypassing errors. Please contact SMA Support for advice before setting these bypass flags to Y=yes.
 
@@ -318,9 +319,7 @@ The following table of job scheduling performance parameters describes some flag
 Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to incorrectly report the actual job status. It also creates an opportunity for the LSAM to report that a job has failed when it has actually completed normally. In order to prevent incorrect job failure messages the LSAM server program performance must be carefully tuned. Please review the discussion below about the Job message idle timer parameter and also Tuning LSAM performance.
 :::
 
-### IBM i LSAM Configuration Settings: Job Scheduling Performance Parameters
-
-#### Job Scheduling Performance Parameters
+#### Table of Job Scheduling Performance Parameters
 | Field        | Default | Valid Values | Required (Y/N) | Description  |
 | -----        | ------- | ------------ | -------------- | -----------  |
 | Bypass errors (warn only) | N/A     |(Informational Output Only) | N/A          | This group of flags supports user-defined options for the behavior of the LSAM when it attempts to control scheduled jobs. Refer to [Discussion of Bypass Flags](#Discussi2).    |
@@ -349,9 +348,7 @@ Setting the LSAM error bypass flags to Y=yes causes the LSAM server programs to 
 
 There are two sets of communications performance parameters. The first set is for the job scheduling server and the second set is for the JORS (job output retrieval) server. The parameter definitions are similar for each set. For more information about the LSAM JORS server job, refer to [JORS and Spool File Server](../reference/jors.md).
 
-### IBM i LSAM Configuration Settings: Communication Performance Parameters
-
-#### Communication Performance Parameters
+### General Communication Performance Parameters
 | Field        | Default | Valid Values | Required (Y/N) | Description  |
 | -----        | ------- | ------------ | -------------- | -----------  |
 | Keep Socket Open (Y/N) | Y       | Y or N       | Y            | - This field determines if the communication socket remains open after transactions. |
@@ -378,14 +375,13 @@ There are two sets of communications performance parameters. The first set is fo
 |              |         |              |                     | Either set the first line IP# to the special value of *ALL, or enter one or more allowed IP addresses to restrict the connection. |
 |              |         |              |                     | **Note**: Only one OpCon server can connect to the LSAM at once. Secondary connection attempts will be rejected, reported to the active OpCon server SAM Log and to the local IBM i partition's QSYSOPR message queue. The original active OpCon server connection will remain active. |
 
-## TLS Security Options
+### TLS Security Options
 
-For more information, refer to [Extended Discussion of Parameters](../configuration/configuration.md#extended-discussion-of-parameters) that provides instructions for implementing TLS Secured communication connections with this Agent. Those instructions must be understood to choose correct values for the
-fields in this table.
+For more information, refer to [Extended Discussion of Parameters](../configuration/configuration.md#extended-discussion-of-parameters) that provides instructions for implementing TLS Secured communication connections with this Agent. Those instructions must be understood to choose correct values for the fields in this table.
 
 Remember that changes to the TLS Security options will only take effect after the LSAM Server jobs have been stopped and restarted.
 
-### IBM i LSAM Configuration Settings: Job Scheduling and JORS TLS Security Options
+These TLS Security Options apply to both Job Scheduling and to the JORS Service.
 
 #### TLS Security Options
 | Field       | Default Values | Valid       | Required (Y/N) | Description |
@@ -399,153 +395,168 @@ Remember that changes to the TLS Security options will only take effect after th
 | TLS DCM Application Description   | (see default text on screen) | Any text    | N           | This field supports a description of the Digital  Certificate Manager application, for information purposes only. |
 |  TLS DCM Application ID | (see default text on screen) | Must match the IBM i DCM App ID | Y           | This Digital Certificate Manager Application ID must match the Application ID that was registered in the local IBM i Certificate Store for this Agent's certificate. The Agent uses this key value to request the digital certificate data that it needs to complete a TLS Security handshake with the OpCon application server. |
 
+### JORS Additional Performance Parameters
+
+By default, the OpCon Agent for IBM i only supported delivering an IBM i job log report in response to the OpCon user interface request   
+to "view job output."  Recently, this Agent's JORS service will also automatically include two other system-generated reports, if they are  
+present:  QPPGMDMP and QPDSPJOB.  If there are multiple instances of these reports or of a QPJOBLOG report, all instances will appear in the
+report selection list presented by the OpCon user interface.           
+                                                                       
+Not recommended for security reasons, but available to users is the option to allow any and all reports produced by a job to be viewd via the "view job output" feature (JORS):
+>                                                                       
+> **Secure JORS list SPLFs : _** 1=Yes (default), 0 = No
+>
+:::warning
+SMA recommends leaving this option set to its default of 1=Yes, because this prevents offering non-system reports for viewing. Neither the OpCon server nor the IBM i Agent is capable of suppressing data in reports that must be kept private.  The only security measure available is the careful management of permissions granted to the users of OpCon user interfaces.  (This is similar to IBM i user profile security that can be used to prevent users from viewing reports in spool files.)
+:::
+                                                                       
+```
+  USE OPTION 0=No AT YOUR OWN RISK!
+```
+
 ## Extended Discussion of Parameters
 
 Additional explanation and examples are provided to help understand how to set and use certain of the LSAM parameters listed above.
 
-## TLS Security Implementation
+### TLS Security Implementation
 
-### Introduction to TLS Security for the IBM i Agent
+#### Introduction to TLS Security for the IBM i Agent
 
 This discussion offers supplemental information in addition to what is provided in [Communication Settings](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Machines.md#Communic)  in the **Concepts** online help, and other referenced sections of documentation that explain each part of implementing TLS Security in the OpCon network. The ready should look for information about configuring the OpCon Server communications programs,  including SMANetcom, and the MSLSAM (Windows Agent).
 
 This section is focused on guidelines for implementing compliant and compatible TLS Security for the OpCon Agent for IBM i (= the IBM i LSAM), in cooperation with the OpCon Server itself and, if SMA File Transfer with Windows is required, also in cooperation with the MSLSAM. It is typically possible to also use TLS Security with most of the other OpCon Agents, but please consult OpCon documentation for instructions about specific operations required to implement digital certificates and client/server authentication within those other Agents.
 
-### Implementing Digital Certificates for TLS Security
+#### Implementing Digital Certificates for TLS Security
 
 In general, SMA does not provide specific instructions for generating or installing the digital certificates that are required to support TLS-secured data communication connections. However, the following guidelines are provided as a checklist to help ensure that minimal requirements are not missed.
 
-Follow the OpCon core product documentation for implementing TLS Security.
+Follow the OpCon core product documentation for implementing TLS Security:
 
-a.  At least one digital certificate identifying the OpCon server must be generated or obtained and installed into the Microsoft Windows certificate store on the OpCon server.
-    i.  Digital certificates can be self-signed or issued by well-known public Certificate Authorities.
-b.  Similarly, the OpCon application server's digital certificate, or the CA root certificate for the authority that issued the OpCon Server certificate, must be imported into the IBM i *SYSTEM certificate store, using the IBM i web-based DCM (Digital Certificate Manager) application.
+1.  At least one digital certificate identifying the OpCon server must be generated or obtained and installed into the Microsoft Windows certificate store on the OpCon server.
+    - Digital certificates can be self-signed or issued by well-known public Certificate Authorities.
+2.  Similarly, the OpCon application server's digital certificate, or the CA root certificate for the authority that issued the OpCon Server certificate, must be imported into the IBM i *SYSTEM certificate store, using the IBM i web-based DCM (Digital Certificate Manager) application.
 
 The IBM i DCM (Digital Certificate Manager) must be used to complete the following operations:
 
-a.  First, if it is not already established, follow IBM instructions to active the *SYSTEM certificate store.
-    i.  Always select the *SYSTEM certificate store to complete most of the following steps (except for the following step 2.b.).
-b.  There is sometimes an exception where a special CA certificate store might be used to generate a CA certificate that identifies the IBM i server itself as a certificate-generating authority.
-    i.  If the IBM i server will be a self-signed CA that issues TLS Client/Server certificates for the IBM i LSAM applications, then the internal CA certificate should be imported into the *SYSTEM certificate store as a Trusted CA. 
-    ii. Similarly, exporting the IBM i local CA certificate is a good way to then import that CA certificate into the affected Windows systems (such as the OpCon Server and possibly other Windows Agent machines), so that individual TLS Client/Server certificates for the IBM i applications do not, themselves, have to be exported/imported.
-c.  TLS Client/Server digital certificates for the IBM i Applications can be issued by a public CA (Certificate Authority), or they can be self-signed certificates issued by the IBM i partition in the client environment.
-    i.  TLS Client/Server digital certificate requests can be generated by the IBM i DCM web application, although, it has been observed that not all of the certificate request options one might desire are readily available from the IBM i DCM web application. Even so, any external digital certificate request application can be used, as long as the local IBM i system identity factors and functional characteristics are known and carefully submitted.
-    ii. Certificates issued by a public CA must then be imported into the IBM i *SYSTEM certificate store.
-           I.  Copy the digital certificate to a directory within the IFS root file system of the IBM i partition where that will execute the DCM web application and host the *SYSTEM certificate store.
-d.  If a locally generated TLS Client/Server certificate will be exported from the IBM i \*SYSTEM certificate store:
-    i.  Export the certificate to an IFS root '/' file system directory. Frequently it is convenient to specify a .CER suffix on the exported file name.
-    ii. Always use ASCII text mode when transferring a .CER file from the IBM i IFS root file system directory to another system, such as a MS Windows partition or machine.
+1.  First, if it is not already established, follow IBM instructions to active the *SYSTEM certificate store.
+    - Always select the *SYSTEM certificate store to complete most of the following steps (except for the following step 2.b.).
+2.  There is sometimes an exception where a special CA certificate store might be used to generate a CA certificate that identifies the IBM i server itself as a certificate-generating authority.
+    - If the IBM i server will be a self-signed CA that issues TLS Client/Server certificates for the IBM i LSAM applications, then the internal CA certificate should be imported into the *SYSTEM certificate store as a Trusted CA. 
+    - Similarly, exporting the IBM i local CA certificate is a good way to then import that CA certificate into the affected Windows systems (such as the OpCon Server and possibly other Windows Agent machines), so that individual TLS Client/Server certificates for the IBM i applications do not, themselves, have to be exported/imported.
+3.  TLS Client/Server digital certificates for the IBM i Applications can be issued by a public CA (Certificate Authority), or they can be self-signed certificates issued by the IBM i partition in the client environment.
+    -  TLS Client/Server digital certificate requests can be generated by the IBM i DCM web application, although, it has been observed that not all of the certificate request options one might desire are readily available from the IBM i DCM web application. Even so, any external digital certificate request application can be used, as long as the local IBM i system identity factors and functional characteristics are known and carefully submitted.
+    - Certificates issued by a public CA must then be imported into the IBM i *SYSTEM certificate store.
+      - Copy the digital certificate to a directory within the IFS root file system of the IBM i partition where that will execute the DCM web application and host the *SYSTEM certificate store.
+4.  If a locally generated TLS Client/Server certificate will be exported from the IBM i \*SYSTEM certificate store:
+    - Export the certificate to an IFS root '/' file system directory. Frequently it is convenient to specify a .CER suffix on the exported file name.
+    - Always use ASCII text mode when transferring a .CER file from the IBM i IFS root file system directory to another system, such as a MS Windows partition or machine.
 
 In OpCon, the machine records for the IBM i machine must be updated with a certificate serial number when a self-signed TLS Client/Server certificate is being imported by itself into the OpCon Windows server, that is, when there is no IBM i CA trusted root certificate already imported into the Windows system.
 
-a.  This same principle applies when any TLS Client/Server certificate is imported into the Windows system, when the CA that issued the certificate is not already identified by a Trusted Root certificate (that is already registered in the Windows system).
-b.  Put another way, it is not necessary to import individual TLS Client/Server certificates into a system whenever the CA that issued the certificate is identified as a Trusted Root (which means that the CA Root certificate has already been imported into the local system's certificate store).
+- This same principle applies when any TLS Client/Server certificate is imported into the Windows system, when the CA that issued the certificate is not already identified by a Trusted Root certificate (that is already registered in the Windows system).
+- Put another way, it is not necessary to import individual TLS Client/Server certificates into a system whenever the CA that issued the certificate is identified as a Trusted Root (which means that the CA Root certificate has already been imported into the local system's certificate store).
 
 There are four (4) TLS Applications in the IBM i LSAM software (as of the date of this publication) that must be registered in the IBM i *SYSTEM certificate store, and then assigned a TLS Client/Server certificate.
-
-The IBM i *SYSTEM certificate store must be initialized (as mentioned above) before an Application can be registered, but...
-
-The digital certificates do not have to be generated or registered (yet) to complete the Application registration in the LSAM software configuration steps.
-
-It is critical that the LSAM registration of the Application ID match exactly the Application ID that will be registered in the IBM i *SYSTEM certificate store.
-
-The four Applications that must be assigned the exact Application ID's are commonly described by OpCon documentation with the following approximate labels:
 
 - LSAM Job Scheduling and JORS services (a TLS Server).
 - LSAM SMAFT (SMA File Transfer) Agent (a TLS Client, initiated by an OpCon SMA File Transfer job start request).
 - LSAM SMAFT Server (a TLS Server, a never-ending LSAM server job that runs alongside of the other LSAM server jobs).
 - LSAM Operator Replay:   The script driver (a TLS Client), accessing the IBM i Telnet Server.
 
-After the Applications are registered, use the IBM i DCM web application to assign the appropriate TLS Client/Server digital certificate to each
-application.
+The IBM i *SYSTEM certificate store must be initialized (as mentioned above) before an Application can be registered, but...
+- The digital certificates do not have to be generated or registered (yet) to complete the Application registration in the LSAM software configuration steps.
+- It is critical that the LSAM registration of the Application ID match exactly the Application ID that will be registered in the IBM i *SYSTEM certificate store.
 
-a.  The same TLS Client/Server certificate could be used for all four Applications.
-b.  The client may choose to use two to four separate TLS Client/Server certificates, depending on the entity's security standards or common practices.
+After the Applications are registered, use the IBM i DCM web application to assign the appropriate TLS Client/Server digital certificate to each application.
 
-### Steps to Implement TLS Security for the IBM i LSAM
+- The same TLS Client/Server certificate could be used for all four Applications.
+- The client may choose to use two to four separate TLS Client/Server certificates, depending on the entity's security standards or common practices.
+
+#### Steps to Implement TLS Security for the IBM i LSAM
 
 The following instructions apply specifically to the data communication connection between the IBM i LSAM and the OpCon SAM, used for Job Scheduling and (for this LSAM) the JORS Server. For information that is specific to the SMA File Transfer protocol or the Operator Replay Script driver use of the Telnet Server, refer to TLS Security details within those chapters of this Agent documentation.
 
 Some of the following steps may require information that originates from the Digital Certificate guidelines, above.
 
 1. New installs of the LSAM (OpCon Agent) for IBM i must use an install file with a name similar to LI181001 (or newer, where the "181" refers to the IBM i Agent version 18.1).
-    a.  Version 04.00.03 or older of the IBM i LSAM are not supported for TLS Security. But they can be upgraded to LSAM version 18.1 using the same, latest version of the 18.1 install file.
+    - Version 04.00.03 or older of the IBM i LSAM are not supported for TLS Security. But they can be upgraded to LSAM version 18.1 using the same, latest version of the 18.1 install file.
 2. The OpCon server software must be at a version 17.2.x or newer. 
-    a.  For versions of OpCon prior to 18.3.1, it might be necessary to obtain and execute SQL instructions that are used to update the OpCon database (at the location of the SQL Server) to enable new TLS Security settings for IBM i machine records.
-        i.  As of this publication, these statements were available in a file named "UpdateLSAMTYPES_AUXForSMAFTTLS.sql". Please contact SMA Support for assistance with obtaining and executing this update to the OpCon server's database.
+    - For versions of OpCon prior to 18.3.1, it might be necessary to obtain and execute SQL instructions that are used to update the OpCon database (at the location of the SQL Server) to enable new TLS Security settings for IBM i machine records.
+      - As of this publication, these statements were available in a file named "UpdateLSAMTYPES_AUXForSMAFTTLS.sql". Please contact SMA Support for assistance with obtaining and executing this update to the OpCon server's database.
 3. Within General Settings for the IBM i LSAM machine record:
-    a.  Enter the Fully Qualified Domain name, for example:
+    - Enter the Fully Qualified Domain name, for example:
         ![IBM i General Settings](../Resources/Images/IBM-i/IBM-i-General-Settings.png "IBM i General Settings")
 4. In Advanced Settings for the IBM i LSAM machine record, complete the following updates.
 
-    a.  Under Communication Settings:
+    - Under Communication Settings:
 
-      i.  Set the "Use TLS for Scheduling Communications" flag to True.
+      - Set the "Use TLS for Scheduling Communications" flag to True.
 
-      ii. Enter the TLS Certificate Distinguished Name; this is often the same as the Fully Qualified Domain Name (but verify what the certificate says; some views show this as the certificate Common Name (CN).
+      - Enter the TLS Certificate Distinguished Name; this is often the same as the Fully Qualified Domain Name (but verify what the certificate says; some views show this as the certificate Common Name (CN).
 
-      iii. The TLS Certificate Serial number is not required when certificates are published by a trusted CA (Certificate Authority). But if a self-signed certificate is being used by this machine, then enter the certificate serial number so that OpCon can find its local copy of the certificate to authenticate the communication connection user.
+      - The TLS Certificate Serial number is not required when certificates are published by a trusted CA (Certificate Authority). But if a self-signed certificate is being used by this machine, then enter the certificate serial number so that OpCon can find its local copy of the certificate to authenticate the communication connection user.
 
     ![Communication Settings](../Resources/Images/IBM-i/Communication-Settings.png "Communication Settings")
 
-    b.  Under SMA File Transfer Settings, it is usually recommended to start by allowing both TLS-secured and non-TLS connections to be supported, until all the OpCon and LSAM communication links can be verified. After that, only disable non-TLS connections if it is true that all machines used at the site are confirmed as supporting TLS security for SMA File Transfer.
+    - Under SMA File Transfer Settings, it is usually recommended to start by allowing both TLS-secured and non-TLS connections to be supported, until all the OpCon and LSAM communication links can be verified. After that, only disable non-TLS connections if it is true that all machines used at the site are confirmed as supporting TLS security for SMA File Transfer.
 
-      i.  Unrelated to TLS security, but required, set the File Transfer Role for IBM i machines to "Both".
+      - Unrelated to TLS security, but required, set the File Transfer Role for IBM i machines to "Both".
 
-      ii. Set the File Transfer TLS Port Number to the same value as the non-TLS port.
+      - Set the File Transfer TLS Port Number to the same value as the non-TLS port.
 
-      I.  The IBM i LSAM uses the same port number for either type of connection and depends on a combination of the LSAM local controls, plus the remote SMA File Transfer partner's controls, to determine whether TLS security handshake can be completed.
+        The IBM i LSAM uses the same port number for either type of connection and depends on a combination of the LSAM local controls, plus the remote SMA File Transfer partner's controls, to determine whether TLS security handshake can be completed.
 
-      II. **NOTE**: OpCon "File Transfer" jobs, under the Options tab, can override each job's settings to either force only TLS connections, or to allow non-TLS connections.
+        **NOTE**: OpCon "File Transfer" jobs, under the Options tab, can override each job's settings to either force only TLS connections, or to allow non-TLS connections.
 
-      iii. Set Support TLS for SMAFT Server Communications = True.
+      - Set Support TLS for SMAFT Server Communications = True.
 
-      iv. Set Support TLS for SMAFT Agent Communications = True.
+      - Set Support TLS for SMAFT Agent Communications = True.
 
-      v.  Set File Transfer non-TLS Port Number to the same value as the TLS port (for IBM i machines).
+      - Set File Transfer non-TLS Port Number to the same value as the TLS port (for IBM i machines).
 
-      vi. Set Support non-TLS for SMAFT Server Communications = True.
+      - Set Support non-TLS for SMAFT Server Communications = True.
 
-      vii. Set Support non-TLS for SMAFT Agent Communications = True.
+      - Set Support non-TLS for SMAFT Agent Communications = True.
 
-    c.  Be sure to use the Update and Save buttons to store the machine record changes.
+    - Be sure to use the Update and Save buttons to store the machine record changes.
 
     ![File Transfer Settings](../Resources/Images/IBM-i/File-Transfer-Settings.png "File Transfer Settings")
+
 5. Update the IBM i LSAM Parameters.
 
-    a.  The LSAM green screen main menu is accessed, for example, by using the command SMAGPL/STRSMA. Select option 7 on the main menu. There are tables summarizing the meaning of these parameters in the [IBM i Agent Configuration Settings](../configuration/configuration.md) section of this User Help.
+    - The LSAM green screen main menu is accessed, for example, by using the command SMAGPL/STRSMA. Select option 7 on the main menu. There are tables summarizing the meaning of these parameters in the [IBM i Agent Configuration Settings](../configuration/configuration.md) section of this User Help.
 
-    b.  After verifying the main LSAM Control Parameters, press Enter or PageDown twice to reach display format 3 and update the "Job Scheduling and JORS TLS Security Options."
+    - After verifying the main LSAM Control Parameters, press Enter or PageDown twice to reach display format 3 and update the "Job Scheduling and JORS TLS Security Options."
 
-    i.  Set "Use TLS Security" = Y.
+      - Set "Use TLS Security" = Y.
 
-    ii. The "TLS Handshake" default value of 30 seconds is usually more than long enough to complete a TLS handshakes.
+      - The "TLS Handshake" default value of 30 seconds is usually more than long enough to complete a TLS handshakes.
 
-      I.  If an error message in the LSAM Communications trace log (LSAM sub-menu 6, option 5, log view 1) shows a "handshake timeout" message, it's possible to try the connection again after updating this value to a longer time, and then stopping/restarting the LSAM Servers (to actualize the new setting). However, in most cases it seems that a handshake timeout is really an indication that the other side has rejected the LSAM's digital certificate (for any of several reasons).
+        If an error message in the LSAM Communications trace log (LSAM sub-menu 6, option 5, log view 1) shows a "handshake timeout" message, it's possible to try the connection again after updating this value to a longer time, and then stopping/restarting the LSAM Servers (to actualize the new setting). However, in most cases it seems that a handshake timeout is really an indication that the other side has rejected the LSAM's digital certificate (for any of several reasons).
 
-    iii. The "TLS DCM App description" is suggested in the TLS Security parameters table, above, and on the green screen display, page 3 of LSAM Parameters. But it can be user-defined. It is not critical, but is the description that will show in certain IBM i DCM displays.
+      - The "TLS DCM App description" is suggested in the TLS Security parameters table, above, and on the green screen display, page 3 of LSAM Parameters. But it can be user-defined. It is not critical, but is the description that will show in certain IBM i DCM displays.
 
-    iv. The "TLS DCM Application ID" is critical, because this field value, as entered in this display format, will be used by the LSAM communication program to find the digital certificate it must use, that was stored in the IBM i certificate store.
+      - The "TLS DCM Application ID" is critical, because this field value, as entered in this display format, will be used by the LSAM communication program to find the digital certificate it must use, that was stored in the IBM i certificate store.
 
 6. Update the IBM i LSAM Parameters.
 
-    a.  The LSAM green screen sub-menu for SMA File Transfer in the IBM i is accessed using option 8: SMA File Transfer menu, from the LSAM main menu. From the sub-menu, select option 7: SMAFT Configuration Parameters, from this sub-menu.
+    - a.  The LSAM green screen sub-menu for SMA File Transfer in the IBM i is accessed using option 8: SMA File Transfer menu, from the LSAM main menu. From the sub-menu, select option 7: SMAFT Configuration Parameters, from this sub-menu.
 
-    b.  Press Enter or PageDown once to reach the "SMA File Transfer SSL/TLS Security Options."
+    - Press Enter or PageDown once to reach the "SMA File Transfer SSL/TLS Security Options."
 
-    c.  Set the flag "Use TLS Security?" to 'Y'.
+    - Set the flag "Use TLS Security?" to 'Y'.
 
-    d.  The other fields in this segment of TLS Security options are managed similar to the instructions above for Job Scheduling and JORS, except that there are two different programs (or DCM Applications) for SMAFT that must each be described and labeled.
+    - The other fields in this segment of TLS Security options are managed similar to the instructions above for Job Scheduling and JORS, except that there are two different programs (or DCM Applications) for SMAFT that must each be described and labeled.
 
 7. Before TLS Security can be engaged, remember to complete the IBM DCM maintenance:
 
-    a.  Register the four LSAM Applications, making sure that the Application ID (not the Description) matches exactly what is registered in the LSAM Parameters.
+    - Register the four LSAM Applications, making sure that the Application ID (not the Description) matches exactly what is registered in the LSAM Parameters.
 
-    b.  After digital certificates are obtained and installed, or created from within the IBM DCM application, assign one or more digital certificates to the four LSAM Applications.
+    - After digital certificates are obtained and installed, or created from within the IBM DCM application, assign one or more digital certificates to the four LSAM Applications.
 
 8. After setting all the LSAM options and completing other preparations (above), use the LSAM sub-menu 6. If the LSAM server jobs were already started, they must first be stopped using the sub-menu option 2, in order for new LSAM Parameter values to be implemented. Then use sub-menu option 1 to restart the server jobs.
 
-    a.  The same operation holds true for the LSAM's SMAFT server job, managed from sub-menu 8, although in most cases a SMAFT Parameters flag will indicate that the SMAFT Server job will stop and restart along with all the other LSAM server jobs.
+    - The same operation holds true for the LSAM's SMAFT server job, managed from sub-menu 8, although in most cases a SMAFT Parameters flag will indicate that the SMAFT Server job will stop and restart along with all the other LSAM server jobs.
 
 ### Discussion of Keep Socket Open Parameter
 
