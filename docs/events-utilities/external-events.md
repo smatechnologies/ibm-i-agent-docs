@@ -311,7 +311,7 @@ XTOKSET - Token Set
 *	To set a token, enter a valid token name and value. Refer to Properties in the Concepts documentation.
 
 
-## CSV Events Management Options
+## CSV Event Management Commands
 
 #### Job
 JOBBAD - Job Bad

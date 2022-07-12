@@ -39,7 +39,7 @@ Previous versions of the LSAM used the Application ID text as the primary key fi
 8. Press <**F6**> to Add a new spool file scanning rule.
 9. The **Select Capture Application** screen appears:  Type option **1** to select the desired Application ID, then press <**Enter**>.
 10. The **Create SPLF Scan Rule** screen appears.
-11. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and a description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](../events-utilities/utilities-screens.md#addchangecopy-splf-scan-rule) for more information about how these field values may be used.
+11. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and a description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about how these field values may be used.
 12. Press <**Enter**> to record the new SPLF Scan Rule record.
 
 ### SCANSPLF Application Screens and Windows
@@ -290,7 +290,7 @@ For a given application, such as a financial report balancing task, the SCANSPLF
 ## Work with Capture Response Rules 
 ### (cross reference)
 
-See the centralized [Capture Data and Response Rules](./utilities-screens.md) topic in this document for details about creating and attaching Response Rules to SCANSPLF Scan Rules.
+See the centralized [Capture Data and Response Rules](./captured-data-response-rules.md) topic in this document for details about creating and attaching Response Rules to SCANSPLF Scan Rules.
 
 Remember that for the SCANSPLF utility, the Scan Rules are the Captured Data Rules.  This feature is different from Operator Replay and Message Management which require separate Captured Data Rules be optionally attached to the primary master records of those features.
 
@@ -813,7 +813,7 @@ The SCANOUTQ parameter values that are the same as those supported by the SCANSP
 | PARAMETERS | 1024    | *CHAR | -   The entire value string must be enclosed in a pair of single quotes, unless the special value of *RULES (which is the default) is  used.  |
 |            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
 |            |         |       | -   This value string is sent to each execution of the SCANSPLF command. Refer to the Fields table, above, for the SCANSPLF command for more information about this keyword.                      |
-|            |         |       | -   Also refer to the [Add/Change/Copy SPLF Scan Rule](../events-utilities/utilities-screens.md#addchangecopy-splf-scan-rule) for more information about SPLF Scan Rules.        | 
+|            |         |       | -   Also refer to the [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about SPLF Scan Rules.        | 
 | JOBNAME    | 10      | *CHAR | -   This field may optionally be used to limit the spool file selected from an output queue to only the files belonging to a job of this name.        |
 |            |         |       | -   This field may be left blank. |
 |            |         |       | -   The job name can be an exact IBM i job name, or a partial (also called generic) job name may be specified by entering the first one or more characters of the job name followed by an asterisk: -  JOBNA* (all job names beginning with JOBNA would match)           |
