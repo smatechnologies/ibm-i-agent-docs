@@ -2,8 +2,7 @@
 sidebar_label: 'Dynamic Variables'
 ---
 # Dynamic Variables
-
-Important information about the definition and application of Dynamic Variables is also presented in the description of the SETDYNVAR command, in this section, and in Screens and Windows, below.
+## Introduction to Dynamic Variables
 
 The LSAM database includes a variable field definition table file with two variable types that can be used for many purposes. Dynamic variables of type L are used to update the stored LDA content for tracked, queued or captured jobs. Dynamic variables of type V are used to update the job parameters of any job submitted to the LSAM by OpCon. The type V variables are also supported by various fields of Spool File Scan Rules and of Captured Data Response Rules, as well as by other LSAM functions (documented within other topics of this online help). Each of these variable field definitions has a token name to identify them, but the token name of type L variables must match either the job name of tracked and queued jobs or the captured job ID of captured jobs.
 

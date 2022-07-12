@@ -157,7 +157,7 @@ module.exports = {
             'commands-utilities/events',
             'commands-utilities/lsam-operations',
             'commands-utilities/sbmdbfcmd',
-            'commands-utilities/dynamic-variables',
+            'commands-utilities/dynamic-variable-management',
             'commands-utilities/translation-tables',
             'commands-utilities/smargz',
             'commands-utilities/cmdexe',
