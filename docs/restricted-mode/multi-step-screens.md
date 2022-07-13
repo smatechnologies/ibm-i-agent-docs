@@ -5,6 +5,44 @@ sidebar_label: 'Multi-Step Job Screens and Windows'
 
 The Restricted Mode and Multi-Step Job Menu is documented above.
 
+## Multi-Step Job Script Command STRMLTJOB
+
+The STRMLTJOB command, located in the SMAGPL library, is used to execute multi-step job scripts. It can be executed from OpCon using a simple IBM i batch job, and it can also be executed in test mode (not connected to OpCon) from an IBM i command line or from a submitted batch job by setting the JOBTYPE parameter to "T" for test mode.
+
+#### STRMLTJOB Command Prompt with Keywords
+```
+                       Start Multi-step Job (STRMLTJOB)                        
+                                                                               
+Type choices, press Enter.                                                     
+                                                                               
+Script name  . . . . . . . . . .                 Character value               
+Restart label  . . . . . . . . .   *FIRST        *FIRST/Blank = not restart    
+Job type: T=test, O=OpCon  . . .   O             T=Test, O=OpCon job           
+Write to job log: Y/N  . . . . .   Y             Y=write to job log, N=no write
+Environment name . . . . . . . .   *DEFAULT      *CURRENT,*DEFAULT,*SELECT,name
+LSAM General Purpose Library . .   *DEFAULT      Character value               
+```
+
+Additional important information about the use and impact of the command parameters may be found in the "More Information..." section above, in this part of the topic about Multi-Step Jobs.
+
+#### Command Parameters
+
+- **SCRIPT: Script name**: The name of the script whose steps will be executed.
+- **RSTLABL: Restart label**: The name of a label assigned to the script step where the job execution should start.
+  - When an IBM i Control Language source member is used to define the script steps, then a CL TAG: label can be specified in this parameter (but do not include the colon character).
+  - When this parameter is blank, the script will start with the lowest numbered step. Numeric values can be used in this parameter to specify a step by its sequence number, and numeric values can also be used to control the restart point with a Control Language source member. More information about restart logic is provided above in the "More Information..." section of Multi-Step Job scripting.
+  - Be aware that a script may contain a specially labeled ON_RESTART step which will always be executed before the script execution then branches to the step indicated in this parameter.
+- **JOBTYPE: Job type: T=test, O=OpCon**: The default value of "O" indicates to the command driver program that it was started by OpCon and that it should communication step label progress messages and the overall job results back to OpCon.
+  - When the command is started directly from an IBM i command line, or from an IBM i batch job not started by OpCon, set this parameter to a value of "T" to indicate test mode, which really means that the command driver will not attempt to communicate job results to OpCon.
+  - In OpCon mode, the script driver program sends important job status messages to OpCon that cause the last Step Label (or CL TAG:) name to be displayed as part of the OpCon job status description. This aids in visually monitoring the progress of a multi-step job. A step label message is also added to the OpCon Job Detail Messages list, so that a history of the step execution and its time can be viewed from the OpCon Job Information function, under the Configuration tab.
+- **JOBLOG: Write to job log: Y/N**: The script driver program always writes script execution messages to the LSAM Multi-Step Job log file. The entries in this file may be viewed using the LSAM sub-menu 5, option 6. Set this parameter to "Y" = yes to tell the script driver program to also write the log entries as messages added to the IBM i job log report.
+  - It is often easiest to diagnose script failures when the job log contains the script execution entries before and after other IBM i system messages. However, IBM i job attributes, job description settings and system values also govern which messages are retained in the job log report.
+  - Use a verbose IBM i job logging setting such as LOG(4 00 *SECLVL) to be sure that all script messages will remain part of the job log report.
+  - The script driver includes in the log entries and messages a marker as any new Step Label is encountered.
+- **ENV: Environment name**: This command parameter supports special-purpose internal operations. Normally the value of this parameter should be left set to *DEFAULT, indicating that the LSAM environment supporting the script execution is defined by LSAM command actions that depend on the PRDLIB attribute of the STRMLTJOB command.
+- **GPL: LSAM General Purpose Library**: This command parameter supports special-purpose internal operations. Normally the value of this parameter should be left set to *DEFAULT, indicating that the SMAGPL library where the LSAM environment is defined will be managed by the PRDLIB attribute of the STRMLTJOB command.
+  - Many LSAM utility commands located in the SMAGPL library, like STRMLTJOB, have their PRDLIB command attribute set to match the name of the SMAGPL library where the command is located. The PRDLIB value then controls a temporary change to the job's library list, if that is necessary, so that all objects and files required for script execution will be available to the job. This command parameter supports special-purpose internal operations. Normally the value of this parameter should be left set to *DEFAULT, indicating that the LSAM environment supporting the script execution is defined by the script job's library list.
+
 ## Maintain Multi-Step Job Scripts
 
 ### MLTJOBR10-1 - Multi-Step Job Scripts
@@ -233,7 +271,7 @@ The screen is used to illustrate the Display, Change, Copy and Add functions. Fo
 - **F7=DspSrc**: This function key works only for Step records that refer to an external source library/file(member) instead of using the Command field on the step record itself. The contents of the external source member will be displayed, using one of the IBM i source file member display tools that are available on a user's system.
 - **F8=DynVar**: Requests a list of available Dynamic Variable token names, when used from the fields Compare Reference, Compare Data or Command.
 - **F9=Evt Cmds**: From the Command field, this function key requests a list of valid OpCon external event commands. SMA recommends selecting the CPYTOMSGIN general command, since that selection will be followed by another window that offers a useful list of external event command templates that may be selected to help properly format the OpCon Event command.
-- **F10=$VAR**: From the fields Compare Reference, Compare Data, and Command, this function key presents a pop-up list showing the supported $-Variable tokens that can be selected for insertion into the field. Refer to the list of supported $VAR values, below.
+- **F10=$VAR**: From the fields Compare Reference, Compare Data, and Command, this function key presents a pop-up list showing the supported $-System Variable tokens that can be selected for insertion into the field. Refer to the list of supported $VAR values, below.
 - **F12=Cancel**: Returns to the list display without updating the master file.
 - **F13=Full CMD**: This function key causes a program branch to a separate display that is dedicated to managing the entire Command line, supporting up to the maximum of 1024 characters. (For commands requiring a longer character string, use an external Source File, Library and Member.) In Change and Copy modes, if the Command string is already longer than the partial field shown on the primary Step record display, then the primary display field is protected and function key F13 must be used to maintain the longer, full Command string.
 
@@ -259,7 +297,7 @@ The screen is used to illustrate the Display, Change, Copy and Add functions. Fo
 
 ### F10=$VAR Pop-up Window Values
 
-Display formats MLTJOBR10-5 and MLTJOBR10-5A support function key F10 for selecting $Variable tokens that can be inserted into supported fields. These tokens do not require any special characters around them. Instead, they should be left inserted with the US dollar sign ($) at the beginning, all capital letters and spaces just where they are shown.
+Display formats MLTJOBR10-5 and MLTJOBR10-5A support function key F10 for selecting $-System Variable tokens that can be inserted into supported fields. These tokens do not require any special characters around them. Instead, they should be left inserted with the US dollar sign ($) at the beginning, all capital letters and spaces just where they are shown.
 
 The Multi-Step Job Script driver program will recognize exactly spelled tokens and then replace them with the values shown in the following table; however, the values for OpCon properties, such as $SCHEDULE values, can only be replaced if the Script job was started by OpCon. They are not valid when Scripts are executed independently of OpCon, for example, if a Script is executed by a Message Management Parameters command or a Response Rule linked to Message Management.
 
@@ -296,7 +334,7 @@ F13=Full CMD
 - **F5=Refresh**: In Add, Change or Copy mode, this function key restores the display to its original values upon first display.
 - **F8=DynVar**: Requests a list of available Dynamic Variable token names.
 - **F9=Evt Cmds**: From the Command field, this function key requests a list of valid OpCon external event commands. SMA recommends selecting the CPYTOMSGIN general command, since that selection will be followed by another window that offers a useful list of external event command templates that may be selected to help properly format the OpCon Event command.
-- **F10=$VAR**: This function key presents a pop-up list showing the supported $-Variable tokens that can be selected for insertion into the Command field. Refer to the list of supported $VAR values, above.
+- **F10=$VAR**: This function key presents a pop-up list showing the supported $-System Variable tokens that can be selected for insertion into the Command field. Refer to the list of supported $VAR values, above.
 - **F12=Cancel**: Returns to the primary Step record display without updating the Command field.
 - **Enter=update/return**: Press Enter to return to the primary Step master record display. In Add, Change or Copy modes, any changes made to the Command text will be stored to the master record when the Enter key is pressed.
 
@@ -319,40 +357,96 @@ Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option 1=Script steps
 - **F12=Cancel**: Returns to the list of Script Steps. All previous requests to delete Steps are discarded.
 - **F14=Confirm**: Confirming the delete action causes the Step records to be erased from the master file. Erased records cannot be recovered (except by restoring master files from a backup copy).
 
-## Multi-Step Job Script Command STRMLTJOB
 
-The STRMLTJOB command, located in the SMAGPL library, is used to execute multi-step job scripts. It can be executed from OpCon using a simple IBM i batch job, and it can also be executed in test mode (not connected to OpCon) from an IBM i command line or from a submitted batch job by setting the JOBTYPE parameter to "T" for test mode.
+## View Multi-Step Job Log
 
-#### STRMLTJOB Command Prompt with Keywords
-```
-                       Start Multi-step Job (STRMLTJOB)                        
-                                                                               
-Type choices, press Enter.                                                     
-                                                                               
-Script name  . . . . . . . . . .                 Character value               
-Restart label  . . . . . . . . .   *FIRST        *FIRST/Blank = not restart    
-Job type: T=test, O=OpCon  . . .   O             T=Test, O=OpCon job           
-Write to job log: Y/N  . . . . .   Y             Y=write to job log, N=no write
-Environment name . . . . . . . .   *DEFAULT      *CURRENT,*DEFAULT,*SELECT,name
-LSAM General Purpose Library . .   *DEFAULT      Character value               
-```
+### MLTLOGR1 - Display Multi-Step Job Log
 
-Additional important information about the use and impact of the command parameters may be found in the "More Information..." section above, in this part of the topic about Multi-Step Jobs.
+This screen compresses the Multi-Step Job log file produced by the Agent's script execution program, showing a list of all the jobs that executed one or more scripts.  The option 5=Display shows a list of all the detailed messages logged by the Agent for the selected job.
 
-#### Command Parameters
+:::note  
+List option 8=WRKJOB is very useful for this Multi-Step Job Scripting tool because the Agent script execution program optionally sends all of its log entries also to the IBM i job log.  The view of the IBM i job log is  helpful for problem diagnosis, since it also includes IBM i OS messages interspersed with the Agent's log messages.  Option 7 from the sub-menu can be used to turn on or turn off this function of sending the Agent's script execution messages to the job log.
+:::
 
-- **SCRIPT: Script name**: The name of the script whose steps will be executed.
-- **RSTLABL: Restart label**: The name of a label assigned to the script step where the job execution should start.
-  - When an IBM i Control Language source member is used to define the script steps, then a CL TAG: label can be specified in this parameter (but do not include the colon character).
-  - When this parameter is blank, the script will start with the lowest numbered step. Numeric values can be used in this parameter to specify a step by its sequence number, and numeric values can also be used to control the restart point with a Control Language source member. More information about restart logic is provided above in the "More Information..." section of Multi-Step Job scripting.
-  - Be aware that a script may contain a specially labeled ON_RESTART step which will always be executed before the script execution then branches to the step indicated in this parameter.
-- **JOBTYPE: Job type: T=test, O=OpCon**: The default value of "O" indicates to the command driver program that it was started by OpCon and that it should communication step label progress messages and the overall job results back to OpCon.
-  - When the command is started directly from an IBM i command line, or from an IBM i batch job not started by OpCon, set this parameter to a value of "T" to indicate test mode, which really means that the command driver will not attempt to communicate job results to OpCon.
-  - In OpCon mode, the script driver program sends important job status messages to OpCon that cause the last Step Label (or CL TAG:) name to be displayed as part of the OpCon job status description. This aids in visually monitoring the progress of a multi-step job. A step label message is also added to the OpCon Job Detail Messages list, so that a history of the step execution and its time can be viewed from the OpCon Job Information function, under the Configuration tab.
-- **JOBLOG: Write to job log: Y/N**: The script driver program always writes script execution messages to the LSAM Multi-Step Job log file. The entries in this file may be viewed using the LSAM sub-menu 5, option 6. Set this parameter to "Y" = yes to tell the script driver program to also write the log entries as messages added to the IBM i job log report.
-  - It is often easiest to diagnose script failures when the job log contains the script execution entries before and after other IBM i system messages. However, IBM i job attributes, job description settings and system values also govern which messages are retained in the job log report.
-  - Use a verbose IBM i job logging setting such as LOG(4 00 *SECLVL) to be sure that all script messages will remain part of the job log report.
-  - The script driver includes in the log entries and messages a marker as any new Step Label is encountered.
-- **ENV: Environment name**: This command parameter supports special-purpose internal operations. Normally the value of this parameter should be left set to *DEFAULT, indicating that the LSAM environment supporting the script execution is defined by LSAM command actions that depend on the PRDLIB attribute of the STRMLTJOB command.
-- **GPL: LSAM General Purpose Library**: This command parameter supports special-purpose internal operations. Normally the value of this parameter should be left set to *DEFAULT, indicating that the SMAGPL library where the LSAM environment is defined will be managed by the PRDLIB attribute of the STRMLTJOB command.
-  - Many LSAM utility commands located in the SMAGPL library, like STRMLTJOB, have their PRDLIB command attribute set to match the name of the SMAGPL library where the command is located. The PRDLIB value then controls a temporary change to the job's library list, if that is necessary, so that all objects and files required for script execution will be available to the job. This command parameter supports special-purpose internal operations. Normally the value of this parameter should be left set to *DEFAULT, indicating that the LSAM environment supporting the script execution is defined by the script job's library list.
+#### Menu Pathways
+
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#6)
+
+#### Options
+
+- **5=Display**: Branches to a display of all the fields defining one Script master record.
+- **9=WRKJOB**: Initiate dialog to export this script, its steps, and all associated data.
+
+#### Functions
+
+- **F3=Exit**: Returns to the sub-menu.
+- **F5=Refresh**: Reloads the list of jobs from the current values in the log file.
+- **F11=Sort order**: This key can be pressed multiple times to change the sort order of the log's job entries.  The column headings on a color display will change color to indicate when the sort order is governed by one of these primary keys (while the other two are used as secondary sort order values): Job start time, iJobName or JobNbr.
+- **F12=Cancel**: Returns to the sub-menu.
+- **F16=Search next**: Starts or repeats a search looking for match to the value entered in the Search field. Each whole master record is searched, not just the values appearing on the list display.
+- **F17=Top**: Jump to the first entry in the list, according to the current sort order.
+- **F18=Bottom**: Jump to the last entry in the list, according to the current sort order.
+- **F24=MoreKeys**: Rotates among multiple function key legends on display line 23.
+
+#### Fields
+
+- **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to search all the log records for the first record that contains the value. After a new search is started, use the <**F16**> function key to continue the search to the next record.
+- **Opt**: Type one of the options listed near the top of the display next to one or more of the listed lines, then press <**Enter**> to start executing each option, one by one.
+- **Job start time**: A complete IBM i timestamp for the job start time.
+- **iJobName**: The IBM Job Name value (up to 10 characters, max).
+- **iJob User**: The IBM job's User Name, according to how the job was originally submitted.
+- **JobNbr**: The 6-digit IBM i job number.
+- **InitScript**: The name of the Multi-Step Job Script that was executed as the job started using this Agent feature.
+
+### MLTJOBR2 - Display Multi-step Job Log Entries
+
+The screen is used to illustrate the Display, Change, Copy and Add functions.
+
+#### Menu Pathways
+
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#6) > option (#5)
+
+#### Functions
+
+- **F3=Exit**: Returns to the LSAM sub-menu. 
+- **F5=Refresh**: Reloads the log entries list display from the Agent database, and clears any pending list options.
+- **F10=Fold/Unfold**: This key changes the list view so that one or more lines are used to display the full log text content for each record included in the current "page" of the file list.  In the Unfolded mode, the list display may require multiple PageDown key entries to view all the records available from the current "page" of log records that were selected when the display was in its record profile list format.  Using PageDown in this mode will show all the Unfolded records first, possibly including what appears to be a partial list at the end of the current on-display "page", but then PageDown will return control to the Agent's display program to show the next logical "page" of records.
+- **F11=View**: Alters the list display between the log entry profile fields, and a display of the first few characters of the log entry text.
+- **F12=Cancel**: Returns to the Script jobs list.
+- **F16=Search next**: Starts or repeats a search looking for match to the value entered in the Search field. Each whole master record is searched, not just the values appearing on the list display.
+- **F17=Top**: Jump to the first entry in the list.
+- **F18=Bottom**: Jump to the last entry in the list.
+- **F24=MoreKeys**: Rotates among multiple function key legends on display line 23.
+
+#### Fields
+
+- **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to search all the log records for the first record that contains the value. After a new search is started, use the <**F16**> function key to continue the search to the next record. This search function can match any content found in the entire log record - it is not limited to only the values on the list display.
+- **Opt**: Type one of the options listed near the top of the display next to one or more of the listed lines, then press <**Enter**> to start executing each option, one by one.
+- **Script name**: The name of the Script. This is the value that will be used by the STRMLTJOB command or the SMAGOTO pseudo-command to reference any Script.
+- **StpSeq**: The Script Step Sequence number associated with the log entry.
+- **Step Label**: An optional value assigned to the Step Master record that is used for (1) sending the script job progress report to the OpCon user interface job status display, and (2) a target for the SMAGOTO command to support routing of the Script processing so that this was the next step to process, typically out of sequence with the Step Sequence number.
+- **DD_HH_:MM:SS**: The Day, Hour, Minute and Seconds when the log entry was sent to the Agent's Script log file.
+- **Msg IDr**: Message identifier.  This can be either an IBM i message file ID, possibly representing an error condition detected by the operating system, or it can be a special value assigned by the Agent's Script execution program to categorize the log entry.
+- **Log text...**: A character string that is the first part of the log entry text content, when the list view is in the record profile View; or this can be all or part of the log entry text after pressing F11=View and/or presssing F10=Fold/Unfold to control a display of the full log entry text.
+
+## Script Utility Configuration
+
+### MLTJOBD301 - Scipt Utility Configuration
+
+The screen supports registration of Agent options for the Multi-Step Job Script utility.
+
+#### Menu Pathways
+
+Main Menu > Restricted Mode and Multi-Step Job menu (#5) > Option (#7)
+
+#### Functions
+
+- **Enter**: Pressing <**Enter**> records any changes made to the Configuration options.
+- **F3=Exit**: Returns to the LSAM sub-menu without updating the Agent control file.
+- **F12=Cancel**: Returns to the LSAM sub-menu without updating the Agent control file.
+
+#### Fields
+
+- **Environment**: The user-defined name for the Agent environment (database) being maintained.
+- **Version**: The Agent's current base release number.
+- **MLTJOB step loop limit**: A value that the Agent's Script execution program uses to detect a possible Script Step loop that could have been accidentally created by the builder of the script.  This is the number of times any one Script+Step is allowed to be executed before the Agent's Script execution program decides that there is a loop and the execution of the script should be halted as an error message is logged.  A value of 999 tells the Script execution program that all Script Steps may be executed any number of times, with no limit, meaning that the loop detection function is disabled.  Scripts that perform branching operations must be carefully tested by the user to be sure that eternal looping of Script execution is not possible, whenever the loop detection value has been set to 999.
