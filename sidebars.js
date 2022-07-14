@@ -34,6 +34,11 @@ module.exports = {
       collapsed: true,
       items: [
         'configuration/configuration',
+        'configuration/critical-settings',
+        'configuration/configuration-settings',
+        'configuration/performance-parameters',
+        'configuration/extended-discussion',
+        'configuration/extended-call-cmd',
       ], 
     },
     {
