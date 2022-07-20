@@ -3,19 +3,19 @@ sidebar_label: 'LSAM Environment Screens and Windows'
 ---
 # LSAM Environment Screens and Windows
 
-This section of the topic documents IBM i LSAM screen formats that are not documented in other sections of this online help.
+This section of the topic documents IBM i LSAM screen formats that are not documented in other sections of this documentation.
 
 ## LSAINIT LSAM Parameters Prompt Screen
 
 When the LSAINIT command is executed to configure and align all controls for a cloned LSAM environment, new values must be provided that are unique to the new environment and not the same as used by any other LSAM environment within the same IBM i partition.
 
-More detail about the configuration fields described below may be found in the Configuration topic of this online help. There may be additional LSAM environment settings that should be changed, but these can be managed after the new LSAM environment has been properly initialized, using LSAM menu functions such as option 7 on the main LSAM menu: LSAM Parameters.
+More detail about the configuration fields described below may be found in the Configuration topic of this documentation. There may be additional LSAM environment settings that should be changed, but these can be managed after the new LSAM environment has been properly initialized, using LSAM menu functions such as option 7 on the main LSAM menu: LSAM Parameters.
 
 ## LSAINITR1 - Initialize IBM i LSAM
 
 #### Fields
 
-For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](../configuration/configuration.md) of this online help.
+For a detailed explanation of the fields appearing in these inquiry screens, please refer to the fields tables and following discussions in [IBM i LSAM Configuration](../configuration/configuration.md) of this documentation.
 
 - **LSAM environment Name**: This is the name that was assigned to the new LSAM environment, also specified when the LSAINIT command was started. Normally, this field value should not be changed. It represents the LSAM environment library list that was defined for the new LSAM environment.
 - **SMAGPL alternate library name**: This library name was already chosen when the alternate LSAM environment library list was defined in the setup steps of the previous section. Confirm that the name of the new SMAGPL library appears here, but if not, type in the correct name. Do not share the same SMAGPL library that is already used by a different LSAM environment.

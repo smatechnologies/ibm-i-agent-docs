@@ -97,7 +97,7 @@ managed by the script execution program.
 - **F3=Exit**: Do not update the data, return to the LSAM menu.
 - **F4=Prompt IP Addr**: Shows a list of IP addresses configured under IBM i, from which a valid value may be selected to insert into the IP Address field.
 - **F12=Cancel**: Do not update the data, return to the LSAM menu.
-- **F17=View debug log**: For technical support only, view the contents of the Operator Replay debug log file (available if Script job debug logging was set to Y=yes during any script execution). This screen is not documented in this online help.
+- **F17=View debug log**: For technical support only, view the contents of the Operator Replay debug log file (available if Script job debug logging was set to Y=yes during any script execution). This screen is not documented in this documentation.
 - **F20=Clear debug log**: For technical support only, use this function to clear the Operator Replay debug log file (OPRLOGF20) after a previous test and before the next test, in order to help isolate test data.
 
 :::tip

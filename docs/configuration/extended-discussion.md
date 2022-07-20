@@ -6,7 +6,7 @@ Additional explanation and examples are provided to help understand how to set a
 
 ### Introduction to TLS Security for the IBM i Agent
 
-This discussion offers supplemental information in addition to what is provided in [Communication Settings](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Machines.md#Communic)  in the **Concepts** online help, and other referenced sections of documentation that explain each part of implementing TLS Security in the OpCon network. The ready should look for information about configuring the OpCon Server communications programs,  including SMANetcom, and the MSLSAM (Windows Agent).
+This discussion offers supplemental information in addition to what is provided in [Communication Settings](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Machines.md#Communic)  in the **Concepts** documentation, and other referenced sections of documentation that explain each part of implementing TLS Security in the OpCon network. The ready should look for information about configuring the OpCon Server communications programs,  including SMANetcom, and the MSLSAM (Windows Agent).
 
 This section is focused on guidelines for implementing compliant and compatible TLS Security for the OpCon Agent for IBM i (= the IBM i LSAM), in cooperation with the OpCon Server itself and, if SMA File Transfer with Windows is required, also in cooperation with the MSLSAM. It is typically possible to also use TLS Security with most of the other OpCon Agents, but please consult OpCon documentation for instructions about specific operations required to implement digital certificates and client/server authentication within those other Agents.
 
@@ -239,7 +239,7 @@ The first message is used to clearly identify that this message and the one foll
 
 ## SMA5801 Notification of Job MSGW Status and LSAM Feedback
 
-The LSAM job scheduler and status server tasks detect when a job is stuck in a MSGW (message waiting) status. This detection can occur immediate as a job starts, if the job immediately reports an error, or periodically after the job as started, whenever the OpCon server sends a job status request (TX2). The frequency of job status requests is controlled by OpCon performance options (refer to the OpCon **Concepts** online help).
+The LSAM job scheduler and status server tasks detect when a job is stuck in a MSGW (message waiting) status. This detection can occur immediate as a job starts, if the job immediately reports an error, or periodically after the job as started, whenever the OpCon server sends a job status request (TX2). The frequency of job status requests is controlled by OpCon performance options (refer to the OpCon **Concepts** documentation).
 
 Whenever the LSAM server jobs detect the MSGW status, they always send LSAM Feedback information (field code 5801) to OpCon, at the same time as the job status displayed in the Enterprise Manager is updated with the MSGW status.
 

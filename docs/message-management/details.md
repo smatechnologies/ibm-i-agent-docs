@@ -166,7 +166,7 @@ If an older set of Message Management Parameters is being updated with a specifi
 
 ### Message Management Technical Support Tools
 
-There are LSAM utility commands and programs included with the software product that are intended for use only by informed technical support personnel. These tools are listed in this online help, but they are not fully documented because they are not intended for use by anyone who has not received specific training about how to use the tools correctly. The following tools may be used by experienced persons to diagnose and/or control the operation of Message Management if problems arise.
+There are LSAM utility commands and programs included with the software product that are intended for use only by informed technical support personnel. These tools are listed in this documentation, but they are not fully documented because they are not intended for use by anyone who has not received specific training about how to use the tools correctly. The following tools may be used by experienced persons to diagnose and/or control the operation of Message Management if problems arise.
 
 ### Display Message Queue Command
 

@@ -112,7 +112,7 @@ Click the "OK" button to complete the registration of a new monitor. When you ar
 
 ## IBM i LSAM Configuration
 
-All of the instructions for adding LSAM Message Management Parameters, Capture Rules and Response Rules are provided in the **IBM i LSAM** online help.
+All of the instructions for adding LSAM Message Management Parameters, Capture Rules and Response Rules are provided in the **IBM i LSAM** documentation.
 
 Here is an example of how the QSYSOPR message queue might look after a job is stuck and the Navigator Monitor has triggered the event message:
 
@@ -160,7 +160,7 @@ In the example above, the IBM i server job name of QZRCSRVS could be used in the
 
 ### Notes for List of Replacement Variables
 
-1. Refer to on-line help for additional information. To see Online help for a job monitor:
+1. Refer to on-line help for additional information. To see documentation for a job monitor:
     - Left-click the (?) question mark icon on the monitors threshold tab window.
     - Drag the question mark to the 'OS/400 command' text prompt.
 2. If a monitor is triggered and the user performs a manual reset ("Reset with Commands" or "Reset Only"), there is no substitution value for the parameter &NUMRESET, &RDUR. It will only have a value if the reset is automated.

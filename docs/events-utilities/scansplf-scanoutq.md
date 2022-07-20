@@ -872,7 +872,7 @@ The dynamic variable values that SCANOUTQ can store make it possible for the Res
 
 ### SCANOUTQ Application Example
 
-This example of using the SCANOUTQ command relies on the flow chart above and explains how each element of the flow chart is used. There are examples that would not need the Captured Data Response Rules, such as the report balancing example that is explained in the **IBM i LSAM** online help. But in most cases, the Response Rules define the actions that will be performed as each Scan Rule captures some data from a report.
+This example of using the SCANOUTQ command relies on the flow chart above and explains how each element of the flow chart is used. There are examples that would not need the Captured Data Response Rules, such as the report balancing example that is explained in the **IBM i LSAM** documentation. But in most cases, the Response Rules define the actions that will be performed as each Scan Rule captures some data from a report.
 
 #### Purpose
 

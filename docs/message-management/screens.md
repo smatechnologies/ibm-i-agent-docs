@@ -430,7 +430,7 @@ For all other Event commands from the original prompting window, the following d
  ```
 
 The number and type of fields that are displayed vary depending on the Event command. More information on Event parameters may be found in the topic on Event Management. There is also a table, above, of variables that may be embedded within an Event command. Additional Information can also be found in
-[Introduction](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Introduction.md#top)  in the **OpCon Events** online help.
+[Introduction](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Introduction.md#top)  in the **OpCon Events** documentation.
 
 #### Functions
 

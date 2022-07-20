@@ -106,7 +106,7 @@ The IBM i command DSPSAVF can be used to see the content of the extract save fil
 - **F3=Exit**: Returns to the LSAM menu system.
 - **F5=Refresh**: The display program updates all the information about every control record. This refresh option is important when trying to verify the results of the option 8 Test Notify job. 
 - **F12=Cancel**: Returns to the previous LSAM display from which the F15 was executed, without performing any file extract.
-- **Enter**: After the desired field options are typed, press Enter to  submit or start the file extract operation. As documented elsewhere in the **IBM i LSAM** online help, a completion message will be displayed both in the QSYSOPR message queue and the user's (or workstation's) message queue, reporting the exact name of the save  file that was created in library SMALOG. Use this save file name when transferring the save file from the IBM i DB2 database to an external computer (such as a personal computer), from which the save file can then be easily sent to the SMA ftp server location that pertains to each client.
+- **Enter**: After the desired field options are typed, press Enter to  submit or start the file extract operation. As documented elsewhere in the **IBM i LSAM** documentation, a completion message will be displayed both in the QSYSOPR message queue and the user's (or workstation's) message queue, reporting the exact name of the save  file that was created in library SMALOG. Use this save file name when transferring the save file from the IBM i DB2 database to an external computer (such as a personal computer), from which the save file can then be easily sent to the SMA ftp server location that pertains to each client.
 
 #### Fields
 

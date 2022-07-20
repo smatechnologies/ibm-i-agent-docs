@@ -60,7 +60,7 @@ Please verify the authority of the test job user to execute the test programs. M
 
 Following is the IBM i command syntax for calling each of these three generic programs, and also a fourth recommendation for another type of test job.
 
-IBM i naming rules always apply. These are listed in this **IBM i LSAM** online help, but a brief summary is provided here.
+IBM i naming rules always apply. These are listed in this **IBM i LSAM** documentation, but a brief summary is provided here.
 
 - Maximum name size is 10 characters.
 - Assume all capital letters, because the operating system will change to that anyway under DB2/400.
@@ -77,7 +77,7 @@ CALL SMAPGM/GCRTDTAARA PARM('data_area_name' 'library_name')
 
 #### Purposes and Uses
 
-Use this program to create a data area, in order to test the IBM i LSAM utility CHKDTAARA (as documented in the **IBM i LSAM** online help). Thus, it is possible to create an OpCon/xps job with a pre-run check for a data area, and use this generic program to actually create that data area either before or after the job that has the pre-run check. Note that an attempt to create the same data area twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. To remove this data area use the following command:
+Use this program to create a data area, in order to test the IBM i LSAM utility CHKDTAARA (as documented in the **IBM i LSAM** documentation). Thus, it is possible to create an OpCon/xps job with a pre-run check for a data area, and use this generic program to actually create that data area either before or after the job that has the pre-run check. Note that an attempt to create the same data area twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. To remove this data area use the following command:
 
 ```shell
 DLTDTAARA DTAARA(library_name/data_area_name)
@@ -93,7 +93,7 @@ CALL SMAPGM/GCRTFIL PARM('file_name' 'library_name')
 
 #### Purposes and Uses
 
-This command will create an empty physical file in the DB2/400 database with a fixed record length of 80 bytes. Use this program to create a file, in order to test the IBM i LSAM utility CHKFIL (as documented in the **IBM i LSAM** online help). Thus, it is possible to create an OpCon/xps job with a pre-run check for a file, and use this generic program to actually create that file either before or after the job that has the pre-run check. Note that an attempt to create the same file twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. This file can be removed with the following command:
+This command will create an empty physical file in the DB2/400 database with a fixed record length of 80 bytes. Use this program to create a file, in order to test the IBM i LSAM utility CHKFIL (as documented in the **IBM i LSAM** documentation). Thus, it is possible to create an OpCon/xps job with a pre-run check for a file, and use this generic program to actually create that file either before or after the job that has the pre-run check. Note that an attempt to create the same file twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. This file can be removed with the following command:
 
 ```shell
 DLTF FILE(library_name/file_name)

@@ -144,7 +144,7 @@ Main Menu > PTF and Security menu (#9) > Work with LSAM PTFs (#1)
   -   R = rolled back
 - **Dwn**: Down: This column shows a value of '1' if the PTF is marked as requiring that any of the LSAM server jobs must be stopped while the PTF is applied. Be sure to plan carefully for LSAM down time before attempting to apply a PTF that requires down time.
 - **PIn**: Post-Install instructions are included with this PTF. Use option 8 to display the text of the post-install instructions. Be sure to carefully evaluate all PTFs marked with post-install instructions before planning their installation. It is possible that certain PTFs require special attention and cannot simply be applied as part of a cumulative PTF application to a live LSAM environment.
-- **Doc**: Documentation changes have been published in coordination with this PTF. Consult the PTF instructions for information about how to obtain the documentation updates. Usually, documentation updates are made available in online help; sometimes the **IBM i LSAM** online help is republished at a newer point version to include a substantial online help enhancement.
+- **Doc**: Documentation changes have been published in coordination with this PTF. Consult the PTF instructions for information about how to obtain the documentation updates. Usually, documentation updates are made available in documentation; sometimes the **IBM i LSAM** documentation is republished at a newer point version to include a substantial documentation enhancement.
 - **Description**: A short description of the PTF is provided for this list display. The short description information may or may not include a special warning about the PTF. Use option 5=Display to see the long description of the PTF, in order to learn more about the changes that the PTF will make to the LSAM software, such as the key problem that a PTF may solve.
 
 #### Options
@@ -218,7 +218,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8)
   -   PTF procedures automatically adapt in cases where a PTF affects only the GPL and/or UTL libraries, and not the LSAM libraries.
 - **Post-Inst/DocRev**: These indicators are set to a value of '1' if:
   -   The PTF includes post-install procedures that must be viewed.
-  -   The PTF is associated with an update to the LSAM online help.
+  -   The PTF is associated with an update to the LSAM documentation.
 - **Applied status**: The applied status fields indicate the following: 
   -   Current status: blank=not applied, A=applied, R=rolled back. 
   -   Ever applied: If '1', the last applied date shows below this flag. 

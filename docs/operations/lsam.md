@@ -12,7 +12,7 @@ The STRSMA command may be used when the LSAM environment library list is not in 
 
 The command LSAMENU is more direct because it skips the splash display, and it may also be a convenient tool for programming or scripting since it supports an optional parameter that allows an LSAM sub-menu to be specified for direct access. From outside of the LSAM library list, the LSAMENU command requires that the LSAM Environment name be specified using its ENV() keyword parameter.
 
-Throughout the **IBM i LSAM** online help, wherever the STRSMA command is specified, in most cases it will be acceptable to replace that with the command LSAMENU, as long as the differences in the command parameters are observed and the LSAM environment library list is available when the LSAMENU command is used.
+Throughout the **IBM i LSAM** documentation, wherever the STRSMA command is specified, in most cases it will be acceptable to replace that with the command LSAMENU, as long as the differences in the command parameters are observed and the LSAM environment library list is available when the LSAMENU command is used.
 
 ### The STRSMA Command
 

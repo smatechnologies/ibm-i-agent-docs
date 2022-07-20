@@ -101,7 +101,7 @@ Type a number (1 -- 14) into the Selection entry field and press <**Enter**> to 
 
 #### Options
 
-Most of the individual log viewers are not documented in this online help. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. When the system is well understood, the log viewer instructions are obvious, and in most cases they offer well-labeled formatting of each type of transaction that may appear in the detail display of a given log entry.
+Most of the individual log viewers are not documented in this documentation. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. When the system is well understood, the log viewer instructions are obvious, and in most cases they offer well-labeled formatting of each type of transaction that may appear in the detail display of a given log entry.
 
 For more information about the log files displayed by each viewer utility, refer to the [Viewing the LSAM Log Files](../logs-database/management.md#viewing-the-lsam-log-files)  display. There is a helpful flow chart that shows the location of many log files in the overall LSAM transaction management process. Refer to [Strategic Location of Log Files](../logs-database/locations.md#strategic-location-of-log-files).
 

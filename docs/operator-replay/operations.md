@@ -312,7 +312,7 @@ In addition, the LSAM will automatically enforce the following values that are e
 - For Job Description ~ Name: The LSAM will force this to SMALSAJ00 at run time.
 - For Job Description ~ Library: The LSAM will force this to the location of SMALSAJ00.
 
-For information on defining an IBM i Job, refer to [IBM i Job Details](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/IBM-i-Job-Details.md#top)  in the **Concepts** online help.
+For information on defining an IBM i Job, refer to [IBM i Job Details](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/IBM-i-Job-Details.md#top)  in the **Concepts** documentation.
 
 ## Data Capture and Response Rules
 

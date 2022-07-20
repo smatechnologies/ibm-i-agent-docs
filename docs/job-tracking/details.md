@@ -391,7 +391,7 @@ There are two ways to maintain the captured LDA content. LSAM Dynamic Variables 
 
 ## Job Scheduling Messages for Tracked Jobs
 
-The OpCon Schedule display may show message codes next to a job that provide more information about the job status that OpCon is reporting. For example, jobs that complete normally under IBM i show message code SMA0036. (The LSAM Messages are documented in both the **IBM i LSAM** online help and the **Concepts** online help.) The following messages may be reported by IBM i machines to identify exceptions that are unique to tracked jobs.
+The OpCon Schedule display may show message codes next to a job that provide more information about the job status that OpCon is reporting. For example, jobs that complete normally under IBM i show message code SMA0036. (The LSAM Messages are documented in both the **IBM i LSAM** documentation and the **Concepts** documentation.) The following messages may be reported by IBM i machines to identify exceptions that are unique to tracked jobs.
 
 ### SMA0045
 

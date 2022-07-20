@@ -335,7 +335,7 @@ F13=Information Assistant   F16=System main menu
 
 - The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options.
 - **Option 3** (GENEMLREQ) is for testing, and documentation of this command appears above.
-- **Option 6** is documented in the existing **IBM i LSAM** online help, especially in the topic about Job Tracking.
+- **Option 6** is documented in the existing **IBM i LSAM** documentation, especially in the topic about Job Tracking.
 
 ##### Functions
 

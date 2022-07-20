@@ -6,7 +6,7 @@ sidebar_label: 'LSAM User Profiles'
 
 ## IBM i LSAM Operator Authority
 
-The IBM i LSAM Installation instructions and this **IBM i LSAM** online help state that the standard IBM i system operator user profile, QSYSOPR, should be able to operate the LSAM software, performing the functions of starting and stopping the LSAM server jobs. An IBM i LSAM user site may or may not wish to authorize the system   operator to perform other functions supported by the LSAM menu system. Most of the LSAM menu functions are for configuration tasks or diagnostic purposes, and these might be restricted to users who have been authorized, according to the procedures described in this topic.
+The IBM i LSAM Installation instructions and this **IBM i LSAM** documentation state that the standard IBM i system operator user profile, QSYSOPR, should be able to operate the LSAM software, performing the functions of starting and stopping the LSAM server jobs. An IBM i LSAM user site may or may not wish to authorize the system   operator to perform other functions supported by the LSAM menu system. Most of the LSAM menu functions are for configuration tasks or diagnostic purposes, and these might be restricted to users who have been authorized, according to the procedures described in this topic.
 
 :::tip Technical Notes
 The QSYSOPR user profile is specifically enabled to start or stop the LSAM server subsystem and jobs as of LSAM version 03.31.03, with PTF # 16318 applied. Prior versions of the LSAM may require manual security maintenance procedures to enable QSYSOPR to perform these functions.
@@ -16,7 +16,7 @@ The strategy for an IBM i LSAM operator prevents the operator from performing LS
 
 ## How to Enable an LSAM Operator User Profile
 
-The IBM i LSAM installation instructions and many places in this **IBM i LSAM** online help describe how to operate the LSAM software using the IBM i security officer profile (QSECOFR), or, using a user profile that has *ALLOBJ special authority.
+The IBM i LSAM installation instructions and many places in this **IBM i LSAM** documentation describe how to operate the LSAM software using the IBM i security officer profile (QSECOFR), or, using a user profile that has *ALLOBJ special authority.
 
 The default installation of the IBM i LSAM software enables the IBM i default system operator (QSYSOPR) to start or stop the LSAM server programs, to view the status of the LSAM servers and to work with tracked jobs. QSYSOPR is not granted any other authority to use LSAM functions.
 

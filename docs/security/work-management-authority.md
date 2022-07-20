@@ -4,7 +4,7 @@ sidebar_label: 'LSAM Work Management Authority'
 
 # LSAM Work Management Authority
 
-This discussion assumes the reader is familiar with the other information provided in the **IBM i LSAM** online help and with the principles of IBM i Work Management. The description of work management authority in this section includes a combination of principles of both the IBM i LSAM and the IBM i operating system itself. Some of the other sections of this topic may also prove helpful in understanding this discussion of LSAM work management.
+This discussion assumes the reader is familiar with the other information provided in the **IBM i LSAM** documentation and with the principles of IBM i Work Management. The description of work management authority in this section includes a combination of principles of both the IBM i LSAM and the IBM i operating system itself. Some of the other sections of this topic may also prove helpful in understanding this discussion of LSAM work management.
 
 An introduction to the authority assigned to SMANET is provided in the previous section of this topic. This section is focused on the work flow path that is followed as a job request defined in the OpCon/xps job master file is submitted for execution under IBM i. The minimal authorities required in order for the LSAM server programs to
 successfully manage jobs as user SMANET are listed below.

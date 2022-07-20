@@ -8,7 +8,7 @@ The IBM i Agent software includes programs and tools that support SMA's propriet
 
 The IBM i Agent SMAFT programs enable the LSAM to act as an SMAFT Agent that requests files be transferred to or from other systems, and as an SMAFT Server that responds to file transfer requests from other system Agents. The IBM i Agent SMAFT tools are used to configure permanent options that govern the performance and function of the IBM i SMAFT programs. There are also tools that can be used to monitor SMAFT jobs and to diagnose problems that might arise as files are being transferred.
 
-In addition to this topic, refer to the following references in the **Concepts** online help for more information about OpCon SMAFT jobs:
+In addition to this topic, refer to the following references in the **Concepts** documentation for more information about OpCon SMAFT jobs:
 
 - [File Transfer Jobs](https://help.smatechnologies.com/opcon/core/job-types/file-transfer)
 - [IBM i File Transfer Options Support](https://help.smatechnologies.com/opcon/core/job-types/file-transfer#ibm-i-file-transfer-options-support)

@@ -52,7 +52,7 @@ JOB(123456/USERID/JOBNAME)
 ### Other Command Constraints
 In order for this command to work from a user-defined program, the job must include the LSAM environment library list. Those library names could be added to a user-defined job using the LSAM command SMAGPL/SMAADDLIBL (and later removed using command SMAGPL/SMARMVLIBL). Another way to get the LSAM libraries added for the command is to enclose the LFEEDBACK command inside the LSAM command-hosting command SMAGPL/LSAMCMD, as illustrated above. The LSAM library list would already be included by default in the LSAM Message Management server and in any job that executes an Operator Replay script, and the LSAM library list is also a prerequisite for running the SCANSPLF and SCANOUTQ commands.
 
-In the example command syntax above, the MSGSEQ parameter should be left assigned to its default value of zero, so it is not necessary to include this parameter. (This parameter has limited purpose in special applications.) The STSMSGID parameter causes a new job status to appear on the OpCon job status display; the value of SMA0035 means that a job is still running in normal status. Users can specify other job status message IDs if that is appropriate; please review the contents of the SMAMSGF message file in library SMADTA and/or the list of job status messages in Machine Messages of the **IBM i LSAM** online help to determine which job status IDs would be appropriate.
+In the example command syntax above, the MSGSEQ parameter should be left assigned to its default value of zero, so it is not necessary to include this parameter. (This parameter has limited purpose in special applications.) The STSMSGID parameter causes a new job status to appear on the OpCon job status display; the value of SMA0035 means that a job is still running in normal status. Users can specify other job status message IDs if that is appropriate; please review the contents of the SMAMSGF message file in library SMADTA and/or the list of job status messages in Machine Messages of the **IBM i LSAM** documentation to determine which job status IDs would be appropriate.
 
 ### OpCon Field Codes Supported by the IBM i LSAM
 
@@ -67,13 +67,13 @@ The separate purpose and implementation of these two forms of LSAM Feedback are 
 
 ### SMA5801 Notification of Job MSGW Status and LSAM Feedback
 
-The field code 5801 is fully described in the Configuration topic of this online help, under the topic with the title above, located under the heading of "Extended Discussion of Parameters."
+The field code 5801 is fully described in the Configuration topic of this documentation, under the topic with the title above, located under the heading of "Extended Discussion of Parameters."
 
 In summary, when the LSAM Parameters (main menu, option 7) have designated a valid message queue for the SMA5801 option, then the LSAM will send predefined LSAM Feedback information whenever it detects that a job started or tracked by OpCon is stuck in the MSGW (message waiting for response) status. The OpCon job master record shows a special entry in the LSAM Feedback options just for this 5801 MSGW trigger: "Active job in MSGW status". The user can register any form of Event command to be triggered when this category of feedback is received. The Event triggered may vary, depending on the nature of the job.
 
 ### 5802 User-defined LSAM Feedback
 
-When the LFEEDBACK command is used, it sends any text string that the user defines to OpCon for processing according to LSAM Feedback Triggers that were added to the OpCon job master record. For the command to work, the type of LSAM Feedback selected in OpCon must be: "User-defined text from LFEEDBACK command". In addition, the compare text assigned to each Event definition must match all or a designated part of the TEXT value specified for the LFEEDBACK command. For more information about LSAM Feedback, please refer to the **Concepts** online help (scan for LSAM Feedback).
+When the LFEEDBACK command is used, it sends any text string that the user defines to OpCon for processing according to LSAM Feedback Triggers that were added to the OpCon job master record. For the command to work, the type of LSAM Feedback selected in OpCon must be: "User-defined text from LFEEDBACK command". In addition, the compare text assigned to each Event definition must match all or a designated part of the TEXT value specified for the LFEEDBACK command. For more information about LSAM Feedback, please refer to the **Concepts** documentation (scan for LSAM Feedback).
 
 ## SMAJOBMSG - Send Detailed Job Messages to OpCon
 

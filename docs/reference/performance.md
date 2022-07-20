@@ -14,7 +14,7 @@ The procedures described in this topic should only be performed by experienced t
 
 There are certain IBM i LSAM Parameters that are made accessible for user maintenance in order make it possible to tune the LSAM server program performance. Among the LSAM functions that are subject to tuning are TCP/IP sockets communications and also LSAM monitoring of job completion status. There is not a single formula for tuning LSAM performance. The best settings for the LSAM Parameters will vary depending on the profile of the overall IBM i system work load, the level of IBM i system activity, the level of OpCon/xps job scheduling activity and the types of jobs being submitted by OpCon/xps, and finally also by the capacity of the IBM System i partition resources assigned to any one IBM i partition.
 
-This online help includes detailed discussion about each LSAM Parameter, mostly in [IBM i LSAM Configuration](../configuration/configuration.md). This topic summarizes groups of parameters to help with the evaluation of how those parameters could be set.
+This documentation includes detailed discussion about each LSAM Parameter, mostly in [IBM i LSAM Configuration](../configuration/configuration.md). This topic summarizes groups of parameters to help with the evaluation of how those parameters could be set.
 
 There are presently three groups of LSAM performance parameters, all appearing on page 2 of the LSAM Parameters maintenance function (option 7 on the LSAM main menu).
 
@@ -129,6 +129,6 @@ It is possible to share the LSAM server job description for other types of jobs,
 
 The ability of OpCon/xps to execute most types of command under IBM i makes it possible to use an OpCon/xps schedule and jobs to change the performance of the LSAM server programs while they are active. Such a schedule might be executed at different times when the profile of work in the managed IBM i system is changing during a day.
 
-A variety of strategies is possible. One simple example that seems apparent is the ability to execute a CHGJOB (change job) command that would alter the run priority or time slice allocated to one or more of the LSAM server jobs. There is information in this online help about the names of the LSAM server jobs and the purpose of each, starting with [IBM i Components and Operation](../operations/components.md). There are also IBM i commands that can be used to vary the allocation of system resources among IBM i subsystems.
+A variety of strategies is possible. One simple example that seems apparent is the ability to execute a CHGJOB (change job) command that would alter the run priority or time slice allocated to one or more of the LSAM server jobs. There is information in this documentation about the names of the LSAM server jobs and the purpose of each, starting with [IBM i Components and Operation](../operations/components.md). There are also IBM i commands that can be used to vary the allocation of system resources among IBM i subsystems.
 
 Contact SMA support if further assistance is needed with this topic.

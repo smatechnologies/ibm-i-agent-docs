@@ -229,7 +229,7 @@ If changes are required to make the LSAM log file purging more effective, it wil
 
 The other LSAM maintenance process that is critical is to reorganize the LSAM database using the SMARGZ command. This command and its operation are explained in detail in the [Log File and Database Management](../logs-database/overview.md) section.
 
-The SMARGZ command will either be executed automatically during the next Maintenance Hour, if the LSAM Parameters controlling this option are set accordingly, or else the SMARGZ command can be executed either from the IBM i command entry line (within the LSAM menu system so that the LSAM library list is in effect), or by configuring an OpCon IBM i Batch Job with the SMARGZ command in the "CALL" box. Details about how to use these strategies are documented in the [Log File and Database Management](../logs-database/overview.md) section of the **IBM i LSAM** online help.
+The SMARGZ command will either be executed automatically during the next Maintenance Hour, if the LSAM Parameters controlling this option are set accordingly, or else the SMARGZ command can be executed either from the IBM i command entry line (within the LSAM menu system so that the LSAM library list is in effect), or by configuring an OpCon IBM i Batch Job with the SMARGZ command in the "CALL" box. Details about how to use these strategies are documented in the [Log File and Database Management](../logs-database/overview.md) section of the **IBM i LSAM** documentation.
 
 ### Backing Up the LSAM Environment
 
@@ -396,7 +396,7 @@ CRTUSRPRF USRPRF(SMASAV) PASSWORD(smasav_password) INLPGM(*NONE)
   SPCAUT(*JOBCTL *SPLCTL *SAVSYS)
 ```
 :::tip
-The *ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#Introduc) as well as in the [LSAM Security and Object Authority](../security/strategy.md) section of the **IBM i LSAM** online help.
+The *ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#Introduc) as well as in the [LSAM Security and Object Authority](../security/strategy.md) section of the **IBM i LSAM** documentation.
 :::
 
 ### Prepare the Installation Library
@@ -442,7 +442,7 @@ During the interactive installation process, the program will present an initial
 
 SMA strongly recommends against installing LSAM software into the IBM i library QGPL. SMA recommends taking advantage of this opportunity to automatically migrate LSAM functions out of QGPL and into the SMAGPL library dedicated to the LSAM Environment that will be upgraded. For assistance with managing multiple LSAM Environments that may share the QGPL contents, please contact SMA Support.
 
-More information on this subject is offered in the LSAM Environment Management section of the IBM i LSAM online help.
+More information on this subject is offered in the LSAM Environment Management section of the IBM i LSAM documentation.
 :::
 
 <u>Choose 20 or 21</u>, depending on whether the normal SMADEFAULT Environment or an Alternate LSAM Environment will be used*:
@@ -630,7 +630,7 @@ SMASETUP Second Prompt Screen
 
 ### LSAM Installation Configuration Values
 
-Detailed information about the individual fields showing on the second installation prompt screen (format SMASETR2) are provided in the [IBM i LSAM Configuration](../configuration/configuration.md) section of the **IBM i LSAM** online help.
+Detailed information about the individual fields showing on the second installation prompt screen (format SMASETR2) are provided in the [IBM i LSAM Configuration](../configuration/configuration.md) section of the **IBM i LSAM** documentation.
 
 Use F4=Prompt while the cursor is positioned in the Internet Address field to see a list of available IP addresses that are already configured in this IBM i partition. Select the IP address that will be used for communication with OpCon and press **Enter** from the value prompt window to automatically put the selected IP address into the configuration parameter field.
 

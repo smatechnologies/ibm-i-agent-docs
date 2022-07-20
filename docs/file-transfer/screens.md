@@ -324,7 +324,7 @@ Type a number (1 -- 4) into the Selection entry field and press <**Enter**> to e
 
 #### Options
 
-The individual log viewers are not documented in this online help. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. The current set of SMA File Transfer viewing functions is simply a group of convenience commands that engage the IBM i command DSPPFM. The viewers do not format the raw data from the log files at this time.
+The individual log viewers are not documented in this documentation. These viewers are tools meant for use by support and technical personnel. The technical construction and operation of the LSAM software must be understood in order for these log views to be useful. The current set of SMA File Transfer viewing functions is simply a group of convenience commands that engage the IBM i command DSPPFM. The viewers do not format the raw data from the log files at this time.
 
 #### Functions
 

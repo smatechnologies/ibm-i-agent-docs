@@ -3,7 +3,7 @@ sidebar_label: 'Dynamic Variable General Rules and Suggestions'
 ---
 # Dynamic Variable General Rules and Suggestions
 
-Examples of where dynamic variables may be used are offered throughout this online help in each topic. There is more information about dynamic variables in the Screens and Windows section of this topic. Here are some general rules and suggestions to keep in mind when planning to use Dynamic Variables:
+Examples of where dynamic variables may be used are offered throughout this documentation in each topic. There is more information about dynamic variables in the Screens and Windows section of this topic. Here are some general rules and suggestions to keep in mind when planning to use Dynamic Variables:
 
 - Dynamic Variables and the tokens derived from them are different from the Variables/Tokens used in Operator Replay scripts. These two different LSAM variable types are used for different purposes as of this version of the LSAM, and they cannot be interchanged. However, it is possible to transfer values from Dynamic Variables to Operator Replay Tokens.
 - The dynamic variable type of L is used exclusively to update the local data area (LDA) contents associated with tracked, queued or captured jobs. Dynamic variables of type L replace data in the LDA based on the starting position  and length fields specified in the dynamic variable master record. These two numeric fields apply only to type L variables and then cannot be used for type V variables. For dynamic variables of type L, the Variable Name must be either the Captured Job ID of a captured job, or the IBM i Job Name of a tracked or queued job.

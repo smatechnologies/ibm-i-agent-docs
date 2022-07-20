@@ -888,7 +888,7 @@ The command line text cannot be maintained from this display-only field. Use F13
 - Pressing <**F13**> starts a Source Edit Utility (SEU) session that can be used to update the source file member where the full command line is stored.
 
 :::tip
-The SEU edit screen is not documented in this online help. Refer to IBM documentation for information about how to perform source member editing with SEU. The LSAM permits any other form of IBM i source physical file member editing to be used, including WebSphere from a PC workstation. The field value for CMD SrcMbr names the member in file SMADTA/DBFCMDSRC that can be edited in order to update the captured job's command line. (The SMADTA library may have a different name if an alternate LSAM environment is being used.)
+The SEU edit screen is not documented in this documentation. Refer to IBM documentation for information about how to perform source member editing with SEU. The LSAM permits any other form of IBM i source physical file member editing to be used, including WebSphere from a PC workstation. The field value for CMD SrcMbr names the member in file SMADTA/DBFCMDSRC that can be edited in order to update the captured job's command line. (The SMADTA library may have a different name if an alternate LSAM environment is being used.)
 :::
 
 ## F14 = Edit LIBL

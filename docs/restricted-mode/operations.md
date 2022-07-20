@@ -278,4 +278,4 @@ System AutoRecovr upon failure: The illustration above shows a Restricted Mode S
 
 ## OpCon Job Details Definition for a Restricted Mode Job
 
-The fields that define an OpCon job that will be executed in IBM i restricted mode must be set up according to stricter rules than most jobs. Instructions for defining a restricted mode job can be found in the [Call Information](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/IBM-i-Job-Details.md#Call) section under IBM i Job Details in the **Concepts** online help.
+The fields that define an OpCon job that will be executed in IBM i restricted mode must be set up according to stricter rules than most jobs. Instructions for defining a restricted mode job can be found in the [Call Information](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/IBM-i-Job-Details.md#Call) section under IBM i Job Details in the **Concepts** documentation.
