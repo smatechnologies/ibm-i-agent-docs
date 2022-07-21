@@ -4,7 +4,7 @@ sidebar_label: 'Old Method for Fetching Values from the DB2 or Data Areas'
 
 # Old Method for Fetching Values from the DB2 or Data Areas
 
-The following documentation is retained for the benefit of users who had already employed the old method. However, SMA strongly recommends using the newer Dynamic Variable  *DB2 Function Code method, as documented just before this section.
+The following documentation is retained for the benefit of users who had already employed the old method. However, SMA strongly recommends using the newer Dynamic Variable \*DB2 Function Code method, as documented just before this section.
 
 SMA had provided a utility program that makes it possible to fetch field values from any file and library in the DB2 database and return them as the value for a Dynamic Variable token. This utility program called DYNVARSQLR requires an interface program, such as the model CL program provided by SMA called DYNVARSQLC.
 
@@ -26,8 +26,7 @@ Note that both examples in the model CL program also illustrate how to, optional
 
 Remember to define the Dynamic Variable as a numeric variable whenever the numeric formatting rules will be applied.
 
-However, numeric compression can be used with values that will be handled as a character string, even though the data may actually be
-comprised of only numeric digits. If any other special formatting of a numeric value is required, one option is to call another user-defined program that will reformat a numeric value into the desired final format, and then that edited value will be returned to the Dynamic Variable (to replace the dynamic variable token) in the (max) 128-character value parameter field.
+However, numeric compression can be used with values that will be handled as a character string, even though the data may actually be comprised of only numeric digits. If any other special formatting of a numeric value is required, one option is to call another user-defined program that will reformat a numeric value into the desired final format, and then that edited value will be returned to the Dynamic Variable (to replace the dynamic variable token) in the (max) 128-character value parameter field.
 
 ## Using the DYNVARSQLR Utility Program to Fetch Database File Fields
 
@@ -47,13 +46,7 @@ WHERE ... + other optional SQL clauses...
 ```
 :::
 
-The utility program is capable of handling a multi-value data set, if that is the result of the SELECT statement and the WHERE clause.
-However, in any case, the utility program will return only one value. This means that if the WHERE clause (whether amplified by other clauses or not) defines a set of data, only the first value in the set will be returned. This logic could be used to good advantage. For example, if the WHERE clause cannot determine what is the lowest or highest value in the current data set, then an ORDER BY clause will assure that either the lowest or the highest value will be returned. (The current style of the utility program does not allow for specialty SQL keywords such as MAX( ) on the field name. In part, this fixed format of the SELECT statement helps prevent hacking with UPDATE statements.)
-
-If the utility program fails, it will log messages in the LSALOGF30 LSAM log file (viewed from LSAM sub-menu 6, option 5, log viewer 4) and to the QSYSOPR message queue. It will also return an error code in the ERROR parameter. When an error occurs, the utility program will leave the Value field untouched; that is, the Value parameter will be returned without any change to its initial value.
-
-The utility program is capable of handling a multi-value data set, if that is the result of the SELECT statement and the WHERE clause.
-However, in any case, the utility program will return only one value. This means that if the WHERE clause (whether amplified by other  clauses or not) defines a set of data, only the first value in the set will be returned. This logic could be used to good advantage. For example, if the WHERE clause cannot determine what is the lowest or highest value in the current data set, then an ORDER BY clause will assure that either the lowest or the highest value will be returned. (The current style of the utility program does not allow for specialty SQL keywords such as MAX( ) on the field name. In part, this fixed format of the SELECT statement helps prevent hacking with UPDATE statements.)
+The utility program is capable of handling a multi-value data set, if that is the result of the SELECT statement and the WHERE clause. However, in any case, the utility program will return only one value. This means that if the WHERE clause (whether amplified by other clauses or not) defines a set of data, only the first value in the set will be returned. This logic could be used to good advantage. For example, if the WHERE clause cannot determine what is the lowest or highest value in the current data set, then an ORDER BY clause will assure that either the lowest or the highest value will be returned. (The current style of the utility program does not allow for specialty SQL keywords such as MAX( ) on the field name. In part, this fixed format of the SELECT statement helps prevent hacking with UPDATE statements.)
 
 If the utility program fails, it will log messages in the LSALOGF30 LSAM log file (viewed from LSAM sub-menu 6, option 5, log viewer 4) and to the QSYSOPR message queue. It will also return an error code in the ERROR parameter. When an error occurs, the utility program will leave the Value field untouched; that is, the Value parameter will be returned without any change to its initial value.
 
