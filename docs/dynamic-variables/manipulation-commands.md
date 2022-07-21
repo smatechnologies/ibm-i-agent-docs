@@ -27,14 +27,12 @@ The VALUE keyword of the SETDYNVAR command cannot be used to set a dynamic varia
 :::
 
 Consider the following examples of using the SETDYNVAR command wherever IBM i commands are supported by the LSAM:
-:::tip Example
+**EXAMPLE:**
 ```
 SETDYNVAR command with CMPNUM
 SETDYNVAR VARNAM(VARNAME1) VALUE('$123,456.78') VARTYP(V)
 USRPGM(PGMLIB/USRDFNPGM) CMPNUM(Y) DESC('my description')
 ```
-:::
-
 The example above shows a command that will add a new Dynamic Variable named "VARNAME1" to the LSAM table, if there is not already a variable with this name. The type of variable is 'V' meaning a general-use variable. A user-defined program named (example provided is "USRDFNPGM") in the IBM i DB2 library PGMLIB will be called before the LSAM will replace the variable's {TOKEN} with an actual value.
 
 As this example command is executed, an initial value is set. The example shows a value string enclosed in quotes that represents a monetary amount string of $US with six whole numbers (dollars) and two decimal places (cents). This string value might have been provided by an OpCon Property or by a different LSAM Dynamic Variable, depending on where this example command was actually being executed. But the value that will be stored as the initial value of the variable is only the eight digits, like this: 12345678 because the CMPNUM (compress numeric) parameter is set to 'Y' = Yes.
@@ -42,13 +40,13 @@ As this example command is executed, an initial value is set. The example shows 
 Refer to additional information above about how to create and use user-defined programs to calculate Dynamic Variable token values at run time. User-defined programs receive the Dynamic Variable name and the current variable value as input parameters.
 :::tip Example
 SETDYNVAR command increases a numeric value.
-Step 1: A numeric Dynamic Variable is added to the LSAM table:
+- Step 1: A numeric Dynamic Variable is added to the LSAM table:
 ```
 SETDYNVAR VARNAM(VARNAME2) VALUE(0) 
 VARTYP(V) NUMSIZ(7) NUMDEC(0)
 POSSYM(B) DESC('Threshold counter')
 ```
-Step 2: A later procedures decides to increase the value by 1.
+- Step 2: A later procedures decides to increase the value by 1.
 ```
 SETDYNVAR VARNAM(VARNAME2) VALUE('+1')
 ```
