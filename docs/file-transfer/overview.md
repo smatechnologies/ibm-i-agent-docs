@@ -17,23 +17,23 @@ This topic explains the aspects of SMAFT jobs that are unique to the IBM i LSAM.
 
 ## The SMA File Transfer Process
 
-In order to successfully complete the configuration of both IBM i work management and the IBM i LSAM parameters for SMA File Transfer jobs, it is important to understand the roles and purpose of the tasks that participate in completing an OpCon/xps SMAFT job. There are some characteristics that apply generally to every SMAFT job, regardless of the systems involved, and other characteristics that are unique to the IBM i LSAM -- often differing from the way SMAFT is supported by LSAMs running under other operating systems.
+In order to successfully complete the configuration of both IBM i work management and the IBM i LSAM parameters for SMA File Transfer jobs, it is important to understand the roles and purpose of the tasks that participate in completing an OpCon SMAFT job. There are some characteristics that apply generally to every SMAFT job, regardless of the systems involved, and other characteristics that are unique to the IBM i LSAM -- often differing from the way SMAFT is supported by LSAMs running under other operating systems.
 
 ### SMA File Transfer Job Flow
 
 Here are the steps that define the lifetime of one SMAFT job:
 
-1. A unique SMAFT job type is assigned to a job master record on an OpCon/xps schedule.
+1. A unique SMAFT job type is assigned to a job master record on an OpCon schedule.
 
     a.  The job master names the source machine and the target machine as well as the name and location, for each machine, of the file being transferred.
 
     b.  There are also some SMAFT functional options defined on the job master.
 
-    c.  The run-time attributes of an SMAFT job are not defined on the OpCon/xps job master, as with jobs of type IBM i. A method for controlling the IBM i task run attributes is defined below.
+    c.  The run-time attributes of an SMAFT job are not defined on the OpCon job master, as with jobs of type IBM i. A method for controlling the IBM i task run attributes is defined below.
 
-    d.  Other OpCon/xps jobs on the same Schedule may be used to execute pre-transfer tasks or post-transfer tasks that affect the files, the data and/or the attributes of file transfer jobs.
+    d.  Other OpCon jobs on the same Schedule may be used to execute pre-transfer tasks or post-transfer tasks that affect the files, the data and/or the attributes of file transfer jobs.
 
-2. When the OpCon/xps Schedule determines it is time to run the SMA File Transfer job, the job start request is sent to one of the LSAMs participating in the transfer, either at the source or the target. 
+2. When the OpCon Schedule determines it is time to run the SMA File Transfer job, the job start request is sent to one of the LSAMs participating in the transfer, either at the source or the target. 
 
 3. The LSAM receiving the file transfer job start request from OpCon becomes the SMAFT Agent.
 
@@ -87,11 +87,11 @@ The IBM i LSAM starts a SMA File Transfer (SMAFT) Agent job when it receives a j
 
 ### SMA File Transfer Job Completion Messages
 
-The IBM i SMA File Transfer conforms to the general OpCon/xps rule that one or more completion or error messages will be sent to the OpCon/xps SAM, where they will be logged as Detailed Job Messages under the Job Configuration menu available for each job on a Schedule (accessed, e.g., from the right mouse context menu).
+The IBM i SMA File Transfer conforms to the general OpCon rule that one or more completion or error messages will be sent to the OpCon SAM, where they will be logged as Detailed Job Messages under the Job Configuration menu available for each job on a Schedule (accessed, e.g., from the right mouse context menu).
 
-The IBM i SMAFT programs may sometimes send important error messages to the IBM i operator's message queue (usually QSYSOPR), and they may also record information about errors in the SMAFT log files, when debug logging is turned on. But in all  cases, an effort is made to communicate all SMAFT error conditions to OpCon/xps using XML field codes that allow this information to be logged as one or more Detailed Job Messages.
+The IBM i SMAFT programs may sometimes send important error messages to the IBM i operator's message queue (usually QSYSOPR), and they may also record information about errors in the SMAFT log files, when debug logging is turned on. But in all  cases, an effort is made to communicate all SMAFT error conditions to OpCon using XML field codes that allow this information to be logged as one or more Detailed Job Messages.
 
-The IBM i SMAFT Agent also sends a final count of bytes received for each file to OpCon/xps so that it can be logged as a Detailed Job Message.
+The IBM i SMAFT Agent also sends a final count of bytes received for each file to OpCon so that it can be logged as a Detailed Job Message.
 
 ### SMA File Transfer Object Authority for IBM i
 
@@ -102,13 +102,13 @@ The general rules that apply are:
 - When an existing file is being replaced or having data added to it, the file will retain the object authority it had previously. Obviously, the user specified for the SMA File Transfer job must have authority to use that file object.
 - When a file will be added to the system, that is, as it is created by the SMA File Transfer job, the file will assume the authorities of the library (DB2) or directory (IFS) in which it is created.Again, the SMA File Transfer job user must have authority to add objects to the file or directory.
 
-When other forms of object authority must be managed, use additional OpCon/xps jobs on the same schedule as the file transfer job that will execute either before or after the file transfer job itself.
+When other forms of object authority must be managed, use additional OpCon jobs on the same schedule as the file transfer job that will execute either before or after the file transfer job itself.
 
 ### SMA File Transfer Data Character Sets for IBM i
 
 This discussion of the character sets of data files ignores binary data streams, because by definition the SMA File Transfer process is not supposed to interpret binary data. It simply passes the data between the two systems.
 
-OpCon/xps File Transfer job master records support a general specification of the type of data found in the source file. When the type of data is text, that is character data and not a binary stream, the job master also supports an indication of the general category of data that is found in the source file: ASCII or EBCDIC. It is allowed to specify a different general character set for the target file, in which case the SMA File Transfer jobs will perform data translation.
+OpCon File Transfer job master records support a general specification of the type of data found in the source file. When the type of data is text, that is character data and not a binary stream, the job master also supports an indication of the general category of data that is found in the source file: ASCII or EBCDIC. It is allowed to specify a different general character set for the target file, in which case the SMA File Transfer jobs will perform data translation.
 
 In the special case of where the SMA File Transfer job has specified Default Text as the general character set of the data, each operating system will make different assumptions about what is the default character set (either ASCII or EBCDIC) for that operating system. The IBM i SMAFT servers will make two different assumptions for Default Text, depending on the location of the file. Data found or stored in the UDB DB2 (DB2/400) native database will be assumed to be EBCDIC data,
 unless there is information to the contrary (refer to next paragraphs). In contrast, data found or stored in the IFS will be assumed to be ASCII data.
@@ -116,7 +116,7 @@ unless there is information to the contrary (refer to next paragraphs). In contr
 In almost all cases, data files managed by IBM i are labeled with a CCSID code that indicates the exact character set assigned to the data in each file. The rules are actually complex, because single files (or tables) can possibly contain fields (or columns) that have unique CCSID codes assigned to them. The IBM i implementation of SMA File Transfer does not try to address field- or column-specific CCSID codes. Files that contain mixed CCSID codes must be handled as binary objects in SMA 
 File Transfer jobs; otherwise the data could become corrupted by the IBM i CCSID translation functions.
 
-Due to the wide variety of international character sets supported by IBM's IBM i operating system, the IBM i SMA File Transfer communications programs always attempt to discover and honor the CCSID that pertains to each SMAFT source or target  file. For example, if a non-IBM remote SMAFT Server sends a text file with ASCII characters, the IBM i Agent job will attempt to translate from the (default) ASCII CCSID code specified in the IBM i SMAFT Parameters to the actual CCSID code of the target file. SMA File Transfer users can, therefore, take specific control over file transfer process by using tools such as OpCon/xps jobs that run before the SMAFT job to do things like create new files and assign them a specific CCSID code.
+Due to the wide variety of international character sets supported by IBM's IBM i operating system, the IBM i SMA File Transfer communications programs always attempt to discover and honor the CCSID that pertains to each SMAFT source or target  file. For example, if a non-IBM remote SMAFT Server sends a text file with ASCII characters, the IBM i Agent job will attempt to translate from the (default) ASCII CCSID code specified in the IBM i SMAFT Parameters to the actual CCSID code of the target file. SMA File Transfer users can, therefore, take specific control over file transfer process by using tools such as OpCon jobs that run before the SMAFT job to do things like create new files and assign them a specific CCSID code.
 
 ### Common Character Set and the IBM i SMAFT Default Character Sets
 

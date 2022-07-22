@@ -57,7 +57,7 @@ sidebar_label: 'Additional Information for OR Scripts'
 
 ## Operator Replay Script Exit Codes
 
-One of the codes in the following table will be displayed as part of the completion information of an Operator Replay job in the OpCon/xps Schedule view of the job status.
+One of the codes in the following table will be displayed as part of the completion information of an Operator Replay job in the OpCon Schedule view of the job status.
 
 ### Operator Replay Script Exit Codes
 | Return Code | Description |

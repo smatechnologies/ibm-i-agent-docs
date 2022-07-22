@@ -114,7 +114,7 @@ If jobs to be tracked are on user-defined (named) schedules, those schedules mus
     b.  The values for the Job Description, Job Description Library, Job Queue and Job Queue Library may be set to the special value of \*ALL to accept any value, or a specific name may be entered into any of theses fields. Specific names are compared to the actual job intercepted for Tracking, to qualify whether the job is accepted for Tracking or simply bypassed and allowed to execute.
     c.  Specify "AdHoc" for the Schedule name.
     d.  Set the Track Type to "Q".
-7. In OpCon/xps Enterprise Manager, add a new job master record to the AdHoc schedule, specifying the job type of IBM i.
+7. In OpCon Enterprise Manager, add a new job master record to the AdHoc schedule, specifying the job type of IBM i.
     a.  Be sure that the selected machine name matches the LSAM environment where the Tracked job was registered.
 8. Select "Batch job" in the job sub-type pull-down list.
 9. Enter the exact name of the job that was registered in the LSAM Job tracking parameters Add screen.
@@ -161,7 +161,7 @@ The instructions for configuring Tracked or Queued jobs are generally the same a
 
 Circumstances may arise that will prevent the automated steps of job tracking or queuing from completing normally. Sometimes, if the LSAM should become disconnected from OpCon, it will be impossible for OpCon to cause a tracked or queued job to be released from the LSAM job tracking master files where it was held.
 
-An IBM i operator or administrator may decide that a tracked or queued job must be manually released from the LSAM job tracking system, rather than waiting until the problem with OpCon/xps, or with the job tracking/queuing configuration, has been solved. If this decision is made, the LSAM will attempt to report to OpCon/xps that the tracked or queued job was manually released so that OpCon/xps can update the job status in the OpCon/xps schedule.
+An IBM i operator or administrator may decide that a tracked or queued job must be manually released from the LSAM job tracking system, rather than waiting until the problem with OpCon, or with the job tracking/queuing configuration, has been solved. If this decision is made, the LSAM will attempt to report to OpCon that the tracked or queued job was manually released so that OpCon can update the job status in the OpCon schedule.
 
 #### Manually Releasing a Tracked or Queued Job
 1. Log on to an IBM i workstation with a user profile that has LSAM Administrator privileges.
@@ -325,7 +325,7 @@ Captured jobs cannot be started from within IBM i. (Contrast this with the WRKTR
 The only option available for starting captured jobs from within IBM i is to use some of the LSAM commands that represent OpCon Events. The OpCon event notification server can respond to event commands sent from IBM i, for example, by adding a job to a schedule and then releasing the job.
 
 #### Define a Captured Job in OpCon
-In the OpCon/xps Enterprise Manager, add a new job master record to any OpCon schedule, specifying the job type of IBM i.
+In the OpCon Enterprise Manager, add a new job master record to any OpCon schedule, specifying the job type of IBM i.
 
 a.  Be sure that the selected machine name matches the LSAM environment
     where the captured job was registered.
@@ -341,12 +341,12 @@ a.  Specify the exact name of the captured job ID that was registered while the 
 Leave job parameters set to the default value of asterisk (\*) to allow the originally captured, or maintained job parameters to be in effect.
 
 a.  Set the Job Date field to the predefined value of \*SYSVAL tospecify that the DATE parameter of the original IBM i SBMJOB command should control the job date.
-b.  It is possible to create and use a User Profile of \* or \*CURRENT in OpCon/xps. These values allow the original IBM i job user to be preserved. Refer to additional discussion of this topic below.
+b.  It is possible to create and use a User Profile of \* or \*CURRENT in OpCon. These values allow the original IBM i job user to be preserved. Refer to additional discussion of this topic below.
 
-Specify any job parameters in the OpCon/xps job master record that should be overridden, replacing the parameter values stored with the captured job definition.
+Specify any job parameters in the OpCon job master record that should be overridden, replacing the parameter values stored with the captured job definition.
 
 Update the job master definition fields.
 
 Complete any other batch job definition maintenance the same as for other IBM i batch jobs, including setting the frequency for this job.
  
-Use any form of OpCon/xps schedule building to cause the job to be executed according to OpCon/xps rules.
+Use any form of OpCon schedule building to cause the job to be executed according to OpCon rules.

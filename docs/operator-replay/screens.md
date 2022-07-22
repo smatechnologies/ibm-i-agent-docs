@@ -205,7 +205,7 @@ field added and the Name field cannot be changed.
 
 | Field         | Default Value | Required | Description            |
 | -----         | ------------- | -------- | -----------            |
-| Name          | None          | Y        | -   This name is used as a parameter in the STROPRRPY command when registering a script as a scheduled job in OpCon/xps.  |
+| Name          | None          | Y        | -   This name is used as a parameter in the STROPRRPY command when registering a script as a scheduled job in OpCon.  |
 |               |               |          | -   Any Alphabetic characters may be used to identify a script.            |
 |               |               |          | -   This field cannot be updated in Change mode.       |
 | User          | None          | Y        | The name of an IBM i user profile that is registered in the Operator Replay user table.                 |
@@ -663,7 +663,7 @@ Main Menu > Operator replay menu (#4) > Operator Replay logs (#3) > Option (#5)
 - **Script name**:                  The name of the Script that was executed at each date and time.
 - **Replay job user name**:         The name of the IBM i User ID that was specified to run the script.
 - **Replay job return code**:       The code returned by the script control job. The interpretation of the code appears to the right of the code in pink text.
-- **OPRLOGF10 data member name**:   For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter "O" followed by digits 2 through 10 of the SAM job name (if OpCon/xps executed the job in normal mode "O") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode "A").
+- **OPRLOGF10 data member name**:   For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter "O" followed by digits 2 through 10 of the SAM job name (if OpCon executed the job in normal mode "O") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode "A").
 - **Job date**:                     The date when this Script was executed.
 - **Job time**:                     The time when this Script was executed.
 - **IBM i control job name**:       The name of the IBM i job that controlled the script execution.
@@ -769,7 +769,7 @@ Enter=Confirm   F12=Cancel
 
 ## ADDRPYTOK Command for Setting Operator Replay Variables
 
-The LSAM utility command ADDRPYTOK can be used from IBM i command entry or from within a job submitted by OpCon/xps to complete the same Create or Change maintenance of the Operator Replay Tokens as the LSAM screens above. This command is able to add new variables to the LSAM table when the do not already exist, or to update the value of an existing token.
+The LSAM utility command ADDRPYTOK can be used from IBM i command entry or from within a job submitted by OpCon to complete the same Create or Change maintenance of the Operator Replay Tokens as the LSAM screens above. This command is able to add new variables to the LSAM table when the do not already exist, or to update the value of an existing token.
 
 Also refer to the discussion below, under Captured Data Response Rules, about how the response rules can also be used to create or set the value of Operator Replay Token Variables.
 
@@ -1102,7 +1102,7 @@ Following is a table of Entry_Code values that may be observed in the list of de
 - **SCAN_PARMS**: The PARAMETERS keyword value string sent to the program by the SCANSPLF command.
 - **SCANSPLF_E**: A fatal error was encountered and the SCANSPLF command has not completed its function. Refer to the log entry detail for a status code and more information about the reason for the failure.
 - **SCAN_PASS**:  A successful match of all required scan values; the SCANSPLF command ends normally.
-- **SCAN_FAIL**:  Not all required scan values were matched; the SCANSPLF ends abnormally and, if started by OpCon/xps, a list of mismatched values is sent to the OpCon/xps job information.
+- **SCAN_FAIL**:  Not all required scan values were matched; the SCANSPLF ends abnormally and, if started by OpCon, a list of mismatched values is sent to the OpCon job information.
 - **SCAN_NOMCH**: A log entry showing one of the required scan values that was not matched in the report.
 - **SCANSPLFEN**: Marks the end of the SCANSPLF command. A final completion status code may be found in the details of this log entry.
 - **SCAN_ABEND**: The SCANSPLF command processor failed before completing all scans. The abnormal termination code is found in the log entry details.

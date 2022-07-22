@@ -147,11 +147,11 @@ Some of the following steps may require information that originates from the Dig
 The Keep Socket Open parameter controls the performance of the IBM i LSAM sockets communication program.
 
 :::caution
-The setting of this parameter must match the equivalent parameter in the machine table of OpCon/xps Administration. When the advanced General values parameter for a machine has been set to: Close socket during synchronization = False, then the matching IBM i LSAM must be set to: Keep socket open = Y (yes), and vice versa. Failure to match these parameter values can cause a loss of data.
+The setting of this parameter must match the equivalent parameter in the machine table of OpCon Administration. When the advanced General values parameter for a machine has been set to: Close socket during synchronization = False, then the matching IBM i LSAM must be set to: Keep socket open = Y (yes), and vice versa. Failure to match these parameter values can cause a loss of data.
 :::
 
 :::tip
-In most cases, set Keep Socket Open = Y. Do not change this value unless instructed to do so by SMA technical support. This value supports the highest possible rates of communications. However, if a communications link with an IBM i LSAM must be set to close the socket between each transaction, then some other performance parameters in the OpCon/xps machine table must be set to less aggressive values. These parameters and their settings are illustrated in the following table.
+In most cases, set Keep Socket Open = Y. Do not change this value unless instructed to do so by SMA technical support. This value supports the highest possible rates of communications. However, if a communications link with an IBM i LSAM must be set to close the socket between each transaction, then some other performance parameters in the OpCon machine table must be set to less aggressive values. These parameters and their settings are illustrated in the following table.
 :::
 
 ### Communication Performance
@@ -175,38 +175,38 @@ The CCSID pair of 37 <-> 819 typically produces the same result on a US EBCDIC m
 
 Error bypass flag SMA0014 is discussed in Job Tracking and Queuing.
 
-When choosing the settings for the error bypass flags SMA0007 and SMA0008, it will help to understand the behavior visible from the OpCon/xps Schedule display. It is important to remember that regardless of how these bypass flags are set, these error message IDs represent that there is a technical problem that is preventing one or more jobs from running when OpCon/xps has requested to start the jobs. If the bypass flags are not set to bypass the errors, OpCon/xps will report the jobs as failed and the jobs can be restarted after the error has been corrected.
+When choosing the settings for the error bypass flags SMA0007 and SMA0008, it will help to understand the behavior visible from the OpCon Schedule display. It is important to remember that regardless of how these bypass flags are set, these error message IDs represent that there is a technical problem that is preventing one or more jobs from running when OpCon has requested to start the jobs. If the bypass flags are not set to bypass the errors, OpCon will report the jobs as failed and the jobs can be restarted after the error has been corrected.
 
-If a job has been submitted by bypassing one of these errors, OpCon/xps will report the job as shown in the following examples (refer to both *Job Status* discussions, below); it will assume that the jobs are active but incomplete. In this case, the IBM i system operator or administrator becomes responsible for manually correcting the configuration problems under IBM i and then manually releasing the jobs. 
+If a job has been submitted by bypassing one of these errors, OpCon will report the job as shown in the following examples (refer to both *Job Status* discussions, below); it will assume that the jobs are active but incomplete. In this case, the IBM i system operator or administrator becomes responsible for manually correcting the configuration problems under IBM i and then manually releasing the jobs. 
 
-If it is decided that a job being held in a job queue that has an error (either condition SMA0007 or SMA0008) should be deleted and not run when the error has been bypassed, the correct procedure for deleting the job is to use the OpCon/xps Kill command from the job's context (right mouse click) menu in the OpCon/xps EM Schedule display. Using the Kill command will allow OpCon/xps to correctly set the job status in the schedule and it also removes the job from the IBM i job queue.
+If it is decided that a job being held in a job queue that has an error (either condition SMA0007 or SMA0008) should be deleted and not run when the error has been bypassed, the correct procedure for deleting the job is to use the OpCon Kill command from the job's context (right mouse click) menu in the OpCon EM Schedule display. Using the Kill command will allow OpCon to correctly set the job status in the schedule and it also removes the job from the IBM i job queue.
 
-If an IBM i system operator deletes a job from an IBM i job queue, OpCon/xps will not be able to report the failed status of that job, but will continue to show the job as active until the next OpCon/xps job status poll interval. After OpCon/xps sends a job status poll (transaction TX2) to the LSAM, the LSAM will be able to discover that the job is either not found or is in *OUTQ (output queue) status.
+If an IBM i system operator deletes a job from an IBM i job queue, OpCon will not be able to report the failed status of that job, but will continue to show the job as active until the next OpCon job status poll interval. After OpCon sends a job status poll (transaction TX2) to the LSAM, the LSAM will be able to discover that the job is either not found or is in *OUTQ (output queue) status.
 
 :::tip
-It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon/xps. The interval that controls how often OpCon/xps sends a job status request is set using the OpCon/xps **Administration function -> Options table -> Time Settings -> Minutes between checking running jobs**.
+It may take some time for the LSAM to report a failed status for a job that was ended by an operator directly from IBM i, outside of the control of the LSAM. This is because the LSAM will only search for the job status when it receives a job status request transaction (TX2) from OpCon. The interval that controls how often OpCon sends a job status request is set using the OpCon **Administration function -> Options table -> Time Settings -> Minutes between checking running jobs**.
 :::
 
 In previous versions of he IBM i LSAM software, it was possible for the server jobs to issue the error message ID SMA0097. If this error code appears next to an IBM i job in an OpCon schedule, this indicates that the LSAM software needs to be updated with the latest software patches.
 
 ## Job Status for Attempted Job Starts (TX1)
 
-If the IBM i LSAM Parameters switches (SMA0008 or SMA0007) are set to "Y" = Yes, allowing job queue error conditions to be bypassed, the LSAM will return a special job status to the OpCon/xps Schedule, rather than rejecting the job request. The job will appear to be active, however, it will show the special status message "JOBQ HELD" as illustrated in the example below. When this status appears, the job will not start executing until an operator intervenes and manually releases the held job queue. Once the job queue is released, the job should run normally and OpCon/xps and the LSAM will continue normal operations automatically.
+If the IBM i LSAM Parameters switches (SMA0008 or SMA0007) are set to "Y" = Yes, allowing job queue error conditions to be bypassed, the LSAM will return a special job status to the OpCon Schedule, rather than rejecting the job request. The job will appear to be active, however, it will show the special status message "JOBQ HELD" as illustrated in the example below. When this status appears, the job will not start executing until an operator intervenes and manually releases the held job queue. Once the job queue is released, the job should run normally and OpCon and the LSAM will continue normal operations automatically.
 
-This example illustrates how OpCon/xps notifies when a job has been allowed to bypass error code SMA0008 and enter a job queue in HELD status:
+This example illustrates how OpCon notifies when a job has been allowed to bypass error code SMA0008 and enter a job queue in HELD status:
 
 Bypassed Job Start Error SMA0008
 
 ![Bypassed Job Start Error SMA0008](../Resources/Images/IBM-i/Bypassed-Job-Start-Error-SMA0008.png "Bypassed Job Start Error SMA0008")
 
-When a job has been allowed to bypass error code SMA0007 and enter a job queue that is not attached to an IBM i subsystem, the report from the OpCon/xps Schedule works the same as in the example above, but with the following different text:
+When a job has been allowed to bypass error code SMA0007 and enter a job queue that is not attached to an IBM i subsystem, the report from the OpCon Schedule works the same as in the example above, but with the following different text:
 
 1. The Schedule job status will show: Job Running -- JOBQ NO SBS
     - This status means, "the job queue is not attached to a subsystem."
 2. The message sent to the SAM Log will read:
     - "JOBQ not linked to SBS: library/jobq preventing job: jobname #1234567890"\ (The SAM job name and job number are shown at the end of the message.)
 
-## Job Status After OpCon/xps Status Request (TX2)
+## Job Status After OpCon Status Request (TX2)
 
 If a job remains stuck in a job queue and does not achieve active status, the LSAM job status check program will either report that the job queue is still HELD (as shown above), or for any other reasons, the job status will appear as in the following example:
 
@@ -214,19 +214,19 @@ Job Status When Stuck In Job Queue
 
 ![Job Status When Stuck In Job Queue](../Resources/Images/IBM-i/Job-Figure-Status-When-Stuck-In-Job-Queue.png "Job Status When Stuck In Job Queue")
 
-As the OpCon/xps Schedule display above illustrates, a job that is still in the job queue and not actually started yet shows a status of "Job Running -- STILL IN JOBQ". This status can occur for any of at least the following three reasons:
+As the OpCon Schedule display above illustrates, a job that is still in the job queue and not actually started yet shows a status of "Job Running -- STILL IN JOBQ". This status can occur for any of at least the following three reasons:
 
 1. If the job queue was not attached to a subsystem (originally reported with the status of "Job Running -- JOBQ NO SBS")
 2. If a job was manually placed in HOLD status while it was still in the job queue.
 3. If the maximum number of jobs permitted are already active in the attached subsystem, and the job has to wait until one of the active jobs ends.
 
-If an operator is able to repair any of these causes, the submitted job should start immediately and OpCon/xps and the LSAM will automatically resume normal schedule control operations.
+If an operator is able to repair any of these causes, the submitted job should start immediately and OpCon and the LSAM will automatically resume normal schedule control operations.
 
-A [job queue] in HELD status is handled differently, as explained above. When the job queue is released, the job should start and the OpCon/xps job monitoring will return to normal status codes.
+A [job queue] in HELD status is handled differently, as explained above. When the job queue is released, the job should start and the OpCon job monitoring will return to normal status codes.
 
 ## SMA0007 Bypass Logic
 
-The LSAM job scheduler server program (LSASCHR00, job TXMMNG) checks the job queue for a job start request to make sure the job queue is attached to a subsystem. This check prevents OpCon/xps from submitting a job that will never be executed. The default action of the LSAM server (bypass flag value 'N') when it finds a job queue that is not attached to a subsystem is to fail the job start request with error code SMA0007. If the bypass flag value is set to 'Y', the job is submitted but the LSAM continues to report a special error condition to OpCon/xps SAM that shows next to the job in the OpCon/xps schedule.
+The LSAM job scheduler server program (LSASCHR00, job TXMMNG) checks the job queue for a job start request to make sure the job queue is attached to a subsystem. This check prevents OpCon from submitting a job that will never be executed. The default action of the LSAM server (bypass flag value 'N') when it finds a job queue that is not attached to a subsystem is to fail the job start request with error code SMA0007. If the bypass flag value is set to 'Y', the job is submitted but the LSAM continues to report a special error condition to OpCon SAM that shows next to the job in the OpCon schedule.
 
 Sometimes it may be possible that unusual conditions cause the LSAM server to receive a false indication that a job queue is not attached to a subsystem, when it actually is. In this case, it may be helpful to try setting the SMA0007 bypass flag to a number (1 - 9) of retries. The LSAM server will recheck the job queue status after waiting for the number of seconds specified in the Delay for SMA0007 retry, and it will repeat this process for the number of retries. If the job queue status still returns as unattached after the retries, then the LSAM job scheduler server program will fail the job start request with error code SMA0007, just as if the bypass flag had been set to 'N'.
 
@@ -270,11 +270,11 @@ The response to message ID SMA5801 does not connect directly to the pending mess
 
 ## Bypass Command Validate
 
-The LSAM job scheduler server program (LSASCHR00, job TXMMNG) previously always attempted to validate the syntax of the command line in IBM i jobs submitted by OpCon/xps. However, the LSAM server program did not support logic that would accommodate unique initial library lists that could be specified for jobs, and it was also unable to easily accommodate specific object authorities in environments that require the LSAM server user profile (SMANET) to be restricted.
+The LSAM job scheduler server program (LSASCHR00, job TXMMNG) previously always attempted to validate the syntax of the command line in IBM i jobs submitted by OpCon. However, the LSAM server program did not support logic that would accommodate unique initial library lists that could be specified for jobs, and it was also unable to easily accommodate specific object authorities in environments that require the LSAM server user profile (SMANET) to be restricted.
 
 The LSAM Parameters bypass flag normally instructs the LSAM job scheduler server to bypass, or skip any validation of the job's command line syntax. This is the recommended setting for most environments. This bypass flag has been provided so that existing IBM i LSAM clients who prefer to use the old validation method can set the bypass flag to N = no in order to continue running the LSAM with its old characteristics. 
 
-The LSAM command line syntax validation did provide a quick response in case a command was incorrectly typed, but it did not provide as much diagnostic assistance as would typically be available from the job log of a failed job. According to the old method, it was sometimes necessary to log on to an IBM i workstation in order to view the job log of the LSAM job scheduler server whenever a command was rejected for incorrect syntax. Depending on the setting of job logging parameters, the OpCon/xps "view output" feature would typically provide more helpful information about anything that is wrong with a command line. The "view output" function supports inspection of an IBM i job log from the same console display where the OpCon/xps schedule status is viewed.
+The LSAM command line syntax validation did provide a quick response in case a command was incorrectly typed, but it did not provide as much diagnostic assistance as would typically be available from the job log of a failed job. According to the old method, it was sometimes necessary to log on to an IBM i workstation in order to view the job log of the LSAM job scheduler server whenever a command was rejected for incorrect syntax. Depending on the setting of job logging parameters, the OpCon "view output" feature would typically provide more helpful information about anything that is wrong with a command line. The "view output" function supports inspection of an IBM i job log from the same console display where the OpCon schedule status is viewed.
 
 ## Discussion of Translation Tables
 
@@ -304,19 +304,19 @@ Great caution must be exercised when selecting the translation tables or CCSIDs 
 
 ## OpCon Event Command Characters
 
-A typical problem experienced by IBM i LSAM users when specifying OpCon/xps Even commands is the difficulty of trying to insert square brackets [[ ]] around the token fields that can be supported by OpCon/xps Event processing.
+A typical problem experienced by IBM i LSAM users when specifying OpCon Even commands is the difficulty of trying to insert square brackets [[ ]] around the token fields that can be supported by OpCon Event processing.
  
-For example, when an IBM i LSAM Message Management parameter has been configured to issue an OpCon/xps Event upon discovery of an error message, it might be useful to include some variable value in a notification message. A message sent to OpCon/xps from a Message Management Event might look something like this:
+For example, when an IBM i LSAM Message Management parameter has been configured to issue an OpCon Event upon discovery of an error message, it might be useful to include some variable value in a notification message. A message sent to OpCon from a Message Management Event might look something like this:
 
 :::tip Example
 $CONSOLE:DISPLAY,This message text is being sent on **[[$DATE]]**,SYSTEM,MESSAGE
 :::
 
-In the example above, the character sequence [[$DATE]] will be replaced by the system date as soon as OpCon/xps receives this $CONSOLE:DISPLAY event. This token appears in the OpCon/xps SMANetCom Trace Log, but by the time the message appears on the SAM Log, the token has already been replaced by an actual date value.
+In the example above, the character sequence [[$DATE]] will be replaced by the system date as soon as OpCon receives this $CONSOLE:DISPLAY event. This token appears in the OpCon SMANetCom Trace Log, but by the time the message appears on the SAM Log, the token has already been replaced by an actual date value.
  
 One difficulty that arises for IBM i workstation users is that the IBM 5250 workstation keyboard, emulated by the iSeries Access software on a PC, does not support direct keying of the square brackets characters.
  
-However, it is not necessary to create new translation tables to overcome this particular issue, because OpCon/xps already provides a solution for IBM and other similar platforms. The brace (curly bracket) characters {{ }} may be used as a substitute for the square brackets as Event Token field delimiters. In this case, the example above could be typed on a 5250 (emulated) workstation as follows:
+However, it is not necessary to create new translation tables to overcome this particular issue, because OpCon already provides a solution for IBM and other similar platforms. The brace (curly bracket) characters {{ }} may be used as a substitute for the square brackets as Event Token field delimiters. In this case, the example above could be typed on a 5250 (emulated) workstation as follows:
 
 :::tip Example
 $CONSOLE:DISPLAY,This message text is being sent on **{{$DATE}}**,SYSTEM,MESSAGE

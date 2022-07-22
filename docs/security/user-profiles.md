@@ -36,7 +36,7 @@ For versions of the IBM i LSAM prior to 04.00.03, it was required that QSECOFR b
 
 - The LSAM Parameters must first be configured by an LSAM Administrator before the LSAM Operator will be allowed to start the LSAM server programs.
 :::tip
-The LSAM installation program requires enough basic configuration parameters that it should be possible for an operator to start the LSAM server programs immediately after the LSAM installation has been completed. However, SMA Technologies recommends that the LSAM Parameters (main menu, option 7) be reviewed first to assure that the LSAM performs as expected. Some of the LSAM Parameter values are required in order to complete the configuration of an OpCon/xps machine table record that defines the LSAM.
+The LSAM installation program requires enough basic configuration parameters that it should be possible for an operator to start the LSAM server programs immediately after the LSAM installation has been completed. However, SMA Technologies recommends that the LSAM Parameters (main menu, option 7) be reviewed first to assure that the LSAM performs as expected. Some of the LSAM Parameter values are required in order to complete the configuration of an OpCon machine table record that defines the LSAM.
 :::
 - Only an LSAM Administrator user profile may perform LSAM configuration functions.
 - Only QSECOFR or an LSAM Administrator with *ALLOBJ authority is allowed to maintain the User Management validation lists (function 1) on the LSAM Operator Replay menu (LSAM menu 4).

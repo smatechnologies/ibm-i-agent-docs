@@ -796,7 +796,7 @@ If any of the above error conditions occur, one or more of the following symptom
   Subsystem QINTER disabled user profile RPYUSER on device LSAOPRRPY.
   Subsystem QINTER varied off work station LSAOPRRPY for user RPYUSER.
   :::
-- The Operator Replay job status in the OpCon/xps Schedule will show "Failed -- SMA0106"
+- The Operator Replay job status in the OpCon Schedule will show "Failed -- SMA0106"
 - The IBM i LSAM Operator Replay Log Entry, under function 3: Operator Replay Logs, will show a job completion code of 6
 - There will usually be no data in the LSAM's Operator Replay log detail
 

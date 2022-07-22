@@ -4,7 +4,7 @@ sidebar_label: 'How the LSAM Message Management Works'
 
 # How the LSAM Message Management Works
 
-The IBM i LSAM Message Management server performs the task of surveying message queues, looking for messages that conform to registered message response rules. Message response rules are created either by adding Message Parameters using the IBM i LSAM Menu function, or by adding message response parameters to an IBM i job in the OpCon/xps EM job master record. Each message response rule can specify either or both types of response: answer a message that requires a reply, and/or generate an OpCon/xps Event.
+The IBM i LSAM Message Management server performs the task of surveying message queues, looking for messages that conform to registered message response rules. Message response rules are created either by adding Message Parameters using the IBM i LSAM Menu function, or by adding message response parameters to an IBM i job in the OpCon EM job master record. Each message response rule can specify either or both types of response: answer a message that requires a reply, and/or generate an OpCon Event.
 
 During the process of scanning message queues, the LSAM server job TRPMSG maintains a control file (TRPMSGF10) where it stores the message key of the last message read from each message queue. As the server program repeats its cycle of checking each message queue, it uses the stored last message key to make sure that it does not process the same message twice. As long as this server job is active, the cycle of checking message queues works well and the stored message keys are normally reliable.
 
@@ -173,7 +173,7 @@ There are LSAM utility commands and programs included with the software product 
 One such tool is the LSAM utility command DSPMSGQ. Information about this tool is provided here as a hint to technical support personnel.
 
 :::warning
-Do not attempt to use the DSPMSGQ utility without instructions from SMA Support. This tool can cause unwanted events to occur, either in the LSAM or in OpCon/xps.
+Do not attempt to use the DSPMSGQ utility without instructions from SMA Support. This tool can cause unwanted events to occur, either in the LSAM or in OpCon.
 :::
 
 The DSPMSGQ utility command requires that the LSAM library list be in effect. This tool can be used from the command entry line of the LSAM menu system, or it can be used from any IBM i command entry line as long as the current library list of the job is the LSAM library list. The LSAM library list can be set from outside of the LSAM menu system using the SMASETLIBL utility command. Refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about LSAM utility commands such as SMASETLIBL. 
@@ -241,7 +241,7 @@ Following is a summary of how to configure the IBM i LSAM so that inquiry messag
 ### Message Management for the Job Completion Message Queue
 
 The decision about how to set the job completion message management flag in the LSAM Parameters may depend on the behavior of third-party software that the IBM i LSAM is controlling. In most cases, the LSAM would not expect to find messages in its reserved job completion message queue that are not actually job completion messages. If that is so, then the job completion message server program may be more efficient if the job completion message management flag is set to N=no. It is also
-possible that in some environments, the behavior of the LSAM job completion message management server program might prove inappropriate when the message management flag is set to Y=yes. There are no specific rules known that would help to determine if inappropriate behavior might occur. Instead, the LSAM administrator might suspect that the flag setting of Y=yes is causing a problem if the LSAM and OpCon/xps do not seem to properly handle job completion messages.
+possible that in some environments, the behavior of the LSAM job completion message management server program might prove inappropriate when the message management flag is set to Y=yes. There are no specific rules known that would help to determine if inappropriate behavior might occur. Instead, the LSAM administrator might suspect that the flag setting of Y=yes is causing a problem if the LSAM and OpCon do not seem to properly handle job completion messages.
 
 Consider this next example when deciding whether or not to use this LSAM processing option.
 
@@ -250,7 +250,7 @@ An old programming technique, not recommended for use in IBM i programs, used th
  
 The IBM i LSAM sets this SBMJOB parameter to MSGQ(SMADTA/SMAMSGQ), where SMADTA could be a different name of the database library in an alternate LSAM environment.
 
-In this example, when the LSAM submits the job where the program issues an inquiry message to the job completion message queue (before the job is completed), the default behavior of the LSAM was to receive the message and delete it from the message queue without considering that a response might be required to the inquiry. As a result, a *NULL response was sent to the program that issued the message. If the program command issuing the message was coded with restrictions on the values of a reply to the message, the IBM i system message processing routines rejected the reply and re-sent the message to the LSAM's job completion message queue. A tight system logic loop was generated, flooding either the LSAM job completion message queue or the OpCon/xps SAM log files, and creating a severe performance impact on the IBM i partition.
+In this example, when the LSAM submits the job where the program issues an inquiry message to the job completion message queue (before the job is completed), the default behavior of the LSAM was to receive the message and delete it from the message queue without considering that a response might be required to the inquiry. As a result, a *NULL response was sent to the program that issued the message. If the program command issuing the message was coded with restrictions on the values of a reply to the message, the IBM i system message processing routines rejected the reply and re-sent the message to the LSAM's job completion message queue. A tight system logic loop was generated, flooding either the LSAM job completion message queue or the OpCon SAM log files, and creating a severe performance impact on the IBM i partition.
 
 To prevent the system message processing loop, the LSAM Parameters option for using message management with job completion messages must be set to Y=yes. It is also necessary to add a message response rule to the LSAM's Message Management Parameters master file that will match the inquiry message and cause an appropriate response to be provided.
 :::
@@ -324,14 +324,14 @@ QMHLSTM.
 
 ### Using IBM Commands for Event Response
 
-Previous versions of the IBM i LSAM Message Management Parameters master file only supported OpCon/xps Event command strings, limited to the actual OpCon/xps Event command syntax such as $JOB:RELEASE (meaning to release a job that is held on an OpCon/xps schedule).
+Previous versions of the IBM i LSAM Message Management Parameters master file only supported OpCon Event command strings, limited to the actual OpCon Event command syntax such as $JOB:RELEASE (meaning to release a job that is held on an OpCon schedule).
 
-Now the LSAM's global Message Manager server job is able to support any IBM-format command as well as the OpCon/xps Event command strings. There are two function keys on the Message Management Parameters Add or Change screens that can be used to help correctly format IBM commands:
+Now the LSAM's global Message Manager server job is able to support any IBM-format command as well as the OpCon Event command strings. There are two function keys on the Message Management Parameters Add or Change screens that can be used to help correctly format IBM commands:
 
 - **F4=Prompt Evt**: When the cursor is positioned in the Event command field, <**F4**> causes a window of available events to appear from which a value may be selected and returned to this field.
 - **F8=Prompt CMD**: When the cursor is positioned in the Event command field, <**F8**> causes the job to branch into IBM i command prompting. If an IBM i command name was typed before <F8\> was pressed, then that specific command will be prompt. Otherwise, a general command search window will appear to help find the desired command. (Note that this IBM command prompting will not allow a command to be executed.)
 
-The LSAM Message Management server program never stops to process Event commands. This permits the main server job to quickly find and respond to messages in many different message queues. Instead, it sends OpCon/xps Event $-command strings directly to the LSAM's communications data queue so that the Event command can be immediately sent to OpCon/xps for processing.
+The LSAM Message Management server program never stops to process Event commands. This permits the main server job to quickly find and respond to messages in many different message queues. Instead, it sends OpCon Event $-command strings directly to the LSAM's communications data queue so that the Event command can be immediately sent to OpCon for processing.
 
 When an IBM command is requested, the LSAM Message Manager program spawns a separate task that is dedicated to processing the Event command. Every time the Message Manager main server program spawns a new Event command task this will start another job named TRPMSGCMD that will run in the LSAM's own subsystem under IBM i. Commands  may be very short and quick to process, but it is possible that a user-defined command could start a long process. Running in a separate task means that long-running commands will not prevent the main Message Manager from performing its tasks. One implication of this behavior is that if too many spawned tasks performing heavy work loads are started at once, this could impact the responsiveness of all the LSAM server jobs and even of the whole system. It may be necessary to adjust the performance parameters of the LSAM's subsystem, such as allocating more or dedicated system memory to the subsystem, if it is anticipated that Message Management might sometimes generate a heavy work load.
 
@@ -355,7 +355,7 @@ The LSAM Message Management server program supports replacement of LSAM Dynamic 
 
 - **F6=DynVar**: This command key, when pressed while the cursor is positioned in the Event command field, causes a window listing available Dynamic Variables to appear. PageDown as necessary, then position the cursor over the desired variable name and press <**Enter**> to select that variable so that it will be inserted as a token into the Event command field. The token will be inserted at the position where the cursor was when <**F6**> was pressed.
 
-The LSAM Message Manager processes Dynamic Variable token replacement before any other action when it is preparing to execute an Event response command. Therefore, the value that is used to replace the token could contain any form of valid IBM command or OpCon/xps $-command string. It is also permitted to use Dynamic Variables in place of one or more parameters of a command that is typed into the Event command field. More than one Dynamic Variable can be included in a single Event
+The LSAM Message Manager processes Dynamic Variable token replacement before any other action when it is preparing to execute an Event response command. Therefore, the value that is used to replace the token could contain any form of valid IBM command or OpCon $-command string. It is also permitted to use Dynamic Variables in place of one or more parameters of a command that is typed into the Event command field. More than one Dynamic Variable can be included in a single Event
 command, as long as the final result after token replacement is a valid format for the allowed command types.
 
 Use caution when determining how to set the value of a Dynamic Variable that will be replaced by the LSAM Message Manager. It might seem possible to use additional Message Management Event commands or the Message Manager capability to call user-defined programs in order to set a Dynamic Variable value. However, due to the way the Message Manager spawns separate tasks for both of these capabilities, it may not always be possible to assure that the spawned tasks will be executed in the
@@ -363,15 +363,15 @@ order expected. In other words, a task that should have set the Dynamic Variable
 
 ### OpCon IBM i Job Master Message Event Command Options
 
-The OpCon/xps job master record format for IBM i jobs supports a tab where one or more messages may be registered that could occur during the job execution. Job-level message management takes priority over the LSAM's own global Message Management server, but both types of message management are handled by the same LSAM server job. Therefore, the same capabilities as are available to the LSAM's own global Message Management server are also available to the job-level message management definitions.
+The OpCon job master record format for IBM i jobs supports a tab where one or more messages may be registered that could occur during the job execution. Job-level message management takes priority over the LSAM's own global Message Management server, but both types of message management are handled by the same LSAM server job. Therefore, the same capabilities as are available to the LSAM's own global Message Management server are also available to the job-level message management definitions.
 
-However, the OpCon/xps job master record maintenance routine (as of the date of this publication) is not currently programmed to directly handle the registration of IBM commands or LSAM Dynamic Variables. Instead, special syntax and rules for the OpCon/xps Event command $CONSOLE:DISPLAY have been defined. These special rules only work for the IBM i LSAM and they are not supported by any other LSAM.
+However, the OpCon job master record maintenance routine (as of the date of this publication) is not currently programmed to directly handle the registration of IBM commands or LSAM Dynamic Variables. Instead, special syntax and rules for the OpCon Event command $CONSOLE:DISPLAY have been defined. These special rules only work for the IBM i LSAM and they are not supported by any other LSAM.
 
 #### Using IBM Commands for Event Response
 
-OpCon/xps job master maintenance only supports the prompting and updating of OpCon/xps $-commands as Event commands that may be executed in response to messages generated by IBM i jobs. However, a work-around has been developed for this restriction in data entry rules, so that it is possible to register an IBM-format command that will be executed by the IBM i LSAM, instead of sending an Event command back to OpCon/xps. 
+OpCon job master maintenance only supports the prompting and updating of OpCon $-commands as Event commands that may be executed in response to messages generated by IBM i jobs. However, a work-around has been developed for this restriction in data entry rules, so that it is possible to register an IBM-format command that will be executed by the IBM i LSAM, instead of sending an Event command back to OpCon. 
 
-To register an IBM-format command in the OpCon/xps job master record, select the OpCon/xps Event command named $CONSOLE:DISPLAY. Then, when replacing the <**message**> parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
+To register an IBM-format command in the OpCon job master record, select the OpCon Event command named $CONSOLE:DISPLAY. Then, when replacing the <**message**> parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
 
 :::tip EXAMPLE
 ```
@@ -381,11 +381,11 @@ $CONSOLE:DISPLAY,QCMD:WRKJOB OUTPUT(*PRINT)
 
 In the example above, the location where the DISPLAY message text would be inserted now contains the required special character string QCMD: and that is followed by the IBM WRKJOB (work with job) command, as an example.
 
-Be sure to take note of the rules and restrictions explained above, under: LSAM Parameters Event Command Options -> Using IBM commands for Event response -> Using IBM Commands from Third-Party Applications. The same considerations apply for commands registered in OpCon/xps jobs because the message management event commands are processed by the same LSAM Message Management server job.
+Be sure to take note of the rules and restrictions explained above, under: LSAM Parameters Event Command Options -> Using IBM commands for Event response -> Using IBM Commands from Third-Party Applications. The same considerations apply for commands registered in OpCon jobs because the message management event commands are processed by the same LSAM Message Management server job.
 
 #### LSAM Dynamic Variables in OpCon Event commands
 
-The LSAM Message Management server program supports replacement of LSAM Dynamic Variables. Therefore, any or all of the IBM-format command that is registered in the OpCon/xps job master record for message management could be an LSAM Dynamic Variable token. Consider the following example:
+The LSAM Message Management server program supports replacement of LSAM Dynamic Variables. Therefore, any or all of the IBM-format command that is registered in the OpCon job master record for message management could be an LSAM Dynamic Variable token. Consider the following example:
 
 :::tip EXAMPLE
 ```

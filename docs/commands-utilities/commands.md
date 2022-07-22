@@ -4,7 +4,7 @@ sidebar_label: 'LSAM Commands, APIs'
 
 # LSAM Commands, APIs
 
-The IBM i LSAM supports many of its functions and actions with IBM i commands that may be used interactively or included in user programs. These commands become an application program interface (API) to OpCon/xps and to the LSAM itself, enabling very tight integration between clients' applications and the OpCon/xps strategy for
+The IBM i LSAM supports many of its functions and actions with IBM i commands that may be used interactively or included in user programs. These commands become an application program interface (API) to OpCon and to the LSAM itself, enabling very tight integration between clients' applications and the OpCon strategy for
 synchronizing all enterprise operations. In most cases, the commands can be run either interactively or in batch mode.
 
 :::warning
@@ -34,7 +34,7 @@ programmed into other software applications so that those other applications can
 - **CPYTOMSGIN**: Copy Event to SAM-SS message input
   - Passes Event instructions to the LSAM communications program for forwarding to SAM-SS.
 - **Direct Event Commands**: (…for example… JOBRLS, NTYLOG, TOKSET) Refer to the tables of Event commands under the topic of Event Management at [Event Management: XML Event Management Commands](/events-utilities/external-events.md/#xml-event-management-commands) or [Event Management: CSV Event Management Commands](/events-utilities/external-events.md/#csv-event-management-commands).
-  - Each OpCon/xps Event has been implemented by the IBM i LSAM as an IBM i command using the same name as the Event. The command processor program passes the Event instruction to the LSAM communications program for forwarding to SAM-SS.
+  - Each OpCon Event has been implemented by the IBM i LSAM as an IBM i command using the same name as the Event. The command processor program passes the Event instruction to the LSAM communications program for forwarding to SAM-SS.
 
 ### Debug mode, logging, log viewers
 - **STRSMALOG**: Start IBM i LSAM Logging
@@ -56,13 +56,13 @@ programmed into other software applications so that those other applications can
 - **LSAINPLOG**: Display Job Scheduler input transaction log
   - A data viewer that displays and interprets all the formatted transactions passed from the Job Scheduler communications program to the LSAM transaction manager.
 - **LSAJORCTL**: Display spool file management control file
-  - A data viewer that displays the spool file control values sent from OpCon/xps.
+  - A data viewer that displays the spool file control values sent from OpCon.
 - **LSAJORLOG**: Display job output retrieval activity log
-  - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon/xps Enterprise Manager job master records for IBM i jobs.
+  - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon Enterprise Manager job master records for IBM i jobs.
 - **LSATXNLOG**: Display Job Scheduler communications transaction log
   - A data viewer that displays and interprets the Job Scheduler communications program transaction log file. This file is used to track transactions until they are acknowledged and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
 - **SMADSPUSP**: Display SMA User Space
-  - A support utility command to view the content of the LSACONU01 user space where the User Name and Password for OpCon/xps external event commands is stored. This encrypted content may be viewed only with security officer authority.
+  - A support utility command to view the content of the LSACONU01 user space where the User Name and Password for OpCon external event commands is stored. This encrypted content may be viewed only with security officer authority.
 - **SMASUP**: Extract debug log files to IBM i save file for delivery to SMA Technologies Support.
   - This command performs the same function as F15=Extract log files. Refer to Viewing the LSAM Log Files. Also refer to SMARGZ, below.
 - **DSPSUPDTA**: Display Agent Support Data
@@ -109,7 +109,7 @@ programmed into other software applications so that those other applications can
 
 ### OpCon Schedule Support
 - **CHKDTAARA**: Check Data Area
-  - May be used by OpCon/xps as a prerun check that a data area must exist before a job is started.
+  - May be used by OpCon as a prerun check that a data area must exist before a job is started.
 - **CHKIFSFIL**: Check for the file in the IFS (non-DB2) file systems
   - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the Enterprise Manager "File Arrival" job sub-type for IBM i jobs, when the file name begins with a forward slash '/' denoting an IFS disk location outside of DB2.
 - **CHKFILE**: Check for file in the DB2 database
@@ -118,15 +118,15 @@ programmed into other software applications so that those other applications can
 The IBM i command CHKOBJ may also be used, especially for objecttypes other than files.
 :::
 - **SBMDBFCMD**: Submit command from database file 
-  - May be used by OpCon/xps as the Call command in order to tell the IBM i LSAM that the actual, very long call command string may be obtained from a database file in the DB2/400 database.  
+  - May be used by OpCon as the Call command in order to tell the IBM i LSAM that the actual, very long call command string may be obtained from a database file in the DB2/400 database.  
 - **RUNCAPJOB**: Run Captured Job
   - Submit the job defined by the named Captured Job ID. Refer to the topic on Job Tracking and Queuing for more information about captured jobs.
 - **STROPRRPY**: Start Operator Replay
-  - The command to use with an OpCon/xps job description, specifying the Operator Replay Script by name as the parameter for this command.
+  - The command to use with an OpCon job description, specifying the Operator Replay Script by name as the parameter for this command.
 
 ### LSAM Utility
 - **CHKIBMLSAM ENV(environment) STATUS (*ACTIVE/*INACTIVE)**: Check IBM i LSAM server job status
-  - This command is designed to be used primarily from an OpCon/xps job to report the current status of the LSAM server jobs. It will force a program failure when the server jobs do not match the STATUS keyword value.
+  - This command is designed to be used primarily from an OpCon job to report the current status of the LSAM server jobs. It will force a program failure when the server jobs do not match the STATUS keyword value.
 - **CMDEXE, CMDEXE2**: SMA wrapper to manage IBM i command errors
   - These commands are used to execute IBM i native commands inside a "wrapper" CL program that intercepts any command failure message and makes it possible for the Agent and/or OpCon to control the OpCon job status and to respond appropriately to different error messages.
 - **DSPDTAQ**: Display Data Queue
@@ -198,8 +198,8 @@ The IBM i command CHKOBJ may also be used, especially for objecttypes other than
 ### Translation Table Testing
 - **LSATBLTEST**: LSAM Translation Table Testing utility
   - From within the LSAM environment, starts a utility display that may be used to test the results of using any translation table. Refer to the section on LSAM Utilities for more information about translation tables.
-- **TESTLSATBL**: Test LSAM Translation Table (OpCon/xps job command)
-  - An LSAM software command that routes test ASCII data from an OpCon/xps job directly to the LSATBLTEST utility display. Refer to the section on LSAM Utilities for more information about translation tables.
+- **TESTLSATBL**: Test LSAM Translation Table (OpCon job command)
+  - An LSAM software command that routes test ASCII data from an OpCon job directly to the LSATBLTEST utility display. Refer to the section on LSAM Utilities for more information about translation tables.
 
 ### Manage LSAM Variables/Tokens
 - **ADDMSGTHR**: Add to count of message threshold

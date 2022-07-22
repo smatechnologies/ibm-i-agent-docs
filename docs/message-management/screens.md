@@ -19,7 +19,7 @@ Main Menu > Message management menu (#2) > Message management performance parame
 
 | Parameter            | Default (VALUES)     | Description          |
 | -------------------- | -------------------- | -------------------- |
-| Activity poll interval| 15 (seconds)        | - This value helps to balance how aggressively Message Management will be checking for messages that OpCon/xps job details have specified should be managed, versus the impact of this facility on overall system performance.     |
+| Activity poll interval| 15 (seconds)        | - This value helps to balance how aggressively Message Management will be checking for messages that OpCon job details have specified should be managed, versus the impact of this facility on overall system performance.     |
 |                     |                      | - A smaller number of seconds will improve the LSAM's ability to manage messages from individual jobs or message queues, whereas a larger number of seconds will allow more system resources for other important jobs such as LSAM Job Scheduling activity.  |
 | Auto-start message management  | N(Y or N)            | -   Y = yes, tells the LSAM subsystem startup procedure to automatically start message management at the same time as the LSAM server programs are started. When this value is set to Y, stopping the LSAM also stops message management. |
 |                      |                      | -   N = no, means that message management will only be started when the manual start command or menu function (described above) are used. Set this flag to N (the default) when message management will never be used.  |
@@ -314,7 +314,7 @@ This is an ISO-standard date field. The default value for this field which means
 -   **F3=Exit**: Quits the window and returns to the list of trapped  messages without completing any updates.
 -   **F4=Prompt Evt**: When the cursor is positioned in the Event command field, <**F4**> causes a window of OpCon Event commands to appear from which a value may be selected and returned to this field.
     :::tip
-    Using <**F4**> for this field is especially helpful, because after an Event is selected from the event list, the program uses the IBM i command prompting to show the parameters that are appropriate for each Event. When <**Enter**> is pressed from the command prompting window, the Event command string is then inserted into the Event command field with all the correct formatting and punctuation. When CPYTOMSGIN is selected from the list of Event commands, a second prompt window will appear from which may be selected the raw OpCon/xps Event command syntax.
+    Using <**F4**> for this field is especially helpful, because after an Event is selected from the event list, the program uses the IBM i command prompting to show the parameters that are appropriate for each Event. When <**Enter**> is pressed from the command prompting window, the Event command string is then inserted into the Event command field with all the correct formatting and punctuation. When CPYTOMSGIN is selected from the list of Event commands, a second prompt window will appear from which may be selected the raw OpCon Event command syntax.
     :::
 -   **F5=Refresh**: This function key will restore the current display format (TRPMSGR2A, 2B or 2C) to its original state that was first presented when the Add, Change or Copy function was started. Using F5=Refresh is isolated to the current display, for example, using F5 on display format 2B does not affect format 2A. However, it is
     possible to use F12 to go back to format 2A and then press F5 to restore format 2A to its original state.
@@ -335,38 +335,38 @@ This is an ISO-standard date field. The default value for this field which means
 
 #### $Variables Supported in Event Commands
 
-Event commands that are processed by Message Management may include many of the same token variables as are supported by OpCon/xps. However, there is a difference in the syntax. OpCon requires that variables begin with a dollar sign ($) and that the whole variable name be enclosed in double square brackets, for example, \[\[$JOB NAME\]\]. The IBM i green screen workstation does not support the square brackets, so they are not required when inserting variables into the Event command, for example, $JOB NAME. The following table lists the variables that the LSAM Message Management facility can detect and replace when responding to a
+Event commands that are processed by Message Management may include many of the same token variables as are supported by OpCon. However, there is a difference in the syntax. OpCon requires that variables begin with a dollar sign ($) and that the whole variable name be enclosed in double square brackets, for example, \[\[$JOB NAME\]\]. The IBM i green screen workstation does not support the square brackets, so they are not required when inserting variables into the Event command, for example, $JOB NAME. The following table lists the variables that the LSAM Message Management facility can detect and replace when responding to a
 message.
 
 #### $Variables
--  **$FREQUENCY NAME**:   The name of the OpCon/xps frequency table that was assigned to the job that issued the message.
+-  **$FREQUENCY NAME**:   The name of the OpCon frequency table that was assigned to the job that issued the message.
 -  **$IBM JOB ID**:       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
 -  **$IBM JOB NAME**:     The IBM i current Job Name.
 -  **$IBM JOB NBR**:      The IBM i current Job Number (always 6 digits, but handled as characters).
 -  **$IBM JOB USER**:     The IBM i current job User Name (IBM i User Profile that started the job).
--  **$JOBID**:            The OpCon/xps job identifier, a 10-digit number.
--  **$JOBID CMP**:        The OpCon/xps job name and job identifier, joined into a single string with blanks compressed out.
--  **$JOBID LONG**:       The OpCon/xps job name followed by the job identifier, with all blanks retained in the string.
--  **$JOB NAME**:         The OpCon/xps job name.
+-  **$JOBID**:            The OpCon job identifier, a 10-digit number.
+-  **$JOBID CMP**:        The OpCon job name and job identifier, joined into a single string with blanks compressed out.
+-  **$JOBID LONG**:       The OpCon job name followed by the job identifier, with all blanks retained in the string.
+-  **$JOB NAME**:         The OpCon job name.
 -  **$JOB LONG NAME**:    The long format of the complete OpCon job name.
--  **$MACHINE NAME**:     The OpCon/xps name for the LSAM job scheduler, normally the same as the LSAM Name specified in the LSAM Parameters (but the value supplied by OpCon/xps with job start requests is used here).
+-  **$MACHINE NAME**:     The OpCon name for the LSAM job scheduler, normally the same as the LSAM Name specified in the LSAM Parameters (but the value supplied by OpCon with job start requests is used here).
 -  **$MSG**:              The actual primary text from the message that was trapped. (Refer to note below about editing the content of the captured message text.)
 -  **$MSGID**:            The IBM i message ID currently being processed, in a format like CPF1234.
 -  **$MSGQ**:             The name of the message queue where the current message was found.
 -  **$MSGQ LIB**:         The library location of the message queue.
 -  **$SCHEDULE DATE**:    The date of the OpCon schedule under which the job that issued the message was started, in the (*ISO0) format of CCYYMMDD.
--  **$SCHEDULE NAME**:    The name of the OpCon/xps schedule under which the job that issued a message was started.
+-  **$SCHEDULE NAME**:    The name of the OpCon schedule under which the job that issued a message was started.
 :::tip 
 The content of the $MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of $MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the $MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.
 
-To use OpCon token variables, other than the variables listed above, include them in the Event Command text by surrounding them with braces (curly brackets) {{ }}. OpCon/xps will recognize the braces (curly brackets) in the same way as it recognizes square brackets \[\[ \]\]. This rule was established to support operating systems such as IBM i where the native EBCDIC character set does not support typing of square brackets. Do not use any brackets when using one of the variable names in the table above, because the LSAM Message Manager will replace the
-variable with its value and leave the brackets in the text. This could cause a problem with the OpCon/xps token substitution logic.
+To use OpCon token variables, other than the variables listed above, include them in the Event Command text by surrounding them with braces (curly brackets) {{ }}. OpCon will recognize the braces (curly brackets) in the same way as it recognizes square brackets \[\[ \]\]. This rule was established to support operating systems such as IBM i where the native EBCDIC character set does not support typing of square brackets. Do not use any brackets when using one of the variable names in the table above, because the LSAM Message Manager will replace the
+variable with its value and leave the brackets in the text. This could cause a problem with the OpCon token substitution logic.
 
 However, to have OpCon replace any of the other token variables that it
 can manage use the braces (curly brackets) to surround the token name.
 
 :::tip EXAMPLE
-Syntax for circular OpCon/xps Token variables in an background LSAM Message Management Event command.
+Syntax for circular OpCon Token variables in an background LSAM Message Management Event command.
 ```
 {{$SCHEDULE DATE}} 
 ```
@@ -399,8 +399,8 @@ Syntax for circular OpCon/xps Token variables in an background LSAM Message Mana
 
 #### Fields
 
-- **Event**:         The OpCon/xps Event to be generated.
-- **Description**:   A description of the action that is performed by the OpCon/xps event.
+- **Event**:         The OpCon Event to be generated.
+- **Description**:   A description of the action that is performed by the OpCon event.
 
 #### Functions
 
@@ -455,7 +455,7 @@ The number and type of fields that are displayed vary depending on the Event com
 
 Refer to the examples of Event Command prompting above and below to understand how the LSAM software commands help to define the limits of fields that apply to each OpCon Event. At one time, OpCon had a constraint that no single field of an Event command could exceed 80 characters. Most of the LSAM commands used to format an Event command show fields that would permit more characters to be entered because within OpCon those fields have mostly been defined as longer than 80 characters.
 
-In the compressed example above, the CONDSP command prompt is used to enter message data that will become part of the OpCon/xps Event $CONSOLE:DISPLAY. This command prompting screen limits the message data to only 80 characters. (Since OpCon now allows much longer messages to be sent via OpCon Event command processing, command prompting will be revised accordingly.) When used for an LSAM Message Management Event command, the fields of OpCon Events support Event Command Variable field
+In the compressed example above, the CONDSP command prompt is used to enter message data that will become part of the OpCon Event $CONSOLE:DISPLAY. This command prompting screen limits the message data to only 80 characters. (Since OpCon now allows much longer messages to be sent via OpCon Event command processing, command prompting will be revised accordingly.) When used for an LSAM Message Management Event command, the fields of OpCon Events support Event Command Variable field
 substitution, as documented above in this topic.
 
 #### SCGBLD Command Prompt
@@ -492,7 +492,7 @@ The general-purpose Event command CPYTOMSGIN is supported by an additional promp
 :  Position to desired Event, press Enter.     :
 :  Press F12 to return without a selection.    :
 :                                              :
-:  OpCon/xps Event Command                     :
+:  OpCon Event Command                     :
 :  $CALENDAR:ADD                               :
 :  $CALENDAR:DEL                               :
 :  $CONSOLE:DISPLAY                            :
@@ -531,7 +531,7 @@ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display
 ```
 
 In the syntax model illustrated above, the < > characters are used only to mark the description of each field. When the actual data is typed in place of the field description, the < > characters must be removed, just as the field description must also be removed. However,
-the commas are a critical part of the command syntax. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon/xps that the null value should be applied to that field.
+the commas are a critical part of the command syntax. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon that the null value should be applied to that field.
 
 Press <**Enter**> after the command has been fully formatted to causethe final command format  for CPYTOMSGIN to be inserted into the Message management parameters, Event command field. (The command syntax may still be modified, once it has been inserted into the Event command
 field.)

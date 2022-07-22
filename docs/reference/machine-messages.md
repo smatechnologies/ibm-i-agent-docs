@@ -24,7 +24,7 @@ The table below presents LSAM status messages forwarded to the SAM. The message 
 | 1 | SMA0022    | Run image in run request is invalid (failed IBM i CMDCHK)|
 | 1 | SMA0023    | Run job submission failed|
 | 1 | SMA0024    | Job initial library list is invalid|
-| 1 | SMA0025    | Unrecognized job type in OpCon/xps job start request (TX1)|
+| 1 | SMA0025    | Unrecognized job type in OpCon job start request (TX1)|
 | 1 | SMA0027    | FTP job user profile or password invalid|
 | 1 | SMA0028    | FTP job sub-command source member file error|
 | 1 | SMA0029    | FTP job invalid action type|
@@ -32,7 +32,7 @@ The table below presents LSAM status messages forwarded to the SAM. The message 
 | 1 | SMA0044    | Tracked or Queued Job start request did not include Private Data with Job ID|
 | 1 | SMA0045    | LSAM cannot find Job Tracking record for Tracked/Queued Job start request|
 | 1 | SMA0052    | Tracked/Queued Job already released or cancelled by IBM i Operator|
-| 1 | SMA0062    | OpCon/xps transaction XML field code is invalid|
+| 1 | SMA0062    | OpCon transaction XML field code is invalid|
 | 1 | SMA0067    | SMAFT job request received with no source IP address|
 | 1 | SMA0073    | Job auxiliary data in XML fields is invalid, job request rejected|
 | 1 | SMA0108    | Operator Replay failed: Invalid script name, not on file|
@@ -61,7 +61,7 @@ The table below presents LSAM status messages forwarded to the SAM. The message 
 | 7 | SMA0075    | SMAFT Agent job did not find any transfer task definition fields|
 | 7 | SMA0076    | SMAFT Agent job found invalid XML field code in job parameters file|
 | 7 | SMA0077    | SMAFT Agent job detected a failure of the XML parser module|
-| 7 | SMA0078    | SMA File Transfer job failed – refer to OpCon/xps job properties for details|
+| 7 | SMA0078    | SMA File Transfer job failed – refer to OpCon job properties for details|
 | 7 | SMA0079    | SMA File Transfer encryption or compression option not supported|
 | 7 | SMA0080    | SMA File Transfer Destination file exists and option is do not overwrite|
 | 7 | SMA0081    | SMAFT Agent put-file (IFS files) program SMAFTAR10 failed|

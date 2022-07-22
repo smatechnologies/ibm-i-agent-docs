@@ -23,5 +23,5 @@ For all jobs started in the IBM i system, one of two techniques may be used to c
 :::warning
 When using multiple LSAM environments, it is only possible to start job tracking from one environment at a time.
 
-The reason for this restriction is that job tracking is a system-wide function that is managed by manipulating the exit points for the system command to submit jobs (SMBJOB). The exit program for LSAM job tracking can only be registered for one LSAM environment at a time. Job tracking must be stopped in one environment before starting it from another environment. As with all tasks involving multiple environments, this requires careful coordination with SAM-SS of OpCon/xps.
+The reason for this restriction is that job tracking is a system-wide function that is managed by manipulating the exit points for the system command to submit jobs (SMBJOB). The exit program for LSAM job tracking can only be registered for one LSAM environment at a time. Job tracking must be stopped in one environment before starting it from another environment. As with all tasks involving multiple environments, this requires careful coordination with SAM-SS of OpCon.
 :::

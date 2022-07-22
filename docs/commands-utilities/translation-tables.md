@@ -159,7 +159,7 @@ Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 
 ### TESTLSATBL Utility Command
 
-The command TESTLSATBL has been created only for one special purpose. This command may be used from within an OpCon job master record, in the Call command line of a Batch job type, to send a message directly from OpCon/xps to the LSATBLTEST utility display documented above. This command will not function as expected when used outside of the OpCon/xps-to-LSAM job scheduler work flow because the LSAM server programs have been specially coded to respond in a unique way to this command name. The command by itself merely logs a normal completion message into the job log of any job where the command runs, and the OpCon normal completion status does not reflect whether the test message was actually received by the LSATBLTESTdisplay tool, documented above. 
+The command TESTLSATBL has been created only for one special purpose. This command may be used from within an OpCon job master record, in the Call command line of a Batch job type, to send a message directly from OpCon to the LSATBLTEST utility display documented above. This command will not function as expected when used outside of the OpCon-to-LSAM job scheduler work flow because the LSAM server programs have been specially coded to respond in a unique way to this command name. The command by itself merely logs a normal completion message into the job log of any job where the command runs, and the OpCon normal completion status does not reflect whether the test message was actually received by the LSATBLTESTdisplay tool, documented above. 
 
 #### Command Syntax
 ```
@@ -199,7 +199,7 @@ IBM supports the creation of user-defined translation tables under IBM i. IBM su
 - Create or update a translation table source file member to modify how the translation works
 - Create a user-defined translation table in a DB2 UDB (DB2/400) library (CRTTBL)
 
-As an example of this process, assume that we wish to translate braces (curly brackets) typed on a 5250-type workstation (usually emulated by a PC program) into square brackets before the data is sent to OpCon/xps. Of course, if we make this choice in the LSAM translation tables, we will lose the ability to send braces (curly brackets) directly. But for the purpose of this example, we will assume that this is an acceptable choice.
+As an example of this process, assume that we wish to translate braces (curly brackets) typed on a 5250-type workstation (usually emulated by a PC program) into square brackets before the data is sent to OpCon. Of course, if we make this choice in the LSAM translation tables, we will lose the ability to send braces (curly brackets) directly. But for the purpose of this example, we will assume that this is an acceptable choice.
 
 To create a new table that translates EBCDIC characters into ASCII characters, we start with the IBM i system-supplied translation table called QASCII from library QSYS. Using the WRKTBL command to view this table in a list, option 5=Display may then be entered to view the contents of the table. The following example shows the view of the
 table, paged down to the position where the braces (curly brackets) character occurs in the EBCDIC character set (X'D0').
@@ -436,7 +436,7 @@ A careful examination of the SMANetCom Trace Log requires that the log viewer wi
 
 As explained previously, the LSAM job scheduling communications server program recognizes the special command TESTLSATBL, and it responds to that command by routing the enclosed TEXT string directly to a special LSAM data queue used only by the LSAM utility command LSATBLTEST. As soon as we have confirmed that the job request data has been sent by OpCon, we can immediately begin using the LSATBLTEST command from with the target LSAM environment in order to retrieve and examine the test character string.
 
-It is important to remember that the LSAM communications server has sent exactly the ASCII character string that was received from OpCon/xps. The special translation table testing protocol implemented by the LSAM prevents the LSAM server programs from touching the test character string. It is sent in tact so that we can experiment with different translation tables while using the LSAM's LSATBLTEST utility display.
+It is important to remember that the LSAM communications server has sent exactly the ASCII character string that was received from OpCon. The special translation table testing protocol implemented by the LSAM prevents the LSAM server programs from touching the test character string. It is sent in tact so that we can experiment with different translation tables while using the LSAM's LSATBLTEST utility display.
 
 #### IBM i LSAM LSATBLTEST Command Shows Results from TESTLSATBL Job
 ```

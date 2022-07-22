@@ -109,7 +109,7 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
 |  ----------------------------------------------------------------------------------------| ------------------------------------------------------| ------------------------------------------------------------- |
 |  1 : 2 : Job Track Logs                                                                  |                       WRKTRKJOB                       |  LSALOGF00 (activity log)TRKJOBF00 (tracked job definitions)|
 |  2 : 2 : 1 : Display message management activity log                                     |                    (call trpmsgr03)                   |                           LSALOGF10|
-|  2 : 2 : 2 : Display OpCon/xps (IBM i) job-level message management log                  |                    (call trpmsgr03)                   |                           TRPMSGF20|
+|  2 : 2 : 2 : Display OpCon (IBM i) job-level message management log                  |                    (call trpmsgr03)                   |                           TRPMSGF20|
 |  3 : 8 : Display captured data log (SCANSPLF)                                            |               CALL OPRLOGR40 PARM('S')                |                         OPRLOGF40|
 |  3 : 9 : Display data capture debug log (SCANSPLF)                                       |               CALL CAPLOGR10 PARM('S')                |                         CAPLOGF10|
 |  4 : 2 : Operator Replay logs (session log)                                              |                    (call oprlogr00)                   |                           OPRLOGF00|

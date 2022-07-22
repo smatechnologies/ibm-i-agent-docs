@@ -915,7 +915,7 @@ To begin using the LSAM, refer to [IBM i LSAM Configuration](../configuration/co
 
 3. From the LSAM Main Menu, use function 7. LSAM parameters to review and update the configuration values. Be sure to verify and take note of the LSAM Name, the IP Address and the communications port numbersthat will be used by OpCon to  communicate with this LSAM.
 
-4. On the OpCon server, configure the OpCon machine table to add a record for the LSAM Name. Please refer to [Extended Discussion of Parameters](../configuration/configuration.md) for some important notes about setting some of the Advanced values in the OpCon/xps machine table.
+4. On the OpCon server, configure the OpCon machine table to add a record for the LSAM Name. Please refer to [Extended Discussion of Parameters](../configuration/configuration.md) for some important notes about setting some of the Advanced values in the OpCon machine table.
 
 5. Read through the remainder of this topic and observe any late  documentation changes that may apply to the configuration of LSAM operations.
 

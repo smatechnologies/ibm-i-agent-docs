@@ -3,7 +3,7 @@ sidebar_label: 'How LSAM Job Tracking Works'
 ---
 # How LSAM Job Tracking Works
 
-This section of documentation provides important background information and it identifies the processes and tools that may be used in a variety of ways to help adapt OpCon/xps scheduling and event response to various types of jobs that may run under IBM i. It is important to understand  this discussion because the LSAM job tracking feature alters the way IBM i job management behaves. These changes could impact other software that is running under IBM i.
+This section of documentation provides important background information and it identifies the processes and tools that may be used in a variety of ways to help adapt OpCon scheduling and event response to various types of jobs that may run under IBM i. It is important to understand  this discussion because the LSAM job tracking feature alters the way IBM i job management behaves. These changes could impact other software that is running under IBM i.
 
 Important fundamental definitions of Job Tracking types are provided in the introduction to this topic. This information is necessary for understanding the application of Job Tracking functions. In addition, the LSAM's Alternate Job Notify service is an LSAM service required for the True Passive type of job tracking. Details about how the Alternate Job Notify service works are provided in IBM i Components and Operation -> Operating the LSAM -> Alternate Job Notify Service.
 
@@ -31,7 +31,7 @@ There are some IBM rules restricting the way registered exit programs work. Deta
 If it is necessary to restore the exit program registration for other software in the system, for example, after completing the LSAM's Capture Job function, then the LSAM command ENDJOBTRK or the corresponding LSAM sub-menu function on the Job Tracking menu must first be used to remove the LSAM's exit program registration. Once the
 ENDJOBTRK function has completed, third-party software tools may be used to reinstate the exit programs from their software.
 
-If there is a requirement to continue using registered exit programs from other software vendors while the LSAM is operational, it will not be possible to rely on Tracked or Queued jobs. However, the LSAM's Capture Job function may provide a useful alternative to actively intercepting jobs that would normally be initiated by IBM i system users (rather than the OpCon/xps schedule). Once a job has been captured, it becomes possible to create routines or procedures that will allow that job to be requested by users and tracked or controlled by OpCon/xps without having to use either the SBMJOB command or some third-party software.
+If there is a requirement to continue using registered exit programs from other software vendors while the LSAM is operational, it will not be possible to rely on Tracked or Queued jobs. However, the LSAM's Capture Job function may provide a useful alternative to actively intercepting jobs that would normally be initiated by IBM i system users (rather than the OpCon schedule). Once a job has been captured, it becomes possible to create routines or procedures that will allow that job to be requested by users and tracked or controlled by OpCon without having to use either the SBMJOB command or some third-party software.
 
 ## Job Tracking and Queuing Versus Capture Job
 
@@ -285,9 +285,9 @@ In order to use the Capture Job tool, the LSAM Job Tracking feature must be star
 
 Use the LSAM's STRCAPJOB command or the corresponding menu function in the LSAM's Job Tracking sub-menu to add or remove job or workstation names from a temporary list of jobs that will be enabled to perform the capture function. A job or workstation that has been registered to capture jobs will have every SBMJOB command intercepted and every job that is intercepted will be stored by the LSAM as a captured job profile. If the intention is to capture only one job, then the capturing job or workstation must be immediately unregistered using the ENDCAPJOB function (also found in the LSAM menus).
 
-When a job is captured, it is not allowed to run. Captured jobs can also not become tracked or queued jobs. All that happens to a captured job is that its full  definition is stored in the LSAM master files, including any local data area (LDA) content. During the capture process, an identifier is assigned to the captured job. If an interactive user is capturing a job, that user is allowed to update the proposed captured job ID using up to 12 characters. (Using 12 characters allows more than one variation of a single job name to be captured with different attributes.) If a job is captured by a registered batch job, the default ID for the captured job will be its job name (up to 10 characters). After the capture action is completed, it is possible to make changes to any attribute of the job or to the LDA content using LSAM manual maintenance tools. This form of change to capture jobs would be performed before the job is scheduled to be executed one or more times from an OpCon/xps schedule using the RUNCAPJOB command.
+When a job is captured, it is not allowed to run. Captured jobs can also not become tracked or queued jobs. All that happens to a captured job is that its full  definition is stored in the LSAM master files, including any local data area (LDA) content. During the capture process, an identifier is assigned to the captured job. If an interactive user is capturing a job, that user is allowed to update the proposed captured job ID using up to 12 characters. (Using 12 characters allows more than one variation of a single job name to be captured with different attributes.) If a job is captured by a registered batch job, the default ID for the captured job will be its job name (up to 10 characters). After the capture action is completed, it is possible to make changes to any attribute of the job or to the LDA content using LSAM manual maintenance tools. This form of change to capture jobs would be performed before the job is scheduled to be executed one or more times from an OpCon schedule using the RUNCAPJOB command.
 
-Different from tracking and queuing, the LSAM capture routines do not communicate at all with OpCon/xps during the capture process. This means it is possible to capture jobs even while the LSAM is off line from OpCon.
+Different from tracking and queuing, the LSAM capture routines do not communicate at all with OpCon during the capture process. This means it is possible to capture jobs even while the LSAM is off line from OpCon.
 
 Captured jobs can only be executed from an OpCon schedule. In the OpCon Enterprise Manager, an IBM i job master record is created setting the job sub-type to batch job. The Call command line must specify the command RUNCAPJOB, and the command parameter CAPJOBID(job_id) is used to specify the captured job ID.
 
@@ -295,9 +295,9 @@ The attributes of a captured job can be defined and modified in various ways. It
 
 1. The original job attributes are captured by the LSAM.
 2. An authorized LSAM operator or administrator can use the WRKCAPJOB command to permanently modify any job attribute.
-3. The somewhat limited set of OpCon/xps IBM i job master record parameters can be used to override the stored values of the captured job.
+3. The somewhat limited set of OpCon IBM i job master record parameters can be used to override the stored values of the captured job.
 4. LSAM Dynamic Variables can be predefined so that a job's attributes can be automatically modified just before the LSAM actually submits the job, usually depending on circumstances that are present at the moment the job will execute.
-    a.  The LSAM's SETDYNVAR command can be used in a predecessor job in the OpCon/xps schedule, or as a pre-run command on the RUNCAPJOB job. In this case, it becomes possible to apply OpCon/xps variables to the SETDYNVAR command line, so that OpCon/xps properties can be communicated to the LSAM for use in redefining a job's parameters.
+    a.  The LSAM's SETDYNVAR command can be used in a predecessor job in the OpCon schedule, or as a pre-run command on the RUNCAPJOB job. In this case, it becomes possible to apply OpCon variables to the SETDYNVAR command line, so that OpCon properties can be communicated to the LSAM for use in redefining a job's parameters.
     b.  Other types of Dynamic Variables defined in the LSAM master file can be used to retrieve and apply IBM i environmental values to almost any aspect of the captured job.
 
 As a captured job is submitted for execution, any associated LDA content is prepared by the LSAM so that it becomes part of the submitted job, just as if the job were being submitted by the originating software or user. The LSAM also preserves the job ID information of the original submitting job and user and applies this information to the SBMFOR parameter of the submitted job. The SBMFOR parameter allows the job to remain associated with the original submitting user and job, as if the job had been submitted directly by that user and job.
@@ -313,7 +313,7 @@ Whenever a job has been recognized by the LSAM as qualifying for job tracking or
 :::tip Example
 \> sbmjob cmd(dsplibl *print) job(QUETEST01)
 SMAPGM/SMASBMJOB CMD(DSPLIBL OUTPUT(*PRINT)) JOB(QUETEST01)
-OpCon/xps tracking job name(QUETEST01), number(000147): see WRKTRKJOB
+OpCon tracking job name(QUETEST01), number(000147): see WRKTRKJOB
 :::
 
 The job number listed in the example message above (SMA0806) is the LSAM Job Tracking number, not the IBM i job number. An IBM i job number will not be assigned to the job until it is actually released from LSAM tracking. The message suggests using the command WRKTRKJOB to view and manage LSAM tracked jobs, since the IBM i WRKJOB command will not show the job until it is released from the LSAM job tracking master file. The qualified command name SMAGPL/WRKTRKJOB can be used from outside of the LSAM menu system, since this command relies on its PRDLIB attribute to automatically access the LSAM environment.
@@ -379,7 +379,7 @@ The job date applied under IBM i for Tracked, Queued or Captured job has special
 | JOBMSGQFL | Job message queue full action | Not supported -- relies on the setting of the system value.      |
 | INLASPGRP | Initial auxiliary storage group | Only the value *CURRENT is not supported. If specified, it will be replaced by the value *JOBD, meaning that the
 value of this parameter will be obtained from the job description used for the job.                  |
-| LOGOUTPUT | Job log output            | For OpCon scheduled jobs, this parameter is always forced to *JOBEND in order to conform with the LSAM server support for the OpCon/xps JORS (job output retrieval) feature -- where a job log may be retrieved and viewed from the OpCon/xps Schedule display.                  |
+| LOGOUTPUT | Job log output            | For OpCon scheduled jobs, this parameter is always forced to *JOBEND in order to conform with the LSAM server support for the OpCon JORS (job output retrieval) feature -- where a job log may be retrieved and viewed from the OpCon Schedule display.                  |
 
 ## Local Data Area (LDA) Support
 
@@ -398,7 +398,7 @@ The OpCon Schedule display may show message codes next to a job that provide mor
 This message is highly unlikely to occur. It would normally only be displayed in developer testing environments under unusual circumstances.
 Message . . . . : IBM i LSAM cannot find the Job Tracking record for a Tracked or Queued job.
 
-When OpCon/xps sends a TX1 (start job) transaction identified as job type Tracked or Queued, the LSAM must have a job definition record stored in the Job Tracking job definition master file (TRKJOBF00). This message is sent when a record cannot be found for the Job Tracking Number that was returned in field code 0004 (private data) of the TX1 transaction. This error should not occur under normal circumstances. It could be caused by corrupted data communications or a programming error.
+When OpCon sends a TX1 (start job) transaction identified as job type Tracked or Queued, the LSAM must have a job definition record stored in the Job Tracking job definition master file (TRKJOBF00). This message is sent when a record cannot be found for the Job Tracking Number that was returned in field code 0004 (private data) of the TX1 transaction. This error should not occur under normal circumstances. It could be caused by corrupted data communications or a programming error.
 
 ### SMA0052
 
@@ -407,11 +407,11 @@ This message could appear if the LSAM started tracking a job, but the job was ma
 Message . . . . : Tracked Job status does not permit release of job.
 Jobs in the LSAM Job Tracking file, TRKJOBF00, can only be released if they do
 not have a status suggesting they have already been processed by the LSAM or
-by OpCon/xps. For the LSAM WRKTRKJOB command display, the only job status
-codes that permit manually releasing a job are E = error from OpCon/xps, and
-T = LSAM Tracking (but OpCon/xps has not responded). If OpCon/xps shows
+by OpCon. For the LSAM WRKTRKJOB command display, the only job status
+codes that permit manually releasing a job are E = error from OpCon, and
+T = LSAM Tracking (but OpCon has not responded). If OpCon shows
 this message ID for a failed job, it is because the job was already
-released, usually manually while OpCon/xps was down.
+released, usually manually while OpCon was down.
 
 When failed job status code SMA0052 appears, it is a signal that manual job control actions will be required from the operator to properly resolve the job's status under OpCon and to assure that any required jobs have completed normally under IBM i. An illustration of this job status follows.
 

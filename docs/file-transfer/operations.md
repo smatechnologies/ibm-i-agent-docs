@@ -73,9 +73,9 @@ The End SMAFT Server option tells the LSAM to discontinue listening for SMA File
 6. Enter **3** to Work with SMAFT jobs in the SMA File Transfer menu.
 7. Confirm that job SMAFTS is NOT present among the active jobs in the subsystem.
 
-## Specifying IBM i Files in OpCon/xps EM Job Master
+## Specifying IBM i Files in OpCon EM Job Master
 
-The OpCon/xps EM uses a unique job type for SMA File Transfer jobs that is not specific to any one operating system. The operating system at either the Source or Destination end of a file transfer is implied by the Machine name that is selected as the Source or the Destination. 
+The OpCon EM uses a unique job type for SMA File Transfer jobs that is not specific to any one operating system. The operating system at either the Source or Destination end of a file transfer is implied by the Machine name that is selected as the Source or the Destination. 
 
 When the selected Machine is running IBM i and the file or table being transferred is stored in the DB2 UDB native database (not the IFS), the Source File or the Destination File is specified in the following manner:
 

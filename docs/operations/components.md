@@ -35,7 +35,7 @@ When the LSAM is running, one subsystem and multiple primary server jobs are act
 -   This job purges LSAM log files and job report output, including job log reports (spool files).
 -   The LSAM log files are purged only when the LSAM Parameter value of Automatic delete has been set to Y. 
 -   Job log report spool files are always managed according to the separate LSAM Parameters that control how long job output should be retained.
--   LSAM debug log files are managed by this process when the Backup and Reorganize options allow the LSAM to automatically schedule the SMARGZ command. (Optionally, the SMARGZ command can be configured to run as a job in an OpCon/xps schedule.)
+-   LSAM debug log files are managed by this process when the Backup and Reorganize options allow the LSAM to automatically schedule the SMARGZ command. (Optionally, the SMARGZ command can be configured to run as a job in an OpCon schedule.)
 
 ## Optional Server Jobs
 Some LSAM server jobs are separately controlled by their own option

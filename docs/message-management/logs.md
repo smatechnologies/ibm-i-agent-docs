@@ -7,9 +7,9 @@ sidebar_label: 'Message Management Logs'
 
 ### Log Choice Menu
 
-When the Message Management Logs function is selected from the menu, an initial screen offers a choice between two different types of log file. The activity log appears in the following examples, but the OpCon/xps job-level message management log uses the same list and detail display formats.
+When the Message Management Logs function is selected from the menu, an initial screen offers a choice between two different types of log file. The activity log appears in the following examples, but the OpCon job-level message management log uses the same list and detail display formats.
 
-The OpCon/xps job-level message management log shows the information that was sent by SAM-SS and saved by the LSAM when the job start request was received. This information is used to format job-specific responses that also appear in the activity log (as entry type OpConJob) if the message is actually encountered.
+The OpCon job-level message management log shows the information that was sent by SAM-SS and saved by the LSAM when the job start request was received. This information is used to format job-specific responses that also appear in the activity log (as entry type OpConJob) if the message is actually encountered.
 
 ### LSALOGR10-0 - Message Management Logs
 
@@ -31,7 +31,7 @@ Main Menu > Message management menu (#2) > Message management logs (#2)
 #### Options
 
 -   1 = Display message management activity log (LSALOGF10)
--   2 = Display OpCon/xps job-level message management log (TRPMSGF20)
+-   2 = Display OpCon job-level message management log (TRPMSGF20)
 
 ## Message Management Activity Log List
 
@@ -40,7 +40,7 @@ Main Menu > Message management menu (#2) > Message management logs (#2)
 #### Menu Pathways
 
 -   Main Menu > Message management menu (#2) > Message management logs (#2) > 1 (or 2)
--   The list and the details display the same for either of the Message Management log options, with the exception of the Reply Type column on the list that will show the actual Reply... when the OpCon/xps job-level message management log is listed.
+-   The list and the details display the same for either of the Message Management log options, with the exception of the Reply Type column on the list that will show the actual Reply... when the OpCon job-level message management log is listed.
 
 #### Fields
 
@@ -50,20 +50,20 @@ Main Menu > Message management menu (#2) > Message management logs (#2)
 | Opt              | None                   | <**Tab**> to a row in the table and enter an option.             |
 | IBM i Job Name   | IBM i Name Rules (Refer to [IBM i Name Rules](../configuration/configuration.md#ibm-i-name-rules)) |  The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number. The name portion is common to as many instances of the same job definition as may be executed. The IBM i permits more than one instance of the same job name to be executed concurrently. |
 | IBM i Job Number |                        | The IBM i job number. The job number identifies unique jobs using the same name on the list display.      |
-| SAM Job Name     |                        | The name portion of the full job identifier assigned by OpCon/xps. (Alternates with IBM i Job name)   |
-| SAM Job Number   |                        | The numeric ID portion of the full job identifier assigned by OpCon/xps. (Alternates with IBM i) |
+| SAM Job Name     |                        | The name portion of the full job identifier assigned by OpCon. (Alternates with IBM i Job name)   |
+| SAM Job Number   |                        | The numeric ID portion of the full job identifier assigned by OpCon. (Alternates with IBM i) |
 | Date/Time        |                        | The time stamp when the message was logged |
 | Msg ID           |                        | An IBM i message identifier (comprised of 3 letters followed by 4 digits). Definitions for message IDs may normally be found in message files stored in the DB2/400 database. |
 | Resp             |                        | Response Type:  |
 |                  |                        | -   R = Reply to message            |
-|                  |                        | -   E = Event, sent to OpCon/xps          |
+|                  |                        | -   E = Event, sent to OpCon          |
 |                  |                        | -   B = Both a reply and an event       |
 | Reply Type       | Appears only for the Activity Log.  | The type of log entry:  |
 |                  |                        | -   LSAMtrap = a message trap defined by the LSAM's on message management table.  |
-|                  |                        | -   OpConJob = a job-specific message trap defined for the one job under the OpCon/xps EM job master record. |
+|                  |                        | -   OpConJob = a job-specific message trap defined for the one job under the OpCon EM job master record. |
 |                  |                        | -   Error = shown in Red, the Message Management facility attempts to log errors in Reply or Event execution. Use option 5=display to see details about the error entry. |
 |                  |                        | -   InfoText = show in Blue, the Message Management facility adds log entries for actions that may be subject to audit, such as the replacement of any Dynamic Variable that was included in a message Event command. |
-| Reply...         | Appears only for the OpCon/xps job-level management log | Shows either the 6-character reply value, or the first portion of the Event command string, depending on the response type (Rsp). |
+| Reply...         | Appears only for the OpCon job-level management log | Shows either the 6-character reply value, or the first portion of the Event command string, depending on the response type (Rsp). |
 
 #### Functions
 
@@ -92,8 +92,8 @@ This detail display appears the same for the OpCon job-level management log, alt
 - Log timestamp: The time stamp when the message was logged, that is, when the LSAM responded to the message.
 - Log key: An internal record ID number assigned by the IBM i DB2 database manager.
 - IBM i job ID: The full name of the IBM i job that issued the message.
-- SAM job number: The numeric ID portion of the job identifier assigned by OpCon/xps.
-- SAM job name: The name portion of the job identifier assigned by OpCon/xps.
+- SAM job number: The numeric ID portion of the job identifier assigned by OpCon.
+- SAM job name: The name portion of the job identifier assigned by OpCon.
 - Msg Mgmt Rec key #:The internal record ID of the original |
 Message Management Parameter record that was being processed when this log entry was generated. This number can be found in the list of the Message Management Parameter records in order to perform research into the master records that defined processing of the message.                               
 - Message ID: An IBM i message identifier (comprised of 3 letters followed by 4 digits). Definitions for message IDs may normally be found in message files stored in the dB2/400 database.
@@ -118,7 +118,7 @@ respond to the message. A value of zeros for an EQ comparison means that the var
 - Capture ID : Shows the Capture Application ID, if this Parameter record was linked to a shared Capture Data application (and, via that link, also to any Response Rules). 
 - Answer type: 
   -   R = Reply to message               
-  -   E = Event, sent to OpCon/xps       
+  -   E = Event, sent to OpCon       
   -   N = None                           
   -   (There will be no log entry for Both) 
 - End?:

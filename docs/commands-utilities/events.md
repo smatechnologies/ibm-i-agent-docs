@@ -41,7 +41,7 @@ Actually, a simpler way to force the Script to fail would be to mark Step # 50 w
 Despite the simplicity of the example above, in many cases, the ON_ERROR Step would prove useful because it might also included a step qualification rule where, for example, the special variable $ERRMSGID could be compared to a known possible message ID value that is recognized by the Script author as a fatal error. Similarly, the ON_ERROR step could use the SMAGOTO command to turn job control over to a separate error handling Script, where mutiple different conditions could be tested, and only certain conditions would then actually execute the SMAFAILJOB command.
 
 ## CPYTOMSGIN
-This External Event Interface command allows a user program to directly pass OpCon/xps events to the SAM and supporting services (SAM-SS).
+This External Event Interface command allows a user program to directly pass OpCon events to the SAM and supporting services (SAM-SS).
 
 ### Using CPYTOMSGIN
 Copy to message input: This is an IBM i LSAM imitation of the similar function available on the OpCon server. CPYTOMSGIN may be used to generate any OpCon Event command, especially those that are not supported by individual LSAM commands.
@@ -50,7 +50,7 @@ The CPYTOMSGIN utility forwards external events to SAM and supporting services (
 
 Another important capability of the CPYTOMSGIN command is that it will support translation of IBM i LSAM Dynamic Variable tokens that may be included anywhere within the CPYMSGIN parameter, that is, within the actual Event command line.
 
-The syntax for Event commands that are not represented by individual IBM i LSAM commands may be viewed when the CPYTOMSGIN command is selected from the LSAM's menu-driven Event Management function (LSAM menu 3, option 1). The automatic prompting of Event command syntax that occurs when CPYTOMSGIN is selected and a sub-menu of available commands appears results in a final command prompting screen that will contain the model syntax for each OpCon/xps Event command. This model syntax could be copied from the prompt screen and then pasted into the MESSAGE parameter of the CPYTOMSGIN command whenever it is being coded in a user-defined program.
+The syntax for Event commands that are not represented by individual IBM i LSAM commands may be viewed when the CPYTOMSGIN command is selected from the LSAM's menu-driven Event Management function (LSAM menu 3, option 1). The automatic prompting of Event command syntax that occurs when CPYTOMSGIN is selected and a sub-menu of available commands appears results in a final command prompting screen that will contain the model syntax for each OpCon Event command. This model syntax could be copied from the prompt screen and then pasted into the MESSAGE parameter of the CPYTOMSGIN command whenever it is being coded in a user-defined program.
 
 ### Example Program Using CPYTOMSGIN
 
@@ -63,7 +63,7 @@ A sample Control Language program follows:
 ```
 :::
 
-In the example above, the < > characters are used only to mark the locations where field names are identified. Both the field name and the < > characters must be replaced by the required parameter value. If the specified Event command allows that a field is optional and the value will be left out of the command, the commas that delimit the field position must still be retained. Two consecutive commas with no value between them tells OpCon/xps that the null value should be assigned to the field in that position.
+In the example above, the < > characters are used only to mark the locations where field names are identified. Both the field name and the < > characters must be replaced by the required parameter value. If the specified Event command allows that a field is optional and the value will be left out of the command, the commas that delimit the field position must still be retained. Two consecutive commas with no value between them tells OpCon that the null value should be assigned to the field in that position.
 
 ## Application Example: Sending IBM i values to OpCon Properties
 
@@ -99,7 +99,7 @@ In order to allow the LSAM to send valid events to the SAM-SS, a valid User ID a
 3. Enter **2** to choose the **External Event Pass Word** option in the Event Management Menu.
 4. On the External Event Pass Word screen, <**Tab**> to the following fields and enter the following data:
 
-    a.  **User Name**: type a valid OpCon/xps user name.     
+    a.  **User Name**: type a valid OpCon user name.     
     
     b.  **Password**: type a valid external event password for the User Name above.
     

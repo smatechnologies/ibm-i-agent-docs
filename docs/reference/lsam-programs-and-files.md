@@ -26,7 +26,7 @@ More information about using the Work with objects function can be found in [LSA
 
 ## IBM i LSAM Job-ending Message Table File
 
-The LSAM server program that checks message queue SMAMSGQ (in the SMADTA library) for job-ending messages uses a table file called LSAMSGF00 to determine which message IDs mean that a job has ended normally or abnormally. This file is not meant to be updated by LSAM software users because any changes to this file could disrupt LSAM operations and prevent the LSAM from properly managing jobs for OpCon/xps.
+The LSAM server program that checks message queue SMAMSGQ (in the SMADTA library) for job-ending messages uses a table file called LSAMSGF00 to determine which message IDs mean that a job has ended normally or abnormally. This file is not meant to be updated by LSAM software users because any changes to this file could disrupt LSAM operations and prevent the LSAM from properly managing jobs for OpCon.
 
 However, SMA technical personnel could add records to this file to accommodate the unique needs of third-party software, in cases where non-IBM messages would be issued by that software to report the job completion status. To modify this file, please contact SMA technical support.
 
@@ -77,7 +77,7 @@ CALL SMAPGM/GCRTDTAARA PARM('data_area_name' 'library_name')
 
 #### Purposes and Uses
 
-Use this program to create a data area, in order to test the IBM i LSAM utility CHKDTAARA (as documented in the **IBM i LSAM** documentation). Thus, it is possible to create an OpCon/xps job with a pre-run check for a data area, and use this generic program to actually create that data area either before or after the job that has the pre-run check. Note that an attempt to create the same data area twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. To remove this data area use the following command:
+Use this program to create a data area, in order to test the IBM i LSAM utility CHKDTAARA (as documented in the **IBM i LSAM** documentation). Thus, it is possible to create an OpCon job with a pre-run check for a data area, and use this generic program to actually create that data area either before or after the job that has the pre-run check. Note that an attempt to create the same data area twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. To remove this data area use the following command:
 
 ```shell
 DLTDTAARA DTAARA(library_name/data_area_name)
@@ -93,7 +93,7 @@ CALL SMAPGM/GCRTFIL PARM('file_name' 'library_name')
 
 #### Purposes and Uses
 
-This command will create an empty physical file in the DB2/400 database with a fixed record length of 80 bytes. Use this program to create a file, in order to test the IBM i LSAM utility CHKFIL (as documented in the **IBM i LSAM** documentation). Thus, it is possible to create an OpCon/xps job with a pre-run check for a file, and use this generic program to actually create that file either before or after the job that has the pre-run check. Note that an attempt to create the same file twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. This file can be removed with the following command:
+This command will create an empty physical file in the DB2/400 database with a fixed record length of 80 bytes. Use this program to create a file, in order to test the IBM i LSAM utility CHKFIL (as documented in the **IBM i LSAM** documentation). Thus, it is possible to create an OpCon job with a pre-run check for a file, and use this generic program to actually create that file either before or after the job that has the pre-run check. Note that an attempt to create the same file twice in the same library will cause this program to return a failure code. Some suggested libraries that could be used are QUSRTEMP, QUSRSYS or QGPL. This file can be removed with the following command:
 
 ```shell
 DLTF FILE(library_name/file_name)
@@ -135,13 +135,13 @@ There may be more than one job with the same name, in which case select the most
 
 ## LSAM Program Custom Modifications
 
-SMA does not recommend that any modifications be made to its software. The task of controlling IBM i operations requires careful coordination between the LSAM and OpCon/xps. Also, whenever SMA may issue an upgrade to the IBM i LSAM software, the presence of a custom modification would require special analysis and possibly additional procedures that would not be documented in the standard installation instructions.
+SMA does not recommend that any modifications be made to its software. The task of controlling IBM i operations requires careful coordination between the LSAM and OpCon. Also, whenever SMA may issue an upgrade to the IBM i LSAM software, the presence of a custom modification would require special analysis and possibly additional procedures that would not be documented in the standard installation instructions.
 
 :::danger warning
 Be advised that if an SMA client attempts to modify or add to the IBM i LSAM software, any support issues that arise from such changes could be subject to time and materials billing from SMA, depending on the terms of the contract with SMA.
 :::
 
-When choosing to take advantage of the IBM i LSAM software commands that function as an API (application program interface) to the LSAM operations and to OpCon/xps controls, SMA recommends that custom programming be stored in a library or directory that is outside of the LSAM environment library list. Be aware that new versions of the LSAM software could potentially change the API commands, so SMA recommends re-verifying any use of the LSAM API commands as an LSAM software upgrade is evaluated and tested before using the upgrade in a live production environment.
+When choosing to take advantage of the IBM i LSAM software commands that function as an API (application program interface) to the LSAM operations and to OpCon controls, SMA recommends that custom programming be stored in a library or directory that is outside of the LSAM environment library list. Be aware that new versions of the LSAM software could potentially change the API commands, so SMA recommends re-verifying any use of the LSAM API commands as an LSAM software upgrade is evaluated and tested before using the upgrade in a live production environment.
 
 SMA recognizes that utilizing the LSAM commands from non-SMA software might best be implemented by adding certain programs or commands to the existing LSAM library list. If this strategy is required, then all custom modifications must be located in the SMAPTF library (or its equivalent). Do not add any objects to the SMAPGM base programs library (or its equivalent).
 

@@ -12,7 +12,7 @@ The procedures described in this topic should only be performed by experienced t
 
 ## LSAM Parameters that Affect Performance
 
-There are certain IBM i LSAM Parameters that are made accessible for user maintenance in order make it possible to tune the LSAM server program performance. Among the LSAM functions that are subject to tuning are TCP/IP sockets communications and also LSAM monitoring of job completion status. There is not a single formula for tuning LSAM performance. The best settings for the LSAM Parameters will vary depending on the profile of the overall IBM i system work load, the level of IBM i system activity, the level of OpCon/xps job scheduling activity and the types of jobs being submitted by OpCon/xps, and finally also by the capacity of the IBM System i partition resources assigned to any one IBM i partition.
+There are certain IBM i LSAM Parameters that are made accessible for user maintenance in order make it possible to tune the LSAM server program performance. Among the LSAM functions that are subject to tuning are TCP/IP sockets communications and also LSAM monitoring of job completion status. There is not a single formula for tuning LSAM performance. The best settings for the LSAM Parameters will vary depending on the profile of the overall IBM i system work load, the level of IBM i system activity, the level of OpCon job scheduling activity and the types of jobs being submitted by OpCon, and finally also by the capacity of the IBM System i partition resources assigned to any one IBM i partition.
 
 This documentation includes detailed discussion about each LSAM Parameter, mostly in [IBM i LSAM Configuration](../configuration/configuration.md). This topic summarizes groups of parameters to help with the evaluation of how those parameters could be set.
 
@@ -22,7 +22,7 @@ There are presently three groups of LSAM performance parameters, all appearing o
 
 Parameters in this group not discussed here are covered in detail in [IBM i LSAM Configuration](../configuration/configuration.md).
 
-It is very important to note that the first parameter, Keep socket open, should always be set to Y = yes. This parameter is carried over from past versions of the LSAM. In the past, there were certain limitations of both software and hardware that sometimes required the sockets communications link between the LSAM and OpCon/xps to start a new socket conversation for each transaction. This was highly inefficient, although it did solve a problem where job scheduling transactions could be lost. SMA believes that these problems of the past have been solved by enhancements both from SMA and from the operating system vendors and hardware vendors. The interface is much more efficient if the socket communications link starts one conversation and uses that single conversation for a continuing, bi-directional flow of transactions. This parameter should never be changed without first consulting with SMA Support.
+It is very important to note that the first parameter, Keep socket open, should always be set to Y = yes. This parameter is carried over from past versions of the LSAM. In the past, there were certain limitations of both software and hardware that sometimes required the sockets communications link between the LSAM and OpCon to start a new socket conversation for each transaction. This was highly inefficient, although it did solve a problem where job scheduling transactions could be lost. SMA believes that these problems of the past have been solved by enhancements both from SMA and from the operating system vendors and hardware vendors. The interface is much more efficient if the socket communications link starts one conversation and uses that single conversation for a continuing, bi-directional flow of transactions. This parameter should never be changed without first consulting with SMA Support.
 
 There are three parameters that directly affect the second-by-second performance of the LSAM job scheduling communications server job (job SKTCMN, program CMNSKTR00):
 
@@ -30,16 +30,16 @@ There are three parameters that directly affect the second-by-second performance
 - Control DTAQ frequency
 - Input wait timeout
 
-This server job and program are responsible for communications between the IBM i LSAM and the SAM (schedule activity monitor) of OpCon/xps, that is, via the SMANetCom process (network communications). The LSAM communications program uses its performance parameters to balance its ability to aggressively handle job scheduling transactions against the potential for adversely impacting IBM i system performance. 
+This server job and program are responsible for communications between the IBM i LSAM and the SAM (schedule activity monitor) of OpCon, that is, via the SMANetCom process (network communications). The LSAM communications program uses its performance parameters to balance its ability to aggressively handle job scheduling transactions against the potential for adversely impacting IBM i system performance. 
 
 In general, all the LSAM server programs can be tuned for better responsiveness AND less impact on system performance by careful attention to the IBM i work management configuration, discussed below. But if the communication's program cycle is well understood, it may sometimes be desirable to change one or more of these three performance
 parameters.
 
-All of the LSAM communications programs are designed so that they do not wait eternally for new transactions to arrive over the TCP/IP socket connection. Instead, these programs rotate among three tasks. Besides checking for new incoming communications transactions from OpCon/xps, they also check for messages prepared by other LSAM server programs that need to be sent to OpCon/xps and they check for any operator control instructions that may arrive in each program's control data queue.
+All of the LSAM communications programs are designed so that they do not wait eternally for new transactions to arrive over the TCP/IP socket connection. Instead, these programs rotate among three tasks. Besides checking for new incoming communications transactions from OpCon, they also check for messages prepared by other LSAM server programs that need to be sent to OpCon and they check for any operator control instructions that may arrive in each program's control data queue.
 
 The input wait timeout parameter tells the program how long to stop and wait for a response from the system when checking for new socket communications input. The IBM i system has been instructed by the program to receive and store any incoming transactions until the program returns and asks for new input. During periods of high activity, there will be transactions ready for the program to receive every time it requests them, and this input wait timeout parameter will not delay this process. However, when an idle period occurs, the program will wait  quietly, consuming almost no system resources, for as many seconds as are specified by this input wait timeout parameter. But this quiet wait time must be balanced against the two other tasks this program performs.
 
-It is just as important for the LSAM job scheduler communications program to send out job status information and other transactions such as OpCon/xps Events that the LSAM can generate as it is for the program to receive transactions from OpCon/xps. So the program must not wait too long for socket communications input before it moves to the next step of checking the LSAM's outgoing transaction data queue (CMNOUTT00) for any new messages to send to OpCon/xps.
+It is just as important for the LSAM job scheduler communications program to send out job status information and other transactions such as OpCon Events that the LSAM can generate as it is for the program to receive transactions from OpCon. So the program must not wait too long for socket communications input before it moves to the next step of checking the LSAM's outgoing transaction data queue (CMNOUTT00) for any new messages to send to OpCon.
 
 In between managing incoming and outgoing transactions, the LSAM job scheduler communications program should also periodically check for operator control instructions.
 
@@ -64,14 +64,14 @@ Changes made to LSAM performance parameters will only take effect if the LSAM se
 
 Parameters in this group not discussed here are covered in detail in [IBM i LSAM Configuration](../configuration/configuration.md).
 
-JORS means job output retrieval system (or service). For the IBM i LSAM, JORS is the function that stores and later retrieves IBM i job log reports when the OpCon/xps Schedule functions are used to "view output" of the job. JORS does not presently support retrieval of any other type of job output.
+JORS means job output retrieval system (or service). For the IBM i LSAM, JORS is the function that stores and later retrieves IBM i job log reports when the OpCon Schedule functions are used to "view output" of the job. JORS does not presently support retrieval of any other type of job output.
 
 The JORS communications performance parameters work exactly the same as the job scheduling communications performance parameters. For details, please review the previous section of this document. However, the  LSAM's JORS communications server program has a complete different workprofile from the job scheduling server program.
 
 Job scheduling involves a constant flow of transactions that govern the operation of many IBM i jobs all at once. Transactions from different jobs will overlap each other in the data communications flow. There is only the one communications server job handling the entire job scheduling activity flow.
 
-In contrast, the JORS communications server program actually spawns a worker job to handle each JORS request. A single JORS request arriving from OpCon/xps will be handed over to a worker job, and then the worker job will complete the conversation during the process of retrieving information from the LSAM database files and transferring that
-information to OpCon/xps. Obviously, the process of listing the report files available for a job is a very short process because there is only one job log report supported for each IBM i job at this time. On the other hand, the OpCon/xps transaction that requests the content of the job log report could require that a worker job send a very long stream of data from IBM i to the OpCon/xps server. Fortunately, the LSAM JORS server sub-program uses data blocking to pump report data at a very
+In contrast, the JORS communications server program actually spawns a worker job to handle each JORS request. A single JORS request arriving from OpCon will be handed over to a worker job, and then the worker job will complete the conversation during the process of retrieving information from the LSAM database files and transferring that
+information to OpCon. Obviously, the process of listing the report files available for a job is a very short process because there is only one job log report supported for each IBM i job at this time. On the other hand, the OpCon transaction that requests the content of the job log report could require that a worker job send a very long stream of data from IBM i to the OpCon server. Fortunately, the LSAM JORS server sub-program uses data blocking to pump report data at a very
 rapid pace.
 
 In general, the JORS server programs are not required to be as aggressive as the job scheduling server. Also, the JORS worker jobs tend to disappear very quickly from the IBM i system. Therefore, the JORS communications performance parameters are not as critical as the job scheduling parameters.
@@ -79,16 +79,16 @@ In general, the JORS server programs are not required to be as aggressive as the
 There are two sets of control data queue performance parameters for JORS. One set is for the main server job and the other set is used by each sub-job (the spawned worker job). However, at this time there is only one input wait timeout value that is shared by both jobs. 
 
 The default values supplied for the JORS server jobs are set to lazy values, the idea being that JORS is a low priority activity. That is, the computer does not have to work as hard to keep up with the pace of human user activity (manually initiated JORS requests, one at a time) as it does when it is trying to aggressively manage a large load of
-concurrent job starts and status reports being managed by the computerized OpCon/xps SAM service. If there is a need to improve JORS responsiveness, these performance parameters could be adjusted according to the principles described in the section above about job scheduling performance.
+concurrent job starts and status reports being managed by the computerized OpCon SAM service. If there is a need to improve JORS responsiveness, these performance parameters could be adjusted according to the principles described in the section above about job scheduling performance.
 
 ## Job Scheduling Performance Parameters
 
 Parameters in this group are different from the Job Scheduling Communications Performance Parameters. There is one actual performance parameter that governs how the LSAM job completion message monitor server program behaves.
 
-The Job message idle timer parameter helps to maintain a balance between aggressive system activity monitoring and avoiding an adverse impact on system performance. Its value must be set low enough that the LSAM job completion message monitor program will always stay ahead of any OpCon/xps request for a job status report. This parameter is also discussed in two places in [IBM i LSAM Configuration](../configuration/configuration.md).
+The Job message idle timer parameter helps to maintain a balance between aggressive system activity monitoring and avoiding an adverse impact on system performance. Its value must be set low enough that the LSAM job completion message monitor program will always stay ahead of any OpCon request for a job status report. This parameter is also discussed in two places in [IBM i LSAM Configuration](../configuration/configuration.md).
 
 It is possible for the IBM i LSAM servers issue a false error message SMA0097. This can happen if the LSAM job completion message monitor job (TXMMNG, program LSARCMR00) has been set with too long of a Job message idle time in the LSAM Parameters. If the LSAM ever does report that a job has failed with error code SMA0097, but it is clear that the job did finish normally, this can be prevented by lowering the Job message idle timer parameter value (refer to [Job message idle timer](../configuration/configuration.md)). In some cases, it might also be necessary to increase the performance of the LSAM server job TXMMNG by changing the active job itself while it is
-active (which could be done with an OpCon/xps job during periods of peak activity) or by revising the LSAM subsystem configuration [Tuning LSAM Performance](#top).
+active (which could be done with an OpCon job during periods of peak activity) or by revising the LSAM subsystem configuration [Tuning LSAM Performance](#top).
 
 ## IBM i Configuration for the LSAM Servers
 
@@ -127,7 +127,7 @@ It is possible to share the LSAM server job description for other types of jobs,
 
 ### Automating the Tuning of LSAM Performance
 
-The ability of OpCon/xps to execute most types of command under IBM i makes it possible to use an OpCon/xps schedule and jobs to change the performance of the LSAM server programs while they are active. Such a schedule might be executed at different times when the profile of work in the managed IBM i system is changing during a day.
+The ability of OpCon to execute most types of command under IBM i makes it possible to use an OpCon schedule and jobs to change the performance of the LSAM server programs while they are active. Such a schedule might be executed at different times when the profile of work in the managed IBM i system is changing during a day.
 
 A variety of strategies is possible. One simple example that seems apparent is the ability to execute a CHGJOB (change job) command that would alter the run priority or time slice allocated to one or more of the LSAM server jobs. There is information in this documentation about the names of the LSAM server jobs and the purpose of each, starting with [IBM i Components and Operation](../operations/components.md). There are also IBM i commands that can be used to vary the allocation of system resources among IBM i subsystems.
 

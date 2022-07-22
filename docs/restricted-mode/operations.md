@@ -51,11 +51,11 @@ sidebar_label: 'Restricted Mode Operations'
 
 20. Press <**Enter**> to perform an update to the restricted mode user profile and data area. The display will return to the environment library list and should display the following message text on the bottom line of the display: Updates to SMASAV user profile and RSTENVIRON data area completed normally
 21. Press <**F12**> (Cancel) or <**F3**> (Exit) to return to the menu.
-22. Complete the configuration of a Job Definition for a Restricted Mode Job in the OpCon/xps Enterprise Manager (EM), as described below.
+22. Complete the configuration of a Job Definition for a Restricted Mode Job in the OpCon Enterprise Manager (EM), as described below.
 
 ## Special Instructions for Restricted Mode Scripts
 
-Restricted Mode operations require that certain steps be included in a Script to enable the automatic restoration of a normal system state and the automatic recovery of LSAM communications with OpCon/xps. In addition to the required steps, there is also an optional reserved Script Action code that may be used for user-defined actions to be
+Restricted Mode operations require that certain steps be included in a Script to enable the automatic restoration of a normal system state and the automatic recovery of LSAM communications with OpCon. In addition to the required steps, there is also an optional reserved Script Action code that may be used for user-defined actions to be
 performed should a Script fail during its execution. This section also explains what the system will do in case a Script should fail to execute normally.
 
 ### Steps Required in a Restricted Mode Script
@@ -94,7 +94,7 @@ Following are details about how each reserved Action code works.
     ```
     Be sure to refer to the note below about the CONFIRM keyword that is supported by the PWRDWNSYS command beginning with the IBM i 6.1 version of the operating system.
     
-    The purpose of the **PWRDWN** Action code is to signal the Restricted Mode driver program that it should normally complete its final tasks just before executing the actual PWRDWNSYS command. These final tasks include setting up the LSAM environment so that when it is restarted after an IPL completes, the Restricted Mode job will be reported to OpCon/xps as completed normally.
+    The purpose of the **PWRDWN** Action code is to signal the Restricted Mode driver program that it should normally complete its final tasks just before executing the actual PWRDWNSYS command. These final tasks include setting up the LSAM environment so that when it is restarted after an IPL completes, the Restricted Mode job will be reported to OpCon as completed normally.
     :::tip
     In order to fully automate the recovery of the LSAM servers after a system IPL, the LSAM command that restarts the LSAM servers must be included in the system startup program. Use the IBM i command DSPSYSVAL to find the name of the system startup program in the system value QSTRUPPGM. This program, or a user replacement for it, must include the LSAM command SMAGPL/STRSMASYS ENV(environment_name), where the default value for the environment name can be (*DEFAULT). The ENV parameter of the STRSMASYS command must specify the name of the LSAM environment where the Restricted Mode job was executed, if this was not the default LSAM environment.
     :::
@@ -183,7 +183,7 @@ The Script history log shows a special code **AutoRecovr** among the other logge
 
 Control whether the system will attempt to automatically restore system operations by the value specified for the Stop Execution On Error flag that is assigned to each Action code in a Script (refer to [Restricted Mode Screens and Windows](../restricted-mode/screens.md#windows) for more information). A value of N tells the Restricted Mode program to ignore a failure and continue with the next step in the Script. A value of Y tells the program to respond to an error by ending the Script process.
 
-Whenever the Script process is ended due to an error, the Restricted Mode program checks the current status of the system. Then it attempts the following steps so that normal LSAM communications can be restored and the error reported to OpCon/xps:
+Whenever the Script process is ended due to an error, the Restricted Mode program checks the current status of the system. Then it attempts the following steps so that normal LSAM communications can be restored and the error reported to OpCon:
 
 1. Finds and uses the STRSYS step in order to restore the normal state of IBM i operations. (This step will be skipped if IBM i is still in, or has already restored, its normal state of operations.)
 2. Delays the program for the number of seconds specified in the Restricted Mode Setup maintenance program, giving IBM i sufficient time to restore the TCP communications services.
@@ -191,7 +191,7 @@ Whenever the Script process is ended due to an error, the Restricted Mode progra
 4. Restarts LSAM communications using the STRSMASYS utility command.
 5. Registers a failed job transaction for the Restricted Mode job that will be sent via normal LSAM communications.
 6. *(Optional)* Also runs whatever is the latest ON_ERROR Script command that might have been included in the Script. If there is no ON_ERROR Action code in the Script, then no additional commands or actions are performed by Restricted Mode operations.
-7. Stores the job logs of the failing Restricted Mode process and of the job that signaled Restricted Mode to start (the name of the job being tracked in OpCon/xps for Restricted Mode operations control). These job logs can be viewed from the LSAM environment's command entry line using the LSADSPLOG utility command.
+7. Stores the job logs of the failing Restricted Mode process and of the job that signaled Restricted Mode to start (the name of the job being tracked in OpCon for Restricted Mode operations control). These job logs can be viewed from the LSAM environment's command entry line using the LSADSPLOG utility command.
 8. Ends the Restricted Mode program and forces the console interactive job to end by producing a job log and signing off the SMASAV user profile.
 
 ## Caution: Restricted Mode Process Failures
@@ -202,7 +202,7 @@ Despite all the efforts that SMA has made to support full automation of Restrict
 
 IBM has programmed the IBM i Save operations so that an attempt to save objects to a save file that is not empty will cause a Program Message with message ID CPA4067 to be issued, rather than a typical error message as might be sent to the system operator message queue. Program Messages are unique because they are displayed on a specially formatted interactive message display screen for interactive jobs and there is no way to program the IBM i to automatically detect or respond to Program Messages in this format. This same error might occur if an attempt is made to save objects to a tape media that has not been properly formatted (when the Save command does not include a parameter that specifies to overwrite any existing tape content).
 
-It is the responsibility of the system operations or administration staff to take all necessary measures to prevent this unique circumstance from occurring in order to depend on OpCon/xps to fully automate restricted mode operations. SMA suggests the possibility of including an extra step in a Restricted Mode Script that will intentionally clear an existing save file before a separate Script Action is used to actually perform a Save operation to that save file.
+It is the responsibility of the system operations or administration staff to take all necessary measures to prevent this unique circumstance from occurring in order to depend on OpCon to fully automate restricted mode operations. SMA suggests the possibility of including an extra step in a Restricted Mode Script that will intentionally clear an existing save file before a separate Script Action is used to actually perform a Save operation to that save file.
 
 ## Running a Restricted Mode Process
 
@@ -242,7 +242,7 @@ IBM i now supports executing restricted mode operations from other sources besid
     The restricted mode user SMASAV may log on to the IBM i console (device DSP01), or the Restricted Mode Setup menu function can be used to designate an alternate interactive console device (or batch mode). But when the setup designates *CONS as the device, then operations cannot be performed from any other workstation device. If another workstation is logged onto by user SMASAV, the following message will be displayed: "This program must be started on the console"
     :::
 3. Wait for a message on the display device stating, "Restricted mode operation ready to start ..."
-4. Start the OpCon/xps job through the Enterprise Manager.
+4. Start the OpCon job through the Enterprise Manager.
     :::tip
     Steps 4 and 5 (above) state the order in which the two actions must occur. However, there are many strategies that may be adopted when using the Restricted Mode utility. For example, the SMASAV user may sign on to the console before leaving the office at 5 PM one day. Meanwhile, the OpCon Schedule set up for that day might have the Restricted Mode job definition scheduled to start at 11:30 PM the same day. This means that the site does not need to have a night shift computer operator just to perform restricted mode operations during off hours. Instead, the Restricted Mode Script and OpCon can be configured so that if the Restricted Mode operation should fail, either the operator or a supervisor can be notified immediately of the event. Otherwise, when there is no failure the LSAM and OpCon will automatically resume normal operations as soon as the Restricted Mode script has been completed.
     :::

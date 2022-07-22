@@ -6,7 +6,7 @@ sidebar_label: 'LSAM Work Management Authority'
 
 This discussion assumes the reader is familiar with the other information provided in the **IBM i LSAM** documentation and with the principles of IBM i Work Management. The description of work management authority in this section includes a combination of principles of both the IBM i LSAM and the IBM i operating system itself. Some of the other sections of this topic may also prove helpful in understanding this discussion of LSAM work management.
 
-An introduction to the authority assigned to SMANET is provided in the previous section of this topic. This section is focused on the work flow path that is followed as a job request defined in the OpCon/xps job master file is submitted for execution under IBM i. The minimal authorities required in order for the LSAM server programs to
+An introduction to the authority assigned to SMANET is provided in the previous section of this topic. This section is focused on the work flow path that is followed as a job request defined in the OpCon job master file is submitted for execution under IBM i. The minimal authorities required in order for the LSAM server programs to
 successfully manage jobs as user SMANET are listed below.
 
 If a high security environment requires that user SMANET not be allowed to have *ALLOBJ authority, the IBM i LSAM Installation Instructions warn that the site administrator must develop an authority matrix that will enable user SMANET to accomplish its assigned tasks. The following list of authorities required by SMANET and the LSAM Submit Job flow chart below may help to identify and manage the authorities required to successfully submit jobs.
@@ -19,7 +19,7 @@ Here is a summary of the minimal authorities required for the user profile SMANE
 - *USE authority to most of the IBM i commands. (Confidential documentation about the IBM i commands used by LSAM software is available to SMA technical support staff.)
 - *USE authority to libraries of third-party software, and their contents, that may include objects used for submitting jobs.
 - *USE authority to every user profile that will be named in a submitted job.
-- *USE authority to the commands specified in the Prerun and Call data entry boxes of the Call Information tab of each IBM i job master record in the OpCon/xps Enterprise Manager.
+- *USE authority to the commands specified in the Prerun and Call data entry boxes of the Call Information tab of each IBM i job master record in the OpCon Enterprise Manager.
 - *USE authority to every job description that will be named in a submitted job.
 - *USE authority to every job queue where submitted jobs will be placed.
 - *USE authority to every subsystem description that will run submitted jobs.
@@ -27,8 +27,8 @@ Here is a summary of the minimal authorities required for the user profile SMANE
 - *JOBCTL special authority.
   - The IBM i LSAM job scheduler server program puts jobs on hold briefly as it performs certain administration tasks, and then it uses the RLSJOB command. It may also need to perform the CHGJOB and CHGACCCDE commands before releasing a submitted job.
 - *SPLCTL special authority (or an equivalent authority to the QPJOBLOG spool file and output queue where job logs will be stored).
-  - Spool control special authority, or the equivalent specific authorities, is required for the LSAM server programs to manage the job log spool files resulting from jobs it submits. This is required to support the OpCon/xps View Job Output (JORS) function.
-  - Spool control special authority, or the equivalent specific authorities, is required when any job is accompanied by spool file management options that are available on the OpCon/xps Enterprise Manager definition of IBM i job master records.
+  - Spool control special authority, or the equivalent specific authorities, is required for the LSAM server programs to manage the job log spool files resulting from jobs it submits. This is required to support the OpCon View Job Output (JORS) function.
+  - Spool control special authority, or the equivalent specific authorities, is required when any job is accompanied by spool file management options that are available on the OpCon Enterprise Manager definition of IBM i job master records.
   - Refer to IBM documentation about IBM i for more information on the specific authorities that may be used in place of the *SPLCTL special authority, if this special authority must be restricted.
 
 ## IBM i LSAM Server Submit Jobs
@@ -46,7 +46,7 @@ If user SMANET does not have *ALLOBJ authority, it is likely that problems could
 Here is a list of the resources that can be used to identify errors that might occur in the LSAM job submission process. This list is based on the flow chart LSAM Submit Job Flow.
 
 - The LSAM server jobs should be set to perform verbose job logging. This can be accomplished by changing the LOG parameter of the job description SMADTA/SMALSAJ00. Set the LOG parameter to the values (4 00 *SECLVL). Active server jobs can each be changed while they are active, or the LSAM server subsystem can be ended from the LSAM menu system, and then restarted after the LSAM server job description has been changed.
-  - The LOG parameter values can be reset for quieter logging after it is clear that the OpCon/xps schedules are all performing normally. Reducing server job logging helps improve performance and also reduces consumption of disk space.
+  - The LOG parameter values can be reset for quieter logging after it is clear that the OpCon schedules are all performing normally. Reducing server job logging helps improve performance and also reduces consumption of disk space.
 - The job log of the LSAM server job TXMMNG will normally show details about errors that occur as it executes the IBM i SBMJOB command. This job can be quickly found by executing option 3: Check LSAM Subsystem Status, from the LSAM menu 6: LSAM Management Menu. The following display will appear. This example shows option 5 typed next to job TXMMNG. From the IBM i Work with Job menu, use option 10 to view the job log. It may be necessary to press function key F10 to show all job log details, and function key F16 moves the log view quickly to the most recent entries at the bottom of the job log.
 
 Work with Active Jobs Screen

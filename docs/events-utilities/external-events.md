@@ -70,74 +70,74 @@ The option numbers are not assigned to Command names on a permanent basis. SMA m
 
 #### Calendar
 XCALADD - Calendar Add
-*	To add calendar dates, enter an existing OpCon/xps Calendar Name.
+*	To add calendar dates, enter an existing OpCon Calendar Name.
 *	Enter 1 to 10 dates to be added to the calendar XCALDEL - Calendar Delete
-*	To delete calendar dates, enter an existing OpCon/xps Calendar Name.
+*	To delete calendar dates, enter an existing OpCon Calendar Name.
 *	Enter 1 to 10 dates to be added to the calendar. XJOBPRTY - Job Priority
-*	To modify the job priority, enter an existing OpCon/xps schedule name, job name, schedule date and job priority.
+*	To modify the job priority, enter an existing OpCon schedule name, job name, schedule date and job priority.
 *	The default Schedule date is CURRENT.
 
 #### Job
 XJOBADD - Job Add        
-*	To add a job to the Daily Schedule, enter an existing OpCon/xps schedule name, job name, and schedule date, and frequency.
+*	To add a job to the Daily Schedule, enter an existing OpCon schedule name, job name, and schedule date, and frequency.
 *	The default Schedule date is CURRENT.
 
 XJOBADDHLD - Job Add Hold
-*	To add a job on hold to the Daily Schedule, enter an existing OpCon/xps schedule name, job name, and schedule date, and frequency.
+*	To add a job on hold to the Daily Schedule, enter an existing OpCon schedule name, job name, and schedule date, and frequency.
 *	The default Schedule date is CURRENT.
 
 XJOBBAD - Job Bad        
-*	To mark a job bad, enter an existing  OpCon/xps schedule name, job  name, and schedule date.
+*	To mark a job bad, enter an existing  OpCon schedule name, job  name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBCNL - Job Cancel     
-*	To cancel a job, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To cancel a job, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBDEL - Job Delete     
-*	To delete a job from the Daily Schedule, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To delete a job from the Daily Schedule, enter an existing OpCon schedule name, job name, and schedule date.
 * The default Schedule date is CURRENT.
 
 XJOBGOD - Job Good       
-*	To mark a job as good, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To mark a job as good, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBHLD - Job Hold
-*	To put a job on hold, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To put a job on hold, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBKIL - Job Kill
-*	To kill a job, enter an existing OpCon/xps schedule name, job name, and schedule date.  
+*	To kill a job, enter an existing OpCon schedule name, job name, and schedule date.  
 *	The default Schedule date is CURRENT.
 
 XJOBMBLDST - Job Master Build State
-*	To change the job master build status, enter an existing OpCon/xps schedule name, job name, frequency name and build status.
+*	To change the job master build status, enter an existing OpCon schedule name, job name, frequency name and build status.
 *	The default build status is blank.  Values are Released (R), Disabled (D), Skipped (S), Do Not Schedule (N), or Held (H).
 
 XJOBMCHGRP - Job Machine Group
-*	To assign a machine group, enter an existing OpCon/xps schedule name, job name, schedule date and machine group name.
+*	To assign a machine group, enter an existing OpCon schedule name, job name, schedule date and machine group name.
 *	The default Schedule date is CURRENT.
 
 XJOBMTAGAD - Job Master Tag Add
-*	To add a job master tag, enter an existing OpCon/xps schedule name, job name, frequency name and 1 to 5  tags.
+*	To add a job master tag, enter an existing OpCon schedule name, job name, frequency name and 1 to 5  tags.
 *	If Frequency name is populated, tags are populated as a frequency tag.  If Frequency name is not populated, tags will be populated as a job tag. 
 
 XJOBMTAGDL – Job Master Tag Delete
-*	To delete a job master tag, enter an existing OpCon/xps schedule name, job name, frequency name and 1 to 5  tags.
+*	To delete a job master tag, enter an existing OpCon schedule name, job name, frequency name and 1 to 5  tags.
 *	If Frequency name is populated, tags are populated as a frequency tag.  If Frequency name is not populated, tags will be populated as a job tag.
 
 XJOBPRTY - Job Priority
-*	To modify the job priority, enter an existing OpCon/xps schedule name, job name, schedule date and job priority.
+*	To modify the job priority, enter an existing OpCon schedule name, job name, schedule date and job priority.
 *	The default Schedule date is CURRENT.
 
 XJOBRLS - Job Release    
-*	To release a job, enter an existing OpCon/xps schedule name, job name, and schedule date.  
+*	To release a job, enter an existing OpCon schedule name, job name, and schedule date.  
 *	The default Schedule date is CURRENT.
 
 XJOBRSC - Job Reschedule
 To reschedule a job in the Daily Schedule, enter:
-*	Enter an existing OpCon/xps schedule name.
-*	Enter an existing OpCon/xps job name.
+*	Enter an existing OpCon schedule name.
+*	Enter an existing OpCon job name.
 *	Enter a new start time offset code:
     * T: The new start time will be calculated based on the time the job terminated.
     * S: The new start time will be calculated based on the time the job started.
@@ -148,8 +148,8 @@ To reschedule a job in the Daily Schedule, enter:
 
 XJOBRSCHLD - Job Reschedule Hold
 To reschedule a job on hold in the Daily Schedule, enter:
-*	Enter an existing OpCon/xps schedule name.
-*	Enter an existing OpCon/xps job name.
+*	Enter an existing OpCon schedule name.
+*	Enter an existing OpCon job name.
     * Enter a new start time offset code:
     * T: The new start time will be calculated based on the time the job terminated.
     * S: The new start time will be calculated based on the time the job started.
@@ -159,35 +159,35 @@ To reschedule a job on hold in the Daily Schedule, enter:
 *	The default Schedule date is CURRENT.
 
 XJOBRST - Job Restart    
-*	To restart a job, enter an OpCon/xps schedule name, job name, and schedule date.
+*	To restart a job, enter an OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBRSTHLD - Job Restart Hold
-*	To restart a job on hold, enter an OpCon/xps schedule name, job name, and schedule date.
+*	To restart a job on hold, enter an OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBSKP - Job Skip       
-*	To skip a job, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To skip a job, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBSTR - Job Start   
-*	To start a job, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To start a job, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 XJOBTAGADD - Job Tag Add
-*	To add a job tag, enter an existing OpCon/xps schedule name, job name, schedule date and 1 to 5 job tags.
+*	To add a job tag, enter an existing OpCon schedule name, job name, schedule date and 1 to 5 job tags.
 *	The default Schedule date is CURRENT.
 
 XJOBTAGDEL - Job Tad Delete
-*	To delete a job tag, enter an existing OpCon/xps schedule name, job name, schedule date and 1 to 5 job tags.
+*	To delete a job tag, enter an existing OpCon schedule name, job name, schedule date and 1 to 5 job tags.
 *	The default Schedule date is CURRENT.
 
 XJOBUSER - Job User
-*	To change the job user, enter an existing OpCon/xps schedule name, job name, schedule date and user name.
+*	To change the job user, enter an existing OpCon schedule name, job name, schedule date and user name.
 *	The default Schedule date is CURRENT.
 
 XMAXRUNTIM - Max Runtime
-*	To modify the maximum runtime, enter an existing OpCon/xps schedule name, job name, schedule date and maximum runtime.
+*	To modify the maximum runtime, enter an existing OpCon schedule name, job name, schedule date and maximum runtime.
 *	The default Schedule date is CURRENT.
 
 #### Log
@@ -237,15 +237,15 @@ XPROPSET - Property Set
 
 #### Schedule
 XSCHBLD - Schedule Build        
-*	To process a schedule build, enter an existing OpCon/xps schedule name, schedule date, override existing schedule (Y/N), log file name path and up to 5 properties.
+*	To process a schedule build, enter an existing OpCon schedule name, schedule date, override existing schedule (Y/N), log file name path and up to 5 properties.
 *	The default Schedule date is CURRENT.
 
 XSCHBLDHLD - Schedule Build on Hold
-*	To process a schedule build, enter an existing OpCon/xps schedule name, schedule date, override existing schedule (Y/N), log file name path and up to 5 properties.
+*	To process a schedule build, enter an existing OpCon schedule name, schedule date, override existing schedule (Y/N), log file name path and up to 5 properties.
 *	The default Schedule date is CURRENT.
 
 XSCHCHK - Schedule Check (one
-*	To check a schedule, enter an existing OpCon/xps Schedule's name, date and include circular dependencies.
+*	To check a schedule, enter an existing OpCon Schedule's name, date and include circular dependencies.
 *	The default Schedule date is CURRENT.
 *	The default Include circular dependencies is ‘N’.  
        *	Y: Check for circular dependencies
@@ -261,23 +261,23 @@ XSCHCHKALL - Schedule Check All
        *	S: Perform a simple check which skips after, conflict, and circular dependencies.
 
 XSCHCNL - Schedule Cancel       
-*	To cancel a schedule, enter an existing OpCon/xps Schedule's name and date.
+*	To cancel a schedule, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 XSCHDLT - Schedule Delete       
-*	To delete a schedule, enter an existing OpCon/xps Schedule’s name and date.
+*	To delete a schedule, enter an existing OpCon Schedule’s name and date.
 o	The default Schedule date is CURRENT.
 
 XSCHHLD - Schedule Hold         
-*	To place a schedule On Hold, enter an existing OpCon/xps Schedule's name and date.
+*	To place a schedule On Hold, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 XSCHRLS - Schedule Release      
-*	To release a schedule, enter an existing OpCon/xps Schedule's name and date.
+*	To release a schedule, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 XSCHSTR - Schedule Start
-*	To start a schedule, enter an existing OpCon/xps Schedule's name and date.
+*	To start a schedule, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 
@@ -315,33 +315,33 @@ XTOKSET - Token Set
 
 #### Job
 JOBBAD - Job Bad
-*	To mark a job bad, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To mark a job bad, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 JOBCNL - Job Cancel
-*	To cancel a job, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To cancel a job, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 JOBDEL - Job Delete
-*	To delete a job from the Daily Schedule, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To delete a job from the Daily Schedule, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 JOBHLD - Job Hold
-*	To put a job on hold, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To put a job on hold, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 JOBRLS – Job Release
-*	To release a job, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To release a job, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 JOBHLD - Job Hold
-*	To put a job on hold, enter an existing OpCon/xps schedule name, job name, and schedule date.
+*	To put a job on hold, enter an existing OpCon schedule name, job name, and schedule date.
 *	The default Schedule date is CURRENT.
 
 JOBRSC - Job Reschedule
 To reschedule a job in the Daily Schedule, enter:
-*	Enter an existing OpCon/xps schedule name.
-*	Enter an existing OpCon/xps job name.
+*	Enter an existing OpCon schedule name.
+*	Enter an existing OpCon job name.
 *	Enter a new start time offset codes:
    *	T: The new start time will be calculated based on the time the job terminated.
    *	S: The new start time will be calculated based on the time the job started.
@@ -372,19 +372,19 @@ NTYLOG - Notify Log
 
 #### Schedule
 SCHCNL – Schedule Cancel
-*	To cancel a schedule, enter an existing OpCon/xps Schedule's name and date.
+*	To cancel a schedule, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 SCHHLD – Schedule Hold
-*	To place a schedule On Hold, enter an existing OpCon/xps Schedule's name and date.
+*	To place a schedule On Hold, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 SCHRLS – Schedule Release
-*	To release a schedule, enter an existing OpCon/xps Schedule's name and date.
+*	To release a schedule, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 SCHSTR – Schedule Start
-*	To start a schedule, enter an existing OpCon/xps Schedule's name and date.
+*	To start a schedule, enter an existing OpCon Schedule's name and date.
 *	The default Schedule date is CURRENT.
 
 #### Threshold-Resources
@@ -452,14 +452,14 @@ F12=Cancel
 
 #### CPYTOMSGIN Command Prompting Window
 
-The general-purpose Event command CPYTOMSGIN is supported by an additional prompting window (when selected from within the context of the Event Management LSAM menu function) that lists all available OpCon/xps Event commands.
+The general-purpose Event command CPYTOMSGIN is supported by an additional prompting window (when selected from within the context of the Event Management LSAM menu function) that lists all available OpCon Event commands.
 
 CPYTOMSGIN Event Selection Window
 ```
             CPYTOMSGIN Events
 Position to desired Event, press Enter.
 Press F12 to return without a selection.
-OpCon/xps Event Command
+OpCon Event Command
 
 $CONSOLE:DISPLAY
 $JOB:ADD
@@ -476,7 +476,7 @@ F12=Cancel
 ```
 
 When the cursor is positioned over one the available commands, the
-OpCon/xps Event Command syntax model will be inserted into the Message
+OpCon Event Command syntax model will be inserted into the Message
 parameter on a prompt screen for the CPYTOMSGIN command, as illustrated
 below.
 
@@ -498,9 +498,9 @@ F3=Exit F4=Prompt F5=Refresh F12=Cancel F13=How to use this display
 F24=More keys
 ```
 
-In the syntax model illustrated above, the < > characters are used only to mark the description of each field. When the actual data is typed in place of the field description, the < > characters must be removed, just as the field description must also be removed. However, the commas are a critical part of the command syntax. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon/xps that the null value  should be applied to that field.
+In the syntax model illustrated above, the < > characters are used only to mark the description of each field. When the actual data is typed in place of the field description, the < > characters must be removed, just as the field description must also be removed. However, the commas are a critical part of the command syntax. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon that the null value  should be applied to that field.
 
-Press <**Enter**> after the command has been fully formatted to cause the final command format to be submitted to the LSAM for sending to OpCon/xps.
+Press <**Enter**> after the command has been fully formatted to cause the final command format to be submitted to the LSAM for sending to OpCon.
 
 Dynamic Variable tokens can be included anywhere within the CPYMSGIN keyword parameter:
 

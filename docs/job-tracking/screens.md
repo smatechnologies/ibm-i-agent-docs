@@ -240,7 +240,7 @@ above.
 
 - **4=Cancel job**: Set job tracking to cancelled status and prevent job from being released. Option 4 causes the program to branch to the same job detail display as option 5, but showing a red function key instruction at line 22, requiring that F23=CNLJOB be pressed to confirm the cancel job action.
 - **5=Display detail**: Shows job definition details and any error or status message information.
-- **6=Release job**: Manually release job from LSAM tracking (using IBM i SBMJOB) either before OpCon/xps releases the job or when OpCon/xps has rejected the job tracking request (message ID SMA0014).
+- **6=Release job**: Manually release job from LSAM tracking (using IBM i SBMJOB) either before OpCon releases the job or when OpCon has rejected the job tracking request (message ID SMA0014).
 
 #### Functions
 
@@ -279,8 +279,8 @@ number.
   - Job number: The unique identifying number portion of the IBM i job identifier.
 - Job Queue
   - Job queue - a system object that stores job requests while they are waiting to be executed, as long as they are in hold status, or until system resources permit the job to be released for execution. 
-    -   Jobs that match the tracking requirements for queuing, and are recognized by OpCon/xps for tracking, are held in the job queue until SAM scheduling requirements and dependencies permit the job to execute.
-     -   Jobs that are not defined for queuing are not held in a job queue by the LSAM or OpCon/xps, and would only remain in the job queue until system resources permit the job to be released for execution.
+    -   Jobs that match the tracking requirements for queuing, and are recognized by OpCon for tracking, are held in the job queue until SAM scheduling requirements and dependencies permit the job to execute.
+     -   Jobs that are not defined for queuing are not held in a job queue by the LSAM or OpCon, and would only remain in the job queue until system resources permit the job to be released for execution.
   - In most cases, tracked jobs that are not defined for queuing are allowed to execute immediately, and tracking is just a parallel operation.
 - JOBQ Library
   - The library within DB2/400 where the job queue is located.
@@ -304,30 +304,30 @@ IBM i Parameters (continued)
   - The IBM i control language that names an IBM i or user-defined Command to be executed. The name of the command is also usually accompanied by command-specific syntax to provide additional parameter values that define what the command doe, and/or what objects the command operates on. If the command text appears to be cut off at the end of the second line, use F13=More CMD to see a much larger display area showing all (or more of) the command text.
 
 SAM Parameters
-- Schedule Name: The OpCon/xps name assigned to the controlling Schedule.
+- Schedule Name: The OpCon name assigned to the controlling Schedule.
 - Sched date: The OpCon Schedule Date, which may be an OpCon special date keyword or a date, typically in ISO format (CCYY-MM-DD).
-- Frequency: The OpCon/xps frequency code assigned to control when a job executes.
+- Frequency: The OpCon frequency code assigned to control when a job executes.
 - Track Type
   -   T = Track
   -   Q = Queue
 - Status: The last reported job status (from the LSAM job tracking master file). May not be the same as the Log status, above. Refer to the table, below, of possible job status values. The status code is followed by text that represents the meaning of the code. 
-- SAM job name: The name assigned by OpCon/xps to this job as it appears on a SAM Schedule. For tracked/queued jobs, this name is usually the same as the IBM i job name.
-- SAM job number: A unique number assigned by OpCon/xps to track each job it monitors.
+- SAM job name: The name assigned by OpCon to this job as it appears on a SAM Schedule. For tracked/queued jobs, this name is usually the same as the IBM i job name.
+- SAM job number: A unique number assigned by OpCon to track each job it monitors.
 
 
 ### Job Tracking Status Codes
 
 |  Code  | Text | Meaning | Permitted actions |
 |  ----  | ---- | ------- | ----------------- |
-|   E    | ERROR_TE1 | OpCon/xps has rejected job tracking request and has notified the LSAM with a (TE1) transaction. |      Release job, Cancel job |
+|   E    | ERROR_TE1 | OpCon has rejected job tracking request and has notified the LSAM with a (TE1) transaction. |      Release job, Cancel job |
 |   F    | TX1-FAILED | Indicates the LSAM was unable to process the OpCon job start request. Refer to the LSAM diagnostic tools for jobs that fail to start, described in Components and Operation. | |
-|  I     |   SAM_QUEUED_TI1 | OpCon/xps has received a job queuing request, and has responded with SAM job information. (Does not apply to type Tracked.)  |Release job, Cancel job |
+|  I     |   SAM_QUEUED_TI1 | OpCon has received a job queuing request, and has responded with SAM job information. (Does not apply to type Tracked.)  |Release job, Cancel job |
 |  K     |  USER_CANCELLED | Option 4=Cancel job was used to permanently prevent this tracked job from being released. (Cancelled jobs cannot be recovered. The requested task must be submitted as a new job.) | None |
-|  M     |  MANUAL_RLS     | Option 6=Release job was used to manually submit the job to IBM i for processing. Manually released jobs may not be able to take advantage of any OpCon/xps job master options, such as job-specific message management or spool file management, if a job was released while it was in status "I". Jobs that were at status "E" would not receive any support from OpCon/xps because they were not recognized by OpCon/xps. |  None |
+|  M     |  MANUAL_RLS     | Option 6=Release job was used to manually submit the job to IBM i for processing. Manually released jobs may not be able to take advantage of any OpCon job master options, such as job-specific message management or spool file management, if a job was released while it was in status "I". Jobs that were at status "E" would not receive any support from OpCon because they were not recognized by OpCon. |  None |
 |  P     | PASSIVE_TRACK   | Indicates this job was processed using the True Passive tracking method. |  |
-|  R     | LSAM_RLS_TX1    | The LSAM has released the job to IBM i upon receiving a start job transaction (TX1) from OpCon/xps. | None |
-|  T     | LSAM_TRACKING   | The LSAM has recognized the job and stored it for tracking, but a response has not yet been received from OpCon/xps. | Release job, Cancel job |
-|  X     |   SAM_RLS_TX1   | OpCon/xps has sent a start job transaction (TX1) but the LSAM has not actually released the job to IBM i. This is normally a transient job status, so the log entry just records the time when this action happened. | None |
+|  R     | LSAM_RLS_TX1    | The LSAM has released the job to IBM i upon receiving a start job transaction (TX1) from OpCon. | None |
+|  T     | LSAM_TRACKING   | The LSAM has recognized the job and stored it for tracking, but a response has not yet been received from OpCon. | Release job, Cancel job |
+|  X     |   SAM_RLS_TX1   | OpCon has sent a start job transaction (TX1) but the LSAM has not actually released the job to IBM i. This is normally a transient job status, so the log entry just records the time when this action happened. | None |
 
 #### Functions
 
@@ -337,7 +337,7 @@ SAM Parameters
 - **F14=More LIBL**: Press \<F14\>, when it is available, to view an extended display of the Library List.
 - **F15=View LDA**: Press \<F15\>, when it is available, to view the content of the job's captured local data area (LDA).
 - **F21=WRKJOB**: Press \<F21\>, when it is available, to go to the IBM i Work with Job menu display. After exiting the Work with Job  menu or any of its functions, the system will return to this log detail display.
-- **F22=RLSJOB**: Press \<F22\>, when it is available, to request the manual release of a queued job from the LSAM Job Tracking master file. After the HOLD window response is given, this program will use the LSAM Job Tracking master file data to construct an IBM i SBMJOB command, and then execute the command. As a result, the actual IBM i job will either be on hold in an IBM i job queue (as specified by the job details), or if not held, the job will immediately begin execution in the specified IBM i subsystem. **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking     master record status is set to K=killed, preventing any future release of this job, either by OpCon/xps or manually. (A canceled job cannot be recovered. Its task must be submitted as a new job.)
+- **F22=RLSJOB**: Press \<F22\>, when it is available, to request the manual release of a queued job from the LSAM Job Tracking master file. After the HOLD window response is given, this program will use the LSAM Job Tracking master file data to construct an IBM i SBMJOB command, and then execute the command. As a result, the actual IBM i job will either be on hold in an IBM i job queue (as specified by the job details), or if not held, the job will immediately begin execution in the specified IBM i subsystem. **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking     master record status is set to K=killed, preventing any future release of this job, either by OpCon or manually. (A canceled job cannot be recovered. Its task must be submitted as a new job.)
 - **PageDown=More details**: Press \<PageDown\> to see additional internal and IBM i data that define the tracked job.
 
 ## Option 5 - Page Down = More Details
@@ -358,7 +358,7 @@ Main Menu > Job track menu (#1) > Job track logs (#2) > 5=Display details > Page
 |               | SMADTA lib name  | SMADTA lib name The name of the LSAM environment library that functions as the SMADTA library, in which the JOBLDAF00 and DBFCMDSRC related files may be found.                       |
 |               | Trk time stamp   | The full time stamp of the moment when the job information was intercepted for storage in the LSAM database files.        |
 |               | SBMTYP (AutoTrk) | An LSAM control field value that specifies whether automatic job tracking was used for this job.                   |
-| IBM i Parameters | OpCon user ID    | The name or IBM i parameter keyword that controls which User ID will be applied to the submitted job. When specified by the OpCon/xps job master record, that value will be placed in this field once the information is received from OpCon/xps.                      |
+| IBM i Parameters | OpCon user ID    | The name or IBM i parameter keyword that controls which User ID will be applied to the submitted job. When specified by the OpCon job master record, that value will be placed in this field once the information is received from OpCon.                      |
 |               | Job priority     | The priority of the job in the job queue.                      |
 |               | Log Lv/Sv/Txt    | The job's logging control values: Level, Severity and message text.                   |
 |               | INQMSGRPY        | The Inquiry Message Reply parameter value.                |
@@ -371,7 +371,7 @@ Main Menu > Job track menu (#1) > Job track logs (#2) > 5=Display details > Page
 |               | Output queue     | Output queue - a system object that stores printer spool files (reports for printing) while they are waiting to be printed, or as long as they are in hold status.                         |
 |               | OUTQ Library     | The library within DB2 UDB where the output queue is located.                        |
 |               | OUTQ Priority    | The priority of spool files in their output queues, for all spool files produced by this job.                            |
-|               | Job DATE parm    | The DATE parameter value. This value may be overridden by OpCon/xps, for example, so that it contains the OpCon/xps Schedule date value.            |
+|               | Job DATE parm    | The DATE parameter value. This value may be overridden by OpCon, for example, so that it contains the OpCon Schedule date value.            |
 |               | Sys Date Fmt     | The system value, Date Format, captured at the time the job was intercepted, which applies to the value in the DATE parameter. |
 |               | Current library  | The CURLIB parameter value, specifying the library name that occupies this high position below the system library list and above the user library list in the overall library list for the job.       |
 |               | Sort sequence    | The SRTSEQ parameter value.     |
@@ -390,7 +390,7 @@ Main Menu > Job track menu (#1) > Job track logs (#2) > 5=Display details > Page
 - **F15=View LDA**: Press \<F15\>, when it is available, to view the content of the job's captured local data area (LDA).
 - **F21=WRKJOB**: Press \<F21\>, when it is available, to go to the IBM i Work with Job menu display. After exiting the Work with Job menu or any of its functions, the system will return to this log detail display.
 - **F22=RLSJOB**: Press \<F22\>, when it is available, to request the manual release of a queued job from the LSAM Job Tracking master file. After the HOLD window response is given, this program will use the LSAM Job Tracking master file data to construct an IBM i SBMJOB command, and then execute the command. As a result, the actual IBM i job will either be on hold in an IBM i job queue (as specified by the job details), or if not held, the job will immediately begin execution in the specified IBM i subsystem.
-- **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking master record status is set to K=killed, preventing any future release of this job, either by OpCon/xps or manually. (A cancelled job cannot be recovered. Its task must be submitted as a new job.)
+- **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking master record status is set to K=killed, preventing any future release of this job, either by OpCon or manually. (A cancelled job cannot be recovered. Its task must be submitted as a new job.)
 - **PageUp=Prev detail**: Press \<PageUp\> to return to the previous panel of Job Track Log Detail information.
 
 ## Option 6 = Release Job (F22)
@@ -690,7 +690,7 @@ Main Menu > Job track menu (#1) > Display captured jobs (DSPCAPJOB) (#10)
 -  **Opt**:              Input field where an available option may be typed to act upon a record in the list.
 -  **Search content**:   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
 -  **Capture ID**:       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
--  **Job name**:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
+-  **Job name**:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon schedule that executes the captured job.)
 -  **CMD line...**:      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)
 
 #### Functions
@@ -715,7 +715,7 @@ Main Menu > Job track menu (#1) > Display captured jobs (DSPCAPJOB) (#10) > Opti
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
 :::tip
-Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
+Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon.
 :::
 
 **Internal Data**
@@ -736,7 +736,7 @@ Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever v
 - **F12=Cancel**: Quits the display and returns to the previous screen.
 - **F13=More CMD**: Appears if there is more command line text than will fit on this display. Press <**F13**> to go to a dedicated screen where the entire command line text may be viewed, using PageDown as necessary.
 - **F14=More LIBL**: Appears if there are more entries in the initial library list than can be shown on this display. Press <**F14**> to go to a dedicated screen where the entire initial library list may be viewed.
-- **F15=View LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed using this function key. An examination of the LDA contents may be important if Dynamic Variables (type L) will be used to update the LDA contents when the captured job is executed by OpCon/xps.
+- **F15=View LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed using this function key. An examination of the LDA contents may be important if Dynamic Variables (type L) will be used to update the LDA contents when the captured job is executed by OpCon.
 
 ## F13 = More CMD (View CMD)
 
@@ -824,7 +824,7 @@ Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11)
 -  **Opt**:              Input field where an available option may be typed to act upon a record in the list.
 -  **Search content**:   Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
 -  **Capture ID**:       The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
--  **Job name**:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon/xps schedule that executes the captured job.)
+-  **Job name**:         The name the job will use (by default) when it is submitted, same as the job name that was specified when the job was originally captured. (This value may be overridden by various means, including by the job name specified in the OpCon schedule that executes the captured job.)
 -  **CMD line...**:      The first several characters of the job's command line are displayed to help identify each job. (The full command line content is available in the detailed displays for each record.)  
 
 #### Functions
@@ -849,7 +849,7 @@ Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Op
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
 :::tip
-Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
+Captured jobs always convert a SBMJOB parameter value of \*CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon.
 :::
 
 **Internal Data**
@@ -1100,7 +1100,7 @@ Main Menu > Job track menu (#1) > Work with captured jobs (WRKCAPJOB) (#11) > Op
 Most of the job definition parameters are taken verbatim from the IBM i SBMJOB command. Detailed explanations of these fields may be found in IBM documentation and in the Help text for the SBMJOB command. The following table explains fields that are unique to the LSAM software and it provides additional notes about some fields.
 
 :::tip
-Captured jobs always convert a SBMJOB parameter value of *CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon/xps.
+Captured jobs always convert a SBMJOB parameter value of *CURRENT to whatever value was in effect at the time the job was captured. This allows the values that would have been in effect for the job to be preserved until the job is actually executed by OpCon.
 :::
 
 **Internal Data**
@@ -1121,6 +1121,6 @@ Captured jobs always convert a SBMJOB parameter value of *CURRENT to whatever va
 - **F12=Cancel**: Quits the display and returns to the previous screen.
 - **F13=More CMD**: Appears if there is more command line text than will fit on this display. Press <**F13**> to go to a dedicated screen where the entire command line text may be viewed, using PageDown as necessary. (Refer to the F13=More CMD screen for the DSPCAPJOB function, above, for details.)
 - **F14=More LIBL**: Appears if there are more entries in the initial library list than can be shown on this display. Press <**F14**> to go to a dedicated screen where the entire initial library list may be viewed. (Refer to the F14=More LIBL screen for the DSPCAPJOB function, above, for details.)
-- **F15=View LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed using this function key. An examination of the LDA contents may be important if Dynamic Variables (type L) will be used to update the LDA contents when the captured job is executed by OpCon/xps. (Refer to the F15=View LDA screen for the DSPCAPJOB function, above, for details.)
+- **F15=View LDA**: All captured jobs have the 1024-character local data area captured and preserved, even if the LDA is not loaded or used for the job. For jobs that need the LDA, the captured LDA contents may be viewed using this function key. An examination of the LDA contents may be important if Dynamic Variables (type L) will be used to update the LDA contents when the captured job is executed by OpCon. (Refer to the F15=View LDA screen for the DSPCAPJOB function, above, for details.)
 - **F22=CHGJOB**: Branch to the screen f4ormat where job details may be changed. (The job parameter fields change from turquoise to yellow in this menu function when the fields are input capable.)
 - **F23=DLTJOB**: Request to delete this individual captured job definition and all data pertaining to it in other LSAM master files.

@@ -161,7 +161,7 @@ The setting of this flag also controls how captured data will be stored into a D
 - Response cmd (part 1); F13=Full CMD: 
   - The first 214 characters of the response command string may be entered in this field. If the command is longer than 214 characters, press <**F13=Full CMD**> to branch to a screen where a much longer command string may be entered. Function key <**F4=Prompt**> may be used to get IBM i help with command prompting. Unlike the Compare data lines, the entire command string will appear in the F13=Full CMD screen. Be careful if a partial command shows in this field in Change mode; in this case it is recommended that F13=Full CMD be used to be sure that the final command syntax is correct after any changes.
   - Dynamic Variables may be used in place of all or part of the command line syntax. (For more information about Dynamic Variables, refer to Job Tracking and Queuing.)
-  - Also refer to the discussion below about how LSAM Event commands can be used in this field, and how OpCon/xps property (variable) tokens can also be supported when an Event command is used. (Any other IBM i command may also be used in this field, but only Event commands are supported for replacing OpCon/xps property tokens.
+  - Also refer to the discussion below about how LSAM Event commands can be used in this field, and how OpCon property (variable) tokens can also be supported when an Event command is used. (Any other IBM i command may also be used in this field, but only Event commands are supported for replacing OpCon property tokens.
 - Comp reference value: 
   - The compare reference value is a field containing a character string or a reference to a value store in another file, for use in qualifying this Rule for execution. If the referenced value does not match the Compare data according to the Compare rule, then the Capture Response Rule Response command will not be executed.
   - *CAPT = Use the captured data as the reference data (this is the original default for comparing data, in prior versions).
@@ -197,10 +197,10 @@ PageDown to show and update lines 6-24; lines 1-5 only appear on the main mainte
 
 #### LSAM Event Commands and OpCon Property Tokens
 
-The response command line supports execution of LSAM Event commands, just like any other IBM i command. But Event commands have additional support. The function key <**F9**> can be used to select from a list of available Event commands and then to have their keyword fields automatically prompted. When an Event command is placed into the response command line, and only for Event commands, the LSAM programs will support embedded OpCon/xps property (variable) tokens.
+The response command line supports execution of LSAM Event commands, just like any other IBM i command. But Event commands have additional support. The function key <**F9**> can be used to select from a list of available Event commands and then to have their keyword fields automatically prompted. When an Event command is placed into the response command line, and only for Event commands, the LSAM programs will support embedded OpCon property (variable) tokens.
 
-The feature of including OpCon/xps property tokens in an LSAM Event command is described in complete detail in the topic about Message Management. Look for references to the Event command line of the Message Management Parameter screen. In that topic there is a complete table of the specific OpCon/xps property (variable) token values that can be supported directly by the LSAM itself, if a certain syntax is used. In general, any OpCon/xps property token could be used because the LSAM
-passes along the Event command string with the OpCon/xps property tokens in tact, signaling the OpCon/xps server programs to translate the tokens into the values that are stored in the OpCon/xps database.
+The feature of including OpCon property tokens in an LSAM Event command is described in complete detail in the topic about Message Management. Look for references to the Event command line of the Message Management Parameter screen. In that topic there is a complete table of the specific OpCon property (variable) token values that can be supported directly by the LSAM itself, if a certain syntax is used. In general, any OpCon property token could be used because the LSAM
+passes along the Event command string with the OpCon property tokens in tact, signaling the OpCon server programs to translate the tokens into the values that are stored in the OpCon database.
 
 ## Display Captured Data Log
 
@@ -312,7 +312,7 @@ Following is a table of Entry_Code values that may be observed in the list of de
 - SCAN_BYPAS: A scan value bypass rule registered in the SPLF Scan Rules table was found and recognized. This scan value will be marked as matched, even though bypassed. 
 - SCANSPLF_E: A fatal error was encountered and the SCANSPLF command has not completed its function. Refer to the log entry detail for a status code and more information about the reason for the failure. 
 - SCAN_PASS: A successful match of all required scan values; the SCANSPLF command ends normally. 
-- SCAN_FAIL: Not all required scan values were matched; the SCANSPLF ends abnormally and, if started by OpCon/xps, a list of mismatched values is sent to the OpCon/xps job information. 
+- SCAN_FAIL: Not all required scan values were matched; the SCANSPLF ends abnormally and, if started by OpCon, a list of mismatched values is sent to the OpCon job information. 
 - SCANSPLFEN: Marks the normal end of the SCANSPLF command. A final completion status code may be found in the details of this log entry. 
 - SCAN_ABEND: 
   - The SCANSPLF command processor has reported a failure.

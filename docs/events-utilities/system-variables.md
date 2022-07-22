@@ -44,7 +44,7 @@ The $MSG variable (supported only for Message Management) can be edited for sing
 
 The following list shows examples of $-System variables that are commonly supported among most Agent features.
 
--  $FREQUENCY NAME:   The name of the OpCon/xps frequency table that was assigned to the job that issued the message.
+-  $FREQUENCY NAME:   The name of the OpCon frequency table that was assigned to the job that issued the message.
 -  $IBM JOB ID:       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
 -  $IBM JOB NAME:     The IBM i current Job Name.
 -  $IBM JOB NBR:      The IBM i current Job Number (always 6 digits, but handled as characters).

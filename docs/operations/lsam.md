@@ -147,7 +147,7 @@ This display will show Load source: LI181027U PTF181027 when the LI181027U insta
 
 ### Starting the LSAM Server Jobs
 
-Begin processing OpCon/xps jobs by starting the LSAM using either of the two following methods:
+Begin processing OpCon jobs by starting the LSAM using either of the two following methods:
 
 #### Option One: Start the LSAM through SMA Menus
 
@@ -207,7 +207,7 @@ choices for automatically setting the library list when using command entry outs
 The IBM i LSAM sockets communications program actively monitors TCP/IP communications. When the LSAM does not receive communication from OpCon for a specified amount of time (according to the communications timing parameters described above), the LSAM sends a warning message to the IBM i Operator Message queue.
 
 :::tip Example
-The following is a warning message to the IBM i Operator Message queue when communication between the LSAM and OpCon/xps is idle:
+The following is a warning message to the IBM i Operator Message queue when communication between the LSAM and OpCon is idle:
 
 Message ID: SMA0009
 
@@ -215,14 +215,14 @@ Message file: SMAMSGF
 
 Severity: 40
 
-Message . . . . : OpCon/xps LSAM communications idle time exceeded on port &1. Lost connection? The OpCon/xps IBM i LSA sockets communications program has not received any data or any request to connect for longer than the idle time specified in the LSAM Parameters control file. This warning usually occurs when the TCP/IP connection has been interrupted. The communication program will continue to monitor for a connection on the specified port, however, under some circumstances it might be necessary to stop and restart the LSAM communications program.
+Message . . . . : OpCon LSAM communications idle time exceeded on port &1. Lost connection? The OpCon IBM i LSA sockets communications program has not received any data or any request to connect for longer than the idle time specified in the LSAM Parameters control file. This warning usually occurs when the TCP/IP connection has been interrupted. The communication program will continue to monitor for a connection on the specified port, however, under some circumstances it might be necessary to stop and restart the LSAM communications program.
 :::
 
-Upon receiving this warning message, contact the OpCon system administrator to check data communications between OpCon/xps and the IBM i LSAM.
+Upon receiving this warning message, contact the OpCon system administrator to check data communications between OpCon and the IBM i LSAM.
 
 This message repeats at the end of every idle interval until data communications has been restored.
 
-The IBM i LSAM sockets communications program will remain in a state that is ready for communications with OpCon/xps. When OpCon/xps is able to resume communications, the connection will be automatically restored without needing to stop and restart the IBM i LSAM server programs. 
+The IBM i LSAM sockets communications program will remain in a state that is ready for communications with OpCon. When OpCon is able to resume communications, the connection will be automatically restored without needing to stop and restart the IBM i LSAM server programs. 
 
 ## LSAM Management Screens and Windows
 
