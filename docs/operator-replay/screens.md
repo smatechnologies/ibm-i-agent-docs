@@ -770,7 +770,7 @@ Enter=Confirm   F12=Cancel
 
 The LSAM utility command ADDRPYTOK can be used from IBM i command entry or from within a job submitted by OpCon to complete the same Create or Change maintenance of the Operator Replay Tokens as the LSAM screens above. This command is able to add new variables to the LSAM table when the do not already exist, or to update the value of an existing token.
 
-Also refer to the discussion under [Captured Data Response Rules](\events-utilities\captured-data-response-rules.md) about how the response rules can also be used to create or set the value of Operator Replay Token Variables.
+Also refer to the discussion under [Captured Data Response Rules](../events-utilities/captured-data-response-rules) about how the response rules can also be used to create or set the value of Operator Replay Token Variables.
 
 ## Work with Screen Capture Definitions
 
@@ -852,7 +852,7 @@ Using the F10 pathway offers the advantage of carrying the Script Name and Step 
 
 The same data capture response functions support Screen data capture for Operator Replay, message data capture from the Message Management server job, and report data capture for the SCANSPLF utility command. 
 
-Refer to [Captured Data Response Rules](\events-utilities\captured-data-response-rules.md) for detailed information about managing Respose Rules.
+Refer to [Captured Data Response Rules](../events-utilities/captured-data-response-rules) for detailed information about managing Respose Rules.
 
 #### Menu Pathways
 
@@ -867,7 +867,7 @@ The function for displaying the captured data log is important as an auditing to
 
 ### OPRL40R1 - Display Captured Data Log
 
-Refer to [Captured Data Response Rules](\events-utilities\captured-data-response-rules.md)  for more information about ways to use data capture and captured data response rules.
+Refer to [Captured Data Response Rules](../events-utilities/captured-data-response-rules)  for more information about ways to use data capture and captured data response rules.
 
 #### Menu Pathways
 
