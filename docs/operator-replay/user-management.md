@@ -160,5 +160,5 @@ The IBM i operating system may be configured to restrict passwords to only 10 ch
 Some operating systems support longer user IDs and passwords. The IBM i LSAM is able to supply up to 128 characters for either or both the User Name and the Password, as when an FTP job is logging into a remote system that is not IBM i, in order to start the file transfer process.
 
 :::tip
-Please study the advice about supported User Namae and Password lengths, per application, that is displayed on the Create/Change maintenance display for the Agent's User Management function.
+Please study the advice about supported User Name and Password lengths, per application, that is displayed on the Create/Change maintenance display for the Agent's User Management function.
 :::

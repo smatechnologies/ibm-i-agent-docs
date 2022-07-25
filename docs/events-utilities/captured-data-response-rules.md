@@ -103,7 +103,7 @@ is attached.
 - **F5=Refresh**: Reload the list display with the latest data from the master file.
 - **F6=Add**: Branch to the screen for creating a new Capture Response Rule record.
 - **F11=Alt view**: Change the list view to show different titles and data columns.
-- **F12=Cancel**: Return to the LSAM menu.
+- **F12=Cancel**: Return to the LSAM menu, or to the calling program (such as the Data Capture definition screen).
 - **F15=Subset type**: When this program was called directly from the LSAM menu, this function key appears, permitting a change to the type of Response rule appearing in the list. The Subset window offers a choice of Type C = screen capture response rules, S = SCANSPLF data capture response rules, or M = Message Management response rules.
 - **F16=Search next**: When a search argument has been entered in the Search content field, pressing F16 can either start a new search (if the content value was changed) or it can continue a search to look for the next list entry that matches the search argument, starting with the first record after the last match found.
 - **F17=Top**: Reposition the list display to show the first record in the list.
@@ -187,9 +187,10 @@ PageDown to show and update lines 6-24; lines 1-5 only appear on the main mainte
 - **F3=Exit**: Return to the LSAM menu.
 - **F4=Prompt**: When the cursor is positioned in the Capture identifier or Capture sequence fields, a window appears for selecting from a list of available capture identifiers. The contents of the list depends on whether this display is being used for Operator Replay screen data capture, or for SCANSPLF report data capture.
 - **F5=Refresh**: Reload the maintenance display with the original default values for Add, Copy or Change, discarding any new typed input.
-- **F8=DynVar**: Open a window to select an available Dynamic Variable, for use in the Response Command or the Compare Data fields.
+- **F8=DynVar**: Display a list of Dynamic Variable names from which a name can be selected and inserted into the field where the cursor was located when F8 was pressed.  Fields that support {TOKEN} translation will have the curly brackets added to the variable name, but the Store to -> field will insert only the variable name.
 - **F9=Event cmds**: Open a window to select from a list of available LSAM Event commands, to be inserted into the Response Command field after the Event command fields are filled in. (Refer to discussion below about using OpCon property (variable) tokens with Event
     commands.)
+- **F10=$Var**: Display a list of Agent System variables from which a variable name can be selected and then inserted into the field where the cursor was located when F10 was pressed. For more information see [$-System Variables](./system-variables.md).
 - **F12=Cancel**: Return to the Work with Capture Response Rules list display.
 - **F13=Full CMD**: Branch to a sub-display that uses the whole screen to show the entire available space for entering long command text strings. Any data entered on the short (part 1) command entry line will be carried forward for display on the full command entry screen. After returning from the full entry screen, the first 214
     characters of the longer command will appear in the short (part 1) Response cmd field.
