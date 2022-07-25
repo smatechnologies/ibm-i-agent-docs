@@ -61,7 +61,7 @@ The LSAM's job scheduling server program allows for and supports special values 
 
 However, in the case of queued or captured jobs, it may be preferred that the original IBM i user profile included in the SBMJOB command be preserved. In this case, either all possible queued or captured user IDs must be registered as valid OpCon user IDs for IBM i jobs, or else it will be necessary to register in OpCon a false user ID just for this purpose.
 
-OpCon would permit the registration of a user ID named "*" (a single asterisk) or named "*CURRENT." Either of these values appearing in an IBM i job start request will allow the IBM i LSAM job scheduler to honor the original user ID that was captured from the SBMJOB command. To set up these fake user IDs, open the OpConUser Interfaceand route to: Administration -> Security -> Batch User Privileges. But it is important to remember that once one of these fake user IDs is registered, it's not possible
+OpCon would permit the registration of a user ID named "*" (a single asterisk) or named "*CURRENT." Either of these values appearing in an IBM i job start request will allow the IBM i LSAM job scheduler to honor the original user ID that was captured from the SBMJOB command. To set up these fake user IDs, open the OpCon User Interface and route to: Administration -> Security -> Batch User Privileges. But it is important to remember that once one of these fake user IDs is registered, it's not possible
 to delete it. It could only be disabled to the extent that privileges for the user ID are revoked.
 
 If the fake user IDs are registered in OpCon, then they can be used with a Queued or Captured job, making it simpler to honor various user IDs from IBM i that might be authorized to submit one of the AdHoc (or other named schedule) jobs that will be tracked or queued, as well as any given job definition that has been captured by the LSAM for later execution.
@@ -362,7 +362,7 @@ There is an undocumented method for including any of these constrained job param
 :::
 
 :::tip
-The job date applied under IBM i for Tracked, Queued or Captured job has special rules. Tracked jobs will always use the DATE parameter of the original IBM i SBMJOB command. Queued or Captured jobs will be controlled by the OpConUser InterfaceJob Date field, but the special value of *SYSVAL will tell the LSAM to use the original DATE field.
+The job date applied under IBM i for Tracked, Queued or Captured job has special rules. Tracked jobs will always use the DATE parameter of the original IBM i SBMJOB command. Queued or Captured jobs will be controlled by the OpCon User Interface Job Date field, but the special value of *SYSVAL will tell the LSAM to use the original DATE field.
 :::
 
 ### SBMJOB Command Parameter Constraints

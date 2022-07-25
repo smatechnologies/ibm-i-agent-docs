@@ -4,7 +4,7 @@ sidebar_label: 'How the LSAM Message Management Works'
 
 # How the LSAM Message Management Works
 
-The IBM i LSAM Message Management server performs the task of surveying message queues, looking for messages that conform to registered message response rules. Message response rules are created either by adding Message Parameters using the IBM i LSAM Menu function, or by adding message response parameters to an IBM i job in the OpConUser Interfacejob master record. Each message response rule can specify either or both types of response: answer a message that requires a reply, and/or generate an OpCon Event.
+The IBM i LSAM Message Management server performs the task of surveying message queues, looking for messages that conform to registered message response rules. Message response rules are created either by adding Message Parameters using the IBM i LSAM Menu function, or by adding message response parameters to an IBM i job in the OpCon User Interface job master record. Each message response rule can specify either or both types of response: answer a message that requires a reply, and/or generate an OpCon Event.
 
 During the process of scanning message queues, the LSAM server job TRPMSG maintains a control file (TRPMSGF10) where it stores the message key of the last message read from each message queue. As the server program repeats its cycle of checking each message queue, it uses the stored last message key to make sure that it does not process the same message twice. As long as this server job is active, the cycle of checking message queues works well and the stored message keys are normally reliable.
 

@@ -60,7 +60,7 @@ Main Menu > Message management menu (#2) > Message management logs (#2)
 |                  |                        | -   B = Both a reply and an event       |
 | Reply Type       | Appears only for the Activity Log.  | The type of log entry:  |
 |                  |                        | -   LSAMtrap = a message trap defined by the LSAM's on message management table.  |
-|                  |                        | -   OpConJob = a job-specific message trap defined for the one job under the OpConUser Interfacejob master record. |
+|                  |                        | -   OpConJob = a job-specific message trap defined for the one job under the OpCon User Interface job master record. |
 |                  |                        | -   Error = shown in Red, the Message Management facility attempts to log errors in Reply or Event execution. Use option 5=display to see details about the error entry. |
 |                  |                        | -   InfoText = show in Blue, the Message Management facility adds log entries for actions that may be subject to audit, such as the replacement of any Dynamic Variable that was included in a message Event command. |
 | Reply...         | Appears only for the OpCon job-level management log | Shows either the 6-character reply value, or the first portion of the Event command string, depending on the response type (Rsp). |
@@ -122,7 +122,7 @@ respond to the message. A value of zeros for an EQ comparison means that the var
   -   N = None                           
   -   (There will be no log entry for Both) 
 - End?:
-  -   The End Job option: Specified only by job-level message responses defined in the OpConUser Interfacejob master, this option can force a job to end even if the response to the error message would normally allow the job to continue. (This option is not supported by the LSAM general message management table.)
+  -   The End Job option: Specified only by job-level message responses defined in the OpCon User Interface job master, this option can force a job to end even if the response to the error message would normally allow the job to continue. (This option is not supported by the LSAM general message management table.)
   -   Y = yes, end the job when this message qualifies for a response.
   -   N = no, allow the job to continue (unless the message was an error that prevents the job from completing).
 - Message reply: The value supplied by the LSAM message manager to answer a message requiring a reply, if the Answer Type was R or B. 

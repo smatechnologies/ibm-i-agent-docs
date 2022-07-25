@@ -39,7 +39,7 @@ Users of the original Client eMail feature should carefully consider the discuss
 
 Users who have started using the Client eMail feature at or after LSAM version 18.1.112 (LSAM version 18.1, PTF level 112) can skip this section of documentation.  It is provided as a guide only for users of the original Client eMail feature. New users should continue with the [Client eMail Process Overview](#client-email-process-overview).
 
-Revising the introduction to Client eMail Management in the IBM i LSAM Administration Guide (18.1.055), this eMail management tool now does depend on the OpCon External Event command $NOTIFY:EMAL. This Agent’s adoption of the XML format for OpCon External Event commands makes it much easier and simpler to continue producing nicely formatted email messages. For example, the XML format supports properly edited financial amounts, with no restrictions on the use of the comma as a grouping separator.
+Revising the introduction to Client eMail Management in the IBM i LSAM Administration Guide (18.1.055), this eMail management tool now does depend on the OpCon External Event command $NOTIFY:EMAIL. This Agent’s adoption of the XML format for OpCon External Event commands makes it much easier and simpler to continue producing nicely formatted email messages. For example, the XML format supports properly edited financial amounts, with no restrictions on the use of the comma as a grouping separator.
 
 The CAUTION in the previous user instructions no longer applies. After version 18.1.112 cumulative LSAM PTFs for the OpCon Agent for IBM i are installed, there is no need to maintain the old, retired stand-alone OpCon utility “SMASendMail.exe”.
 
