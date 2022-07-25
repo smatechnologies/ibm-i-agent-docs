@@ -72,7 +72,7 @@ DSPMSGD SMA0000 SMADTA/SMAMSGF
 
 The second message ID that is frequently appended to the OpCon job completion code is an IBM i system message that the IBM i Agent has been able to retrieve from information about the job failure. Its format would typically be CPF0000, where the zeros are replaced by some digits and/or characters (A-E). Since these message may vary widely, detailed information about the messages can be obtained first by viewing the primary message text that is stored in the OpCon Job Detailed Information (refer to next topic), and then, if necessary, by viewing the secondary message text using the IBM i DSPMSGD command (as above, except that the message file is usually QSYS/QCPFMSG).
 
-Before connecting to an IBM i console to view message details, problems may be solved by using the following additional tools that are available from the OpCon EM user interface.
+Before connecting to an IBM i console to view message details, problems may be solved by using the following additional tools that are available from the OpConUser Interfaceuser interface.
 
 ### OpCon Job Detailed Information
 
@@ -82,11 +82,11 @@ In the Job Information window, left mouse click on the tab on the far right side
 
 The text that shows (when available) is the IBM i primary message text. The IBM i LSAM may have retrieved this message text from the IBM i message file, and therefore it will often not contain replacement values for any variables included in the message text. But the description of the message ID is usually very helpful.
 
-For jobs that did start, but failed during execution, more information about the failure messages is usually available from the IBM i job log report, which can be accessed directly from the EM user interface using the following procedure.
+For jobs that did start, but failed during execution, more information about the failure messages is usually available from the IBM i job log report, which can be accessed directly from theUser Interfaceuser interface using the following procedure.
 
 ### OpCon View Job Output Tool
 
-OpCon supports direct access to the job log of IBM i jobs, from the EM user interface. To see a job log report, use a right mouse click on the OpCon daily job icon to launch the daily job context menu. Select "View Job Output" from the context menu, using a left mouse click. A new window will appear, but it will not show any information for one or more seconds because it is waiting for the IBM i Agent to fetch control information about the job log report.
+OpCon supports direct access to the job log of IBM i jobs, from theUser Interfaceuser interface. To see a job log report, use a right mouse click on the OpCon daily job icon to launch the daily job context menu. Select "View Job Output" from the context menu, using a left mouse click. A new window will appear, but it will not show any information for one or more seconds because it is waiting for the IBM i Agent to fetch control information about the job log report.
 
 The IBM i Agent supports access to the job log of active jobs, as well as to the job log report (spool file) for completed jobs...if the job was configured to produce a job log report.
 
@@ -138,7 +138,7 @@ To view the active job log of the LSAM job scheduler server job, enter the LSAM 
 
 From the Work with Job menu, select option 10 to view the active job log. When the job log list display appears, press F10=Detailed messages to reveal all the message detail in the job log. Then press F18=Bottom to jump down to the most recent entries in the job log. It may be necessary to use the Page Up function key in order to find information about the job being researched, especially if the LSAM is very active.
 
-When an OpCon job for IBM i has failed to start, the details about what caused the failure usually appear in one or more messages within the active job log of the IBM i LSAM server job TXMMNG. For example, during early days of using the OpCon product, it is common that some user profile does not have authority to use certain IBM i objects required for the job to run. Another common error is that the library list of the job is incorrect, so that the program to be called will not be found. These are the kinds of detail that will be revealed in the TXMMNG job log, and once the error is identified it is very easy to fix the problem and restart the failed job from the OpCon EM user interface.
+When an OpCon job for IBM i has failed to start, the details about what caused the failure usually appear in one or more messages within the active job log of the IBM i LSAM server job TXMMNG. For example, during early days of using the OpCon product, it is common that some user profile does not have authority to use certain IBM i objects required for the job to run. Another common error is that the library list of the job is incorrect, so that the program to be called will not be found. These are the kinds of detail that will be revealed in the TXMMNG job log, and once the error is identified it is very easy to fix the problem and restart the failed job from the OpConUser Interfaceuser interface.
 
 ### The IBM i LSAM Job Scheduling Communications Log
 

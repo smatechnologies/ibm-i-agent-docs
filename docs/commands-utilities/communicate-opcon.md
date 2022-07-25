@@ -134,7 +134,7 @@ Notice that the spaces within the predefined variable name are required and anti
 
 ## SMASTATUS - Send Job Status Message to OpCon
 
-OpCon and the IBM i LSAM employ a job scheduling protocol which includes a standard format for job status messages. This command causes the LSAM to generate current job status information and send it to OpCon. The purpose of this command is to override the job status value that is displayed on most views of jobs in the Enterprise Manager user interface. The MESSAGE parameter of this command supplies the text to be displayed on various EM views.
+OpCon and the IBM i LSAM employ a job scheduling protocol which includes a standard format for job status messages. This command causes the LSAM to generate current job status information and send it to OpCon. The purpose of this command is to override the job status value that is displayed on most views of jobs in the Enterprise Manager user interface. The MESSAGE parameter of this command supplies the text to be displayed on variousUser Interfaceviews.
 
 Since this command does not (currently) support an ability to designate an IBM i Job ID, it can only be used from within a job that was started by, or is tracked by OpCon. An example of where this command might be useful is among the Steps of an LSAM Multi-Step Job Script, if OpCon started the job that is executing the script.
 
