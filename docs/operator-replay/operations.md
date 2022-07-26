@@ -312,10 +312,10 @@ An Operator Replay script is normally executed by adding an IBM i (IBMi) job to 
   - Job (sub-) Type: Operator Replay Job.
   - User ID: This parameter is optional, since the Agent will always use its SMANET server profile as the IBM i Job User for the submitted Script driver job.
     - Here are the rules the Agent uses to select the User ID for signing on to the virtual workstation:      
-      1.  If the Call information box includes the optional USERNAME parameter (defined below), then this will override the selection of the signon User ID.
+      1.  If the Script name box (a renamed version of the Call information box) includes the optional USERNAME parameter (defined below), then this will override the selection of the signon User ID.
       2.  If Script master specifies User, that is second priority.
       3.  When neither of the first two choices were specified, then the Agent's Script driver job will use this OpCon job master "User ID".
-- For Call Information ~ Script name: The site's Operator Replay script name that was defined using the IBM i LSAM menu functions (described above).
+- Script name box: The site's Operator Replay script name that was defined using the IBM i LSAM menu functions (described above).
   - Optionally, after the Script Name, it is possible to enter a space character followed by the keyword "**USERNAME**" to specify the User Name that will be used to signon to the virtual workstaion:
     ```
     SCRIPTNAME USERNAME(override_user_name)
