@@ -3,6 +3,8 @@ sidebar_label: 'Job Tracking and Queuing'
 ---
 # Job Tracking and Queuing
 
+## Overview of Job Tracking
+
 The Job Tracking and Queuing feature allows external (user-submitted) jobs to be tracked, queued or captured for processing by OpCon. This feature is used for three general purposes.
 
 - First, it enables OpCon to become aware of jobs that are started by IBM i users or by other jobs, but not by an OpCon schedule or event.
@@ -14,11 +16,11 @@ For all jobs started in the IBM i system, one of two techniques may be used to c
 - Prepare OpCon to track external jobs by addressing the following topics, as discussed in this topic:
   - Configuring the LSAM's job tracking control information.
   - Configuring predefined jobs in the IBM i LSAM for External Job Tracking (if required).
-  - Identifying the External Job(s) in the OpCon Enterprise Manager by adding them to the special AdHoc schedule, or to any other named schedule (if required).
+  - Identifying the External Job(s) in the OpCon User Interface by adding them to the special AdHoc schedule, or to any other named schedule (if required).
 - Prepare OpCon to capture jobs that are predefined by third party software by addressing the following topics, as discussed in this topic:
   - Temporarily registering a job or a workstation to utilize the LSAM's Capture Job tool.
   - Optionally defining dynamic variables, and/or working with captured job information.
-  - Building job master records in the OpCon Enterprise Manager that can execute jobs previously captured by the LSAM tool.
+  - Building job master records in the OpCon User Interface that can execute jobs previously captured by the LSAM tool.
 
 :::warning
 When using multiple LSAM environments, it is only possible to start job tracking from one environment at a time.

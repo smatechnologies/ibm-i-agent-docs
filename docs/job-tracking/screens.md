@@ -10,17 +10,18 @@ USERNAME                                    
 
    Select one of the following:
 
-   1.Job track parameters                                                                                                           
-   2.Job track logs (WRKTRKJOB)
-   3.Start job track (STRJOBTRK)                                                                                                    
-   4.End job track (ENDJOBTRK)
-   5.Check job track status (JOBTRKSTS)                                                                                             
-   6.Maintain dynamic variables
-   7.Job tracking configuration                                                                                                     
-   8.Start job capture (STRCAPJOB)
-   9.End job capture (ENDCAPJOB)                                                                                                  
-  10.Display captured jobs (DSPCAPJOB)
-  11.Work with captured jobs (WRKCAPJOB)
+       1. Job track parameters                 
+       2. Job track logs (WRKTRKJOB)
+       3. Start job track (STRJOBTRK)           
+       4. End job track (ENDJOBTRK)
+       5. Check job track status (JOBTRKSTS)    
+       6. Maintain dynamic variables
+       7. Job tracking configuration              
+       8. Start job capture (STRCAPJOB)
+       9. End job capture (ENDCAPJOB)         
+      10. Display captured jobs (DSPCAPJOB)
+      11. Work with captured jobs (WRKCAPJOB)
+
    Selection or command
    ===>_______________________________________________________________________
   ____________________________________________________________________________
@@ -28,7 +29,7 @@ USERNAME                                    
    F13=Information Assistant   F16=System main menu
 
 ```
-### Menu Pathways
+#### Menu Pathways
 
 Main Menu > Job track menu (#1)
 
@@ -77,30 +78,30 @@ Main Menu > Job track menu (#1) > Job track parameters (#1)
 
 #### Fields
 
-- Search content: Type any content that is part of a Job Track Parameter record and press <**Enter**>. Can be used to search for jobs, schedules, or any other field  value.
-- Opt:  <**Tab**> to a row in the table, type an option number and press <**Enter**> to perform that function for the selected line.
-- Job Name: The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number. The name portion is common to as many instances of the same job definition as may be executed. The IBM i permits more than one instance of the same job name to be executed concurrently.
-- TYP: Tracking types:
+- **Search content**: Type any content that is part of a Job Track Parameter record and press <**Enter**>. Can be used to search for jobs, schedules, or any other field  value.
+- **Opt**:  <**Tab**> to a row in the table, type an option number and press <**Enter**> to perform that function for the selected line.
+- **Job Name**: The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number. The name portion is common to as many instances of the same job definition as may be executed. The IBM i permits more than one instance of the same job name to be executed concurrently.
+- **TYP**: Tracking types:
   -   **T** = Tracking: OpCon support, no parameter overrides or dependencies
   -   **Q** = Queuing: OpCon support, with parameter overrides, dependencies
   -   **P** = Passive: OpCon status display only; no interrupt of SBMJOB process                 
   -   **A** = Auto-Tracking: used only for Allow or Prevent auto-tracking at LSAM 
 
-- AUT:  Automatic Tracking control:
+- **AUT**:  Automatic Tracking control:
   -   **A** = Allow auto-tracking
   -   **P** = Prevent auto-tracking
   -   **blank** = does not specifically allow or prevent auto-tracking 
   
- **Fields used to filter/select IBM i jobs for Tracking or Queuing**
-- Job User:        The IBM i User Profile name that owns/executes the job.                                               
-- Jobd Name:       Job Description - a system object that defines how a job is to be processed.
-- Jobq Name:       Job queue - a system object that stores job requests while they are waiting to be executed, or as long as they are in hold status.  
+**Fields used to filter/select IBM i jobs for Tracking or Queuing**
+- **Job User**: The IBM i User Profile name that owns/executes the job.
+- **Jobd Name**: Job Description - a system object that defines how a job is to be processed.
+- **Jobq Name**: Job queue - a system object that stores job requests while they are waiting to be executed, or as long as they are in hold status.  
 
 **Fields used to select an OpCon Schedule for Tracking or Queuing** 
-- Sched Name:      OpCon Schedule Name (may be 128 characters, as seen in the record detail, but only the first few characters appear in this list).
-- Sched Date:      The Date of the OpCon Schedule.
-- Frequency:       The Frequency assigned to this job on the OpCon Schedule. 
-- Job Name:        The name portion of the IBM i job which is also the job name on the OpCon schedule.
+- **Sched Name**: OpCon Schedule Name (may be 128 characters, as seen in the record detail, but only the first few characters appear in this list).
+- **Sched Date**: The Date of the OpCon Schedule.
+- **Frequency**: The Frequency assigned to this job on the OpCon Schedule. 
+- **Job Name**: The name portion of the IBM i job which is also the job name on the OpCon schedule.
 
 
 #### Options
@@ -155,22 +156,21 @@ The description for the Add, Copy, Change and Display screens are the same for a
 | Jobd Name          | \*ALL                 | Job Description - a system object that defines how a job is to be processed. When a specific name is used in this field it qualifies an IBM i job for selection for tracking or queuing.  |
 | Jobd Library       | \*ALL                 | The library within DB2 where the job description is located. When a specific name is used in this field it qualifies an IBM i job for selection for tracking or queuing. |
 | Jobq Name          | \*ALL                 | Job queue - a system object that stores job requests while they are waiting to be executed, or as long as they are in hold status. When a specific name is used in this field it qualifies an IBM i job for selection for tracking or queuing.  
-| Jobq Library       | \*ALL                 | The library within DB2 where the job queue is located. When a specific name is used in this fied it qualifies an IBM i 
-job for selection for tracking or queuing.|
+| Jobq Library       | \*ALL                 | The library within DB2 where the job queue is located. When a specific name is used in this fied it qualifies an IBM i job for selection for tracking or queuing.|
 | Schedule Name      | AdHoc                 | The OpCon schedule that the job is part of. It must match a schedule in the OpCo database.             |
 | Schedule Date      | CURRENT               | Required, used to select from among multiple instances of an OpCon schedule, such as when a yesterday schedule remains incomplete after today's schedule is already active. Various values may be used in this field: |
-|                    | **Note:** If this such as when a field is left blank, yesterday schedule OpCon assumes remains incomplete CURRENT.       | - Actual schedule date, for example, 2011-02-07 which is a date in ISO format. Any date format accepted by OpCon may be used, but ISO is  recommended.        |
+|                    | **Note:** If this field is left blank, OpCon assumes CURRENT.       | Actual schedule date, for example, 2011-02-07 which is a date in ISO format. Any date format accepted by OpCon may be used, but ISO is  recommended.        |
 | | | Any OpCon date special value, such as CURRENT, LATEST, EARLIEST. Other values may be used, although most would not apply when a tracked job is being added to a schedule. To insert special values that are longer than this field allows, use a Dynamic Variable.|
 | | | Dynamic Variable: Use F8 to obtain a list of available Dynamic Variables. The Dynamic Variable must appear in token form (use the F8 selection method to view the value format for this environment), e.g., {DYNVAR}. Dynamic variables may be a good way to assure that the actual OpCon Schedule Build Date is always used, which is important if it is past midnight of the day when the schedule was built at the time when a tracked or queued job will be added. |
 | Frequency          | Blank                 | The OpCon frequency designation. May be left blank. If blank, OpCon would assume the LATEST active schedule if there is more than one schedule that matches the Schedule Name and Schedule Date.        |
-| Track Type         | Q                     | -   **T** = Tracking:  OpCon support, no parameter overrides or dependencies  |
-| | | -   **Q** = Queuing: OpCon support, with parameter overrides, dependencies      |
-| | | -   **P** = Passive: OpCon status display only; no interrupt of SBMJOB process  |
-| | | -   **A** = Auto-Tracking: used only for Allow or Prevent auto-tracking at LSAM |
+| Track Type         | Q                     | **T** = Tracking:  OpCon support, no parameter overrides or dependencies  |
+| | | **Q** = Queuing: OpCon support, with parameter overrides, dependencies      |
+| | | **P** = Passive: OpCon status display only; no interrupt of SBMJOB process  |
+| | | **A** = Auto-Tracking: used only for Allow or Prevent auto-tracking at LSAM |
 | Aut-track sub-jobs | Blank                 | Automatic Tracking Control:              |
-| | | -   **A** = Allow  auto-tracking     |
-| | | -   **P** = Prevent auto-tracking    |
-| | | -   **blank** = does not specifically allow or prevent auto-tracking     |
+| | | **A** = Allow  auto-tracking     |
+| | | **P** = Prevent auto-tracking    |
+| | | **blank** = does not specifically allow or prevent auto-tracking     |
 
 ## Delete Job Tracking Parameters
 
@@ -222,19 +222,19 @@ above.
 | ----------          | -------              | -----------          |
 | Search content      |                      | To quickly search for a particular job, enter the first characters of the job name, or any other tracked job log content value, and press <**Enter**>. Any value that appears on the log detail display may be searched for, even though not all values appear in the list display.        |
 | Opt                 | None                 | <**Tab**> to a row in the table and enter an option. |
-| Job Name            | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration.md#IBM2)   | -   The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number.|
-| | | - The name portion is common to as many instances of the same job definition as may be executed. |
-| | | - The IBM i permits more than one instance of the same job name to be executed concurrently. |
-| | | - Sort name: When F11 is used to change the sort order of the display to Job Name (the default), the list shows all entries for a job together regardless of date. The entries within one job will be sorted in descending order according to the date (last entry first). The column heading for Job Name will be pink when the list is sorted by name.|
+| Job Name            | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration.md#IBM2)   | The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number.|
+| | | The name portion is common to as many instances of the same job definition as may be executed. |
+| | | The IBM i permits more than one instance of the same job name to be executed concurrently. |
+| | | Sort name: When F11 is used to change the sort order of the display to Job Name (the default), the list shows all entries for a job together regardless of date. The entries within one job will be sorted in descending order according to the date (last entry first). The column heading for Job Name will be pink when the list is sorted by name.|
 | Number              |                      | The IBM i job number. The job number helps keep entries from the same job together on the list display when the list is sorted by name, regardless of the time of the entry.   |
-| Date                |                      | -   The date when the job executed, or will execute.    |
-| | | -   [Sort date]: When F11 is used to change the sort order of the display to Date, the list shows all entries in descending date order (last entry first), regardless of job name. The column heading for Date will be pink with the list is sorted by date.         |
+| Date                |                      | The date when the job executed, or will execute.    |
+| | | [*Sort date*]: When F11 is used to change the sort order of the display to Date, the list shows all entries in descending date order (last entry first), regardless of job name. The column heading for Date will be pink with the list is sorted by date.         |
 | Time                |                      | The time when the job executed, or will execute.        |
 | Svty (Severity)     | 00 -- 99             | The completion code reported by the job, (i.e., the severity of the completion message).            |
 | Sts (Status)        |                      | An SMA-defined status code that indicates the state of the pending or completed job. Refer to the table below, under option 5=Display, for a list of all possible status code values.  |
-| Msg ID (Message ID) | \*NONE               | -   An IBM i message identifier (comprised of 3 letters followed by 4 digits).    |
-| | | -   Definitions for message IDs may normally be found in message files stored in the DB2/400 database. SMA* messages may be found in message file SMAMSGF.    |
-| | | -   Using option 5=Display details will usually reveal some text that explains the error message ID.              |
+| Msg ID (Message ID) | \*NONE               | An IBM i message identifier (comprised of 3 letters followed by 4 digits).    |
+| | | Definitions for message IDs may normally be found in message files stored in the DB2/400 database. SMA* messages may be found in message file SMAMSGF.    |
+| | | Using option 5=Display details will usually reveal some text that explains the error message ID.              |
 
 #### Options
 
@@ -263,56 +263,47 @@ Main Menu > Job track menu (#1) > Job track logs (#2) > 5=Display detail
 
 #### Fields
 
-Log keys
-- Log date: The date on which this log entry was made.
-- Log time: The time at which this log entry was made.
-- Log status: The status of this job tracking record when the log entry was made (may be different from the job current status, shown below). Status code is followed by text representing the meaning of the code.
-- Message ID: An IBM i Message ID that may have been reported during the processing of a job. This could be a reason for the status value of E = error (ID SMA0014). It could also represent that the job has been released and job ID information is available (ID CPC1221).
-- Message text: Text of the error message ID. Sometimes text can be present in a log entry without a Message ID. In this case, the reported Message ID will be "(text)".
+Log keys ...
+- **Log date**: The date on which this log entry was made.
+- **Log time**: The time at which this log entry was made.
+- **Log status**: The status of this job tracking record when the log entry was made (may be different from the job current status, shown below). Status code is followed by text representing the meaning of the code.
+- **Message ID**: An IBM i Message ID that may have been reported during the processing of a job. This could be a reason for the status value of E = error (ID SMA0014). It could also represent that the job has been released and job ID information is available (ID CPC1221).
+- **Message text**: Text of the error message ID. Sometimes text can be present in a log entry without a Message ID. In this case, the reported Message ID will be "(text)".
 
-IBM i Parameters
-- Job name: The name portion of an IBM i job. The IBM i Parameters full job names (per instance of a job) include the name, the submitting user name, and a unique job 
+IBM i Parameters ...
+- **Job name**: The name portion of an IBM i job. The IBM i Parameters full job names (per instance of a job) include the name, the submitting user name, and a unique job 
 number.
   - The name portion is common to as many instances of the same job definition as may be executed.
   - The IBM i permits more than one instance of the same job name to be executed concurrently.
-- Job user: The User Profile portion of the IBM i job identifier.
-  - Job number: The unique identifying number portion of the IBM i job identifier.
-- Job Queue
-  - Job queue - a system object that stores job requests while they are waiting to be executed, as long as they are in hold status, or until system resources permit the job to be released for execution. 
-    -   Jobs that match the tracking requirements for queuing, and are recognized by OpCon for tracking, are held in the job queue until SAM scheduling requirements and dependencies permit the job to execute.
-     -   Jobs that are not defined for queuing are not held in a job queue by the LSAM or OpCon, and would only remain in the job queue until system resources permit the job to be released for execution.
+- **Job user**: The User Profile portion of the IBM i job identifier.
+- **Job number**: The unique identifying number portion of the IBM i job identifier.
+- **Job Queue**: A system object that stores job requests while they are waiting to be executed, as long as they are in hold status, or until system resources permit the job to be released for execution. 
+  - Jobs that match the tracking requirements for queuing, and are recognized by OpCon for tracking, are held in the job queue until SAM scheduling requirements and dependencies permit the job to execute.
+  - Jobs that are not defined for queuing are not held in a job queue by the LSAM or OpCon, and would only remain in the job queue until system resources permit the job to be released for execution.
   - In most cases, tracked jobs that are not defined for queuing are allowed to execute immediately, and tracking is just a parallel operation.
-- JOBQ Library
-  - The library within DB2/400 where the job queue is located.
-- For job name
-  - The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
-- For job number
-  - The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
-- For job user
-  - The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
-- Job description
-  - Job Description - a system object that defines how a job is to be processed.
-- JOBD Library
-  - The library within DB2/400 where the job description is located.
-- Library List
-  - The list of DB2/400 libraries that are searched for any type of object that is required by a job.
-    -   The system portion of the library list controls which operating system services will be available to the job.
-    -   The user portion of the library list controls where files, data areas, and user program objects (programs, display files, etc.) can be found.
+- **JOBQ Library**: The library within DB2/400 where the job queue is located.
+- **For job name**: The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
+- **For job number**: The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
+- **For job user**: The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
+- **Job description**: A system object that defines how a job is to be processed.
+- **JOBD Library**: The library within DB2/400 where the job description is located.
+- **Library List**: The list of DB2/400 libraries that are searched for any type of object that is required by a job.
+    - The system portion of the library list controls which operating system services will be available to the job.
+    - The user portion of the library list controls where files, data areas, and user program objects (programs, display files, etc.) can be found.
 
-IBM i Parameters (continued) 
-- Call command
-  - The IBM i control language that names an IBM i or user-defined Command to be executed. The name of the command is also usually accompanied by command-specific syntax to provide additional parameter values that define what the command doe, and/or what objects the command operates on. If the command text appears to be cut off at the end of the second line, use F13=More CMD to see a much larger display area showing all (or more of) the command text.
+IBM i Parameters (continued) ...
+- **Call command**: The IBM i control language that names an IBM i or user-defined Command to be executed. The name of the command is also usually accompanied by command-specific syntax to provide additional parameter values that define what the command doe, and/or what objects the command operates on. If the command text appears to be cut off at the end of the second line, use F13=More CMD to see a much larger display area showing all (or more of) the command text.
 
-SAM Parameters
-- Schedule Name: The OpCon name assigned to the controlling Schedule.
-- Sched date: The OpCon Schedule Date, which may be an OpCon special date keyword or a date, typically in ISO format (CCYY-MM-DD).
-- Frequency: The OpCon frequency code assigned to control when a job executes.
-- Track Type
-  -   T = Track
-  -   Q = Queue
-- Status: The last reported job status (from the LSAM job tracking master file). May not be the same as the Log status, above. Refer to the table, below, of possible job status values. The status code is followed by text that represents the meaning of the code. 
-- SAM job name: The name assigned by OpCon to this job as it appears on a SAM Schedule. For tracked/queued jobs, this name is usually the same as the IBM i job name.
-- SAM job number: A unique number assigned by OpCon to track each job it monitors.
+SAM Parameters ...
+- **Schedule Name**: The OpCon name assigned to the controlling Schedule.
+- **Sched date**: The OpCon Schedule Date, which may be an OpCon special date keyword or a date, typically in ISO format (CCYY-MM-DD).
+- **Frequency**: The OpCon frequency code assigned to control when a job executes.
+- **Track Type**:
+  - T = Track
+  - Q = Queue
+- **Status**: The last reported job status (from the LSAM job tracking master file). May not be the same as the Log status, above. Refer to the table, below, of possible job status values. The status code is followed by text that represents the meaning of the code. 
+- **SAM job name**: The name assigned by OpCon to this job as it appears on a SAM Schedule. For tracked/queued jobs, this name is usually the same as the IBM i job name.
+- **SAM job number**: A unique number assigned by OpCon to track each job it monitors.
 
 
 ### Job Tracking Status Codes
@@ -401,11 +392,11 @@ When option 6=Release job is entered from the Job Track Log list, or \<F22\> is 
 
 #### Release Job - HOLD Option Window
 ```
-
 RLSJOB Attributes
 
     HOLD (Y/N)?...: N
-    F12=Cancel
+
+F12=Cancel
 ```
 
 #### Fields
@@ -593,15 +584,14 @@ The required procedure for changing the exit program number is to first stop job
 | Job tracking status   | STARTED/STOPPED     |          | The status of LSAM job tracking, determined by checking for the exit program entries in the IBM i registry.|
 | QSYS/SBMJOB cmd exit nbr. | 1 -- 2147483647 | 2147483647 | The exit point number assigned by the LSAM to the job tracking exit program in the IBM i registry. |
 | Tracked Job parameter separator character - HEX  | 00-FF           | 6A         | A pair of characters representing the hexadecimal value of the EBCDIC keyboard character that marks the division of this LSAM's Job Tracking ID information fields that are sent to OpCon. The same values and separator are returned to the LSAM when OpCon sends job control transactions after a $JOB event command initiates cooperative job tracking. The default value of a vertical bar, or "pipe" character is strongly recommended (e.g., \|). |
-| | | **Note**: Attention to this character is usually on required in non-U.S. environments. Please contact  SMA Support for assistance if Job Tracking is not working  correctly.      |
+| | | |**Note**: Attention to this character is usually on required in non-U.S. environments. Please contact  SMA Support for assistance if Job Tracking is not working  correctly.      |
 | Auto-start job tracking | Y=Yes,N=No      | Y          | This option tells the LSAM server start and stop programs whether to also start or stop Job Tracking at the same time as all other LSAM server jobs are managed. |
 | Allow *RQS msg for SBMJOB | 0=No,1=Yes   | 0          | This option controls the behavior of the Job Tracking command processor exit program when processing the SBMJOB command. The default behavior of the LSAM will be to directly call QCMD when submitting jobs that do not qualify for job tracking. When the option is set to '1' = Yes, the LSAM will provide improved support for the IBM i Command Entry screen function keys F9=Retrieve and F4=Prompt, while Job Tracking is started. However, this new option should be turned off (set to '0'=No) in environments where request message processing cannot be used to perform the SBMJOB command. This condition would typically only be discovered by experimentation. |
 | Expand JOBD/JOBQ obj refs | 0=No, 1=Yes           | 1          | Many times the SBMJOB command parameters use cross-references to other IBM i objects in order to identify which job description and/or job queue should be used for a job. In most cases, these cross-references should be resolved by the Job Tracking programs as the tracking process starts, especially because the job start process is typically suspended from its original job, and then resumed from an LSAM server job      |
 | Allow automatic tracking | 0=None, 1=Positive, 2=Negative| 0          | This control field governs how Automatic Job Tracking will decide which jobs in the IBM i partition will be selected for automatic tracking. The impact of this control field is described above in this topic, under "How Job Tracking Works -> Automatic Job Tracking." |
-| Expand JOBD/JOBQ obj refs | 0=No, 1=Yes          | 0          | -   This option tells the Job Tracking exit program whether to replace *LIBL in the Job Description
-Library name and the Job Queue Library name of the intercepted SBMJOB command. It also controls replacing a value of *JOBD in the Job Queue Name parameter of the SBMJOB command. Replacing these indirect object references may provide more exact control over which jobs are qualified for Job Tracking, and over selection of the OpCon Schedule and Schedule Date that is matched when there is more than one instance of the same IBM i Job Name that could be tracked, such as when a Test environment is present in the same IBM i partition as a Production environment. |
-| | | |-   When this option is set to 0=No, the indirect object reference values of *LIBL and *JOBD could only be matched by the LSAM Job Tracking Parameter field special value of *ALL. |
-| | | |-   (The SBMJOB parameter values that are managed by the LSAM Job Tracking exit program are the values present in the original SBMJOB command, not the finally resolved job definition parameters that are replaced by IBM i only when the job is actually processed for placement on a job queue - which happens after the LSAM Job Tracking exit program.) |
+| Expand JOBD/JOBQ obj refs | 0=No, 1=Yes          | 0          | This option tells the Job Tracking exit program whether to replace \*LIBL in the Job Description Library name and the Job Queue Library name of the intercepted SBMJOB command. It also controls replacing a value of \*JOBD in the Job Queue Name parameter of the SBMJOB command. Replacing these indirect object references may provide more exact control over which jobs are qualified for Job Tracking, and over selection of the OpCon Schedule and Schedule Date that is matched when there is more than one instance of the same IBM i Job Name that could be tracked, such as when a Test environment is present in the same IBM i partition as a Production environment. |
+| | | | When this option is set to 0=No, the indirect object reference values of \*LIBL and \*JOBD could only be matched by the LSAM Job Tracking Parameter field special value of *ALL. |
+| | | | The SBMJOB parameter values that are managed by the LSAM Job Tracking exit program are the values present in the original SBMJOB command, not the finally resolved job definition parameters that are replaced by IBM i only when the job is actually processed for placement on a job queue - which happens after the LSAM Job Tracking exit program.|
 
 
 #### Functions
@@ -923,17 +913,23 @@ Pressing <**F15**> from the Change Captured Job Detail display provides access t
 WRLCAPR7                 Capture Job Detail -- Change LDA            DD/DD/DD
 USERNAME                    Capture ID: OOOOOOOOOOOO                 TT:TT:TT
       1...5...10....5...20....5...30....5...40....5...50....5...60....5...70
-   1  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                             OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+   1  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
       OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-  71  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                                OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+  71  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
       OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 141  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 141  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
       OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 211  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 211  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 281  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
       OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 281  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 351  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                               OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 351  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+      OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
       OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                                                                          More...
 F3=Exit  F5=Refresh  F10=Char Updt  F11=Hex/Char View  F12=Cancel  F19=Rollback
@@ -944,15 +940,20 @@ F3=Exit  F5=Refresh  F10=Char Updt  F11=Hex/Char View  F12=Cancel  F19
 DSPCAPR6               Capture Job Detail -- LDA Content             DD/DD/DD
 USERNAME                   Capture ID: OOOOOOOOOOOO                  TT:TT:TT
       1...5...10....5...20....5...30....5...40....5...50....5...60....5...70
-   1  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                          
+   1  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
   71  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 141  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                          211  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 281  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                         
+ 141  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 211  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 281  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO             
  351  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 421  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                          491  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 561  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                          631  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 701  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                          771  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
- 841  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO                                                                                          911  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 421  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 491  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 561  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 631  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 701  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 771  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 841  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ 911  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
  981  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
                                                                          Bottom
 F3=Exit   F10=Hex/Char   F12=Cancel
