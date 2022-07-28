@@ -28,7 +28,8 @@ Please review the discussion below about Starting Message Management for importa
 3. From a command entry line (or the CMD parameter of a SBMJOB command), type the LSAM command **STRMSGMNG**. F4=Prompt may be used to view the optional start mode parameter. Refer to [Starting Message Management: Cold vs. Warm](../message-management/operations.md#starting-message-management-cold-vs-warm) and [Maintain Message Management Parameters](../message-management/screens.md#message-management-parameters) for more information about the start mode.
 4. The result of starting message management is that job TRPMSG is submitted to the LSAM subsystem configured in the LSAM Parameters. Confirm that message management is active by using the Check function, as follows.
 5. Enter the command **TRPMSGSTS** to view a window that reports the server status.
-6. When submitting a job (SBMJOB) to run command STRMSGMNG, the LSAM library list must be in effect for the job to use the STRMSGMNG command. Either specify a job description such as SMALSAJ00 that uses this library list, or specify **INLLIBL(\*CURRENT)** to pass the current job's library list to the submitted job.
+6. When submitting a job (SBMJOB) to run command STRMSGMNG, or attempting to use the STRMSGMNG command from another job in the IBM i partition, the LSAM library list must be in effect for the job to use the STRMSGMNG command. Either specify a job description such as SMALSAJ00 that uses this library list, or specify **INLLIBL(\*CURRENT)** to pass the current job's library list to the submitted job.
+    - The STRMSGMNG command can also be executed by the LSAM's wrapper command **LSAMCMD** which temporarily adds the LSAM library list to the current job, based on the name provided in the ENV( ) parameter value.
 7. The TRPMSGSTS command will not report that the server is active until the submitted job completes normally.
 
 ## End Message Management (ENDMSGMNG)
@@ -42,6 +43,8 @@ The End Message Management option tells the LSAM discontinue monitoring for mess
 3. Enter **4** to choose the **End Message management (ENDMSGMNG)** option in the Message management menu.
 4. The result of ending message management is that job TRPMSG is ended from the LSAM subsystem configured in the LSAM Parameters. Confirm that message management is no longer active by using the Check function, as follows.
 5. Enter **5** to choose the **Check Message management status (TRPMSGSTS)** option. A status window will appear confirming the server job status.
+
+To turn off Message Management manually, or programmatically, use the same procedure as above for [Turn On Message Management -- Using the LSAM Command](#turn-on-message-management----using-the-lsam-menu), but use the command **ENDMSGMNG**.
 
 ## Starting Message Management Cold vs Warm
 
@@ -60,4 +63,4 @@ A good general rule to follow is this: If the LSAM Message Management server was
 
 There are some tools that can be used by technical support personnel to customize a one-time recovery/restart of the server. If a technical support person is not available in an emergency situation, perhaps the best decision would be to use a warm start. The Positive side effect of this decision would be that some messages might be skipped. However, this is probably better than processing the same message twice. But that decision would also depend on the types of message response rules typically used at a given site. Sometimes it is so critical that every message be detected, that it would be better to account for duplicate processing of one or more messages following a cold start of the server.
 
-To understand the optional tools and methods that can be used by technical support personnel to create variations in the way the Message Management server will start, read How the LSAM Message Management Works.
+To understand the optional tools and methods that can be used by technical support personnel to create variations in the way the Message Management server will start, read [How the LSAM Message Management Works](./details.md).

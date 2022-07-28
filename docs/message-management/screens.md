@@ -19,41 +19,41 @@ Main Menu > Message management menu (#2) > Message management performance parame
 
 | Parameter            | Default (VALUES)     | Description          |
 | -------------------- | -------------------- | -------------------- |
-| Activity poll interval| 15 (seconds)        | - This value helps to balance how aggressively Message Management will be checking for messages that OpCon job details have specified should be managed, versus the impact of this facility on overall system performance.     |
-|                     |                      | - A smaller number of seconds will improve the LSAM's ability to manage messages from individual jobs or message queues, whereas a larger number of seconds will allow more system resources for other important jobs such as LSAM Job Scheduling activity.  |
-| Auto-start message management  | N(Y or N)            | -   Y = yes, tells the LSAM subsystem startup procedure to automatically start message management at the same time as the LSAM server programs are started. When this value is set to Y, stopping the LSAM also stops message management. |
-|                      |                      | -   N = no, means that message management will only be started when the manual start command or menu function (described above) are used. Set this flag to N (the default) when message management will never be used.  |
-| Server start mode    | 0 = warm start (default)1 = cold start     | -   0 = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed.  |
-|                      |                      | -   1 = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue.  |
+| Activity poll interval| 15 (seconds)        | This value helps to balance how aggressively Message Management will be checking for messages that OpCon job details have specified should be managed, versus the impact of this facility on overall system performance.     |
+|                     |                      | A smaller number of seconds will improve the LSAM's ability to manage messages from individual jobs or message queues, whereas a larger number of seconds will allow more system resources for other important jobs such as LSAM Job Scheduling activity.  |
+| Auto-start message management  | N (Y or N)            | **Y** = yes, tells the LSAM subsystem startup procedure to automatically start message management at the same time as the LSAM server programs are started. When this value is set to Y, stopping the LSAM also stops message management. |
+|                      |                      | **N** = no, means that message management will only be started when the manual start command or menu function (described above) are used. Set this flag to N (the default) when message management will never be used.  |
+| Server start mode    | 0 = warm start (default) 1 = cold start     | **0** = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed.  |
+|                      |                      | **1** = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue.  |
 |                      |                      | Refer to additional discussion below about Starting Message Management. |
-| Trace message management log  (Replaces former external TRPMSGDBUG data area.)   | 0(0 1)               | -   0 = no trace, 1 = debug logging  |
+| Trace message management log  (Replaces former external TRPMSGDBUG data area.)   | 0 (0 1)               | **0** = no trace, **1** = debug logging  |
 |      |                      |     This option flag can turn on a highly detailed form of activity trace logging that is separate from the standard Message Management outcome logging file. This is a support diagnostic tool that can generate a large amount of data in the LSAM general purpose log file LSALOGF30. Debug logging should only be used when requested by SMA Technologies Support to diagnose problems with the LSAM Message Management server job.  |
-|                      |                      | -   To view the results of debug logging, either use the IBM i command DSPPFM to view the content of file LSALOGF30, or select LSAM log viewer # 4 (from LSAM menu 6, option 5). This is the same log file where LSAM SBMJOB commands are logged. The log entries are text entries, but the flags and codes at the beginning of each entry can only be interpreted by analysts who have access to the LSAM program source code.    |
-| First day of week (1)   | *SUN(IBM i day of week values)  | This field is used to specify which calendar day will be considered the first day of the week by the LSAM Message Management Parameters, Effective DOW (day of week) filter field. (Refer to the table of field values, below, for Message Management Parameters.)  |
+|                      |                      | To view the results of debug logging, either use the IBM i command DSPPFM to view the content of file LSALOGF30, or select LSAM log viewer # 4 (from LSAM menu 6, option 5). This is the same log file where LSAM SBMJOB commands are logged. The log entries are text entries, but the flags and codes at the beginning of each entry can only be interpreted by analysts who have access to the LSAM program source code.    |
+| First day of week (1)   | \*SUN (IBM i day of week values)  | This field is used to specify which calendar day will be considered the first day of the week by the LSAM Message Management Parameters, Effective DOW (day of week) filter field. (Refer to the table of field values, below, for Message Management Parameters.)  |
 | Msg Mgmt Parms init list opt  | 1 (0, 1)             | Controls the appearance of the Message Management Parameters list display when it is first presented. This option is important at sites where the message text is more important than the message ID for recognizing messages to process.    |
-|                      |                      | -   0 = Show the Message Queue Library   |
-|                      |                      | -   1 = Show the Compare Text (instead of the MSGQ LIB)  |
-| Event cmds in-line or submit?  | 0          | 0 = in-line, protect event sequence:     |
+|                      |                      | **0** = Show the Message Queue Library   |
+|                      |                      | **1** = Show the Compare Text (instead of the MSGQ LIB)  |
+| Event cmds in-line or submit?  | 0          | **0** = in-line, protect event sequence:     |
 |                      |                      | Option 0 enables better cooperation among multiple Message Management Parameters that are qualified to respond to a single message. |
 |                      |                      | The original Agent Message Management server logic was the same as option 1 for this field. But sometimes the delay caused by submitting message responses to a separate job would prevent subsequent Message Management Parameters (with a higher sequence number) from being able to benefit from the results of a Parameters record with a lower sequence number. So the new default is option 0: Process each Message Management Parameter right from the Message Management server job so that the order of events is strictly preserved.         |
-|                      |                      | 1 = submit, handle other messages faster:  |
+|                      |                      | **1** = submit, handle other messages faster:  |
 |                      |                      | Option 1 was the original mode of processing for the Message Management Server. This option improves the response time of the Server for handling multiple messages.   |
 |                      |                      | However, when each message response is submitted to its own, separate job, it is likely that this would prevent the actions of Parameter Sequence 10 from being made available to Parameter Sequence 20 that wants to process the same message - and needs to know the result of the Sequence 10 response action. |
 |                      |                      | The choice between these two options might depend on whether a site uses complex message responses, or virtually always uses only one Message Management Parameter per message.           |
-| $MSG handle single quotes | E(blank, B, E)       | An optional edit that should be performed whenever the $MSG special variable is used in the Message Management Command line:                |
-|                      |                      | -   blank = no changes          |
-|                      |                      | -   B = replace a single quote with a space character        |
-|                      |                      | -   E = escape the single quote by doubling it ('')           |
-| $MSG handle comma    | B(blank, B)          | An optional edit that should be performed whenever the $MSG special variable is used in the Message Management Command line:     |
-|                      |                      | -   blank = no changes          |
-|                      |                      | -   B = replace a comma with a space character  |
+| $MSG handle single quotes | E (blank, B, E)       | An optional edit that should be performed whenever the $MSG special variable is used in the Message Management Command line:                |
+|                      |                      | **blank** = no changes          |
+|                      |                      | **B** = replace a single quote with a space character        |
+|                      |                      | **E** = escape the single quote by doubling it ('')           |
+| $MSG handle comma    | B (blank, B)          | An optional edit that should be performed whenever the $MSG special variable is used in the Message Management Command line:     |
+|                      |                      | **blank** = no changes          |
+|                      |                      | **B** = replace a comma with a space character  |
 
 #### Functions
 
 -   **F3=Exit**: Quits the maintenance display and returns to the menu without completing any changes.
 -   **F12=Cancel**: Quits the maintenance display and returns to the menu without completing any changes.
 
-### Message Management Parameters
+## Message Management Parameters
 
 #### Message Management Parameters - View 1 of 2
 ```
@@ -103,9 +103,9 @@ The example lists above show both views of the list of Message Management Parame
 
 The sub-title will change to indicate when the F17=Subset function is in effect. As the sub-title indicates, the list may be filtered to show only one entry for each message queue that the LSAM will monitor. Pressing F17 a second time will remove the filter and show all the Parameter records in the file.
 
-The illustration above also shows a type-Q standard entry that has asterisks (*) in place of a Message ID and other fields. Records with these values are LSAM system control records. They do not identify any specific message that should be monitored. Rather, they provide a means of signaling the LSAM about message queues that need to be checked in case any messages may arrive that should be handled by the job-level message responses supplied with OpCon-initiated jobs.
+The illustration above also shows a type-Q standard entry that has asterisks (\*) in place of a Message ID and other fields. Records with these values are LSAM system control records. They do not identify any specific message that should be monitored. Rather, they provide a means of signaling the LSAM about message queues that need to be checked in case any messages may arrive that should be handled by the job-level message responses supplied with OpCon-initiated jobs.
 
-LSAM Message Management will always check the message queues specified in the LSAM Message Management Parameters master file. However, if a message queue is not named in this master file, the LSAM will not look  for messages there. Therefore, whenever a job-level message management parameter has been added to a job master record defined in the OpCon Enterprise Manager, the LSAM administrator must make sure that any or every message queue where this message might be sent has been added to the list of message queues that will be monitored by the LSAM Message Management server. To check the list of all message queues being monitored, press F17=Subset on the LSAM display. It is easy to add a message queue to that list, as explained below under the Add Queue window documentation.
+LSAM Message Management will always check the message queues specified in the LSAM Message Management Parameters master file. However, if a message queue is not named in this master file, the LSAM will not look  for messages there. Therefore, whenever a job-level message management parameter has been added to a job master record defined in the OpCon User Interface, the LSAM administrator must make sure that any or every message queue where this message might be sent has been added to the list of message queues that will be monitored by the LSAM Message Management server. To check the list of all message queues being monitored, press F17=Subset on the LSAM display. It is easy to add a message queue to that list, as explained below under the Add Queue window documentation.
 
 #### Menu Pathways
 
@@ -113,18 +113,18 @@ Main Menu > Message management menu (#2) > Message management parameters (#1)
 
 #### Fields
 
--  **Status**:                          The "Status" sub-title appears when F15 is used to subset the display to only Inactive, or only Active records. There is no sub-title when all records are on display.
--  **Search content**:                  To quickly search for a particular message management definition, enter the known characters of any portion of the entry detail and press <**Enter**>. Any value that appears on the detail display may be searched for, even though not all values appear in the list display.
--  **Opt**:                             <**Tab**> to a row in the table and enter an option.
--  **Msg Queue**:                       The message queue to be examined for messages.
--  **MsgQ Lib (F10 Alt view 1)**:       The library in the DB2/400 database where the message queue is located.
--  **Msg ID**:                          The identifier of the message to be trapped.********** = no message is specified in this entry; this entry only names a message queue to monitor.
--  **Job Name**:                        The IBM i job name that issued the message. A value of *ALL allows the message manager to respond to a particular message ID regardless of the job name. Partial job names (JOB*) are also supported. Specifying a particular job's name prevents the message manager from responding when other named jobs may issue the same message ID.
--  **Job User**:                        The IBM i user name from the job that issued the message. A value of *ALL allows the message manager to respond to a particular message ID regardless of the user name. Partial user names (USER*) are also supported. Specifying a particular user's name prevents the message manager from responding when other users of the same job name may issue the same message ID.
--  **Compare Text (F10 Alt view 2)**:   When F10 is pressed, or the Message Management Performance Parameters indicate View 2 should be the initial view, the headings change and the list shows the Compare Text field instead of the Message Queue Library. This view may be more useful when many message IDs are the same, or there are no message IDs and the Compare Text is critical to recognize different rules.
--  **SQ# (F11 Alt view 1)**:           A sequence number is assigned to every Parameters record, but it is only important when two records share the same values for all the other profile fields appearing on this list display, in which case the sequence number supports unique association with log records and also controls the order in which Parameters records are processed.
--  **MmRecKey# (F11 Alt view 2)**:     Press F11=Alt view to replace the SQ\# field with this Message Management Record Key Number. The MmRecKey\# field is important for matching Message Management Log entries with the Parameters record that caused the log activity. It can also be used with the command SETMSGTHR (set message threshold) as an easy way to identify the correct Parameters record.
--  **Sts**:                             When new records are first added to the file, they are assigned an inactive status. After any related Capture Data Rules are completed, and any Captured Data Response Rules are also ready, then the Parameters master record status should be changed to A=active to allow the LSAM Message Management server job to use the new record. To change the status, either enter option 9=Chg sts from this list display, or while using option 2=Change, manually type an A or an I in the status field of the master record.
+-  **Status**: The "Status" sub-title appears when F15 is used to subset the display to only Inactive, or only Active records. There is no sub-title when all records are on display.
+-  **Search content**: To quickly search for a particular message management definition, enter the known characters of any portion of the entry detail and press <**Enter**>. Any value that appears on the detail display may be searched for, even though not all values appear in the list display.
+-  **Opt**: <**Tab**> to a row in the table and enter an option.
+-  **Msg Queue**: The message queue to be examined for messages.
+-  **MsgQ Lib (F10 Alt view 1)**: The library in the DB2/400 database where the message queue is located.
+-  **Msg ID**: The identifier of the message to be trapped.********** = no message is specified in this entry; this entry only names a message queue to monitor.
+-  **Job Name**: The IBM i job name that issued the message. A value of *ALL allows the message manager to respond to a particular message ID regardless of the job name. Partial job names (JOB*) are also supported. Specifying a particular job's name prevents the message manager from responding when other named jobs may issue the same message ID.
+-  **Job User**: The IBM i user name from the job that issued the message. A value of *ALL allows the message manager to respond to a particular message ID regardless of the user name. Partial user names (USER*) are also supported. Specifying a particular user's name prevents the message manager from responding when other users of the same job name may issue the same message ID.
+-  **Compare Text (F10 Alt view 2)**: When F10 is pressed, or the Message Management Performance Parameters indicate View 2 should be the initial view, the headings change and the list shows the Compare Text field instead of the Message Queue Library. This view may be more useful when many message IDs are the same, or there are no message IDs and the Compare Text is critical to recognize different rules.
+-  **SQ# (F11 Alt view 1)**: A sequence number is assigned to every Parameters record, but it is only important when two records share the same values for all the other profile fields appearing on this list display, in which case the sequence number supports unique association with log records and also controls the order in which Parameters records are processed.
+-  **MmRecKey# (F11 Alt view 2)**: Press F11=Alt view to replace the SQ\# field with this Message Management Record Key Number. The MmRecKey\# field is important for matching Message Management Log entries with the Parameters record that caused the log activity. It can also be used with the command SETMSGTHR (set message threshold) as an easy way to identify the correct Parameters record.
+-  **Sts**: When new records are first added to the file, they are assigned an inactive status. After any related Capture Data Rules are completed, and any Captured Data Response Rules are also ready, then the Parameters master record status should be changed to A=active to allow the LSAM Message Management server job to use the new record. To change the status, either enter option 9=Chg sts from this list display, or while using option 2=Change, manually type an A or an I in the status field of the master record.
 
 #### Options
 
@@ -136,7 +136,7 @@ Main Menu > Message management menu (#2) > Message management parameters (#1)
 -   **8=Export**: Select one or more Message Management Parameters that will be copied to a save file collection for exporting to a different LSAM environment. The Export option includes all related records such as Capture Rules and Response Rules, as well as any Dynamic Variable definitions. Detailed instructions for Export and Import of data are found in Copy Files from Test to Production.
 -   **9=Chg Sts**: Type option 9 next to any master record line and press <**Enter**> to change the record status from A to I, or from I to A, where A = active and I = inactive.
 
-##### Functions
+#### Functions
 
 -   **F3=Exit**: Quits the list of trapped messages and returns to the menu.
 -   **F5=Refresh**: Reads the message management file again and reloads the list display.
@@ -161,13 +161,13 @@ The Add, Change, Copy and Display screens are similar. The following examples gi
 -   Main Menu > Message management menu (#2) > Message management parameters (#1) > 3=Copy
 -   Main Menu > Message management menu (#2) > Message management parameters (#1) > 5=Display
 
-## F6 = Add
+#### TRPMSGR2A (Format A), TRPMSGR2B (Format B) or TRPMSGR2C (Format C) - Message Management Parameters
 
-### TRPMSGR2A (Format A), TRPMSGR2B (Format B) or TRPMSGR2C (Format C) - Message Management Parameters
+#### F6 = Add
 
-Formats B and C appear on the following page. Use the <**Enter**> key to advance to the next page, or use function key <**F12**> to go back to the previous page. Pressing <**Enter**> on the last page completes updates for Add, Change and Copy, or continues to the next option processing for Display. Pressing <**F12**> at the first page returns to the list display (retaining the last option that was being processed).
+There are three display pages used to define Message Management parameters.  Use the <**Enter**> key to advance to the next page, or use function key <**F12**> to go back to the previous page. Pressing <**Enter**> on the last page completes updates for Add, Change and Copy, or continues to the next option processing for Display. Pressing <**F12**> at the first page returns to the list display (retaining the last option that was being processed).
 
-#### Option 2 = Change, 3=Copy
+#### Option 2 = Change, 3 = Copy
 
 The same screens as for F6=Add, TRPMSGR2A - C, appear for options 2=Change and 3=Copy, except the Rec key # does not show for F6=Add or for option 3=Copy because no record has yet been written to the database file.
 
@@ -176,9 +176,9 @@ The same screens as for F6=Add, TRPMSGR2A - C, appear for options 2=Change and 3
 The screens for option 5 = Display are labeled TRPMSGR5A - C, but they appear the same as the screens for F6=Add. The exception is that there are no prompting function keys such as F4=Prompt appearing in the R5 formats.
 
 #### Fields
-- Message Queue: The message queue to be examined for messages. 
-- Message Queue Library: The library in the DB2 UDB (DB2/400) database where the message queue is located.
-- Status: A = active, I = inactive. Records marked with a status of I = inactive will not be processed by Message Management.
+- **Message Queue**: The message queue to be examined for messages. 
+- **Message Queue Library**: The library in the DB2 UDB (DB2/400) database where the message queue is located.
+- **Status**: A = active, I = inactive. Records marked with a status of I = inactive will not be processed by Message Management.
 
    The LSAM utility command SMAMMPSTS can be used to change the Status of a Parameters record to either Active or Inactive, as part of an automation strategy. Refer to the discussion of this parameter in the Commands and Utilities section of this Agent documentation.                   
 
@@ -186,16 +186,16 @@ The screens for option 5 = Display are labeled TRPMSGR5A - C, but they appear th
    -   New records are initially set to a status of I =inactive to allow time for configuration of message data capture and captured data response rules, if any are desired. It may also be necessary to create multiple  different responses to a single message. After all file maintenance is complete, set the status of all new Parameters records to A = active, using option 2=Change.                   
    -   Refer to [Commands and Utilities](/commands-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
 :::    
-- Message ID: The identifier of the message to be trapped. 
-- Message File: The message file that holds the definition of the Message ID.
-- Rec key #: The record key number is a unique number assigned to each Message Management Parameters record. This is not the same as the Sequence Number (which is used to keep otherwise matched key fields unique). The record key number is useful for associating Message Management Log entries with the Parameters record that generated the log activity. It may also be used with the SETMSGTHR (set message threshold) command as an easy way to identify the exact Parameters record that should have its threshold counter set to a new value (or reset to zero).
-- Job Name: The name of the IBM i job that must have issued the message before the LSAM will respond to the message. A partial job name may be used, such as JOB*, where any job name that begins with the letters before the asterisk (*) will be accepted. The other special value of *ALL means that the job name will not be checked to qualify a message for processing. 
-- Job User: The name of the IBM i user profile from the job that issued the message, which must match before the LSAM will respond to the message. A partial user name may be used, such as USER*, where any user name that begins with the letters before the asterisk (*) will be accepted. The other special value of *ALL means that the user name will not be checked to qualify a message for processing.
-- Sequence: This field is the lowest order (7th) record key value that combines with the other key fields to assure that each Parameters record can be uniquely identified. The sequence number also controls the order of execution when more than one Parameters record uses the same other 6 key fields. The other key field values are: Message Queue, MSGQ Library, Message ID, Message File, Job Name and User Name.              
+- **Message ID**: The identifier of the message to be trapped. 
+- **Message File**: The message file that holds the definition of the Message ID.
+- **Rec key #**: The record key number is a unique number assigned to each Message Management Parameters record. This is not the same as the Sequence Number (which is used to keep otherwise matched key fields unique). The record key number is useful for associating Message Management Log entries with the Parameters record that generated the log activity. It may also be used with the SETMSGTHR (set message threshold) command as an easy way to identify the exact Parameters record that should have its threshold counter set to a new value (or reset to zero).
+- **Job Name**: The name of the IBM i job that must have issued the message before the LSAM will respond to the message. A partial job name may be used, such as JOB*, where any job name that begins with the letters before the asterisk (*) will be accepted. The other special value of *ALL means that the job name will not be checked to qualify a message for processing. 
+- **Job User**: The name of the IBM i user profile from the job that issued the message, which must match before the LSAM will respond to the message. A partial user name may be used, such as USER*, where any user name that begins with the letters before the asterisk (*) will be accepted. The other special value of *ALL means that the user name will not be checked to qualify a message for processing.
+- **Sequence**: This field is the lowest order (7th) record key value that combines with the other key fields to assure that each Parameters record can be uniquely identified. The sequence number also controls the order of execution when more than one Parameters record uses the same other 6 key fields. The other key field values are: Message Queue, MSGQ Library, Message ID, Message File, Job Name and User Name.              
 :::tip
 This field must not be confused with the Rec Key #, which is a number that is unique within the entire Parameters master file. The Rec Key # is an easy way to uniquely identify a Parameters record, such as in  the SETMSGTHR (set message threshold) command, instead of having to type all seven of the character key fields.            
 :::
-- Compare Text (variable in message): 
+- **Compare Text** (variable in message): 
   -   Use this field to specify a text string that will be compared to the trapped message primary text (or secondary text, or both texts in a combined buffer) in order to qualify the message for handling by the LSAM Message Management server. Using Dynamic Variables, up to 999 characters can be specified as the Compare Text, or up to 30 characters can be typed directly into this field. Typed text can also be combined with Dynamic Variables. 
   -   Normally this field is set to blanks, meaning that no checking of message content is performed. Dynamic Variable tokens can be used in this field, so that the tokens will be replaced at run time with a value to search for in the message text.                        
   -   To use trailing blanks as part of the Compare Text, specify a non-zero value in the Length field. (To use all blanks as the Compare Text, specify a Dynamic Variable that will produce a blank result, and then the length field, described below, can be used to designate how many blanks form the Compare Text field.)                                                       
@@ -203,110 +203,109 @@ This field must not be confused with the Rec Key #, which is a number that is un
 In earlier LSAM versions, a special value of *NOVAR was used to mean that no checking of message content is performed. This old value is still supported, but the new standard is to leave the field blank.                           
 :::
 
-- Message text to scan: 
+- **Message text to scan**: 
   - P = primary, S = secondary (Help), B = both.
-  -   This flag indicates which of the message text fields should be searched for the Compare Text. If B = both is indicated, the LSAM message management program creates a message text buffer by removing trailing blanks from the primary text, adding one space character, then appending the secondary text. This formatting of both text fields into one buffer could be important depending on the content and Length of the Compare Text character string.            
-  -   To perform research on the actual content and format of the message text buffer, view the Message Management log entries. For messages that are not being processed, the message text buffer can be logged and examined by temporarily turning on the Message Management debug trace log option, using function 7 from the Message Management menu.                         
-- Comparison type: 
-  -   The Comparison Type field indicates the type of Boolean comparison to be performed between the Compare Text and the message text buffer, where the Compare Text is the first factor and the Message Text is the second factor. 
-  -   EQ = equal, NE = not equal, GT = greater than, GE = greater than or equal to, LT = less than, LE = less than or equal to. (The boolean comparison symbols may also be used in this field: =, \<\>, \>, \>=, \<, \<= .) Blanks are assumed to mean EQ.
-  -   The Start position is required when using a Boolean comparison rule other than EQ or = (equal). However, if the Comparison Type is EQ or =, then the Start position may be left at zeros and this tells the LSAM message management program to search for the Compare Text anywhere in the message text buffer.
-- Start Position in buffer: 
-  -   Compare Text may be further qualified according to its ordinal position within the message text buffer. (Ordinal means that the first character in the message text is position 1.) 
-  -   When a non-zero start  position is specified, the Length field (or the assumed length) is combined with this start position to isolate a character string from the message text buffer. After the message text string is isolated, the Boolean rule of the Comparison Type field is used to compare or contrast it with the Compare Text. 
-  -   Leaving this field zeros tells the LSAM Message Management server that the Compare text may occur anywhere within the primary message text. The Boolean Comp type field must be set to EQ or = when the Start Position field is left at zeros.          
-  -   If the Compare Text rules, including Start Position, do not produce a positive result, then the Parameters record will be skipped for processing.        
+    - This flag indicates which of the message text fields should be searched for the Compare Text. If B = both is indicated, the LSAM message management program creates a message text buffer by removing trailing blanks from the primary text, adding one space character, then appending the secondary text. This formatting of both text fields into one buffer could be important depending on the content and Length of the Compare Text character string.            
+    - To perform research on the actual content and format of the message text buffer, view the Message Management log entries. For messages that are not being processed, the message text buffer can be logged and examined by temporarily turning on the Message Management debug trace log option, using function 7 from the Message Management menu.                         
+- **Comparison type**: 
+    - The Comparison Type field indicates the type of Boolean comparison to be performed between the Compare Text and the message text buffer, where the Compare Text is the first factor and the Message Text is the second factor. 
+    - EQ = equal, NE = not equal, GT = greater than, GE = greater than or equal to, LT = less than, LE = less than or equal to. (The boolean comparison symbols may also be used in this field: =, \<\>, \>, \>=, \<, \<= .) Blanks are assumed to mean EQ.
+    - The Start position is required when using a Boolean comparison rule other than EQ or = (equal). However, if the Comparison Type is EQ or =, then the Start position may be left at zeros and this tells the LSAM message management program to search for the Compare Text anywhere in the message text buffer.
+- **Start Position in buffer**: 
+    - Compare Text may be further qualified according to its ordinal position within the message text buffer. (Ordinal means that the first character in the message text is position 1.) 
+    - When a non-zero start  position is specified, the Length field (or the assumed length) is combined with this start position to isolate a character string from the message text buffer. After the message text string is isolated, the Boolean rule of the Comparison Type field is used to compare or contrast it with the Compare Text. 
+    - Leaving this field zeros tells the LSAM Message Management server that the Compare text may occur anywhere within the primary message text. The Boolean Comp type field must be set to EQ or = when the Start Position field is left at zeros.          
+    - If the Compare Text rules, including Start Position, do not produce a positive result, then the Parameters record will be skipped for processing.        
 
-- Length of Compare Text:
-  -   This field specifies the length of the character strings that are used to evaluate the Compare Text versus the message text buffer.
-  -   When this field is left at zeros, the length is assumed to be through the last non-blank character of the Compare Text field.
-  -   This same rule applies to the value that replaces one or more Dynamic Variable token(s). This Length value (or the assumed length) will determine the size of the character string extracted from the message text buffer, starting from the Start Position.
-- Answer Type (R, E, B, N): 
+- **Length of Compare Text**:
+  - This field specifies the length of the character strings that are used to evaluate the Compare Text versus the message text buffer.
+  - When this field is left at zeros, the length is assumed to be through the last non-blank character of the Compare Text field.
+  - This same rule applies to the value that replaces one or more Dynamic Variable token(s). This Length value (or the assumed length) will determine the size of the character string extracted from the message text buffer, starting from the Start Position.
+- **Answer Type** (R, E, B, N): 
   -   R = Reply to message 
   -   E = Event: IBM i command, or OpCon Event sent to SAM 
   -   B = Both R and E            
   -   N = None: This record used  only for Capture Data and Response Rules, if other Parameter record qualifiers are met. 
-- Message Reply: 
+- **Message Reply**: 
   -   When messages require a reply, the valid values for the reply are often specified within the text of the message. IBM program errors typically require one of the following example values:
-  1.  I = ignore and continue  
-  2.  C = cancel the job       
-  3.  D = produce a formatted program dump and cancel the job 
-  4.  R = Retry: DO NOT USE THIS OPTION! It does not work with modern IBM i programs, except for Control Language programs - but only if the source code is available and the effect of the retry response is well understood. Any other use will likely corrupt application data. 
+      - I = ignore and continue  
+      - C = cancel the job       
+      - D = produce a formatted program dump and cancel the job 
+      - R = Retry: DO NOT USE THIS OPTION! It does not work with modern IBM i programs, except for Control Language programs - but only if the source code is available and the effect of the retry response is well understood. Any other use will likely corrupt application data. 
   -   User-defined programs may issue messages requiring a custom response, such as the name of a tape drive that should be used for a backup operation.
   -   One way to plan for automatic responses to messages is to set the value of a Dynamic Variable. The value may be changed as part of automated processing prior to the event that generates the message. Insert a Dynamic Variable token into this field in order to have the token replaced with its value at run time. Function key <**F6=DynVar**> may be used to select from a list of Dynamic Variables, and/or to see the correct format for a Dynamic Variable token.
   -   Special values may be entered into this field to support user-defined response management. When either of these values are specified, the object name and object library field values are required (refer to the next fields in this table).                      
-    -   *MSGQ = re-route the message to a different message queue and retrieve the user-supplied response from that copy of the message in order to answer the currently pending inquiry message. 
-    -   *PGM = call a user-defined program to provide a message response string that will be used to answer the currently pending inquiry message.         
-- Obj+Lib if *MSGQ or *PGM:
+      - **\*MSGQ** = re-route the message to a different message queue and retrieve the user-supplied response from that copy of the message in order to answer the currently pending inquiry message. 
+      - **\*PGM** = call a user-defined program to provide a message response string that will be used to answer the currently pending inquiry message.         
+- **Obj+Lib if \*MSGQ or \*PGM**:
   -   When the Message Reply field is set to one of these special values, type into the first field the name of an alternate message queue, or the name of a user-defined program that may be used to retrieve or calculate the message reply string.                     
   -   Type into the second field the library location of either type of object.       
   -   Refer to the discussion of How Message Management Works for more information about these two fields.
-- Event Command (F13=More): 
-  -   This field contains the first several characters of the optional command to be executed when the message is detected. The command can be an OpCon event command name and its parameters, or it can be any IBM i command and parameters. Use the function keys <**F4**>, <**F6**>, <**F8**>, and <**F10**> as desired for assistance in formatting the commands and Dynamic Variable or $VAR tokens that may be entered in this field.
-  -   To enter more command 
-    characters, press function key F13 or PageDown. Function keys **F4** or **F8** can also be used to prompt a command. After the command string is returned to this display, if the command string is longer than 210 characters, this field will be protected and displayed in cyan blue. In that case, it will become possible to press the **PageDown** function key to branch to a full screen display where long commands may be modified and extended. 
+- **Event Command** (F13=More): 
+  - This field contains the first several characters of the optional command to be executed when the message is detected. The command can be an OpCon event command name and its parameters, or it can be any IBM i command and parameters. Use the function keys <**F4**>, <**F6**>, <**F8**>, and <**F10**> as desired for assistance in formatting the commands and Dynamic Variable or $VAR tokens that may be entered in this field.
+  - To enter more command characters, press function key <**F13**> or PageDown. Function keys **F4** or **F8** can also be used to prompt a command. After the command string is returned to this display, if the command string is longer than 210 characters, this field will be protected and displayed in cyan blue. In that case, it will become possible to press the **PageDown** function key to branch to a full screen display where long commands may be modified and extended. 
   :::tip
   Also refer to the discussion below about predefined OpCon Event Command variables that are supported by the LSAM in this field. 
   :::
 
-- Effective start date: 
+- **Effective start date**: 
 This is an ISO-standard date field. The default value for this field which means "not used" is 0001-01-01, where te digits are CCYY-MM-DD (century, year, month, day). When the date is set to an actual value, a message will not be processed unless the message issue date occurs on or after this date.
-- Effective end date:
+- **Effective end date**:
 This is an ISO-standard date field. The default value for this field which means "not used" is 0001-01-01, where the digits are CCYY-MM-DD (century, year, month, day). When the date is set to an actual value, a message will not be processed if the message issue date occurs after this date.
--  Effective start time: 
-   -   The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
+- **Effective start time**: 
+   - The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
    :::tip
    The function of this field varies depending on the setting of the Link option (listed below), as follows:
-   -   When the time field is NOT linked to the date field.
-   -   When the time is set to a valid value (00:00:01 - 24:00:00), a message will not be processed unless its issue time is equal to, or greater than this time on a given day. However, if the start time is greater than the end time (and the end     time is not zeros), this indicates that the time frame crosses the midnight boundary into the next day, so the comparison logic is opposite, and the message time must be less than or equal to this start time.    
-   -   When the start time field IS linked to the start date field.
-   -   The time becomes an extension of the start date field, creating a complete time stamp that marks the beginning of the effective period. Messages must have been issued at or after this start time in order to qualify for processing by this Parameter.
-- Effective end time: 
-   -   The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
+   - When the time field is NOT linked to the date field.
+   - When the time is set to a valid value (00:00:01 - 24:00:00), a message will not be processed unless its issue time is equal to, or greater than this time on a given day. However, if the start time is greater than the end time (and the end     time is not zeros), this indicates that the time frame crosses the midnight boundary into the next day, so the comparison logic is opposite, and the message time must be less than or equal to this start time.    
+   - When the start time field IS linked to the start date field.
+   - The time becomes an extension of the start date field, creating a complete time stamp that marks the beginning of the effective period. Messages must have been issued at or after this start time in order to qualify for processing by this Parameter.
+- **Effective end time**: 
+   - The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
 
     :::tip
     The function of this field varies depending on the setting of the Link option (listed below), as follows
     :::
-   -   When the time field is NOT linked to the date field.
-   -   When the time is set to a valid value (00:00:01 - 24:00:00), a message will not be processed unless its issue time is less than, or equal to this time on a given day. However, if the start time is greater than the end time (and the end time is not zeros), this  indicates that the time frame crosses the midnight boundary into the next day, so the comparison logic is opposite, and the message time must be greater than or equal to this start time.    
-   -   When the end time field IS linked to the end date field.
-   -   The time becomes an extension of the end date field, creating a complete time stamp that marks the end of the effective period. Messages must have been issued before or at this end |
+   - When the time field is NOT linked to the date field.
+   - When the time is set to a valid value (00:00:01 - 24:00:00), a message will not be processed unless its issue time is less than, or equal to this time on a given day. However, if the start time is greater than the end time (and the end time is not zeros), this  indicates that the time frame crosses the midnight boundary into the next day, so the comparison logic is opposite, and the message time must be greater than or equal to this start time.    
+   - When the end time field IS linked to the end date field.
+   - The time becomes an extension of the end date field, creating a complete time stamp that marks the end of the effective period. Messages must have been issued before or at this end |
     time in order to qualify for processing by this Parameter.
-- Link times to each date:
-   -   This option field specifies how the Start and End Time values should be used. The times may be linked to their corresponding Date values, or the time fields may be processed independently of the date fields, as described in the two time field entries, above.
-   -   0 = use time values separately from the date values
-   -   1= link the time values to the date values
-- Effective DOW(day of week):
-   -   The days of the week are indicated by the digits 1 - 7. The calendar day corresponding to day 1 is set in the Message Management Performance Parameters function (LSAM menu 2, option 7). For example, typical US domestic calendars may indicate that Sunday (*SUN) is the first day of the week, corresponding to day 1.
-   -   Any or all of the digits 1 - 7 may be entered in this field. For example, if the field value is set to 147, this means that the message must have been issued on the first, fourth or seventh day of the week in order to be processed by this Parametes record. If day 1 is *SUN, then day 4 is *WED and day 7 is *SAT. (The mnemonic values used for days of the week match the settings used by the IBM i operating system.)
-- Start Effective DOM(day of month): 
-   -   This field indicates which day of the month begins the window of time within the month that a message may be processed by this Parameters rule. If the End Effective DOM is zeros, then a message will be processed until the end of the month. The special value of 32 is used to indicate the last day of any month, regardless of the number of days in that month.
-   -   If the End DOM is less than the Start DOM, this indicates that the effective processing time crosses the boundary between months, so the comparison logic is opposite and the message issue date must be less than or equal to this day of the month.
-- End Effective DOM(day of month):
-   -   This field indicates which day of the month ends the window of time within the month that a message may be processed by this Parameters rule. If the Start Effective DOM is zeros, then a message will be processed from the first day of the month until (through) this day. The special value of 32 is used to indicate the last day of any month, regardless of the number of days in that month. 
-   -   If the End DOM is less than the Start DOM, this indicates that the effective processing time crosses the boundary between months, so the comparison logic is opposite and the message issue date must be greater than or equal to this day of the month.
-- Threshold DynVar, Count: 
-   -   The first field holds the name of an LSAM Dynamic Variable where the activity count for this Parameters record is maintained. When this display format is presented for an existing Parameters record, the current count found in the Dynamic Variable is shown in the cyan blue field to the right of the Dynamic Variable name. 
-   -   When this field is blank, there will be no threshold controls. But when a threshold is specified, the count of message activity for a Parameters record is always stored in a Dynamic Variable that has been defined as numeric, with 7 digits and no decimal places. 
+- **Link times to each date**
+   - This option field specifies how the Start and End Time values should be used. The times may be linked to their corresponding Date values, or the time fields may be processed independently of the date fields, as described in the two time field entries, above.
+   - **0** = use time values separately from the date values
+   - **1**= link the time values to the date values
+- **Effective DOW** (day of week):
+   - The days of the week are indicated by the digits 1 - 7. The calendar day corresponding to day 1 is set in the Message Management Performance Parameters function (LSAM menu 2, option 7). For example, typical US domestic calendars may indicate that Sunday (*SUN) is the first day of the week, corresponding to day 1.
+   - Any or all of the digits 1 - 7 may be entered in this field. For example, if the field value is set to 147, this means that the message must have been issued on the first, fourth or seventh day of the week in order to be processed by this Parametes record. If day 1 is *SUN, then day 4 is *WED and day 7 is *SAT. (The mnemonic values used for days of the week match the settings used by the IBM i operating system.)
+- **Start Effective DOM** (day of month): 
+   - This field indicates which day of the month begins the window of time within the month that a message may be processed by this Parameters rule. If the End Effective DOM is zeros, then a message will be processed until the end of the month. The special value of 32 is used to indicate the last day of any month, regardless of the number of days in that month.
+   - If the End DOM is less than the Start DOM, this indicates that the effective processing time crosses the boundary between months, so the comparison logic is opposite and the message issue date must be less than or equal to this day of the month.
+- **End Effective DOM** (day of month):
+   - This field indicates which day of the month ends the window of time within the month that a message may be processed by this Parameters rule. If the Start Effective DOM is zeros, then a message will be processed from the first day of the month until (through) this day. The special value of 32 is used to indicate the last day of any month, regardless of the number of days in that month. 
+   - If the End DOM is less than the Start DOM, this indicates that the effective processing time crosses the boundary between months, so the comparison logic is opposite and the message issue date must be greater than or equal to this day of the month.
+- **Threshold DynVar, Count**: 
+   - The first field holds the name of an LSAM Dynamic Variable where the activity count for this Parameters record is maintained. When this display format is presented for an existing Parameters record, the current count found in the Dynamic Variable is shown in the cyan blue field to the right of the Dynamic Variable name. 
+   - When this field is blank, there will be no threshold controls. But when a threshold is specified, the count of message activity for a Parameters record is always stored in a Dynamic Variable that has been defined as numeric, with 7 digits and no decimal places. 
    :::tip
    The message threshold count can be changed manually by the utility commands SETMSGTHR (reset count) and ADDMSGTHR (add to count).
    :::
-- Threshold limit:
-   -   When greater than zeros, this field is used as the reference point for comparison with a counter (stored in an LSAM Dynamic Variable). The Threshold count must be equal to or greater than this limit in order to allow the Parameters record to process the message.
-   -   Whenever the threshold limit is reached (or exceeded, if the count was increased from outside of the Message Management server job), the threshold count will be reset to zero following the execution of the Parameter's message responses. This means that a repeat of the same message will be skipped in the future until the threshold limit is reached a second time.
-   -   If no limit is specified (that is, the limit value is zero), any threshold count will be ignored.
-- Threshold duration:
-   -   The amount of time, expressed as DDDHHMM (days, hours and minutes), allowed before a threshold counter expires. The issue date of a message is compared to the last activity date, and if a new message ID matching this Parameter record is processed after the duration period has expired, then the new message will reset the threshold count to 1 (representing the current message in process).
-   -   This field is optional. If no values are entered for the duration, then the Threshold count will continue indefinitely until the limit is reached.
-- Threshold date control:
-   - M = use the Parameters record date of last message activity.
-   - V = use the LSAM Dynamic Variable date of last update activity.
+- **Threshold limit**:
+   - When greater than zeros, this field is used as the reference point for comparison with a counter (stored in an LSAM Dynamic Variable). The Threshold count must be equal to or greater than this limit in order to allow the Parameters record to process the message.
+   - Whenever the threshold limit is reached (or exceeded, if the count was increased from outside of the Message Management server job), the threshold count will be reset to zero following the execution of the Parameter's message responses. This means that a repeat of the same message will be skipped in the future until the threshold limit is reached a second time.
+   - If no limit is specified (that is, the limit value is zero), any threshold count will be ignored.
+- **Threshold duration**:
+   - The amount of time, expressed as DDDHHMM (days, hours and minutes), allowed before a threshold counter expires. The issue date of a message is compared to the last activity date, and if a new message ID matching this Parameter record is processed after the duration period has expired, then the new message will reset the threshold count to 1 (representing the current message in process).
+   - This field is optional. If no values are entered for the duration, then the Threshold count will continue indefinitely until the limit is reached.
+- **Threshold date control**:
+   - **M** = use the Parameters record date of last message activity.
+   - **V** = use the LSAM Dynamic Variable date of last update activity.
 
     This option controls which date is compared to the message issue date to determine if the Duration period for the counter has expired. Using the Message Management Parameters date of  the last time this message was processed allows for the Dynamic Variable counter value to be  changed from outside of Message Management without affecting the date. However, if changes to the Dynamic Variable counter should be considered as valid activity within the duration period, then use the value V. Both current date values appear on the Change and Display formats, regardless of the setting of this control value.
 
-- Capture Application ID:
+- **Capture Application ID**:
   - The key value that links this parameters record to one or a group of Message Data Capture Definitions. Function key F10 can be used to show a list of existing Capture Rules, from  which one may be selected with option 1 and returned to this field. During the branch to the Capture Rules function, a new Capture ID may be defined and then selected for use with this Parameters record. The Capture ID does not have to exist to enter its value in this field, but if an exact match does not exist at run time, then no message data will be captured. Using the F10 prompting function helps to avoid the potential of keystroke errors when typing a long ID name. Space characters are allowed within the Capture ID string.
-- Before/After Evt, Reply:
+- **Before/After Evt, Reply**:
   - This option controls whether the Capture Application and any associated Response Rules will be executed before the Event Command and Reply action of this Parameters record will be completed. Older versions of the Agent did not provide this option, so the default behavior was that Capture Applications would always execute After the Parameters actions were completed. This would sometimes require that two Parameters records be created in order to set and utilize Dynamic Variable values required by either the Event Command or by the Reply field. Now, however, the Before option allows the Dynamic Variable values to be computed and set first, so that only one Parameters record is usually required to manage a message.
 
 #### Functions
@@ -321,7 +320,7 @@ This is an ISO-standard date field. The default value for this field which means
 -   **F6=DynVar**: This function key, when pressed while the cursor is positioned in a supported field, causes a window listing available Dynamic Variables to appear. PageDown as necessary, then position the cursor over the desired variable name and press <**Enter**> to select that variable so that it will be inserted as a token into the supported field. The token will be inserted at the position where the cursor was when <**F6**> was pressed. Supported fields include: Compare Text, Threshold Counter and Event Command.
 -   **F8=Prompt CMD**: When the cursor is positioned in the Event command field, <**F8**> causes the job to branch into IBM i command prompting. If an IBM i command name was typed before <**F8**> was pressed, then that specific command will be prompt. Otherwise, a general command search window will appear to help find the desired command. (Note that this IBM command prompting will not allow a command to be executed.)
 -   **F10=Capture**: This function key causes a branch to Work with Message Data Capture Definitions. From the list of existing Capture Definitions, option 1=Select may be used to return a Capture ID into the field on the Message Management Parameters record. Using F10 is recommended for this field because of the increased possibility of keystroke errors when long ID names may be used. It is possible to add new Capture Definitions while branching with this function key, and then to select the new ID for use.
--   **F10=$VAR (TRPMSGR2A, TRPMSGR6)**: When the cursor is positioned within a field that supports the Agent's special $VARIABLES, F10 causes a window of supported $VARs to pop up. Position the cursor over the desired $VAR name and press Enter to insert that variable into the location where the cursor was located on the screen format A display.
+-   **F10=$VAR (TRPMSGR2A, TRPMSGR6)**: When the cursor is positioned within a field that supports the Agent's $-System variables, F10 causes a window of supported $VARs to pop up. Position the cursor over the desired $VAR name and press Enter to insert that variable into the location where the cursor was located on the screen format A display.
     :::tip
     F10=$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.
     :::
@@ -333,12 +332,12 @@ This is an ISO-standard date field. The default value for this field which means
     :::
 -   **F20=Reset Thr**: Similar to the SETMSGTHR command, this function key can be used to force the threshold count (stored in an LSAM Dynamic Variable) to be reset to zeros. Resetting the threshold count to zeros makes the dates of last activity have no meaning; the dates are only used when the threshold count is 1 or greater.
 
-#### $Variables Supported in Event Commands
+### $-System Variables Supported in Event Commands
 
 Event commands that are processed by Message Management may include many of the same token variables as are supported by OpCon. However, there is a difference in the syntax. OpCon requires that variables begin with a dollar sign ($) and that the whole variable name be enclosed in double square brackets, for example, \[\[$JOB NAME\]\]. The IBM i green screen workstation does not support the square brackets, so they are not required when inserting variables into the Event command, for example, $JOB NAME. The following table lists the variables that the LSAM Message Management facility can detect and replace when responding to a
 message.
 
-#### $Variables
+#### $-System Variables
 -  **$FREQUENCY NAME**:   The name of the OpCon frequency table that was assigned to the job that issued the message.
 -  **$IBM JOB ID**:       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
 -  **$IBM JOB NAME**:     The IBM i current Job Name.
@@ -356,6 +355,7 @@ message.
 -  **$MSGQ LIB**:         The library location of the message queue.
 -  **$SCHEDULE DATE**:    The date of the OpCon schedule under which the job that issued the message was started, in the (*ISO0) format of CCYYMMDD.
 -  **$SCHEDULE NAME**:    The name of the OpCon schedule under which the job that issued a message was started.
+
 :::tip 
 The content of the $MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of $MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the $MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.
 
@@ -364,8 +364,9 @@ variable with its value and leave the brackets in the text. This could cause a p
 
 However, to have OpCon replace any of the other token variables that it
 can manage use the braces (curly brackets) to surround the token name.
+:::
 
-:::tip EXAMPLE
+:::note EXAMPLE
 Syntax for circular OpCon Token variables in an background LSAM Message Management Event command.
 ```
 {{$SCHEDULE DATE}} 
@@ -414,7 +415,7 @@ The general-purpose Event command CPYTOMSGIN is supported by an additional promp
 
 For all other Event commands from the original prompting window, the following discussion explains how specific LSAM commands can assist with the correct formatting of the command syntax. The command CONDSP is shown as an example.
 
-#### Event Command Prompting Window
+### Event Command Prompting Window
 ```                      
                       LSAM EVENTS:Console display (CONDSP)                      
                                                                                 
@@ -451,14 +452,14 @@ The number and type of fields that are displayed vary depending on the Event com
 -   **F15=Error messages**: Shows any error messages that a command validation program has produced, but this command has no command validation program.
 -   **F16=Command complete**: Has the same effect as pressing <**Enter**> to initiate the command action. Verify that the parameter values are set correctly before using this command key or <**Enter**>.
 
-### Event Command Field Size Constraints
+#### Event Command Field Size Constraints
 
 Refer to the examples of Event Command prompting above and below to understand how the LSAM software commands help to define the limits of fields that apply to each OpCon Event. At one time, OpCon had a constraint that no single field of an Event command could exceed 80 characters. Most of the LSAM commands used to format an Event command show fields that would permit more characters to be entered because within OpCon those fields have mostly been defined as longer than 80 characters.
 
 In the compressed example above, the CONDSP command prompt is used to enter message data that will become part of the OpCon Event $CONSOLE:DISPLAY. This command prompting screen limits the message data to only 80 characters. (Since OpCon now allows much longer messages to be sent via OpCon Event command processing, command prompting will be revised accordingly.) When used for an LSAM Message Management Event command, the fields of OpCon Events support Event Command Variable field
 substitution, as documented above in this topic.
 
-#### SCGBLD Command Prompt
+##### SCGBLD Command Prompt
 ```
                      LSAM EVENTS: Schedule Build (SCHBLD)                      
                                                                                
@@ -481,7 +482,7 @@ F24=More keys
 The Schedule Build command prompt example above shows that the Schedule Name field allows up to 128 characters and the Log file path name is limited to 80 characters at this time. OpCon allows for Schedule names to be up to 128 characters long, and path names could easily extend to
 beyond 80 characters. To accommodate longer OpCon Event command field sizes (as OpCon is able to handle them), use the CPYTOMSGIN general Event command with the IBM i LSAM.
 
-#### CPYTOMSGIN Command Prompting Window
+### CPYTOMSGIN Command Prompting Window
 
 The general-purpose Event command CPYTOMSGIN is supported by an additional prompting window (when selected from within the context of prompting for Message management parameters) that lists all available OpCon Event commands.
 
@@ -536,13 +537,13 @@ the commas are a critical part of the command syntax. If a field value is allowe
 Press <**Enter**> after the command has been fully formatted to causethe final command format  for CPYTOMSGIN to be inserted into the Message management parameters, Event command field. (The command syntax may still be modified, once it has been inserted into the Event command
 field.)
 
-### Delete
+### Delete Message Management Parameters
 
 #### Menu Pathways
 
 Main Menu > Message management menu (#2) > Message management parameters (#1) > 4=Delete
 
-### TRPMSGR4 - Message Management Parameters
+##### TRPMSGR4 - Message Management Parameters
 
 #### Fields
 
@@ -600,7 +601,7 @@ The Monitor Queue type of record shows the following characteristics that are di
     It is possible to use option 4=Delete to remove all records that name a message queue, leaving the LSAM message management server program with no reference to that message queue. If all the LSAM global message management records for a specific message queue are removed, use the F7=Add Queue function to replace them with at least one record for the message queue in order to enable job-level message management to look for messages in that queue. It is recommended that the F17=Subset function be used to verify the filtered list of all message queues that the LSAM may monitor.
     :::
 
-### Work with Message Data Capture Definitions
+## Work with Message Data Capture Definitions
 
 Rules for capturing message data elements are assembled into logical groups identified by an Application ID (similar to screen data captures by Operator Replay scripts and report data captures by the SCANSPLF utility). One or more message data capture rules may be associated with each Application ID, where multiple rules are  identified by a sequence number. The Application ID may be entered into the field of that name on the Message Management Parameters master record, as explained above in
 that screen documentation. A single Application ID may be shared by more than one Message Management Parameters record.
@@ -609,7 +610,7 @@ that screen documentation. A single Application ID may be shared by more than on
 It may be easier to use the F10=Capture function key from the Message management parameters Create, Copy or Change screens when selecting an Application ID because this helps avoid keystroke errors when long IDs are used. As noted in Menu Pathways here, this same Work With function may be used via that F10 function key.
 :::
 
-### TRPM30R1 - Work with Message Data Capture Definitions
+#### TRPM30R1 - Work with Message Data Capture Definitions
 
 #### Menu Pathways
 
@@ -648,9 +649,9 @@ It may be easier to use the F10=Capture function key from the Message management
 -   **6=Response**: To view any associated Captured Data Response Rules, type 6 next to the ID line and press <**Enter**> to proceed to a list display of Response Rules.
 -   **7=Capt chart**: Type option 7 next to any Capture Definition to view a chart of related Response Rules and Dynamic Variables.
 
-## Add/Change/Copy Message Data Capture Definition
+### Add/Change/Copy Message Data Capture Definition
 
-### TRPM30R2 - Copy Message Data Capture Definition
+#### TRPM30R2 - Copy Message Data Capture Definition
 
 Refer to the How To discussion earlier in this topic for more information about the meaning and purpose of the fields on this display, as well as recommendations and examples for using Message Data Capture. Refer to details about the rules and effect of each field in the fields table, below.
 
@@ -754,7 +755,7 @@ Use this option to collect all related Capture Applications and Response Rules, 
 
 ### Work with Capture Response Rules
 
-The Work with Capture Response Rules function is identical to the description provided in Events and Utilities, except that these Response Rules are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to Events and Utilities Menu to see the screens and windows used to create Capture Response Rules.
+The Work with Capture Response Rules function is identical to the description provided in Events and Utilities, except that these Response Rules are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to [Captured Data Response Rules - Work with Response Rules](\events-utilities\captured-data-response-rules.md\#work-with-capture-response-rules) to see the screens and windows used to create Capture Response Rules.
 
 #### Menu Pathways
 
@@ -785,10 +786,9 @@ Main Menu > Message management menu (#2) > Start message management (#3)
 
 | Field                | Values               | Description          |
 | -----                | ------               | -----------          |
-| Server start mode (warm/cold) | 0 = warm start| -   0 = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed. |
-|                      | 1 = cold start       | - 1 = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue. |
-|                      | The default value is retrieved from the Message Management performanceparameters. | Refer to additional discussion above about Starting Message
-Management. |
+| Server start mode (warm/cold) | 0 = warm start| **0** = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed. |
+|                      | 1 = cold start       | **1** = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue. |
+|                      | The default value is retrieved from the Message Management performanceparameters. | Refer to additional discussion above about Starting Message Management. |
 
 ### Check Message Management Status - Window
 

@@ -55,14 +55,14 @@ Main Menu > Message management menu (#2) > Message management logs (#2)
 | Date/Time        |                        | The time stamp when the message was logged |
 | Msg ID           |                        | An IBM i message identifier (comprised of 3 letters followed by 4 digits). Definitions for message IDs may normally be found in message files stored in the DB2/400 database. |
 | Resp             |                        | Response Type:  |
-|                  |                        | -   R = Reply to message            |
-|                  |                        | -   E = Event, sent to OpCon          |
-|                  |                        | -   B = Both a reply and an event       |
+|                  |                        | **R** = Reply to message            |
+|                  |                        | **E** = Event, sent to OpCon          |
+|                  |                        | **B** = Both a reply and an event       |
 | Reply Type       | Appears only for the Activity Log.  | The type of log entry:  |
-|                  |                        | -   LSAMtrap = a message trap defined by the LSAM's on message management table.  |
-|                  |                        | -   OpConJob = a job-specific message trap defined for the one job under the OpCon User Interface job master record. |
-|                  |                        | -   Error = shown in Red, the Message Management facility attempts to log errors in Reply or Event execution. Use option 5=display to see details about the error entry. |
-|                  |                        | -   InfoText = show in Blue, the Message Management facility adds log entries for actions that may be subject to audit, such as the replacement of any Dynamic Variable that was included in a message Event command. |
+|                  |                        | **LSAMtrap** = a message trap defined by the LSAM's on message management table.  |
+|                  |                        | **OpConJob** = a job-specific message trap defined for the one job under the OpCon User Interface job master record. |
+|                  |                        | **Error** = shown in Red, the Message Management facility attempts to log errors in Reply or Event execution. Use option 5=display to see details about the error entry. |
+|                  |                        | **InfoText** = show in Blue, the Message Management facility adds log entries for actions that may be subject to audit, such as the replacement of any Dynamic Variable that was included in a message Event command. |
 | Reply...         | Appears only for the OpCon job-level management log | Shows either the 6-character reply value, or the first portion of the Event command string, depending on the response type (Rsp). |
 
 #### Functions
@@ -79,7 +79,7 @@ Main Menu > Message management menu (#2) > Message management logs (#2)
 
 #### Options
 
-5 = Display detail
+- **5** = Display detail
 
 ## Message Management Activity Log Detail
 
@@ -89,58 +89,57 @@ This detail display appears the same for the OpCon job-level management log, alt
 
 #### Fields
 
-- Log timestamp: The time stamp when the message was logged, that is, when the LSAM responded to the message.
-- Log key: An internal record ID number assigned by the IBM i DB2 database manager.
-- IBM i job ID: The full name of the IBM i job that issued the message.
-- SAM job number: The numeric ID portion of the job identifier assigned by OpCon.
-- SAM job name: The name portion of the job identifier assigned by OpCon.
-- Msg Mgmt Rec key #:The internal record ID of the original |
+- **Log timestamp**: The time stamp when the message was logged, that is, when the LSAM responded to the message.
+- **Log key**: An internal record ID number assigned by the IBM i DB2 database manager.
+- **IBM i job ID**: The full name of the IBM i job that issued the message.
+- **SAM job number**: The numeric ID portion of the job identifier assigned by OpCon.
+- **SAM job name**: The name portion of the job identifier assigned by OpCon.
+- **Msg Mgmt Rec key #**:The internal record ID of the original |
 Message Management Parameter record that was being processed when this log entry was generated. This number can be found in the list of the Message Management Parameter records in order to perform research into the master records that defined processing of the message.                               
-- Message ID: An IBM i message identifier (comprised of 3 letters followed by 4 digits). Definitions for message IDs may normally be found in message files stored in the dB2/400 database.
-- Message File: The IBM i object that stores message definitions and text. A message ID may be qualified by the message file from which its definition was taken.        
-- Message Severity: A message must report this severity or higher in order for the LSAM to decide to respond to the message. A value of zeros means that message severity is not considered.  
-- Message queue: A system object that stores messages (text included) that have been delivered by various jobs. The message queue where this job's message ID was found.                                 |
-- Message queue library: The DB2/400 library where the message queue was located.     
-- Key group Sequence #: A user-supplied sequence number that separates Message Management Parameter records that all use the same filter key field values. Multiple records in a single group will define a more complex response to a message than may be possible with a single Parameters record. For example, Sequence 10 might be linked to Capture Data Response Rules that prepare one or more Dynamic Variables, which can then be used in a Sequence 20 Parameter record to define the Reply to a message or the Event that will be executed.             
-- Compare Text: A text string that was compared to the selected portion of the message text. This text is used to qualify which messages will be handed by the message 
+- **Message ID**: An IBM i message identifier (comprised of 3 letters followed by 4 digits). Definitions for message IDs may normally be found in message files stored in the dB2/400 database.
+- **Message File**: The IBM i object that stores message definitions and text. A message ID may be qualified by the message file from which its definition was taken.        
+- **Message Severity**: A message must report this severity or higher in order for the LSAM to decide to respond to the message. A value of zeros means that message severity is not considered.  
+- **Message queue**: A system object that stores messages (text included) that have been delivered by various jobs. The message queue where this job's message ID was found.                                 |
+- **Message queue library**: The DB2/400 library where the message queue was located.     
+- **Key group Sequence #**: A user-supplied sequence number that separates Message Management Parameter records that all use the same filter key field values. Multiple records in a single group will define a more complex response to a message than may be possible with a single Parameters record. For example, Sequence 10 might be linked to Capture Data Response Rules that prepare one or more Dynamic Variables, which can then be used in a Sequence 20 Parameter record to define the Reply to a message or the Event that will be executed.             
+- **Compare Text**: A text string that was compared to the selected portion of the message text. This text is used to qualify which messages will be handed by the message 
 manager, using the comparison method shown in the Type field.
-- Compare Type: The Boolean operator used to match the Compare Text with the selected portion of the message text. EQ (equal) can match any portion of the selected message text, unless the Start Position is not zero. 
-- Compare Position: The compare text value specified above must appear at the specific location within the primary message text in order for the LSAM to decide to 
+- **Compare Type**: The Boolean operator used to match the Compare Text with the selected portion of the message text. EQ (equal) can match any portion of the selected message text, unless the Start Position is not zero. 
+- **Compare Position**: The compare text value specified above must appear at the specific location within the primary message text in order for the LSAM to decide to 
 respond to the message. A value of zeros for an EQ comparison means that the variable string may appear anywhere in the message text.
-- Compare Len - The length of the strings from the Compare Text and the message text that will be compared. When this value is zero, the last non-blank character in the Compare Text determines the length of the comparison. When the length is longer than the Compare Text, the Compare Text will be padded with trailing blanks that must also match the selected portion of the message text.
-- Pri/Sec/Both Text: Specifies which portion of the message text will be evaluated:  
-  -   Pri = primary message text (the part that first appears in a message queue list).
-  -   Sec = secondary message text, also referred to as the help text for a message.              
-  -   Both = the primary text is followed by one blank, and then the secondary text is appended to it in a message text buffer used by the LSAM Message Management     server program for comparison to the Compare Text. (The actual message text buffer is recorded in the next field of this log record display.)
-- Message text buffer:
+- **Compare Len**: The length of the strings from the Compare Text and the message text that will be compared. When this value is zero, the last non-blank character in the Compare Text determines the length of the comparison. When the length is longer than the Compare Text, the Compare Text will be padded with trailing blanks that must also match the selected portion of the message text.
+- **Pri/Sec/Both Text**: Specifies which portion of the message text will be evaluated:  
+  -   **Pri** = primary message text (the part that first appears in a message queue list).
+  -   **Sec** = secondary message text, also referred to as the help text for a message.              
+  -   **Both** = the primary text is followed by one blank, and then the secondary text is appended to it in a message text buffer used by the LSAM Message Management server program for comparison to the Compare Text. (The actual message text buffer is recorded in the next field of this log record display.)
+- **Message text buffer**:
   -   The actual message text that was evaluated by the Compare rules. This buffer is an important record of exactly how the message text appears within the Message Management program when the primary and secondary text are appended together by the Both option (according to the Pri/Sec/Both Text field).
   -   If the plus sign (+) shows, the text buffer content is longer than will fit on this display. In that case, use the <**F8**> function key to see more message text.
-- Capture ID : Shows the Capture Application ID, if this Parameter record was linked to a shared Capture Data application (and, via that link, also to any Response Rules). 
-- Answer type: 
-  -   R = Reply to message               
-  -   E = Event, sent to OpCon       
-  -   N = None                           
-  -   (There will be no log entry for Both) 
-- End?:
-  -   The End Job option: Specified only by job-level message responses defined in the OpCon User Interface job master, this option can force a job to end even if the response to the error message would normally allow the job to continue. (This option is not supported by the LSAM general message management table.)
-  -   Y = yes, end the job when this message qualifies for a response.
-  -   N = no, allow the job to continue (unless the message was an error that prevents the job from completing).
-- Message reply: The value supplied by the LSAM message manager to answer a message requiring a reply, if the Answer Type was R or B. 
-- Threshold Limit: The number of times this message must be processed, within the duration time, before this Parameter record is qualified for action. 
-- Threshold Duration: The time in Days, Hours and Minutes since the most recent incidence count change, during which the count of activity is still valid. If a new incident is encountered after a longer time than this duration, the count of activity is started over at 1.
-- Threshold DynVar: The name of the numeric LSAM Dynamic Variable that holds the count of activity for this Message Management Parameter record. The count in this variable will be reset to 1 if the duration is exceeded, or when it matches the Limit value.
-- Threshold DynVar Count: The current count value that is being stored in the Dynamic Variable. 
-- Threshold duration Control: 
-  -   M = use the Message Management timestamp compared to the current processing time to determine if the Threshold count is stale. 
-  -   V = use the Dynamic Variable timestamp of last update compared to the current processing time to determine if the Threshold count is stale.
-- M: (timestamp): The Message Management server timestamp as of the last previous incidence of this message. This value is used to determine whether the count is stale, according to the Duration, when the Threshold Control value is set to "M".
-- V: (timestamp): The Dynamic Variable module's timestamp as of the last previous activity that changed the Variable being used to hold this message's incidence count. This value is used to determine whether the count is stale, according to the Duration, when the Threshold Control value is set to "V".
-- Event commandtext, other log entry
-  -   Event command text = The actual text of the IBM i command or OpCon Event that was generated by the LSAM Message Manager, if the Answer Type was E or B.
-  -   Error information = label shown in red, when the text field is a record of an error message that was intercepted by the LSAM Message Manager.
-  -   Log entry text = label shown in blue, when the text field contains any general log entry, such as a record of how a Dynamic Variable token was replaced and what
-real value was used. 
-  -   If the plus sign (+) shows, the command is longer than will fit on this display. In that case, use the <***PageDown***> key to see the full command line.
+- **Capture ID**: Shows the Capture Application ID, if this Parameter record was linked to a shared Capture Data application (and, via that link, also to any Response Rules). 
+- **Answer type**: 
+  - **R** = Reply to message               
+  - **E** = Event, sent to OpCon       
+  - **N** = None                           
+  - **blank** = There will be no log entry for Both
+- **End?**:
+  - **The End Job option**: Specified only by job-level message responses defined in the OpCon User Interface job master, this option can force a job to end even if the response to the error message would normally allow the job to continue. (This option is not supported by the LSAM general message management table.)
+  - **Y** = yes, end the job when this message qualifies for a response.
+  - **N** = no, allow the job to continue (unless the message was an error that prevents the job from completing).
+- **Message reply**: The value supplied by the LSAM message manager to answer a message requiring a reply, if the Answer Type was R or B. 
+- **Threshold Limit**: The number of times this message must be processed, within the duration time, before this Parameter record is qualified for action. 
+- **Threshold Duration**: The time in Days, Hours and Minutes since the most recent incidence count change, during which the count of activity is still valid. If a new incident is encountered after a longer time than this duration, the count of activity is started over at 1.
+- **Threshold DynVar**: The name of the numeric LSAM Dynamic Variable that holds the count of activity for this Message Management Parameter record. The count in this variable will be reset to 1 if the duration is exceeded, or when it matches the Limit value.
+- **Threshold DynVar Count**: The current count value that is being stored in the Dynamic Variable. 
+- **Threshold duration Control**: 
+  - **M** = use the Message Management timestamp compared to the current processing time to determine if the Threshold count is stale. 
+  - **V** = use the Dynamic Variable timestamp of last update compared to the current processing time to determine if the Threshold count is stale.
+- **M: (timestamp)**: The Message Management server timestamp as of the last previous incidence of this message. This value is used to determine whether the count is stale, according to the Duration, when the Threshold Control value is set to "M".
+- **V: (timestamp)**: The Dynamic Variable module's timestamp as of the last previous activity that changed the Variable being used to hold this message's incidence count. This value is used to determine whether the count is stale, according to the Duration, when the Threshold Control value is set to "V".
+- **Event command text, other log entry**:
+  - **Event command text** = The actual text of the IBM i command or OpCon Event that was generated by the LSAM Message Manager, if the Answer Type was E or B.
+  - **Error information** = label shown in red, when the text field is a record of an error message that was intercepted by the LSAM Message Manager.
+  - **Log entry text** = label shown in blue, when the text field contains any general log entry, such as a record of how a Dynamic Variable token was replaced and what real value was used. 
+  - If the plus sign (+) shows, the command is longer than will fit on this display. In that case, use the <**PageDown**> key to see the full command line.
  
 #### Functions
 
@@ -177,36 +176,37 @@ Main Menu > Message management menu (#2) > Display Captured Message Data Log (# 
   Capture Job ID: 123456/USERNAME/DEVICE                    MSGQ Lib: QUSRSYS   
   Date: 20100224  Time stamp: 2010-02-24-15.23.57.816000        MSGF: *ALL          
   Rows 1-12:                                                 Numeric: N
-  2..5...10....5...20....5...30....5...40....5...50....5...60....5...70....5...8
-Message data____________________________________________________________________                                                                    
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________
-________________________________________________________________________________   
-PAGEDOWN/UP   F3=Exit   F5=Refresh   F9=WRKJOB   F12=Cancel
+  2..5...10....5...20....5...30....5...40....5...50....5...60....5...70....5...80
+ Message data____________________________________________________________________    
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________
+ ________________________________________________________________________________   
+  PAGEDOWN/UP   F3=Exit   F5=Refresh   F9=WRKJOB   F12=Cancel
 ```
 #### Fields
-- Log record RRN: This is the relative record number from physical file OPRLOGF40.                                
+- **Log record RRN**: This is the relative record number from physical file OPRLOGF40.
 - Type:
-  -   C = Operator Replay screen data capture. 
-  -   S = SCANSPLF report spool file scanning.    
-  -   M = Message data capture.
-- MmRecKey: This is the unique identifier number for the Message Management Parameters record that was linked to the capture Application ID. This number makes it easier to identify the Parameters record, rather than having to gather the 7 data fields that comprise the logical key of the record.  
-- Capture ID: The identifier assigned to a group of data capture rules. For Captured Message Data, this is the Application ID.
-- (Capture) Seq: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
-- Start: This documents the starting position in the message text buffer where the captured data was found.
-- TrpMsg#: "Trapped Message number" = this is the sequence number assigned to the Message Management Parameters record which pointed to the capture Application ID. This number combines with the Message ID, Job Name and other fields to complete a logical key identifying the Parameters record.
-- Length: The length of data that was captured, starting at the Row and Col specified. For Operator Repla screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
-- Msg Queue: The message queue where the trapped message was found by the LSAM Message Management server job.
-- Message ID: This is the IBM i ID of the message that was trapped by the Message Management Parameters record linked to the Application ID that performed this message data capture.
-- MSGQ Lib:The library location of the Message Queue named above.
-- MSGF: The name of the IBM i Message File that contains the definition of the Message ID that was trapped. 
+  - **C** = Operator Replay screen data capture. 
+  - **S** = SCANSPLF report spool file scanning.    
+  - **M** = Message data capture.
+- **MmRecKey**: This is the unique identifier number for the Message Management Parameters record that was linked to the capture Application ID. This number makes it easier to identify the Parameters record, rather than having to gather the 7 data fields that comprise the logical key of the record.  
+- **Capture ID**: The identifier assigned to a group of data capture rules. For Captured Message Data, this is the Application ID.
+- **(Capture) Seq**: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
+- **Start**: This documents the starting position in the message text buffer where the captured data was found.
+- **TrpMsg#**: "Trapped Message number" = this is the sequence number assigned to the Message Management Parameters record which pointed to the capture Application ID. This number combines with the Message ID, Job Name and other fields to complete a logical key identifying the Parameters record.
+- **Length**: The length of data that was captured, starting at the Row and Col specified. For Operator Repla screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
+- **Msg Queue**: The message queue where the trapped message was found by the LSAM Message Management server job.
+- **Message ID**: This is the IBM i ID of the message that was trapped by the Message Management Parameters record linked to the Application ID that performed this message data capture.
+- **MSGQ Lib**:The library location of the Message Queue named above.
+- **MSGF**: The name of the IBM i Message File that contains the definition of the Message ID that was trapped. 
+
   :::tip
   The remaining fields on this display are the same as documented for the SCANSPLF utility in [Events and Utilities Menu](../events-utilities/captured-data-response-rules.md/#display-captured-data-log-detail).
   :::

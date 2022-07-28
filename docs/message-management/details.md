@@ -25,9 +25,9 @@ The LSAM control file value is set by using the Message Management Parameters, M
 
 Message Management is started manually either by selecting menu option 3. Start Message Management, from the LSAM Menu 2. Message Management, or by executing or submitting the LSAM command STRMSGMNG. Actually, the menu option uses the same STRMSGMNG command. When this command is used in an IBM i interactive job, a pop-up window appears offering the option to start either in warm mode (option 0) or cold mode (option 1). Whether used interactively or submitted to a batch job, the STRMSGMNG command supports an optional parameter: COLDSTART. The COLDSTART parameter supports the following values:
 
-- C = use the control file value (set by Message Management performance parameters).
-- 0 = perform a warm start.
-- 1 = perform a cold start.
+- **C** = use the control file value (set by Message Management performance parameters).
+- **0** = perform a warm start.
+- **1** = perform a cold start.
 
 If the COLDSTART parameter is not specified, its default value is "C". The pop-up window that appears when the command is executed in an interactive job is the way the LSAM software requests a value for the COLDSTART parameter.
 
@@ -37,23 +37,23 @@ The LSAM Message Management server start routine responds to the COLDSTART param
 
 1. When a cold start was requested, the LSAM message management control file (TRPMSGF10) is cleared and the COLDSTART parameter is passed along to the message queue scanning program.
 
-    a.  The message queue scanning program always starts at the beginning of each message queue when a cold start was requested.
+    - The message queue scanning program always starts at the beginning of each message queue when a cold start was requested.
 
 2. If a warm start was requested but there is no LSAM control file record for a message queue, such as the first time that a message queue is processed, then that message queue will be scanned starting after the last message that was present in the queue at the time the first scan was initiated.
 
-    a.  A technical support person can force the server to start processing at the end of a message queue by removing the control record for that message queue and then requesting a warm start.
+    - A technical support person can force the server to start processing at the end of a message queue by removing the control record for that message queue and then requesting a warm start.
 
 3. If a warm start was requested but the LSAM control file record for a message queue contains a message key that is not found in the message queue, the server assumes that the message queue contents can no longer be predicted. In this case, it automatically resets the last message key processed to the last message found in the  message queue, and then it will process only new messages that arrive in the message queue.
 
-    a.  A technical support person can use the undocumented LSAM tools to force the LSAM Message Management control file record to contain a valid key for any message that is currently found in the message queue. Refer to the next section about Undocumented Tools for hints to technical support personnel.
+    - A technical support person can use the undocumented LSAM tools to force the LSAM Message Management control file record to contain a valid key for any message that is currently found in the message queue. Refer to the next section about Undocumented Tools for hints to technical support personnel.
 
-## Message Management Parameters --- Qualification Fields
+## Message Management Parameters -- Qualification Fields
 
 Many different Parameters records could be created to respond to a single message intercepted by the LSAM Message Management server. This section explains the different groups of fields in the Parameters master record that are used to qualify whether each record's response will be executed.
 
 ### Message and Job Profile Fields
 
-Before other forms of message qualification are applied, the LSAM first validates each message it finds by using the following message profile fields. After the message passes the profile tests, then messages can be further filtered using Compare Text, Message Management --- Date and Time fields and Threshold values.
+Before other forms of message qualification are applied, the LSAM first validates each message it finds by using the following message profile fields. After the message passes the profile tests, then messages can be further filtered using Compare Text, Message Management -- Date and Time fields and Threshold values.
 
 ### Message Queue and Library
 
@@ -68,13 +68,13 @@ The messages defined within only the LSAM database do not require a Type-Q recor
 
 The LSAM will check every message delivered to any registered message queue. However, only those messages with IDs that were specified in IBM i system or job-level message management will actually be processed by the LSAM server job.
 
-When choosing message IDs to be processed, the LSAM verifies that the Message ID originated from a specific Message File, or that the Parameters record specifies *ALL for the Message File name. It is not recommended by IBM, but it is possible that the same message ID could be defined in more than one different message file (where message descriptions that include actual message text content and format and also the definition of instance-specific data fields are stored).
+When choosing message IDs to be processed, the LSAM verifies that the Message ID originated from a specific Message File, or that the Parameters record specifies \*ALL for the Message File name. It is not recommended by IBM, but it is possible that the same message ID could be defined in more than one different message file (where message descriptions that include actual message text content and format and also the definition of instance-specific data fields are stored).
 
 The LSAM will handle a message that matches one of three Message ID formats, in the following order, starting with the most specific ID format first:
 
 - A specific message ID, such as CPF1234.
 - A range of message IDs, such as CPF1200, where the two zeros at the end imply (just as in IBM i Control Language programming) that a message will match if it has an ID in the range of CPF1201 through CPF1299.
-- A generic response message ID with the special value of *ALL. SMA does not recommend using this value for Message ID, but there may be cases where a special message queue was created for a very limited purpose, and in this case the client wants all messages in that queue to be processed using the same LSAM Message Management Parameters record or records.
+- A generic response message ID with the special value of \*ALL. SMA does not recommend using this value for Message ID, but there may be cases where a special message queue was created for a very limited purpose, and in this case the client wants all messages in that queue to be processed using the same LSAM Message Management Parameters record or records.
 
 All LSAM Message Management Parameters that match a message ID will be processed. This means that if all three of the message ID categories listed above happen to match a single message, then all rules in every category will be processed, starting with the most specific category Parameters record(s) first. When the LSAM processes more than one Parameters record for Inquiry messages, only the first qualifying response will actually be returned to IBM i as the answer to the Inquiry. Any subsequent Inquiry responses will be ignored. However, the Response CMD field commands will still be executed, as will any associated Message Data Capture Rules and their Captured Data Response Rules (refer to more on these rules below).
 
@@ -84,7 +84,7 @@ Message Management Parameters records may be filtered for processing by the name
 
 - A specific Job Name and/or a specific User Name.
 - A generic Job Name and/or User Name. For example, if the Parameter record specifies a job name of JOB\*, then jobs named JOB001 and JOBABCD will both match. The same example applies to a job's user name.
-- A generic name with the special value of *ALL. In this case any Job Name or any User Name will match the special value of *ALL. This is another way of indicating that the Job Name and/or the User Name are not important.
+- A generic name with the special value of \*ALL. In this case any Job Name or any User Name will match the special value of \*ALL. This is another way of indicating that the Job Name and/or the User Name are not important.
 
 All LSAM Message Management Parameters that match a message ID will be processed. This means that if all three of the Job and/or User Name categories listed above happen to match a single message, then all rules in every category will be processed, starting with the most specific category Parameters record(s) first. As always, though, only one answer value will be provided to an Inquiry message, regardless of the existence of more possible answers.
 
@@ -101,7 +101,7 @@ comparisons. If it is necessary to compare to blanks, use a Dynamic Variable in 
 
 One or more LSAM Dynamic Variables may be specified in the Compare Text field. In this case, each Dynamic Variable is first replaced with a character string produced by the LSAM Dynamic Variable read routine. Then, the resulting text string is subjected to the same rules about length as if the string were typed directly in the Compare Text field. Using more than one Dynamic Variable makes it possible to specify up to the full length of 999 characters as the Compare Text value. (Each Dynamic Variable can produce a value up to 128 characters in length.)
 
-### Message Management Parameters --- Date and Time Constraints
+### Message Management Parameters -- Date and Time Constraints
 
 Following qualification by the message profile fields above, an individual message may be further qualified for processing, or bypassing, according to the date and time the message was issued. 
 
@@ -109,13 +109,13 @@ Another way to express this rule is that many Message Management Parameters reco
 
 More details about the date and time fields are presented below, under Message Management Screens and Windows. When specifying dates and times, consider the following possible categories of qualification, and remember that these may be used in combination.
 
-- Start and End dates: One or both may be used.
-- Start and End times: One or both may be used.
-- Linking times to dates: The date values and time values are used separately, unless the Link flag is set to 1=Link. Used separately, the dates and times can include or exclude time ranges. When the time fields are linked to the date fields, then these combined fields can only mark the start time stamp and or the end time stamp within which the message must have been generated, in order to   select a message for processing. The Start values or the End values can be used by themselves to mark just the effective start time stamp or the effective end time stamp. (Also refer to the table of field values under Screens and Windows for more information about  using dates and times.)
-- Effective DOW (day of week): Specifies which days of the week by the number of the day, where the first day of the week may be set in the Message Management Performance Parameters function (LSAM sub-menu 2, option 7).
-- Effective DOM (day of month): Specifies starting and ending days of each month, where both values may be the same to indicate a single day of the month, and the special value of 32 is used to indicate End Of Month regardless of the number of days in any given month. It is also possible to specify just the start day or just the end day, to mark only the beginning or the end of an effective period within any given month.
+- **Start and End dates**: One or both may be used.
+- **Start and End times**: One or both may be used.
+- **Linking times to dates**: The date values and time values are used separately, unless the Link flag is set to 1=Link. Used separately, the dates and times can include or exclude time ranges. When the time fields are linked to the date fields, then these combined fields can only mark the start time stamp and or the end time stamp within which the message must have been generated, in order to   select a message for processing. The Start values or the End values can be used by themselves to mark just the effective start time stamp or the effective end time stamp. (Also refer to the table of field values under Screens and Windows for more information about  using dates and times.)
+- **Effective DOW (day of week)**: Specifies which days of the week by the number of the day, where the first day of the week may be set in the Message Management Performance Parameters function (LSAM sub-menu 2, option 7).
+- **Effective DOM (day of month)**: Specifies starting and ending days of each month, where both values may be the same to indicate a single day of the month, and the special value of 32 is used to indicate End Of Month regardless of the number of days in any given month. It is also possible to specify just the start day or just the end day, to mark only the beginning or the end of an effective period within any given month.
 
-### Message Management Parameters --- Thresholds
+### Message Management Parameters -- Thresholds
 
 There is an optional threshold that may be assigned to a Message  Management Parameters record. The purpose of a threshold is to control when a Message Management Parameters record will be executed. This qualification happens only after the Parameters record has first matched the job and message profile fields, such as Job Name or Job User, and also after the Parameters record has passed any Compare Text or any date and time constraint.
 
@@ -124,11 +124,11 @@ occurrences must be counted before the threshold limit allows a second execution
 
 A threshold is comprised of five different fields that are stored in two different places. The data elements that define a message management threshold include:
 
-- Threshold limit = the number of the incidence of a given, matching message ID, at which time the matching Parameters record will be processed. Processing occurs when the Threshold count (below) equals this number.
-- Threshold count = the name of a numeric LSAM Dynamic Variable that is used to hold the current count of the number of times a Parameters record was matched by a message ID. This count is compared to the threshold limit. When the count equals the limit, the Parameters record is processed and the Threshold count is reset to zeros. The count of message activity is increased each time a message passes all of the filtering tests, above.
-- Duration = the days, hours and minutes of inactivity before a threshold counter will be reset. This field is optional, that is, a threshold does not have to be subjected to any duration; this means that the Threshold count would always be valid, no matter how long ago the first incidence of a message was counted.
-- Threshold date control = a flag that determines if the date of last update, compared to the Duration, will be taken from the Parameters record itself or from the Dynamic Variable where the count is being stored.
-- Threshold date(s) = both dates that can be used for calculating the Duration expiration are shown. The Dynamic Variable last updated date is represented by a letter code of V, and the Parameters record date of last message interception is represented by the letter code of M. One of these dates is compared to the current date when a message has been intercepted to determine if the previous threshold count has expired and must be started over at 1.
+- **Threshold limit** = the number of the incidence of a given, matching message ID, at which time the matching Parameters record will be processed. Processing occurs when the Threshold count (below) equals this number.
+- **Threshold count** = the name of a numeric LSAM Dynamic Variable that is used to hold the current count of the number of times a Parameters record was matched by a message ID. This count is compared to the threshold limit. When the count equals the limit, the Parameters record is processed and the Threshold count is reset to zeros. The count of message activity is increased each time a message passes all of the filtering tests, above.
+- **Duration** = the days, hours and minutes of inactivity before a threshold counter will be reset. This field is optional, that is, a threshold does not have to be subjected to any duration; this means that the Threshold count would always be valid, no matter how long ago the first incidence of a message was counted.
+- **Threshold date control** = a flag that determines if the date of last update, compared to the Duration, will be taken from the Parameters record itself or from the Dynamic Variable where the count is being stored.
+- **Threshold date(s)** = both dates that can be used for calculating the Duration expiration are shown. The Dynamic Variable last updated date is represented by a letter code of V, and the Parameters record date of last message interception is represented by the letter code of M. One of these dates is compared to the current date when a message has been intercepted to determine if the previous threshold count has expired and must be started over at 1.
 
 Dynamic Variables are used to hold the Threshold count (that is compared to the Threshold limit) because this enables a greater flexibility in the way threshold counts can be increased, or reset. Sometimes a simple count of a single message ID is not sufficient to control the desired response action. Instead, it might be important to manage the activity counter using a more sophisticated set of rules that can be implemented as Captured Data Response Rules.
 
@@ -136,7 +136,7 @@ Similarly, the option of choosing the last activity date from either the Paramet
 
 The command SETMSGTHR (set message threshold) can be used, for example, as a Captured Data Response Rule command, to force a threshold count to a different number or to reset it to zeros. Similarly, the command ADDMSGTHR (increase message threshold count) can be used to increase the threshold count stored in a Dynamic Variable that is associated with the Message Management Parameters record identified in the command's parameters.
 
-### Message Management Parameters --- Link to Capture Application
+### Message Management Parameters -- Link to Capture Application
 
 The last fields of the Message Management Parameter master record maintenance are used to connect an optional Message Data Capture Application to the Parameter record. Message Data Capture Applications are defined separately, and they can be re-used for multiple different Parameter records. (This is different from how Capture Data works for the Operator Replay green screen capture, or the SCANSPLF utility where the Scan Rules are the capture rules.)
 
@@ -144,7 +144,7 @@ Use the following maintenance fields on the maintenance display to connect a Cap
 
 ### Capture Application ID
 
-It is possible to type a known Message Capture Application ID into this field; however, the text must match exactly (at this time), so it is critical that the text be a perfect match to the Application ID text string. This is made easy by using the F10 function key to branch to the Work with Message Data Capture Definitions list display.
+It is possible to type a known Message Capture Application ID into this field; however, the text must match exactly (at this time - this method will change to a more flexible method with LSAM version 21.1), so it is critical that the text be a perfect match to the Application ID text string. This is made easy by using the F10 function key to branch to the Work with Message Data Capture Definitions list display.
 
 From the Capture Definitions list display, type option 1 next to the Definition that should be linked to the Parameters record, then press Enter to complete the link and return to the Parameters maintenance display. 
 
@@ -164,7 +164,7 @@ Sometimes it is not important that the Capture Application execute After the Par
 
 If an older set of Message Management Parameters is being updated with a specific setting of 'B' for the Before/After option, be sure to carefully evaluate the linked Application and its Response Rules. Also look for any secondary Parameters records that have all the same six primary message filter keys, but a unique sequence number. Sometimes, the additional rules with higher sequence numbers may no longer be needed.
 
-### Message Management Technical Support Tools
+## Message Management Technical Support Tools
 
 There are LSAM utility commands and programs included with the software product that are intended for use only by informed technical support personnel. These tools are listed in this documentation, but they are not fully documented because they are not intended for use by anyone who has not received specific training about how to use the tools correctly. The following tools may be used by experienced persons to diagnose and/or control the operation of Message Management if problems arise.
 
@@ -204,10 +204,9 @@ The trace log entries in file LSALOGF30 may be recognized by log type values of 
 
 The log entries that are labeled with the log type of DQ: show information about messages that were intercepted by Message Management, but that were disqualified for processing because of some of the filtering rules. It is possible to view the raw data of the DQ: entries to see advice about the reason that the message was disqualified. This may help the LSAM Administrator debug some of the complex rules that can be used to filter messages.
 
-For assistance with analysis of the Message Management diagnostic trace log entries, use the SMASUP command to extract the LSAM LOG files to a save file and send the save file to SMA Support (refer to [Log File and Database Management](../logs-database/overview.md) for instructions about using the SMASUP command and delivering
-the save file to SMA Support).
+For assistance with analysis of the Message Management diagnostic trace log entries, use the SMASUP command to extract the LSAM LOG files to a save file and send the save file to SMA Support (refer to [Log File and Database Management](../logs-database/overview.md) for instructions about using the SMASUP command and delivering the save file to SMA Support).
 
-### Using Message Management for Job Completion Messages
+## Using Message Management for Job Completion Messages
 
 The LSAM runs two different server programs and jobs that each perform message management tasks. Besides the general message management server job (TRPMSG) described in this topic, there is also the job completion message server job (MSGMNG). The functions of these two server jobs are divided according to the rule that all messages arriving in the LSAM's reserved job completion message queue, SMADTA/SMAMSGQ, will be handled by the job completion message server. Any other message queues may
 optionally be monitored by the general message management server. 
@@ -217,7 +216,7 @@ leave unanswered.
 
 Following is a summary of how to configure the IBM i LSAM so that inquiry messages arriving in the LSAM's job completion message queue can be processed using LSAM message management rules. More explanation about the technical details of this process follows the outline.
 
-[How to Use Message Management for the LSAM Job Completion Message Queue]
+**How to Use Message Management for the LSAM Job Completion Message Queue:**
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on STRSMA and LSAMENU command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **7** to choose the **LSAM Parameters** in the LSAM Main Menu.
@@ -245,7 +244,7 @@ possible that in some environments, the behavior of the LSAM job completion mess
 
 Consider this next example when deciding whether or not to use this LSAM processing option.
 
-:::tip Example
+:::note Example
 An old programming technique, not recommended for use in IBM i programs, used the MSGQ parameter of the SBMJOB command to identify the name of the user profile that submitted a job. This value was retrieved by a program (using the SBMMSGQ parameter of the RTVJOBA command) and used to send inquiry messages about system operations, requiring a reply from a user before the program could continue operations. IBM i permits that the MSGQ parameter of the SBMJOB command can be changed to any value where job completion messages should be routed, therefore, this parameter cannot be relied upon to identify the name of the user profile submitting a job.
  
 The IBM i LSAM sets this SBMJOB parameter to MSGQ(SMADTA/SMAMSGQ), where SMADTA could be a different name of the database library in an alternate LSAM environment.
@@ -272,7 +271,7 @@ When the LSAM Parameters option to use message management for the job completion
 - Only messages that are [not] found in the LSAM's table of job completion messages may be subjected to LSAM message management rules. This table is not designed for user maintenance, but LSAM users may consult with SMA Support for advice if it is suspected that the LSAM table of job completion messages should be revised.
 - The LSAM's reserved message queue where job completion messages are routed by IBM i, called SMAMSGQ in the LSAM database library (SMADTA, or other representative name), will not be handled by the LSAM's general message management server program. This rule is hard-coded into the LSAM server programs. Rules added to the LSAM Message Management Parameters that specify the message queue SMAMSGQ will only be used by the LSAM's job completion message server program -- and only if the LSAM Parameter is set to allow this type of processing.
 
-### Specifying User-Defined Responses to Messages
+## Specifying User-Defined Responses to Messages
 
 There are two additional methods for providing responses to inquiry messages, in addition to the response values that may be entered directly into the LSAM message management parameters master record. One method is to cause the inquiry message to be re-routed to a different message queue and the other method is to have the LSAM message management server call a user-defined program that will provide the message reply value.
 
@@ -339,7 +338,7 @@ When an IBM command is requested, the LSAM Message Manager program spawns a sepa
 
 Any IBM command could be used for an Event command, including user-defined commands or commands from third-party application software that is installed in the IBM i system. The only requirement for non-system commands is that the LSAM Message Management server job must be able to find the command. Therefore, if the command does not exist in either the system library list or the LSAM environment library list, the command should be qualified by its library location name, such as:
 
-:::tip EXAMPLE
+:::note EXAMPLE
 ```
 APPLIB/APPCMD KEYWORD1(value1) KEYWORD2(value2)
 ```
@@ -349,13 +348,13 @@ In this example, the command APPCMD is located in the IBM i library APPLIB. Thus
 
 However, when using non-system commands or commands not installed in the LSAM environment library list, it is also important to assure how the command execution program has been configured. Many times commands are created with the command execution program location specified as '\*LIBL' meaning that the program must be found in the job's library list. Once again, the task spawned by the LSAM Message Manager would not typically have third-party application libraries in its library list (unless the LSAM environment library list has been modified to always include third-party software libraries -- for this purpose). Therefore, even a library-qualified command may fail to execute, unless the command uses the Product library attribute of the command to specify the library where the third-party application software may be found.
 
-#### LSAM Dynamic Variables in Event Commands
+### LSAM Dynamic Variables in Event Commands
 
 The LSAM Message Management server program supports replacement of LSAM Dynamic Variables that may be included in the Event response command field. To insert Dynamic Variable tokens into the Event command field it is helpful to use the Dynamic Variable prompting function key:
 
 - **F6=DynVar**: This command key, when pressed while the cursor is positioned in the Event command field, causes a window listing available Dynamic Variables to appear. PageDown as necessary, then position the cursor over the desired variable name and press <**Enter**> to select that variable so that it will be inserted as a token into the Event command field. The token will be inserted at the position where the cursor was when <**F6**> was pressed.
 
-The LSAM Message Manager processes Dynamic Variable token replacement before any other action when it is preparing to execute an Event response command. Therefore, the value that is used to replace the token could contain any form of valid IBM command or OpCon $-command string. It is also permitted to use Dynamic Variables in place of one or more parameters of a command that is typed into the Event command field. More than one Dynamic Variable can be included in a single Event
+The LSAM Message Manager processes Dynamic Variable token replacement before any other action when it is preparing to execute an Event response command. Therefore, the value that is used to replace the token could contain any form of valid IBM command or an Agent $-System command string. It is also permitted to use Dynamic Variables in place of one or more parameters of a command that is typed into the Event command field. More than one Dynamic Variable can be included in a single Event
 command, as long as the final result after token replacement is a valid format for the allowed command types.
 
 Use caution when determining how to set the value of a Dynamic Variable that will be replaced by the LSAM Message Manager. It might seem possible to use additional Message Management Event commands or the Message Manager capability to call user-defined programs in order to set a Dynamic Variable value. However, due to the way the Message Manager spawns separate tasks for both of these capabilities, it may not always be possible to assure that the spawned tasks will be executed in the
@@ -369,11 +368,12 @@ However, the OpCon job master record maintenance routine (as of the date of this
 
 #### Using IBM Commands for Event Response
 
-OpCon job master maintenance only supports the prompting and updating of OpCon $-commands as Event commands that may be executed in response to messages generated by IBM i jobs. However, a work-around has been developed for this restriction in data entry rules, so that it is possible to register an IBM-format command that will be executed by the IBM i LSAM, instead of sending an Event command back to OpCon. 
+OpCon job master maintenance only supports the prompting and updating of OpCon $-commands as Event commands that may be executed in response to messages generated by IBM i jobs. However, the following work-around has been developed for this restriction in the OpCon User Interface data entry rules, so that it is possible to register an IBM-format command that will be executed by the IBM i LSAM, instead of sending an Event command back to OpCon. 
 
+##### Work-around for specifying IBM i commands as Message Management Events:
 To register an IBM-format command in the OpCon job master record, select the OpCon Event command named $CONSOLE:DISPLAY. Then, when replacing the <**message**> parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
 
-:::tip EXAMPLE
+:::note EXAMPLE
 ```
 $CONSOLE:DISPLAY,QCMD:WRKJOB OUTPUT(*PRINT)
 ```
@@ -387,22 +387,22 @@ Be sure to take note of the rules and restrictions explained above, under: LSAM 
 
 The LSAM Message Management server program supports replacement of LSAM Dynamic Variables. Therefore, any or all of the IBM-format command that is registered in the OpCon job master record for message management could be an LSAM Dynamic Variable token. Consider the following example:
 
-:::tip EXAMPLE
+:::note EXAMPLE
 ```
 $CONSOLE:DISPLAY,QCMD:{DYNVAR1}
 ```
 :::
 In the example above, after the required special character sequence QCMD: there appears only the LSAM Dynamic Variable name (surrounded by the required special characters that are registered in the LSAM environment to denote a Dynamic Variable token; some environments may use different characters to mark the start and end of a Dynamic Variable token). The LSAM Message Manager retrieves the character string that appears after the QCMD: sequence, then it checks for and replaces the Dynamic Variable token with its current value. In this example, the token must be replaced by a complete IBM-format command string in order for the event response to occur.
 
-### Message Data Capture and Captured Data Response Rules
+## Message Data Capture and Response Rules
 
-This section explains how to configure Message Data Capture, with optional Captured Data Response Rules. It also explains how message data capture and response rules work.
-
-There is a universal Captured Data Response Rule capability provided with the IBM i LSAM. This adaptable tool enables a flexible, programmable and virtually unlimited response capability that can be associated with the various LSAM tools that perform data capture. Operator Replay scripts can capture data displayed on IBM i green screen workstations. The SCANSPLF tool can capture data printed on reports coming from programs that ran under IBM i. Similarly, the Message Management facility can capture data from the primary and/or secondary (Help) text of messages.
+This section explains how to configure Message Data Capture. Agent features that can capture data are supported by a cental reference to the universal [Captured Data Response Rules](\events-utilities\captured-data-response-rules.md) documentation.
 
 Message Data Capture can be used to enable tight integration between OpCon and third-party application software running under IBM i. Messages can be generated by any IBM i software and the IBM i LSAM Message Management Parameters can be configured to respond to those messages. When message data is captured, the captured data elements can be tested in order to control a variety of optional responses to any given message. The responses supported include any form of IBM i command or program call and also OpCon Event Commands.
 
-#### How to Configure Message Data Capture
+The universal Response Rule capability provided with the IBM i LSAM enables a flexible, programmable and virtually unlimited response capability that can be associated with the various LSAM tools that perform data capture. Operator Replay scripts can capture data displayed on IBM i green screen workstations. The SCANSPLF tool can capture data printed on reports coming from programs that ran under IBM i. Similarly, the Message Management facility can capture data from the primary and/or secondary (Help) text of messages.
+
+### How to Configure Message Data Capture
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on STRSMA and LSAMENU command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **2** to choose the **Message management menu** in the LSAM Main Menu.
@@ -414,11 +414,11 @@ Message Data Capture can be used to enable tight integration between OpCon and t
 8. Complete the other message capture definition fields. (Refer to the section below about Message Management Screens and Windows for more information about these fields.)
 9. Before pressing **Enter** to complete writing the new Capture Definition record to the LSAM database file, consider using function key **F11=Response rules** to link one or more response rules (commands to execute and other functions) to this Capture Definition. (Creating Response Rules is outlined next.)
 
-    a.  If **F11** was used to branch to Captured Data Response rules, remember to complete the process of entering the Capture Definition after returning to this screen by pressing **Enter**.
+    - If **F11** was used to branch to Captured Data Response rules, remember to complete the process of entering the Capture Definition after returning to this screen by pressing **Enter**.
 
 10. After completing the entry of one or more Message Data Capture Definitions, press **F3** to exit this function.
 
-    a.  If this function was entered using **F10** from Message Management Parameters, this will return the screen to that maintenance function, so skip the next two steps of this process.
+    - If this function was entered using **F10** from Message Management Parameters, this will return the screen to that maintenance function, so skip the next two steps of this process.
 
 11. Enter **1** to choose the **Message management parameters** option.
 12. Type option **2** to select the appropriate Message Management  Parameters record that will use the Message Data Capture definition.
@@ -432,10 +432,9 @@ Message Data Capture can be used to enable tight integration between OpCon and t
 
 After a Message Data Capture Definition has been created and registered to a Message Management Parameter record, it is possible to also register Captured Data Response Rules that are executed whenever the Message Data Capture function is being executed (during processing of a real message by the LSAM Message Management server job).
 
-Remember that Captured Data Response Rules can also be created for Operator Replay Scripts and for the SCANSPLF command - spool file scan rules. However, Captured Data Response Rules cannot be shared among these three LSAM features that use them. They are specially categorized to match each LSAM function that is performing data capture. This is why there is a separate entry for Work with Capture Response Rules found on each of the LSAM function sub-menus. This is also why the convenience
-function key **F11=Response rules** has been added to the maintenance function where each type of data capture is defined, making it easy to avoid confusion about where the Captured Data Response Rule will be used.
+Remember that Captured Data Response Rules can also be created for Operator Replay Scripts and for the SCANSPLF command - spool file scan rules. However, Captured Data Response Rules cannot be shared among these three LSAM features that use them. They are specially categorized to match each LSAM function that is performing data capture. This is why there is a separate entry for Work with Capture Response Rules found on each of the LSAM function sub-menus. This is also why the convenience function key **F11=Response rules** has been added to the maintenance function where each type of data capture is defined, making it easy to avoid confusion about where the Captured Data Response Rule will be used.
 
-#### Adding a Data Capture Rule from the LSAM Menu System
+#### Adding a Response Rule from the LSAM Menu System
 
 1. In the command line, enter **STRSMA** or **LSAMENU**. For more information on command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) and the [LSAMENU Command](../operations/lsam.md#the-lsamenu-command).
 2. Enter **2** to choose the **Message management menu** in the LSAM Main Menu.
@@ -450,10 +449,11 @@ function key **F11=Response rules** has been added to the maintenance function w
 6. The **Create Capture Response Rule** screen appears.
 7. On the Create Capture Response Rule screen, type the Capture Identifier and Capture Sequence number, using an existing Message Data Capture Application ID and the appropriate sequence number.
 
-    a.  Since there is no prompting key available to find the Message Data Capture Application ID and Sequence number, it may be more convenient to enter this Captured Data Response Rule maintenance using function key **F11** from the Work with Message Data Capture Definitions function. This method of access causes the Capture Identifier and Capture Sequence fields to be filled automatically.
+    - Since there is no prompting key available to find the Message Data Capture Application ID and Sequence number, it may be more convenient to enter this Captured Data Response Rule maintenance using function key **F11** from the Work with Message Data Capture Definitions function. This method of access causes the Capture Identifier and Capture Sequence fields to be filled automatically.
+
 8. Type a value of 'M' (= Message Capture) for the Type field.
 9. Assign a unique Response Sequence number to each response rule. The order of the sequence number determines which response rule will be executed first.
-10. Type a Continuation field value if more than one comparison rule must apply. Otherwise, leave this field blank to specify one, simple response rule. Refer to more information under [Message Management Screens and Windows](../message-management/screens.md#message-management-screens-and-windows).
+10. Type a Continuation field value if more than one comparison rule must apply. Otherwise, leave this field blank to specify one, simple response rule. Refer to more information under [Captured Data Response Rules - Work with Response Rules](\events-utilities\captured-data-response-rules.md\#work-with-capture-response-rules).
 11. Type a value for the Compress numeric field. Specify Y = yes if the captured and compare data values are numeric, otherwise specify N = no. This flag must correspond to the similar flag found on the associated Message Data Capture Rule.
 12. *(Optional)* Specify the names of a Dynamic Variable and/or an Operator Replay Token variable that will be used to store the captured data value.
 
@@ -462,18 +462,18 @@ function key **F11=Response rules** has been added to the maintenance function w
     :::
 
 13. Type the Response Cmd (command) to execute if the compare data rule is matched. Use function key <**F13=Full CMD**> if the command string is longer than will fit in the (part 1) input field.
-14. Type values for the Compare rules that decide when this response rule should be executed (refer to more information under [Message Management Screens and Windows](../message-management/screens.md#message-management-screens-and-windows)).
+14. Type values for the Compare rules that decide when this response rule should be executed (refer to more information under [Captured Data Response Rules - Work with Response Rules](\events-utilities\captured-data-response-rules.md\#work-with-capture-response-rules).
 
-    a.  A simple value set that allows a response rule to always execute is created by setting the Compare Rule to "EQ" (equal) and specifying the Compare Data Lines special value of *ANY.
+    - A simple value set that allows a response rule to always execute is created by setting the Compare Rule to "EQ" (equal) and specifying the Compare Data Lines special value of *ANY.
         
-    b.  In the Compare data lines 1-5 field, use function key <**F8**> if the data is longer than will fit into lines 1 to 5, but first type the first 5 lines into this field before pressing <**F8**>. The special values of *ANY, *PARM, or "DynVar" may be used. (Refer to more information under [Message Management Screens and Windows](../message-management/screens.md#message-management-screens-and-windows)
+    - In the Compare data lines 1-5 field, use function key <**F8**> if the data is longer than will fit into lines 1 to 5, but first type the first 5 lines into this field before pressing <**F8**>. The special values of *ANY, *PARM, or "DynVar" may be used. (Refer to more information under [Captured Data Response Rules - Work with Response Rules](\events-utilities\captured-data-response-rules.md\#work-with-capture-response-rules).)
 
 15. The value for the Capture length field (a display-only field near the bottom, right) is supplied automatically once a Capture Identifier and Capture Sequence number have been specified.
 16. Press <**Enter**> to record the new Capture Response Rule record.
 17. The system returns to an updated list of existing Capture Response Rule records.
 18. If the Captured Data Response Rule maintenance was entered by using a function key from a Work with Message Data Capture Definitions record screen, remember to also press **Enter** to complete any pending update of the Message Data Capture Rule.
 
-#### How Message Data Capture and Response Work
+### How Message Data Capture and Response Work
 
 As previously explained, the Captured Data Response Rules work the same for Message Data as they do for Operator Replay captured screen data and for SCANSPLF captured report data. However, some additional notes are provided in this section to illustrate some strategies that are unique to Message Management. One point of focus is on the management of message response by LSAM message management thresholds.
 
@@ -483,7 +483,7 @@ Skipping a Message Data Capture Rule means that none of its associated Captured 
 
 Whenever a Message Data Capture Rule is  executed the LSAM will check for any Captured Data Response Rules to be executed. Each Response Rule may be qualified by a potentially complex Compare Data rule definition. It is possible for one Message Data Capture Rule to have many different Response Rules associated with it, but that only certain of those Response Rules would actually be executed. An example of how to use this capability is provided below in the Examples section.
 
-##### Message Data Capture Applications
+#### Message Data Capture Applications
 
 The Application ID used for capturing message data is handled differently than Operator Replay or SCANSPLF. A single Application ID could be created for each separate Message Management Parameters record that might need to use captured data. However, since it is possible to have many different Management Parameters qualified to handle a single message by Job Name, Job User and date and time parameters, it might sometimes be convenient for all those different Message Management Parameters to share the same Application ID for capturing message data, since the Message ID will always be the same.
 
@@ -491,7 +491,7 @@ Therefore, the Message Management Parameters master record has a field that poin
 
 A single Application ID may have more than one message data capture rule. In that case, each rule is assigned a unique sequence number. This allows for the possibility of capturing more than one data element from a single message. All of the records belonging to the same Application ID will be executed whenever their associated Message Management Parameters record qualifies for handling a specific message. The sequence number also controls the order in which message data capture rules are executed, although the sequence of events is not critical unless any associated Captured Data Response Rules must be executed in a certain specific order.
 
-##### Examples of Using Message Data Capture and Response
+### Examples of Using Message Data Capture and Response
 
 Among many possible uses for captured message data, one simple use might be to capture the name of an IBM i system device, so that the specific device name can be passed to OpCon for the purpose of notifying a supervisor about an unexpected critical device error. For this purpose, the message text can be scanned for the device name, using the message data capture rules. Then a Captured Data Response Rule is associated with the capture rule and used to (1) store the device name in an LSAM Dynamic Variable, and then (2) use the Dynamic Variable value in an OpCon Event command that is sent from the LSAM to OpCon in order to notify the supervisor.
 
@@ -511,14 +511,14 @@ According to the complex example described above, it is easy to see that there c
 
 The LSAM Message Management Menu includes a number of functions that help identify these kinds of complex relationships.
 
-##### Message Management Parameters Record Key Number
+#### Message Management Parameters Record Key Number
 
 The first useful tool is a data element: Each Message Management Parameters record is identified by a unique numeric key. This numeric key can be observed when viewing option 5=Display details of a Parameters record, but it may also be viewed directly from the list of all Message Management Parameters records by pressing function key
 **F1=Alt view**. The alternate view of the Message Management Parameters records shows a column on the right side labeled **MmRecKey#** (which means Message Management Record Key Number). It is sometimes helpful to take note of this record key when analyzing message responses.
 
 For example, menu function 2, Message management logs, shows activity records that always include the MmRecKey# value (sometimes with a different, though obvious label). If a processing error is found among the log records, it will be important to note the MmRecKey# value in order to find the exact Message Management Parameters record from the separate list of the Parameters records (using menu function 1). (Note: This number is not the same as the SQ#, the sequence number assigned when more than one Parameters record references all the same message profile fields (ID, Job Name, etc.).)
 
-##### Flow Chart of Message Responses
+### Flow Chart of Message Responses
 
 On the list of Message Management Parameters, menu function 1, there is an option **7=Capt chart**. This option may be typed next to a Parameters record, and when **Enter** is pressed, the display will change to a list showing multiple record types that create a flow chart of linked Message Data Capture Rules and also any associated Captured Data Response Rules. This flow chart list display is described below under Message Management Screens and Windows.
 
