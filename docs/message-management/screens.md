@@ -755,7 +755,7 @@ Use this option to collect all related Capture Applications and Response Rules, 
 
 ### Work with Capture Response Rules
 
-The Work with Capture Response Rules function is identical to the description provided in Events and Utilities, except that these Response Rules are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to [Captured Data Response Rules - Work with Response Rules](\events-utilities\captured-data-response-rules.md\#work-with-capture-response-rules) to see the screens and windows used to create Capture Response Rules.
+The Work with Capture Response Rules function is identical to the description provided in Events and Utilities, except that these Response Rules are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to [Captured Data Response Rules - Work with Response Rules](/events-utilities/captured-data-response-rules.md\#work-with-capture-response-rules) to see the screens and windows used to create Capture Response Rules.
 
 #### Menu Pathways
 
