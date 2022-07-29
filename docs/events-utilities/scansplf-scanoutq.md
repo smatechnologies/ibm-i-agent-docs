@@ -204,77 +204,65 @@ Refer to the How To section of this topic for examples of how the following fiel
 The order of the fields listed in the table below will vary, depending on the setting of the "Scan Rule maint fmt 1- or 2-page" option in the "LSAM Utilities Configuration" screen (documented in previous pages of this section).
 :::
 
+- **From fields:**
+  -   Application 
+  -   Sequence 
+  -   SPLF Name 
+  -   Job Name 
+  -   SPLNBR 
 
-| Field                            | Description                      |
-+==================================+=================================+
-| From fields:                     | When this screen appears in Copy |
-mode, the key fields of the      |
-| -   Application                  | source record being copied are   |
-| -   Sequence                     | shown in this heading area. A    |
-| -   SPLF Name                    | new value must be assigned to    |
-| -   Job Name                     | the Sequence of the Scan Rule    |
-| -   SPLNBR                       | record being created in Copy     |
-mode, using the Rule Sequence    |
-input field, below. (The other   |
-key fields may remain the same   |
-in the new, copied record, since |
-more than one scan rule is       |
-allowed per SPLF Name + Job Name |
-+ SPLNBR.)                       |
+    When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. A new value must be assigned to the Sequence of the Scan Rule record being created in Copy mode, using the Rule Sequence input field, below. (The other key fields may remain the same in the new, copied record, since more than one scan rule is allowed per SPLF Name + Job Name + SPLNBR.)                       |
 
-- Application: This field is used to group one or more Scan Rules into a single task that can be configured to end normally or abnormally, depending on the setting of the Required Rule field in any of its rules. The field permits spaces and special characters.                                 |
+- **Application**: This field is used to group one or more Scan Rules into a single task that can be configured to end normally or abnormally, depending on the setting of the Required Rule field in any of its rules. The field permits spaces and special characters.                                 |
   - **Revision Note**: In previous LSAM versions, this field was stored in a separate master file, however, now it is simply the primary key field assigned to each Scan Rule.
 - Rule sequence: The order in which the scan rule will be processed, relative to other scan rules under the same Application. The value must be unique within the Application ID, even for a different SPLF Name, Job Name or SPLNBR. 
-- Rule description: Text that identifies the purpose of the scan rule, helpful on the Work with SPLF Scan Rules list display.
-- SPLF name: The name of the spool file to be scanned. 
-- Job name: The IBM i 10-character job name. The special value of *CMD may be used to indicate that the actual job name will be provided at execution time by the SCANSPLF command.
-- SPLF number: *ANY, or optionally, a specific spool file number within the Job name, used when more than one spool file of the same name is produced by a single job.
-- From/To page:
-  -   The scan may optionally be limited to one or more specific pages of a report.  The special value *STR means "from the start," and the special value *END means "to the end."
-  -   The special value *END may be used in the From-page field to cause the SCANSPLF command to work backwards from the last line of the report to the first line.  Working from the end of the report combines well with the Incidence count, for example, if it is important to find the second-to-last TOTALS label on a financial     report.
-  -   When *END is used for the From-page, it is possible to specify a Positive number for the To-page. A Positive number indicates the limit of pages to scan, starting backwards from the end of the report. For example, (-1) means scan only the last page, (-2) means scan only the last two pages, and so forth. A Positive number in this character field is indicated by type a dash (-) either before or after a number: -1 or 1-
-- From/To line (record): The scan may optionally be limited to specific lines on each page of the report. The line counter is reset at the top of each page. This feature might be useful, for example, when a label or value should only be found in the heading line of a report page (keeping in mind that the first heading line 
+- **Rule description**: Text that identifies the purpose of the scan rule, helpful on the Work with SPLF Scan Rules list display.
+- **SPLF name**: The name of the spool file to be scanned. 
+- **Job name**: The IBM i 10-character job name. The special value of \*CMD may be used to indicate that the actual job name will be provided at execution time by the SCANSPLF command.
+- **SPLF number**: \*ANY, or optionally, a specific spool file number within the Job name, used when more than one spool file of the same name is produced by a single job.
+- **From/To page**:
+  -   The scan may optionally be limited to one or more specific pages of a report.  The special value *STR means "from the start," and the special value \*END means "to the end."
+  -   The special value \*END may be used in the From-page field to cause the SCANSPLF command to work backwards from the last line of the report to the first line.  Working from the end of the report combines well with the Incidence count, for example, if it is important to find the second-to-last TOTALS label on a financial report.
+  -   When \*END is used for the From-page, it is possible to specify a Positive number for the To-page. A Positive number indicates the limit of pages to scan, starting backwards from the end of the report. For example, (-1) means scan only the last page, (-2) means scan only the last two pages, and so forth. A Positive number in this character field is indicated by type a dash (-) either before or after a number: -1 or 1-
+- **From/To line (record)**: The scan may optionally be limited to specific lines on each page of the report. The line counter is reset at the top of each page. This feature might be useful, for example, when a label or value should only be found in the heading line of a report page (keeping in mind that the first heading line 
 might actually be printed on line 2 of the page, in which case it would be necessary to specify 2 as the From and the To lines).
-- From/To position (column):
+- **From/To position (column)**:
   -   The scan may optionally be limited to specific positions on each scanned line of the report. For example, in IBM i job log reports, the severity code of logged messages always appears in positions 36-37.
   -   This pair of control fields has a different effect depending on other fields on the scan rule:
     -   If a scan label is specified, the scan label must be found within the From/To positions on the report line. When the scan label is specified, the From/To positions have no effect on the scan value itself - the scan value may be found anywhere within the report line where the scan label was located.
     -   If a scan label is not specified, then the scan value can only be found starting with the first non-blank character after the From-position, and it cannot extend past the To-position.
-    -   When the special value of *CAPT is specified for the scan value and the scan label is not specified and a scan value length greater than zero is entered, 
-        then the To-position will be ignored. Only the From-position will be used to find the scan value to be captured, and the captured data will be limited to the specified scan value length.
-- Start scan label: Optionally, specify a predictable string of characters that can be found by the scan program in order to locate the scan value within a report line.
-- Position after label: When the scan label is specified, indicate where the scan program should look for the scan value. There are four possible value types for this 
+    -   When the special value of *CAPT is specified for the scan value and the scan label is not specified and a scan value length greater than zero is entered, then the To-position will be ignored. Only the From-position will be used to find the scan value to be captured, and the captured data will be limited to the specified scan value length.
+- **Start scan label**: Optionally, specify a predictable string of characters that can be found by the scan program in order to locate the scan value within a report line.
+- **Position after label**: When the scan label is specified, indicate where the scan program should look for the scan value. There are four possible value types for this 
 field that each cause a different result:
-  -   0 (zero) = start with the first non-blank character AFTER the end of the scan label.
+  -   **0 (zero)** = start with the first non-blank character AFTER the end of the scan label.
   -   Positive number = start at the specified column number AFTER the end of the scan label. If the scan label ends at column 27 and the position-after value is 6, then the scan value to be compared will begin at column 33. 
-  -   (-1) = start with column 1 on the report and use the first non-blank character that appears BEFORE the scan label. This value is not valid if the scan label begins at column 1. The search for a scan value will stop with the last character before the start of the scan label, but the scan value can overlap the scan label. If no non-blank characters are found before the scan label starts, then the scan program assumes there is no scan value at the location of the scan label and this scan value will be marked as not found (not matched).
-  -   Positive number = start at the specified number of columns BEFORE the start of the scan label. Remember that (-1) has a special meaning, so it cannot be used in this context. If the scan label starts at column 27 and the position-after value is (-15), then the scan value to be compared will begin at column 12.
-- (scan) Value, *PARM, *CAPT, DVar: This field is used to specify or describe the scan value. The scan value will be the captured data value stored in the Captured Data Log file and referenced by any captured data response rules. When applicable, this scan value will be compared to the value found in the report at the specified location in order to determine if the scan rule has been matched or not matched. The scan values that may be specified include:
-  - A specific value = Any character string may be specified as the value that should be compared to the scan value found at the specified location in the report. For example, this type of rule can be used to find a flag in a financial report that may say "OUT OF BALANCE" in order to cause the SCANSPLF command to fail, so that the OpCon job that executed the SCANSPLF command will show up on the OpCon Schedule as a failed job, triggering an operator response. Leading blank characters
-may be left in the scan value field if they must be included in the scan rule match. Use the scan value length to also include trailing blank characters.
-:::tip
-Special values *PARM and *CAPT must be all capital letters.
-:::
+  -   **(-1)** = start with column 1 on the report and use the first non-blank character that appears BEFORE the scan label. This value is not valid if the scan label begins at column 1. The search for a scan value will stop with the last character before the start of the scan label, but the scan value can overlap the scan label. If no non-blank characters are found before the scan label starts, then the scan program assumes there is no scan value at the location of the scan label and this scan value will be marked as not found (not matched).
+  -   **Positive number** = start at the specified number of columns BEFORE the start of the scan label. Remember that (-1) has a special meaning, so it cannot be used in this context. If the scan label starts at column 27 and the position-after value is (-15), then the scan value to be compared will begin at column 12.
+- **(scan) Value, \*PARM, \*CAPT, DVar**: This field is used to specify or describe the scan value. The scan value will be the captured data value stored in the Captured Data Log file and referenced by any captured data response rules. When applicable, this scan value will be compared to the value found in the report at the specified location in order to determine if the scan rule has been matched or not matched. The scan values that may be specified include:
+  - **A specific value** = Any character string may be specified as the value that should be compared to the scan value found at the specified location in the report. For example, this type of rule can be used to find a flag in a financial report that may say "OUT OF BALANCE" in order to cause the SCANSPLF command to fail, so that the OpCon job that executed the SCANSPLF command will show up on the OpCon Schedule as a failed job, triggering an operator response. Leading blank characters may be left in the scan value field if they must be included in the scan rule match. Use the scan value length to also include trailing blank characters.
+    :::tip
+    Special values \*PARM and \*CAPT must be all capital letters.
+    :::
 
-- (scan) Value, *PARM, *CAPT, DVar (continued...): 
-  - *PARM = Use the value specified in one of the input PARAMETERS values of the SCANSPLF command. When the SCANSPLF command supplies input values (that is, the *RULES option for PARAMETERS was not used), there must be the same number of scan rules that use this *PARM special value as there are input parameter values separated by colons (:) in the PARAMETERS keyword of the SCANSPLF command.
-  - *CAPT = This special value indicates that the scan rule will not generate a match or nomatch (pass/fail) result. Instead, this type of scan rule will be used only for the purpose of capturing a value at the specified location in the report and then storing that value in the Captured Data Log file. Captured data values can be used to trigger any number of Captured Data Response rules, and the Response rule records may specify that the captured data should also be stored as an LSAM Dynamic Variable or as an LSAM Operator Replay token variable value.
-  - DVar = An LSAM Dynamic Variable may be specified in the scan value field. If the Dynamic Variable has already been defined in the LSAM table (remembering that Dynamic Variables may be defined at run-time, in which case they must be anticipated before they appear in the LSAM table), then function key F4=DynVar may be used to select from a list of available Dynamic Variables. The Dynamic Variable name is recognized by the scan program because it is enclosed within the pair of characters registered for this purpose in the LSAM Utility Configuration function (LSAM menu 3, option 7). The default Dynamic Variable enclosure characters are a pair of curly brackets: {var_name}. It is possible to combine a Dynamic Variable with other text that is entered directly into the scan value field, for example: 'Leading characters {var_nam} trailing text'. When the scan rule is executed, the scan program will replace the Dynamic Variable with the value found in the LSAM table at the moment of execution. A Dynamic Variable value may have just been set by a preceding scan rule's Captured Data Response rule.
-- Scan value length: When the scan value length is left at zero, the scan program assumes that the length of the scan value is equal to the last non-blank character in the scan value string (that is, the scan value is assumed to be trimmed of trailing blanks, and then the scan value is measured). The scan value length has a different effect depending on the setting of other scan rule fields:
+  - **\*PARM** = Use the value specified in one of the input PARAMETERS values of the SCANSPLF command. When the SCANSPLF command supplies input values (that is, the *RULES option for PARAMETERS was not used), there must be the same number of scan rules that use this *PARM special value as there are input parameter values separated by colons (:) in the PARAMETERS keyword of the SCANSPLF command.
+  - **\*CAPT** = This special value indicates that the scan rule will not generate a match or nomatch (pass/fail) result. Instead, this type of scan rule will be used only for the purpose of capturing a value at the specified location in the report and then storing that value in the Captured Data Log file. Captured data values can be used to trigger any number of Captured Data Response rules, and the Response rule records may specify that the captured data should also be stored as an LSAM Dynamic Variable or as an LSAM Operator Replay token variable value.
+  - **DVar** = An LSAM Dynamic Variable may be specified in the scan value field. If the Dynamic Variable has already been defined in the LSAM table (remembering that Dynamic Variables may be defined at run-time, in which case they must be anticipated before they appear in the LSAM table), then function key F4=DynVar may be used to select from a list of available Dynamic Variables. The Dynamic Variable name is recognized by the scan program because it is enclosed within the pair of characters registered for this purpose in the LSAM Utility Configuration function (LSAM menu 3, option 7). The default Dynamic Variable enclosure characters are a pair of curly brackets: {var_name}. It is possible to combine a Dynamic Variable with other text that is entered directly into the scan value field, for example: 'Leading characters {var_nam} trailing text'. When the scan rule is executed, the scan program will replace the Dynamic Variable with the value found in the LSAM table at the moment of execution. A Dynamic Variable value may have just been set by a preceding scan rule's Captured Data Response rule.
+- **Scan value length**: When the scan value length is left at zero, the scan program assumes that the length of the scan value is equal to the last non-blank character in the scan value string (that is, the scan value is assumed to be trimmed of trailing blanks, and then the scan value is measured). The scan value length has a different effect depending on the setting of other scan rule fields:
   -   Leave set to be left at zero when using the *PARM scan value. The length of the input PARAMETER value supplied in the SCANSPLF command will determine the length of the character string extracted from the report.
   -   When a specific value is entered into the scan value field, the scan value length can be set to a value longer than the number of trailing non-blank characters in the value in order to tell the scan program that trailing blanks should be considered in the match (pass/fail) rule. For example, if a scan value is entered with two leading blank characters, as: 'VALUE', then the default trimmed length of this scan value used by the scan program would be 7 (2 leading blanks and 5 non-blank characters). If the scan value length is set to 9, then the scan value found in the report must also have 2 blank characters after the non-blank characters.
   -   For the special scan value of *CAPT, use the scan value length combined with the From-position to specify the data that should be captured from the report. For *CAPT, if the scan value length is zeros, the the To-position must also be specified with the From-position in order to determine how much data to capture.
   -   Dynamic Variables are handled the same as typed scan values. The scan program first replaces a Dynamic Variable token with the variable's value at run time, then it subjects the scan value to the scan value length, as described above for specific values. Leave the scan value length at zero to allow the scan program to adapt to the actual length of the Dynamic Variable's value at run time. If a scan value length is specified, then the possible values of the Dynamic Variable must be well understood in advance in order to predict the results of the SCANSPLF match rules.
-- Bypass parm value: This field is used only when the SCANSPLF command will provide input values in its PARAMETERS keyword. If the specified bypass value is found in the input PARAMETERS position corresponding to this scan rule sequence number, then the input parameter will be considered matched by default and the report will not actually be scanned in order to set this scan rule to a status of matched.
-:::tip Example
+- **Bypass parm value**: This field is used only when the SCANSPLF command will provide input values in its PARAMETERS keyword. If the specified bypass value is found in the input PARAMETERS position corresponding to this scan rule sequence number, then the input parameter will be considered matched by default and the report will not actually be scanned in order to set this scan rule to a status of matched.
+:::note EXAMPLE
 For a given application, such as a financial report balancing task, the SCANSPLF command might be assembled by an automatic routine executing on the OpCon server. In this example, assume that there are four input parameter values: debit item count, debit total amount, credit item count, credit total amount. If any of these values is not found in the source data used by the SCANSPLF command assembly routine, then that routine is allowed to insert a place-holder value that indicates, "thisvalue is not supplied today - ignore this parameter position." An example of such a value might be *empty*. In this case, the Bypass parm value should be set to this same value, *empty*. To make the bypass value work, the administrator configuring the LSAM SPLF Scan Rules must coordinate this special value with the programmer responsible for building the automated routines that will assemble the SCANSPLF command string for the OpCon job. 
-- Bypass value length: Optionally, specify the length of the characters string used for the Bypass parm value. If this length is left at zeros, the scan program will assume that the Bypass parm value length ends with the last non-blank character. Leaving this value as zeros is the usual practice.
-- Compress numeric: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits.  Compressed monomeric do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the reference value (which may be an input PARAMETER from the SCANSPLF command) and the scan value found in the report when the option for compressing numeric data will be used. 
-- Required rule: 
-  -   This field is used to indicate that a scan rule is required, and it will affect the pass/fail outcome of the scan task:
-  -   Y = yes, the rule must be matched as part of the overall outcome of the SCANSPLF job.
-  -   N = no, this rule may be ignored; whether it matches or not, it does not affect the overall outcome of the SCANSPLF job.                
-  -   This field MUST be set to Y when the scan value is *PARM.
+:::
+- **Bypass value length**: Optionally, specify the length of the characters string used for the Bypass parm value. If this length is left at zeros, the scan program will assume that the Bypass parm value length ends with the last non-blank character. Leaving this value as zeros is the usual practice.
+- **Compress numeric**: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits.  Compressed monomeric do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the reference value (which may be an input PARAMETER from the SCANSPLF command) and the scan value found in the report when the option for compressing numeric data will be used. 
+- **Required rule**: This field is used to indicate that a scan rule is required, and it will affect the pass/fail outcome of the scan task:
+  - **Y** = yes, the rule must be matched as part of the overall outcome of the SCANSPLF job.
+  - **N** = no, this rule may be ignored; whether it matches or not, it does not affect the overall outcome of the SCANSPLF job.                
+  -   This field MUST be set to Y when the scan value is \*PARM.
   -   This rule at the individual scan rule level must be coordinated with the SCANSPLF command setting in its FAILOPT (fail option) keyword. The scan program itself keeps track of all rules that have their "Required rule" field set to Y=yes. At the end of the scan job, if all required rules were matched, then the SCANSPLF command would end normally. If any of the required rules were not matched, then the SCANSPLF command would end abnormally. The SCANSPLF command FAILOPT can be used to reverse the logic of this outcome (or to ignore the pass/fail outcome of rule matching). If the FAILOPT is set to (2) = fail on match, then the SCANSPLF command  will signal a failure only when all required rules are matched. For FAILOPT(2), if any required scan rule is not matched, the SCANSPLF command will appear to end     normally.
   -   The FAILOPT(2) technique may be most useful for single-rule Applications. For example, if the Application is searching for a failure message in a job log report, finding a match for any one failure message should generate an abnormal end of the SCANSPLF command. If two different failure message rules were specified, it is unlikely that both failure messages would be found, therefore, the SCANSPLF using FAILOPT(2) would typically end normally because not all rules were  matched.
 
@@ -346,7 +334,7 @@ When the SCANSPLF command is included in the job Call command line after a speci
 
 When the SCANSPLF command is used along with additional SBMJOB job parameters, the SCANSPLF command and its own parameters must follow any job definition parameters. That is, the SCANSPLF command string must be the last string of non-blank characters in the Call information field, following the Job parameters separator character, as in the following example:
 
-:::tip EXAMPLE
+:::note EXAMPLE
 ```
 WRKJOB JOB(*) OUTPUT(*PRINT) 
 OPTION(*ALL)|CCSID(297)  
@@ -361,7 +349,7 @@ For important additional information about the special character that is used to
 ### SCANSPLF Command Syntax
 
 The SCANSPLF command entered in an IBM i command line, either from IBM i or from the Call information in an IBM i job on an OpCon schedule, requires the syntax illustrated in the following example:
-:::tip  EXAMPLE
+:::note  EXAMPLE
 ```
 SCANSPLF APP('App ID: lower case and spl chars') DATE(20010101)
 OPCONJOB(Y) PARAMETERS('*empty*:12345:*empty*:67890')
@@ -376,8 +364,7 @@ The individual keywords are explained in a table following the screen illustrati
 There must be the same number of scan values, separated by colons, in the PARAMETERS keyword as there are SPLF Scan Rules using a Scan Value of \*PARM in the LSAM rules table. Also, each of the \*PARM Scan Rules must be set as required (that is, the Required Rule field must be set to Y = yes). However, the SCANSPLF command is allowed to also process additional scan rules that specify a different Scan Value, such as a directly-entered value or a Dynamic Variable (refer to the chapter about
 [Dynamic Variables](../dynamic-variables/overview.md)). There is also an option to create scan rules that simply capture report data, using the value \*CAPT in the Scan Value field. The PARAMETERS keyword supports a maximum of 16 parameter values, but each spool file name + job name combination, within an Application, can include up to 32 Scan Rules (implying that any required rules over 16 cannot be associated with the command PARAMETERS).
 
-Regardless of the type of Scan Value (registered in the Scan Rules), the SCANSPLF command completion status (normal or failed) depends on all required SPLF Scan Rules being matched. However, it is possible to also specify Scan Rules that are not required, so that they do not affect the outcome of the command but, perhaps, only enable the execution of a Captured Data Response Rule. After the list of required scan rules has been summarized and evaluated to determine if all matched or if any did
-not match, the actual completion status of the SCANSPLF command is determined by the FAILOPT parameter, as described in the command parameters table, below.
+Regardless of the type of Scan Value (registered in the Scan Rules), the SCANSPLF command completion status (normal or failed) depends on all required SPLF Scan Rules being matched. However, it is possible to also specify Scan Rules that are not required, so that they do not affect the outcome of the command but, perhaps, only enable the execution of a Captured Data Response Rule. After the list of required scan rules has been summarized and evaluated to determine if all matched or if any did not match, the actual completion status of the SCANSPLF command is determined by the FAILOPT parameter, as described in the command parameters table, below.
 
 The CMDMODE parameter keyword is provided for LSAM internal use only. This keyword must be left at the default value of \*CMD whenever the SCANSPLF command is used in a stand-alone mode, that is, from the IBM i command entry screen or from within any batch job. There is an alternate value supplied for this parameter by the LSAM job completion message server job to support the option of appending the SCANSPLF command to the OpCon Call command line, so that the final job completion status
 reported to the OpCon SAM will be determined by the results of the scan command.
@@ -391,12 +378,12 @@ Type choices, press Enter.
                                                                 
 Application (Capture ID) . . . . APP            ______________________________
 Date, as CCYYMMDD  . . . . . . . DATE           _________
-OpCon job? Y=yes, N=no . . . OPCONJOB       Y     
+OpCon/xps job? Y=yes, N=no . . . OPCONJOB       Y
 *RULES, or parms (P1:P2:...Pn)   PARAMETERS     *RULES________________________
-______________________________________________________________________________                         
-______________________________________________________________________________                         
-______________________________________________________________________________                         
-______________________________________________________________________________                         
+______________________________________________________________________________ 
+______________________________________________________________________________ 
+______________________________________________________________________________ 
+______________________________________________________________________________ 
 ______________________________________________________________________________
 ______________________________________________________________________________
   ...    
@@ -417,14 +404,15 @@ Prompted SCANSPLF Command - Page 2 of 2.
                                                                
 Type choices, press Enter.
 
-Spool file number,if Rule *ANY   SPLNBR         *APP
-User data  . . . . . . . . . . . USRDTA         *ALL
-Command mode (always *CMD) . . . CMDMODE        *CMD
-User-Defined Data (*generic*)  . USRDFNDATA     *ALL
+Spool file number,if Rule *ANY   SPLNBR          *APP
+User data  . . . . . . . . . . . USRDTA          *ALL
+Command mode (always *CMD) . . . CMDMODE         *CMD
+User-Defined Data (*generic*)  . USRDFNDATA      *ALL________________________
 ______________________________________________________________________________
 ______________________________________________________________________________
-Msg to job lob? Y/1=yes, N/0=no   JOBLOGMSG     Y
-                                  INT_ONLY_
+________________________________________________________________
+Msg to job log? Y/1=yes,N/0=no   JOBLOGMSG       Y
+                                 INT_ONLY_
 
                                                                         Bottom
 F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display
@@ -434,25 +422,25 @@ F24=More keys
 
 | Keyword    | Size    | Type   | Description                       |
 | -------    | ----    | ----   | -----------                       |
-| APP        | 30      | *CHAR  | Value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters insted of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3.                       |
-| DATE       | 8.0     | *DEC   | -   Optionally, specify a date in CCYYMMDD format, to identify the processing date of the target spool file. This value limits the list of jobs that the SCANSPLF command will search for the spool file. It is also used to specify the Capture Date in the captured data log file (OPRLOGF40) where found values are stored. If this value is left at zeros or not specified, the current IBM i system date is assumed. |
-|            |         |        | -   The command processor also supports using the name of an LSAM Dynamic Variable in this  field.                        |
-| OPCONXPS   | 1       | *CHAR  | -   Y=yes (default), N=no. Set this parameter to Y when the SCANSPLF command will be used in an OpCon scheduled job. Set this     parameter to N when the command will be used from IBM i command entry or called by a job originating outside of OpCon.                    |
-|            |         |        | -   This parameter tells the SCANSPLF command whether to send completion messages to OpCon. These messages cannot be used outside of the LSAM-to-OpCon interface.  |
-| PARAMETERS | 1024    | *CHAR  | - The entire value string must be enclosed in a pair of single quotes. Each scan value is separated by the colon (:) character. The  number of value strings provided with this keyword must equal the number of SPLF Scan Rules registered using the LSAM menu 3, function 4, that have *PARM specified     for their Scan Value. There can be up to 16 parameters in this string. |
-|            |          |       | - It is possible to include a colon character as part of a scan value if the scan value is enclosed in single quotes. (To include single quotes within the entire PARAMETERS value string type two single quotes together.)  |
-|            |           |      | -   It is also possible to include a single quote within a scan value by enclosing the scan value within single quotes and by doubling (again) the enclosed single quote. However, this means that the single quotes would have to be twice doubled, since they would be nested at a third level, so this would be difficult to specify correctly. Experimentation may be required to achieve the desired result. |
-|            |           |      | -   Special values that may be used to indicate a scan value should be bypassed during a given execution of the command may be registered in the LSAM SPLF Scan rules. In the command syntax shown above, the value '*empty*' is used as an  example of a possible scan value bypass value.   |
-|            |           |      | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field. |
-|            |           |      | -   Refer to Utility Screens and  Windows, later in this topic, for more information about SPLF Scan Rules.         |
-| JOBNBR     | 28 (30) | \*CHAR | -   To direct the SCANSPLF to  find a specific job, type the IBM i job number (6 digits) for this keyword value. If this optional parameter value is not specified, the SCANSPLF command will search for the latest (most recent) incidence of the Job Name specified in the LSAM SCANSPLF Application master record.                       |
-|            |           |      | -   It is also possible to specify any or all of the three parts of an IBM i job  ID by including one or two forward slash characters. To do this, the value must be enclosed within single quotes in order to get the IBM i command processor to accect the slashes as part of the job ID character string.|
-|            |           |      | -   To specify a whole IBM i job ID, it is only necessary to provide the 6-digit job number because this number implies the user name and the job name.                     |
-|            |           |      | -   When specifying a user and/or job name without using a specific job number, type one or two slashes using one of the following models:         |
+| APP        | 30      | \*CHAR  | Value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters insted of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3.                       |
+| DATE       | 8.0     | \*DEC   | Optionally, specify a date in CCYYMMDD format, to identify the processing date of the target spool file. This value limits the list of jobs that the SCANSPLF command will search for the spool file. It is also used to specify the Capture Date in the captured data log file (OPRLOGF40) where found values are stored. If this value is left at zeros or not specified, the current IBM i system date is assumed. |
+|            |         |        | The command processor also supports using the name of an LSAM Dynamic Variable in this  field.                        |
+| OPCONJOB   | 1       | \*CHAR  | Y=yes (default), N=no. Set this parameter to Y when the SCANSPLF command will be used in an OpCon scheduled job. Set this parameter to N when the command will be used from IBM i command entry or called by a job originating outside of OpCon.                    |
+|            |         |        | This parameter tells the SCANSPLF command whether to send completion messages to OpCon. These messages cannot be used outside of the LSAM-to-OpCon interface.  |
+| PARAMETERS | 1024    | *CHAR  | The entire value string must be enclosed in a pair of single quotes. Each scan value is separated by the colon (:) character. The  number of value strings provided with this keyword must equal the number of SPLF Scan Rules registered using the LSAM menu 3, function 4, that have *PARM specified     for their Scan Value. There can be up to 16 parameters in this string. |
+|            |          |       | It is possible to include a colon character as part of a scan value if the scan value is enclosed in single quotes. (To include single quotes within the entire PARAMETERS value string type two single quotes together.)  |
+|            |           |      | It is also possible to include a single quote within a scan value by enclosing the scan value within single quotes and by doubling (again) the enclosed single quote. However, this means that the single quotes would have to be twice doubled, since they would be nested at a third level, so this would be difficult to specify correctly. Experimentation may be required to achieve the desired result. |
+|            |           |      | Special values that may be used to indicate a scan value should be bypassed during a given execution of the command may be registered in the LSAM SPLF Scan rules. In the command syntax shown above, the value '*empty*' is used as an  example of a possible scan value bypass value.   |
+|            |           |      | The command processor also supports using the name of an LSAM Dynamic Variable in this field. |
+|            |           |      | Refer to Utility Screens and  Windows, later in this topic, for more information about SPLF Scan Rules.         |
+| JOBNBR     | 28 (30) | \*CHAR | To direct the SCANSPLF to  find a specific job, type the IBM i job number (6 digits) for this keyword value. If this optional parameter value is not specified, the SCANSPLF command will search for the latest (most recent) incidence of the Job Name specified in the LSAM SCANSPLF Application master record.                       |
+|            |           |      | It is also possible to specify any or all of the three parts of an IBM i job  ID by including one or two forward slash characters. To do this, the value must be enclosed within single quotes in order to get the IBM i command processor to accect the slashes as part of the job ID character string.|
+|            |           |      | To specify a whole IBM i job ID, it is only necessary to provide the 6-digit job number because this number implies the user name and the job name.                     |
+|            |           |      | When specifying a user and/or job name without using a specific job number, type one or two slashes using one of the following models:         |
 |            |           |      |    -   User only = '/username' |
 |            |           |      |    -   Job name only = '//jobname'             |
 |            |           |      |    -   User and job name =  '/username/jobname'     |
-|            |           |      |    -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.   |
+|            |           |      | The command processor also supports using the name of an LSAM Dynamic Variable in this field.   |
 | FAILOPT    | 1       | *CHAR | Controls the final completion status of the SCANSPLF command, affecting also the final status of a submitted job (such as jobs submitted by OpCon) when the SCANSPLF command is the only step in the job. Possible values include:                          |
 |            |           |      | -   1 = force abnormal end when ANY required scan rule was NOT matched (ANY FAIL)        |
 |            |           |      | -   2 = force abnormal end when ANY required scan rules DO match (ANY PASS)              |
@@ -460,20 +448,20 @@ F24=More keys
 |            |           |      | -   4 = force abnormal termination when ALL required scan rules are NOT matched (ALL FAIL) |
 |            |           |      | -   5 = force abnormal termination when ALL required scan rules DO match (ALL PASS)                         |
 | SPLF       | 10        | *CHAR | Spool file name to scan:   |
-|            |           |      | -   The *APP special value indicates that one or more spool files registered to the APPlication in the Scan Rules will be the spool file names to find and scan. |
-|            |           |      | -   To limit the scan task to only one spool file name, such as when more than one SPLF was registered to the same APP, type the full name of the spool file in this field.                        |
-|            |           |      | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
+|            |           |      | The *APP special value indicates that one or more spool files registered to the APPlication in the Scan Rules will be the spool file names to find and scan. |
+|            |           |      | To limit the scan task to only one spool file name, such as when more than one SPLF was registered to the same APP, type the full name of the spool file in this field.                        |
+|            |           |      | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
 | SPLNBR     | 10      | *CHAR | Spool file number to scan:     |
-|            |           |      | -   The *APP special value indicates that the APPlication Scan Rules will the limits on which spool file number (of a job) to find and scan. |
-|            |           |      | -   If the Scan Rules specify *ANY for the spool file number, this parameter can be used to limit the current task to any of the following values that IBM i spool file commands will support:        |
-|            |           |      | -   1 - 999999, *ONLY, *LAST, *ANY                         |
-|            |           |      | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
-| USRDTA     | 10      | *CHAR | -   This field can be used to limit the spool file selected for scanning by its user data value.                        |
-|            |           |      | -   The special value of *ALL means to accept a spool file without checking the user data value assigned to it.    |
-|            |           |      | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
-| CMDMODE    | 10      | *CHAR | -   This parameter is intended for LSAM internal user only. 
-|            |           |      | -   *CMD = The SCANSPLF command is being used alone, such as execution from IBM i interactive command entry or as a step in a batch job.|
-|            |           |      | -   *JORS = The SCANSPLF command was specified as an extension to the OpCon job master Call command line for the IBM i job. The job's job log spool file will be scanned to determine the final completion status of the job that is reported to OpCon SAM.                          |
+|            |           |      | The *APP special value indicates that the APPlication Scan Rules will the limits on which spool file number (of a job) to find and scan. |
+|            |           |      | If the Scan Rules specify *ANY for the spool file number, this parameter can be used to limit the current task to any of the following values that IBM i spool file commands will support:        |
+|            |           |      | 1 - 999999, *ONLY, *LAST, *ANY                         |
+|            |           |      | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
+| USRDTA     | 10      | *CHAR | This field can be used to limit the spool file selected for scanning by its user data value.                        |
+|            |           |      | The special value of *ALL means to accept a spool file without checking the user data value assigned to it.    |
+|            |           |      | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
+| CMDMODE    | 10      | *CHAR | This parameter is intended for LSAM internal user only. 
+|            |           |      |***CMD** = The SCANSPLF command is being used alone, such as execution from IBM i interactive command entry or as a step in a batch job.|
+|            |           |      | ***JORS** = The SCANSPLF command was specified as an extension to the OpCon job master Call command line for the IBM i job. The job's job log spool file will be scanned to determine the final completion status of the job that is reported to OpCon SAM.                          |
 | USRDFNDTA  | 256     | *CHAR | Use single quotes to enclose a string of data that should match the User Defined Data attributed of spool files that qualify for the command to process.|
 |            |          |  | '*GENERIC*'                   |
 |            |          |  | Generic, or partial, values may be used. Type an asterisk at the beginning to indicate that any number of characters (or no characters) may precede the matching string. Type an asterisk at the end to indicate that any number of characters (or no characters) may follow the matching string. Either or both of the asterisks may be used.  |
@@ -500,20 +488,19 @@ positions for an amount total (in US dollars).
 Example control totals:
 
 - Debit item count = 385
-- Debit total amount = $13,719.22 (<u>the space between the $ and the 1 is intentional</u>)
+- Debit total amount = $ 13,719.22 (<u>the space between the $ and the 1 is intentional</u>)
 - Credit item count = 296
-- Credit total amount = $13,719.22
+- Credit total amount = $ 13,719.22
 
 Here is the command string generated by a MS Windows application program executing on the OpCon server. The application program was responsible for obtaining the control totals that had been stored into OpCon properties by an previous job in the OpCon schedule:
 ```
-SCANSPLF APP('ACH-A') PARAMETERS('385:1371922:296:1371922')
-FAILOPT(1)
+SCANSPLF APP('ACH-A') PARAMETERS('385:1371922:296:1371922') FAILOPT(1)
 ```
 Notice how the numeric data has been compressed into only the digits. The entire PARAMETERS string must be enclosed in a pair of single quotes. The FAILOPT (fail option) has been set to (1), indicating that the SCANSPLF command should end abnormally if any of the input parameters are not found to match, or end normally if all the input parameters do match.
 
-Before examining the LSAM SPLF Scan Rules required to support this form of the SCANSPLF command, consider that sometimes the item count might not be available from the source. In that case, a convention must be established for signaling that on any given day, one input parameter might not be available and so it should not be used to complete the balancing function. The MS Windows programmer comes to agreement with the IBM i LSAM Administrator that a special value of \*empty\* will be used as a place-holder whenever any of the four expected input parameter values is not available. If no credit item count is available, the command string looks like this:
+Before examining the LSAM SPLF Scan Rules required to support this form of the SCANSPLF command, consider that sometimes the item count might not be available from the source. In that case, a convention must be established for signaling that on any given day, one input parameter might not be available and so it should not be used to complete the balancing function. The MS Windows programmer comes to agreement with the IBM i LSAM Administrator that a special value of **\*empty\*** will be used as a place-holder whenever any of the four expected input parameter values is not available. If no credit item count is available, the command string looks like this:
 ```
-SCANSPLF APP('ACH-A') PARAMETERS('385:1371922:\*empty\*:1371922')FAILOPT(1)
+SCANSPLF APP('ACH-A') PARAMETERS('385:1371922:*empty*:1371922') FAILOPT(1)
 ```
 To process this SCANSPLF that will be executed in an IBM i job submitted from an OpCon schedule, the LSAM master files must be configured as follows.
 
@@ -532,35 +519,35 @@ Assuming that there may be General Ledger account sub-totals throughout the repo
 
 According to this definition of the report, these are the required values for each of the four SPLF Scan Rules in the LSAM database:
 
-Application: ACH-A
+- **Application**: ACH-A
 
-Rule sequence: 10, 20, 30, 40 (one for each rule; the sequence numbers could be 1, 2, 3, 4, up to 999). Rule sequence numbers must be unique within an Application, even if different SPLF names are included within one Application.
+- **Rule sequence**: 10, 20, 30, 40 (one for each rule; the sequence numbers could be 1, 2, 3, 4, up to 999). Rule sequence numbers must be unique within an Application, even if different SPLF names are included within one Application.
 
-SPLF name: QSYSPRT
+- **SPLF name**: QSYSPRT
 
-Job name: POSTACHA
+- **Job name**: POSTACHA
 
-SPLF number: \*ANY (this could be a specific number, if job POSTACHA creates more than one report called QSYSPRT)
+- **SPLF number**: \*ANY (this could be a specific number, if job POSTACHA creates more than one report called QSYSPRT)
 
-From/To page: \*END \*END (notice that the From-page is not \*STR or 1, but \*END, to cause the scan job to start reading from the end of the report for each rule)
+- **From/To page**: \*END \*END (notice that the From-page is not \*STR or 1, but \*END, to cause the scan job to start reading from the end of the report for each rule)
 
-Start scan label: DEBIT COUNT (for the first rule, and for the other 3, use the labels shown above)
+- **Start scan label**: DEBIT COUNT (for the first rule, and for the other 3, use the labels shown above)
 
-Scan label length: (leave at zero, but each label could be measured, so the sizes would be 11, 11, 12, 12)
+- **Scan label length**: (leave at zero, but each label could be measured, so the sizes would be 11, 11, 12, 12)
 
-Position after label: (leave set to zeros so that the first non-blank character starts the value scan)
+- **Position after label**: (leave set to zeros so that the first non-blank character starts the value scan)
 
-(Scan) Value: \*PARM (the special value \*PARM is required for this application, telling the scan job to use the input PARAMETERS values supplied by the SCANSPLF command)
+- **(Scan) Value**: \*PARM (the special value \*PARM is required for this application, telling the scan job to use the input PARAMETERS values supplied by the SCANSPLF command)
 
-Scan value length: (leave the zeros for the item counts, but use a length of 16 for each of the total amounts in order to get past the $ sign and include all the numbers of the amount)
+- **Scan value length**: (leave the zeros for the item counts, but use a length of 16 for each of the total amounts in order to get past the $ sign and include all the numbers of the amount)
 
-Bypass parm value: \*empty\*
+- **Bypass parm value**: \*empty\*
 
-Bypass value length: 7 (optional)
+- **Bypass value length**: 7 (optional)
 
-Compress numeric: Y (This must be set to Y for the totals amounts fields in order to ignore the spaces and $ sign, which are inconsistent with the original format of the total amounts supplied by the transaction source. The item counts could ignore numeric compression, but to assure a valid numeric comparison, it is a good idea to use the compress option for all four parameters in this case.)
+- **Compress numeric**: Y (This must be set to Y for the totals amounts fields in order to ignore the spaces and $ sign, which are inconsistent with the original format of the total amounts supplied by the transaction source. The item counts could ignore numeric compression, but to assure a valid numeric comparison, it is a good idea to use the compress option for all four parameters in this case.)
 
-Required rule: Y (A value of Y= yes is required whenever the Scan value is \*PARM because this tells the scan program to consider each of the rules in the final pass/fail decision at the end of the program.)
+- **Required rule**: Y (A value of Y= yes is required whenever the Scan value is \*PARM because this tells the scan program to consider each of the rules in the final pass/fail decision at the end of the program.)
 
 When the SCANSPLF command is executed in this example it is expected to end abnormally. This is caused by the obvious out of balance condition appearing in the sample report page. The total credit amount in the report does not match the total amount submitted by the SCANSPLF command. The FAILOPT(1) parameter of the SCANSPLF command tells the scan program to force an abnormal end to the execution of the SCANSPLF command when any parameter is not matched. This causes the OpCon schedule to show a failed balancing job.
 
@@ -596,9 +583,9 @@ This application is defined in the IBM i LSAM database with the name "ERR2" and 
 
 Here is an example of a segment of a fake job log report showing how it appears just after a heading line, where the target severity code will be found:
 
-Example pf QPJOBLOG Report Spool File
+##### Example of QPJOBLOG Report Spool File
 ```
-\*...+....1....+....2....+....3....+....4....+....5....+....6....+....7
+*...+....1....+....2....+....3....+....4....+....5....+....6....+....7.
   5722SS1 V5R4M0 000000                           Job Log
    Job name . . . . . . . . . . :   BIGCLJOB        User  . . . . . . :
    Job description  . . . . . . :   QBATCH          Library . . . . . :
@@ -615,33 +602,33 @@ Example pf QPJOBLOG Report Spool File
 Only one SPLF Scan Rule is required for this application. A rule must be defined that will discover the message severity code of 40 on any line of the job log report. The IBM i QPJOBLOG report always lists message severity codes in columns 36 - 37 of the report, and since there is very little other data (only heading data) that will appear in these columns of the report, it is easy to define the scan rule. The following SPFL Scan Rule field values include some extras that will be added in this
 case in order to make the results of the SCANSPLF job more useful to the operators whenever a sub-program error is found. The extra data is explained below, along with an example of how to use Captured Data Response rules.
 
-Application: ERR2
+- **Application**: ERR2
 
-Rule sequence: 10
+- **Rule sequence**: 10
 
-SPLF name: QPJOBLOG
+- **SPLF name**: QPJOBLOG
 
-Job name: BIGCLJOB
+- **Job name**: BIGCLJOB
 
-SPLF number: \*ANY (there is only one job log report per job)
+- **SPLF number**: \*ANY (there is only one job log report per job)
 
-From/To page: \*STR \*END (the whole report will be searched from top to bottom)
+- **From/To page**: \*STR \*END (the whole report will be searched from top to bottom)
 
-From/To position: 36 37 (the report QPJOBLOG is known to always put the message severity code into columns 36-37 on a report line, and the string of '40' will never appear on any other line of a QPJOBLOG report in these positions)
+- **From/To position**: 36 37 (the report QPJOBLOG is known to always put the message severity code into columns 36-37 on a report line, and the string of '40' will never appear on any other line of a QPJOBLOG report in these positions)
 
-Start scan label: 40 (the Scan Label is used to find the first incidence of a severity code 40; the scan value field will be used for a different purpose in this example)
+- **Start scan label**: 40 (the Scan Label is used to find the first incidence of a severity code 40; the scan value field will be used for a different purpose in this example)
 
-Scan label length: 2 (could be left as zero, or specify 2)
+- **Scan label length**: 2 (could be left as zero, or specify 2)
 
-Position after label: -1 (Use this value to find the actual error message that will appear in column 1 of the report line, BEFORE the scan label. A specific Positive column count could also be used in this case, but it's just easier to enter -1 and not have to count the columns.)
+- **Position after label**: -1 (Use this value to find the actual error message that will appear in column 1 of the report line, BEFORE the scan label. A specific Positive column count could also be used in this case, but it's just easier to enter -1 and not have to count the columns.)
 
-(Scan) Value: \*CAPT (the special value \*CAPT is being illustrated in this example, even though it is not required for the simple purpose of reacting to the discovery of a severity code 40)
+- **(Scan) Value**: \*CAPT (the special value \*CAPT is being illustrated in this example, even though it is not required for the simple purpose of reacting to the discovery of a severity code 40)
 
-Scan value length: 7 (this example shows how 7 characters will be captured from the beginning of the report line where severity code 40 is found, so that the actual error message ID can be used by a Captured Data Response rule)
+- **Scan value length**: 7 (this example shows how 7 characters will be captured from the beginning of the report line where severity code 40 is found, so that the actual error message ID can be used by a Captured Data Response rule)
 
-Compress numeric: N (It is important that the default value of N = no be used in this example.)
+- **Compress numeric**: N (It is important that the default value of N = no be used in this example.)
 
-Required rule: Y (A value of Y= yes is required in this case in order to trigger the SCANSPLF logic that will report a pass or fail based on a required match or no-match to this Scan Rule.)
+- **Required rule**: Y (A value of Y= yes is required in this case in order to trigger the SCANSPLF logic that will report a pass or fail based on a required match or no-match to this Scan Rule.)
 
 There is more than one way this scan could have been effectively defined, producing the same pass/fail result. For example, instead of using the scan label, the scan value could have been specified, but this option was ignored in order to allow for the Captured Data Response rule option that is defined below. Similarly, if the capture option were not desired, the \*PARM scan value could have been used and the string of '40' could have been specified in the SCANSPLF PARAMETERS keyword.
 
@@ -672,8 +659,7 @@ even farther, as described next.
 
 #### Using Captured Data Response Rules
 
-In the Scan Rule defined above for the example BIGCLJOB the special value of \*CAPT was specified in the Scan Value field. As mentioned just above, every matched Scan Value is logged into the LSAM's Captured Data Log file. Instead of just logging the severity 40 error code, the Scan Rule was constructed so that the severity 40 code was found as a Scan label, leaving the Scan Value field free for capturing any helpful data related to the severity 40 code. In the example above, it is proposed
-that it might be helpful to capture and share the CPF message ID that describes each severity 40 error code. (Additional Scan Rules, set as not required, could be created for the purpose of capturing other data elements from the same report line.)
+In the Scan Rule defined above for the example BIGCLJOB the special value of \*CAPT was specified in the Scan Value field. As mentioned just above, every matched Scan Value is logged into the LSAM's Captured Data Log file. Instead of just logging the severity 40 error code, the Scan Rule was constructed so that the severity 40 code was found as a Scan label, leaving the Scan Value field free for capturing any helpful data related to the severity 40 code. In the example above, it is proposed that it might be helpful to capture and share the CPF message ID that describes each severity 40 error code. (Additional Scan Rules, set as not required, could be created for the purpose of capturing other data elements from the same report line.)
 
 In addition to the Captured Data Log file viewer, the LSAM offers more tools that can be used to respond to any matched Scan Rule, based on the Captured Data Log record. On LSAM menu 3, option 5 supports entry of one or more Captured Data Response Rules (described in the Screens and Windows section below) that can be linked to each Scan Rule.
 
@@ -695,29 +681,29 @@ up this link between the LSAM and OpCon.
 
 The link between the scanning process and OpCon is defined in the Captured Data Response Rule master record. Here is a list of the fields in that file showing the settings required to complete the example task. The field values listed here are based on the example SPLF Scan Rule described above.
 
-Capture identifier: ERR2
+- **Capture identifier**: ERR2
 
-Capture sequence: 10 (if there are additional scan rules, use the correct sequence number for each in separate Response Rules)
+- **Capture sequence**: 10 (if there are additional scan rules, use the correct sequence number for each in separate Response Rules)
 
-Response sequence: 10 (multiple Response Rules can be assigned to the same capture identifier and sequence; this number governs the order in which response rules are executed)
+- **Response sequence*8: 10 (multiple Response Rules can be assigned to the same capture identifier and sequence; this number governs the order in which response rules are executed)
 
-Compare rule: EQ (this example does not qualify the response rule, so it is set up as "equal \*ANY compare data")
+- **Compare rule**: EQ (this example does not qualify the response rule, so it is set up as "equal \*ANY compare data")
 
-Continuation: (blank) (not used in this example)
+- **Continuation**: (blank) (not used in this example)
 
-Compress numeric: N (= no; no comparison is being done, so this field does not apply)
+- **Compress numeric**: N (= no; no comparison is being done, so this field does not apply)
 
-Dynamic variable: CPFERR1 (this will be the name of the Dynamic Variable into which the response rule program will store the CPF message ID)
+- **Dynamic variable**: CPFERR1 (this will be the name of the Dynamic Variable into which the response rule program will store the CPF message ID)
 
-Operator Repay variable: (blanks) (not used in this example)
+- **Operator Replay variable**: (blanks) (not used in this example)
 
-Response command:
-```
-SMAJOBMSG TEXT('Found error ID is: {CPFERR1} ') MSGSEQ(0)
-```
---> Notice that the Dynamic Variable name is inserted into the TEXT parameter surrounded by the pair of curly brackets { }, which are the default separators for Dynamic Variables. (The separator characters could be changed from the LSAM's Job Tracking menu \# 1, using the Job Tracking Configuration function \# 7.) The MSGSEQ must be unique within any one job, so if other Captured Data Rules also use the SAMJOBMSG command, make sure each rule gets a unique number for the MSGSEQ, preferably in order of their execution. (HINT: Always leave the MSGSEQ parameter set to zero, its defaut value, so that OpCon can automatically assign a unique number to each separate Job Detail message and avoid overlaying any previous message that was sent.)
+- **Response command**:
+  ```
+  SMAJOBMSG TEXT('Found error ID is: {CPFERR1} ') MSGSEQ(0)
+  ```
+  - Notice that the Dynamic Variable name is inserted into the TEXT parameter surrounded by the pair of curly brackets { }, which are the default separators for Dynamic Variables. (The separator characters could be changed from the LSAM's Job Tracking menu \# 1, using the Job Tracking Configuration function \# 7.) The MSGSEQ must be unique within any one job, so if other Captured Data Rules also use the SAMJOBMSG command, make sure each rule gets a unique number for the MSGSEQ, preferably in order of their execution. (HINT: Always leave the MSGSEQ parameter set to zero, its defaut value, so that OpCon can automatically assign a unique number to each separate Job Detail message and avoid overlaying any previous message that was sent.)
 
-Compare data: \*ANY (this rule is not qualified by any comparison to thecaptured value)
+- **Compare data**: \*ANY (this rule is not qualified by any comparison to thecaptured value)
 
 #### FAILOPT(2) Example Summary
 
@@ -761,7 +747,7 @@ It is not possible to use the SCANOUTQ command in an OpCon IBM i job master reco
 ### SCANOUTQ Command Syntax
 
 The SCANOUTQ command entered in an IBM i command line, either from IBM i or from the Call information in an IBM i job on an OpCon schedule, requires the syntax illustrated in the following example:
-:::tip EXAMPLE
+:::note EXAMPLE
 ```
 SCANOUTQ OUTQ(MYLIB/MYOUTQ)
    APP('App ID: lower case and spl chars')
@@ -787,63 +773,63 @@ The SCANOUTQ parameter values that are the same as those supported by the SCANSP
 | -------    | ----    | ----   | -----------                       |
 | OUTQ       | 10 + 10 | *CHAR | The output queue name, followed by the library location of the output queue. If the special value *LIBL is used for the location of the output queue, then the queue must be found in the library list of the job where the SCANOUTQ command is executing.                        |
 | APP        | 30      | *CHAR | Value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters instead of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3. |
-| DATE       | 8.0     | *DEC  | -   Optionally, specify a date in CCYYMMDD format, to identify the processing date of the target spool file. This value limits the list of jobs that the SCANOUTQ command will search for the spool file.    |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
-| DATECOMP   | 2       | *CHAR | -   Include spool files with this relationship to the DATE value specified:              |
-|            |         |       | -   LT = less than                   |
-|            |         |       | -   LE = less than or equal to       |
-|            |         |       | -   EQ = equal (the default value) |
-|            |         |       | -   GE = greater than or equal to    |
-|            |         |       | -   GT = greater than                |
-|            |         |       | -   For purposes of date comparison, the time values of 00:00:00 and 23:59:59 are used for the first and last times of the day.|
-| OPCONJOB   | 1       | *CHAR | -   Y=yes (default), N=no. Set this parameter to Y when the SCANOUTQ command will be used in an OpCon scheduled job. Set this     parameter to N when the command will be used from IBM i command entry or called by a job originating outside of OpCon.                    |
-|            |         |       | -   This parameter tells the SCANOUTQ command whether to send completion messages to OpCon. These messages cannot be used outside of the LSAM-to-OpCon interface.  |
+| DATE       | 8.0     | *DEC  | Optionally, specify a date in CCYYMMDD format, to identify the processing date of the target spool file. This value limits the list of jobs that the SCANOUTQ command will search for the spool file.    |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
+| DATECOMP   | 2       | *CHAR | Include spool files with this relationship to the DATE value specified:              |
+|            |         |       | **LT** = less than                   |
+|            |         |       | **LE** = less than or equal to       |
+|            |         |       | **EQ** = equal (the default value) |
+|            |         |       | **GE** = greater than or equal to    |
+|            |         |       | **GT** = greater than                |
+|            |         |       | For purposes of date comparison, the time values of 00:00:00 and 23:59:59 are used for the first and last times of the day.|
+| OPCONJOB   | 1       | *CHAR | **Y**=yes (default), **N**=no. Set this parameter to Y when the SCANOUTQ command will be used in an OpCon scheduled job. Set this     parameter to N when the command will be used from IBM i command entry or called by a job originating outside of OpCon.                    |
+|            |         |       | This parameter tells the SCANOUTQ command whether to send completion messages to OpCon. These messages cannot be used outside of the LSAM-to-OpCon interface.  |
 | FAILOUTQ   | 1       | *CHAR | Controls the final completion status of the SCANOUTQ command, based on a summary of all the SCANSPLF command completion statuses. Possible values include:                          |
-|            |         |       | -   1 = force abnormal end when any spool file scan command ended abnormally (ANY FAIL)   |
-|            |         |       | -   2 = force abnormal end when any spool file scan ends normally (ANY PASS)              |
-|            |         |       | -   3 = force normal end regardless of scan task outcome                                  |
-|            |         |       | -   4 = force abnormal end if all spool file scans end abnormally (ALL FAIL)              |
-|            |         |       | -   5 = force abnormal end if all spool file scans ended normally (ALL PASS)              |
+|            |         |       | **1** = force abnormal end when any spool file scan command ended abnormally (ANY FAIL)   |
+|            |         |       | **2** = force abnormal end when any spool file scan ends normally (ANY PASS)              |
+|            |         |       | **3** = force normal end regardless of scan task outcome                                  |
+|            |         |       | **4** = force abnormal end if all spool file scans end abnormally (ALL FAIL)              |
+|            |         |       | **5** = force abnormal end if all spool file scans ended normally (ALL PASS)              |
 | FAILSPLF   | 1       | *CHAR | Controls the final completion status of each SCANSPLF command. All SCANSPLF scan rules must work the same way for this option to be effective, because there is no other source for the SCANSPLF FAILOPT parameter. Possible values include:                   |
-|            |         |       | -   1 = force abnormal end when ANY required scan rule was NOT matched (ANY FAIL)|
-|            |         |       | -   2 = force abnormal end when ANY required scan rules DO match (ANY PASS)               |
-|            |         |       | -   3 = force normal end regardless of scan rule match outcome                            |
-|            |         |       | -   4 = force abnormal end if ALL scan rules do NOT match (ALL FAIL)                      |
-|            |         |       | -   5 = force abnormal end if ALL  scan rules DO match (ALL PASS)                         |
-| PARAMETERS | 1024    | *CHAR | -   The entire value string must be enclosed in a pair of single quotes, unless the special value of *RULES (which is the default) is  used.  |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
-|            |         |       | -   This value string is sent to each execution of the SCANSPLF command. Refer to the Fields table, above, for the SCANSPLF command for more information about this keyword.                      |
-|            |         |       | -   Also refer to the [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about SPLF Scan Rules.        | 
-| JOBNAME    | 10      | *CHAR | -   This field may optionally be used to limit the spool file selected from an output queue to only the files belonging to a job of this name.        |
-|            |         |       | -   This field may be left blank. |
-|            |         |       | -   The job name can be an exact IBM i job name, or a partial (also called generic) job name may be specified by entering the first one or more characters of the job name followed by an asterisk: -  JOBNA* (all job names beginning with JOBNA would match)           |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.   |
-| USER       | 10      | *CHAR | -   The job user name may be used to limit the spool files selected form an output queue.           |
-|            |         |       | -   This field should not be left blank. The default value is *ALL.                                 |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.   |
+|            |         |       | **1** = force abnormal end when ANY required scan rule was NOT matched (ANY FAIL)|
+|            |         |       | **2** = force abnormal end when ANY required scan rules DO match (ANY PASS)               |
+|            |         |       | **3** = force normal end regardless of scan rule match outcome                            |
+|            |         |       | **4** = force abnormal end if ALL scan rules do NOT match (ALL FAIL)                      |
+|            |         |       | **5** = force abnormal end if ALL  scan rules DO match (ALL PASS)                         |
+| PARAMETERS | 1024    | *CHAR | The entire value string must be enclosed in a pair of single quotes, unless the special value of *RULES (which is the default) is  used.  |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
+|            |         |       | This value string is sent to each execution of the SCANSPLF command. Refer to the Fields table, above, for the SCANSPLF command for more information about this keyword.                      |
+|            |         |       | Also refer to the [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about SPLF Scan Rules.        | 
+| JOBNAME    | 10      | *CHAR | This field may optionally be used to limit the spool file selected from an output queue to only the files belonging to a job of this name.        |
+|            |         |       | This field may be left blank. |
+|            |         |       | The job name can be an exact IBM i job name, or a partial (also called generic) job name may be specified by entering the first one or more characters of the job name followed by an asterisk: -  JOBNA\* (all job names beginning with JOBNA would match)           |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.   |
+| USER       | 10      | *CHAR | The job user name may be used to limit the spool files selected form an output queue.           |
+|            |         |       | This field should not be left blank. The default value is *ALL.                                 |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.   |
 | SPLF       | 10      | *CHAR | Spool file name to scan:    |
-|            |         |       | -   The \*APP special value indicates that one or more spool files registered to the APPlication in the Scan Rules will be the spool file names to find and scan.             |
-|            |         |       | -   To limit the scan task to only one spool file name, such as when more than one SPLF was registered to the same APP, type the full name of the spool file in this field.                        |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.               |
-| USRDTA     | 10      | *CHAR | -   This field can be used to limit the spool file selected for scanning by its user data     value.            |
-|            |         |       | -   The default value of *ALL means to accept a spool file without checking the user data value assigned to it. |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.               |
-| FORMTYPE   | 10      | *CHAR | -   This field may optionally be used to limit the spool files selected from an output queue to only the spool files assigned a particular form type value.       |
-|            |         |       | -   The default value of *ALL means to accept any spool file without considering the form type.                  |
-|            |         |       | -   The command processor also supports using the name of an LSAM Dynamic Variable in this field.                |
+|            |         |       | The \*APP special value indicates that one or more spool files registered to the APPlication in the Scan Rules will be the spool file names to find and scan.             |
+|            |         |       | To limit the scan task to only one spool file name, such as when more than one SPLF was registered to the same APP, type the full name of the spool file in this field.                        |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.               |
+| USRDTA     | 10      | *CHAR | This field can be used to limit the spool file selected for scanning by its user data     value.            |
+|            |         |       | The default value of *ALL means to accept a spool file without checking the user data value assigned to it. |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.               |
+| FORMTYPE   | 10      | *CHAR | This field may optionally be used to limit the spool files selected from an output queue to only the spool files assigned a particular form type value.       |
+|            |         |       | The default value of *ALL means to accept any spool file without considering the form type.                  |
+|            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                |
 | DVSPLNBR   | 12      | *CHAR | The IBM i LSAM Dynamic Variable that will store the IBM i spool file number with a job. May range from 1 to 999999. If there is more than one spool file with the same name produced by one job, this number is critical for identifying the specific spool file to be processed.      |
 | DVJOBNBR   | 12      | *CHAR | The IBM i LSAM Dynamic Variable that will store the IBM i unique job identifying number. Although this number always shows as six digits, it is handled as a character string. |
 | DVJOBUSR   | 12      | *CHAR | The IBM i LSAM Dynamic Variable that will store the name of the IBM i User Profile for the job that produced the spool file.     |
 | DVJOBNAME  | 12      | *CHAR | The IBM i LSAM Dynamic Variable that will store the name of the IBM i job that produced the spool file.                             |
-| NOSPLFOPT  | 1       | *DEC  | -   If the outcome of the FAILOUTQ parameter does not force the SCANOUTQ job to fail, then this option governs whether the job will be forced to fail if no spool files are found that match the Scan Rules requested by this command.                 |
-|            |         |       | -   1 = Fail if no SPLF found (the original default behavior).                 |
-|            |         |       | -   0 = Do not fail if no SPLF found (useful for system clean up jobs).        |
-|            |         |       | -   Refer to the next topic "SCANOUTQ Job Result Evaluation" for more information about the effect of this parameter.            |
+| NOSPLFOPT  | 1       | *DEC  | If the outcome of the FAILOUTQ parameter does not force the SCANOUTQ job to fail, then this option governs whether the job will be forced to fail if no spool files are found that match the Scan Rules requested by this command.                 |
+|            |         |       | **1** = Fail if no SPLF found (the original default behavior).                 |
+|            |         |       | **0** = Do not fail if no SPLF found (useful for system clean up jobs).        |
+|            |         |       | Refer to the next topic "SCANOUTQ Job Result Evaluation" for more information about the effect of this parameter.            |
 | USRDFNDTA  | 256     | *CHAR | Use single quotes to enclose a string of data that should match the User Defined Data attributed of spool files that qualify for the command to process.           |
 |            |         |       | '\*GENERIC\*'                   |
 |            |         |       | Generic, or partial, values may be used. Type an asterisk at the beginning to indicate that any number of characters (or no characters) may precede the matching string. Type an asterisk at the end to indicate that any number of characters (or no characters) may follow the matching string. Either or both of the asterisks may be used.     |
 |            |         |       | If no asterisks are typed, then the character string in this parameter must match exactly and completely the User Defined Data attribute of a spool file.        |
-|            |         |       | NOTE: The single character wild card value of a question mark '?' is NOT supported by this command.                          |
+|            |         |       | **NOTE**: The single character wild card value of a question mark '?' is NOT supported by this command.                          |
 
 
 ### SCANOUTQ Job Result Evaluation
@@ -951,7 +937,7 @@ The example starts with some one-time configuration steps to create components t
 
     When creating a Captured Data Response Rule, it is of course critical that the Application ID (labeled as the "Capture identifier" field) and the Capture sequence number match the Scan Rule exactly. To ensure this match, use the function key F4=Prompt and select the desired Scan Rule from the prompt window.
     
-    In this example, the Comp reference value, Compare rule and Compare data lines are set to the values that mean "always execute this rule." (The default values that imply this meaning are "*CAPT EQ *ANY".)
+    In this example, the Comp reference value, Compare rule and Compare data lines are set to the values that mean "always execute this rule." (The default values that imply this meaning are "\*CAPT EQ *ANY".)
     
     The illustration below shows that the IBM i command CPYSPLF will be executed. An easy way to format this command is to type the command name into the Response cmd field and then press F4=Prompt to get help from the IBM i command prompting program. However, do not attempt to include the Dynamic Variable token characters until after the command prompting returns the correctly formatted command syntax into this field.
 

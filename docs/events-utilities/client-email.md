@@ -114,7 +114,7 @@ This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens
 
 This LSAM feature makes it possible to generate email requests that will be processed by the OpCon server, using content that is managed by the LSAM automation tools. This feature supports automatic preparation of elaborate and rich email content.  The original purpose of this feature was to enable OpCon client sites to trigger one or more email messages that are useful and appropriate for customers of the OpCon user site.  
 
-:::tip Example
+:::note Example
 For example, banks that process ACH transaction file batches to and from the Federal Reserve system can notify other financial institutions they serve about the status of batches belonging to each of their customers.  The messages can automatically include well edited transaction item counts and amounts, in addition to documenting the processing dates and times, as well as including any one-time special notices to the customers.
 :::
 
@@ -166,8 +166,11 @@ Command parameters that do not directly support Dynamic Variable tokens could st
 
 In the following example of the GENEMLREQ command, the command default value is shown for every parameter (when a default is available). The default value may be assumed when it is not explicitly specified. Many of the command parameters support long strings, up to 128 characters, which prevents the IBM i command prompter from showing the command value prompts.
 :::note COMMAND SYNTAX
-  GENEMLREQ SUBJECT('Subject text string') ACRONYM(\*CMD) SEQ(0) USECODE(\*NONE) MSGMBR(\*ACRONYM)
-  MESSAGE(\*ACRONYM) TOADDR(\*DEFAULT) CCADDR(\*NONE) BCCADDR(\*NONE) OPCONJOB('1')
+  ```
+  GENEMLREQ SUBJECT('Subject text string') ACRONYM(*CMD) SEQ(0) USECODE(*NONE) 
+  MSGMBR(*ACRONYM) MESSAGE(*ACRONYM) TOADDR(*DEFAULT) CCADDR(*NONE) BCCADDR(*NONE) 
+  OPCONJOB('1')
+  ```
 :::
 
 The possible sources of each parameter value are defined in the following table of command parameters.
@@ -267,8 +270,9 @@ The command GETCLTEML (Get Client eMail Address) is a special purpose command th
 
 In the following example of the GETCLTEML command some sample values are illustrated. The command parameters do not support default values except for the MSGSEQ parameter which would default to zeros. 
 :::note COMMAND SYNTAX
-GETCLTEML ACRONYM(ACRVALUE) VARNAM(DYNVARNAME) MSGSEQ(010)
-USECODE(USECODEVAL)
+```
+GETCLTEML ACRONYM(ACRVALUE) VARNAM(DYNVARNAME) MSGSEQ(010) USECODE(USECODEVAL)
+```
 :::
 
 Zeros can be a valid value for a Client Acronym master record sequence number, but if the USECODE is not blanks, then zeros means to use of the first Client Acronym master record that matches the USECODE value, regardless of the sequence number assigned to that master record. It is recommended to provide a specific value for the MSGSEQ if the USECODE applies only to records that have non-zero sequence numbers. 
@@ -510,7 +514,7 @@ Keep in mind the following two features of the message text formatting logic in 
 
 Following is an example of how the message illustrated above would appear in a typical e-mail message browser, given that the Dynamic Variable was replaced by an numeric value of 1234567 that had Dynamic Variable numeric formatting rules applied.
 
-Email Message Example
+:::note Email Message Example
 ```
 Verify that the Dyn Var name DVAR is translated here: $12,345.00
 
@@ -521,6 +525,7 @@ space will appear between the paragraphs.
 Sincerely,
 SMA Support
 ```
+:::
 
 ### Display Mail Activity Logs
 

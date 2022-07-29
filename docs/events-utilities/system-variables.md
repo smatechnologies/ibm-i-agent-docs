@@ -44,19 +44,19 @@ The $MSG variable (supported only for Message Management) can be edited for sing
 
 The following list shows examples of $-System variables that are commonly supported among most Agent features.
 
--  $FREQUENCY NAME:   The name of the OpCon frequency table that was assigned to the job that issued the message.
--  $IBM JOB ID:       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
--  $IBM JOB NAME:     The IBM i current Job Name.
--  $IBM JOB NBR:      The IBM i current Job Number (always 6 digits, but handled as characters).
--  $IBM JOB USER:     The IBM i current Job User Name (IBM i User Profile that started the job).
--  $JOBID:            The OpCon job identifier, a 10-digit number.
--  $JOBID CMP:        The OpCon job name and job identifier, joined into a single string with blanks compressed out.
--  $JOBID LONG:       The OpCon job name followed by the job identifier, with all blanks retained in the string.
--  $JOB NAME:         The OpCon job name.
--  $JOB LONG NAME:    The long format of the complete OpCon job name.
--  $MACHINE NAME:     The OpCon name for the LSAM job scheduler, which should be the same as the LSAM Name specified in the LSAM Parameters.
--  $SCHEDULE DATE:    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
--  $SCHEDULE NAME:    The name of the OpCon schedule under which the current job was started.
+-  **$FREQUENCY NAME**:   The name of the OpCon frequency table that was assigned to the job that issued the message.
+-  **$IBM JOB ID**:       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
+-  **$IBM JOB NAME**:     The IBM i current Job Name.
+-  **$IBM JOB NBR**:      The IBM i current Job Number (always 6 digits, but handled as characters).
+-  **$IBM JOB USER**:     The IBM i current Job User Name (IBM i User Profile that started the job).
+-  **$JOBID**:            The OpCon job identifier, a 10-digit number.
+-  **$JOBID CMP**:        The OpCon job name and job identifier, joined into a single string with blanks compressed out.
+-  **$JOBID LONG**:       The OpCon job name followed by the job identifier, with all blanks retained in the string.
+-  **$JOB NAME**:         The OpCon job name.
+-  **$JOB LONG NAME**:    The long format of the complete OpCon job name.
+-  **$MACHINE NAME**:     The OpCon name for the LSAM job scheduler, which should be the same as the LSAM Name specified in the LSAM Parameters.
+-  **$SCHEDULE DATE**:    The date of the OpCon schedule under which the current job was started, in the (\*ISO0) format of CCYYMMDD.
+-  **$SCHEDULE NAME**:    The name of the OpCon schedule under which the current job was started.
 
 Variable names that are unique to supporting Agent features are listed under the feature name documentation.
 
