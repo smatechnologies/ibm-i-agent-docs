@@ -40,7 +40,7 @@ Main Menu > Restricted mode menu (#5) > Setup options (#1)
   ----------------------------------------------------------------
                            Delete Script
    Script Name
-  TESTSAVE
+   TESTSAVE
 
                                Bottom
                     Enter=Confirm   F12=Cancel  
@@ -78,7 +78,7 @@ Copy Script Window
 ```  
 SAVRSTD20W3
 
-    Copy from \*DEFAULT
+    Copy from *DEFAULT
     Type name, press Enter.
 
   New script name: ________________________
@@ -120,12 +120,11 @@ Main Menu > Restricted mode menu (#5) > Setup options (#1) > Select Script, opti
 | Seq         |         | The order in which steps in RDY status will be performed. Note that Actions in    HLD status will be sorted to the end of the list, separate from the steps in RDY   status that are listed in order of their sequence number. |
 |             |         | **Note:** A former restriction on the use of sequence numbers has been removed from the system and replaced with reserved names for certain Action codes. |
 | Action      |         | A user-assigned or a system-reserved name for each sequenced step. |
-|             |         | **Note:** Action codes ENDSYS and STRSYS are reserved and required. ENDSYS must be the operation that puts the system into restricted mode, while STRSYS must be the operation that  restores normal mode operations. Other steps may be placed before, between, or after these  required steps. Also refer to the discussion on Optional ON_ERROR Script Action Code about the 
-special ON_ERROR Action code. |
-| Stop        |         | -   Y = the Restricted Mode Script stops execution if there is an error on this step, and goes into AutoRecovr mode to restore normal system operations and report the error. |
-|             |         | -   N = Restricted Mode Script does not go into AutoRecovr and continues execution whether there is an error or not. |
-| Status      | RDY     | -   RDY = ready, will be executed during restricted mode. |
-|             |         | -   HLD = held, will not be executed when restricted mode operations are run. |
+|             |         | **Note:** Action codes ENDSYS and STRSYS are reserved and required. ENDSYS must be the operation that puts the system into restricted mode, while STRSYS must be the operation that  restores normal mode operations. Other steps may be placed before, between, or after these  required steps. Also refer to the discussion about the optional ON_ERROR Script Action Code. |
+| Stop        |         | **Y** = the Restricted Mode Script stops execution if there is an error on this step, and goes into AutoRecovr mode to restore normal system operations and report the error. |
+|             |         | **N** = Restricted Mode Script does not go into AutoRecovr and continues execution whether there is an error or not. |
+| Status      | RDY     | **RDY** = ready, will be executed during restricted mode. |
+|             |         | **HLD** = held, will not be executed when restricted mode operations are run. |
 | Description |         | User description of each sequenced step |
 
 #### Options
@@ -174,7 +173,7 @@ Enter=Confirm F12=Cancel
 
 The same format of Options Detail screen is displayed for both option 2=Change and function <**F6**> (Add).
 
-### SAVRSTD20-2 - Restricted Mode Options Detail
+#### SAVRSTD20-2 - Restricted Mode Options Detail
 
 #### Menu Pathways
 
@@ -187,18 +186,20 @@ The same format of Options Detail screen is displayed for both option 2=Change a
 | Script name Action   |                  | n/a      | The name of the Script in which this Action code is being added or changed.  |
 | Action           | None             | Y        | A user-defined or a system-reserved name for each sequenced step that is part of restricted mode operations.    |                 
 |          |                  |          |  **Note:** Action codes ENDSYS and STRSYS are reserved and required. ENDSYS must be the operation that puts the system into restricted mode, while STRSYS must be the operation that restores normal mode operations. Other steps may be placed before, between  or after these required steps. Also refer to the discussion [Optional ON_ERROR Script Action Code](#Optional)  about the special ON_ERROR Action code.*   |
-| Sequence         | Next available number  | Y        | -   The order in which the steps in RDY status will be performed. Note that Actions in HLD status will be sorted to the end of the list, separate from the steps in RDY status which are listed in order of their sequence number.    |
-|          |                  |          |  -   The default sequence number supplied may not be the next highest number among all sequences if there are Actions in HLD status at the end of the list. Instead, the last Action in HLD status becomes the reference for the system-supplied default sequence number. The person performing this maintenance is responsible for updating the sequence number so that the list of Actions to be performed will occur in the correct order.       |
+| Sequence         | Next available number  | Y        | The order in which the steps in RDY status will be performed. Note that Actions in HLD status will be sorted to the end of the list, separate from the steps in RDY status which are listed in order of their sequence number.    |
+|          |                  |          | The default sequence number supplied may not be the next highest number among all sequences if there are Actions in HLD status at the end of the list. Instead, the last Action in HLD status becomes the reference for the system-supplied default sequence number. The person performing this maintenance is responsible for updating the sequence number so that the list of Actions to be performed will occur in the correct order.       |
 |          |                  |          |  **Note:** A former restriction on the use of sequence numbers has been removed from the system  and replaced with reserved names for certain Action codes.      |     
 | Status           | System defined   |          | When the options detail screen is presented in Change mode, the existing status of an Action will appear in this field. This value cannot be changed on this display; it is updated by using options 3 and 6 from the list of Actions display. |
 | Description      | None             | N        | A user-supplied description of what function the Action will perform. |
-| Stop Execution on Error  | None             | Y        | -   Y=Yes      |
-|          |                  |          | -   N=No         |
-|          |                  |          | -   This instruction flag causes theRestricted Mode operations to be suspended if an Action that is flagged as Y=Yes, encounters an error condition. In that case, the Restricted Mode operations program will go into AutoRecovr mode, restore normal system operations, and report the error.   |
+| Stop Execution on Error  | None             | Y        | Y=Yes      |
+|          |                  |          | N=No         |
+|          |                  |          | This instruction flag causes theRestricted Mode operations to be suspended if an Action that is flagged as Y=Yes, encounters an error condition. In that case, the Restricted Mode operations program will go into AutoRecovr mode, restore normal system operations, and report the error.   |
 | Command line     | None             | Y        | Type the IBM i command to be executed. The <**F4**> (Prompt) key supports access to IBM i command prompting. When <*Enter**> is pressed from the prompt display, the resulting command text will be inserted into this field. |
 
-:::caution *Special Action circlular code: ON_ERROR
-There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is specified, the Restricted Mode operations program registers the command that has been assigned to this Action code as the current operation to be performed in case any subsequent step in the Script might fail. The ON_ERROR command is executed after the Restricted Mode operations program ha performed most of the AutoRecovr steps (after normal system operations have been restored an the LSAM service programs have been restarted). The usual type of command that would be assigned to an ON_ERROR Action is an OpCon Event.Refer to [Events and Utilities Menu](/events-utilities/menu.md)  and [Commands and Utilities](/commands-utilities/commands.md) for more information about the available OpCon Event commands that may be specified. As with all Restricted Mode Action commands, the OpCon Event commands may also be prompted using <**F4**> from the Restricted Mode Options Detail screen (below). ON_ERROR Action codes are ignored if the entire Restricted Mode Script executes normally.
+:::caution *Special Action circular code: ON_ERROR
+There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is specified, the Restricted Mode operations program registers the command that has been assigned to this Action code as the current operation to be performed in case any subsequent step in the Script might fail. The ON_ERROR command is executed after the Restricted Mode operations program has performed most of the AutoRecovr steps (after normal system operations have been restored an the LSAM service programs have been restarted). 
+
+The usual type of command that would be assigned to an ON_ERROR Action is an OpCon Event. Refer to [Events and Utilities Menu](/events-utilities/menu.md) and [Commands and Utilities](/commands-utilities/commands.md) for more information about the available OpCon Event commands that may be specified. As with all Restricted Mode Action commands, the OpCon Event commands may also be prompted using <**F4**> from the Restricted Mode Options Detail screen (below). ON_ERROR Action codes are ignored if the entire Restricted Mode Script executes normally.
 :::
 
 #### Functions
@@ -226,9 +227,9 @@ Main Menu > Restricted mode menu (#5) > Setup environment (#2)
 | Restart delay seconds      | 180          | Y        | The number of seconds required by IBM i to fully restart the TCP/IP server programs. If this value is specified incorrectly, the Restricted Mode operations program may not be able to automatically restart LSAM communications whenever there has been a failure of a Restricted Mode  script.            |
 |                    |              |          | **Note:** This value may be determined by examining the time stamps on messages in the System Operator message queue from a point just after an IPL or other system restart.           |
 | Console job start wait | 030          | Y        | The number of seconds that the OpCon-started process initiation job should wait for the Console job (or submitted  batch job) to become active and  be able to respond to the control job.               |
-| Console device/\*BATCH | \*BATCH      | Y        | -   \*CONS = The IBM i DSP01 device must be used by user SMASAV to run script steps.  |
-|                    |              |          |-   \*USER = A user-designated display device may be used by user SMASAV to run script steps. However, be sure that this device will be managed by the IBM i controlling subsystem, if  the script will actually  put the system into restricted mode (which may not happen when testing with the NOENDSYS Action code).  |
-|                    |              |          |-   \*BATCH = No display device is used. The OpCon-initiated control job will submit the batch job that will execute script teps.         |
+| Console device/\*BATCH | \*BATCH      | Y        | **\*CONS** = The IBM i DSP01 device must be used by user SMASAV to run script steps.  |
+|                    |              |          | **\*USER** = A user-designated display device may be used by user SMASAV to run script steps. However, be sure that this device will be managed by the IBM i controlling subsystem, if  the script will actually  put the system into restricted mode (which may not happen when testing with the NOENDSYS Action code).  |
+|                    |              |          | **\*BATCH** = No display device is used. The OpCon-initiated control job will submit the batch job that will execute script teps.         |
 | Control subsystem JOBQ & library | QBATCHQGPL   | N        | These values are required only when the \*BATCH mode will be used. For batch mode, this tells the OpCon-initiated control job where to submit the script execution batch job.   |
 | QCONSOLE           | system value | n/a      | This display-only field shows which device has been designated as the IBM i operating system console device. This value identifies the display device that must be used for \*CONS mode.   |
 | QCTLSBSD           | system value | n/a      | Two fields show the name and library location of the Subsystem Description that describes which IBM i subsystem is the controlling subsystem, used exclusively when the system is put into its restricted mode.   |
@@ -280,7 +281,7 @@ Shows the Actions and other steps that were performed during the last Restricted
 
 Shows a list of each Script name and job for which a history has been recorded.
 
-### SAVRSTD05-1 - Restricted Mode Job History
+#### SAVRSTD05-1 - Restricted Mode Job History
 
 #### Menu Pathways
 
@@ -288,13 +289,13 @@ Main Menu > Restricted mode menu (#5) > History of last use (#3)
 
 #### Fields
 
-- Search content |  Type a value in this field and press <**Enter**> to find the first job history (control record) that contains this value. Use <**F16**> to continue the search to the next record(s). 
-- Opt: <**Tab**> to a row in the table and enter an option. 
-- Script: The name of the Script for which a history exists.
-- JobNbr: The IBM i job serial number.
-- Job User: The IBM i user profile (should always be SMASAV).
-- Job Name: The IBM i job name (should always be DSP01).
-- Date: The day when this Script was last executed (as of the last step in the script).
+- **Search content**: Type a value in this field and press <**Enter**> to find the first job history (control record) that contains this value. Use <**F16**> to continue the search to the next record(s). 
+- **Opt**: <**Tab**> to a row in the table and enter an option. 
+- **Script**: The name of the Script for which a history exists.
+- **JobNbr**: The IBM i job serial number.
+- **Job User**: The IBM i user profile (should always be SMASAV).
+- **Job Name**: The IBM i job name (should always be DSP01).
+- **Date**: The day when this Script was last executed (as of the last step in the script).
 
 #### Options
 
@@ -314,7 +315,7 @@ Main Menu > Restricted mode menu (#5) > History of last use (#3)
 
 Shows a list of script options and/or program-defined steps that were performed, throughout the history of the job.
 
-### SAVRSTD05-2 - Restricted Mode Activity History
+#### SAVRSTD05-2 - Restricted Mode Activity History
 
 #### Menu Pathways
 
@@ -335,20 +336,20 @@ Main Menu > Restricted mode menu (#5) > History of the last use (#3) > option (#
 
 #### Fields
 
-- Script: The name of the Script that was executed by this job.
-- Job ID: The full IBM i job identifier for this job.
-- Opt: Type option 5 next to one or more lines to view the full history detail.
-- Entry timestamp: The system date and time when this step was executed.
-- Action: The mnemonic name, or the Action Code of the script step (option) that was executed at this time.
-- Sts: Each history entry is marked as to its type. Values: B = begin step, E=end step, F=failure.
-- Message: If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows *NONE.
-- Description/Command: For steps that executed a command, shows the first several characters of the command. Use option 5 to view the full command text. For other entry types, this field may show the description of an error, or other descriptive comment.
+- **Script**: The name of the Script that was executed by this job.
+- **Job ID**: The full IBM i job identifier for this job.
+- **Opt**: Type option 5 next to one or more lines to view the full history detail.
+- **Entry timestamp**: The system date and time when this step was executed.
+- **Action**: The mnemonic name, or the Action Code of the script step (option) that was executed at this time.
+- **Sts**: Each history entry is marked as to its type. Values: B = begin step, E=end step, F=failure.
+- **Message**: If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows *NONE.
+- **Description/Command**: For steps that executed a command, shows the first several characters of the command. Use option 5 to view the full command text. For other entry types, this field may show the description of an error, or other descriptive comment.
 
 ### Restricted Mode Activity History Detail
 
 Shows extended detail about the activity selected from the list of steps in a job's history.
 
-### SAVRSTD05-5 - Restricted Mode Activity History Detail
+#### SAVRSTD05-5 - Restricted Mode Activity History Detail
 
 #### Menu Pathways
 
@@ -356,13 +357,13 @@ Main Menu > Restricted mode menu (#5) > History of the last use (#3) > option (#
 
 #### Fields
 
-- Script: The name of the Script that was executed by this job.
-- Job ID: The full IBM i job identifier for this job.
-- Log entry date, time The date and time when the log entry was written.
-- Action code; The mnemonic name, or the Action Code of the script step (option) that was executed at this time.
-- Log status code: Each history entry is marked as to its type. B = begin step, E=end step, F=failure.
-- Log message code: If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows *NONE.
-- Log entry text: For steps that executed a command, shows the full command text. For other entry types, this field shows the description of an error, or other comment.
+- **Script**: The name of the Script that was executed by this job.
+- **Job ID**: The full IBM i job identifier for this job.
+- **Log entry date, time**: The date and time when the log entry was written.
+- **Action code**: The mnemonic name, or the Action Code of the script step (option) that was executed at this time.
+- **Log status code**: Each history entry is marked as to its type. B = begin step, E=end step, F=failure.
+- **Log message code**: If any exception occurred during execution of this step, an IBM i error message ID will appear here. Otherwise the entry shows *NONE.
+- **Log entry text**: For steps that executed a command, shows the full command text. For other entry types, this field shows the description of an error, or other comment.
 
 #### Options
 

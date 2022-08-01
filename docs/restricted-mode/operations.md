@@ -72,7 +72,7 @@ In summary, every Restricted Mode Script is required to include a pair of reserv
 
     a.  Use the ENDSYS (or NOENDSYS) Action code somewhere near the beginning of the script sequence, and then the PWRDWN Action code as the very last step of the script sequence.
 
-Following are details about how each reserved Action code works.
+### How Reserved Action Codes Work
 
 1. **ENDSYS** is required to put IBM i into its restricted mode.
 
@@ -146,28 +146,30 @@ Optionally include other steps to be performed before the Restricted Mode Script
 For IBM i 6.1 (formerly known as IBM i V6R1) or a newer version of the operating system, the PWRDWNSYS command supports a new function where F16=Confirm must be pressed at the console display device in order to allow the system to power down. This feature must be suppressed in order for the Restricted Mode script to use the PWRDWN Action code, otherwise an operator must be present to respond to the console display. The F16=Confirm function may be suppressed by using the keyword and value CONFIRM(*NO) with the PWRDWNSYS command, or it may also be suppressed by setting the environment variable QIBM_PWRDWNSYS_CONFIRM to '*NO'.
 :::
 
-This document includes an excerpt from IBM documentation, following, as a convenience in order to fully explain the IBM i 6.1 CONFIRM option.
+## IBM documentation about the PWRDWNSYS CONFIRM option
 
-### Confirm (CONFIRM)
+For convenience, this documentation copied from IBM explains the keyword CONFIRM( ) that was not part of the Power Down System (PWRDWNSYS) before IBM i6.1.
 
-Specifies whether the request should be confirmed before the system is powered down.
+#### Confirm (CONFIRM)
 
-### *ENVVAR
+Specifies whether the power-down request should be confirmed before the system is powered down.
+
+#### *ENVVAR
 The value in environment variable QIBM_PWRDWNSYS_CONFIRM is used to determine whether the request should be confirmed. If the value is set to *INTERACT, *YES, or *NO, the action described below for that value is taken. If the environment variable is not defined or not set to one of these values, then a confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. System initiated power downs do not use the environment variable.
 
-### *INTERACT
+#### *INTERACT
 
 A confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. There is no confirmation when the PWRDWNSYS command is issued in a non-interactive job.
 
-### *YES
+#### *YES
 
 A confirmation panel is displayed when the PWRDWNSYS command is issued in an interactive job. An inquiry message is sent to QSYSOPR when the PWRDWNSYS command is issued in a non-interactive job.
 
-### *NO
+#### *NO
 
 There is no confirmation when the PWRDWNSYS command is issued.
 
-### Optional ON_ERROR Script Action Code
+## Optional ON_ERROR Script Action Code
 
 There is a special Action code name ON_ERROR that is reserved as an optional step that may be added anywhere in the sequence of Script steps. Each time ON_ERROR is listed in a Script, the Restricted Mode operations program will register the command that has been assigned to this Action code as the current operation to be performed in case any subsequent step in the Script might fail. 
 
@@ -251,7 +253,7 @@ IBM i now supports executing restricted mode operations from other sources besid
     SYSTEMNAME                  Restricted mode operation monitor          00/00/00
     SMASAV                                                                 00:00:00
     .............................. ................................................
-    :                            : : Application Date Time Sts Msg               :
+    :                            : :  Application Date Time Sts Msg               :
     :    R E S T R I C T E D     : :  AutoRecovr 2006-06-16 10.45.05 B            :
     :                            : :  TESTSAVE 2006-06-16 10.45.04 E CPF3794      :
     :   M O D E   S C R I P T    : :  TESTSAVE 2006-06-16 10.44.53 B *NONE        :
@@ -272,10 +274,13 @@ IBM i now supports executing restricted mode operations from other sources besid
     :............................: :..............................................:
     Copyright (C) SMA Technologies 1995, 2005, 2006 ARR
     ```
-:::tip EXAMPLE 
-System AutoRecovr upon failure: The illustration above shows a Restricted Mode Script named TESTSAVE. The Script started its operation by registering an ON_ERROR method and then proceeded immediately to put the system into restricted mode (the step using the ENDSYS reserved action code). During the action code that was called TESTSAVE, an error occurred. In response to the error the LSAM's Restricted Mode program began automatic recovery of the system state. The AutoRecovr step restarted LSAM operations so that a report of this failure could be communicated back to OpCon for a responsive action. More detail about Script action codes and how the Restricted Mode program works can be found in the IBM i LSAM documentation section on Restricted Mode Screens and Windows, below.
+:::note EXAMPLE 
+**System AutoRecovr upon failure**: The illustration above shows a Restricted Mode Script named TESTSAVE. The Script started its operation by registering an ON_ERROR method and then proceeded immediately to put the system into restricted mode (the step using the ENDSYS reserved action code). During the action code that was called TESTSAVE, an error occurred. In response to the error the LSAM's Restricted Mode program began automatic recovery of the system state. The AutoRecovr step restarted LSAM operations so that a report of this failure could be communicated back to OpCon for a responsive action. More detail about Script action codes and how the Restricted Mode program works can be found in the IBM i LSAM documentation section on Restricted Mode Screens and Windows, below.
 :::
 
 ## OpCon Job Details Definition for a Restricted Mode Job
 
 The fields that define an OpCon job that will be executed in IBM i restricted mode must be set up according to stricter rules than most jobs. Instructions for defining a restricted mode job can be found in the [Call Information](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/IBM-i-Job-Details.md#Call) section under IBM i Job Details in the **Concepts** documentation.
+
+
+**EDITOR's NOTE:** *Resolve the link to the OpCon Concepts documenation, just above.*
