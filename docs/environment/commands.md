@@ -4,13 +4,15 @@ sidebar_label: 'Environment Management Commands'
 
 # Environment Management Commands
 
+This topic explains various LSAM commands that can be used to manage the IBM i library list that defines the OpCon Agent (LSAM) environment.
+
 ## SMASETLIBL
 
-The command SMASETLIBL or its command processor program SMASETLIBC can be used interactively to conveniently change the interactive job's library list. They can also be used by programmers as a tool for programming solutions that complies with the new IBM i LSAM environment management rules. This command (and its subprogram) performs the function of finding a library list and then replacing the job's library list.
+The command SMASETLIBL or its command processor program SMASETLIBC can be used interactively to conveniently change the interactive job's library list. They can also be used by programmers as a tool for programming solutions that complies with the IBM i LSAM environment management rules. This command (and its subprogram) performs the function of finding a library list in the LSAM environment master files (SMALIBF00 and SMALIBF10) and then replacing the job's library list.
 
-From IBM i command entry, type the command **SMAGPL/SMASETLIBL** and press <**F4**> (Prompt) to reveal the parameters required by this command:
+From IBM i command entry, type the command **SMAGPL/SMASETLIBL** and press <**F4**> (prompt) to reveal the parameters required by this command:
 
-Prompting the SMASETLIBL Command
+##### Prompting the SMASETLIBL Command
 ```
                      Set Library List for SMA (SMASETLIBL)                
                                                                           
@@ -22,23 +24,23 @@ LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name
 ```
 The environment name parameter (ENV) supports three possible values, the same as are supported by the STRSMA command (except that the default in this case is different). Refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) for more information about the environment parameter and its values.
 
-The default ENV parameter value for the SMASETLIBL command is (*SELECT). This value was chosen as the default because in many cases where this command is being used, there is a choice to be made, and it is much easier to specify a correct environment name by selecting it from a list. (In contrast, the STRSMA command was set to use (*DEFAULT) as the default, so that former users of the IBM i LSAM would not need any special training about LSAM environment management in order to successfully enter the LSAM menu system.)
+The default ENV parameter value for the SMASETLIBL command is (\*SELECT). This value was chosen as the default because in many cases where this command is being used, there is a choice to be made, and it is much easier to specify a correct environment name by selecting it from a list. (In contrast, the STRSMA command was set to use (\*DEFAULT) as the default, so that users of the IBM i LSAM would not need any special training about LSAM environment management in order to successfully enter the LSAM menu system.)
 
-Since the SMASETLIBL command was created for use behind the scenes (or in batch mode operations) to set a correct library list, an additional parameter is provided to control whether or not a completion message is displayed that shows how the library list is set. In batch mode, it would normally be undesirable or unnecessary for a command to provide a completion message about its results, although this is allowed. 
+Since the SMASETLIBL command was created for use behind the scenes (or in batch mode operations) to set a correct library list, an additional parameter is provided to control whether or not a completion message is displayed that shows how the library list is set. In batch mode, it would normally be unnecessary for a command to provide a completion message about its results, although this is allowed and it would include the completion message in the IBM i job log report. 
 
 ### SMASETLIBL Command Parameters
 | Parameter               | Default Value | Description/Valid Values |
 | ---------               | :-----------: | ------------------------ |
 | COMPMSG (Display completion message?) | *VERBOSE     | Suppresses the completion message that would normally report the library list that has been utilized:      |
-|                         |               | -   **\*VERBOSE**: This is the default value. It tells the command processor subprogram to format and display a message that appears in the job log and on an interactive screen after the command has completed successfully. It lists the libraries that were used to change the job's library list. +
-|                         |               | -   **\*SILENT**: This value suppresses the function of displaying a message that shows the libraries used to change the job's library list. However, the command and its subprogram otherwise operate in the same manner, and the job's library list is still changed.|
+|                         |               | **\*VERBOSE**: This is the default value. It tells the command processor subprogram to format and display a message that appears in the job log and on an interactive screen after the command has completed successfully. It lists the libraries that were used to change the job's library list. +
+|                         |               | **\*SILENT**: This value suppresses the function of displaying a message that shows the libraries used to change the job's library list. However, the command and its subprogram otherwise operate in the same manner, and the job's library list is still changed.|
 
 ## SMALIBMGT
 
-The SMALIBMGT command provides access to authorized users to a tool that may be used to establish new environments and build or modify their library lists.
+The SMALIBMGT command provides access to authorized users to a tool that may be used to establish new LSAM environments and build or modify their library lists.
 
 :::caution
-The successful operation of the LSAM environment depends on correct specifications in the control files that are being maintained. Read this discussion very carefully before attempting to use this maintenance function.
+The successful operation of the LSAM environment depends on correct specifications in the control files that are being maintained. Read this discussion carefully before attempting to use this maintenance function.
 :::
 
 ### Characteristics
@@ -49,7 +51,7 @@ The successful operation of the LSAM environment depends on correct specificatio
     - SMALIBF00 = Environment master file (maintained from screen SMALBD00-1)
     - SMALIBF10 = Library master file (maintained from screen SMALIBD00-2)
 
-## SMALIBD00-1 - SMA Environment Management
+### SMALIBD00-1 - SMA Environment Management
 
 #### Fields
 
@@ -57,22 +59,22 @@ The successful operation of the LSAM environment depends on correct specificatio
 | ---------   | :------:                 | -----------              |
 |             | N                        | <**Tab**> to line in table and enter option number.                  |
 | Environment | Y                        | Enter a string of any characters that is used to represent a unique library list. This environment name is the only data that is stored and displayed by the IBM i LSAM software. It does not need to conform to IBM i rules for object names. However, starting a name with an alphabetic character and avoiding the use of special characters are both good practices that should be observed. Numbers may appear in the environment name.    |
-| Dft         | Y (One line must be selected) | -   A default environment must be designated.          |
-|             |                               | -   Make sure that only one environment is designated as the default environment. |
-|             |                               | -   This flag is used by the STRSMA and SMASETLIBL commands to identify the environment that should be used when a value of *DEFAULT has been specified for the ENV parameter of either command.   |
-|             |                               | -   SMA distributes a default set of entries for both of the control files that define the environment with its software product. |
-|             |                               | -   The supplied default environment is called SMADEFAULT. If this environment is deleted (not recommended), then a different LSAM environment must be selected as the default.             |
+| Dft         | Y (One line must be selected) | A default environment must be designated.          |
+|             |                               | Make sure that only one environment is designated as the default environment. |
+|             |                               | This flag is used by the STRSMA and SMASETLIBL commands to identify the environment that should be used when a value of *DEFAULT has been specified for the ENV parameter of either command.   |
+|             |                               | SMA distributes a default set of entries for both of the control files that define the environment with its software product. |
+|             |                               | The supplied default environment is called SMADEFAULT. If this environment is deleted (not recommended), then a different LSAM environment must be selected as the default.             |
 | Description | N                             | A string of up to 30 characters that describe the purpose of each environment in a way that is meaningful to any authorized users. Verify that the description is helpful to users who will see the Inquiry mode display when it is being used to select an environment during the process of signing on to the IBM i LSAM menus (STRSMA) or during the process of changing a job's library list to match the environment (SMASETLIBL). |
   
 #### Options
 
-- **4=Remove**: This option temporarily selects and environment to be purged from the control files. As illustrated in the Confirm Remove Environments figure below, the list of one or more environments selected for deletion are presented for final confirmation on a different list display before the system is actually purged. When an environment control record is deleted, all the library records associated with that environment are also deleted. This option is provided in case an incorrect environment definition was entered in error, or when a test environment is being completely purged from the system. Otherwise, this option must not be used for an existing or planned environment. By using this option, the LSAM software is disabled from supporting that environment.
+- **4=Remove**: This option temporarily selects and environment to be purged from the control files. As described in Confirm Remove Environments below, the list of one or more environments selected for deletion are presented for final confirmation on a different list display before the system is actually purged. When an environment control record is deleted, all the library records associated with that environment are also deleted. This option is provided in case an incorrect environment definition was entered in error, or when a test environment is being completely purged from the system. Otherwise, this option must not be used for an existing or planned environment. By using this option, the LSAM software is disabled from supporting that environment.
 - **5=Disp Libs**: This option provides access to a separate display where the list of libraries for one environment is shown. When used from the SMALIBMGT command, it is possible to add, change or remove libraries from the environment definition. When used from the SMALIBINQ command, the list of libraries are presented in display-only mode.
 
 #### Functions
 
 - **F3=Exit**: Press <**F3**> to completely leave this function. If <**Enter**> was not pressed to commit any data entry changes, all changes typed on the screen are lost. Press <**F3**> to intentionally escape from the program without making changes, or after changes have been made, press <**F3**> to end the  maintenance function. If pressing <**Enter**> causes an error message to be returned, the changed is not made. If an error message is returned and <**F3**> is pressed without making the necessary changes and pressing <**Enter**> again, the program will end without making changes.
-- **F5=Refresh**: This function key can be used to restore the original library list, as long as <**F14**> has not been pressed or <**Enter**> (Confirm) has not been used to commit any changes to the database. If <**F14**> or <**Enter**> (Confirm) were previously pressed, then <**F5**> can only refresh the data back to the state it was in when the last set of updates was confirmed. This function key is provided to restore the original library list and start the data entry over again. Any changes typed before pressing <**F5**> (Refresh) are lost (as long as they were not previously confirmed).
+- **F5=Refresh**: This function key can be used to restore the original library list, as long as <**F14**> has not been pressed from the Remove option, or <**Enter**> (Confirm) has not been used to commit any changes to the database. If <**F14**> or <**Enter**> (Confirm) were previously pressed, then <**F5**> can only refresh the data back to the state it was in when the last set of updates was confirmed. This function key is provided to restore the original library list and start the data entry over again. Any changes typed before pressing <**F5**> (Refresh) are lost (as long as they were not previously confirmed).
 - **F12=Cancel**: From this screen, <**F12**> works exactly like <**F3**>.
 - **Enter**: Whenever <**Enter**> is pressed, any changes made to the data on the environment list display are first edited, and then committed to the control file (as long as there are no errors). If the program returns one or more error messages (displayed on line 24 of the screen as fields in error are highlighted), then no data updates take place. The errors need to be corrected and <**Enter**> needs to be pressed again for the data to be committed.
 - More... **PageDown/PageUp**: Not shown on the display (but implied by the presence of the "More..." and "Bottom" indicators at the bottom-hand right corner of the screen) are the subfile paging function keys. The subfile paging function keys do not return control to the program. They can be pressed whenever the system makes them available in order to display and update as many records (up to the limit of 250) as require updating. It is allowed to press <**Page Down**> or <**Page Up**> as many times as necessary before using <**Enter**> or another function key. No data changes are either made or lost by pressing the <**Page Down**> <**Page Up**> key. <**Page Down**> and <**Page Up**> work in a similar fashion on the Remove Environments list display.
@@ -102,8 +104,7 @@ USERNAME                       Remove Environments   �
 
 Option 5=Disp Libs from Work with Environments provides access to a list of the libraries that define the selected environment. This is the only method of access to the function that can be used to maintain environment library lists. When the list of libraries displays, it shows the name of the selected environment on the second title line.
 
-## SMALIBD00-2 - SMA Environment Management
-
+### SMALIBD00-2 - LSAM Library List Maintenance
 From the Work with Library List function, type in new library names or change library names, specify the order in which the libraries appear in a library list, identify the libraries that perform each of the three IBM i LSAM roles, and optionally provide a description of each library.
 
 This maintenance function builds and maintains a physical file that is stored in the LSAM utility library SMAGPL: SMALIBF10 = Library master file.
@@ -143,21 +144,21 @@ Library lists that are being created for use during Restricted Mode operations d
 | Field       | Description              | Valid Values             |
 | -----       | -----------              | ------------             |
 | Seq         | This numeric field is used to show or change the order of the libraries in a list. | -   The list display supports up to 250 numbered lines, plus there is a zero line at the top of the display that can be used to type in library names that should be added to the top of the list. |
-|             |                          | -   This means that the list display could allow as many as 251 libraries to be typed in. The maintenance program only honors the first 250 names entered.             |
-|             |                          | -   The IBM i operating system supports a maximum of 250 library names in a job's library list as well (This is true for any release between the V5R1 release and the current release). |
-|             |                          | -   Despite this upper limit, it is recommended that to limit library lists to no more than 25 entries. |
-|             |                          | -   This helps to assure that the library list remains compatible with older software that was written before IBM i release V5R1, when only 25 libraries were supported by the operating system. |
-|             |                          | -   Also, consult with the system administrator about whether IBM i has been set with the special option that limits library lists to only 25 (for backward compatibility).      |
+|             |                          | This means that the list display could allow as many as 251 libraries to be typed in. The maintenance program only honors the first 250 names entered.             |
+|             |                          | The IBM i operating system supports a maximum of 250 library names in a job's library list as well (This is true for any release between the V5R1 release and the current release). |
+|             |                          | Despite this upper limit, it is recommended that to limit library lists to no more than 25 entries. |
+|             |                          | This helps to assure that the library list remains compatible with older software that was written before IBM i release V5R1, when only 25 libraries were supported by the operating system. |
+|             |                          | Also, consult with the system administrator about whether IBM i has been set with the special option that limits library lists to only 25 (for backward compatibility).      |
 | Library     | The name of an IBM i Library. | IBM i Name Rules (Refer to [IBM i Name Rules](../configuration/configuration.md#IBM2)). Libraries named here do not have to exist when they are added to the list; however, they must exist before this library list can be used to support an LSAM environment. |
-| Type        | The instructions for the Type values appear at the top of the library list display. | - **SMADTA** = the database library, for files, data areas, and data queues. |
-|             |                           | - **SMAPTF** = the patches library, where SMA temporary program changes can be installed for rapid implementation. |
-|             |                           | -   **SMAPGM** = the base SMA program objects library. This is where the functional components of the software are installed. Objects in this library should never be changed except by SMA releases or updates. |
+| Type        | The instructions for the Type values appear at the top of the library list display. | **SMADTA** = the database library, for files, data areas, and data queues. |
+|             |                           | **SMAPTF** = the patches library, where SMA temporary program changes can be installed for rapid implementation. |
+|             |                           | **SMAPGM** = the base SMA program objects library. This is where the functional components of the software are installed. Objects in this library should never be changed except by SMA releases or updates. |
 |             |                           | **Note:** The three Typed libraries MUST be entered in the following sequence, in order for the IBM i LSAM software to work correctly: |
 |             |                           | 1.  SMADTA               |
 |             |                           | 2.  SMAPTF               |
 |             |                           | 3.  SMAPGM               |
-| Description | The description provided is only used by the inquiry version of this program (described under the SMALIBINQ command). The inquiry version of this program is used for environment selection. It is helpful if the libraries in the list had meaningful descriptions. | -   A string of up to 30 characters that describe the purpose of each library. |
-|             |                           | -   This field is optional (it is helpful to give meaningful descriptions).       |
+| Description | The description provided is only used by the inquiry version of this program (described under the SMALIBINQ command). The inquiry version of this program is used for environment selection. It is helpful if the libraries in the list had meaningful descriptions. | A string of up to 30 characters that describe the purpose of each library. |
+|             |                           | This field is optional (it is helpful to give meaningful descriptions).       |
 
 #### Functions
 
@@ -210,7 +211,7 @@ SMA supplies an inquiry-only function that supports read-only access to both the
 
 For either purpose mentioned above, the environment list display looks the same.
 
-## SMALIBD00-1 - SMA Environment Management
+#### SMALIBD00-1 - SMA Environment Management
 
 #### Fields
 
@@ -229,9 +230,9 @@ For a detailed explanation of the fields appearing in these inquiry screens, ple
 
 ### Library Inquiry
 
-This inquiry is provided for information purposes only. It might be helpful for users who are trying to select an environment to know about the library list that defines the environment. Option 5=Disp Libs from the environment inquiry screen brings up a list of libraries like the one shown in the following figure.
+This inquiry is provided for information purposes only. It might be helpful for users who are trying to select an environment to know about the library list that defines the environment. **Option 5=Disp Libs** from the environment inquiry screen brings up a list of libraries like the one shown in the following figure.
 
-### SMALIBD00-2 - SMA Environment Management
+#### SMALIBD00-2 - SMA Environment Management
 
 #### Fields
 

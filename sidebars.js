@@ -54,6 +54,17 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'LSAM Environment Management',
+      collapsed: true,
+      items: [
+        'environment/index',
+        'environment/operations',
+        'environment/smagpl',
+        'environment/commands',
+      ], 
+    },
+    {
+      type: 'category', 
       label: 'Log File and Database Management',
       collapsed: true,
       items: [
@@ -170,17 +181,6 @@ module.exports = {
             'commands-utilities/file-arrival',
           ], 
         },
-      ], 
-    },
-    {
-      type: 'category', 
-      label: 'LSAM Environment Management',
-      collapsed: true,
-      items: [
-        'environment/index',
-        'environment/operations',
-        'environment/smagpl',
-        'environment/commands',
       ], 
     },
     {
