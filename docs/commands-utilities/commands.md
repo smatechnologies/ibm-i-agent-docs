@@ -4,17 +4,15 @@ sidebar_label: 'LSAM Commands, APIs'
 
 # LSAM Commands, APIs
 
-The IBM i LSAM supports many of its functions and actions with IBM i commands that may be used interactively or included in user programs. These commands become an application program interface (API) to OpCon and to the LSAM itself, enabling very tight integration between clients' applications and the OpCon strategy for
-synchronizing all enterprise operations. In most cases, the commands can be run either interactively or in batch mode.
+The IBM i LSAM supports many of its functions and actions with IBM i commands that may be used interactively or included in user programs. These commands become an application program interface (API) to OpCon and to the LSAM itself, enabling very tight integration between clients' applications and the OpCon strategy for synchronizing all enterprise operations. In most cases, the commands can be run either interactively or in batch mode.
 
-:::warning
+:::caution
 Many of the LSAM Commands may require that the IBM i job's library list be set to reference either the default or any one of multiple LSAM environments. Sometimes the requirements of a command can be set by careful configuration of the library attributes associated with a user-written command. In cases where more complex programming is implemented, consider using the SMASETLIBL command that is documented below. Note that this command has a parameter that can cause it to run in silent mode, so that no unexpected messages are generated within the user-written program.
 :::
 
 Most of the IBM i LSAM commands are listed in the table below. Many of these commands are fully explained and illustrated in the referenced sections of this document. Certain stand-alone utility commands that require a careful explanation are documented below the following table.
 
-The term API means application program interface. This term refers to points in a software application where an interface has been prepared that allows external applications to perform or control the execution of the home applications functions. Many of the LSAM software functions have been represented by IBM i commands. These commands could be
-programmed into other software applications so that those other applications can be more tightly integrated with LSAM and OpCon operations. An excellent example of how that might be accomplished is explained below the Commands table, in the section about the CPYTOMSGIN command.
+The term API means application program interface. This term refers to points in a software application where an interface has been prepared that allows external applications to perform or control the execution of the home applications functions. Many of the LSAM software functions have been represented by IBM i commands. These commands could be programmed into other software applications so that those other applications can be more tightly integrated with LSAM and OpCon operations. An excellent example of how that might be accomplished is explained below the Commands table, in the section about the CPYTOMSGIN command.
 
 ## IBM i LSAM Commands
 
@@ -30,7 +28,7 @@ programmed into other software applications so that those other applications can
 - **SMAFAILJOB**: SMA signal OpCon to Fail Job
   - This command may be used, for example, in a Multi-Step Job Script, to force an IBM i job to fail. If OpCon started the job, the Agent will then send a "Failed" signal to OpCon as the final job status, and possibly the message ID of SMA0992.
 
-### Events
+### External Event Commands
 - **CPYTOMSGIN**: Copy Event to SAM-SS message input
   - Passes Event instructions to the LSAM communications program for forwarding to SAM-SS.
 - **Direct Event Commands**: (…for example… JOBRLS, NTYLOG, TOKSET) Refer to the tables of Event commands under the topic of Event Management at [Event Management: XML Event Management Commands](/events-utilities/external-events.md/#xml-event-management-commands) or [Event Management: CSV Event Management Commands](/events-utilities/external-events.md/#csv-event-management-commands).
@@ -115,7 +113,7 @@ programmed into other software applications so that those other applications can
 - **CHKFILE**: Check for file in the DB2 database
   - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the Enterprise Manager "File Arrival" job sub-type for IBM i jobs, when the file name begins with a DB2 Library name (which must begin with an alpha character, and the forward slash '/' is not used, denoting a disk location inside of DB2).
 :::tip 
-The IBM i command CHKOBJ may also be used, especially for objecttypes other than files.
+The IBM i command CHKOBJ may also be used, especially for object types other than files.
 :::
 - **SBMDBFCMD**: Submit command from database file 
   - May be used by OpCon as the Call command in order to tell the IBM i LSAM that the actual, very long call command string may be obtained from a database file in the DB2/400 database.  

@@ -114,7 +114,7 @@ This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens
 
 This LSAM feature makes it possible to generate email requests that will be processed by the OpCon server, using content that is managed by the LSAM automation tools. This feature supports automatic preparation of elaborate and rich email content.  The original purpose of this feature was to enable OpCon client sites to trigger one or more email messages that are useful and appropriate for customers of the OpCon user site.  
 
-:::note Example
+:::info Example
 For example, banks that process ACH transaction file batches to and from the Federal Reserve system can notify other financial institutions they serve about the status of batches belonging to each of their customers.  The messages can automatically include well edited transaction item counts and amounts, in addition to documenting the processing dates and times, as well as including any one-time special notices to the customers.
 :::
 

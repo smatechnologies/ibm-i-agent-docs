@@ -167,7 +167,7 @@ Individual script steps may optionally include a comparison rule that is used to
 - A Compare Data field is the second part of a qualifying rule. It is compared to the reference field to decide if a step will be executed or skipped. A character string and/or a Dynamic Variable token may be used in this field.
 
 - The Comparison Rule uses a Boolean operator or the English letters that represent Boolean operations to govern how the Data is compared to the Reference.
-:::note Example
+:::info Example
   In this formula: A > B (if A is greater than B)
 
   ...the letter A represents the Compare Reference, and

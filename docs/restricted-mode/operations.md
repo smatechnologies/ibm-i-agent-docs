@@ -274,7 +274,7 @@ IBM i now supports executing restricted mode operations from other sources besid
     :............................: :..............................................:
     Copyright (C) SMA Technologies 1995, 2005, 2006 ARR
     ```
-:::note EXAMPLE 
+:::info Example 
 **System AutoRecovr upon failure**: The illustration above shows a Restricted Mode Script named TESTSAVE. The Script started its operation by registering an ON_ERROR method and then proceeded immediately to put the system into restricted mode (the step using the ENDSYS reserved action code). During the action code that was called TESTSAVE, an error occurred. In response to the error the LSAM's Restricted Mode program began automatic recovery of the system state. The AutoRecovr step restarted LSAM operations so that a report of this failure could be communicated back to OpCon for a responsive action. More detail about Script action codes and how the Restricted Mode program works can be found in the IBM i LSAM documentation section on Restricted Mode Screens and Windows, below.
 :::
 

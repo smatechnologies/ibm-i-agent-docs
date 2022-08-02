@@ -395,7 +395,7 @@ Operator Replay Configuration:
 
 When configuring an Operator Replay job in an OpCon job master record, first type the Script name into the command line box that is labeled "Script" and then type the special separate character that is set in the LSAM global Configuration options (LSAM Main menu, option 7). The default value for the separator character is a pipe (or vertical bar). After the separator, type each command keyword and include a value, as illustrated in the following example.
 
-:::note Example
+:::info Example
 Set the OpCon IBM i job sub-type to "Operator Replay."
 
 The command line entry box label changes to "Script."

@@ -244,7 +244,7 @@ possible that in some environments, the behavior of the LSAM job completion mess
 
 Consider this next example when deciding whether or not to use this LSAM processing option.
 
-:::note Example
+:::info Example
 An old programming technique, not recommended for use in IBM i programs, used the MSGQ parameter of the SBMJOB command to identify the name of the user profile that submitted a job. This value was retrieved by a program (using the SBMMSGQ parameter of the RTVJOBA command) and used to send inquiry messages about system operations, requiring a reply from a user before the program could continue operations. IBM i permits that the MSGQ parameter of the SBMJOB command can be changed to any value where job completion messages should be routed, therefore, this parameter cannot be relied upon to identify the name of the user profile submitting a job.
  
 The IBM i LSAM sets this SBMJOB parameter to MSGQ(SMADTA/SMAMSGQ), where SMADTA could be a different name of the database library in an alternate LSAM environment.
@@ -338,7 +338,7 @@ When an IBM command is requested, the LSAM Message Manager program spawns a sepa
 
 Any IBM command could be used for an Event command, including user-defined commands or commands from third-party application software that is installed in the IBM i system. The only requirement for non-system commands is that the LSAM Message Management server job must be able to find the command. Therefore, if the command does not exist in either the system library list or the LSAM environment library list, the command should be qualified by its library location name, such as:
 
-:::note EXAMPLE
+:::info Example
 ```
 APPLIB/APPCMD KEYWORD1(value1) KEYWORD2(value2)
 ```
@@ -373,7 +373,7 @@ OpCon job master maintenance only supports the prompting and updating of OpCon $
 ##### Work-around for specifying IBM i commands as Message Management Events:
 To register an IBM-format command in the OpCon job master record, select the OpCon Event command named $CONSOLE:DISPLAY. Then, when replacing the <**message**> parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
 
-:::note EXAMPLE
+:::info Example
 ```
 $CONSOLE:DISPLAY,QCMD:WRKJOB OUTPUT(*PRINT)
 ```
@@ -387,7 +387,7 @@ Be sure to take note of the rules and restrictions explained above, under: LSAM 
 
 The LSAM Message Management server program supports replacement of LSAM Dynamic Variables. Therefore, any or all of the IBM-format command that is registered in the OpCon job master record for message management could be an LSAM Dynamic Variable token. Consider the following example:
 
-:::note EXAMPLE
+:::info Example
 ```
 $CONSOLE:DISPLAY,QCMD:{DYNVAR1}
 ```

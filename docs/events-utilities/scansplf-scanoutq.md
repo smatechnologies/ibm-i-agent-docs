@@ -254,7 +254,7 @@ field that each cause a different result:
   -   For the special scan value of *CAPT, use the scan value length combined with the From-position to specify the data that should be captured from the report. For *CAPT, if the scan value length is zeros, the the To-position must also be specified with the From-position in order to determine how much data to capture.
   -   Dynamic Variables are handled the same as typed scan values. The scan program first replaces a Dynamic Variable token with the variable's value at run time, then it subjects the scan value to the scan value length, as described above for specific values. Leave the scan value length at zero to allow the scan program to adapt to the actual length of the Dynamic Variable's value at run time. If a scan value length is specified, then the possible values of the Dynamic Variable must be well understood in advance in order to predict the results of the SCANSPLF match rules.
 - **Bypass parm value**: This field is used only when the SCANSPLF command will provide input values in its PARAMETERS keyword. If the specified bypass value is found in the input PARAMETERS position corresponding to this scan rule sequence number, then the input parameter will be considered matched by default and the report will not actually be scanned in order to set this scan rule to a status of matched.
-:::note EXAMPLE
+:::info Example
 For a given application, such as a financial report balancing task, the SCANSPLF command might be assembled by an automatic routine executing on the OpCon server. In this example, assume that there are four input parameter values: debit item count, debit total amount, credit item count, credit total amount. If any of these values is not found in the source data used by the SCANSPLF command assembly routine, then that routine is allowed to insert a place-holder value that indicates, "thisvalue is not supplied today - ignore this parameter position." An example of such a value might be *empty*. In this case, the Bypass parm value should be set to this same value, *empty*. To make the bypass value work, the administrator configuring the LSAM SPLF Scan Rules must coordinate this special value with the programmer responsible for building the automated routines that will assemble the SCANSPLF command string for the OpCon job. 
 :::
 - **Bypass value length**: Optionally, specify the length of the characters string used for the Bypass parm value. If this length is left at zeros, the scan program will assume that the Bypass parm value length ends with the last non-blank character. Leaving this value as zeros is the usual practice.
@@ -334,7 +334,7 @@ When the SCANSPLF command is included in the job Call command line after a speci
 
 When the SCANSPLF command is used along with additional SBMJOB job parameters, the SCANSPLF command and its own parameters must follow any job definition parameters. That is, the SCANSPLF command string must be the last string of non-blank characters in the Call information field, following the Job parameters separator character, as in the following example:
 
-:::note EXAMPLE
+:::info Example
 ```
 WRKJOB JOB(*) OUTPUT(*PRINT) 
 OPTION(*ALL)|CCSID(297)  
@@ -747,7 +747,7 @@ It is not possible to use the SCANOUTQ command in an OpCon IBM i job master reco
 ### SCANOUTQ Command Syntax
 
 The SCANOUTQ command entered in an IBM i command line, either from IBM i or from the Call information in an IBM i job on an OpCon schedule, requires the syntax illustrated in the following example:
-:::note EXAMPLE
+:::info Example
 ```
 SCANOUTQ OUTQ(MYLIB/MYOUTQ)
    APP('App ID: lower case and spl chars')

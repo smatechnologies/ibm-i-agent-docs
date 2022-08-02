@@ -366,7 +366,7 @@ However, to have OpCon replace any of the other token variables that it
 can manage use the braces (curly brackets) to surround the token name.
 :::
 
-:::note EXAMPLE
+:::info Example
 Syntax for circular OpCon Token variables in an background LSAM Message Management Event command.
 ```
 {{$SCHEDULE DATE}} 
