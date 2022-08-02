@@ -158,4 +158,4 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
     - **DLTLIB SMALOG** (This common library used for LSAM debug log file extracts is shared by all LSAM environments. There is only one copy of the SMALOG library.)
 5. Repeat step 4) to remove the libraries that define any other, alternate LSAM environment that may have been created.
 6. Using the following commands, delete the LSAM software user profiles after all LSAM environments have been removed from the system:
-7. Be sure to remove any configuration and other data entry from the OpCon Enterprise Manager that pertain to the IBM i installation being disabled.
+7. Be sure to remove any configuration and other data entry from the OpCon User Interface that pertain to the IBM i installation being disabled.

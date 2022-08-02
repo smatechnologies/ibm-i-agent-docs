@@ -4,7 +4,7 @@ sidebar_label: 'IBM i LSAM Messages'
 
 # IBM i LSAM Messages
 
-The table below presents LSAM status messages forwarded to the SAM. The message descriptions are displayed in Operations in the Enterprise Manager following the job status.
+The table below presents LSAM status messages forwarded to the SAM. The message descriptions are displayed in Operations in the OpCon User Interface following the job status.
 
 | Status         | Return Code | Meaning 
 | :---:          | :---:       | ---     

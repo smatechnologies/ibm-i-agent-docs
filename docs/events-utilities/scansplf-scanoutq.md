@@ -553,7 +553,7 @@ When the SCANSPLF command is executed in this example it is expected to end abno
 
 When the OpCon job definition includes response events upon detection of a failed job, an operator or supervisor can be immediately signaled by any number of means, including an eMail message or a text message that gets routed to their cell phones (by outside facilities).
 
-The IBM i LSAM SCANSPLF command includes a feature of reporting its scan rule match results to the OpCon Job Configuration window. Job Detail Messages list the exact values that were mismatched. The OpCon operator can use a right mouse click on the OpCon job line to access (as in Enterprise Manager): Job Information -\> Configuration tab -\> Operations Related Information -\> (+) Job Detail Messages, and instantly the problem of the credit total amount being out of balance
+The IBM i LSAM SCANSPLF command includes a feature of reporting its scan rule match results to the OpCon Job Configuration window. Job Detail Messages list the exact values that were mismatched. The OpCon operator can use a right mouse click on the OpCon job line to access (as in OpCon User Interface): Job Information -\> Configuration tab -\> Operations Related Information -\> (+) Job Detail Messages, and instantly the problem of the credit total amount being out of balance
 will become visible. This makes it possible for the financial institution's staff to learn nearly instantly about the out of balance condition and to jump directly to the cause of the problem without having to find and study the actual balancing report to look for report totals.
 
 ### Using the SCANSPLF Fail Option 2
@@ -671,7 +671,7 @@ This section explains how to make that happen. It describes how to combine these
 - Storing captured data in an LSAM Dynamic Variable
 - Using the LSAM's SAMJOBMSG command to communicate with OpCon, using the value in the Dynamic Variable
 
-The reason for sending Job Detail Messages to OpCon is that it is very easy for an OpCon operator to find the Job Detail Messages. This is done, for example, by using a right mouse click on the job, such as it may appear in a list of jobs for an OpCon schedule. The right mouse context menu that appears in Enterprise Manager offers access to Job Information. When that is selected, a window opens with tabs that can be navigated as follows: Configuration tab -\> Operations Related
+The reason for sending Job Detail Messages to OpCon is that it is very easy for an OpCon operator to find the Job Detail Messages. This is done, for example, by using a right mouse click on the job, such as it may appear in a list of jobs for an OpCon schedule. The right mouse context menu that appears in OpCon User Interface offers access to Job Information. When that is selected, a window opens with tabs that can be navigated as follows: Configuration tab -\> Operations Related
 Information -\> (+) Job Detail Messages. Job Detail Messages that can be sent by the IBM i LSAM will appear here. It would probably be very helpful to an operator to get an immediate list of any/all CPF message IDs that are associated with the severity 40 error codes found by the SCANSPLF job. The operator would be automatically signaled that the SCANSPLF job has failed, and then the CPF message IDs - or any other information captured and sent by the LSAM - would be just a mouse click
 away. 
 

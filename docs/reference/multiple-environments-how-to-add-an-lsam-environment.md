@@ -79,7 +79,7 @@ LSAMENU
 
 The next step requires an understanding of how to configure OpCon options at the SAM console. 
 
-21.  **Add a new machine definition** to the machine table at the OpCon Enterprise Manager (EM), using the new LSAM Name.
+21.  **Add a new machine definition** to the machine table at the OpCon User Interface (EM, SM), using the new LSAM Name.
     
     a. Specify that the machine type is IBM i.
 22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command). Be sure to specify the new environment name for the ENV parameter of this command:
@@ -94,7 +94,7 @@ Use the ENV(*SELECT) keyword value to select the environment from a list.
 23. Select **sub-menu 6**. LSAM Management Menu in the LSAM Main Menu.
 24. Select **function 1**. Start LSAM (STRSMASYS) in the LSAM Management Menu.
 25. When the start process has completed, select function 3. Check LSAM subsystem status, to confirm that the new LSAM environment server jobs are running without error (no job has a status of **MSGW**) under the unique subsystem name was created.
-26. It is now possible to use the OpCon Enterprise Manager console to start communications with the new LSAM environment. Please consider the warning below.
+26. It is now possible to use the OpCon User Interface console to start communications with the new LSAM environment. Please consider the warning below.
 
 :::danger warning
 

@@ -51,7 +51,7 @@ sidebar_label: 'Restricted Mode Operations'
 
 20. Press <**Enter**> to perform an update to the restricted mode user profile and data area. The display will return to the environment library list and should display the following message text on the bottom line of the display: Updates to SMASAV user profile and RSTENVIRON data area completed normally
 21. Press <**F12**> (Cancel) or <**F3**> (Exit) to return to the menu.
-22. Complete the configuration of a Job Definition for a Restricted Mode Job in the OpCon Enterprise Manager (EM), as described below.
+22. Complete the configuration of a Job Definition for a Restricted Mode Job in the OpCon User Interface (EM, SM), as described below.
 
 ## Special Instructions for Restricted Mode Scripts
 
@@ -244,7 +244,7 @@ IBM i now supports executing restricted mode operations from other sources besid
     The restricted mode user SMASAV may log on to the IBM i console (device DSP01), or the Restricted Mode Setup menu function can be used to designate an alternate interactive console device (or batch mode). But when the setup designates *CONS as the device, then operations cannot be performed from any other workstation device. If another workstation is logged onto by user SMASAV, the following message will be displayed: "This program must be started on the console"
     :::
 3. Wait for a message on the display device stating, "Restricted mode operation ready to start ..."
-4. Start the OpCon job through the Enterprise Manager.
+4. Start the OpCon job through the OpCon User Interface.
     :::tip
     Steps 4 and 5 (above) state the order in which the two actions must occur. However, there are many strategies that may be adopted when using the Restricted Mode utility. For example, the SMASAV user may sign on to the console before leaving the office at 5 PM one day. Meanwhile, the OpCon Schedule set up for that day might have the Restricted Mode job definition scheduled to start at 11:30 PM the same day. This means that the site does not need to have a night shift computer operator just to perform restricted mode operations during off hours. Instead, the Restricted Mode Script and OpCon can be configured so that if the Restricted Mode operation should fail, either the operator or a supervisor can be notified immediately of the event. Otherwise, when there is no failure the LSAM and OpCon will automatically resume normal operations as soon as the Restricted Mode script has been completed.
     :::

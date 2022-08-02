@@ -19,7 +19,7 @@ Here is a summary of the minimal authorities required for the user profile SMANE
 - *USE authority to most of the IBM i commands. (Confidential documentation about the IBM i commands used by LSAM software is available to SMA technical support staff.)
 - *USE authority to libraries of third-party software, and their contents, that may include objects used for submitting jobs.
 - *USE authority to every user profile that will be named in a submitted job.
-- *USE authority to the commands specified in the Prerun and Call data entry boxes of the Call Information tab of each IBM i job master record in the OpCon Enterprise Manager.
+- *USE authority to the commands specified in the Prerun and Call data entry boxes of the Call Information tab of each IBM i job master record in the OpCon User Interface.
 - *USE authority to every job description that will be named in a submitted job.
 - *USE authority to every job queue where submitted jobs will be placed.
 - *USE authority to every subsystem description that will run submitted jobs.
@@ -28,7 +28,7 @@ Here is a summary of the minimal authorities required for the user profile SMANE
   - The IBM i LSAM job scheduler server program puts jobs on hold briefly as it performs certain administration tasks, and then it uses the RLSJOB command. It may also need to perform the CHGJOB and CHGACCCDE commands before releasing a submitted job.
 - *SPLCTL special authority (or an equivalent authority to the QPJOBLOG spool file and output queue where job logs will be stored).
   - Spool control special authority, or the equivalent specific authorities, is required for the LSAM server programs to manage the job log spool files resulting from jobs it submits. This is required to support the OpCon View Job Output (JORS) function.
-  - Spool control special authority, or the equivalent specific authorities, is required when any job is accompanied by spool file management options that are available on the OpCon Enterprise Manager definition of IBM i job master records.
+  - Spool control special authority, or the equivalent specific authorities, is required when any job is accompanied by spool file management options that are available on the OpCon User Interface definition of IBM i job master records.
   - Refer to IBM documentation about IBM i for more information on the specific authorities that may be used in place of the *SPLCTL special authority, if this special authority must be restricted.
 
 ## IBM i LSAM Server Submit Jobs

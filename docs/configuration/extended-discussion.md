@@ -241,7 +241,7 @@ The first message is used to clearly identify that this message and the one foll
 
 The LSAM job scheduler and status server tasks detect when a job is stuck in a MSGW (message waiting) status. This detection can occur immediate as a job starts, if the job immediately reports an error, or periodically after the job as started, whenever the OpCon server sends a job status request (TX2). The frequency of job status requests is controlled by OpCon performance options (refer to the OpCon **Concepts** documentation).
 
-Whenever the LSAM server jobs detect the MSGW status, they always send LSAM Feedback information (field code 5801) to OpCon, at the same time as the job status displayed in the Enterprise Manager is updated with the MSGW status.
+Whenever the LSAM server jobs detect the MSGW status, they always send LSAM Feedback information (field code 5801) to OpCon, at the same time as the job status displayed in the OpCon User Interface is updated with the MSGW status.
 
 :::tip
 LSAM Feedback support was added to the IBM i LSAM with PTF # 403178. At the same time, depending on the OpCon version, it was also necessary to execute some SQL statements to update the SMALOOKUP control file in the OpCon database in order to add definitions for the field code 5801. Those SQL statements were documented in the IBM i LSAM PTF Post-Install Instructions. Newer versions of OpCon would already have this field code added.

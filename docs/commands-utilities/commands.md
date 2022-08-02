@@ -56,7 +56,7 @@ The term API means application program interface. This term refers to points in 
 - **LSAJORCTL**: Display spool file management control file
   - A data viewer that displays the spool file control values sent from OpCon.
 - **LSAJORLOG**: Display job output retrieval activity log
-  - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon OpCon User Interface job master records for IBM i jobs.
+  - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon User Interface job master records for IBM i jobs.
 - **LSATXNLOG**: Display Job Scheduler communications transaction log
   - A data viewer that displays and interprets the Job Scheduler communications program transaction log file. This file is used to track transactions until they are acknowledged and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
 - **SMADSPUSP**: Display SMA User Space
