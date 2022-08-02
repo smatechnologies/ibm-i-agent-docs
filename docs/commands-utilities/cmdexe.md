@@ -10,7 +10,7 @@ These utility commands are especially helpful for some IBM i commands, such as C
 
 ## Set the Command and Program Object Authority
 
-Both the CMDEXE command and its program CMDEXEC, and the CMDEXE2 command with its program CMDEXE2C, are distributed with \PUBLIC authority revoked. The objects are owned by user SMANET, as usual for LSAM software. This object authority profile is designed to help prevent abuse or hacks into the system. If either of these commands will be executed by a user profile that does not have authority to use objects owned by the SMANET user profile, then it will be necessary to grant authority to that user profile for the command and its command execution program.
+Both the CMDEXE command and its program CMDEXEC, and the CMDEXE2 command with its program CMDEXE2C, are distributed with \*PUBLIC authority revoked. The objects are owned by user SMANET, as usual for LSAM software. This object authority profile is designed to help prevent abuse or hacks into the system. If either of these commands will be executed by a user profile that does not have authority to use objects owned by the SMANET user profile, then it will be necessary to grant authority to that user profile for the command and its command execution program.
 
 Be sure that the batch user in the OpCon job has authority to \USE both the command and the program. For all LSAM objects, use the LSAM object authority management function, found in LSAM sub-menu 9, option 8. Add authority records for both objects (a \CMD and a \PGM), and be sure to use option 1 to apply the new authorities after they are registered.
 

@@ -22,9 +22,9 @@ The term API means application program interface. This term refers to points in 
 - **LFEEDBACK**: (Enhanced for use outside of OpCon jobs) Send LSAM Feedback character string to OpCon
   - Sends character string to OpCon as LSAM Feedback trigger
 - **SMAJOBMSG**: Send job detail message to OpCon
-  - Sends character string to OpCon adding to Detailed Job Messages in Enterprise Manager.
+  - Sends character string to OpCon adding to Detailed Job Messages in OpCon User Interface.
 - **SMASTATUS**: Send job OpCon
-  - Sends job status for display in Enterprise Manager UI views.
+  - Sends job status for display in OpCon User Interface UI views.
 - **SMAFAILJOB**: SMA signal OpCon to Fail Job
   - This command may be used, for example, in a Multi-Step Job Script, to force an IBM i job to fail. If OpCon started the job, the Agent will then send a "Failed" signal to OpCon as the final job status, and possibly the message ID of SMA0992.
 
@@ -56,7 +56,7 @@ The term API means application program interface. This term refers to points in 
 - **LSAJORCTL**: Display spool file management control file
   - A data viewer that displays the spool file control values sent from OpCon.
 - **LSAJORLOG**: Display job output retrieval activity log
-  - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon Enterprise Manager job master records for IBM i jobs.
+  - A data viewer that displays a trace of the actions taken by the LSAM spool file server program. When turned on this log file can be helpful to prove how the LSAM managed job logs and job reports (spool files), according to the OpCon OpCon User Interface job master records for IBM i jobs.
 - **LSATXNLOG**: Display Job Scheduler communications transaction log
   - A data viewer that displays and interprets the Job Scheduler communications program transaction log file. This file is used to track transactions until they are acknowledged and turned over to LSAM transaction processing. The log file is always in use by the LSAM. The viewer also supports inspection of the Yesterday version of this log file.
 - **SMADSPUSP**: Display SMA User Space
@@ -109,9 +109,9 @@ The term API means application program interface. This term refers to points in 
 - **CHKDTAARA**: Check Data Area
   - May be used by OpCon as a prerun check that a data area must exist before a job is started.
 - **CHKIFSFIL**: Check for the file in the IFS (non-DB2) file systems
-  - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the Enterprise Manager "File Arrival" job sub-type for IBM i jobs, when the file name begins with a forward slash '/' denoting an IFS disk location outside of DB2.
+  - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the OpCon User Interface "File Arrival" job sub-type for IBM i jobs, when the file name begins with a forward slash '/' denoting an IFS disk location outside of DB2.
 - **CHKFILE**: Check for file in the DB2 database
-  - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the Enterprise Manager "File Arrival" job sub-type for IBM i jobs, when the file name begins with a DB2 Library name (which must begin with an alpha character, and the forward slash '/' is not used, denoting a disk location inside of DB2).
+  - A simple form of this command could be used as a pre-run job for an IBM i job master record in OpCon. However, the preferred use is in the Call command line, utilizing additional command parameters to define a File Arrival or File Watcher job. This command now supports the OpCon User Interface "File Arrival" job sub-type for IBM i jobs, when the file name begins with a DB2 Library name (which must begin with an alpha character, and the forward slash '/' is not used, denoting a disk location inside of DB2).
 :::tip 
 The IBM i command CHKOBJ may also be used, especially for object types other than files.
 :::

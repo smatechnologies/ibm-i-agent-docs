@@ -15,7 +15,7 @@ IBM supports the creation of user-defined translation tables under IBM i. IBM su
 - Work with tables (WRKTBL) to view their contents
 - Retrieve the definition of an existing translation table into a source file member (RTVTBLSRC)
 - Create or update a translation table source file member to modify how the translation works
-- Create a user-defined translation table in a DB2 UDB (DB2/400) library (CRTTBL)
+- Create a user-defined translation table in a DB2 library (CRTTBL)
 
 Once a user-defined translation table has been created, before it is specified in the IBM i LSAM Parameters it should be thoroughly tested using the LSAM translation table testing utilities. A strategy for using these utilities follows.
 
@@ -25,13 +25,11 @@ When using the LSAM translation table testing tools it is important to understan
 
 Initially, by default, the LSAM uses translation tables as specified in the LSAM control parameters when translating the OpCon transaction protocol from the IBM i native EBCDIC character set (as used by the LSAM jobs) to and from the Microsoft Windows native ASCII character set (as used by the OpCon SMANetCom routines and SAM-SS). All of the information related to starting jobs, reporting job status, sending job result messages to SAM and also the processing of OpCon Event commands, are all controlled by the two translation tables specified in the LSAM Parameters control function (LSAM main menu, option 7). The OpCon initial request to start an SMA File Transfer (SMAFT) jobs also falls into this category of work that is managed by the LSAM's Job Scheduling server, although the details about the file transfer are managed in a different data communications link once the SMA File Transfer job has been started.
 
-In a similar fashion, the LSAM SMAFT Server task uses translation tables to exchange file transfer control information with other LSAMs, after OpCon SAM gets a file transfer job started at one of the participating LSAMs. But the translation of the SMAFT control transactions is managed according to an (optionally) different set of translation tables specified in the LSAM's SMAFT Parameters control function *LSAM sub-menu 8, option 7).
+In a similar fashion, the LSAM SMAFT Server task uses translation tables to exchange file transfer control information with other LSAMs, after OpCon SAM gets a file transfer job started at one of the participating LSAMs. But the translation of the SMAFT control transactions is managed according to an (optionally) different set of translation tables specified in the LSAM's SMAFT Parameters control function: LSAM sub-menu 8, option 7).
 
-In most cases, the translation between EBCDIC and ASCII for SMAFT control transactions would be the same as when LSAMs are communicating about job scheduling with SAM in the OpCon central server. But the IBM i LSAM makes allowance for the possibility that certain LSAMs might require a slight variation in translation tables, since the control of a
-file transfer is managed directly between the IBM i LSAM and another LSAM.
+In most cases, the translation between EBCDIC and ASCII for SMAFT control transactions would be the same as when LSAMs are communicating about job scheduling with SAM in the OpCon central server. But the IBM i LSAM makes allowance for the possibility that certain LSAMs might require a slight variation in translation tables, since the control of a file transfer is managed directly between the IBM i LSAM and another LSAM.
 
-Separately from the control transactions, the actual file data that is being transferred by the SMA File Transfer protocol is handled in the IBM i LSAM by CCSID codes specified in the SMAFT Parameters (LSAM sub-menu 8, option 7). These are used only for translating the transferred file content. CCSID character translation is used only when
-the file transfer is not binary, that is, when the transfer was defined as a text transfer (in which case the character sets on either side of the transfer could be ASCII and/or EBCDIC).
+Separately from the control transactions, the actual file data that is being transferred by the SMA File Transfer protocol is handled in the IBM i LSAM by CCSID codes specified in the SMAFT Parameters (LSAM sub-menu 8, option 7). These are used only for translating the transferred file content. CCSID character translation is used only when the file transfer is not binary, that is, when the transfer was defined as a text transfer (in which case the character sets on either side of the transfer could be ASCII and/or EBCDIC).
 
 The character translation function for SMAFT file content can optionally be managed on a per-job basis, depending on the LSAMs that are connected for the transfer and on the capabilities of each LSAM's native database. For example, the IBM i LSAM and the IBM z/OS LSAM are capable of detecting the native CCSID of the source data and then sending that information to each other so that the original file content may be accurately preserved. Also, the IBM i LSAM will always use the existing CCSID of a target database or stream file with its own machine, if that file exists prior to the start of writing new data that arrives via an SMA File Transfer.
 
@@ -123,14 +121,14 @@ Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 
 | Field                | Default              | Description          |
 | -----                | -----                | -----                |
-| Use Table or CCSID   | T                    | -   T = use translation tables, as specified on left of screen.  |
-|                      |                      | -   C = use CCSID codes, as specified on right of screen. |
-|                      |                      | -   Set this field and choose the appropriate tables or codes before performing any operations, to determine how translation is done in either direction (sending or receiving messages).       |
-| EBCDIC to ASCII table  | The LSAM Parameters value, or QASCII | -   Initially, the utility displays the LSAM Parameters control file value for this translation table. If no value is present in the control file, the IBM i system default translation table used to translate EBCDIC characters to the extended ASCII character set is displayed. This  initial value is the one currently used by the IBM i LSAM communications server programs. |
-|                      |                      | -   This value can be changed to a user-selected translation table for testing when the Use code is set to T = Table. This table is used when a text string is typed into the EBCDIC input field for use with the <**Enter**> key or with <**F14**>.     |
+| Use Table or CCSID   | T                    | **T** = use translation tables, as specified on left of screen.  |
+|                      |                      | **C** = use CCSID codes, as specified on right of screen. |
+|                      |                      | Set this field and choose the appropriate tables or codes before performing any operations, to determine how translation is done in either direction (sending or receiving messages).       |
+| EBCDIC to ASCII table  | The LSAM Parameters value, or QASCII | Initially, the utility displays the LSAM Parameters control file value for this translation table. If no value is present in the control file, the IBM i system default translation table used to translate EBCDIC characters to the extended ASCII character set is displayed. This  initial value is the one currently used by the IBM i LSAM communications server programs. |
+|                      |                      | This value can be changed to a user-selected translation table for testing when the Use code is set to T = Table. This table is used when a text string is typed into the EBCDIC input field for use with the <**Enter**> key or with <**F14**>.     |
 | Library              | The LSAM Parameters value, or QSYS | The UDB DB2 (DB2/400) library where the translation table is stored.              |
-| ASCII to EBCDIC table     | The LSAM Parameters  value, or QEBCDIC | -  Initially, the utility displays the LSAM Parameters control file value for this translation table. If no value is present in the control file, the IBM i system default translation table used to translate the extended ASCII character set to EBCDIC characters is displayed. This value is the one currently used by the IBM i LSAM communications server programs. |
-|                      |                      | -   This value can be changed to a user-selected translation table for testing when the Use code is set  to T = Table. This table is used when a text string is typed into the ASCII Hex input field, or is received from an OpCon test job with <**F17**>.     |
+| ASCII to EBCDIC table     | The LSAM Parameters  value, or QEBCDIC | Initially, the utility displays the LSAM Parameters control file value for this translation table. If no value is present in the control file, the IBM i system default translation table used to translate the extended ASCII character set to EBCDIC characters is displayed. This value is the one currently used by the IBM i LSAM communications server programs. |
+|                      |                      | This value can be changed to a user-selected translation table for testing when the Use code is set  to T = Table. This table is used when a text string is typed into the ASCII Hex input field, or is received from an OpCon test job with <**F17**>.     |
 | Library              | The LSAM Parameters value, or QSYS  | The UDB DB2 (DB2/400) library where the translation table is stored.              |
 | SMAFT ASCII CCSID    | LSAM Parameters      | The default character code set assigned in the LSAM SMA File Transfer (SMAFT) Parameters is displayed. This code is assumed to represent the character set for the ASCII data being tested, if the Alt ASCII CCSID is left at zeros.            |
 | SMAFT EBCDIC CCSID   | LSAM Parameters      | The default character code set assigned in the LSAM SMAFT Parameters is displayed. This code is displayed for reference. If the user-specified ALT EBCDIC CCSID field is left at zeros, the program assumes the Job default CCSID represents EBCDIC data.         |
@@ -139,11 +137,11 @@ Main Menu > Selection or command line > type LSATBLTEST and press <**Enter**>
 | Alt ASCII CCSID      | zeros = not used     | Set the translation type to C=CCSID, then type a 5-digit CCSID code (using leading zeros as necessary) that will represent the ASCII message data received and processed when pressing <**F17**> or <**F20**> (if F20 used after F17 yo reprocess an incoming ASCII message). This tells the local program how to handle the received message text BEFORE the program translates it.                  |
 | Alt EBCDIC CCSID     | zeros = not used     | Set the translation type to C=CCSID, then type a 5-digit CCSID code (using leading zeros as necessary) that will represent the result of a translation. For incoming messages received with the F17 function key, this CCSID will represent the EBCDIC text that will be displayed as the result of translation. For outgoing messages sent using the F14 function key, this value tells the program what EBCDIC character set to assume when translating the message. A translated message sent to the OpCon SAM Log is sent transparently, that is, the LSAM allows the test translation to pass through to OpCon SMANetCom without any changes, so the result can be tested by viewing it with the OpCon SAM Log viewer.          |
 | EBCDIC character entry/display line | n/a                  | For the <**Enter**> key and function key <**F14**> this is an input field where 5250 workstation characters may be typed to create a test character string. For function key <**F17**> this is used as an output field to show the EBCDIC character translation of the message received from the special command TESTLSATBL used by an OpCon job.                 |
-| EBCDIC hex character lines| X'00'              | -   Under the input/output character line, a string of hexadecimal character equivalents is displayed after a character translation has been performed. The hexadecimal characters are displayed in over/under format, that is, for each character on the EBCDIC entry/display line, there are two characters displayed below it that form the pair of hexadecimal character equivalents for the displayed character. The hexadecimal characters range from 0-9 and A-F. Each over/under pair of characters represents one 8-bit byte of digital data. These are the same pairs of hexadecimal characters that  are displayed by the IBM i WRKTBL view table function, and they are the same as the data that is used to create a source file member from which a translation table can be created.         |
-|                      |                      | -   Use <**F10**> = Hex to change the program to accept hex characters typed for EBCDIC instead of the keyboard characters line. In this mode, the keyboard characters line will show what the local workstation (usually an emulator program) interprets as a display character for each hex value that is typed. Non-display characters are   prevented from reaching the display, in order to avoid causing a failure of the test command.    |
-| ASCII hex character lines | X'00'              | -   Printable or displayable/keyboard characters from the ASCII character set cannot be displayed, as is, on a 5250 workstation screen. Instead, only the hexadecimal equivalent of the ASCII characters is displayed.       |
-|                      |                      | -   Refer to EBCDIC hex character lines, above, for more information about the hexadecimal character display.         |
-|                     |                      | -   When <**F11**> puts the test program into     ASCII-\>EBCDIC local test mode, these ASCII hex lines can be used to enter the equivalent of ASCII characters that should be translated to the EBCDIC lines above when the <**Enter**>     key is pressed.  |
+| EBCDIC hex character lines| X'00'              | Under the input/output character line, a string of hexadecimal character equivalents is displayed after a character translation has been performed. The hexadecimal characters are displayed in over/under format, that is, for each character on the EBCDIC entry/display line, there are two characters displayed below it that form the pair of hexadecimal character equivalents for the displayed character. The hexadecimal characters range from 0-9 and A-F. Each over/under pair of characters represents one 8-bit byte of digital data. These are the same pairs of hexadecimal characters that  are displayed by the IBM i WRKTBL view table function, and they are the same as the data that is used to create a source file member from which a translation table can be created.         |
+|                      |                      | Use <**F10**> = Hex to change the program to accept hex characters typed for EBCDIC instead of the keyboard characters line. In this mode, the keyboard characters line will show what the local workstation (usually an emulator program) interprets as a display character for each hex value that is typed. Non-display characters are   prevented from reaching the display, in order to avoid causing a failure of the test command.    |
+| ASCII hex character lines | X'00'              | Printable or displayable/keyboard characters from the ASCII character set cannot be displayed, as is, on a 5250 workstation screen. Instead, only the hexadecimal equivalent of the ASCII characters is displayed.       |
+|                      |                      | Refer to EBCDIC hex character lines, above, for more information about the hexadecimal character display.         |
+|                     |                      | When <**F11**> puts the test program into     ASCII-\>EBCDIC local test mode, these ASCII hex lines can be used to enter the equivalent of ASCII characters that should be translated to the EBCDIC lines above when the <**Enter**>     key is pressed.  |
 
 #### Functions
 
@@ -197,7 +195,7 @@ IBM supports the creation of user-defined translation tables under IBM i. IBM su
 - Work with tables (WRKTBL) to view their contents
 - Retrieve the definition of an existing translation table into a source file member (RTVTBLSRC)
 - Create or update a translation table source file member to modify how the translation works
-- Create a user-defined translation table in a DB2 UDB (DB2/400) library (CRTTBL)
+- Create a user-defined translation table in a DB2 library (CRTTBL)
 
 As an example of this process, assume that we wish to translate braces (curly brackets) typed on a 5250-type workstation (usually emulated by a PC program) into square brackets before the data is sent to OpCon. Of course, if we make this choice in the LSAM translation tables, we will lose the ability to send braces (curly brackets) directly. But for the purpose of this example, we will assume that this is an acceptable choice.
 
@@ -375,7 +373,7 @@ USERNAME              Translation Mode: EBCDIC -> ASCII     
   F5=Refresh  F10=Hex  F11=Mode  F14=Send msg  F17=Receive msg  F20=Retranslate
 ```
 
-Notice in the example above that the hexadecimal equivalents of the right braces (curly brackets) }} have been highlighted in red. The red does not appear normally on the utility display. It has been included in this document to help identify the characters that are the subject of this discussion.
+Notice in the EBCDIC: text representation the hexadecimal equivalents of the right braces (curly brackets) **}}**. These are the characters that are the subject of this discussion.
 
 To continue the test, we change the name of the EBCDIC-to-ASCII translation table and the library where our test table is located. Then we can press the <**F20**> function key to retest translation of the same test character string without having to type the data a second time. As the results show in the illustration below, the braces (curly brackets) have now been translated into ASCII X'5D'. 
 
@@ -418,9 +416,9 @@ For a quick test that does not require configuring an OpCon job, use the <**F11*
 
 ### Utilizing OpCon for Testing of ASCII->EBCDIC
 
-The special LSAM command TESTLSATBL used in an OpCon batch job for IBM i is a good way to test ASCII characters that are typed within the Microsoft Windows environment of the SMA Enterprise Manager.
+The special LSAM command TESTLSATBL used in an OpCon batch job for IBM i is a good way to test ASCII characters that are typed within the Microsoft Windows environment of the SMA OpCon User Interface.
 
-LSAM Command TESTLSATBL Used in OpCon Job Master
+##### LSAM Command TESTLSATBL Used in OpCon Job Master (shown using the older EM user interface)
 
 ![LSAM Command TESTLSATBL Used in OpCon Job Master](../Resources/Images/IBM-i/LSAM-Command-TESTLSATBL-Used-in-OpCon-Job-Master.png "LSAM Command TESTLSATBL Used in OpCon Job Master")
 
@@ -428,9 +426,9 @@ Although a different translation table is used for translations from ASCII to EB
 
 An important step in evaluating character translation is to verify that keyboard characters typed at a workstation keyboard and shown on the workstation display are actually the characters that have been transmitted by OpCon. This can be confirmed by examining the OpCon SMANetCom Trace log just after the test job has been executed.
 
-OpCon Sends IBM i Job Command in Field Code 05022
+##### OpCon Sends IBM i Job Command in Field Code 05022
 
-![OpCon Sends IBM i Job Command in Field Code 05022](../Resources/Images/IBM-i/13_3.png "OpCon Sends IBM i Job Command in Field Code 05022"){.flat}
+![OpCon Sends IBM i Job Command in Field Code 05022](../Resources/Images/IBM-i/13_3.png "OpCon Sends IBM i Job Command in Field Code 05022")
 
 A careful examination of the SMANetCom Trace Log requires that the log viewer window be positioned far to the right. The line where a TX1 request job transaction appears will contain a long string of data. For this test, we wish to confirm that the string typed into the job Call command line has been transmitted to the IBM i LSAM in the same form as it was typed. This can be confirmed by looking for field code 05022. Notice in the example above that a field code is contained within the XML tag characters < and >. In this case, the field code itself is displayed in the value I="05022". The data that follows the greater than sign \> is the actual Call command string. The end of this string is marked by the XML end field tag \</F\>. We see in the example above that OpCon has transmitted exactly what was typed in the job master record.
 
