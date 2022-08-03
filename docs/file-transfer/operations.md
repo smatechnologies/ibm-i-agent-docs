@@ -94,17 +94,18 @@ Some operating systems make it impossible for the SMA File Transfer programs to 
 within the IBM i operating system).
 
 In these cases, it may be desirable to tell the IBM i SMAFT program(s) about the record length by adding a special extension to the Destination File Name field in the OpCon SMA File Transfer job master record.
-
-#### ,REC=00000
+````
+ ,REC=00000
+````
 
 Only certain LSAMs support this special convention; the IBM i LSAM is one of these.
 
 Following the Destination File Name, add a comma immediately after the last non-blank character of the file name, then type the special keyword string REC= and also 1 to 5 digits that represent the fixed length of the record in the file.
 
-:::tip Example
+:::info Example
 A MS Windows stream file is known to contain fixed-length records that are each 80 bytes long. The file must be transferred to an IBM i DB2 database file. The Destination File Name field in the OpCon File Transfer job master record is entered using the IBM i DB2 file name format and extended by the special REC= keyword as follows:
 
-**. TARGETLIB/FILENAME,REC=80**
+**TARGETLIB/FILENAME,REC=80**
 
 :::
 

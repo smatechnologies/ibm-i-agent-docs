@@ -43,7 +43,8 @@ Main Menu > SMA File Transfer menu (#8)
 - 5=View LSAM Logs
 - 6=View SMAFT Logs
 - 7=SMAFT Parameters
-- The start and stop options 1 and 2 are explained on the previous page; other options appear below.
+
+The start and stop options 1 and 2 are explained on the previous page; other options appear below.
 
 ##### Functions
 
@@ -67,7 +68,9 @@ The End SMAFT Server option stops only the IBM i LSAM's SMA File Transfer listen
 The Work with SMAFT jobs function is currently the same as the Check LSAM Subsystem Status option found on the LSAM Management menu. Both execute the IBM i command WRKACTJOB (i.e., Work with Active Jobs). The command displays the jobs active in the LSAM subsystem defined in the LSAM configuration parameters. From the WRKACTJOB display, press the Help key to view a complete description of all the data displayed.
 
 :::caution
-Unless directed by SMA Support, please do not execute any of the options on the following screen.
+Unless directed by SMA Support, please do not execute any of the options on the following screen, except for the following:
+- 5=Work with (to view the job log of an active job)
+- 8=Work with spooled files (although active SMAFT jobs are not expected to produce reports, other than a possible formatted program dump report in case of a fatal program error).
 :::
 
 ### Work with Active Jobs Screen
