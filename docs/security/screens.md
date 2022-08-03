@@ -8,7 +8,7 @@ The LSAM menu 9: PTF and Security menu, is documented in [LSAM Software Maintena
 
 ## Work with Object Authority
 
-### LSAAUTR1 - Work with LSAM DB2 Special Object Authorities
+#### LSAAUTR1 - Work with LSAM DB2 Special Object Authorities
 
 The Work with object authority function lists objects that require authority beyond the basic, restricted LSAM object authority profile. The list also includes objects that are located in the LSAM utility library, SMAGPL, even if they do not require special authority. Objects marked in the GPL column are always located in the SMAGPL library if the GPL option is 2, but they may be located in the IBM i QGPL library (or another utility library - not commonly used) if the option is 1.
 
@@ -58,10 +58,9 @@ Do not remove objects that SMA Technologies has designated in the distributed ve
 - **F18=Bottom**: Move the list display to the last record in the list.
 - **F21=Backup/Restore menu**: Branch to a utility menu that supports manage of backing up and restoring the object authority master files, for use when users will make changes to the defaults.
 
-## F15=Subset Object List Window
+### F15=Subset Object List Window
 
-### LSAAUTW1 - Subset Object List
-
+#### LSAAUTW1 - Subset Object List
 
 Use the function F15=Subset to limit the records appearing in the list of LSAM Object Authorities.
 
@@ -86,9 +85,9 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F15=S
 
 **F12=Cancel**: Quits the subset window and return to the list display without changing the subset rule.
 
-## Add/Change/Copy Object Authority Details
+### Add/Change/Copy Object Authority Details
 
-### LSAAUTR3 - Maintain LSAM DB2 Object Authority Details: COPY
+#### LSAAUTR3 - Maintain LSAM DB2 Object Authority Details: COPY
 
 The Maintain Object Authority Details screen is show in Add, Change or Copy mode. Add and Copy mode will add a new record to the file, but in Copy mode, care must be taken to change the key fields (Object name, object type and object attribute) to avoid attempting to add a duplicate record. In change mode, the key fields may not be changed.
 
@@ -108,16 +107,17 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > F6=Ad
 | Object attribute | n/a | The IBM i object sub-type mnemonic, for example, under the object type of *FILE, there can be: PF = physical file, LF = logical file (data view), DSPF = display file, PRTF = printer file, etc. |
 | Located in GPL | None (1 -- 999) | - This flag is controlled by SMA and may not be set by software users. It defines the set of objects that are installed in the central, common LSAM utilities library (default name SMAGPL). LSAM objects that are located in SMAGPL are registered in the LSAM Object Authority management master file, even if their authority profile is simply the LSAM defaults. - The GPL flag specifies object locations, as follows: - 0 = no: located in either the  LSAM database library (SMADTA) or the LSAM program objects library (SMAPGM), depending on the object type and attribute. - 1 = GPL: located in the SMAGPL library, but this object qualifies for user-selected optional relocation to the IBM i library QGPL (or other library, as identified by the data area SMADTA/SMAGPL). - 2 = UTL: always located in the SMAGPL library (or  other library name, as identified by the data area SMADTA/SMAUTL), and not qualified for relocation to the IBM i library QGPL. |
 | Use ext command  | 0 = No | This flag field must be manually set to '1' = Yes to allow entry of external authority commands as an extension to the basic definition of LSAM object authority. |
-| Object owner  | SMANET | Most LSAM objects are owned by the LSAM server user profile, SMANET. Certain program objects are 
-designated as owned by QSECOFR so that the owner's authority can be used to complete restricted system operations tasks without requiring that any user profile (that has a password) needs to be authorized to secured system commands. |
-| Run-time USRPRF | *USER | Most LSAM programs require that the user, such as a system operator or LSAM administrator, be authorized to use the program and any objects such as files that the program will use. Some LSAM programs are compiled to adopt the program *OWNER authority so that otherwise restricted commands and functions may be used in a predefined way without having to grant general use authority to an operator or administrator. The object owner authority can be either SMANET or QSECOFR. |
-| PUBLIC authority | *EXCLUDE | Most LSAM programs are installed with the *PUBLIC user authority revoked. Some very basic LSAM operations control programs are authorized for the public to *USE. To see a list of objects authorized for public use, use the function F15=Subset and enter *PUBLIC in the User subset option: 6. User: *PUBLIC .|
-| SMANET Authority  | *ALL | All LSAM objects are owned by user SMANET. This field defines one of the default LSAM object authority parameters. A different value in this field would normally only appear for user-defined objects added to the LSAM  object authority master file. |
+| Object owner  | SMANET | Most LSAM objects are owned by the LSAM server user profile, SMANET. Certain program objects are designated as owned by QSECOFR so that the owner's authority can be used to complete restricted system operations tasks without requiring that any user profile (that has a password) needs to be authorized to secured system commands. |
+| Run-time USRPRF | \*USER | Most LSAM programs require that the user, such as a system operator or LSAM administrator, be authorized to use the program and any objects such as files that the program will use. Some LSAM programs are compiled to adopt the program *OWNER authority so that otherwise restricted commands and functions may be used in a predefined way without having to grant general use authority to an operator or administrator. The object owner authority can be either SMANET or QSECOFR. |
+| PUBLIC authority |\*EXCLUDE | Most LSAM programs are installed with the \*PUBLIC user authority revoked. Some very basic LSAM operations control programs are authorized for the public to *USE. To see a list of objects authorized for public use, use the function F15=Subset and enter \*PUBLIC in the User subset option: 6. User: \*PUBLIC .|
+| SMANET Authority  | \*ALL | All LSAM objects are owned by user SMANET. This field defines one of the default LSAM object authority parameters. A different value in this field would normally only appear for user-defined objects added to the LSAM  object authority master file. |
 | SMASAV authority  | blank | The SMASAV user profile is provided specifically for use with LSAM Restricted Mode operations. The LSAM objects that must be used by SMASAV are granted the authority entered in this field. Use the function F15=Subset, option 4. SMASAVE user, to see a list of objects with this authority. |
-| User ID n (user profile name) | blank | - Up to 3 user-defined user profile names may be added to the basic LSAM object authority profile master record. This field and its associated type of authority help to reduce the requirement for many external commands in order to define, for example, a user-defined LSAM Operator and an LSAM Administrator (refer to discussions earlier in thistopic for adefinition of  these potential user profiles). - User ID 1 is typically used by the LSAM to define the authorities for QSYSOPR. Use the function F15=Subset and type QSYSOPR   into option 6. User:, to see  the list of objects that QSYSOPR is authorized to  use. - User ID 2 and 3: Available for any user-defined user profile name. A group profile name could be entered in one of thesefields. To define more than these two user profile authority sets, use external   commands. |
-| User ID n/Auth | blank | One general authority, typically *USE, that isassigned to the user profile named in User ID fields 1 -3. Refer to discussion aboveabout the User ID n field. External commands can be used to further refinethe authority assigned to this, or any other userprofile.  Managing authority by Authorization List instead of User Name: This second field,the / AUTH value, can be set to the special value of\*AUTH. When *AUTH is entered as theauthority value,this tells the Agent that the User IDfield contains thename of an Authorization List, rather than a single user. When this Agent authority profile is appliedto the object, theIBM i system assigns that object to an existing Authorization List, where the systemadministrator hasalready configured a profile of objectsand their authority that will be allowed. NOTES: 1. The other multi-object authority management strategy of using a Group User Profile can be supported bysimply typing in the name of theGroup User Profile into one of the three User ID fields. In this case, the AUTH field would be used for its normal purpose of naming the specific authority to begranted. 2. Remember that  since it may not be possible to configure everytype of complexauthority matrix using only this single object authority record, the Agent supports virtually any kind of object authority strategy that may be desired by allowing anynumber of IBM i Commands to be attached to the object authority master record. This is explained further within this chapter of documentation.|
-| Date last maint | system time stamp | The date and time that the object authority record was 
-last updated.|
+| User ID n (user profile name) | blank | Up to 3 user-defined user profile names may be added to the basic LSAM object authority profile master record. This field and its associated type of authority help to reduce the requirement for many external commands in order to define, for example, a user-defined LSAM Operator and an LSAM Administrator (refer to discussions earlier in thistopic for adefinition of  these potential user profiles). - User ID 1 is typically used by the LSAM to define the authorities for QSYSOPR. Use the function F15=Subset and type QSYSOPR   into option 6. User:, to see  the list of objects that QSYSOPR is authorized to  use. - User ID 2 and 3: Available for any user-defined user profile name. A group profile name could be entered in one of thesefields. To define more than these two user profile authority sets, use external   commands. |
+| User ID n/Auth | blank | One general authority, typically \*USE, that isassigned to the user profile named in User ID fields 1 -3. Refer to discussion aboveabout the User ID n field. External commands can be used to further refinethe authority assigned to this, or any other userprofile.  |
+| | | **Managing authority by Authorization List instead of User Name:** This second field, the /AUTH value, can be set to the special value of \*AUTH. When \*AUTH is entered as the authority value,this tells the Agent that the User IDfield contains thename of an Authorization List, rather than a single user. When this Agent authority profile is appliedto the object, the IBM i system assigns that object to an existing Authorization List, where the system administrator has already configured a profile of objects and their authority that will be allowed. | 
+| | | **NOTE 1.** The other multi-object authority management strategy of using a Group User Profile can be supported bysimply typing in the name of theGroup User Profile into one of the three User ID fields. In this case, the AUTH field would be used for its normal purpose of naming the specific authority to begranted.| 
+| | | **NOTE 2.** Remember that  since it may not be possible to configure everytype of complexauthority matrix using only this single object authority record, the Agent supports virtually any kind of object authority strategy that may be desired by allowing anynumber of IBM i Commands to be attached to the object authority master record. This is explained further within this chapter of documentation.|
+| Date last maint | system time stamp | The date and time that the object authority record was last updated.|
 
 #### Functions
 
@@ -127,7 +127,7 @@ last updated.|
 
 ## Option 7=Work with Object Authority Commands
 
-### LSAAUTCR1 - Work with LSAM DB2 Object Authority Commands
+#### LSAAUTCR1 - Work with LSAM DB2 Object Authority Commands
 
 The option to work with object authority (external) commands is only available for objects that have the EXT flag field set to a value of '1'. This screen is used to add, change, copy or delete any number of commands that will be executed every time an LSAM utility is request to set the authority of the named object. A separate LSAM database file keyed by the object name, type and attribute is used to store all the external commands for an object. When F6=Add or options 2=Change or 3=Copy are used, the detail screen for command entry supports the function key F4=Prompt that engages the IBM i command prompting routines so that command keywords and parameter values can be easily formatted. The IBM i help text for commands is also available during this prompting mode.
 
@@ -162,9 +162,9 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > optio
 - **F17=Top**: Move the list display to the first record in the list.
 - **F18=Bottom**: Move the list display to the last record in the list.
 
-## Add/Change/Copy Object Authority Commands
+### Add/Change/Copy Object Authority Commands
 
-### LSAAUTCR3 - Maintain LSAM DB2 Object Authority Command: CHANGE
+#### LSAAUTCR3 - Maintain LSAM DB2 Object Authority Command: CHANGE
 
 The detail screen for command entry supports the function key F4=Prompt that engages the IBM i command prompting routines so that command keywords and parameter values can be easily formatted. The IBM i help text for commands is also available during this prompting mode.
 
@@ -192,7 +192,7 @@ Main Menu > PTF and Security menu (#9) > Work with object authority (#8) > optio
 
 ## F21=Backup/Restore Menu
 
-### Object Authority Backup/Restore Menu
+#### Object Authority Backup/Restore Menu
 
 ```
 LSAAUTRB        Backup/Restore Object Authority Files        00/00/00 00:00:00

@@ -4,7 +4,7 @@ sidebar_label: 'LSAM Object Authority Matrix'
 
 # LSAM Object Authority Matrix
 
-The IBM i LSAM Installation instructions advise that an object authority matrix must be configured if the LSAM Administrator will not be QSECOFR or another super user profile with *ALLOBJ authority. This section describes the resources available and the procedures that can be used to implement the object authority matrix.
+The IBM i LSAM Installation instructions advise that an object authority matrix must be configured if the LSAM Administrator will not be QSECOFR or another super user profile with \*ALLOBJ authority. This section describes the resources available and the procedures that can be used to implement the object authority matrix.
 
 ## LSAM Object Authority Table
 
@@ -13,10 +13,9 @@ The basis for a revised object authority matrix is provided by SMA in a pair of 
 The default authority rules for LSAM object authority are these:
 
 - All libraries and objects are owned by user SMANET, except where the object authority table designates QSECOFR as the owner of certain programs.
-- *PUBLIC is granted *USE authority to the LSAM libraries, but is excluded from any authority to most of the objects they contain. In other words, all authority for *PUBLIC is revoked for all objects, and only the authorities specified in the object authority table are granted.
+- \*PUBLIC is granted \*USE authority to the LSAM libraries, but is excluded from any authority to most of the objects they contain. In other words, all authority for \*PUBLIC is revoked for all objects, and only the authorities specified in the object authority table are granted.
 - The LSAM Restricted Mode user profile, SMASAV, is granted certain authorities that are defined in the object authority table.
-- The IBM i system operator, QSYSOPR, is registered in the default LSAM object authority tables with authority to use only some very basic LSAM features that are normally required for daily (or periodic) LSAM operation. The name of this user profile could be replaced in the object authority table, for example, with a
-    user-defined operator name such as SMAOPER.
+- The IBM i system operator, QSYSOPR, is registered in the default LSAM object authority tables with authority to use only some very basic LSAM features that are normally required for daily (or periodic) LSAM operation. The name of this user profile could be replaced in the object authority table, for example, with a user-defined operator name such as SMAOPER.
 - The object authority table contains definitions of all special authorities that will be granted to any file, program or other object. If a special authority is not  egistered in the LSAM object authority tables, that authority may be lost (revoked) whenever the LSAM authority management utilities are used or when LSAM software updates are applied.
 
 The LSAM function that may be used to modify the object authority tables is explained in more detail in the Screens and Windows section of this topic below.
@@ -35,7 +34,7 @@ To enable QSYSOPR to perform these minimal operator functions, the LSAM software
 To view the specific object authorities required for the minimal list outlined above, use the LSAM menu 9, function 8: Work with object authority. From the list display, function key <**F15**> may be used to access the subset window. Specify subset option 6, then type QSYSOPR in the window user name field. Once <**Enter**> is  pressed to apply the subset rule, the list of object authorities will be limited to only the objects that have authority granted to QSYSOPR. The actual fields that enable the authority for QSYSOPR are typically not visible in the list display. Use option 5=Display to examine each object detail in order to see the authority granted to QSYSOPR.
 
 :::warning
-Only the site security officer should be allowed to use the LSAM function of Work with object authority. The information displayed by this function should be kept confidential. The action options and function keys supported by this function provide direct access to IBM i commands such as GRTOBJAUT.
+Only the site security officer should be allowed to use the LSAM function of **Work with Object Authority**. The information displayed by this function should be kept confidential. The action options and function keys supported by this function provide direct access to IBM i commands such as GRTOBJAUT.
 :::
 
 ## LSAM Special Authorities
@@ -61,7 +60,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 
 | Menu/Function | Description | Program or Command |
 | --- | ----------- | ---------------|
-| LSAM Main Menu       | LSAM menus have  *USE authority granted to *PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function.  The STRSMA command installed in library QGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system.  **Note**: The IBM i menu command GO may not be used outside of the LSAM Menu system because the LSAM Menu start command (STRSMA) is required to initialize the LSAM environment for the interactive job.     | LSAMNUE0 (menu) |
+| LSAM Main Menu       | LSAM menus have \*USE authority granted to \*PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function. The STRSMA command in library SMAGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system. The same applies to the alternate direct access command to the LSAM menu system: LSAMENU. (See [LSAMENU Command](docs/commands-utilities/lsam-operations.md#lsamenu-command).)   | LSAMNUE0 (menu) |
 | 1.                  | Job track menu       | LSAMNUE1 (menu)      |
 | 2.                  | Message management menu  | LSAMNUE2 (menu)      |
 | 3.                  | Events menu          | LSAMNUE3 (menu)      |
@@ -119,13 +118,13 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | Client eMail Management Menu |                      | LSAMNUEB (menu)      |
 | 1.                  | Work with Client eMail Data (WRKCLTEML) | WRKCLTEML            |
 | 2.                  | Work with Message Text Source Members | WRKMBRPDM FILE(*LIBL/EMLTXTSRC) |
-| 3.                  | Generate eMail       | ?GENEMLREQ           |
-|                      | Request (GENEMLREQ)  | ??OPCONJOB('0')    |
+| 3.                  | Generate eMail Request (GENEMLREQ)       | ?GENEMLREQ           |
+|                      |  | ??OPCONJOB('0')    |
 | 4.                  | Display eMail Activity Logs | CALL EMLLOGR00       |
 | 5.                  | Display Error Log (DSPPFM EMLLOGF10) | DSPPFM EMLLOGF10     |
 | 6.                  | Maintain Dynamic Variables | CALL LSAVARR00       |
 | 7.                  | Client eMail Configuration | CALL CLTEMLR30       |
-| There is no menu 7. Main menu function 7 is a call to the LSAM Parameters function:CALL LSAPARR00 |                      |
+| There is no menu 7. Main menu function 7 is a call to the LSAM Parameters function: CALL LSAPARR00 |                      |
 | Operator Replay Menu |                      | LSAMNUE4 (menu)      |
 | 1.                  | User management      | CALL LSAUSRR00       |
 | 2.                  | Operator Replay scripts | CALL OPRRPYR10       |
@@ -142,6 +141,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 1.                  | Maintain scripts     | CALL SAVRSTR20       |
 | 2.                  | Setup environment    | CALL SAVRSTR21       |
 | 3.                  | History of the last use | CALL SAVRSTR05       |
+| | | |
 | 5.                  | Maintain Multi-step job scripts | CALL MLTJOBR10       |
 | 6.                  | View Multi-step job log | DSPPFM MLTLOGF00     |
 | 7.                  | Maintain dynamic variables | CALL LSAVARR00       |
@@ -192,7 +192,7 @@ Instead of publishing a hard list of LSAM software object references, SMA provid
 The command REFFLOW displays a list of the programs, files and some other objects referenced by the named LSAM menu, command or program. This list may also be transferred to a printable report using the
 F9=Print function key from the interactive list display. 
 
-The REFFLOW command requires that the interactive job library list be set to the library list of an existing LSAM environment. This means the REFFLOW command can be used from the command entry line of the LSAM Menu system (if the user is not restricted from command line usage). From outside of the LSAM menu system, this command can only be used if the interactive job's library list was previously set equal to an LSAM environment. The interactive job library list can be set (outside of the LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL (refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about this command).
+The REFFLOW command requires that the interactive job library list be set to the library list of an existing LSAM environment. This means the REFFLOW command can be used from the command entry line of the LSAM Menu system (if the user is not restricted from command line usage). From outside of the LSAM menu system, this command can only be used if the interactive job's library list was previously set equal to an LSAM environment. The interactive job library list can be set (outside of the LSAM menu system) by using the LSAM command in library SMAGPL: SMASETLIBL (refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about this command).
 
 #### REFFLOW command syntax
 ```
@@ -223,9 +223,9 @@ Each sub-program referenced by an LSAM menu command or called program must be au
 
 The values shown under the USE column of the REFFLOW display or report include:
 
-- I = input (requires only *USE authority, READ data authority)
-- O = output (requires ADD data authority)
-- U = update (requires UPDATE data authority)
+- **I** = input (requires only *USE authority, READ data authority)
+- **O** = output (requires ADD data authority)
+- **U** = update (requires UPDATE data authority)
 
 The object references list produced by the REFFLOW command intentionally eliminates references to the many common IBM i system calls that are typically included in every compiled user program. The reference list may not include a reference to various IBM i functions that may be embedded within a program call to an IBM i API. Another example of a notably absent reference is that the LSAM validation list does not appear in the analysis of the LSAM function for User Management. These kinds of expected exceptions in the LSAM object reference analysis will become evident when the newly authorized user attempts to use a new function for the first time. It might be necessary for a system support technician to analyze the user's job log in order to determine which authorities are still required to fully enable an LSAM function for a new or restricted user profile.
 
@@ -237,7 +237,7 @@ A printed version of the REFFLOW list may be obtained using the function key F9=
 
 It is possible to discover where a given program, database file or other LSAM software object is used in the LSAM software system with the LSAM utility command DSPOBJWU.
 
-The DSPOBJWU command requires that the interactive job library list be set to the library list of an existing LSAM environment. This means the DSPOBJWU command can be used from the command entry line of the LSAM Menu system (if the user is not restricted from command line usage). From outside of the LSAM menu system, this command can only be used if the interactive job's library list was previously set equal to an LSAM  environment. The interactive job library list can be set (outside of the LSAM menu system) by using the LSAM command in library QGPL: SMASETLIBL (refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about this command).
+The DSPOBJWU command requires that the interactive job library list be set to the library list of an existing LSAM environment. This means the DSPOBJWU command can be used from the command entry line of the LSAM Menu system (if the user is not restricted from command line usage). From outside of the LSAM menu system, this command can only be used if the interactive job's library list was previously set equal to an LSAM  environment. The interactive job library list can be set (outside of the LSAM menu system) by using the LSAM command in library SMAGPL: SMASETLIBL (refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about this command).
 
 #### DSPOBJWU command syntax
 ```
@@ -245,12 +245,12 @@ DSPOBJWU OBJ(object_name) TYPE(object_type)
 ```
 - OBJ = the name of the LSAM object to be studied. The named object must be one of the valid types. LSAM objects that are not one of these types will not be found in the supplied LSAM object reference master file.
 - TYPE = must be one of the valid values:
-  - *DTAARA = data area
-  - *FILE = database file (physical or logical view). This is the  default value for the TYPE parameter.
-  - *PGM = program
-  - *SRVPGM = service program
-  - *MENU = one of the LSAM menus (refer to the table of LSAM Menu Functions, above)
-  - *CMD = command
+  - \*DTAARA = data area
+  - \*FILE = database file (physical or logical view). This is the  default value for the TYPE parameter.
+  - \*PGM = program
+  - \*SRVPGM = service program
+  - \*MENU = one of the LSAM menus (refer to the table of LSAM Menu Functions, above)
+  - \*CMD = command
 
 #### DSPOBJWU command examples
 ```
