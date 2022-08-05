@@ -173,13 +173,21 @@ A good way to prevent disaster is to make a backup of the LSAM database library 
 - JOBLDAF00:      IBM i Job Local Data Area contents
 - DBFCMDSRC:      Command line source members
 - LSAVARF00:      Dynamic Variables table file
-- TRKJOB:         Job Tracking and Queuing
+
+**TRKJOB**     **Job Tracking and Queuing**
 - TRKPARF10:      Job Tracking parameters master file
 - LSAVARF00:      Dynamic Variables table file
-- RSTMOD:         Restricted Mode feature
+
+**RSTMOD**     **Restricted Mode feature**
 - SAVRSTF20:      Restricted Mode script master file
-- DYNVAR:         LSAM Dynamic Variables (when exported individually)
+
+**MLTJOB**     **Multi-Step Job Scripting feature**
+- MLTJOBF00:      Multi-Step Script master file
+- MLTJOBF10:      Multi-Step Script Step master file
+
+**DYNVAR**     **LSAM Dynamic Variables (when exported individually)**
 - LSAVARF00:      Dynamic Variables table file
+- LSAVARF10:      Dynamic Variables AUX Table file
 
 ## Data Export/Import Screens and Windows
 
