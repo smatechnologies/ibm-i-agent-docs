@@ -5,17 +5,25 @@ sidebar_label: 'Copy Files from Test to Production'
 # Copy Files from Test to Production
 
 :::tip Revision Note
-Previously published versions of this Reference Information topic described manual procedures for copying database files between LSAM environments. That method is not recommended because it is no longer reliable. Instead, this topic documents how to use LSAM menu functions to easily engage complex programs that are able to transfer data reliably.
+Previously published versions of this Reference Information topic described manual procedures for copying database files between LSAM environments. That method is no longer supported due to changes in the database (specifically, the introduction of automatically generated "as identity" keys for some files). Instead, this topic documents how to use LSAM menu functions to easily engage Agent programs that handle the complexities and are able to transfer data reliably.
 :::
 
 Since LSAM version 18.1, it is important to note the two key fields of information that represent the software patch level of this Agent software, which are critical to successful Export/Import operations.
 
-- **PTF Level**: This is the value that is used at the highest level to represent the actual patch level of the LSAM software. Although the "PTF Name" (also known as the "PTF Number" field, such as PTF181006) is still a unique key that may be used to refer to a patch, SMA will request the "PTF Level" value from a client to determine that client's patch level for this Agent software.
-- **DB Level**: The database level of the LSAM software indicates a cut-off point among the PTF Levels where database changes were made using the LSAM software patching tools. These enhancements to the Agent are small enough that a simple patch can install them, rather than requiring a full LSAM Upgrade to a new Version. The DB Level is the control level that is used to match LSAM environments when the LSAM Data Export/Import tool is being used. It is no longer required that two LSAM environments must match exactly at the PTF Level (although that is always recommended, to assure expected results). Only the database level MUST match. A change in the DB Level also marks a point among all the PTFs where a Rollback operation is usually not permitted. That is, the PTF Rollback capability will usually prevent rolling the software patches backwards past a DB Level boundary, although this may sometimes be permitted. But a single PTF rollback will not move the DB Level backward.
+- **PTF Level**: This is the value that is used at the lowest level to represent the actual patch level of the LSAM software. Although the "PTF Name" (also known as the "PTF Number" field, such as PTF181006) is still a unique key that may be used to reference a patch, SMA will request the "PTF Level" value from a client to determine that client's patch level for this Agent software.  For example, it would be common that the PTF Level number of a PTF Named "PTF181006" to be 006.  But this is not always true, and the PTF Level number is the master control that is used to designate the software patch level of the LSAM.
+- **DB Level**: The database level of the LSAM software indicates a cut-off point among the PTF Levels where database changes were made using the LSAM software patching tools. These enhancements to the Agent are small enough that a simple patch can install them, rather than requiring a full LSAM Upgrade to a new Version. The DB Level is the control level that is used to match LSAM environments when the LSAM Data Export/Import tool is being used. It is no longer required that two LSAM environments must match exactly at the PTF Level (although that is good practice). Only the database level MUST match. A change in the DB Level also marks a point among all the PTFs where a Rollback operation is usually not permitted. That is, the PTF Rollback capability will usually prevent rolling the software patches backwards past a DB Level boundary, although this may sometimes be permitted. But a single PTF rollback will not move the DB Level backward.
 
 ## How to Export and Import Data
 
 This is a step-by-step outline of how to perform LSAM data exporting and importing, including the optional rollback process. The reasons for these steps are explained in the next section, where there is a flow chart of the whole Export/Import process. It may also be helpful to refer to the Screens and Windows section later in this topic for more detail about each step in the procedure.
+
+:::tip
+SMA has published a detailed example with instructions for automating the LSAM Data Export/Import process.  SMA recommends learning about how Export/Import works, here, and then consider implementing the automated solution.  This solution is posted in the SMA Innovations Lab, at the SMA GitHub repository: 
+
+https://github.com/smatechnologies/ibmi-export-import/blob/master/UserGuide-Automate-Exp-Imp.md
+
+Automated Export/Import would be especially helpful for service bureaus who operate many IBM i partitions.  But it is certainly also useful for sites who maintain a separate IBM i LSAM Test environment, where automation solutions can be exported/imported to the Production LSAM environment.
+:::
 
 ### Configure Export/Import options (one time)
 
@@ -25,7 +33,7 @@ This is a step-by-step outline of how to perform LSAM data exporting and importi
 4. Enter **7** to choose **Export/Import options configuration** in the Data Export/Import Utilities menu.
 5. Refer to the Screens and Windows section, later in this topic, for detailed instructions about the fields in the configuration function. Note the library name where export and import save files will be stored - these can be changed, but the SMALOG library benefits from automatic LSAM procedures to purge old save files.
 6. When two LSAM environments exist in the same IBM i partition, it is recommended that the "Next Export Library number" should be set to start at some high range, such as 100001, in one of the environments. This will help prevent conflicting save file names in case data will be exported in both directions between two environments. Use a similar, but different high range for a third or fourth environment, such as when multiple environments are required for development and testing.
-7. Some sites using separate IBM i partitions or machines may need to carefully consider the Target Release value that is used for the data export save file. There is a control field where a specific IBM i version code may be specified, if necessary. But the normal default is "*OSDFT" which means to use the version code of the current system. This only needs to be changed if the destination partition for the import process is running an older version of IBM i. There is a similar TGTRLS option lower down in the control fields for the pre-import data backup save file, but it would be unusual to not accept the default of *OSDFT for this field. Please contact SMA Support if there are questions about using these Export/Import procedures between two different versions of IBM i.
+7. Some sites using separate IBM i partitions or machines may need to carefully consider the Target Release value that is used for the data export save file. There is a control field where a specific IBM i version code may be specified, if necessary. But the normal default is "\*OSDFT" which means to use the version code of the current system. This only needs to be changed if the destination partition for the import process is running an older version of IBM i. There is a similar TGTRLS option lower down in the control fields for the pre-import data backup save file, but it would be unusual to not accept the default of \*OSDFT for this field. Please contact SMA Support if there are questions about using these Export/Import procedures between two different versions of IBM i.
 
 ### Select LSAM primary master records for Export - using the LSAM menus
 
@@ -75,7 +83,7 @@ This is a step-by-step outline of how to perform LSAM data exporting and importi
 14. When the import is performed within the same IBM i partition as the export, a warning will appear on the display for Initiate Data Import Batch. In this case, choose an option for the field label "RSTLIB (1) or Skip (0)?" Typically, option **0** is a good choice because it avoids the unnecessary step of restoring the import work library from the save file, since that library already exists on the system. Type any other processing option changes, then press <**Enter**> to continue.
 15. The system displays a final confirmation screen for the import batch after editing the batch control details. If the values appear acceptable, press <**F14**> to start the actual import process.
     :::tip
-    The import process performs updates to the target IBM i LSAM database. During this process, a backup save file will be created to contain any data records that will be replaced by the import process. (It is possible to rollback an import batch using option 9 from the Work with Import Batches display, in case the import causes any problems or appears to corrupt data.)
+    The import process performs updates to the target IBM i LSAM database. During this process, a backup save file will be created to contain any data records that will be replaced by the import process. It is possible to rollback an import batch using option 9 from the Work with Import Batches display, in case the import causes any problems or appears to corrupt data.
     :::
 16. If the import process was submitted to batch, a message appears at the bottom of the display naming the submitted job. Use this job name to find and review the import posting report.
 17. If the import process was allowed to run in the interactive job, a message appears at the bottom of the display reporting the Group, Batch and SAVF that were successfully imported; or else, an error message could be displayed if the import failed. In either case, work with the current interactive job to find and review the import posting report, to assure the results are as expected.
@@ -103,7 +111,7 @@ After the Export batch save files are confirmed to be located in the appropriate
 
 Further discussion about the Import process follows the general flow diagram that follows.
 
-Export/Import Process Flow
+#### Export/Import Process Flow
 
 ![Export/Import Process Flow](../Resources/Images/IBM-i/Export-Import-Process-Flow.png "Export/Import Process Flow")
 
@@ -137,9 +145,45 @@ It is possible that if an import batch is rolled back after some later batch was
 
 A good way to prevent disaster is to make a backup of the LSAM database library (base name SMADTA) before performing any import batch posting or a rollback operation.
 
+### List of Exported File Names and Descriptions per Export Group
+
+#### Fields name
+**OPRRPY**     **Operator Replay file group**
+-  OPRRPYF00      Operator Replay script master file
+-  OPRRPYF10      Operator Replay script steps
+-  OPRRPYF20      Operator Replay variables (tokens) table file
+-  OPRRPYF40      Screen data capture rules
+-  OPRRPYF50      Captured data response rules
+-  LSAVARF00      Dynamic Variables table file
+
+**TRPMSG**     **LSAM Global Message Management**
+- TRPMSGF00:      Message Queue and Message ID response master file
+- TRPMSGF30:      Message Data Capture rules
+- OPRRPYF20:      Operator Replay variables (token) table file - may be loaded by response rules
+- OPRRPYF50:      Captured data response rules
+- LSAVARF00:      Dynamic Variables table file
+
+**SCANSPLF**   **Scan Spool File Utility**
+- LSAJORF40:      Scan Spool File Scan Rules master file
+- OPRRPYF50:      Captured data response rules
+- LSAVARF00:      Dynamic Variables table file
+
+**CAPJOB**     **Capture Job Feature**
+- TRKJOBF00:      Job Tracking Parameters master file
+- JOBLDAF00:      IBM i Job Local Data Area contents
+- DBFCMDSRC:      Command line source members
+- LSAVARF00:      Dynamic Variables table file
+- TRKJOB:         Job Tracking and Queuing
+- TRKPARF10:      Job Tracking parameters master file
+- LSAVARF00:      Dynamic Variables table file
+- RSTMOD:         Restricted Mode feature
+- SAVRSTF20:      Restricted Mode script master file
+- DYNVAR:         LSAM Dynamic Variables (when exported individually)
+- LSAVARF00:      Dynamic Variables table file
+
 ## Data Export/Import Screens and Windows
 
-##### Data Export/Import Utilities Menu
+### Data Export/Import Utilities Menu
 ```
  S218CBBW               DATA EXPORT/IMPORT UTILITIES MENU              00/00/00 
  CLEWIS                                                                20:50:30 
@@ -166,19 +210,21 @@ A good way to prevent disaster is to make a backup of the LSAM database library 
  F13=Information Assistant  F16=System main menu                                
 ```
 
-###### Menu Pathways
+#### Menu Pathways
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10)
 
-###### Options
+#### Options
 The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options. 
 
 ### Export/Import Options Configuration
 The configuration options for data export/import should be reviewed and set (press <**Enter**> to update) before using any of the export or import functions.
 
-###### Menu Pathways
+#### EXICFGD301 - LSAM Data Export/Import Configuration
+
+#### Menu Pathways
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 7
 
-###### Usage Notes
+#### Usage Notes
 When two LSAM environments exist in the same IBM i partition, it is recommended that the "Next Export Library number" should be set to start at some high range, such as 100001, in one of the environments. This will help prevent conflicting save file names in case data will be exported in both directions between two environments. Use a similar, but different high range for a third or fourth environment, such as when multiple environments are required for development and testing.
 
 If two or more LSAM environments will share the library SMALOG to store export/import save files, coordinate which environment will manage SMALOG contents with the SMARGZ command to purge aged save files. For more information about managing files stored in the SMALOG library, please refer to [IBM i LSAM Configuration](../configuration/configuration.md),  subject LSAM Database Maintenance. A description of how the SMARGZ command may be used for this purpose is found in [Commands and Utilities](../commands-utilities/commands.md).
@@ -186,8 +232,6 @@ If two or more LSAM environments will share the library SMALOG to store export/i
 The job description and job queue fields are optionally used whenever an export or import procedure is set to run as a batch job instead of running interactively from the export or import request screens.
 
 On the next screen use the field "Days to retain Ex/Imp data" to indicated to the LSAM daily maintenance server job when Export/Import control data and the related working libraries should be deleted after their last use.
-
-## EXICFGD301 - LSAM Data Export/Import Configuration
 
 #### Fields
 - **Next Export Library Number**: This control field is automatically updated every time a new export batch is created. Changing the starting value is only recommended for alternate LSAM environments that may reside in the same IBM i  partition. In that case, it is recommended to set the starting number high range to a value such as 10001, so that there will be no library or save file name conflicts in case data is ever exported and imported in both directions between two LSAM environments.
@@ -217,7 +261,7 @@ associated temporary libraries when the LSAM daily maintenance server job will a
 
 This function is used to create new export batch controls and also to complete the process of collecting an export batch into a save file that can be transported to another LSAM environment. Use individual LSAM master file maintenance functions that support option 8=Export to add records into an export batch. Those functions will automatically enter this Work With function in order to support selecting an existing batch or to create a new batch control record. After the data has been exported into the temporary working library that is linked to the batch control record, the LSAM maintenance programs offer an immediate branch back to this function for the purpose of closing out a batch and making it ready for export. Otherwise, batches remain open until this function is used to close out a batch and compress it into an IBM i save file.
 
-## EXIEX0R1 - Work with Export Batches
+#### EXIEX0R1 - Work with Export Batches
 
 #### Menu Pathways
 
@@ -262,11 +306,11 @@ This function is used to create new export batch controls and also to complete t
 - **F18=Bottom**: Positions the list display to the last record that qualifies to appear in the current list of control records.
 - **F24=More keys**: Shows other function keys that may be used.
 
-#### Work with Export Batches - Windows
+### Work with Export Batches - Windows
 
-##### Subset by Group Window
+#### EXIEXW01 - Subset by Group Window
 
-Subset Export Control Records by Group
+##### Subset Export Control Records by Group
 
 ```
      EXIEX0W1
@@ -290,22 +334,22 @@ F12=Cancel
 - **Select subset**: Type a number from the list below and press <**Enter**> to change the subset rule for the list of Export Batch control records.
 
 - **Group values**: The list of LSAM master record groups supported includes:
-  - OPRRPY = Operator Reply scripts, steps and related files
-  - TRPMSG = Message Management Parameter records and related files
-  - SCANSPLF = Scan Spool File rules and related records
-  - CAPJOB = Captured Job definitions and related files
-  - TRKJOB = Job Tracking and Queuing definitions and related files
-  - RSTMOD = Restricted Mode script records 
-  - DYNVAR = LSAM Dynamic Variable table records (these will also appear as a related file to most of the other Groups)Show all = remove Group ID filtering of the control records list
+  - **OPRRPY** = Operator Reply scripts, steps and related files
+  - **TRPMSG** = Message Management Parameter records and related files
+  - **SCANSPLF** = Scan Spool File rules and related records
+  - **CAPJOB** = Captured Job definitions and related files
+  - **TRKJOB** = Job Tracking and Queuing definitions and related files
+  - **RSTMOD** = Restricted Mode script records 
+  - **DYNVAR** = LSAM Dynamic Variable table records (these will also appear as a related file to most of the other Groups)Show all = remove Group ID filtering of the control records list
 
 #### Functions
 
 **F12=Cancel**: Quits the prompt window and returns to the list display
 without changing the current subset rule.
 
-##### Subset by Status Window
+#### EXIEX0W2 - Subset by Status Window
 
-Subset Export Control Records by Status
+##### Subset Export Control Records by Status
 ```
         EXIEX0W2
 Subset by Status
@@ -331,7 +375,7 @@ F12=Cancel
 
 **F12=Cancel**: Quits the prompt window and returns to the list display without changing the current subset rule.
 
-#### F6 = Add Data Export Control
+### F6 = Add Data Export Control
 
 - **Screen Title**: Add Data Export Control
 - **Screen ID**: EXIEX0R2
@@ -343,9 +387,9 @@ F12=Cancel
 
 #### Fields
 
-- Heading fields:   Refer to Group values description in the previous section.
-- Group ID:         The Group label that is assigned to the batch. The Group label is controlled by the LSAM software when this screen is reached from direct access via option 8=Export from within a different LSAM file maintenance function, or it can selected from the controlled list of supported values when a new batch control record is being created from the Work with Export Batches list function. Group IDs cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data. (Refer to the window of Group IDs above for a list of the available values.)
-- Batch ID:         The user-assigned name that helps to identify the data that is, or will be added to a batch. This field is both a key field used to identify a batch and a description field.
+- **Heading fields**: Refer to Group values description in the previous section.
+- **Group ID**: The Group label that is assigned to the batch. The Group label is controlled by the LSAM software when this screen is reached from direct access via option 8=Export from within a different LSAM file maintenance function, or it can selected from the controlled list of supported values when a new batch control record is being created from the Work with Export Batches list function. Group IDs cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data. (Refer to the window of Group IDs above for a list of the available values.)
+- **Batch ID**: The user-assigned name that helps to identify the data that is, or will be added to a batch. This field is both a key field used to identify a batch and a description field.
 
 #### Functions
 
@@ -353,16 +397,16 @@ F12=Cancel
 - **F4=Prompt**: When the cursor is positioned in the Group ID field, <**F4**> causes a window of supported Group ID values to appear from which a value may be selected and returned to this field. (Refer to the window for subsetting by Group ID for a representation of the prompting window that will appear.)
 - **F12=Cancel**: Quits the Add function and returns to the list display.
 
-#### Option 4 = Delete Export Batches
+### Option 4 = Delete Export Batches
 
-## EXIEX0R4 - Delete Export Batches
+#### EXIEX0R4 - Delete Export Batches
 
 #### Menu Pathways
 
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 1 > option 4
 
 #### Fields
-- All fields:   Refer to Work with list display, above.
+- **All fields**: Refer to Work with list display, above.
 
 #### Functions
 
@@ -370,31 +414,31 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F12=Cancel**: Quits the Delete function and returns to the list display, with any options "4" still showing.
 - **F14=Confirm**: Starts the delete process that actually updates the LSAM files and removes one or more batch save files and temporary batch assembly libraries.
 
-#### Option 5 = Display Export Batch Control Record
+### Option 5 = Display Export Batch Control Record
 
-## EXIEX0R5 - Display Data Export Control
+#### EXIEX0R5 - Display Data Export Control
 
 #### Menu Pathways
 
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 1 > option 5
 
 #### Fields
-- Heading fields:             Refer to Work with list display, above.
-- Group ID:                   The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
--  Batch ID:                   The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
-- Status:                     The current status of the batch record. Possible values for Export batches are listed on the right side of this display
-- Staging Library/SAVF:       The name of the temporary library where cloned copies of LSAM master files are used to store exported data and export control information. The save file that will be used to transport export data to another LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Library/SAVF name is derived from the Export/Import Configuration data control field.
-- Library for export SAVF:    The name of the library where the export batch save file will be, or is stored after the batch is closed and fully exported. The default name for this library is set in the Export/Import Options Configuration.
-- Source partition:           The system ID of the IBM i partition from which the LSAM data was exported.
-- Source LSAM environment:    The OpCon machine name of the LSAM environment from which data was exported.
-- Source LSAM version:        The LSAM software version number of the exported data. This must match the version number of the target LSAM where the data will be imported.
-- Source LSAM PTF/DB level:   The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
-- Target partition:           The system ID of the IBM i partition to which data is imported. (This value will be updated when the batch is imported.)
-- Target LSAM environment:    The OpCon machine name of the LSAM environment where the data is imported. (This value will be updated when the batch is imported.)
-- Import pre-post backup:     The name of the temporary library and save file that are used to backup any data that will be replaced when the batch is imported. (This value will be updated when the batch is imported, if any data will be replaced.) The backup save file supports the Rollback option.
-- Last update time stamp:     The system date and time that any activity was performed on this batch of data. After the status reaches Z = export completed, or E = export error, this time stamp is used to calculate the purge date by the LSAM daily file maintenance server program.
-- Last update user ID:        The user ID of the job that performed the last activity on this batch.
-- Last update IBM i job:      The identifier of the IBM i job that performed the last activity on this batch.
+- **Heading fields**: Refer to Work with list display, above.
+- **Group ID**: The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
+- **Batch ID**: The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
+- **Status**: The current status of the batch record. Possible values for Export batches are listed on the right side of this display
+- **Staging Library/SAVF**: The name of the temporary library where cloned copies of LSAM master files are used to store exported data and export control information. The save file that will be used to transport export data to another LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Library/SAVF name is derived from the Export/Import Configuration data control field.
+- **Library for export SAVF**: The name of the library where the export batch save file will be, or is stored after the batch is closed and fully exported. The default name for this library is set in the Export/Import Options Configuration.
+- **Source partition**: The system ID of the IBM i partition from which the LSAM data was exported.
+- **Source LSAM environment**: The OpCon machine name of the LSAM environment from which data was exported.
+- **Source LSAM version**: The LSAM software version number of the exported data. This must match the version number of the target LSAM where the data will be imported.
+- **Source LSAM PTF/DB level**: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+- **Target partition**: The system ID of the IBM i partition to which data is imported. (This value will be updated when the batch is imported.)
+- **Target LSAM environment**: The OpCon machine name of the LSAM environment where the data is imported. (This value will be updated when the batch is imported.)
+- **Import pre-post backup**: The name of the temporary library and save file that are used to backup any data that will be replaced when the batch is imported. (This value will be updated when the batch is imported, if any data will be replaced.) The backup save file supports the Rollback option.
+- **Last update time stamp**: The system date and time that any activity was performed on this batch of data. After the status reaches Z = export completed, or E = export error, this time stamp is used to calculate the purge date by the LSAM daily file maintenance server program.
+- **Last update user ID**: The user ID of the job that performed the last activity on this batch.
+- **Last update IBM i job**: The identifier of the IBM i job that performed the last activity on this batch.
 
 #### Functions
 
@@ -402,9 +446,9 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F7=Details**: Branches to a display listing the key fields of all files and records included in the data batch. This is the same list display as shows for the option 7=Details from the Export Batch list display.
 - **F12=Cancel**: Quits the Display function and returns to the list display, with any unexecuted options still showing.
 
-#### Option 7 = Work with Export Batch Details
+### Option 7 = Work with Export Batch Details
 
-## EXIEX0R3 - Work with Export Batch Details
+#### EXIEX0R3 - Work with Export Batch Details
 
 #### Menu Pathways
 
@@ -412,21 +456,21 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 1 > option 5 \> F7
 
 #### Fields
-- LSAM Env:                        The OpCon machine name for this LSAM environment.
-- V:                               The software version number for this LSAM environment.
-- P/D:                             The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
-- Group:                           The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
-- Batch:                           The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
-- Search content:                  Type a value in this field and press <**Enter**> to search for a record that has this value anywhere in the record. Sometimes the found value does not appear on the list display and it is necessary to use option 5=Display to view the record details that matched. Use function key <**F16**> to search for the next matching record after the current search value displays underneath this field.
-- File Name:                       The name of the LSAM database file from which a record has been exported. (Refer to the table of file and field values below for descriptions.)
-- Sts:                             The status of the detail record. (The detail record status is only for support research purposes. Refer to the export control record for the important status of the batch.)
-- Key field content...(partial):  The values of the key fields are shown as a string of characters. Use option 5=Display to see the individual key fields separated and labeled.
+- **LSAM Env**: The OpCon machine name for this LSAM environment.
+- **V**: The software version number for this LSAM environment.
+- **P/D**: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+- **Group**: The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
+- **Batch**: The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
+- **Search content**: Type a value in this field and press <**Enter**> to search for a record that has this value anywhere in the record. Sometimes the found value does not appear on the list display and it is necessary to use option 5=Display to view the record details that matched. Use function key <**F16**> to search for the next matching record after the current search value displays underneath this field.
+- **File Name**: The name of the LSAM database file from which a record has been exported. (Refer to the table of file and field values below for descriptions.)
+- **Sts**: The status of the detail record. (The detail record status is only for support research purposes. Refer to the export control record for the important status of the batch.)
+- **Key field content...(partial)**: The values of the key fields are shown as a string of characters. Use option 5=Display to see the individual key fields separated and labeled.
 
 #### Options
 
 **5=Display**: Branches to a screen that shows a formatted display of each export detail record. This screen formats and labels the key fields according to each different file.
 
-###### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Work with function and returns to the LSAM sub-menu, or to the program that called the Work with Export Batches function.
 - **F5=Refresh**: Re-reads the export details file and rebuilds the list of details.
@@ -436,63 +480,27 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F17=Top**: Repositions the list display to the first record in the list.
 - **F18=Bottom**: Repositions the list display to the last record in the list.
 
-### List of Exported File Names and Descriptions per Export Group
+### Option 5 = Display Export Batch Detail Record
 
-#### Fields name
-**OPRRPY**     **Operator Replay file group**
--  OPRRPYF00      Operator Replay script master file
--  OPRRPYF10      Operator Replay script steps
--  OPRRPYF20      Operator Replay variables (tokens) table file
--  OPRRPYF40      Screen data capture rules
--  OPRRPYF50      Captured data response rules
--  LSAVARF00      Dynamic Variables table file
-
-**TRPMSG**     **LSAM Global Message Management**
-- TRPMSGF00:      Message Queue and Message ID response master file
-- TRPMSGF30:      Message Data Capture rules
-- OPRRPYF20:      Operator Replay variables (token) table file - may be loaded by response rules
-- OPRRPYF50:      Captured data response rules
-- LSAVARF00:      Dynamic Variables table file
-
-**SCANSPLF**   **Scan Spool File Utility**
-- LSAJORF40:      Scan Spool File Scan Rules master file
-- OPRRPYF50:      Captured data response rules
-- LSAVARF00:      Dynamic Variables table file
-
-**CAPJOB**     **Capture Job Feature**
-- TRKJOBF00:      Job Tracking Parameters master file
-- JOBLDAF00:      IBM i Job Local Data Area contents
-- DBFCMDSRC:      Command line source members
-- LSAVARF00:      Dynamic Variables table file
-- TRKJOB:         Job Tracking and Queuing
-- TRKPARF10:      Job Tracking parameters master file
-- LSAVARF00:      Dynamic Variables table file
-- RSTMOD:         Restricted Mode feature
-- SAVRSTF20:      Restricted Mode script master file
-- DYNVAR:         LSAM Dynamic Variables (when exported individually)
-- LSAVARF00:      Dynamic Variables table file
-
-#### Option 5 = Display Export Batch Detail Record
-
-## EXIEX0R6 - Data Export Batch Detail
+#### EXIEX0R6 - Data Export Batch Detail
 
 #### Menu Pathways
 
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 1 > option 5 > option 7 > option 5
 
 #### Fields
--  LSAM Env:                 The OpCon machine name for this LSAM environment.
--  V:                        The software version number for this LSAM environment.
--  P/D:                      The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
--  Group:                    The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
--  Batch:                    The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
--  File Name:                The name of the LSAM database file from which a record has been exported. (Refer to the table of file and field values above for a list of files per Group ID.)
--  Status:                   The status of the detail record. (The detail record status is only for support research purposes. Refer to the export control record for the important status of the batch.)
--  Primary key:              The internal key that is unique within the export details master file.
--  File display priority:    An internally assigned sequence number that helps to control the order in which files are presented in lists or reports of export details.
--  Record write time stamp:  The system date and time when this detail record was added to the export batch.
--  Details record link key:   An internal key that keeps dependent export records from other files coordinated with the single master record of the primary file within a Group. (Refer to the list of files per Group above, where the first file named is the primary file of the group.) This link key makes it possible to replace all records associated with a single master record, in case the master record gets exported a second time into the same export batch, while the batch remains open. Thus, it is possible to make changes in the source LSAM database and re-export the master record to the export batch as long as the export batch remains open.
--  Record key fields:         The individual key field values for each file are listed and labeled below this prompt. The fields that will show vary depending on the file name. (The fields could change in the future, if the LSAM database is revised by a software update.)
+- **LSAM Env**: The OpCon machine name for this LSAM environment.
+- **V**: The software version number for this LSAM environment.
+- **P/D**: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+- **Group**: The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
+- **Batch**: The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
+- **File Name**: The name of the LSAM database file from which a record has been exported. (Refer to the table of file and field values above for a list of files per Group ID.)
+- **Status**: The status of the detail record. (The detail record status is only for support research purposes. Refer to the export control record for the important status of the batch.)
+- **Primary key**: The internal key that is unique within the export details master file.
+- **File display priority**: An internally assigned sequence number that helps to control the order in which files are presented in lists or reports of export details.
+- **Record write time stamp**: The system date and time when this detail record was added to the export batch.
+- **Details record link key**: An internal key that keeps dependent export records from other files coordinated with the single master record of the primary file within a Group. (Refer to the list of files per Group above, where the first file named is the primary file of the group.) This link key makes it possible to replace all records associated with a single master record, in case the master record gets exported a second time into the same export batch, while the batch remains open. Thus, it is possible to make changes in the source LSAM database and re-export the master record to the export batch as long as the export batch remains open.
+- **Record key fields**: The individual key field values for each file are listed and labeled below this prompt. The fields that will show vary depending on the file name. (The fields could change in the future, if the LSAM database is revised by a software update.)
 
 #### Functions
 
@@ -505,11 +513,13 @@ While an export batch is open, multiple linked groups of detail records can be a
 
 Closing a batch means that the temporary library used to assemble the various files for export is saved to a single IBM i save file that has the same name as the temporary library. During this process, the control record for the export batch has its status changed to '**Z**' to indicate the batch is closed and ready for transportation to another LSAM environment.
 
-There are two ways to close a batch and make it ready for physical export. One way is to use option 8=Export from the Work with Export Batches list described below. The other way is to use option 2 from the  Data Export/Import Utilities Menu, which is simply a prompt of the LSAM command LSAEXPDTA (Export a data set), also described below.
+There are two ways to close a batch and make it ready for physical export. One way is to use option 8=Export from the Work with Export Batches list described below. The other way is to use option 2 from the Data Export/Import Utilities Menu, which is simply a prompt of the LSAM command LSAEXPDTA (Export a data set), also described below.
 
-#### Option 8 = Initiate Data Export Batch
+## Option 8 = Initiate Data Export Batch
 
-## EXIEX1R1 - Initiate Data Export Batch
+Option 8=Export appears in the list of master records for all Agent automation features that are supported by the Data Export/Import function.
+
+### EXIEX1R1 - Initiate Data Export Batch
 
 This display is first presented without the F14 message showing. Type any changes to the process definition, then press <**Enter**> to request an edit of the process control values. After <**Enter**> is pressed, the F14 confirmation message will display. If the process control values appear correct, press <**F14**> to begin or submit the
 batch export closing process.
@@ -519,26 +529,26 @@ batch export closing process.
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 1 > option 8
 
 #### Fields
-- LSAM Env: The OpCon machine name for this LSAM environment 
-- Vers: The software version number for this LSAM environment
-- PTF/DB#: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
-- Group ID: The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
-- Batch ID: The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
-- Export save file name: The name of the temporary library where cloned copies of LSAM master files are used to store exported data and export control information. The save file that will be used to transport export data to another LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Library/SAVF name is derived from the Export/Import Configuration data control field.
-- Library to store SAVF: The name of the library where the export batch save file will be, or is stored after the batch is closed and fully exported. The default name for this library is set in the Export/Import Options Configuration.
-- Print posting report?: 0=No, 1=Yes. During the posting process a printable report is generated. This is recommended because it not only documents any errors, but it provides a control that can be used to monitor and verify the import process later on. Note that a similar, preliminary report can be generated from this screen using function key F9, but the F9 report only lists the data that is in the batch and it cannot report on export errors.
-- Delete export library? 
-  -   0=No, 1=Yes (default). This option tells the Export program to delete the temporary export library after the export has completed normally. The export save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the export process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be     restored manually from the export save file if it is needed again.
-- Submit job to batch:
-  - 0=No: The export close-out process is run as part of this interactive job. 
-  - 1=Yes: The export close-out process is submitted to a batch job using the following fields to define how and where the job will run.
-- Job description: The job description used to define the optional batch job for the export process. The default value comes from the Export/Import Options Configuration.
-- Job description library: The library location of the job description. 
-- Job queue:
-  - *JOBD = use the job queue specified in the job description. 
-  -   Queue name = use a specific job queue to route the batch job request.
-  -   The default value for this field comes from the Export/Import options configuration. 
-- Job queue libr: The library location of the job queue; not used if *JOBD is specified for the Job Queue name. 
+- **LSAM Env**: The OpCon machine name for this LSAM environment 
+- **Vers**: The software version number for this LSAM environment
+- **PTF/DB#**: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+- **Group ID**: The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.
+- **Batch ID**: The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
+- **Export save file name**: The name of the temporary library where cloned copies of LSAM master files are used to store exported data and export control information. The save file that will be used to transport export data to another LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Library/SAVF name is derived from the Export/Import Configuration data control field.
+- **Library to store SAVF**: The name of the library where the export batch save file will be, or is stored after the batch is closed and fully exported. The default name for this library is set in the Export/Import Options Configuration.
+- **Print posting report?**: 0=No, 1=Yes. During the posting process a printable report is generated. This is recommended because it not only documents any errors, but it provides a control that can be used to monitor and verify the import process later on. Note that a similar, preliminary report can be generated from this screen using function key F9, but the F9 report only lists the data that is in the batch and it cannot report on export errors.
+- **Delete export library?**: 
+  - **0=No, 1=Yes (default)**. This option tells the Export program to delete the temporary export library after the export has completed normally. The export save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the export process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the export save file if it is needed again.
+- **Submit job to batch**:
+  - **0=No**: The export close-out process is run as part of this interactive job. 
+  - **1=Yes**: The export close-out process is submitted to a batch job using the following fields to define how and where the job will run.
+- **Job description**: The job description used to define the optional batch job for the export process. The default value comes from the Export/Import Options Configuration.
+- **Job description library**: The library location of the job description. 
+- **Job queue**:
+  - **\*JOBD** = use the job queue specified in the job description. 
+  - **Queue name** = use a specific job queue to route the batch job request.
+  - The default value for this field comes from the Export/Import options configuration. 
+- **Job queue libr**: The library location of the job queue; not used if *JOBD is specified for the Job Queue name. 
 
 #### Functions
 
@@ -547,13 +557,13 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F12=Cancel**: Quits the Initiate Data Export function and returns to the list display, with any unexecuted options still showing.
 - **F14=Confirm**: Pressing <**F14**> when it is allowed will start or submit the actual process to close out an export batch and produce the IBM i save file that can be moved to another LSAM environment for importing.
 
-### Menu Option 2 = Export a data set (LSAEXPDTA)
+## Menu Option 2 = Export a data set (LSAEXPDTA)
 
 The LSAM command LSAEXPDTA could be used, for example, by a job on an OpCon schedule to complete the process of preparing the IBM i save file that is used to transport exported data to another LSAM environment. Following this OpCon job, it would be possible to include two other jobs on the same OpCon schedule that would (a) perform a file transfer operation and then (b) use a corresponding LSAM command to complete the data import process in the target LSAM environment (documented below).
 
 Selecting option 2 from the menu produces the same display as if the command LSAEXPDTA were typed on a command entry line and function key <**F4**> were pressed to prompt the command. This command may be less convenient, however, than using the Work with Export Batches option 8=Export because the Group ID and Batch ID must be known in advance and typed into the following command prompt screen, or included as keyword values when the command is entered into the main Run command line of an OpCon job for IBM i. Menu option 2 does not support automatically submitting the export closeout process to batch. To do this outside of the Work with Export Batches list function, the IBM i command SBMJOB must be used, specifying the command LSAEXPDTA and its parameters for the CMD() parameter of the SBMJOB command.
 
-#### Prompted LSAM Command LSAEXPDTA - Format 1
+### Prompted LSAM Command LSAEXPDTA - Format 1
 
 ```
                        Export LSAM data batch (LSAEXPDTA)
@@ -569,7 +579,7 @@ Print export batch report? . . .    0             0=No, 1=Yes
 The format of the command prompt screen may be varied by pressing
 function key <**F11**>.
 
-#### Prompted LSAM Command LSAEXPDTA - Format 2 (after pressing F11)
+### Prompted LSAM Command LSAEXPDTA - Format 2 (after pressing F11)
 ```
            Export LSAM data batch (LSAEXPDTA)
 
@@ -602,12 +612,12 @@ To submit this command to a batch job, use the IBM i command SBMJOB and include 
 | ---------                  | ------- | -----------                |
 | Data Export group ID       | GROUP   | The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of export data.  |
 | Data Export batch ID       | BATCH   | The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.   |
-| Export batch save file     | SAVLIB  | - *BATCH = the recommended special value for this parameter, causes the command processor program to find the save file name in the control record for this export batch.     |
-|                            |         | - Specific save file name = should be used only for exceptional circumstances, such as development testing. It is required that the export process be accurately represented by the export control record values.         |
-| Batch save file location   | SVFLIB  | - *DEFAULT = the default library specified in the Export/Import Options Configuration is used to store the export save file. |
-|                            |         | -   Specific library name = may be used for special purposes. Any library is allowed to be used, and the import process provides an option to override the default library location of the save file when it is ready for importing.             |
-| Print export batch report? | REPORT  | 0=No, 1=Yes. During the posting process a printable report is generated. This is recommended because it not only documents any errors, but it provides a control that can be used to monitor and verify the import process later on. Note that a similar, preliminary report can be generated from this screen using function key F9, but the F9 report only lists the data that is in the batch and it cannot report on export errors.          |
-| Delete library if successful? | DLTLIB  | 0=No, 1=Yes (default). This option tells the Export program to delete the temporary export library after the export has completed normally. The export save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the export process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the export save file if it is needed again.              |
+| Export batch save file     | SAVLIB  | **\*BATCH** = the recommended special value for this parameter, causes the command processor program to find the save file name in the control record for this export batch.     |
+|                            |         | Specific save file name = should be used only for exceptional circumstances, such as development testing. It is required that the export process be accurately represented by the export control record values.         |
+| Batch save file location   | SVFLIB  | **\*DEFAULT** = the default library specified in the Export/Import Options Configuration is used to store the export save file. |
+|                            |         | Specific library name = may be used for special purposes. Any library is allowed to be used, and the import process provides an option to override the default library location of the save file when it is ready for importing.             |
+| Print export batch report? | REPORT  | **0=No, 1=Yes.** During the posting process a printable report is generated. This is recommended because it not only documents any errors, but it provides a control that can be used to monitor and verify the import process later on. Note that a similar, preliminary report can be generated from this screen using function key F9, but the F9 report only lists the data that is in the batch and it cannot report on export errors.          |
+| Delete library if successful? | DLTLIB  | **0=No, 1=Yes (default).** This option tells the Export program to delete the temporary export library after the export has completed normally. The export save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the export process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the export save file if it is needed again.              |
 
 #### Functions
 
@@ -631,13 +641,13 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 #### Fields
 - **Subset Group Subset Batch**: Shows if a subset rule is in effect, limiting which log records are on display. When the log gets full, it is much easier to audit a batch by using the subset function to limit the list to just one Group or even to a single Batch ID. Use function key <**F15**> to change the subset rule or to remove a subset filter. 
 - **Nbr of records**:  Displays the size of the log file as a total number of records in the file. This file will be purged to maintain its size by the LSAM daily maintenance server job, according to the LSAM general rules for operational log files.         
-- **Env**:            | The OpCon machine name for the current LSAM environment. |
-- **Search content**: Type a value in this field and press <**Enter**> to search for a record that has this value anywhere in the record. Sometimes the found value does not appear on the list display and it is necessary to use option 5=Display to view the record details that matched. Use function key <**F16**> to search for the next matching record after the current search value displays underneath this field. |
-- **Group**:          | The Group ID to which the log entry belongs.       |
-- **Batch**:          | The user-assigned Batch ID for each log entry. (Use F11 to toggle the list sort sequence between the entry date and the Group + Batch (+ entry date) order. |
-- **Type**:           | Use option 5=Entry detail to see a description for each entry type. For example, the value "**I**" indicates a simple Information entry, but a type of "**E**" marks an error. |
-- **MM-DD-HH.MM**:    | From the complete time stamp of each log entry (which is used to sort the list in Date sequence), the list displays only the MM=Month, DD=Day, HH=Hour and .MM=Minute.  |
-- **Entry...**:       | The first several characters of log entry text are displayed. Usually these first characters will suggest the log entry contents.   |
+- **Env**: The OpCon machine name for the current LSAM environment.
+- **Search content**: Type a value in this field and press <**Enter**> to search for a record that has this value anywhere in the record. Sometimes the found value does not appear on the list display and it is necessary to use option 5=Display to view the record details that matched. Use function key <**F16**> to search for the next matching record after the current search value displays underneath this field.
+- **Group**: The Group ID to which the log entry belongs.
+- **Batch**: The user-assigned Batch ID for each log entry. (Use F11 to toggle the list sort sequence between the entry date and the Group + Batch (+ entry date) order.
+- **Type**: Use option 5=Entry detail to see a description for each entry type. For example, the value "**I**" indicates a simple Information entry, but a type of "**E**" marks an error.
+- **MM-DD-HH.MM**: From the complete time stamp of each log entry (which is used to sort the list in Date sequence), the list displays only the MM=Month, DD=Day, HH=Hour and .MM=Minute. 
+- **Entry...**: The first several characters of log entry text are displayed. Usually these first characters will suggest the log entry contents.
 
 #### Options
 
@@ -655,9 +665,9 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F18=Bottom**: Repositions the list display to the last record in the list.
 - **F24=More keys**: Changes the function key legend on line 23 to show other supported function keys. All keys that are allowed to be active still work even if they do not appear in the function key legend line.
 
-## Option 5 = Export Activity Log Detail
+### Option 5 = Export Activity Log Detail
 
-### EXIL00R5 - Export Activity Log Detail
+#### EXIL00R5 - Export Activity Log Detail
 
 The entry text provides an explanation of the meaning of each log entry. Common log entries include a marker when each export process starts, showing the definition of the export batch, and also a corresponding entry that records the normal completion of the export process. If an entry is logging an error, the detected error message ID appears in red characters.
 
@@ -666,14 +676,14 @@ The entry text provides an explanation of the meaning of each log entry. Common 
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 3 > option 5
 
 #### Fields
--  **Group**:                          The Group label that is assigned to this batch of log entries.
--  **Batch**:                          The user-assigned name identifies the batch for which the log entry was made.
--  **If detail, primary key**:         When a log entry records information about a file record, the primary key of the export details master file is shown here, in case technical research must locate that record.
--  **Log entry type**:                 Various log Type codes are displayed, along with text that interprets the type value.
--  **IBM i job writing to the log**:   The IBM i job identifier for the job that produced the log entry.
--  **Log entry time stamp**:           The system date and time when the log entry was added to the log file.
--  **Message ID (if any)**:            Log entries that record errors will include an IBM i message ID that displays here in red characters.
--  **Entry text**:                     The log entry information which should be self-explanatory.
+-  **Group**: The Group label that is assigned to this batch of log entries.
+-  **Batch**: The user-assigned name identifies the batch for which the log entry was made.
+-  **If detail, primary key**: When a log entry records information about a file record, the primary key of the export details master file is shown here, in case technical research must locate that record.
+-  **Log entry type**: Various log Type codes are displayed, along with text that interprets the type value.
+-  **IBM i job writing to the log**: The IBM i job identifier for the job that produced the log entry.
+-  **Log entry time stamp**: The system date and time when the log entry was added to the log file.
+-  **Message ID (if any)**: Log entries that record errors will include an IBM i message ID that displays here in red characters.
+-  **Entry text**: The log entry information which should be self-explanatory.
 
 #### Functions
 
@@ -692,20 +702,20 @@ This function is used to create new import batch controls and also to manage the
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 4
 
 #### Fields
--  **LSAM Env**:        The name of the current LSAM environment, to which data is being imported.
--  **Vers**:            The version number of the current LSAM environment. (Must match the source LSAM environment from which the data was exported.)
--  **PTF/DB#**:        The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
--  **Search**:          A value entered into this field will be compared to the entire contents of every batch control record until a match is found. Press Enter to start a new search, or use function key <**F16**> to continue a search to the next record.
--  **Subset Group**:    Shows the Group value that limits the current list on display. Press <**F13**> to change the Group Subset rule.
--  **Subset Status**:   Shows the Status value that limits the current list on display. Press <**F14**> to change the Status Subset rule.
--  **Last search**:     Shows the search argument that was last used, where the cursor will be placed next to the first record in the list that contains a matching value. Note that the matching value may not show on this list display, in which case option 5=Display can be used to see the matching value in the control record. This Last search value may also be used to continue a search to the next record if function key <**F16**> is pressed while a value is displayed in this field.
--  **Opt**:             <**Tab**> to a row in the table and enter an option.
--  **Group ID**:        The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of import data.
--  **Batch ID**:        The name assigned by the user at export that helps to identify the data that is included in a batch. This field is both a key field used to identify a batch and a description field.
--  **Sts**:             The current status of the batch record. Use option 5=Display to see an interpretation of the status code.
--  **Lib/SAVF**:        The name of the temporary library where cloned copies of LSAM master files store imported data and import control information. The save file that was used to transport import data from the export LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Lib/SAVF name is derived from the import/Import Configuration data control field.
--  **Src System**:      Source system: The internal identifier of the IBM i partition from which the data is being imported.
--  **Src LSAM**:        Source LSAM: The OpCon machine name for the export LSAM environment.
+-  **LSAM Env**: The name of the current LSAM environment, to which data is being imported.
+-  **Vers**: The version number of the current LSAM environment. (Must match the source LSAM environment from which the data was exported.)
+-  **PTF/DB#**: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+-  **Search**: A value entered into this field will be compared to the entire contents of every batch control record until a match is found. Press Enter to start a new search, or use function key <**F16**> to continue a search to the next record.
+-  **Subset Group**: Shows the Group value that limits the current list on display. Press <**F13**> to change the Group Subset rule.
+-  **Subset Status**: Shows the Status value that limits the current list on display. Press <**F14**> to change the Status Subset rule.
+-  **Last search**: Shows the search argument that was last used, where the cursor will be placed next to the first record in the list that contains a matching value. Note that the matching value may not show on this list display, in which case option 5=Display can be used to see the matching value in the control record. This Last search value may also be used to continue a search to the next record if function key <**F16**> is pressed while a value is displayed in this field.
+-  **Opt**: <**Tab**> to a row in the table and enter an option.
+-  **Group ID**: The Group label that is assigned to each batch. Group labels are controlled by the LSAM software and they cannot be changed because each batch is assigned to only one type of data records, and records from different Group IDs cannot be mixed within a single batch of import data.
+-  **Batch ID**: The name assigned by the user at export that helps to identify the data that is included in a batch. This field is both a key field used to identify a batch and a description field.
+-  **Sts**: The current status of the batch record. Use option 5=Display to see an interpretation of the status code.
+-  **Lib/SAVF**: The name of the temporary library where cloned copies of LSAM master files store imported data and import control information. The save file that was used to transport import data from the export LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Lib/SAVF name is derived from the import/Import Configuration data control field.
+-  **Src System**: Source system: The internal identifier of the IBM i partition from which the data is being imported.
+-  **Src LSAM**: Source LSAM: The OpCon machine name for the export LSAM environment.
 
 #### Options
 
@@ -767,7 +777,7 @@ F12=Cancel
 
 **F12=Cancel**: Quits the prompt window and returns to the list display without changing the current subset rule.
 
-## Subset by Status Window
+### Subset by Status Window
 
 Subset Import Control Records by Status
 ```
@@ -792,22 +802,22 @@ F12=Cancel
 ```
 
 #### Fields
--  Select subset:   Type a number from the list below and press <**Enter**> to change the subset rule for the list of import Batch control records.
+-  Select subset: Type a number from the list below and press <**Enter**> to change the subset rule for the list of import Batch control records.
 
 #### Functions
  
 **F12=Cancel**: Quits the prompt window and returns to the list display without changing the current subset rule.
 
-## Option 4 = Delete Import Batches
+### Option 4 = Delete Import Batches
 
-### EXIEX0R4 - Delete Import Batches
+#### EXIEX0R4 - Delete Import Batches
 
 #### Menu Pathways
 
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 1 > option 4
 
 #### Fields
-- All fields:   Refer to Work with list display, above.
+- All fields: Refer to Work with list display, above.
 
 #### Functions
 
@@ -815,31 +825,31 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F12=Cancel**: Quits the Delete function and returns to the list display, with any options "4" still showing.
 - **F14=Confirm**: Starts the delete process that actually updates the LSAM files and removes one or more batch save files and temporary batch assembly libraries.
 
-## Option 5 = Display Import Batch Control Record
+### Option 5 = Display Import Batch Control Record
 
-### EXIIM0R5 - Display Data Import Control
+#### EXIIM0R5 - Display Data Import Control
 
 #### Menu Pathways
 
 Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (# 10) > option 4 > option 5
 
 #### Fields
--  **LSAM Env**:                   The name of the current, local LSAM environment = OpCon machine name.
--  **Group ID**:                   The Group label that was assigned to this batch.
--  **Batch ID**:                   The user-assigned name that helps to identify the data in a batch.
--  **Status**:                     The current status of the batch record. Possible values for import batches are listed on the right side of this display
--  **Import SAVF = saved LIB**:    The name of the temporary library where cloned copies of LSAM master files are used to store imported data and import control information. The save file that was used to transport import data to this LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Library/SAVF name is derived from the import/Import Configuration data control field.
--  **Location of import SAVF**:    The name of the library where the import batch save file was found. The default name for this library is set in the import/Import Options Configuration.
--  **Source partition**:           The system ID of the IBM i partition from which the LSAM data was imported.
--  **Source LSAM environment**:    The OpCon machine name of the LSAM environment from which data was imported.
--  **Source LSAM version**:        The LSAM software version number of the imported data. This had to match the version number of this LSAM where the data was imported.
--  **Source LSAM PTF/DB level**:   The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
--  **Target partition**:           The system ID of this IBM i partition to which data was imported.
--  **Target LSAM environment**:    The OpCon machine name of this LSAM environment where the data was imported.
--  **Import pre-post backup**:     The name of the temporary library and save file that are used to backup any data that was/will be replaced when the batch is imported. (This value is updated when the batch is imported, if any previous data is replaced.) The backup save file supports the Rollback option.
--  **Last update time stamp**:     The system date and time that any activity was performed on this batch of data. After the status reaches Z = import completed, or E = import error, this time stamp is used to calculate the purge date by the LSAM daily file maintenance server program.
--  **Last update user ID**:        The user ID of the job that performed the last activity on this batch.
--  **Last update IBM i job**:      The identifier of the IBM i job that performed the last activity on this batch.
+-  **LSAM Env**: The name of the current, local LSAM environment = OpCon machine name.
+-  **Group ID**: The Group label that was assigned to this batch.
+-  **Batch ID**: The user-assigned name that helps to identify the data in a batch.
+-  **Status**: The current status of the batch record. Possible values for import batches are listed on the right side of this display
+-  **Import SAVF = saved LIB**: The name of the temporary library where cloned copies of LSAM master files are used to store imported data and import control information. The save file that was used to transport import data to this LSAM environment uses the same name as the automatically assigned library name. The numeric portion of this Library/SAVF name is derived from the import/Import Configuration data control field.
+-  **Location of import SAVF**: The name of the library where the import batch save file was found. The default name for this library is set in the import/Import Options Configuration.
+-  **Source partition**: The system ID of the IBM i partition from which the LSAM data was imported.
+-  **Source LSAM environment**: The OpCon machine name of the LSAM environment from which data was imported.
+-  **Source LSAM version**: The LSAM software version number of the imported data. This had to match the version number of this LSAM where the data was imported.
+-  **Source LSAM PTF/DB level**: The PTF level of the current LSAM environment is shown first, followed by the PTF database level. The PTF level is for information only, in case of differences in the behavior of certain programs, but it is the database level that must match the target LSAM environment where data will be imported.
+-  **Target partition**: The system ID of this IBM i partition to which data was imported.
+-  **Target LSAM environment**: The OpCon machine name of this LSAM environment where the data was imported.
+-  **Import pre-post backup**: The name of the temporary library and save file that are used to backup any data that was/will be replaced when the batch is imported. (This value is updated when the batch is imported, if any previous data is replaced.) The backup save file supports the Rollback option.
+-  **Last update time stamp**: The system date and time that any activity was performed on this batch of data. After the status reaches Z = import completed, or E = import error, this time stamp is used to calculate the purge date by the LSAM daily file maintenance server program.
+-  **Last update user ID**: The user ID of the job that performed the last activity on this batch.
+-  **Last update IBM i job**: The identifier of the IBM i job that performed the last activity on this batch.
 
 #### Functions
 
@@ -847,9 +857,9 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F7=Details**: Branches to a display listing the key fields of all files and records included in the data batch. This is the same list display as shows for the option 7=Details from the Import Batch list display.
 - **F12=Cancel**: Quits the Display function and returns to the list display, with any unexecuted options still showing.
 
-## Option 7 = Work with Import Batch Details
+### Option 7 = Work with Import Batch Details
 
-### EXIIM0R3 - Work with Import Batch Details
+#### EXIIM0R3 - Work with Import Batch Details
 
 #### Menu Pathways
 
@@ -857,21 +867,21 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - Main Menu > Events and Utilities menu (#3) > Data import/Import Utilities menu (# 10) > option 4 > option 5 > F7
 
 #### Fields
--  **LSAM Env**:                        The OpCon machine name for this LSAM environment
--  **V**:                               The software version number for this LSAM environment
--  **P**:                               The software PTF (patch) level for this LSAM environment
--  **Group**:                           The Group label that was assigned to this batch.
--  **Batch**:                           The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
--  **Search content**:                  Type a value in this field and press <**Enter**> to search for a record that has this value anywhere in the record. Sometimes the found value does not appear on the list display and it is necessary to use option 5=Display to view the record details that matched. Use function key <**F16**> to search for the next matching record after the current search value displays underneath this field.
--  **File Name**:                       The name of the LSAM database file from which a record has been imported. (Refer to the table of file and field values above for descriptions.)
--  **Sts**:                             The status of the detail record. (The detail record status is only for support research purposes. Refer to the import control record for the important status of the batch.)
--  **Key field content...(partial)**:   The values of the key fields are shown as a string of characters. Use option 5=Display to see the individual key fields separated and labeled.
+-  **LSAM Env**: The OpCon machine name for this LSAM environment
+-  **V**: The software version number for this LSAM environment
+-  **P**: The software PTF (patch) level for this LSAM environment
+-  **Group**: The Group label that was assigned to this batch.
+-  **Batch**: The user-assigned name that helps to identify the data in a batch. This field is both a key field used to identify a batch and a description field.
+-  **Search content**: Type a value in this field and press <**Enter**> to search for a record that has this value anywhere in the record. Sometimes the found value does not appear on the list display and it is necessary to use option 5=Display to view the record details that matched. Use function key <**F16**> to search for the next matching record after the current search value displays underneath this field.
+-  **File Name**: The name of the LSAM database file from which a record has been imported. (Refer to the table of file and field values above for descriptions.)
+-  **Sts**: The status of the detail record. (The detail record status is only for support research purposes. Refer to the import control record for the important status of the batch.)
+-  **Key field content...(partial)**: The values of the key fields are shown as a string of characters. Use option 5=Display to see the individual key fields separated and labeled.
 
 #### Options
 
 **5=Display**: Branches to a screen that shows a formatted display of each import detail record. This screen formats and labels the key fields according to each different file. (Refer to the Export Batch Details display for an example of this display format.)
 
-###### Functions
+#### Functions
 
 - **F3=Exit**: Quits the Work with function and returns to the LSAM sub-menu.
 - **F5=Refresh**: Re-reads the import details file and rebuilds the list of details.
@@ -897,9 +907,9 @@ It is possible to automate the data import process, for example by configuring I
 SMA may choose to utilize the data Export/Import tools for the purpose of offering pre-configured data that could be inserted into an LSAM database in order to facilitate the process of configuring the LSAM to automate certain third-party applications. SMA will notify clients about the availability of pre-configured data during the OpCon product installation process.
 :::
 
-## F6 = List Import Save Files (Add Data Import Control)
+### F6 = List Import Save Files (Add Data Import Control)
 
-### EXIIM0R7 - List Import Save Files @ SMALOG
+#### EXIIM0R7 - List Import Save Files @ SMALOG
 
 #### Menu Pathways
 
@@ -910,11 +920,11 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 **1=Select**: Type a **1** next to any save file that shows a blank Sts field, then press <**Enter**> to import the control information for that import batch.
 
 #### Fields
--  **Heading fields**:   Refer to list display, above.
--  **SAVF Name**:        The name of the save file that was discovered in the library named in the screen title.
--  **Sts**:              The status of an import batch would normally be blank when the save file has not yet been imported, but if a save file appears in this list (as when the subset rule has changed) and the same save file was already registered in the local LSAM import control file, then a status value will appear in this column. Use option 5=Display to see the interpretation of the status codes.
--  **Description**:      The description of the save file is taken from the \*FILE object that was found in the named library.
--  **Subset**:           The current list subset rule that is in effect is shown. Use function key F11 to see all save files, including ones that have already been imported into the local LSAM import control file.
+-  **Heading fields**: Refer to list display, above.
+-  **SAVF Name**: The name of the save file that was discovered in the library named in the screen title.
+-  **Sts**: The status of an import batch would normally be blank when the save file has not yet been imported, but if a save file appears in this list (as when the subset rule has changed) and the same save file was already registered in the local LSAM import control file, then a status value will appear in this column. Use option 5=Display to see the interpretation of the status codes.
+-  **Description**: The description of the save file is taken from the \*FILE object that was found in the named library.
+-  **Subset**: The current list subset rule that is in effect is shown. Use function key F11 to see all save files, including ones that have already been imported into the local LSAM import control file.
 
 #### Functions
 
@@ -922,9 +932,9 @@ Main Menu > Events and Utilities menu (#3) > Data Export/Import Utilities menu (
 - **F4=Prompt**: When the cursor is positioned in the Group ID field, <**F4**> causes a window of supported Group ID values to appear from which a value may be selected and returned to this field. (Refer to the window for subsetting by Group ID for a representation of the prompting window that will appear.)
 - **F12=Cancel**: Quits the Add function and returns to the list display.
 
-## Option 1 = Select Save File for Import (Add Import Batch)
+### Option 1 = Select Save File for Import (Add Import Batch)
 
-### EXIIM0R2 - Add Import Batch
+#### EXIIM0R2 - Add Import Batch
 
 This display may be presented without the warning message at the bottom, without the instruction text in the middle and without the Replace option field; these only appear when an import save file is being processed within the same IBM i partition where the export LSAM environment exists. When the warnings appear, the most efficient response to the Replace option would be **A** because the existing temporary library that was prepared by the export process can now be used for the import process.
 
@@ -947,9 +957,9 @@ name appearing here is based on whatever liibrary was searched in the previous d
 - **Source LSAM**: The OpCon machine name of the LSAM environment from which the import save file was exported.
 - **Import restore library**: Normally the same as the save file itself, this is the name of the temporary library that will be restored from the save file in order to access the import data that it contains.
 - **Replace import library?**: This option only appears when the system determines that the import restore library already exists in this IBM i partition. This typically happens when the target LSAM environment exists within the same IBM i partition as the source LSAM environment. Choose one of the following replace options:
-  -   **C=cancel**: Do not process this import save file or batch; quit the function.
-  -   **R=replace**: Use the contents of the save file to replace the library. 
-  -   **A=accept**: Use the existing temporary library and do not perform any extra work.
+  - **C=cancel**: Do not process this import save file or batch; quit the function.
+  - **R=replace**: Use the contents of the save file to replace the library. 
+  - **A=accept**: Use the existing temporary library and do not perform any extra work.
 
 #### Functions
 
@@ -965,9 +975,9 @@ The confirmation display says to press the <**Enter**> key to return to the List
 
 The second phase of importing data begins by typing option **8** next to the newly registered import batch. Press <**Enter**> to start the data posting process and the following display will appear.
 
-## Option 8 = Post Imported Data (Initiate Data Import Batch)
+### Option 8 = Post Imported Data (Initiate Data Import Batch)
 
-### EXIIM1R1 - Initiate Data Import Batch
+#### EXIIM1R1 - Initiate Data Import Batch
 
 The display will show a warning message and the RSTLIB option if the import batch temporary library already exists. This appears to be the same override that was required in the previous steps, however, the previous steps were processing only the import control information, whereas this step handles the LSAM database content. Since the stepscould be performed at different times, the request to acknowledge the existing temporary library must be presented again.
 
@@ -978,22 +988,22 @@ The confirmation message in the middle of the screen, and the function key legen
 Main Menu > Events and Utilities menu (#3) > Data import/Import Utilities menu (# 10) > option 4 > option 8
 
 #### Fields
-- Heading fields: Refer to previous displays for documentation of the same fields. Only fields unique to this display are listed in this table.
-- RSTLIB (1) or Skip (0)?: If the SAVF restore-to library already exists on the system, this processing option is presented.
-  -   1 = Use the IBM i RSTLIB command to replace the library from the contents of the save file.
-  -   0 = Skip the RSTLIB step and accept the existing library. (This is the most efficient option to use when processing an import within the same IBM i partition where the export LSAM environment exists.)
-- Print posting report?:
-  -   0=No.
-  -   1=Yes. Always use option 1 in order to obtain the posting report. It is necessary to review the posting report, not only for potential errors, but also to identify any files that might contain data requiring a manual update to adapt the data to the current LSAM environment.
-- Delete import library?:  0=No, 1=Yes (default). This option tells the Import program to delete the temporary import library after the import has completed normally. The import save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the import process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the import save file if it is needed again.
-- Submit job to batch?:
-  -   0=No.
-  -   1=Yes. When this option is specified, the following fields may be used to override the default values for the  job description and job queue.
-- Job description: The IBM i job description that governs the attributes of the batch job that will be submitted.
-- Job description library: The name of the IBM i library where the job description is located.
-- Job queue: 
-  -   *JOBD = use the job queue named in the job description.
-  -   Queue name = use a different job queue to route the batch job into an IBM i subsystem.
+- **Heading fields**: Refer to previous displays for documentation of the same fields. Only fields unique to this display are listed in this table.
+- **RSTLIB (1) or Skip (0)?**: If the SAVF restore-to library already exists on the system, this processing option is presented.
+  - **1** = Use the IBM i RSTLIB command to replace the library from the contents of the save file.
+  - **0** = Skip the RSTLIB step and accept the existing library. (This is the most efficient option to use when processing an import within the same IBM i partition where the export LSAM environment exists.)
+- **Print posting report?**:
+  - **0=No.**
+  - **1=Yes.** Always use option 1 in order to obtain the posting report. It is necessary to review the posting report, not only for potential errors, but also to identify any files that might contain data requiring a manual update to adapt the data to the current LSAM environment.
+- **Delete import library?**:  0=No, 1=Yes (default). This option tells the Import program to delete the temporary import library after the import has completed normally. The import save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the import process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the import save file if it is needed again.
+- **Submit job to batch?**:
+  - **0=No**.
+  - **1=Yes**. When this option is specified, the following fields may be used to override the default values for the  job description and job queue.
+- **Job description**: The IBM i job description that governs the attributes of the batch job that will be submitted.
+- **Job description library**: The name of the IBM i library where the job description is located.
+- **Job queue**: 
+  - **\*JOBD** = use the job queue named in the job description.
+  - **Queue name** = use a different job queue to route the batch job into an IBM i subsystem.
 - Job queue library: The name of the IBM i library where the job queue is located.
 
 #### Functions
@@ -1010,6 +1020,14 @@ The LSAM menu functions support partial automation of the data import process. I
 A method for nearly complete automation of the whole process is described below, using the LSAM command LSAIMPGET. This method might be recommended by SMA if it chooses to offer to clients sets of pre-configured LSAM master file data that would help a client more quickly automate certain third-party software applications.
 
 Partial automation of the second phase of the Import process is supported by the LSAM command LSAIMPDTA. The Export/Import menu option 5 provides prompted access to the command LSAIMPDTA, where the menu option produces the same result as if the command were typed in a command entry line and then the function key <**F4**> were pressed to prompt the command.
+
+:::tip
+SMA has published a detailed example with instructions for automating the LSAM Data Export/Import process.  SMA recommends learning about how Export/Import works, here, and then consider implementing the automated solution.  This solution is posted in the SMA Innovations Lab, at the SMA GitHub repository: 
+
+https://github.com/smatechnologies/ibmi-export-import/blob/master/UserGuide-Automate-Exp-Imp.md
+
+Automated Export/Import would be especially helpful for service bureaus who operate many IBM i partitions.  But it is certainly also useful for sites who maintain a separate IBM i LSAM Test environment, where automation solutions can be exported/imported to the Production LSAM environment.
+:::
 
 ### Menu Option 5 = Import a data set (LSAIMPDTA)
 
@@ -1064,12 +1082,12 @@ To submit this command to a batch job, use the IBM i command SBMJOB and include 
 | ---------                  | ------- | -----------                |
 | Data Import group ID       | GROUP   | The Group label that was assigned to the batch.     |
 | Data Import batch ID       | BATCH   | The user-assigned Batch name that was assigned to the batch.                 |
-| Export batch save file     | IMPLIB  | - *BATCH = the recommended special value for this parameter, causes the command processor program to find the save file name in the control record for this export batch. |
-|                            |         | - Specific save file name = should be used only for exceptional circumstances, such as development testing. It is required that     the export process be accurately represented by the export control record values.         |
-| Batch save file location   | RSTLIB  | - *DEFAULT = the default library specified in the Export/Import Options Configuration is used to store the export save file. |
-|                            |         | - Specific library name = may be used for special purposes. Any library is allowed to be used, and the import process provides an option to override the default library location of the save file when it is ready for importing.             |
-| Print export batch report? | REPORT  | 0=No, 1=Yes. During the posting process a printable report is generated. This is recommended because it not only documents any errors, but it provides a control that can be used to monitor and verify the import process later on.   |
-| Delete library if successful? | DLTLIB  | 0=No, 1=Yes (default). This option tells the Import program to delete the temporary import library after the import has completed normally. The import save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the import process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the import save file if it is needed again.              |
+| Export batch save file     | IMPLIB  | **\*BATCH** = the recommended special value for this parameter, causes the command processor program to find the save file name in the control record for this export batch. |
+|                            |         | Specific save file name = should be used only for exceptional circumstances, such as development testing. It is required that     the export process be accurately represented by the export control record values.         |
+| Batch save file location   | RSTLIB  | **\*DEFAULT** = the default library specified in the Export/Import Options Configuration is used to store the export save file. |
+|                            |         | Specific library name = may be used for special purposes. Any library is allowed to be used, and the import process provides an option to override the default library location of the save file when it is ready for importing.             |
+| Print export batch report? | REPORT  | **0=No, 1=Yes.** During the posting process a printable report is generated. This is recommended because it not only documents any errors, but it provides a control that can be used to monitor and verify the import process later on.   |
+| Delete library if successful? | DLTLIB  | **0=No, 1=Yes (default).** This option tells the Import program to delete the temporary import library after the import has completed normally. The import save file will be deleted automatically by the Agent using its periodic maintenance server job, but the temporary library must be managed by the import process itself. Change the default to 0=No only if it is necessary to retain the temporary library for diagnostic purposes. Otherwise, there is no value in keeping this library, and it could be restored manually from the import save file if it is needed again.              |
 
 #### Functions
 
@@ -1078,7 +1096,7 @@ To submit this command to a batch job, use the IBM i command SBMJOB and include 
 - **F12=Cancel**: Quits the Initiate Data Export function and returns to the list display, with any unexecuted options still showing.
 - **F14=Confirm**: Pressing <**F14**> when it is allowed will start or submit the actual process to close out an export batch and produce the IBM i save file that can be moved to another LSAM environment for importing.
 
-#### Fully Automated Import Process (LSAIMPGET)
+### Automated Import Process (LSAIMPGET)
 
 The LSAM command LSAIMPGET (Get LSAM data Import SAVFs) consolidates both phase one and phase two of the Import process. When there are not exceptional circumstances, this command is able to find one or more import batch save files and then execute the whole process of restoring the temporary data libraries and posting the data to the target LSAM database. This command can be used instead of the menu functions and commands documented above in this section about the Import process.
 
@@ -1138,9 +1156,9 @@ To submit this command to a batch job, use the IBM i command SBMJOB and include 
 
 After an import batch has been posted to the LSAM database, the import process should be audited to prove that results are correct using two tools. One is the display of the import activity and error log file, and the other is to find and review the import process batch report.
 
-## Menu Option 6 = Display Import Activity/Error Log
+### Menu Option 6 = Display Import Activity/Error Log
 
-### EXIL00R1 - Display Data Import Activity Log
+#### EXIL00R1 - Display Data Import Activity Log
 
 #### Menu Pathways
 
@@ -1148,9 +1166,9 @@ After an import batch has been posted to the LSAM database, the import process s
 - A detailed explanation about the log view is provided above, under the Export Activity Log. Note in the screen for this section how an error message is marked by a Typ value of **E** and the error message ID is colored red under the Entry... column.
 - The Entry detail for the error screen is described below.
 
-## Option 5 = Import Activity Log Detail
+### Option 5 = Import Activity Log Detail
 
-### EXIL00R5 - Import Activity Log Detail
+##### EXIL00R5 - Import Activity Log Detail
 
 A detailed description of this screen is provided above under the Export Activity Log.
 
@@ -1273,7 +1291,7 @@ Both types of data replacement are always supported by a backup process. A save 
 
 *RMV = Removing records is required for some files where records must work together as a group. For any one record to be updated, the whole group must first be removed before the new data can be imported (also as a group).
 
-### Rollback Process
+## Rollback Process
 
 If a data import produces undesirable results, it is possible to remove the imported data and restore the LSAM database to its prior condition using option **9=Rollback** from the Work with Import Batches list display.
 
@@ -1296,22 +1314,22 @@ When the Import batch control record has been identified, type option **9** next
 Main Menu > Events and Utilities menu (#3) > Data import/Import Utilities menu (# 10) > option 4 > option 9
 
 #### Fields
-- Heading fields: Refer to previous displays for documentation of the same fields. Only fields unique to this display are listed in this table. 
-- Rollback save file name: This is the name of the save file that contains the LSAM database records backups from when the Import batch was posted. 
-- Rollback SAVF library: The library location of the save file that was created during the Import posting process. This library name is taken from the specific Import batch 
+- **Heading fields**: Refer to previous displays for documentation of the same fields. Only fields unique to this display are listed in this table. 
+- **Rollback save file name**: This is the name of the save file that contains the LSAM database records backups from when the Import batch was posted. 
+- **Rollback SAVF library**: The library location of the save file that was created during the Import posting process. This library name is taken from the specific Import batch 
 control record, so normally it should not be changed. However, the field may be updated in case the site has decided to move the database backup save files to another location, or in case the save file had to be restored from an off-system backup medium into a temporary working library.
-- Print posting report?: 
-  -   0=No.                                
-  -   1=Yes. Always use option 1 in orderto obtain the posting report. It is recommended that the rollback audit report be reviewed to assure the results are expected. This report can also be used as a guide to search for the actual records in the LSAM inquiry functions as an additional means of auditing the results.
-- Submit job to batch?:
-  -   0=No.                             
-  -   1=Yes. When this option is specified, the following fields may be used to override the default values for the job description and job queue.
-- Job description: The IBM i job description that governs the attributes of the batch job that will be submitted.
-- Job description library: The name of the IBM i library where the job description is located.
-- Job queue:
-  -  *JOBD = use the job queue named in the job description.
-  -  Queue name = use a different job queue to route the batch job into an IBM i subsystem.  
-- Job queue library: The name of the IBM i library where the job queue is located.
+- **Print posting report?**: 
+  - **0=No**.
+  - **1=Yes**. Always use option 1 in orderto obtain the posting report. It is recommended that the rollback audit report be reviewed to assure the results are expected. This report can also be used as a guide to search for the actual records in the LSAM inquiry functions as an additional means of auditing the results.
+- **Submit job to batch?**:
+  - **0=No**.                             
+  - **1=Yes**. When this option is specified, the following fields may be used to override the default values for the job description and job queue.
+- **Job description**: The IBM i job description that governs the attributes of the batch job that will be submitted.
+- **Job description library**: The name of the IBM i library where the job description is located.
+- **Job queue**:
+  - **\*JOBD*8 = use the job queue named in the job description.
+  - **Queue name** = use a different job queue to route the batch job into an IBM i subsystem.  
+- **Job queue library**: The name of the IBM i library where the job queue is located.
 
 #### Functions
 

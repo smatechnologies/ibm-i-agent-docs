@@ -17,7 +17,7 @@ There are two approaches that SMA supports for installing an alternate LSAM envi
 - Install a new environment from the installation save file using the SMASETUP command (refer to [IBM i Agent 18.1 Installation/Upgrade Instructions](../installation/installation.md)).
 - Use the IBM i CPYLIB command (or a similar method for duplicating libraries, such as Save/Restore) to clone an existing LSAM environment and adapt it to an alternate environment with a different library list.
 
-Installing a new copy of the LSAM (especially using the LI040005 installation save file) has the advantage of using the least amount of disk space for the alternate environment. However, the CPYLIB method offers the advantage of preserving existing automation strategies that may have already been configured in the source environment.
+Installing a new copy of the LSAM (especially using the LI181027U (or newer) installation save file) has the advantage of using the least amount of disk space for the alternate environment. However, the CPYLIB method offers the advantage of preserving existing automation strategies that may have already been configured in the source environment.
 
 :::tip
 When using the CPYLIB method, it is necessary to perform two operations in the source environment before beginning the copy process:

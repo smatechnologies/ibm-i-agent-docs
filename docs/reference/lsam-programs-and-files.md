@@ -55,7 +55,7 @@ Three generic programs are distributed with library SMAPGM for use in testing Op
 | GP         | Generic program: Delay job for &Parm secs. (4.0)|
 
 :::tip
-Please verify the authority of the test job user to execute the test programs. Most of the IBM i LSAM software is distributed with *PUBLIC authority set to *REVOKE. The LSAM default user profile set in the LSAM Parameters (LSAM main menu, function 7) which is QSYSOPR may not have been granted authority to use these programs. If not, QSECOFR can grant *USE authority to these programs for QSYSOPR (or another test user configured in OpCon), either using the GRTOBJAUT command or using option 2 from the WRKOBJ command.
+Please verify the authority of the test job user to execute the test programs. Most of the IBM i LSAM software is distributed with \*PUBLIC authority set to \*REVOKE. The LSAM default user profile set in the LSAM Parameters (LSAM main menu, function 7) which is QSYSOPR may not have been granted authority to use these programs. If not, QSECOFR can grant \*USE authority to these programs for QSYSOPR (or another test user configured in OpCon), either using the GRTOBJAUT command or using option 2 from the WRKOBJ command.
 :::
 
 Following is the IBM i command syntax for calling each of these three generic programs, and also a fourth recommendation for another type of test job.

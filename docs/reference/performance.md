@@ -131,4 +131,6 @@ The ability of OpCon to execute most types of command under IBM i makes it possi
 
 A variety of strategies is possible. One simple example that seems apparent is the ability to execute a CHGJOB (change job) command that would alter the run priority or time slice allocated to one or more of the LSAM server jobs. There is information in this documentation about the names of the LSAM server jobs and the purpose of each, starting with [IBM i Components and Operation](../operations/components.md). There are also IBM i commands that can be used to vary the allocation of system resources among IBM i subsystems.
 
+Another option for automation of performance parameter tuning when there is no specific Agent command for the purpose is to configure an Operator Replay Script that navigates to the LSAM Parameter to be changed.
+
 Contact SMA support if further assistance is needed with this topic.

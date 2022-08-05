@@ -22,6 +22,14 @@ The IBM i LSAM includes a server job that is dedicated to managing the spool fil
 
 The LSAM spool file server has two distinct functions. First, it always attempts to find and store a copy of every job's job log report. It stores an index record and stores a copy of the job log report in a database file. The index and the job log copies are then available for retrieval by the JORS server, described above. The job log report copies remain in the LSAM database for the number of days set in the LSAM Parameters, as "Days to keep spool files."
 
+:::tip
+There is an LSAM Parameter (LSAM main menu, option 7, page 2) under LSAM Database Maintenance that controls whether the Agent actually copies every IBM i job log report (from jobs that OpCon starts), or whether the Spool File Server will only store key values that point to the IBM i job where a job log report may or may not still exist in the IBM i output queues.
+
+The control option is called:  ** LSAM copy of job logs?.: N  Y/N **
+
+The default value for this control is N=No because this improves system performance and it also conserves disk storage space.  The only obvious reason to change this control to Y=yes would be if the site uses aggressive IBM i spool file maintenance that deletes spool files after a short time, but the site wants jobs started by OpCon to have access to those job log reports for a longer time.  The Agent database maintenance provides its own separate retention period for days to keep logs.
+:::
+
 The other function performed by the LSAM spool file server is to process all the spool file management requests that were submitted from the OpCon job master record along with the job start request. The server completes tasks such as setting the number of copies and the HOLD and SAVE attributes. It also performs spool file copy routing to output queues and users (that is, to the default output queues assigned to those users).
 
 The spool file server program performance is controlled mostly by the IBM i job attributes. These are set by the values stored in the default LSAM server job description: SMADTA/SMALSAJ00. However, there are two internal performance parameters that can make this server job more or less aggressive. The default values for these parameters should be appropriate for most installations. However, if system performance analysis suggests that the LSAJOR job should be changed to (1) reduce impact on overall system performance or (2) make the spool file server more responsive to spool file management requests, then the internal performance parameters may be adjusted by technical support personnel.

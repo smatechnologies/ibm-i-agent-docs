@@ -30,8 +30,8 @@ This procedure requires that the user is logged on to the IBM i partition as eit
 5. Press <**Enter**> key to store the name of the new environment into the control table.
 6. Type option code **5** in the Opt column to the left of the new environment name.
 7. Press <**Enter**> to continue with data entry of the new library list.
-8. **Type** the library names and optional descriptions that describe the library list for the new environment.
-9. Type field: Type one of the three values listed at the top of the screen to designate which library represents each of these three library roles: SMADTA, SMAPTF and SMAPGM. Each Type value may be used only once, and all three values must be assigned. The values must be listed in order (1=SMADTA, 2=SMAPTF, 3=SMAPGM) somewhere in the library list. There may be more than three libraries in the list. If there are more than three, all the other library names should have blanks under the Type column.
+8. Type the library names and optional descriptions that describe the library list for the new environment.
+9. **Type field**: Type one of the three values listed at the top of the screen to designate which library represents each of these three library roles: SMADTA, SMAPTF and SMAPGM. Each Type value may be used only once, and all three values must be assigned. The values must be listed in order (1=SMADTA, 2=SMAPTF, 3=SMAPGM) somewhere in the library list. There may be more than three libraries in the list. If there are more than three, all the other library names should have blanks under the Type column.
 :::tip
 Libraries do not have to exist at the time they are added to this list, but they must
 exist when the LSAM environment is entered or started. Do not forget to include the designated
@@ -56,32 +56,33 @@ SMAGPL1/SMASETLIBL ENV(alt_environment_name)
 ```
 LSAINIT ENV(alt_environment_name) GPL(SMAGPLn)
 ```
-Instructions for the prompt screen that will appear are provided below, under the Screens and Windows
-section of this topic. More information about these required configuration field values can be found in
-the Configuration topic of this documentation.
+
+- Instructions for the prompt screen that will appear are provided below, under the Screens and Windows section of this topic. More information about these required configuration field values can be found in the Configuration topic of this documentation.
 
 16. Delete the subsystem description that was duplicated from SMADTA (but do not delete the subsystem description that would have been created during a new installation of this alternate environment):
 ```
-DLTSBSD SBSD(my_dta/SMASBS
+DLTSBSD SBSD(my_dta/SMASBS)
 ```
 17. Enter the menu system for the new environment just created using one of the following commands:
 ```
-STRSMA ENV(alt_environment_name)
+SMAGPLn/STRSMA ENV(alt_environment_name)
 ```
 or
 ```
-LSAMENU
+SMAGPn/LSAMENU
 ```
+...where "SMAGPLn" represents the alternate name for the SMAGPL library that belongs to the new LSAM environment.
 
 18. Press <**Enter**> to continue past the OpCon welcome screen, if the STRSMA command was used.
 19. Select function 7: LSAM Parameters by typing a **7** on the Selection line and pressing <**Enter**> to continue. Review and revise the LSAM general control parameters, as necessary. For example, LSAM log file purging controls might be different for a test environment.
 20. For each LSAM sub-menu, where option 7 is used to configure the feature, review the configuration options to make sure they are appropriate for the new LSAM environment. However, do not configure test LSAM environments to use Job Tracking or Restricted Mode functions, unless during special test circumstances it is well understood how to avoid conflicts with a production LSAM environment.
 
-The next step requires an understanding of how to configure OpCon options at the SAM console. 
+#### The next step requires an understanding of how to configure OpCon options at the SAM console. 
 
 21.  **Add a new machine definition** to the machine table at the OpCon User Interface (EM, SM), using the new LSAM Name.
     
-    a. Specify that the machine type is IBM i.
+       - Specify that the machine type is IBM i.
+
 22. Enter the new LSAM environment in the IBM i partition using the **STRSMA** command or the **LSAMENU** command. For more information, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command). Be sure to specify the new environment name for the ENV parameter of this command:
 ```
 STRSMA ENV(alt_environment_name)warning
