@@ -106,7 +106,7 @@ The Allow Restore of security sensitive Objects (QALWOBJRST) system value specif
 
 These activities can fail if the value of QALWOBJRST is not set to *ALL. Use this procedure:
 
-- Use the command DSPSYSVAL to view and record the current setting for the value QALWOBJRST. Current value: ___________________. If the value is already *ALL, skip this procedure.
+- Use the command DSPSYSVAL to view and record the current setting for the value QALWOBJRST. Current value: ___________________. If the value is already \*ALL, skip this procedure.
 - If you have previously locked this system value, go to SST (system service tools) and unlock it.
 - Use the command CHGSYSVAL to set QALWOBJRST to a value of *ALL.
 - Complete the software installation or upgrade.
@@ -174,7 +174,7 @@ Upgrades from LSAM versions older than 04.00.03 require the use of the LI040003 
 
 After upgrading to version 04.00.03, it is not necessary to apply all cumulative PTFs to that version of the LSAM, unless the Cloning process outlined below will be used. The upgrade to version 18.1 will work from any patch level of version 04.00.03.
 
-Please ask the Support team at SMA for assistance installing a manual fix to the 04.00.03 product before you attempt to install cumulative PTFs for the first time. The fix was contained in PTF * 403033 and the solution is to replace the program UPRCASR. This program can be replaced manually before starting the LSAM version 04.00.03 PTF application process.
+Please ask the Support team at SMA for assistance installing a manual fix to the 04.00.03 product before you attempt to install cumulative PTFs for the first time. The fix was contained in PTF # 403033 and the solution is to replace the program UPRCASR. This program can be replaced manually before starting the LSAM version 04.00.03 PTF application process.
 
 ## Instructions for Upgrading from 04.00.03 to 18.1
 
@@ -184,7 +184,7 @@ The foundation for upgrade preparation is determined by the Installation Strateg
 
 During the upgrade process, the LSAM install command SMASETUP will rename the existing versions of the SMAGPL, SMAPTF and SMAPGM libraries to a backup name based on the time of day at execution, prefixed by one of these strings:
 
-SMAG*, SMAT* and SMAP*
+SMAG\*, SMAT\* and SMAP\*
 
 However, the SMADTA library will be upgraded in place. Therefore, it is critical to perform a complete backup of the SMADTA library after operations are suspended for the LSAM Environment, and just before beginning the upgrade procedures.
 
@@ -192,16 +192,16 @@ However, the SMADTA library will be upgraded in place. Therefore, it is critical
 
 The only libraries affected by an upgrade to version 18.1 are those libraries that define an isolated LSAM Environment:
 
-- SMAGPL: Contains the LSAM PTF control files and programs.
+- **SMAGPL**: Contains the LSAM PTF control files and programs.
 - An optional, alternate library containing LSAM environment management commands, if that library is different from SMAGPL. Use the IBM i command DSPDTAARA to view the value stored in the data area: SMADTA/SMAGPL. If it is not the same as the actual SMAGPL library, then this other library will also be affected.
-- SMADTA: The LSAM database library, with all master files and log files for daily LSAM operation.
-- SMAPTF: Now used only to store backup save files of LSAM objects replaced by recently installed LSAM PTFs.
-- SMAPGM: Most of the LSAM program objects (except the PTF tools stored in library SMAGPL).
+- **SMADTA**: The LSAM database library, with all master files and log files for daily LSAM operation.
+- **SMAPTF**: Now used only to store backup save files of LSAM objects replaced by recently installed LSAM PTFs.
+- **SMAPGM**: Most of the LSAM program objects (except the PTF tools stored in library SMAGPL).
 
 Libraries that are utility libraries, currently shared by any/all LSAM environments (though that sharing will be eliminated in a future version of the LSAM), will NOT be affected by the upgrade:
 
-- SMALOG: Stores IBM i save files created by the LSAM daily maintenance and the SMARGZ command, as well as LSAM Export/Import save files (unless the user specifies a different library to hold these save files).
-- SMABKP: Stores backup copies of files replaced by the SMA File Transfer utility, whenever an OpCon job is configured to request a backup before an existing file will be replaced by a file transfer.
+- **SMALOG**: Stores IBM i save files created by the LSAM daily maintenance and the SMARGZ command, as well as LSAM Export/Import save files (unless the user specifies a different library to hold these save files).
+- **SMABKP**: Stores backup copies of files replaced by the SMA File Transfer utility, whenever an OpCon job is configured to request a backup before an existing file will be replaced by a file transfer.
 
 ### Using Library Cloning to Create a Test Upgrade Environment
 
@@ -220,7 +220,7 @@ Please find the document about Cloning an LSAM Environment under either of these
 
 Both the backup steps and the upgrade steps can be completed much more quickly if the LSAM database in the SMADTA library has been effectively purged using the LSAM Parameters database maintenance values (LSAM main menu, option 7).
 
-Use the IBM i command DSPOBJD to display a list of all objects of type *FILE in the SMADTA library (or its equivalent in an alternate environment). Search the list for any files that are extremely large.
+Use the IBM i command DSPOBJD to display a list of all objects of type \*FILE in the SMADTA library (or its equivalent in an alternate environment). Search the list for any files that are extremely large.
 
 If changes are required to make the LSAM log file purging more effective, it will be necessary to:
 
@@ -293,7 +293,7 @@ Proceed to the New Install Instructions. These instructions include any exceptio
 
 From time to time, SMA may produce updated versions of the LSAM installation save file, to include previously released software patches (LSAM PTFs). This technique reduces the time required for an installation by eliminating a separate step to apply several older software patches.
 
-A unique name is assigned to each new version of the LSAM installation save file, matching the software patch level (also referred to as the LSAM PTF Level). For example, if the installation save file includes PTF * 181013 (that is, patch level 013 for version 181 of the LSAM), then the installation save file will be named LI181013.
+A unique name is assigned to each new version of the LSAM installation save file, matching the software patch level (also referred to as the LSAM PTF Level). For example, if the installation save file includes PTF # 181013 (that is, patch level 013 for version 181 of the LSAM), then the installation save file will be named LI181013.
 
 However, the content of the installation save file will always be contained in the original version build library named LI181001.
 
@@ -310,7 +310,7 @@ After the LSAM installation or upgrade is complete, using the Agent command SMAG
 
 ### Log in to IBM i
 
-1. From an IBM i green screen workstation (such as an Access for IBM i display emulation session) or from an IBM i console, sign on to the system as **QSECOFR**. A user profile with all object (*ALLOBJ) authority and security administration (*SECADM) authority may also be used.
+1. From an IBM i green screen workstation (such as an Access for IBM i display emulation session) or from an IBM i console, sign on to the system as **QSECOFR**. A user profile with all object (\*ALLOBJ) authority and security administration (\*SECADM) authority may also be used.
 2. Enter **CALL QCMD** to go to the full **Command Entry** screen. This makes installation messages and steps easier to monitor.
 3. Change the interactive job attributes using the following two commands.
 4. Create a working save file for use during the installation to the IBM i partition by entering the command:
@@ -326,7 +326,7 @@ From a Windows machine, use the following steps:
 7. Click **OK**.
 8. Change the drive reference to the "OpCon Installation Media" by entering the Drive Letter followed by a colon (:). When using an installation save file that was transferred electronically instead of on an installation media, change the drive reference to the hard disk (or network) location of the installation save file.
 
-:::tip Example
+:::info example
 ```
 C:\your_default_directory> D:
 D:\>
@@ -335,7 +335,7 @@ D:\>
 
 9. Change the directory to the "IBM i LSAM installation directory". When using an installation save file that was transferred electronically or a custom installation media, the directories shown in the following example will probably have different names.
 
-:::tip Example
+:::info example
 ```
 D:\>cd Install\LSAM\IBM i LSAM
 D:\Install\LSAM\IBM i LSAM>
@@ -343,13 +343,13 @@ D:\Install\LSAM\IBM i LSAM>
 :::
 
 10. At the prompt, enter **ftp** <LSAM Machine Name or TCP/IP address>. In order to use the LSAM Machine Name, this name must be registered either in the MS Windows "hosts" file or it must be found in the connecting networks domain name services table.
-11. Log in as **QSECOFR** with the appropriate /<QSECOFR password/>. An alternate LSAM installation user profile that was used to create the save file in QGPL may also be used.
+11. Log in as **QSECOFR** with the appropriate QSECOFR password. An alternate LSAM installation user profile that was used to create the save file in QGPL may also be used.
 12. Enter **bin** to select a binary transfer type.
 13. Enter the following FTP PUT commands to send the file.
 14. Enter **quit** to exit the FTP utility.
 15. Enter **exit** to close the command entry window.
 
-:::tip Example
+:::info example
 ```
 The following shows a typical FTP procedure in a DOS command window for
 a new install.
@@ -455,7 +455,7 @@ More information on this subject is offered in the LSAM Environment Management s
     Type the **SMASETUP** command and then press function key **F4** to view and enter the ALTENV parameter value correctly. Then press **Enter** to continue.
 
   :::warning
-  Please contact SMA Technologies Support before attempting to use the ALTENV(*YES) option for the first time. There are additional installation and  configuration steps required when multiple environments are set up. There steps are documented in the LSAM Environment Management section of the IBM i LSAM documentation. However, SMA Technologies wants to consult with clients who plan to use multiple environments before they attempt to install them.
+  Please contact SMA Technologies Support before attempting to use the ALTENV(\*YES) option for the first time. There are additional installation and  configuration steps required when multiple environments are set up. There steps are documented in the LSAM Environment Management section of the IBM i LSAM documentation. However, SMA Technologies wants to consult with clients who plan to use multiple environments before they attempt to install them.
   :::
 
 22. As objects are restored from the installation save file, there are status messages displayed at the bottom of the screen to indicate the progress of the installation. The display screen may also appear blank for some time. <u>No action is required</u>. 
@@ -548,7 +548,7 @@ The CONVERT flag is used during the SMASETUP installation process, only for upgr
 
 Consider the following installation options and specify the three field values very carefully according to the selected scenario.
 
-### 1. Default Installation
+#### 1. Default Installation
 
 - SMAUTL = SMAGPL
 - SMAGPL = SMAGPL
@@ -558,7 +558,7 @@ Both the PTF control objects and the LSAM environment utilities will be installe
 
 Remember, using this default installation of the LSAM may require that LSAM environment management commands be qualified with the utility library name, such as: SMAGPL/STRSMA.
 
-### 2. Use (or retain) QGPL for LSAM Environment Management
+#### 2. Use (or retain) QGPL for LSAM Environment Management
 
 - SMAUTL = SMAGPL
 - SMAGPL = QGPL
@@ -568,7 +568,7 @@ The PTF control objects will be installed, as always, in the SMAGPL library. The
 
 This installation option offers the convenience of easy access to LSAM environment management commands, since the QGPL library is typically included in every system, user and job description library list. However, SMA recommends against installing the LSAM utilities to the QGPL library. Instead, the client may choose to copy only certain convenience commands, such as STRSMA, from SMAGPL to QGPL.
 
-### 3. For Testing and Development: Alternate Location for SMAGPL {#for-testing-and-development-alternate-location-for-smagpl style="font-weight: bold;"}
+#### 3. For Testing and Development: Alternate Location for SMAGPL {#for-testing-and-development-alternate-location-for-smagpl style="font-weight: bold;"}
 
 - SMAUTL = SMAGPL1
 - SAMGPL = SMAGPL1
@@ -712,7 +712,7 @@ ENV(*DEFAULT) SMADTA(SMADTA) SMAPTF(SMAPTF)
 SMAPGM(SMAPGM)
 ```
 
-To install an alternate LSAM environment, for example an environment named IBMILSAM1, set the ALTENV parameter to (*YES) and include the ENV() keyword with the name of the alternate LSAM environment, as follows:
+To install an alternate LSAM environment, for example an environment named IBMILSAM1, set the ALTENV parameter to (\*YES) and include the ENV() keyword with the name of the alternate LSAM environment, as follows:
 
 ```
 LI181001/SMASETUPB SRCLIB(LI181001) SMAUTL(SMAGPL1) 
@@ -754,23 +754,23 @@ Provided here are the steps to follow after installation.
 
 3. Register an OpCon User for IBM i Agent to submit External Event commands.
 
-   a.  Create and register, using the OpCon user interface Security functions, an OpCon External Event command user profile that the LSAM can use when generating and transmitting External Event commands to the OpCon server.
+   - Create and register, using the OpCon user interface Security functions, an OpCon External Event command user profile that the LSAM can use when generating and transmitting External Event commands to the OpCon server.
 
-     i.  Note that OpCon stores a separate Password on its user profiles just for External Events.
+     - Note that OpCon stores a separate Password on its user profiles just for External Events.
 
-     ii. Currently, the User ID must be all capital letters and not longer than 10 characters.
+     - Currently, the User ID must be all capital letters and not longer than 10 characters.
 
-     iii. Currently, the Password can be any characters, but it is limited to only 10 characters. (SMA intends to support 128-character passwords in the near future, as it already does for the Operator Replay Scripting tool.)
+     - Currently, the Password can be any characters, but it is limited to only 10 characters. (SMA intends to support 128-character passwords in the near future, as it already does for the Operator Replay Scripting tool.)
 
-   b.  Use the LSAM sub-menu 3, option 2, to register the User ID and Password.
+   - Use the LSAM sub-menu 3, option 2, to register the User ID and Password.
 
-     i.  The LSAM stores the Password in an encrypted form.
+     - The LSAM stores the Password in an encrypted form.
 
 4. The LSAM standard message queue that receives IBM i job completion messages must permit *PUBLIC to have *USE authority. This will be done already for new installs of version 18.1 of the LSAM, but Upgrades may still need attention.
 
-   a.  Always use the LSAM sub-menu 9, option 8: Work with Object Authority to add or change the authority of any LSAM objects (programs, files, queues, etc.). 
+   - Always use the LSAM sub-menu 9, option 8: Work with Object Authority to add or change the authority of any LSAM objects (programs, files, queues, etc.). 
 
-   b.  If necessary, add a new record to the LSAM Object Authority master file, using the following field values:
+   - If necessary, add a new record to the LSAM Object Authority master file, using the following field values:
    ```
    Object name . . : SMAMSGQ
    Object type . . : *MSGF
@@ -782,36 +782,36 @@ Provided here are the steps to follow after installation.
 
 5. Modify the IBM i system startup program.
 
-   a. To fully automate the recovery of the LSAM servers after a system IPL, the LSAM command that restarts the LSAM servers must be included in the system startup program.
+   - To fully automate the recovery of the LSAM servers after a system IPL, the LSAM command that restarts the LSAM servers must be included in the system startup program.
 
-   b. Use the IBM i command DSPSYSVAL to find the name of the system startup program in the system value QSTRUPPGM. This program, or a user replacement for it, must include the LSAM command SMAGPL/STRSMASYS ENV(\<environment name\>), where the default value for the environment name can be (*DEFAULT).
+   - Use the IBM i command DSPSYSVAL to find the name of the system startup program in the system value QSTRUPPGM. This program, or a user replacement for it, must include the LSAM command SMAGPL/STRSMASYS ENV(\<environment name\>), where the default value for the environment name can be (*DEFAULT).
    The ENV parameter of the STRSMASYS command must specify the name of the LSAM environment where the Restricted Mode job was (or could be) executed, if this is not the default LSAM environment.
 
-   c. The existing source for the Control Language program used for system startup, unless it has been modified, can usually be retrieved using the IBM i command RTVCLSRC.
+   - The existing source for the Control Language program used for system startup, unless it has been modified, can usually be retrieved using the IBM i command RTVCLSRC.
 
-     i.  SMA suggests storing the retrieved source into the source file QGPL/QCLSRC, or a user-designated library can be used instead of QGPL, since the QGPL library gets replaced when the IBM i operating system is upgraded. Use the original program name for the retrieved source member.
+     - SMA suggests storing the retrieved source into the source file QGPL/QCLSRC, or a user-designated library can be used instead of QGPL, since the QGPL library gets replaced when the IBM i operating system is upgraded. Use the original program name for the retrieved source member.
 
-     ii. Copy the original source code to another source file member, using a new name for the copy that will be modified.
+     - Copy the original source code to another source file member, using a new name for the copy that will be modified.
 
-   d. The LSAM startup command must be preceded by a DLYJOB command, allowing time for the system to start TCP/IP services before attempting to start the LSAM Server jobs. Failing to allow sufficient time for TCP/IP to start will usually result in a failure of two LSAM communication programs that connect it to the OpCon server. With modern IBM Power Processors, it typically takes less than 30 seconds to complete TCP/IP startup, but this may vary depending upon how many TCP/IP servers are being started within a given partition.
+   - The LSAM startup command must be preceded by a DLYJOB command, allowing time for the system to start TCP/IP services before attempting to start the LSAM Server jobs. Failing to allow sufficient time for TCP/IP to start will usually result in a failure of two LSAM communication programs that connect it to the OpCon server. With modern IBM Power Processors, it typically takes less than 30 seconds to complete TCP/IP startup, but this may vary depending upon how many TCP/IP servers are being started within a given partition.
 
-     i.  Following are the two lines which must be added to the system startup program. Be sure to inspect the current source of this program to ascertain whether there is already a DLYJOB command following the startup of TCP/IP services.
+     - Following are the two lines which must be added to the system startup program. Be sure to inspect the current source of this program to ascertain whether there is already a DLYJOB command following the startup of TCP/IP services.
      ```
      DLYJOB DLY(30)
      SMAGPL/STRSMASYS ENV(SMADEFAULT)
      ```
 
-   e. To accomplish the program changes, SMA recommends the WRKMBRPDM command for modifying source and compiling programs, however many production partitions do not include this programmer convenience tool.
+   - To accomplish the program changes, SMA recommends the WRKMBRPDM command for modifying source and compiling programs, however many production partitions do not include this programmer convenience tool.
 
-     i. Alternative commands that can be used in most environments include:
-     - CPYSRCF
-     - ADDPFM (to add a new source file member, if this was not already done by the CPYSRCF command)
-     - EDTF (a simple text editor; see the IBM i Knowledge Center or the IBM developerWorks web site for instructions and hints about using EDTF to edit source members).
+     - Alternative commands that can be used in most environments include:
+        - CPYSRCF
+        - ADDPFM (to add a new source file member, if this was not already done by the CPYSRCF command)
+        - EDTF (a simple text editor; see the IBM i Knowledge Center or the IBM developerWorks web site for instructions and hints about using EDTF to edit source members).
      - CRTCLPGM
 
-     ii. SMA recommends not overlaying the original system startup program, but instead creating the new program with a different name (if stored into the QSYS system root library, as IBM did), or storing the new program into the QGPL library (but QGPL contents may be lost during the next IBM i operating system upgrade, so another user library can be used, such as the SMAGPL library).
+     - SMA recommends not overlaying the original system startup program, but instead creating the new program with a different name (if stored into the QSYS system root library, as IBM did), or storing the new program into the QGPL library (but QGPL contents may be lost during the next IBM i operating system upgrade, so another user library can be used, such as the SMAGPL library).
 
-   f. Upon completion of the program preparation, use the CHGSYSVAL command to register the new, replacement startup program. The value of this system value must be 20 characters long, and it must list the program name in columns 1 -- 10, followed by the library name in columns 11 -- 20. For example:
+   - Upon completion of the program preparation, use the CHGSYSVAL command to register the new, replacement startup program. The value of this system value must be 20 characters long, and it must list the program name in columns 1 -- 10, followed by the library name in columns 11 -- 20. For example:
 
    ```
    CHGSYSVAL SYSVAL(QSTRUPPGM) VALUE('QSTRUPMOD QSYS')
@@ -819,19 +819,19 @@ Provided here are the steps to follow after installation.
 
 6. Apply the latest LSAM PTFs (software patches).
 
-   a.  Currently, most LSAM installations include the majority of available patches already applied to the current version of the LSAM. However, there will likely be at least a few recently released fixes, and perhaps some important and useful enhancements, that should be added to each install or upgrade using the LSAM PTF tools in sub-menu 9.
+   - Currently, most LSAM installations include the majority of available patches already applied to the current version of the LSAM. However, there will likely be at least a few recently released fixes, and perhaps some important and useful enhancements, that should be added to each install or upgrade using the LSAM PTF tools in sub-menu 9.
 
-   b.  Verify the current LSAM PTF level. An easy way to do this is to  execute the command SMAGPL/STRSMA, and then examine the bottom, right corner of the "LSAM splash display" that first appears. 
+   - Verify the current LSAM PTF level. An easy way to do this is to  execute the command SMAGPL/STRSMA, and then examine the bottom, right corner of the "LSAM splash display" that first appears. 
     
-   c.  Compare the LSAM current PTF level with the latest PTF level published by SMA. The latest PTF level available can be determined by examining the "IBM i LSAM (version) Patch Readme.PDF" document.
+   - Compare the LSAM current PTF level with the latest PTF level published by SMA. The latest PTF level available can be determined by examining the "IBM i LSAM (version) Patch Readme.PDF" document.
 
-   d.  Two stand-alone PDF documents may prove helpful when undertaking the first round of LSAM PTF installation:
-    i.  IBM i LSAM (version) simplified PTF instructions.
-    ii. IBM i Agent (LSAM) instructions for partial PTF save files
+   - Two stand-alone PDF documents may prove helpful when undertaking the first round of LSAM PTF installation:
+    - IBM i LSAM (version) simplified PTF instructions.
+    - IBM i Agent (LSAM) instructions for partial PTF save files
 
-   e.  All the latest IBM i LSAM support resources, including the two PTF save files and the documents mentioned here, may be found at SMA's current ftp server that is accessed via the Support Portal from the SMA Technologies web site.
+   - All the latest IBM i LSAM support resources, including the two PTF save files and the documents mentioned here, may be found at SMA's current ftp server that is accessed via the Support Portal from the SMA Technologies web site.
 
-      i.  Currently, the ftp server may also be accessed directly from a browser or from a file transfer tool (such as FileZilla) at this URL: files.smasolutions.it.
+      - Currently, the ftp server may also be accessed directly from a browser or from a file transfer tool (such as FileZilla) at this URL: files.smasolutions.it.
 
    :::tip
    This URL for SMA's secure ftp server will be changing. View the Support page of SMA's latest web site or contact the SMA Support team for assistance with accessing the current secure ftp server.
@@ -848,7 +848,7 @@ Provided here are the steps to follow after installation.
      - Verify the daily maintenance hour on page 2 of the LSAM Parameters. If there is more than one LSAM Environment within the same partition, it is critical that the two environments start their daily log purging at a different time (separated by at least 1 or 2 minutes), to assure that their daily backup save files are named differently, since they use the system clock time as part of the name.
      - Older LSAM installations that were upgraded may need to have their daily log purging values reviewed. Very old LSAM installations did not get useful values set automatically, although brand new installations of version 18.1 come with reasonable purge criteria already set.
    - Check each LSAM sub-menu configuration to make sure that the normal daily, or "debug" logging is activated. This is very helpful for diagnosing configuration errors, and it is also useful for supporting security and other audits of the automation. However, do NOT activate any log option that is called a "trace" log, since those options produce a large amount of data very quickly. Only use trace log options when requested by SMA Support.
-     - The LSAM Management sub-menu 6 has an option 4 that can be used to review the settings for multiple logging options. All of the  logging should normally be set to "*YES" on the main page, except that all the "Trace" logging options should be set to "*NO". Observer the on-screen instructions for activating the settings.
+     - The LSAM Management sub-menu 6 has an option 4 that can be used to review the settings for multiple logging options. All of the  logging should normally be set to "\*YES" on the main page, except that all the "Trace" logging options should be set to "\*NO". Observer the on-screen instructions for activating the settings.
        - Use function key **F2** from the logging management screen to see a summary of several LSAM daily logging options. All except for any "Trace" options should be set to "1" or "y", whatever is the active state.
     - The SMA File Transfer Configuration should be checked for the following settings.
       - Verify the external IP Address.
@@ -863,15 +863,15 @@ Provided here are the steps to follow after installation.
 
    The **IBM i Agent** User Help includes a topic that discusses IBM i LSAM Security and Object Authority. If this installation is not for a simple demonstration, or if the installing site has any concerns about system security, object authority and/or the broad default authorities granted to the LSAM server user profile SMANET, the LSAM Security and Object Authority topic should be studied before completing the following installation configuration steps.
 
-   The user profile(s) for which IBM i jobs are submitted must have authority to use the IBM i work management objects (Job Description, Job Queue, Output Queue) to process a job. Normally, this is not a problem unless the customer has modified the authority of these objects. The LSAM Parameters control file is installed with the following default object names for submitting jobs. These values are used to replace the asterisk (*) value that OpCon may insert in some job start request fields to represent a request to "use the LSAM default value."
+   The user profile(s) for which IBM i jobs are submitted must have authority to use the IBM i work management objects (Job Description, Job Queue, Output Queue) to process a job. Normally, this is not a problem unless the customer has modified the authority of these objects. The LSAM Parameters control file is installed with the following default object names for submitting jobs. These values are used to replace the asterisk (\*) value that OpCon may insert in some job start request fields to represent a request to "use the LSAM default value."
 
-     a.  User profile: **QSYSOPR**
+  - User profile: **QSYSOPR**
 
-     b.  Job description (JOBD): **QBATCH**
+  - Job description (JOBD): **QBATCH**
 
-     c.  Job queue (JOBQ): **QBATCH**
+  - Job queue (JOBQ): **QBATCH**
 
-     d.  Output queue (OUTQ): **QPRINT**
+  - Output queue (OUTQ): **QPRINT**
 
    If these default values are changed using LSAM Parameter maintenance (described in the IBM i Agent User Help), be sure to modify the next step so that the authority maintenance commands address the appropriate objects.
 
@@ -879,7 +879,7 @@ Provided here are the steps to follow after installation.
 
 Both the submitted job user profile and the IBM i LSAM server user profile SMANET must have authority to use the queues and the job description required to run jobs scheduled in OpCon.
 
-If user SMANET is allowed to keep the suggested *ALLOBJ authority, it is not necessary to perform this step to enable the LSAM server user profile to complete its tasks. However, if revoking the *ALLOBJ special authority, it may necessary to grant authority to the objects that SMANET will use when submitting jobs. A more detailed explanation of this step, including references to additional object authorities that may be required, can be found in [LSAM Security and Object Authority](../security/strategy.md).
+If user SMANET is allowed to keep the suggested \*ALLOBJ authority, it is not necessary to perform this step to enable the LSAM server user profile to complete its tasks. However, if revoking the \*ALLOBJ special authority, it may necessary to grant authority to the objects that SMANET will use when submitting jobs. A more detailed explanation of this step, including references to additional object authorities that may be required, can be found in [LSAM Security and Object Authority](../security/strategy.md).
 
 The batch job user profile specified in the OpCon job master record, for Batch Jobs and some other job sub-types, must also be granted authority to use the basic IBM i work management objects, otherwise the LSAM will report a failure to start the job. (NOTE: When jobs cannot be started by the LSAM, there will be no job log report to view using the OpCon JORS function "view output." Instead, diagnostic information is available from the active job log of the LSAM server job TXMMNG.
 

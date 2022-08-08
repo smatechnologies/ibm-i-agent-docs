@@ -169,7 +169,7 @@ There are two ways to create new scripts: Either create a new script from scratc
     a.  In the **Step description** field, type a text description for the script (up to 40 characters).
 
     b.  Under the String and function to send heading, in the **String to send** field, type a string to send. Press <**F4**> for a list of cursor control characters that can be added to the string, or <**F6**> for a list of Operator Replay variable tokens that can be inserted into the string, or <**F8**> to get help selecting and formatting an IBM i command.
-    :::tip Example
+    :::info example
     Entering the string SMAGPL/STRSMA takes the Replay job to the LSAM Main Menu.
     :::
 
@@ -339,7 +339,7 @@ For information on defining an IBM i Job, refer to [IBM i Job Details](https://h
 
 Optionally, rules may be defined externally to the Operator Replay script that specify data to be captured from screen formats received by the Operator Replay script execution driver program. For each element of captured data there may be one or more Captured Data Response Rules defined.
 
-:::tip Example
+:::info example
 Data Capture and Response Rules can be used to dynamically vary the way an Operator Replay script responds to screen formats! An explanation follows...
 An important example of how these features may be used is when an Operator Replay script step String to send includes a token for a variable. A captured data response rule can be created that will update the value of the variable before it is used. This makes it possible to dynamically vary the response of the Operator Replay script to each screen that is presented, based on the content of the screen format at execution time.
 :::

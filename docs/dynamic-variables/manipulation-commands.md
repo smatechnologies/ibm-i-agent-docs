@@ -38,7 +38,7 @@ The example above shows a command that will add a new Dynamic Variable named "VA
 As this example command is executed, an initial value is set. The example shows a value string enclosed in quotes that represents a monetary amount string of $US with six whole numbers (dollars) and two decimal places (cents). This string value might have been provided by an OpCon Property or by a different LSAM Dynamic Variable, depending on where this example command was actually being executed. But the value that will be stored as the initial value of the variable is only the eight digits, like this: 12345678 because the CMPNUM (compress numeric) parameter is set to 'Y' = Yes.
 
 Refer to additional information above about how to create and use user-defined programs to calculate Dynamic Variable token values at run time. User-defined programs receive the Dynamic Variable name and the current variable value as input parameters.
-:::tip Example
+:::info example
 SETDYNVAR command increases a numeric value.
 - Step 1: A numeric Dynamic Variable is added to the LSAM table:
 ```
@@ -229,7 +229,7 @@ In summary, the results of the WAITDYNVAR should first be tested by comparing th
 
 In the following example of the WAITDYNVAR command, the optional parameter for keyword VALUE2 can be left blank, if only one value is to be tested. The timing parameters demonstrate a maximum wait time of 60 minutes, that is, a DELAY time of 10 seconds multiplied by 360 loops (repeated checking of the named Dynamic Variable).
 
-:::tip Example
+:::info example
 ```
 WAITDYNVAR VARNAM(dyn_var_name) VALUE1(value_string)
 VALUE2(value_string) DELAY(10) NBRLOOPS(360)
@@ -293,7 +293,7 @@ This command may not be useful in many scripted applications, except it could be
 
 The LSAM command DSPDYNVAR can be used to return a completion message that includes the Dynamic Variable name, followed by a labeled value string and then the time stamp when the value was last updated, such as illustrated here:
 
-:::tip Example
+:::info example
 ACHCLTMAIL VALUE = YES Last updated: 2012-06-08-14.38.49.574000
 :::
 

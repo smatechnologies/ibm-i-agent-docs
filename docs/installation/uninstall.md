@@ -42,13 +42,13 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
   ```
 
   The following steps 2) or 3) explain how to remove the LSAM utilities, if they were installed in the IBM i system library QGPL. Do not perform these steps if any LSAM environment will remain installed in this IBM i partition (LPAR). These steps 2) or 3) are also not necessary if the LSAM utilities were installed exclusively into the SMAGPL library and library QGPL was not being used by the LSAM.
-2. *EITHER*: Execute the SMA QGPL utilities removal command:
+2. ***EITHER***: Execute the SMA QGPL utilities removal command:
 
   ```
   SMAPGM/UNINSTQGPL
   ```
 
-3. *OR*: If the SMAPGM library was already deleted, or the UNINSTQGPL command fails for any reason, use the following manual instructions to remove every SMA utility object from the QGPL library. Do not be concerned if not every object is found in QGPL.
+3. ***OR***: If the SMAPGM library was already deleted, or the UNINSTQGPL command fails for any reason, use the following manual instructions to remove every SMA utility object from the QGPL library. Do not be concerned if not every object is found in QGPL.
     - Delete the following commands from library QGPL:
 
       ```
@@ -143,9 +143,9 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
       DLTDTAARA *<Data Area Name>*
       ```
 
-      - PTF*
+      - PTF\*
 
-        More than one data area (or none) may be found – the names will begin with three letters 'PTF' followed by 6 digits; these are SMA update control data areas, not IBM PTF controls. To list all of these that should be deleted, use this command: WRKOBJ QGPL/PTF* *DTAARA
+        More than one data area (or none) may be found – the names will begin with three letters 'PTF' followed by 6 digits; these are SMA update control data areas, not IBM PTF controls. To list all of these that should be deleted, use this command: WRKOBJ QGPL/PTF\* \*DTAARA
       - RSTENVIRON
       - SMAXNBR
 

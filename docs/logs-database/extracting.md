@@ -14,7 +14,7 @@ Changes have been made to the SMASUP command used in the past, now eliminating t
 
 As an IBM i command, the SMASUP command can be executed from anywhere that IBM i commands are supported. However, unlike some LSAM environment management commands that include library list management, this command does not manage a job's library list, therefore the LSAM environment libraries must be included in the library list of any job that will execute this command. The command syntax show below includes the library location of the command, although this may not be required in most circumstances where this command would be executed.
 
-:::tip Example
+:::info example
 ```
 SMAPGM/SMASUP LOGLIB(SEL) CLRLOG() RESTART() SEL_OPTS__() JOBTRK(0) 
 MSGMGT(0) UTIL(0) OPRRPY(0) RSTMOD(0) JOBSCH(0) JORS(0) SPLF(0) 
@@ -158,7 +158,7 @@ C:\other_directory>cd C:\
 11. Enter **quit** to exit the FTP utility.
 12. Enter **exit** to close the command entry window.
 
-:::tip Example
+:::info example
 ```
 The following shows a typical FTP procedure in a DOS command window.
 C:\>ftp <LSAM Machine Name or TCP/IP address>

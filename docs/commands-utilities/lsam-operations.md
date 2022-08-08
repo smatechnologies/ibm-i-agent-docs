@@ -53,7 +53,7 @@ The STRSMA command supports the interactive specification of an IBM i LSAM envir
 |                           |           | **Note**: The animation of character graphics adds two seconds to the process of signing in to an LSAM environment.      |
 |                           |           | -   It may be desirable to specify **\*NO** for this parameter value when using the STRSMA command as part of an Operator Replay script. This would avoid the two-second delay and allow the script to execute more efficiently. An alternative command for use with an Operator Replay script would be the command LSAMENU.      |
 
-:::tip Example
+:::info example
 To specify the environment value when entering the LSAM menu system and to suppress the animation of the splash display, the syntax would be:
 ```
 STRSMA ENV(<environment_name>) ANIMATE(*NO)
@@ -160,7 +160,7 @@ LSAM General Purpose Library . .   *DEFAULT      *DEFAULT or name
 | MENUNBR (Optional LSAM sub-menu number) | 0         | -   **0**: Show the LSAM Main menu upon first entry into the LSAM  menu system. This is the default value.    |
 |                           |           | **1-6,8**: Currently, the LSAM main menu supports sub-menus only as menu options 1-6 and 8. Function 7 is a direct call to the LSAM Parameters maintenance program and it is not allowed as a parameter of the LSAMENU command.      |
 
-:::tip EXAMPLE
+:::info example
 To specify the environment value and to enter directly to the LSAM Operations submenu
 without using command keywords the syntax would be:
 ```

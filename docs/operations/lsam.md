@@ -28,7 +28,7 @@ SMAGPL/STRSMA ENV(my_environment_name) ANIMATE(*YES|*NO)
   - Do not change this parameter unless the IBM i LSAM has been installed to a different set of libraries or an additional environment has been created that uses a different library list.
 - **ANIMATE**: This parameter is no longer used. It is retained in order to remain compatible with existing product installations that might have used it.
 
-:::tip Example
+:::info example
 The ENV parameter can be specified by position without the keyword:
 
 ```shell
@@ -56,7 +56,7 @@ SMAGPL/LSAMENU ENV(my_environment_name) MENUNBR([0])
 - **MENUNBR**: Specifies the LSAM main menu when the default value of zero (0) is used, otherwise, values 1 - 6 and 8 may be used to enter directly to one of the LSAM sub-menus.
   - When a sub-menu is specified, pressing F3=Exit from the sub-menu does NOT return to the LSAM main menu, but instead returns the user or program to the calling program where the LSAMENU command was issued; this may be the Command entry screen.
 
-:::tip Example
+:::info example
 The following command enters an alternate LSAM environment going directly to the Events and Utilities sub-menu:
 
 ```shell
@@ -206,7 +206,7 @@ choices for automatically setting the library list when using command entry outs
 
 The IBM i LSAM sockets communications program actively monitors TCP/IP communications. When the LSAM does not receive communication from OpCon for a specified amount of time (according to the communications timing parameters described above), the LSAM sends a warning message to the IBM i Operator Message queue.
 
-:::tip Example
+:::info example
 The following is a warning message to the IBM i Operator Message queue when communication between the LSAM and OpCon is idle:
 
 Message ID: SMA0009

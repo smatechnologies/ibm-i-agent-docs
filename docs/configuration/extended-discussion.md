@@ -308,7 +308,7 @@ A typical problem experienced by IBM i LSAM users when specifying OpCon Even com
  
 For example, when an IBM i LSAM Message Management parameter has been configured to issue an OpCon Event upon discovery of an error message, it might be useful to include some variable value in a notification message. A message sent to OpCon from a Message Management Event might look something like this:
 
-:::tip Example
+:::info example
 $CONSOLE:DISPLAY,This message text is being sent on **[[$DATE]]**,SYSTEM,MESSAGE
 :::
 
@@ -318,7 +318,7 @@ One difficulty that arises for IBM i workstation users is that the IBM 5250 work
  
 However, it is not necessary to create new translation tables to overcome this particular issue, because OpCon already provides a solution for IBM and other similar platforms. The brace (curly bracket) characters {{ }} may be used as a substitute for the square brackets as Event Token field delimiters. In this case, the example above could be typed on a 5250 (emulated) workstation as follows:
 
-:::tip Example
+:::info example
 $CONSOLE:DISPLAY,This message text is being sent on **{{$DATE}}**,SYSTEM,MESSAGE
 :::
 

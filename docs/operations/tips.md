@@ -75,7 +75,7 @@ A *threshold* is a setting for a metric that is being collected by a monitor. *T
 
 In the specific example above, now the "Status Threshold" tab has been clicked, and then the box "Trigger when job is in any selected status" was checked.
 
-:::tip Example
+:::info example
 The example command text that is suggested by this document looks like this:
 
 ```shell

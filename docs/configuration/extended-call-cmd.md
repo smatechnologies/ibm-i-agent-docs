@@ -48,7 +48,7 @@ Choose one of the following formats for the LDA keyword:
 
 **LDA(start_nbr_4.0:length_nbr_4.0:'value string 1024.A')**
 
-:::tip Example
+:::info example
 LDA(225:14:'14-char string')
 :::
 
@@ -60,7 +60,7 @@ The maximum length supported for each parameter of the LDA() keyword is shown as
 
 **LDA(start_nbr_4.0:length_nbr_4.0:{DynVarNam1}{DynVarNam2}...)**
 
-:::tip Example
+:::info example
 LDA(225:14:{DYNVARNAM1})
 :::
 
@@ -76,7 +76,7 @@ Notice that the value string for the LDA would be comprised of the results of on
 
 **LDA(DynVarName)**
 
-:::tip Example
+:::info example
 LDA(DYNVARNAM2)
 :::
 
@@ -88,7 +88,7 @@ When using the LDA() keyword in an OpCon IBM i job Call command line, remember t
 
 Here is an example of an OpCon job master record for an IBM i job, showing all three possible job definition extensions used at once:
 
-:::tip Example
+:::info example
 ```
 CALL PROGRAM|CCSID(000297) LDA(215:9:'new value') SCANSPLF
 APP(APPID01) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)

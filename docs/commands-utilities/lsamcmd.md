@@ -10,7 +10,7 @@ This command supplies the special routines that first add the LSAM environment l
 Most commonly used LSAM control commands in the SMAGPL library already manage the LSAM library list, based on the Product Library assigned to each of those commands. This new command is useful for other LSAM commands typically found in the SMAPGM library, such as SETDYNVAR (set/add LSAM Dynamic Variable, explained above).
 
 Here is an example of the syntax required to use this command:
-:::tip Example
+:::info example
 ```
 SMAGPL/LSAMCMD ENV(SMADEFAULT) CMD('command syntax')
 ```

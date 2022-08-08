@@ -68,7 +68,7 @@ After one or more values has been stored in association with the same key value 
 
 Following is an example of the SQL syntax that can be used to produce a single average value for the new Dynamic Variable. The data and SQL clauses used in this example are explained in the notes that follow the example.
 
-:::tip EXAMPLE
+:::info example
 ```
 SELECT 'CPU avg: ' CONCAT AVG(DEC(DVVALUE,4,1))
 FROM SMADTA/LOGDYNVAR

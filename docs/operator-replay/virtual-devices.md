@@ -806,7 +806,7 @@ Each condition above requires knowledge and use of IBM IBM i commands and proced
 If any of the above error conditions occur, one or more of the following symptoms might be observed:
 
 - A message will be sent to the IBM i operator message queue (QSYSOPR)
-  :::tip Example
+  :::info example
   Subsystem QINTER disabled user profile RPYUSER on device LSAOPRRPY.
   Subsystem QINTER varied off work station LSAOPRRPY for user RPYUSER.
   :::
