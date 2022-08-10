@@ -412,6 +412,7 @@ ______________________________________________________________________________
 ______________________________________________________________________________
 ________________________________________________________________
 Msg to job log? Y/1=yes,N/0=no   JOBLOGMSG       Y
+Scan condition (OpCon job log)   SCANCOND        O 
                                  INT_ONLY_
 
                                                                         Bottom
@@ -467,8 +468,12 @@ F24=More keys
 |            |          |  | Generic, or partial, values may be used. Type an asterisk at the beginning to indicate that any number of characters (or no characters) may precede the matching string. Type an asterisk at the end to indicate that any number of characters (or no characters) may follow the matching string. Either or both of the asterisks may be used.  |
 |            |          |  | If no asterisks are typed, then the character string in this parameter must match exactly and completely the User Defined Data attribute of a spool file.        |
 |            |          |  | NOTE: The single character wild card value of a question mark '?' is NOT supported by this command.                          |
-| JOBLOGMSG  | 1       | *CHAR | Y = Yes: Add a message to the SCANSPLF job's IBM i Job Log, whenever a progress or error log entry is being added to the LSAM's Captured Data Debug Log file.                             |
-|            |         |   | Blank or 'N' = No: Do NOT add messages to the IBM i Job Log. Progress and error messages will only be written to the LSAM log file.  |
+| JOBLOGMSG  | 1       | *CHAR | **Y** = Yes: Add a message to the SCANSPLF job's IBM i Job Log, whenever a progress or error log entry is being added to the LSAM's Captured Data Debug Log file.                             |
+|            |         |   | **Blank or 'N'** = No: Do NOT add messages to the IBM i Job Log. Progress and error messages will only be written to the LSAM log file.  |
+| SCANCOND  | 1       | *CHAR |Used only by the LSAM Job Scheduler to control when a SCANSPLF command that was appended to the OpCon job's IBM i CALL command line should execute the SCANSPLF command (if present) to override the Pass/Fail job status report.|
+|            |         |   | **O** = Only run the SCANSPLF command (if present) when the IBM i job Finished OK.  |
+|            |         |   | **F** = Only run the SCANSPLF command (if present) when the IBM i job Failed.  |
+|            |         |   | **B** = Always run the SCANSPLF command (if present) regardless of the actual IBM i job completion status.  |
 | INT_ONLY_  | 0       | (NULL) | Ignore this displayed parameter keyword. This command keyword is used only by the SCANSPLF command processor program to receive IBM i internal address values that are sent from the SCANOUTQ command (and other LSAM programs) to improve the efficiency of the command.                          |
 
 ## Case Examples of SCANSPLF Applications

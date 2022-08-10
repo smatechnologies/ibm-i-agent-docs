@@ -148,6 +148,10 @@ Care must be taken when including an ON_RESTART label in a Script, especially if
 
 An ON_RESTART Step can take advantage of any of the Step record capabilities. If restart logic requires complex logic, or if multiple commands must be executed, then a separate utility Script could be designed that would be called from the single ON_RESTART Step of the primary script using the STRMLTJOB command as the command to execute from the ON_RESTART Step record. (Refer to the discussion of Script Branching capabilities.) If the ON_RESTART Step (and/or any sub-script it calls) should fail, the Fail option flag for this Step record will decide if the Script should fail or should ignore the error and continue. It is not possible to register an ON_ERROR Step in the Script driver program before the ON_RESTART Step is executed, therefore, if an ON_ERROR process is desired, it should be included as part of the proposed utility sub-script that will actually perform the restart setup steps.
 
+:::tip
+An ON_RESTART Step record is allowed to use the SMAGOTO or SMAFAILJOB commands.  When using the SMAGOTO command, it can become more likely that a looping condition might be accidentally configured within a Script, or if two Scripts might call each other.  To help protect against creating an eternal looping condition, use the Script list option 9=Flow chart, which can detect some (but not all) kinds of loops.  The other protection against looping is managed bythe Script Utility Configuration function (LSAM sub-menu 5, option 7).  Set the "MLGJOB step loop limit" value to prevent looping from occuring more than this number of times before the Script driver program will force the job to end because it detected a never-ending looping condition. See the [Multi-Step Job Screens and Windows: Script Utility Configuration](./multi-step-screens.md#script-utility-configuration) for more information.
+:::
+
 ### Job Status Logging
 
 The STRMLTJOB script driver program always writes status and error information to the Multi-step Job Log file (MLTLOGF00), which can be viewed from the LSAM sub-menu 5, option 6.
@@ -186,6 +190,10 @@ Individual script steps may optionally include a comparison rule that is used to
 ### Script Branching
 
 The script driver program provides various methods to redirect the logical flow of activity within a single multi-step job. One script can request to run another script or it can transfer control to the other  script, and the script driver can be directed to any LABEL or TAG within the same script or within another script.  
+
+:::tip
+ When using Script Branching it can become more likely that a looping condition might be accidentally configured within a Script, or if two Scripts might call each other.  To help protect against creating an eternal looping condition, use the Script list option 9=Flow chart, which can detect some (but not all) kinds of loops.  The other protection against looping is managed bythe Script Utility Configuration function (LSAM sub-menu 5, option 7).  Set the "MLGJOB step loop limit" value to prevent looping from occuring more than this number of times before the Script driver program will force the job to end because it detected a never-ending looping condition. See the [Multi-Step Job Screens and Windows: Script Utility Configuration](./multi-step-screens.md#script-utility-configuration) for more information.
+:::
 
 These are the methods used to support Script brancing.  Each method is described in detail in the next document sub-topics.
 - **Subroutines**: One Script can call another Script, and then allow the job to return control to the previous Script after the sub-Script completes.
@@ -261,6 +269,10 @@ The ON_ERROR registered command can request that a complex set of instructions b
 Another useful technique for the ON_ERROR registered command might be to specify \*CURRENT as the Script name and some Step label in the SMAGOTO pseudo-command, which would redirect the script logic to a segment of the same Script where multiple steps could be dedicated to managing error conditions. The other Steps in the Script can be configured to flow past the reserved LABEL location in the Script by executing a SMAGOTO command that branches to a LABEL farther ahead in the script.  (Many programming experts recommend that this kind of leap-frog program logic is poor practice, which suggests that using another Script in subroutine mode would be the preferred method for ON_ERROR response logic.)
 
 Note that the Step Active/Inactive Flag (described above) would cause the script driver program to ignore a Step record that contains the reserved ON_ERROR LABEL value. That is, the ignored Step record that has an ON_ERROR label would never have its command registered by the Script driver program.
+
+:::tip
+ An ON_ERROR Step record is allowed to use the SMAGOTO or SMAFAILJOB commands. When using the SMAGOTO command within an ON_ERROR Step label it can become more likely that a looping condition might be accidentally configured within a Script, or if two Scripts might call each other.  To help protect against creating an eternal looping condition, use the Script list option 9=Flow chart, which can detect some (but not all) kinds of loops.  The other protection against looping is managed bythe Script Utility Configuration function (LSAM sub-menu 5, option 7).  Set the "MLGJOB step loop limit" value to prevent looping from occuring more than this number of times before the Script driver program will force the job to end because it detected a never-ending looping condition. See the [Multi-Step Job Screens and Windows: Script Utility Configuration](./multi-step-screens.md#script-utility-configuration) for more information.
+:::
 
 ### Labeled Steps with No Command
 

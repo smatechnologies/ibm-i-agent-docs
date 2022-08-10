@@ -127,6 +127,8 @@ The IBM i command CHKOBJ may also be used, especially for object types other tha
   - This command is designed to be used primarily from an OpCon job to report the current status of the LSAM server jobs. It will force a program failure when the server jobs do not match the STATUS keyword value.
 - **CMDEXE, CMDEXE2**: SMA wrapper to manage IBM i command errors
   - These commands are used to execute IBM i native commands inside a "wrapper" CL program that intercepts any command failure message and makes it possible for the Agent and/or OpCon to control the OpCon job status and to respond appropriately to different error messages.
+- **DLTIFSFIL**: Delete IFS File
+  - Enables a solution for automating disk space maintenance by deleting files in a specified IFS file system directory (usually outside of the DB2 database).  This utility will typically be used in the IFS root(/) file system, but it also supports the /QOpenSys file system and possibly other non-DB2 file systems.  (It will not work for the /QDLS file system.)                                         
 - **DSPDTAQ**: Display Data Queue
   - A data queue viewer not supplied by IBM with IBM i. Used by support technicians to verify LSAM system conditions.
 - **DSPDYNVAR**: Display Dynamic Variable
@@ -216,6 +218,21 @@ The IBM i command CHKOBJ may also be used, especially for object types other tha
 ### LSAM database management
 - **SMARGZ**: Reorganize LSAM database
   - Utilizes SMASUP command and additional instructions to backup and completely manage the size of the LSAM database library. Refer to the discussion below; also refer to SMASUP command in this topic and the topics on (a) Debug Mode and (b) Events and Utilities Menu.
+
+### Automated database maintenance
+A Series of stand-alone commands can be used to automate maintenance of certain IBM i LSAM master files. For detailed information about the parameters of each command, refer to the "Screens and Windows" sections of each of the Agent features.
+                                                                    
+These commands could be executed by OpCon jobs configured as IBM i Batch command jobs, as long as the User assigned to the job has authority to use the LSAM programs and to update the LSAM master files in the SMADTA library.                                        
+                                                                    
+The commands could also be executed by Step records of an IBM i LSAM Multi-Step Script job or by Response Rules connected to Data Capture Rules that are linked to the SCANSPLF command, to Operator Replay script jobs or to LSAM Message Management Parameters.
+
+- **MLTJOBSTS**: Change the Active/Inactive status of a Multi-Step Job Script Step record.
+                                                                      
+- **ADDMLTJOBS, CHGMLTJOBS, DLTMLTJOBS**: Add, change or delete Script master records (and all associated Script Steps) from the Multi-Step Job master files.
+                                                                      
+- **ADDMLTJOBT, CHGMLTJOBT, DLTMTJOBT**: Add, change or delete Script Step master records from the Multi-Step Job Script Step master file.
+                                                                      
+- **ADDTRKPAR, CHGTRKPAR, DLTTRKPAR**: Add, change or delete the LSAM Job Tracking Parameter records.  Please remember that changes to the LSAM Job Tracking Parameter records may also require changes to pre-registered Job Master records in the OpCon server's database, depending on which fields are updated by the CHGTRKPAR command.                    
 
 ### Manage LSAM PTFs (software patches) 
 (Refer to PTF and Security Menu for additional information.)

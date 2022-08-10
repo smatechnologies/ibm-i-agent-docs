@@ -177,6 +177,7 @@ module.exports = {
             'commands-utilities/translation-tables',
             'commands-utilities/smargz',
             'commands-utilities/cmdexe',
+            'commands-utilities/dltifsfil',
             'commands-utilities/communicate-opcon',
             'commands-utilities/file-arrival',
           ], 

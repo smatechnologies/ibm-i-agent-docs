@@ -460,7 +460,7 @@ CHKIFSFIL
   FAILONERR(Y)
   ENV(*DEFAULT)
   GPL(*DEFAULT)
-  KEEPWRKLIB(n)
+  KEEPWRKLIB(N)
 ```
 The command parameter summary shown next defines each parameter and lists possible values. However, the effect of using these parameters together can vary the outcome of the command, as discussed below.
 
@@ -540,7 +540,7 @@ The command parameter summary shown next defines each parameter and lists possib
 |                     |            | (Refer also the discussion about using LSAM Feedback.) |
 | ENV                 | \*DEFAULT Actual LSAM environment name  | Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to set the LSAM library list according to the LSAM Environment name. |
 | GPL                 | \*DEFAULT Actual SMAGPL library name | Used when the CHKFILE command is executed by itself (not by the OpCon File Arrival job), to identify the SMAGPL library where the LSAM Environment library list can be found. |
-| KEEPWRKLIB (Keep work library) | N or 0 = No / Y or 1 = Yes  | This command uses a permanent DB2 work library instead of QTEMP to store the IFS directory search results. The temporary work library is deleted at the end of the command execution, unless the command fails (and failures are not ignored) or unless this parameter tells the command to Keep the Work Library. |
+| KEEPWRKLIB (Keep work library) | N or 0 = No / Y or 1 = Yes  | This command uses a permanent DB2 work library instead of QTEMP to store the IFS directory search results. The temporary work library is deleted at the end of the command execution, unless the command fails (and failures are not ignored) or unless this parameter tells the command to Keep the Work Library.  The temporary work file will be deleted even when Script jobs fail, if this parameter is set to N = do NOT keep the file. |
 
 ## Interaction of Command Parameters
 
@@ -681,6 +681,47 @@ LSAM Feedback response is defined under the Events tab of an OpCon job. Click th
 
 LSAM Feedback for the CKF0005 code can be configured even if the FAILIFZERO command parameter is set to (\*YES). However, the strategy for which Events to trigger upon job failure must be compared to the Event that might be selected for the LSAM Feedback. In a simple case, it is probably not necessary to configure LSAM Feedback for CKF0005 when the job is using FAILIFZERO(\*YES), because the failed job status of CKF0005 can also be tested as an Event, among other possible causes of failure (including code CKF0002 = file not found, or not found within Start/End times).
 
+## Managing IBM i Job Control for File Arrival Jobs
+
+The IBM i LSAM Parameters (main menu, option 7) supports user specification of an IBM i Job Description that will always be used to define the IBM i job that executes the File Arrival programs.  One purpose for this dedicated job description is to support unique job logging definitions that are different from the LSAM Parameter's default job description.
+
+```
+Job Default Parameters.........................................................
+                                               
+ File Arrival Job desc..: SMALSAJ00   Lib: SMADTA       IFS LOG:  4 00 *SECLVL 
+```
+The OpCon job master details such as the Job Queue and other IBM i job definition fields that are supported by the OpCon job master record will override the File Arrival Job Description supplied by the LSAM.
+                                                                       
+Users should note that the "User" value in the OpCon job master that appears inside the box of File Arrival Definition will NOT become the IBM i Job User.  Instead, this user name is used only for the purpose of verifying any selected file permissions.
+
+Previously, the Agent would always force a File Arrival job to run under the Agent's powerful server user profile, SMANET.  But this technique did not support any option for the LSAM Administrator to override the Job User.  That created problems such as not being able to check for files in the IBM i QDLS document folder (unless SMANET was registered using WRKDIRE into System Distribution Directory).
+                                                                       
+The current rules for File Arrival jobs cause the User from the File Arrival Job Description to become the IBM i Job ID User.  If there is no File Arrival Job Description, then the File Arrival job's User ID will be SMANET, as in the past.  But registereing a File Arrival Job Description will then make it possible to override the IBM i Job ID by setting the USER( )value in the job description.
+
+:::caution
+When changing the File Arrival Job Description to specify a different USER, this Job User must have sufficient authority to use LSAM objects such as the following, otherwise the job submission, or the job execution, could fail due to insufficient authority to these
+(and possibly other) objects:
+
+|LIBRARY   | OBJECT     | TYPE  | COMMENTS  |
+|----------| ---------- | ----  | --------  |                            
+| SMADTA   | SMALSAQ00  | JOBQ  | The Job Queue name might be different |
+| SMADTA   | SMALSAJ00  | JOBD  | The user can specify a different JOBD |
+| SMADTA   | SMAMSGQ    | MSGQ  | LSAM directs job completion msgs here |
+| SMAPGM   | CHKFILE    | CMD   |                                       |  
+| SMAPGM   | **CHKFILR00**  | PGM   | Assign adopted authority to this pgm \* |
+| SMAPGM   | CHKIFSFIL  | CMD   |                                       |
+| SMAPGM   | **CHKIFSR00**  | PGM   | Assign adopted authority to this pgm \* |
+
+**NOTE**:  
+Change the program objects to run with USER authority, and specify SMANET as the user.  This allows an alternate user to access any LSAM object that the File Arrival commands may need to use.
+:::
+:::tip
+If it is necessary to grant special object authorities to a new File Arrival Job User, SMA recommends using the LSAM Object Authority maintenance function at LSAM sub-menu 9, option 8.
+:::
+:::info
+The Agent's File Arrival Job Description will be used for DB2 file (or table) checking.  Preiouvsly, this job description was only being used for file checking operations in IFS file systems outside of DB2.  But that was not the intention for the File Arrival Job Description, so now the behavior of File Arrival jobs has been modified.  This might only be important for LSAM Administrators who could notice the effect of this small change in the File Arrival job behavior when checking for DB2 files (tables).
+:::
+
 ## Command Feedback Methods
 
 The CHKFILE and CHKIFSFIL commands share most of the IBM i message IDs and job feedback functions.
@@ -719,6 +760,22 @@ The command completion codes are reported in four ways:
 - LSAM Feedback: See the following discussion for ways to configure OpCon Job Events in response to varying LSAM Feedback content.
 
 In newer versions of OpCon (such as 16.x and newer), the job completion code can be tested and an Event command generated in response, using the OpCon job master Event types of Exit Description or Job Completion Complex Expression.
+
+#### Exceptions to Error Messages when Checking for a Directory
+
+The CHKIFSFIL command can be used to check for an IFS /DIRECTORY.  
+
+However, prior to year 2010, when the IBM i Agent had provided only a very simple form of the CHKIFSFIL command, this command would return an error code of CPD0006 if a directory was not found.  Checking for this error code was, at that time, only useful when a compiled Control Language program had executed the CHKIFSFIL command.  But the error code did appear in the IBM i job log report, and it contained text that identified the error condition.
+                                                                       
+Since 2010, when the CHKIFSFIL command was enhanced, the CHKIFSFIL command reports different error codes for each different kind of failure.  As a result, the CPD0006 universal error code was replaced by the series of error codes listed in this section of documentation.
+
+For clients who have migrated since 2016 to use the more elaborate IBM i File Arrival job type (from the OpCon job master job types for IBM i), this change was accompanied by new strategies for detecting failure error codes.  Using more specific error codes offered an improvement in OpCon automation strategies.
+
+A client who is executing the CHKIFSFIL command from outside of OpCon control, such as by embedding it into an IBM i Control Language program, will have to change their MONMSG command to detect a different error message now, instead of the (very old, pre-2010) original message ID of CPD0006.
+
+:::caution                                                             
+If the CHKIFSFIL command, or the IBM i LSAM File Arrival job, is unable to find an IFS object type (outside of DB2), it will not be able to determine the difference between a directory and some other kind of stream file that is contained within a directory.
+:::
 
 ### IBM i Job Log Messages
 

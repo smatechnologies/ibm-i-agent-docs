@@ -21,18 +21,18 @@ The OpCon **Concepts** documentation provides illustrations and instructions for
 3. It is necessary to register all the IBM i user profiles who will be assigned to IBM i job master records. Follow the OpCon Concepts instructions for completing this task. These user profiles require permission to run jobs in the IBM i machine (they are granted authority to use the OpCon machine master record).
     - If the IBM i LSAM server job user profile SMANET does not retain its default *ALLOBJ authority, then it would also be necessary to grant SMANET the authority to *USE each of these same user profiles that will run IBM i jobs.
 4. Create a job master record in an OpCon schedule. In addition to the standard OpCon schedule and job definition requirements, the following job parameters that are unique to IBM i jobs require special attention:
-    1. Select the job type of IBM i. The lower portion of the job master record will change to match IBM i job requirements.
-    2. Select the IBM i machine name where the job will execute.
-    3. When typing the Job Name, consider how the IBM i Agent uses the OpCon job name as it creates an IBM i job name. Older versions of the Agent required that the OpCon job name begin with an alphabetic character. However, since Agent version 04.00.03, PTF level 403299, the Agent will now accept any format from the OpCon job name, including starting the name with numeric digits (as some users like to add an expected start time at the start of a job name to control the sort order of the OpCon List display, such as: '12:34 Noon # 2 posting job'). The Agent removes any leading characters from the job name until an alphabetic character is found, it removes spaces and other invalid job name characters, it translates all alphabetic characters to upper case and then it truncates the name length to the maximum allowed by IBM i of ten characters. As a result, the example OpCon job name would become this IBM i job name: NOON2POSTI. SMA suggests a possible standard for IBM i job names that would include a full ten characters of the expected IBM i job name at the start of the OpCon job name, and then the remaining OpCon job name characters can include any form of description. For example: '12:34 GLNOONPOST Noon # 2 posting job' would result in the IBM i job name of: GLNOONPOST.
-    4. Use the IBM i drop-down list to select the IBM i Job Type value. For example, Batch Job is selected when the job will perform a simple program call.
-    5. Select a job user from the drop-down list of users authorized to this IBM i machine.
-    6. Specify the Job Description Name and Library.
-    7. Many of the other fields that can be used to refine the IBM i job definition will start with a default value of *JOBD. This means they will tell the IBM i LSAM to use whatever value is specified in the named Job Description. Therefore, the easiest way to prepare for automating IBM i jobs is to be familiar with, or to create, IBM i job descriptions that are appropriate for each application. Execution of IBM i LSAM utility commands can use the LSAM job description SMADTA/SMALSAJ00, but the job queue (previously labeled "batch queue" on the OpCon job master record) could be changed if the batch job should not run in the same subsystem as the IBM i LSAM server jobs.
-    8. Under the Job Information tab of the job master record, complete the Call Information box requirements. This box format will vary depending on the IBM i Job Type selected. For the simple Batch Job, type into the Call field either a library-qualified command or the CALL command and a program name that will be called. Include command or program parameters as necessary. The Configuration topic of this documentation provides information about additional, specialized command line parameters that are supported only by OpCon and the IBM i LSAM, in order to enable advanced automation features for a job.
-    9. Consider using the Variables tab to send data values from OpCon to the Agent, if they are needed by the command or program executed by this job. The name of an IBM i LSAM Dynamic Variable is typed into the Variable Name field, and in the Value field it is possible to type an absolute value or to insert an OpCon Property [[token]]. The key combination of CTRL + T opens a window that shows registered and system-defined OpCon Properties  which can be selected and inserted as the Value. Click the "Add" button on the right to add entries to the list of Variables. The Variables stored in this table are updated by the Agent before the job is actually submitted, which means that an LSAM Dynamic Variable {token} could be included in the Call command line, as well as making the Dynamic Variable value available anywhere else within the IBM i partition. Refer to the OpCon Concepts about Job Details of IBM i jobs for additional information about the special $\@KEYWORD variables that can be used to enhance the performance of File Arrival jobs. These $\@VARIABLES can be entered as the Variable name and the Value column is then used to set the command keyword value. $\@KEYWORD variables are supported for both the File Arrival Job Type, as well as for the LSAM's CHKFILE and CHKIFSFIL commands that can be used for a similar purpose from the Batch Job Job Type.
-    10. Save the OpCon job master record.
-    11. Assign an OpCon Frequency to the job. For test jobs, consider assigning a unique, new frequency to the job that uses the On Request option, and then select the current date as the On Request date. This is one way to enable a manual build of the test job without affecting any other job or schedule.
-    12. This completes basic job master definition.
+    - Select the job type of IBM i. The lower portion of the job master record will change to match IBM i job requirements.
+    - Select the IBM i machine name where the job will execute.
+    - When typing the Job Name, consider how the IBM i Agent uses the OpCon job name as it creates an IBM i job name. Older versions of the Agent required that the OpCon job name begin with an alphabetic character. However, since Agent version 04.00.03, PTF level 403299, the Agent will now accept any format from the OpCon job name, including starting the name with numeric digits (as some users like to add an expected start time at the start of a job name to control the sort order of the OpCon List display, such as: '12:34 Noon # 2 posting job'). The Agent removes any leading characters from the job name until an alphabetic character is found, it removes spaces and other invalid job name characters, it translates all alphabetic characters to upper case and then it truncates the name length to the maximum allowed by IBM i of ten characters. As a result, the example OpCon job name would become this IBM i job name: NOON2POSTI. SMA suggests a possible standard for IBM i job names that would include a full ten characters of the expected IBM i job name at the start of the OpCon job name, and then the remaining OpCon job name characters can include any form of description. For example: '12:34 GLNOONPOST Noon # 2 posting job' would result in the IBM i job name of: GLNOONPOST.
+    - Use the IBM i drop-down list to select the IBM i Job Type value. For example, Batch Job is selected when the job will perform a simple program call.
+    - Select a job user from the drop-down list of users authorized to this IBM i machine.
+    - Specify the Job Description Name and Library.
+    - Many of the other fields that can be used to refine the IBM i job definition will start with a default value of *JOBD. This means they will tell the IBM i LSAM to use whatever value is specified in the named Job Description. Therefore, the easiest way to prepare for automating IBM i jobs is to be familiar with, or to create, IBM i job descriptions that are appropriate for each application. Execution of IBM i LSAM utility commands can use the LSAM job description SMADTA/SMALSAJ00, but the job queue (previously labeled "batch queue" on the OpCon job master record) could be changed if the batch job should not run in the same subsystem as the IBM i LSAM server jobs.
+    - Under the Job Information tab of the job master record, complete the Call Information box requirements. This box format will vary depending on the IBM i Job Type selected. For the simple Batch Job, type into the Call field either a library-qualified command or the CALL command and a program name that will be called. Include command or program parameters as necessary. The Configuration topic of this documentation provides information about additional, specialized command line parameters that are supported only by OpCon and the IBM i LSAM, in order to enable advanced automation features for a job.
+    - Consider using the Variables tab to send data values from OpCon to the Agent, if they are needed by the command or program executed by this job. The name of an IBM i LSAM Dynamic Variable is typed into the Variable Name field, and in the Value field it is possible to type an absolute value or to insert an OpCon Property [[token]]. The key combination of CTRL + T opens a window that shows registered and system-defined OpCon Properties  which can be selected and inserted as the Value. Click the "Add" button on the right to add entries to the list of Variables. The Variables stored in this table are updated by the Agent before the job is actually submitted, which means that an LSAM Dynamic Variable {token} could be included in the Call command line, as well as making the Dynamic Variable value available anywhere else within the IBM i partition. Refer to the OpCon Concepts about Job Details of IBM i jobs for additional information about the special $\@KEYWORD variables that can be used to enhance the performance of File Arrival jobs. These $\@VARIABLES can be entered as the Variable name and the Value column is then used to set the command keyword value. $\@KEYWORD variables are supported for both the File Arrival Job Type, as well as for the LSAM's CHKFILE and CHKIFSFIL commands that can be used for a similar purpose from the Batch Job Job Type.
+    - Save the OpCon job master record.
+    - Assign an OpCon Frequency to the job. For test jobs, consider assigning a unique, new frequency to the job that uses the On Request option, and then select the current date as the On Request date. This is one way to enable a manual build of the test job without affecting any other job or schedule.
+    - This completes basic job master definition.
 5. Jobs that will be repeated on a regular schedule are typically built in advance by the OpCon job builder function, as daily schedules are created. For test purposes when the IBM i LSAM is first set up, it is possible to manually request an immediate build of a job, so that the job can be executed on demand.
 6. After a job completes or fails, the IBM i LSAM will report a job status back to the OpCon server, and the status may be observed in a display of jobs within an OpCon schedule. In cases of failure, there is a difference between jobs that failed to start, versus jobs that failed during execution. The procedure for diagnosing job failures is discussed below, in a following section.
 7. After a test job completes or fails, it is possible to restart the job from the OpCon display of the job status, using a right mouse click and selecting the Restart option from the context menu that appears. When necessary, to correct the cause of a failure, it is possible to make corrections to "daily" jobs that are on the active schedule and/or to the permanent job master record.
@@ -116,19 +116,93 @@ When starting LSAM logging, be sure to avoid activating any of the "trace loggin
 
 The normal LSAM server job logging functions can be started (or stopped) while the LSAM server jobs are active. If the logging was not active while an error occurred, it may be necessary to turn on the logging and then repeat the job start action that generated the error in order to trap the error information in the LSAM log files. However, the LSAM server IBM i job logs are not controlled by the LSAM's own debug/audit logging feature.
 
-### The IBM i LSAM Submitted Job Log
+### The Submitted Job Universal Log
 
-The IBM i Agent always logs information about each job start request that it receives from OpCon into a file named LSALOGF30. The LSAM menu system provides a log viewer that makes it easy to find and open this file for viewing. (In a pending LSAM enhancement, the viewer for this file will also offer improved log record interpretation, but the current log file contents are always text that is well formatted and easy to read.)
+The IBM i Agent always logs information about each job start request that it receives from OpCon into a file named LSALOGF30. The LSAM menu system provides a log viewer that makes it easy to find and open this file for viewing. 
 
-Upon entering the LSAM menu system, select sub-menu 6: LSAM Management. Choose option 5: View LSAM Logs. From the list of log viewers, select option 4: Display LSAM submit job log. This does not refer to the IBM i job log report, but to the log file where the LSAM stores images of the SBMJOB commands that it assembles, along with other information messages about the job status.
+Over time, this LSAM log file has become a general-purpose log file.  It retains its ability to associate log entries with each job that OpCon submits to the Agent. The various IBM i Agent automation toolkit features each have their own activity logs, but some of the Agent's features, such as the Dynamic Variables, are supported across most of the Agent features, so these types of log entries are now gathered within the LSALOGF30 file.
 
-The current log viewer program is the IBM i command DSPPFM (display physical file member). The list display of log records is supported by navigational function keys that can move the display to the bottom (most recent entries) of the list, and also to change the window of the record view, so that moving the display to the right will show a continuation of a long log entry. There are also control fields at the top of the display to help control the position of the view, and to search the file content for key words.
+The LSAM Submit Job Log viewer program is now an Agent-standard list display.  This type of display supports sorting of log entries and subsetting the list in various ways to make it easier to discover the log information that is needed to diagnose errors for a specific IBM i job or for a specific Agent automation tool.
 
-For a recent error, it is usually helpful to use F18=Bottom, which jumps to the most recent entries in the log file. Sometimes it is necessary to page up in order to find information about the job name being researched.
+The many different Type codes assigned to the log entries can be used to subset the list display so that it shows, for example, only log entries resulting from LSAM Dynamic Variable {TOKEN} replacement values or errors that occurred during an attempt to replace a token.  The subsetting tool also makes it possible to isolate the list view to only log entries associated with just one IBM i job at a time.  Since log entries are displayed in time sequence, it is easy to understand the order of events that might define the cause of an error condition.
 
-It can be important to examine the SBMJOB command string that the LSAM job scheduler has recorded in this log file. Often, jobs will fail to start because of errors in the SBMJOB parameter values. While these command parameter values are derived directly from the OpCon job master record, a combination of IBM i rules might produce an unexpected result in the format of the SBMJOB command.
+If there is any error during the actual process of submitting a job, the LSAM will retrieve the failure message and add an error entry to this log file just under the SBMJOB command image. Unfortunately, the final failure message that IBM i reports to the LSAM server job is often only a conclusion, and it does not provide enough detail to understand the true cause of the error. However, in this case, the next step: [The LSAM Job Scheduler's Job Log](#the-lsam-job-schedulers-job-log) will reveal that actual cause of failure.
 
-In addition, if there is any error during the actual process of submitting a job, the LSAM will retrieve the failure message and add an error entry to the log file just under the SBMJOB command image. Unfortunately, the final failure message that IBM i reports to the LSAM server job is often only a conclusion, and it does not provide enough detail to understand the true cause of the error. However, in this case, the next step will reveal that actual cause of failure.
+#### LSALOGR1 - Display LSAM Submitted Job Log Entries
+
+##### Menu Pathways
+
+Main Menu > LSAM Management (#6) > Display LSAMsubmit job log (CALL LSALOGR31) (#4)
+
+##### Options
+
+- **5=Display**: View the details of a log entry
+
+##### Fields
+- **Search content**: Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
+- **Opt**:  Type a supported option next to one or more log entries, then presse <**Enter**> to view each selected record's details, one after another.
+- **Log Date**: The date (month/day/year) when the log entry was recorded in the database.
+- **Log Time**: The time (hours:minutes:seconds) when the log entry was recorded in the database.
+- **Typ**: The log entry Type code (from a set of values that are unique to this log file).
+
+:::info
+The next LSAM version 21.1 introduces an advanced version of this log file and the details displays include interpretations of the log entry Type codes.  See the description of the Select/Omit by Type window (LSALOGW1) below for examples of the entry Type codes.
+:::
+- **Log entry text**: The first several characters of each log entry appear in the list display.  To see the entire text of each log entry, press <**F10=Fold/Unfold**> to change the list display so that entire log text is visible, or use option 5=Display to view a single log entry and its entire text in the Entry Details display.
+
+#### Functions
+
+- **F3=Exit**: Quits the list display and returns to the menu.
+- **F5=Refresh**: Reload the list display with data from the master file.
+- **F10=Fold/Unfold**: Changes the list display to/from showing multiple lines as necessary for each log entry to reveal the entire text of the entry.
+- **F12=Cancel**: Quits the list display and returns to the menu.
+- **F15=Sel/Omit**: Presents a window used to filter log entries to only specified Types.
+- **F16=Search next**: Press to start a new search based on the value entered in the Search input field, or to continue a search from the last record found.
+- **F17=Top**: Causes the list to display from the first record.
+- **F18=Bottom**: Causes the list to display the last record in the file.
+- **F21=DSPPFM(@RRN)**: Branch to a display of the IBM i DSPPFM (display physical file member) which shows the unformatted data in the log file.
+- **F24=MoreKeys**: Rotates the list in the function key legend.
+
+#### LSALOGW1 - Select/Omit by TYP
+
+Choose to either select or omit up to six Type codes and refresh the list.  To cancel this subsetting function, use F15 to return to this window and change the Select/Omit code field to blank, then press <**Enter**>.
+
+:::info
+The next LSAM version 21.1 introduces an advanced version of this log file and this window will show a summary of all unique codes currently stored in the file.  Until the upgrade from 18.1 to 21.1, it is necessary to study the list display to discover which Type codes are useful for Select/Omit.
+:::
+
+##### Menu Pathways
+
+Main Menu > LSAM Management (#6) > Display LSAMsubmit job log (CALL LSALOGR31) (#4) > option 5
+
+##### Fields
+- **Select/Omit function code**: Type "S" or "O" or blank into the one-character field at the top of the window to control the list subset mode.
+- **TYP**: Enter one to six log entry Type codes to choose or omit log entries that have these Type codes.
+
+#### Functions
+- **F12=Cancel**: Returns to the list display without changing the subset rule.
+- **Enter**: Press <**Enter**> to implement a new subset rule, or to cancel subsetting when the function code has been set to blank.
+
+#### LSALOGR5 - Display LSAM Submitted Job Log Entry
+
+##### Menu Pathways
+
+Main Menu > LSAM Management (#6) > Display LSAMsubmit job log (CALL LSALOGR31) (#4) > option 5
+
+##### Fields
+- **File position**:  Shows the relative record number of the log entry in the physical file. This could be useful for positioning the display when using F21=DSPPFM from the list display.
+- **Log Date, Time**: The date (month/day/year) and time (hours:minutes:seconds) when the log entry was recorded in the database.
+- **Log entry type**: The log entry Type code (from a set of values that are unique to this log file).
+    :::info
+    The next LSAM version 21.1 introduces an advanced version of this log file and the details displays include interpretations of the log entry Type codes.  See the description of the Select/Omit by Type window (LSALOGW1) below for examples of the entry Type codes.
+    :::
+- **Log entry text**: The entire text of the log entry.
+
+#### Functions
+
+- **F3=Exit**: Quits the list display and returns to the menu.
+- **F12=Cancel**: Returns to the list display.
+- **F21=DSPPFM(@RRN)**: Branch to a display of the IBM i DSPPFM (display physical file member) which shows the unformatted data in the log file.
 
 ### The LSAM Job Scheduler's Job Log
 
