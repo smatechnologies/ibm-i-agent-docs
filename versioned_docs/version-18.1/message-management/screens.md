@@ -184,7 +184,7 @@ The screens for option 5 = Display are labeled TRPMSGR5A - C, but they appear th
 
 :::tip
    -   New records are initially set to a status of I =inactive to allow time for configuration of message data capture and captured data response rules, if any are desired. It may also be necessary to create multiple  different responses to a single message. After all file maintenance is complete, set the status of all new Parameters records to A = active, using option 2=Change.                   
-   -   Refer to [Commands and Utilities](/commands-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
+   -   Refer to [Commands and Utilities](../commands-utilities/commands.md) for a description of the Agent utility command SMAMMPSTS. This command may be used to automate changing a Parameter record status between Active and Inactive. 
 :::    
 - **Message ID**: The identifier of the message to be trapped. 
 - **Message File**: The message file that holds the definition of the Message ID.
@@ -755,7 +755,7 @@ Use this option to collect all related Capture Applications and Response Rules, 
 
 ### Work with Capture Response Rules
 
-The Work with Capture Response Rules function is identical to the description provided in Events and Utilities, except that these Response Rules are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to [Captured Data Response Rules - Work with Response Rules](/events-utilities/captured-data-response-rules.md\#work-with-capture-response-rules) to see the screens and windows used to create Capture Response Rules.
+The Work with Capture Response Rules function is identical to the description provided in Events and Utilities, except that these Response Rules are related only to Message Data Capture Definitions instead of to SCANSPLF data capture. Please refer to [Captured Data Response Rules - Work with Response Rules](../events-utilities/captured-data-response-rules.md\#work-with-capture-response-rules) to see the screens and windows used to create Capture Response Rules.
 
 #### Menu Pathways
 

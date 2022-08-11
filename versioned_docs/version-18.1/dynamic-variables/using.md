@@ -58,7 +58,7 @@ When Dynamic Variable tokens will be inserted into the OpCon Job Master, it beco
 
 ## Dynamic Variables with OpCon External Event Commands
 
-OpCon External Event commands, explained in the [Event Management](/events-utilities/external-events.md) section and in the separate **Concepts** documentation, can be executed by Captured Data Response Rules (and by LSAM Message Management Parameter records). The LSAM Utilities menu option 1, as well as a set of IBM i-format commands (that are installed with the LSAM software), can also be used to directly request that OpCon execute one of its External Event Commands.
+OpCon External Event commands, explained in the [Event Management](../events-utilities/external-events.md) section and in the separate **Concepts** documentation, can be executed by Captured Data Response Rules (and by LSAM Message Management Parameter records). The LSAM Utilities menu option 1, as well as a set of IBM i-format commands (that are installed with the LSAM software), can also be used to directly request that OpCon execute one of its External Event Commands.
 
 Among the set of the OpCon External Event Commands that are supplied with the LSAM software, only the CPYTOMSGIN general-purpose command is able to support and translate Dynamic Variable tokens. (The other, older Event Commands, such as JOBADD, listed on the LSAM menu function display, are supported by a different command processor program that does not recognize Dynamic Variable tokens.) This is one reason why the CPYTOMSGIN command is the preferred method for configuring the LSAM automation tools to execute OpCon External Event Commands. 
 

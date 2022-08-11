@@ -9,7 +9,7 @@ Important fundamental definitions of Job Tracking types are provided in the intr
 
 ## Using Dynamic Variables with Job Tracking
 
-Some examples of where dynamic variables may be used are offered in the procedural outlines above. There is more information about dynamic variables in [How Numeric Compression Is Managed for *DB2](/dynamic-variables/function-codes#how-numeric-compression-is-managed-for-db2).
+Some examples of where dynamic variables may be used are offered in the procedural outlines above. There is more information about dynamic variables in [How Numeric Compression Is Managed for *DB2](../dynamic-variables/function-codes#how-numeric-compression-is-managed-for-db2).
 
 The type-L Dynamic Variable is especially useful with Tracked and Queued Jobs. It L is used exclusively to update the local data area (LDA) contents associated with any IBM i job. This variable type can be used with any batch job submitted by OpCon to IBM i, and also with tracked, queued or captured jobs. Dynamic variables of type L replace data in the LDA based on the starting position and length fields specified in the dynamic variable master record. These two numeric fields apply only to type-L variables and they cannot be used for type-V variables. For dynamic variables of type L, the Variable Name must be either the Captured Job ID of a captured job, or the IBM i Job Name of an OpCon batch job, a tracked job or a queued job.
 
@@ -394,7 +394,7 @@ Every IBM i job is supported by a system-defined local data area (LDA) of 1024 b
 
 As described above, most of the LSAM job tracking, queuing and capture functions are supported by an exit program that is called whenever the SBMJOB command from the operating system's QSYS library is used, as long as the LSAM's general job tracking function is active. When the exit program executes it is part of the job that is submitting another job. Therefore, the exit program has access to the submitting job's LDA. The LSAM exit programs store the LDA content in an LSAM database file, keyed by the LSAM's job tracking number or by the captured job's unique Capture ID. The stored LDA content becomes available for maintenance until the intercepted job is executed. The LSAM job scheduling server program, or the LSAM utilities that allow a queued job to be released manually, both retrieve the LDA content from the database file and set the LDA of the submitting job just before the LSAM's own SBMJOB (or SBMJOB2) command is executed.
 
-There are two ways to maintain the captured LDA content. LSAM Dynamic Variables may be used for all forms of intercepted jobs: tracked, queued or captured. For more information about Dynamic Variables, refer to [Dynamic Variables](/dynamic-variables/overview). The LSAM menu system also provides access to a function for manually maintaining stored LDA content, but this function is available only for captured jobs.
+There are two ways to maintain the captured LDA content. LSAM Dynamic Variables may be used for all forms of intercepted jobs: tracked, queued or captured. For more information about Dynamic Variables, refer to [Dynamic Variables](../dynamic-variables/overview). The LSAM menu system also provides access to a function for manually maintaining stored LDA content, but this function is available only for captured jobs.
 
 ## Job Scheduling Messages for Tracked Jobs
 

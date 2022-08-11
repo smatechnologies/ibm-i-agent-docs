@@ -31,7 +31,7 @@ The term API means application program interface. This term refers to points in 
 ### External Event Commands
 - **CPYTOMSGIN**: Copy Event to SAM-SS message input
   - Passes Event instructions to the LSAM communications program for forwarding to SAM-SS.
-- **Direct Event Commands**: (…for example… JOBRLS, NTYLOG, TOKSET) Refer to the tables of Event commands under the topic of Event Management at [Event Management: XML Event Management Commands](/events-utilities/external-events.md/#xml-event-management-commands) or [Event Management: CSV Event Management Commands](/events-utilities/external-events.md/#csv-event-management-commands).
+- **Direct Event Commands**: (…for example… JOBRLS, NTYLOG, TOKSET) Refer to the tables of Event commands under the topic of Event Management at [Event Management: XML Event Management Commands](../events-utilities/external-events.md/#xml-event-management-commands) or [Event Management: CSV Event Management Commands](../events-utilities/external-events.md/#csv-event-management-commands).
   - Each OpCon Event has been implemented by the IBM i LSAM as an IBM i command using the same name as the Event. The command processor program passes the Event instruction to the LSAM communications program for forwarding to SAM-SS.
 
 ### Debug mode, logging, log viewers

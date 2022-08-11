@@ -99,7 +99,7 @@ It will not work correctly to try to use the menu access commands or the LSAM se
 
 However, the three commands that manage the user's library list (SMASETLIBL, SMAADDLIBL, SMARMVLIBL) do not create this problem, so they can be effectively used as long as the library list requested exists in the LSAM Environment master file that is located in the command's Product Library.
 
-More information about LSAM commands may be found in the next major section of this topic and in [Commands and Utilities](/commands-utilities/commands).
+More information about LSAM commands may be found in the next major section of this topic and in [Commands and Utilities](../commands-utilities/commands).
 
 ## SMAPTF Library Purpose Change
 

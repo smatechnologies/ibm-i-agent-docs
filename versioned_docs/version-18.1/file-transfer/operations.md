@@ -51,7 +51,7 @@ The Start SMAFT Server option tells the LSAM to listen for SMAFT file transfer r
 
 ### Start SMAFT Server
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information, refer to the [STRSMA Command](../operations/lsam#the-strsma-command).
 2. Enter **8** to choose the **SMAFT File Transfer** menu in the SMA Main Menu. 
 3. Enter **1** to choose the Start SMAFT Server (STRSMAFT) option in the SMA File Transfer menu.
 4. The result of starting the SMAFT Server is that job SMAFTS is submitted to the LSAM subsystem configured in the LSAM Parameters. Confirm that the SMAFT Server is active by using the Check LSAM subsystem status, as follows.
@@ -65,7 +65,7 @@ The End SMAFT Server option tells the LSAM to discontinue listening for SMA File
 
 ### End SMAFT Server
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information, refer to the [STRSMA Command](../operations/lsam#the-strsma-command).
 2. Enter **8** to choose the **SMA File Transfer** menu in the SMA Main Menu.
 3. Enter **2** to choose the **End SMAFT Server** (ENDSMAFT) option in the SMA File Transfer menu.
 4. The result of ending the SMAFT Server is that job SMAFTS is ended from the LSAM subsystem configured in the LSAM Parameters. Confirm that the SMAFT Server is no longer active by using the Check LSAM subsystem status, as follows.

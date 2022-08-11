@@ -43,7 +43,7 @@ The following flow chart shows how job definition information is communicated to
 
 If user SMANET does not have \*ALLOBJ authority, it is likely that problems could arise in the process used by the LSAM software to submit jobs, until the client site administrator has successfully tested and debugged the object authority matrix used to manage SMANET authorities.
 
-Detailed instructions about various tools and procedures that support diagnosis of job failures is presented in the [Guide to Job Failure Diagnosis](/operations/automation.md#guide-to-job-failure-diagnosis).
+Detailed instructions about various tools and procedures that support diagnosis of job failures is presented in the [Guide to Job Failure Diagnosis](../operations/automation.md#guide-to-job-failure-diagnosis).
 
 Following is a summary of the most helpful and specific resources that can be used to identify errors that might occur in the LSAM job submission process. This list is based on the flow chart [LSAM Submit Job Flow](#ibm-i-lsam-server-submit-jobs), above.
 

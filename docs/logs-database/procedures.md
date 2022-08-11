@@ -24,7 +24,7 @@ Watch carefully for LSAM logging options that are labelled "trace logging."  The
 :::tip
 The LSAM does not need to be started or stopped at this point.
 :::
-2. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+2. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam#the-strsma-command).
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
 4. Enter **4** to choose Manage LSAM logging in the Operator Replay Menu.
 5. Type a "**1**" (= Start) next to one or more logging features.
@@ -43,7 +43,7 @@ Do not enter "1" next to any line that is titled "trace logging" unless instruct
 ## Turn Off Debug Logging
 
 1. Log into the IBM i with a user profile that has LSAM administration privileges.
-2. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+2. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam#the-strsma-command).
 3. Enter **6** to choose the LSAM management menu in the SMA Main Menu.
 4. Enter **4** to choose Manage LSAM logging in the Operator Replay Menu.
 5. Type a "**4**" (= End) next to one or more logging features.

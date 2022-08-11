@@ -334,11 +334,11 @@ Main Menu > LSAM management menu (#6) > Check LSAM subsystem status (#3)
 
 ### Manage LSAM Logging
 
-The IBM i LSAM supports active control over its logging capabilities. Logging is a local function useful to system administrators, IT auditors, programmers and support technicians. For a complete description of how to use the logging features, refer to [Log File and Database Management](/logs-database/overview).
+The IBM i LSAM supports active control over its logging capabilities. Logging is a local function useful to system administrators, IT auditors, programmers and support technicians. For a complete description of how to use the logging features, refer to [Log File and Database Management](../logs-database/overview).
 
 ### View LSAM Logs
 
-This menu option provides direct access to the list of available LSAM log viewers. For more information about how to use the log views, refer to [Log File and Database Management](/logs-database/overview). This menu function supports viewing the general debug log files associated with most types of jobs that the LSAM controls. However, there are certain specialized debug log file viewers that do not appear on this menu, but are supported from other LSAM sub-menus because they are specifically associated with the LSAM features on those menus.
+This menu option provides direct access to the list of available LSAM log viewers. For more information about how to use the log views, refer to [Log File and Database Management](../logs-database/overview). This menu function supports viewing the general debug log files associated with most types of jobs that the LSAM controls. However, there are certain specialized debug log file viewers that do not appear on this menu, but are supported from other LSAM sub-menus because they are specifically associated with the LSAM features on those menus.
 
 ### Work with LSAM Servers (WRKSMASVR)
 
@@ -376,7 +376,7 @@ The JOBNFY4 job uses the job queue entry messages to update the LSAM Job Trackin
 
 The Job End message processing of the JOBNFY server is also critical for Passive Job Tracking. This is because the LSAM job start services were not used to initiate the IBM i job, and therefore the standard IBM i job completion message will not be sent to the job completion message queue that the LSAM is monitoring. Instead, the Job Notify service forwards the IBM i Job End message to the LSAM job completion message queue.
 
-More information about Passive Job Tracking may be found in [Job Tracking and Queuing](/job-tracking/overview).
+More information about Passive Job Tracking may be found in [Job Tracking and Queuing](../job-tracking/overview).
 
 ### Flow Chart of Alternate Job Notify Processing
 

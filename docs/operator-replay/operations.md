@@ -230,7 +230,7 @@ Copying an entire script is another way to Create new scripts:
 
 #### Adding a Step
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the Operator Replay Menu.
 4. Type **1** next to the script that is modified in the Operator replay script menu.
@@ -244,7 +244,7 @@ The screen for adding step data is the same as for Creating a new script, above.
 
 #### Modify a Step
 
-1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](/operations/lsam#the-strsma-command).
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam#the-strsma-command).
 2. Enter **4** to choose the **Operator Replay menu** in the SMA Main Menu.
 3. Enter **2** to choose the **Operator Replay scripts** in the Operator Replay Menu.
 4. Type **2** next to the script that is modified in the Operator Replay Script menu.

@@ -10,7 +10,7 @@ These instructions refer to the process of building an LSAM environment definiti
 
 1. It is required to complete the Multiple Environment installation instructions before using a new environment that is created in the same IBM i partition.
 :::tip
-Refer to [Installing Multiple Environments](/reference/multiple-environments.md). It is not necessary to install a multiple environment just to set up a library list for use with Restricted Mode operations (or for any other utility use of LSAM library list management that might be useful). In this case, the environment name is just a label for the library list.
+Refer to [Installing Multiple Environments](../reference/multiple-environments.md). It is not necessary to install a multiple environment just to set up a library list for use with Restricted Mode operations (or for any other utility use of LSAM library list management that might be useful). In this case, the environment name is just a label for the library list.
 :::
 2. In the command line, enter **SMAGPL/SMALIBMGT**. For more information, refer to [SMALIBMGT](./commands.md#smalibmgt).
 3. To add a new environment: Type the name and information defining a new environment on one of the blank list lines, and then press <**Enter**> to record the changes.

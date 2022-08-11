@@ -95,7 +95,7 @@ SMA Technologies reminds its clients that the "PTFs" for the IBM i Agent of OpCo
 
 For orientation purposes, here is a summary of the "fast path" steps to apply the LSAM PTFs.
 
-1. Use the LSAM sub-menu 9, option 7, to confirm or update the LSAM PTF Configuration. Refer to [PTF Options Configuration](/maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for details about the LSAM PTF Configuration values.
+1. Use the LSAM sub-menu 9, option 7, to confirm or update the LSAM PTF Configuration. Refer to [PTF Options Configuration](../maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for details about the LSAM PTF Configuration values.
 
 2. Download the two LSAM PTF save files from the SMA Technologies secure ftp server.
 
@@ -187,9 +187,9 @@ For the IFS method, the path name recommended within the IBM i root(/) file syst
 
     - **Source directory or path**: When using the FTP method, type the path name provided by the FTP server source administrator for the location of IBM i LSAM PTF resources. This field may also be used for a directory name when sources other than FTP have been selected. The path name (Windows, Unix or IBM i IFS root directory format) must end with a forward slash (/), and most root directory servers also require that the path name begin with a forward slash (/).
 
-    - **PTF - LSAM server stop opt**: Select one of the available options. Refer to [PTF Options Configuration](/maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for more information.
+    - **PTF - LSAM server stop opt**: Select one of the available options. Refer to [PTF Options Configuration](../maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for more information.
 
-    - **PTF - Restart servers opt**: Select one of the available options. Refer to [PTF Options Configuration](/maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for more information.
+    - **PTF - Restart servers opt**: Select one of the available options. Refer to [PTF Options Configuration](../maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for more information.
 
     -  **PTF process default values**, **Submit job?** and **Auto-load after request?**: Select 'Y' = yes or 'N' = no.
 
@@ -213,7 +213,7 @@ For the IFS method, the path name recommended within the IBM i root(/) file syst
 4. Enter **3** to choose **Request PTF information or save files**. The command SMAPTFREQ will be prompted in the PTF and Security Menu.
 5. On the SMAPTFREQ command prompt screen, <**Tab**> to the following fields and enter the following data:
 
-    - **PTF request type**: Type ALLOBJ to request all list information and the cumulative collection of PTF save files.  Refer to [PTF Options Configuration](/maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for more information about the following fields.
+    - **PTF request type**: Type ALLOBJ to request all list information and the cumulative collection of PTF save files.  Refer to [PTF Options Configuration](../maintenance/screens.md#ptf-options-configuration) in the Screens and Windows segment of this documentation section for more information about the following fields.
         - For the ALLOBJ option, skip the **ONEPTF PTF name** field.
 
     - **LSAM environment name**: Usually it is appropriate to leave this field set to \*CURRENT when the LSAM menu has been used to start the request function.
