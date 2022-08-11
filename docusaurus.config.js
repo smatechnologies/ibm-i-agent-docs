@@ -42,6 +42,7 @@ module.exports = {
             versions: {
             current: {
               label: '21.1',
+              path: 'v21.1',
             },
             '18.1': {
               label: '18.1',
