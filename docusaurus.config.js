@@ -17,13 +17,6 @@ module.exports = {
         src: 'img/logo.svg',
         href: 'https://help.smatechnologies.com',
       },
-      items: [
-        {
-          type: 'docsVersionDropdown',
-          position: 'right',
-
-        },
-      ],
     },
     footer: {
       style: 'dark',
@@ -39,16 +32,6 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/smatechnologies/ibm-i-agent-docs/blob/develop',
-            versions: {
-              'current': {
-                label: '21.1',
-              },
-              '18.1': {
-                label: '18.1',
-                path: 'v18.1',
-                banner: 'none',
-              },
-            }
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
