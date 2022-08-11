@@ -175,7 +175,7 @@ The master record that defines Dynamic Variables supports a flexible set of nume
 
 This section explains the special edit codes that can be used to escape or eliminate problem characters that may be stored in the value of a Dynamic Variable. These codes do not work as specified here when the Dynamic Variable is marked as a numeric data type.
 
-As described under the topic of [Captured Data Response Rules](/events-utilities/captured-data-response-rules), it is possible to capture single quotes and commas as part of a character string. However, these two characters can cause problems with other LSAM functions, as follows:
+As described under the topic of [Captured Data Response Rules](/docs/events-utilities/captured-data-response-rules), it is possible to capture single quotes and commas as part of a character string. However, these two characters can cause problems with other LSAM functions, as follows:
 
 - **Single Quotes**: Single quotes included in captured data, such as message text, green screen workstation displays or reports, can prevent storage of captured data into Dynamic Variables. The single quote interferes with delimiting character strings in IBM i command parameter values. This problem may also occur in other functions that may replace a Dynamic Variable token with its character string value.
 - **Commas**: If a comma is included in the value of a dynamic variable it can interfere with the syntax of OpCon Event commands that use the CSV syntax whenever that dynamic variable is included as one of the command parameter values. (To avoid commas being managed as reserved characters in OpCon Event commands, use the XML Event command syntax.)
