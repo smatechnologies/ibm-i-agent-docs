@@ -6,8 +6,8 @@ sidebar_label: 'Overview & Reader Notes'
 
 These release notes include all enhancements and fixed issues and for the IBM i LSAM, versions:
 
-- [Version 18.1 New Features](./version-18.1-new-features.md)
-- [Version 18.1 Fixes](./version-18.1-fixes.md)
+- [Version 21.1 New Features](./version-21.1-new-features.md)
+- [Version 21.1 Fixes](./version-21.1-fixes.md)
 
 ## Reader Notes
 
