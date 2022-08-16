@@ -10,3 +10,4 @@ This list shows the enhancements that were added to the OpCon Agent for IBM i as
 | ------------ | ----------- |
 | Table note: |Where applicable, an LSAM PTF name will be shown as a number (181000) in the Description field.|
 | IBMI-41 |The IBM i LSAM communication with the OpCon server and with other Agents can now be optionally encrypted with TLS Security.|
+| | |
