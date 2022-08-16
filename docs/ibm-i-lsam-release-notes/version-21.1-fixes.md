@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Version 18.1 Fixes'
+sidebar_label: 'Version 21.1 Fixes'
 ---
 
-# Version 18.1 Fixes
+# Version 21.1 Fixes
 
 This list shows the LSAM fixes that have been added to the OpCon Agent for IBM i since LSAM version 18.1 was released.
 

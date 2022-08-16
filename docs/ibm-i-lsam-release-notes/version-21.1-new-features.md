@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Version 18.1 New Features'
+sidebar_label: 'Version 21.1 New Features'
 ---
 
-# Version 18.1 New Features
+# Version 21.1 New Features
 
 This list shows the enhancements that were added to the OpCon Agent for IBM i as LSAM version 18.1 was released, available only after upgrading to version 18.1, plus several enhancements that have been added to this Agent version during its lifecycle.
 
