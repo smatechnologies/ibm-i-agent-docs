@@ -7,8 +7,8 @@ module.exports = {
       collapsed: true,
       items: [
         'ibm-i-lsam-release-notes/overview',
-        'ibm-i-lsam-release-notes/version-18.1-new-features',
-        'ibm-i-lsam-release-notes/version-18.1-fixes',
+        'ibm-i-lsam-release-notes/version-21.1-new-features',
+        'ibm-i-lsam-release-notes/version-21.1-fixes',
       ], 
     },
     {
