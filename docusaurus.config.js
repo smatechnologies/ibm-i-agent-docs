@@ -38,15 +38,15 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/smatechnologies/ibm-i-agent-docs/blob/develop',
-            lastVersion: '18.1',
+            lastVersion: 'current',
             versions: {
             current: {
               label: '21.1',
-              path: 'v21.1',
             },
             '18.1': {
               label: '18.1',
               path: 'v18.1',
+              banner: 'none',
             },
           },
         },
