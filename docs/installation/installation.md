@@ -293,7 +293,6 @@ After the LSAM installation or upgrade is complete, using the Agent command SMAG
   ```
   This empty save file should be named to match the latest version of the IBM i LSAM (Agent) Installation save file, such as LI211043A.  Keeping the letter on the save file name could be important for distinguishing this version from future versions that may be published.
 
-EDITOR'S NOTE: DELETE THIS PUBLICATION TEST TEXT!
 
 ### FTP the LSAM Save File
 
@@ -325,15 +324,19 @@ D:\Install\LSAM\IBM i LSAM>
 10. At the prompt, enter **ftp** <LSAM Machine Name or TCP/IP address>. In order to use the LSAM Machine Name, this name must be registered either in the MS Windows "hosts" file or it must be found in the connecting networks domain name services table.
 11. Log in as **QSECOFR** with the appropriate QSECOFR password. An alternate LSAM installation user profile that was used to create the save file in QGPL may also be used.
 12. Enter **bin** to select a binary transfer type.
-13. Enter the following FTP PUT commands to send the file.
+13. Enter the following FTP PUT commands to send the file:
+```
+  PUT LI211043A QGPL/LI211043A
+```
+
 14. Enter **quit** to exit the FTP utility.
 15. Enter **exit** to close the command entry window.
 
 :::info example
-```
+
 The following shows a typical FTP procedure in a DOS command window for
 a new install.
-
+```
 D:\Install\LSAM\IBM i LSAM>ftp <LSAM Machine Name or TCP/IP
 address>
 Connected to <IBM i Name or IP Address>.
@@ -345,10 +348,9 @@ Password: <QSECOFR password>
 230 User QSECOFR logged in.
 ftp> bin
 200 Representation type is binary IMAGE.
-ftp> PUT LI211043A QGPL/LI181013
+ftp> PUT LI211043A QGPL/LI1211043A
 200 PORT subcommand successful.
-150 Sending file to member LI181001 in file LI181001 in library
-QGPL.
+150 Sending file to member LI211043A in file LI211043A in library QGPL.
 ________ bytes sent in ______ seconds _____ Kbytes/sec
 ftp> quit
 221 QUIT subcommand received
@@ -360,7 +362,7 @@ D:\Install\LSAM\IBM i LSAM>exit
 
 16. When installing the IBM i LSAM for the first time, SMA recommends creating the required two user profiles manually to preserve the object authority of the installation tool software that will be restored to your system in the next step. Enter the following two commands.
 
-  Optionally, this step may be skipped because the SMASETUP command below will create the user profiles if they do not exist, and the LSAM installation tools will still operate correctly. Creating the user profiles in advance presents an opportunity to customize the user profiles according to local standards.
+>> Optionally, this step may be skipped because the SMASETUP command below will create the user profiles if they do not exist, and the LSAM installation tools will still operate correctly. Creating the user profiles in advance presents an opportunity to customize the user profiles according to local standards.
 
 :::tip
 It is normally possible to copy the following text and paste it into the IBM i workstation command entry line, then modify the parameter values as required.
@@ -380,18 +382,17 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
 :::
 
 ### Prepare the Installation Library
-17. Restore the distribution library, which includes the setup command and its processor program, from the save file QGPL/LI181ppp by entering the command:
+17. Restore the distribution library, which includes the setup command and its processor program, from the save file QGPL/LI211043A by entering the command:
 
   ```
-    RSTLIB SAVLIB(LI181001) DEV(*SAVF) SAVF(QGPL/LI181ppp)
+    RSTLIB SAVLIB(LI211043A) DEV(*SAVF) SAVF(QGPL/LI211043A)
   ```
-  ... where "ppp" is the LSAM PTF level of the newest Installation Save file.
 
   :::tip
   Messages are displayed indicating the results of the restoration. Disregard messages about security or data format changes. If messages appear at the bottom of the command entry display, a white plus sign (+) is displayed in the lower right-hand corner indicating if there are additional messages about the current command. Place the cursor on the message line and press the ***PageDown*** button to view any additional messages. Please report any  unexpected messages to the SMA Technologies Support team for assistance.
     
     ***Do not continue with this install procedure if there are unexpected messages.***
-   :::
+  :::
 
 18. When upgrading an existing LSAM environment, it is required to stop the LSAM server jobs before starting the SMASETUP command. Failure to stop the LSAM server jobs will result in an error during the upgrade procedures when the SMAGPL library is being replaced. 
 
@@ -404,17 +405,17 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
 19. Add the installation library to the interactive job library list by entering the command:
 
     ```
-    ADDLIBLE LIB(LI181001) POSITION(*FIRST)
+    ADDLIBLE LIB(LI211043A) POSITION(*FIRST)
     ```
 
 ### Run the Installation Procedure
 :::tip
 Before starting the SMASETUP command, it may be necessary to review the information about the standard LSAM utilities library, presented below the step-by-step instructions.
 
-This note is especially important for two types of users:
-Clients who might have chosen to install some LSAM utility commands and files into the IBM i library QGPL.
-Clients who had previously configured the LSAM to share the SMAGPL library among multiple LSAM Environments.
-Clients who do not have or intend to configure either of these conditions can skip the remainder of this notice.
+This note is especially important for these types of users:
+  - Clients who might have chosen to install some LSAM utility commands and files into the IBM i library QGPL.
+  - Clients who had previously configured the LSAM to share the SMAGPL library among multiple LSAM Environments.
+  - Clients who do not have or intend to configure either of these conditions can skip the remainder of this notice.
 
 SMA no longer supports sharing an SMAGPL library between LSAM Environments. Some functions may not behave as expected, and it is especially difficult to properly synchronize LSAM PTF application when the SMAGPL is being shared. Contact SMA Support for assistance with separating LSAM Environments.
 
@@ -425,27 +426,31 @@ SMA strongly recommends against installing LSAM software into the IBM i library 
 More information on this subject is offered in the LSAM Environment Management section of the IBM i LSAM documentation.
 :::
 
-<u>Choose 20 or 21</u>, depending on whether the normal SMADEFAULT Environment or an Alternate LSAM Environment will be used*:
+<u>Choose 20 or 21</u>, depending on whether the normal SMADEFAULT Environment or an Alternate LSAM Environment will be used:
 
-20. <u>EITHER</u>: Start the default installation procedure by entering the command: 
-    **SMASETUP**
+20. <u>EITHER</u>: Start the default installation procedure by entering the command:
+
+  **SMASETUP**
 
 21. <u>OR</u>: To modify the installation for installing or upgrading an environment other than the SMADEFAULT environment, set the ALTENV parameter of the SMASETUP command to (*YES).
 
     Type the **SMASETUP** command and then press function key **F4** to view and enter the ALTENV parameter value correctly. Then press **Enter** to continue.
 
   :::warning
-  Please contact SMA Technologies Support before attempting to use the ALTENV(\*YES) option for the first time. There are additional installation and  configuration steps required when multiple environments are set up. There steps are documented in the LSAM Environment Management section of the IBM i LSAM documentation. However, SMA Technologies wants to consult with clients who plan to use multiple environments before they attempt to install them.
+  Please consider contacting SMA Technologies Support before attempting to use the ALTENV(\*YES) option for the first time. There are additional installation and configuration steps required when multiple environments are set up. These steps are documented in the LSAM Environment Management section of the IBM i LSAM documentation. However, if there are any questions about this process SMA Technologies wants to consult with clients who plan to use multiple environments before they attempt to install them.
   :::
 
 22. As objects are restored from the installation save file, there are status messages displayed at the bottom of the screen to indicate the progress of the installation. The display screen may also appear blank for some time. <u>No action is required</u>. 
 23. Use the reference information published below for assistance with entering data on either of the two (or four, when ALTENV = *YES) control data displays that will be presented during the installation.
 
 24. When the installation procedure has finished normally, the following completion message is displayed:
+
+    **\*\*\* IBM i LSAM installation completed normally \*\*\***
+
   :::warning
   If the message indicating that the installation completed normally does not appear, or if the process ends with some other message, please contact SMA Technologies Support for assistance. Do not attempt to use the LSAM installation until the errors have been resolved. During the installation, or following an abnormal end of the command, it is very important not to reply to any error messages, should one appear, until the meaning and effect of the reply can be understood. Please contact SMA Technologies Support for advice, and leave the error message on display so that the circumstances of the error can be evaluated. Failure to follow this instruction will produce unpredictable results.
   :::
-1. Perform the Post-Install Instructions and review the information topics that follow the Post-Install Instructions, as they may apply.
+25. Perform the Post-Install Instructions and review the information topics that follow the Post-Install Instructions, as they may apply.
 
 ## LSAM Installation Options
 
@@ -475,10 +480,10 @@ The following installation prompt screen example shows the default values that a
 #### SMASETUP Initial Prompt Screen
 ```
 SMASETR1              Install/Upgrade IBM i Agent (LSAM)              00/00/00
-USERNAME               Installing version: 18.1                       00:00:00
+USERNAME               Installing version: 21.1                       00:00:00
  Type options and press Enter to continue.                                    
  SMA now recommends to NOT share the SMAGPL or QGPL library.                  
-Installation source library . : LI181001                                      
+Installation source library . : LI211043A                                      
 Use alternate environment name: *NO           *YES, *NO=use default           
 SMAGPL alternate library name : SMAGPL        For PTF tools (do NOT use QGPL) 
 LSAM environment tools library: SMAGPL        SMAGPL, QGPL, test library      
@@ -514,9 +519,9 @@ The SMA Installer should advise the client about selecting from the following th
 
 In the example of the first prompt screen from the SMASETUP command, shown above, there are three field values that must be carefully considered before continuing with the installation or upgrade. Each field is listed here with a symbolic name that will be used to refer to these fields in the remaining portions of this document:
 
-- **SMAUTL** = SMAGPL alternate library name: SMAGPL For PTF tools     (do NOT use QGPL)
-- **SMAGPL** = LSAM environment tools library: SMAGPL SMAGPL, QGPL,     test library
-- **CONVERT** = Convert any QGPL content?: Y=Convert, N=Ignore     QGPL
+- **SMAUTL** = SMAGPL alternate library name: SMAGPL - for PTF tools (do NOT use QGPL)
+- **SMAGPL** = LSAM environment tools library: SMAGPL, QGPL, test library
+- **CONVERT** = Convert any QGPL content?: Y=Convert, N=Ignore QGPL
 
 The library label SMAUTL refers to the SMAGPL contents that are dedicated to PTF tools (PTFs are program temporary fixes from SMA - the same acronym as IBM uses, but these are only for the LSAM software).
 
@@ -578,7 +583,7 @@ Whenever the environment definition has been completed, or no changes are requir
 
 When an Alternate LSAM Environment is being installed, the third prompt screen that will be presented, immediately after exiting the environment maintenance function, will be the LSAM environment inquiry list display.
 
-Type option 1=Select to choose the alternate environment that is being installed or upgraded, then press **Enter** to continue the installation.
+Type option **1**=Select to choose the alternate environment that is being installed or upgraded, then press **Enter** to continue the installation.
 
 ### Second/Fourth Interactive Installation Prompt Screen
 
@@ -586,11 +591,11 @@ The last interactive prompt screen that appears during the SMASETUP command exec
 
 Following is an example of the second prompt screen showing the default LSAM configuration values as defined by SMA:
 
-SMASETUP Second Prompt Screen
+#### SMASETUP Second Prompt Screen
 
 ```
   SMASETR2                  Initialize IBM i Agent (LSAM)                 DD/DD/DD   
-  USERNAME                 Installing version: 18.1                       TT:TT:TT
+  USERNAME                    Installing version: 21.1                    TT:TT:TT
 
    Type values and press Enter to continue.
 

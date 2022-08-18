@@ -312,8 +312,23 @@ After the LSAM installation or upgrade is complete, using the Agent command SMAG
 
 1. From an IBM i green screen workstation (such as an Access for IBM i display emulation session) or from an IBM i console, sign on to the system as **QSECOFR**. A user profile with all object (\*ALLOBJ) authority and security administration (\*SECADM) authority may also be used.
 2. Enter **CALL QCMD** to go to the full **Command Entry** screen. This makes installation messages and steps easier to monitor.
-3. Change the interactive job attributes using the following two commands.
+3. Change the interactive job attributes using the following two commands:
+
+    - Messages sent to the user message queue (of QSECOFR or the user name used to sign on) can be displayed immediately on the green screen console, workstation, or emulation session by entering the command:
+  ```
+    CHGMSGQ <user_name> *BREAK
+  ```
+
+    - Request fully detailed job logging with the following command. This level of logging makes diagnosis much easier in case there is an error during the installation:
+  ```
+    CHGJOB LOG(4 00 *SECLVL) LOGCLPGM(*YES) JOBMSGQFL(*WRAP)
+  ```
+  
 4. Create a working save file for use during the installation to the IBM i partition by entering the command:
+  ```
+    CRTSAVF QGPL/LI181ppp
+  ```
+  This empty save file should be named to match the latest version of the IBM i LSAM (Agent) Installation save file, such as LI181013, where 013 replaces the symbolic letters "ppp.".  This will be important for distinguishing newer versions of the install file versus older versions.
 
 ### FTP the LSAM Save File
 
@@ -345,15 +360,18 @@ D:\Install\LSAM\IBM i LSAM>
 10. At the prompt, enter **ftp** <LSAM Machine Name or TCP/IP address>. In order to use the LSAM Machine Name, this name must be registered either in the MS Windows "hosts" file or it must be found in the connecting networks domain name services table.
 11. Log in as **QSECOFR** with the appropriate QSECOFR password. An alternate LSAM installation user profile that was used to create the save file in QGPL may also be used.
 12. Enter **bin** to select a binary transfer type.
-13. Enter the following FTP PUT commands to send the file.
+13. Enter the following FTP PUT commands to send the file:
+```
+  PUT LI181ppp QGPL/LI181ppp
+```
 14. Enter **quit** to exit the FTP utility.
 15. Enter **exit** to close the command entry window.
 
 :::info example
-```
+
 The following shows a typical FTP procedure in a DOS command window for
 a new install.
-
+```
 D:\Install\LSAM\IBM i LSAM>ftp <LSAM Machine Name or TCP/IP
 address>
 Connected to <IBM i Name or IP Address>.
@@ -411,7 +429,7 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
   Messages are displayed indicating the results of the restoration. Disregard messages about security or data format changes. If messages appear at the bottom of the command entry display, a white plus sign (+) is displayed in the lower right-hand corner indicating if there are additional messages about the current command. Place the cursor on the message line and press the ***PageDown*** button to view any additional messages. Please report any  unexpected messages to the SMA Technologies Support team for assistance.
     
     ***Do not continue with this install procedure if there are unexpected messages.***
-   :::
+  :::
 
 18. When upgrading an existing LSAM environment, it is required to stop the LSAM server jobs before starting the SMASETUP command. Failure to stop the LSAM server jobs will result in an error during the upgrade procedures when the SMAGPL library is being replaced. 
 
@@ -432,9 +450,9 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
 Before starting the SMASETUP command, it may be necessary to review the information about the standard LSAM utilities library, presented below the step-by-step instructions.
 
 This note is especially important for two types of users:
-Clients who might have chosen to install some LSAM utility commands and files into the IBM i library QGPL.
-Clients who had previously configured the LSAM to share the SMAGPL library among multiple LSAM Environments.
-Clients who do not have or intend to configure either of these conditions can skip the remainder of this notice.
+  - Clients who might have chosen to install some LSAM utility commands and files into the IBM i library QGPL.
+  - Clients who had previously configured the LSAM to share the SMAGPL library among multiple LSAM Environments.
+  - Clients who do not have or intend to configure either of these conditions can skip the remainder of this notice.
 
 SMA no longer supports sharing an SMAGPL library between LSAM Environments. Some functions may not behave as expected, and it is especially difficult to properly synchronize LSAM PTF application when the SMAGPL is being shared. Contact SMA Support for assistance with separating LSAM Environments.
 
@@ -455,17 +473,20 @@ More information on this subject is offered in the LSAM Environment Management s
     Type the **SMASETUP** command and then press function key **F4** to view and enter the ALTENV parameter value correctly. Then press **Enter** to continue.
 
   :::warning
-  Please contact SMA Technologies Support before attempting to use the ALTENV(\*YES) option for the first time. There are additional installation and  configuration steps required when multiple environments are set up. There steps are documented in the LSAM Environment Management section of the IBM i LSAM documentation. However, SMA Technologies wants to consult with clients who plan to use multiple environments before they attempt to install them.
+  Please contact SMA Technologies Support before attempting to use the ALTENV(\*YES) option for the first time. There are additional installation and  configuration steps required when multiple environments are set up. These steps are documented in the LSAM Environment Management section of the IBM i LSAM documentation. However, SMA Technologies wants to consult with clients who plan to use multiple environments before they attempt to install them.
   :::
 
 22. As objects are restored from the installation save file, there are status messages displayed at the bottom of the screen to indicate the progress of the installation. The display screen may also appear blank for some time. <u>No action is required</u>. 
 23. Use the reference information published below for assistance with entering data on either of the two (or four, when ALTENV = *YES) control data displays that will be presented during the installation.
 
 24. When the installation procedure has finished normally, the following completion message is displayed:
+
+    **\*\*\* IBM i LSAM installation completed normally \*\*\***
+
   :::warning
   If the message indicating that the installation completed normally does not appear, or if the process ends with some other message, please contact SMA Technologies Support for assistance. Do not attempt to use the LSAM installation until the errors have been resolved. During the installation, or following an abnormal end of the command, it is very important not to reply to any error messages, should one appear, until the meaning and effect of the reply can be understood. Please contact SMA Technologies Support for advice, and leave the error message on display so that the circumstances of the error can be evaluated. Failure to follow this instruction will produce unpredictable results.
   :::
-1. Perform the Post-Install Instructions and review the information topics that follow the Post-Install Instructions, as they may apply.
+25. Perform the Post-Install Instructions and review the information topics that follow the Post-Install Instructions, as they may apply.
 
 ## LSAM Installation Options
 
@@ -534,9 +555,9 @@ The SMA Installer should advise the client about selecting from the following th
 
 In the example of the first prompt screen from the SMASETUP command, shown above, there are three field values that must be carefully considered before continuing with the installation or upgrade. Each field is listed here with a symbolic name that will be used to refer to these fields in the remaining portions of this document:
 
-- **SMAUTL** = SMAGPL alternate library name: SMAGPL For PTF tools     (do NOT use QGPL)
-- **SMAGPL** = LSAM environment tools library: SMAGPL SMAGPL, QGPL,     test library
-- **CONVERT** = Convert any QGPL content?: Y=Convert, N=Ignore     QGPL
+- **SMAUTL** = SMAGPL alternate library name: SMAGPL - for PTF tools (do NOT use QGPL)
+- **SMAGPL** = LSAM environment tools library: SMAGPL, QGPL, test library
+- **CONVERT** = Convert any QGPL content?: Y=Convert, N=Ignore QGPL
 
 The library label SMAUTL refers to the SMAGPL contents that are dedicated to PTF tools (PTFs are program temporary fixes from SMA - the same acronym as IBM uses, but these are only for the LSAM software).
 
