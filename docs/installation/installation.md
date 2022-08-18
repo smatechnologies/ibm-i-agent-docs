@@ -293,7 +293,7 @@ After the LSAM installation or upgrade is complete, using the Agent command SMAG
   ```
   This empty save file should be named to match the latest version of the IBM i LSAM (Agent) Installation save file, such as LI211043A.  Keeping the letter on the save file name could be important for distinguishing this version from future versions that may be published.
 
-
+EDITOR'S NOTE: DELETE THIS PUBLICATION TEST TEXT!
 
 ### FTP the LSAM Save File
 
