@@ -6,7 +6,7 @@ sidebar_label: 'IBM i LSAM Overview'
 
 The IBM i LSAM is an OpCon agent that enables OpCon to schedule IBM i jobs within an IBM i environment and to receive and respond to events detected by the agent within the IBM i partition.
 
-Information within this documentation collection corresponds to the IBM i Agent version 18.1.055, which refers to the Agent version 18.1 that has software patches applied to LSAM PTF level 055.
+Information within this documentation collection corresponds to the IBM i Agent version 21.1.043, which refers to the Agent version 21.1 that has software patches applied to LSAM PTF level 043.
 
 ## Scope
 This documentation provides basic and advanced, conceptual and procedural information for running the IBM i LSAM. Information on running the central OpCon components falls outside the scope of this document. For information on OpCon, refer to Getting Started with OpCon in the Concepts documentation.
