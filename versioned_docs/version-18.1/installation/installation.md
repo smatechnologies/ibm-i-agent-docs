@@ -687,16 +687,16 @@ LSAM env tools library (QGPL?)   SMAGPL         SMAGPL   
 Convert QGPL content (Y/N)?  . . CVTOPT         N
 LSAM comm internet address . . . INTADR         '111.222.333.444'
 
+LSAM comm VLAN IP address  . . . VLNADR         '*EXT'
+                                                      
+Bind IP Addr: Y=yes, N=no' . . . LBINDIP        'Y'
+SMAFT External IP Address  . . . SFTIPADR       '*LSAM'
+                                                  
+SMAFT VLAN IP address  . . . . . SFTVADR        '*EXT'
+                                                  
+Bind SMAFT IP Addr: Y=yes,N=no   SFTBINDIP      'Y'
 LSAM subsystem name  . . . . . . SBSNAM         SMASBS                 
 LSAM machine name  . . . . . . . SYSNAM         IBMILSAM 
-Job Sched Comm Port  . . . . . . JOBPORT        3100                   
-JORS Comm Port . . . . . . . . . JORSPORT       3110     
-SMA File Transfer Comm Port  . . SMAFTPORT      3300                       
-Auto-start SMAFT server (Y/N)?   AUTOSFT        Y
-Use alternate environment name   ALTENV         *NO               
-If ALTENV: Environment name  . . ENV                     
-If ALTENV: Database library  . . SMADTA         SMADTA                 
-If ALTENV: PTF control library   SMAPTF         SMAPTF   
                                                                     More...
 F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display
 F24=More keys
@@ -708,6 +708,14 @@ F24=More keys
 
 Type choices, press Enter.
 
+Job Sched Comm Port  . . . . . . JOBPORT        3100                   
+JORS Comm Port . . . . . . . . . JORSPORT       3110     
+SMA File Transfer Comm Port  . . SMAFTPORT      3300                       
+Auto-start SMAFT server (Y/N)?   AUTOSFT        Y
+Use alternate environment name   ALTENV         *NO               
+If ALTENV: Environment name  . . ENV                     
+If ALTENV: Database library  . . SMADTA         SMADTA                 
+If ALTENV: PTF control library   SMAPTF         SMAPTF 
 If ALTENV: Programs library  . . SMAPGM         SMAPGM      
 
                                                                       Bottom
@@ -725,7 +733,9 @@ Here is the command syntax for installing the SMADEFAULT LSAM environment, where
 
 ```
 LI181001/SMASETUPB SRCLIB(LI181001) SMAUTL(SMAGPL) 
-SMAGPL(SMAGPL) CVTOPT(N) INTADR('111.222.333.444') 
+SMAGPL(SMAGPL) CVTOPT(N) 
+INTADR('111.222.333.444') VLNADR('*EXT') LBINDIP('Y')
+SFTIPADR('*LSAM') SFTVADR('*EXT') SFTBINDIP('Y')
 SBSNAM(SMASBS) SYSNAM(IBMILSAM)
 JOBPORT(3100) JORSPORT(3110) SMAFTPORT(3300) 
 AUTOSFT(Y) ALTENV(*NO)
@@ -737,7 +747,9 @@ To install an alternate LSAM environment, for example an environment named IBMIL
 
 ```
 LI181001/SMASETUPB SRCLIB(LI181001) SMAUTL(SMAGPL1) 
-SMAGPL(SMAGPL1) CVTOPT(N) INTADR('111.222.333.444') 
+SMAGPL(SMAGPL1) CVTOPT(N) 
+INTADR('111.222.333.444') VLNADR('*EXT') LBINDIP('Y')
+SFTIPADR('*LSAM') SFTVADR('*EXT') SFTBINDIP('Y')
 SBSNAM(SMASBS) SYSNAM(IBMILSAM)
 JOBPORT(3100) JORSPORT(3110) SMAFTPORT(3300) AUTOSFT(Y) ALTENV(*YES)
 ENV(IBMILSAM1) SMADTA(SMADTA1) SMAPTF(SMAPTF1)
@@ -781,7 +793,7 @@ Provided here are the steps to follow after installation.
 
      - Currently, the User ID must be all capital letters and not longer than 10 characters.
 
-     - Currently, the Password can be any characters, but it is limited to only 10 characters. (SMA intends to support 128-character passwords in the near future, as it already does for the Operator Replay Scripting tool.)
+     - The Password can be any characters, up to 128-characters for a password or a token.
 
    - Use the LSAM sub-menu 3, option 2, to register the User ID and Password.
 
@@ -851,11 +863,13 @@ Provided here are the steps to follow after installation.
     - IBM i Agent (LSAM) instructions for partial PTF save files
 
    - All the latest IBM i LSAM support resources, including the two PTF save files and the documents mentioned here, may be found at SMA's current ftp server that is accessed via the Support Portal from the SMA Technologies web site.
-
-      - Currently, the ftp server may also be accessed directly from a browser or from a file transfer tool (such as FileZilla) at this URL: files.smasolutions.it.
+      - Currently, the ftp server may also be accessed directly from a browser or from a file transfer tool (such as FileZilla) at this URL: files.smatechnologies.com.
+      - Here is the path to the IBM i Agent resources:  /OpCon Releases/Agents/IBM i/18.1/ ...
+        - The next Agent release resources are in sub-folder /21.1/.
+        - Within the release number folder, explore the sub-folder /IBMiLSAMptf/ for LSAM PTF resources.
 
    :::tip
-   This URL for SMA's secure ftp server will be changing. View the Support page of SMA's latest web site or contact the SMA Support team for assistance with accessing the current secure ftp server.
+   If the URL for SMA's secure ftp server changes, view the Support page of SMA's latest web site or contact the SMA Support team for assistance with accessing the current secure ftp server.
    :::
 
 7. Review and update the LSAM Parameters and feature Configurations.
@@ -864,7 +878,7 @@ Provided here are the steps to follow after installation.
    Look especially for the following settings that may require attention:
 
    - The main menu LSAM Parameters:
-     - There is a new option to "Bind? Y/N" for the IP Address. SMA recommends using this option instead of allowing the old default  method of allowing the communications programs to choose any available IP address.
+     - There is an option to "Bind? Y/N" for the IP Address. SMA recommends using this option instead of the default method of allowing the communications programs to choose any available IP address.
      - If the IBM i partition is a client partition that relies on a host partition to connect it to an external IP address, put the external IP address in the first IP Address field and then enter the local virtual LAN IP address of this Client partition in the Internal IP address field.
      - Verify the daily maintenance hour on page 2 of the LSAM Parameters. If there is more than one LSAM Environment within the same partition, it is critical that the two environments start their daily log purging at a different time (separated by at least 1 or 2 minutes), to assure that their daily backup save files are named differently, since they use the system clock time as part of the name.
      - Older LSAM installations that were upgraded may need to have their daily log purging values reviewed. Very old LSAM installations did not get useful values set automatically, although brand new installations of version 18.1 come with reasonable purge criteria already set.
@@ -910,13 +924,13 @@ For additional information about diagnosing job start failures, see [Guide to Jo
 
 As an example, to assure that the QSYSOPR profile has authority to use the default job definition objects named above, use the following commands:
 
-a.  **GRTOBJAUT OBJ(QGPL/QBATCH) OBJTYPE(*JOBD) USER(QSYSOPR) AUT(*USE)**
+  - **GRTOBJAUT OBJ(QGPL/QBATCH) OBJTYPE(\*JOBD) USER(QSYSOPR) AUT(\*USE)**
 
-b.  **GRTOBJAUT OBJ(QGPL/QBATCH) OBJTYPE(*JOBQ) USER(QSYSOPR) AUT(*USE)**
+  - **GRTOBJAUT OBJ(QGPL/QBATCH) OBJTYPE(\*JOBQ) USER(QSYSOPR) AUT(\*USE)**
 
-c.  **GRTOBJAUT OBJ(QGPL/QPRINT) OBJTYPE(*OUTQ) USER(QSYSOPR) AUT(*USE)**
+  - **GRTOBJAUT OBJ(QGPL/QPRINT) OBJTYPE(\*OUTQ) USER(QSYSOPR) AUT(\*USE)**
 
-Repeat these same three commands for user SMANET if SMANET will not have *ALLOBJ authority. The SMANET user profile is used by the IBM i LSAM server programs when submitting jobs to run, so it must have authority to place jobs into each job queue that will be specified for OpCon jobs and it must have authority to reference the job descriptions used to define the jobs.
+Repeat these same three commands for user SMANET if SMANET will not have \*ALLOBJ authority. The SMANET user profile is used by the IBM i LSAM server programs when submitting jobs to run, so it must have authority to place jobs into each job queue that will be specified for OpCon jobs and it must have authority to reference the job descriptions used to define the jobs.
 
 The OpCon spool file management feature for IBM i jobs requires that SMANET have authority to the spool files and output queues of jobs that are submitted by the IBM i LSAM. Even if spool file management features are not used, SMANET must have authority to use the job log spool file QPJOBLOG and the output queue where job log reports are spooled. (Job logs may be spooled in output queue QUSRSYS/QEZJOBLOG instead of QSYS/QPRINT.)
 
@@ -967,11 +981,11 @@ How should system security be managed when the IBM i LSAM is installed?
 
 The IBM i LSAM software designates the user profile SMANET as the job user for all of the LSAM server jobs. This user profile must have extensive authority to IBM i system objects, commands and programs, and it must have authority to use the user profiles of jobs the LSAM will submit.
 
-In this current version of the LSAM installation, user profile SMANET is installed (when new) with *ALLOBJ special authority. However, if the system's security officer is willing to undertake security maintenance tasks, it is not required that  SMANET have *ALLOBJ special authority to run the LSAM server programs.
+In this current version of the LSAM installation, user profile SMANET is installed (when new) with *ALLOBJ special authority. However, if the system's security officer is willing to undertake security maintenance tasks, it is not required that  SMANET have \*ALLOBJ special authority to run the LSAM server programs.
 
-In general, the LSAM software has been managed so that SMANET does not require security officer authority or *ALLOBJ authority, that is, once SMANET has been granted authority to use the user profiles and other work management objects it must access when submitting jobs. The software is distributed in a form that allows it to be operated by user QSYSOPR, and certain programs that require special authority have been created to run with the necessary authority. However, the initial distribution of this software grants *ALLOBJ special authority to user SMANET because this simplifies demonstration installations and this also makes it easier for new clients to train on the software. 
+In general, the LSAM software has been managed so that SMANET does not require security officer authority or \*ALLOBJ authority, that is, once SMANET has been granted authority to use the user profiles and other work management objects it must access when submitting jobs. The software is distributed in a form that allows it to be operated by user QSYSOPR, and certain programs that require special authority have been created to run with the necessary authority. However, the initial distribution of this software grants \*ALLOBJ special authority to user SMANET because this simplifies demonstration installations and this also makes it easier for new clients to train on the software. 
 
-Some high security sites may wish to revoke the *ALLOBJ special authority, once they have developed an authority matrix that allows user SMANET to submit jobs to run under other user profiles. For detailed instructions about how to manage the IBM i Agent software and the system configuration if SMANET will not have *ALLOBJ special authority refer to [LSAM Security and Object Authority](../security/strategy.md).
+Some high security sites may wish to revoke the *ALLOBJ special authority, once they have developed an authority matrix that allows user SMANET to submit jobs to run under other user profiles. For detailed instructions about how to manage the IBM i Agent software and the system configuration if SMANET will not have \*ALLOBJ special authority refer to [LSAM Security and Object Authority](../security/strategy.md).
 
 :::warning
 Even if the SMANET user profile is restricted, care must still be used when granting access to the LSAM maintenance functions for Operator Replay, Multi-Step Job script maintenance, and Restricted Mode script maintenance, so that security loopholes may not be created through these points of access.
@@ -985,13 +999,13 @@ A helpful LSAM tool that can be used for modifying the object authority of any o
 
 ### Building a user profile matrix for SMANET without *ALLOBJ special authority
 
-Since SMA is not able to predict which user profiles will be selected for the jobs that are controlled by OpCon, it is necessary to grant to user profile SMANET authority of type *USE to each user profile that will be specified as the user of jobs being submitted by OpCon. The GRTOBJAUT command can be used, as in the following example. Repeat this example for each job user profile, substituting the actual name of the user profile for "job_user_name":
+Since SMA is not able to predict which user profiles will be selected for the jobs that are controlled by OpCon, it is necessary to grant to user profile SMANET authority of type \*USE to each user profile that will be specified as the user of jobs being submitted by OpCon. The GRTOBJAUT command can be used, as in the following example. Repeat this example for each job user profile, substituting the actual name of the user profile for "job_user_name":
 
 ```
 GRTOBJAUT OBJ(QSYS/job_user_name) OBJTYPE(*USRPRF) USER(SMANET) AUT(*USE)
 ```
 
-Remember, an alternative to granting specific authority to SMANET for each user profile is to allow the SMANET user profile to keep the *ALLOBJ special authority. The special authority *ALLOBJ enables SMANET to use any other user profile when submitting jobs.
+Remember, an alternative to granting specific authority to SMANET for each user profile is to allow the SMANET user profile to keep the \*ALLOBJ special authority. The special authority \*ALLOBJ enables SMANET to use any other user profile when submitting jobs.
 
 :::danger
 Regardless of the security strategy adopted, access to the user profile SMANET must be carefully restricted because it will always have extensive authority to multiple user profiles. User SMANET should not have its own password or be allowed to log on to the system.

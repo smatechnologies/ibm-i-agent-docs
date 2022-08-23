@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Uninstalling the IBM i LSAM at Release 18.1'
+sidebar_label: 'Uninstalling the IBM i LSAM at Release 21.1'
 ---
 
-# Uninstalling the IBM i LSAM at Release 18.1
+# Uninstalling the IBM i LSAM at Release 21.1
 
 If it becomes necessary to remove the IBM i LSAM, use this procedure as a guide to remove all of the objects that were installed in the IBM i partition.
 
@@ -20,15 +20,15 @@ Be sure that any procedures under the control of OpCon have completed. Assure th
 ## Back Up the LSAM libraries
 
 1. *(Optional)* Back up IBM i LSAM libraries in order to be able to restore the existing configuration in the future. Use the SAVLIB command to perform a backup to the medium of your choice for each of these libraries:
-    1. Save the LSAM data library using the SAVLIB command for library SMADTA.
+    - Save the LSAM data library using the SAVLIB command for library SMADTA.
 
     ```
     SAVLIB LIB(SMADTA) DEV(<backup device>) PRECHK(*YES) ACCPTH(*YES)
     ```
 
-    2. Save the LSAM program objects library using the SAVLIB command for library SMAPGM.
-    3. Save the LSAM program patches library using the SAVLIB command for library SMAPTF.
-    4. Save the LSAM program patches library using the SAVLIB command for library SMAGPL.
+    - Save the LSAM program objects library using the SAVLIB command for library SMAPGM.
+    - Save the LSAM program patches library using the SAVLIB command for library SMAPTF.
+    - Save the LSAM program patches library using the SAVLIB command for library SMAGPL.
 
 ## Uninstall the LSAM
 
@@ -37,11 +37,12 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
 1. Sign on to the IBM i operating system as QSECOFR, or as a user with security officer authority to complete these steps. Using the following command, delete the installation's save file and the LSAM installation library, if not already done during the last steps of the installation process:
 
   ```
-  DLTF QGPL/LI181001 (or, a newer version of this file, perhaps named LI181006)
-  DLTLIB LI181001 (or, a newer version of this library)
+  DLTF QGPL/LI211043A (or, a newer version of this file, perhaps named LI211043B)
+  DLTLIB LI211043A (or, a newer version of this library)
   ```
 
   The following steps 2) or 3) explain how to remove the LSAM utilities, if they were installed in the IBM i system library QGPL. Do not perform these steps if any LSAM environment will remain installed in this IBM i partition (LPAR). These steps 2) or 3) are also not necessary if the LSAM utilities were installed exclusively into the SMAGPL library and library QGPL was not being used by the LSAM.
+
 2. ***EITHER***: Execute the SMA QGPL utilities removal command:
 
   ```
@@ -55,23 +56,34 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
       DLTCMD *Command Name*
       ```
   
-      - ENDSMAFT
-      - SMAPTFCUM
+      - CHKIBMLSAM
+      - CPYTOMSGIN
+      - ENDSMASVR
       - ENDSMASYS
-      - SMAPTFINS
       - LSAINIT
-      - SMAPTFRAP
+      - LSAMCMD
       - LSAMENU
-      - SMAPTFRBK
       - LSASETENV
-      - SMAPTFREQ
-      - SMAAPYPTF
-      - SMASETLIBL
+      - SMAADDLIBL
+      - SMAJOBDTL
       - SMALIBINQ
-      - STRSMA
       - SMALIBMGT
-      - STRSMASYS
+      - SMAAPYPTF
       - SMAPTFAPY
+      - SMAPTFCUM
+      - SMAPTFINS
+      - SMAPTFRAP
+      - SMAPTFRBK
+      - SMAPTFREQ
+      - SMARMVLIBL
+      - SMASAVRSTB
+      - SMASETLIBL
+      - STRMLTJOB
+      - STRSMA
+      - STRSMAFT
+      - STRSMASVR
+      - STRSMASYS
+      - USRMTX
       - WRKTRKJOB
 
     - Delete the following CL and RPG programs from library QGPL:
