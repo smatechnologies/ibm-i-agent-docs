@@ -90,45 +90,64 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
 
       *CLLE programs:*
 
+      - CHKIBMLSAC
       - CLRPGMMSG
-      - SMAMNGLOGC
+      - CPYTOMSGIC
       - ENDSMAFTC
-      - SMAPTFAPYC
+      - ENDSMASVRC
       - ENDSMASYSC
-      - SMAPTFCUMC
       - LSAINITC
-      - SMAPTFINSC
+      - LSAMCMDC
       - LSAMENUC
-      - SMAPTFRAPC
       - LSASETENVC
-      - SMAPTFRBKC
-      - SMAAPYPTFC
-      - SMAPTFREQC
+      - SAVRSTC02
+      - SAVRSTC03
+      - SMAADDLIBC
       - SMADSTOBJC
-      - SMAPTFREQE
       - SMADSTUTLC
-      - SMASETLIBC
       - SMADTAARAC
-      - STRSMAC
       - SMADUPOBJC
-      - STRSMAFTC
+      - SMAJOBDTLC
       - SMALIBINQC
-      - STRSMASYSC
       - SMALIBMGTC
+      - SMAMNGLOGC
+      - SMAPTFAPYC
+      - SMAPTFCUMC
+      - SMAPTFFILC
+      - SMAPTFINSC
+      - SMAPTFINSO
+      - SMAPTFRAPC
+      - SMAPTFRBKC
+      - SMAPTFREQC
+      - SMAPTFREQE
+      - SMARMVLIBC
+      - SMASETLIBC
+      - SMAMLTJOBC
+      - STRSMAC
+      - STRSMAC1
+      - STRSMAFTC
+      - STRSMASVRC
+      - STRSMASYSC
+      - USRMTXC00
       - WRKTRKJOBC
 
       *RPGLE programs:*
 
       - CRTIDXR00
-      - LSAINITR
       - CRTIDXR01
-      - SMALIBR00
       - CRTIDXR02
-      - SMALIBR01
       - CRTIDXR03
-      - SMAPTFREQF
       - DLYJOBR
+      - LSAINITR
+      - LSAMCMDR
+      - LSAMCMDR1
+      - SMAJOBDTLR
+      - SMALIBR00
+      - SMALIBR01
+      - SMAPTFFILR
+      - SMAPTFREQF
       - SMAPTFREQR
+      - USRMTXR00
 
     - Delete the following files from library QGPL:
 
@@ -139,9 +158,11 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
       *Display files*
 
       - LSAINITD
+      - SMAJOBDTLD
       - SMALIBD00
       - SMAPTFREQD
       - STRSMAD
+      - USRMTXR00
 
       *Database files*
 
