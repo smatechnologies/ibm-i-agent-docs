@@ -170,6 +170,7 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
       - SMALIBF00
       - SMALIBF11
       - SMALIBF10
+      
     - Delete the following data areas from library QGPL:
 
       ```
