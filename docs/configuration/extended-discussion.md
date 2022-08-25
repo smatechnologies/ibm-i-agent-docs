@@ -63,10 +63,10 @@ The following instructions apply specifically to the data communication connecti
 Some of the following steps may require information that originates from the Digital Certificate guidelines, above.
 
 1. New installs of the LSAM (OpCon Agent) for IBM i must use an install file with a name similar to LI211043A (or newer, where the "211" refers to the IBM i Agent version 21.1).
-    - Version 04.00.03 or older of the IBM i LSAM are not supported for TLS Security. But they can be upgraded to LSAM version 18.1 using the latest version of the 18.1 install file, and then the LSAM can be upgraded to version 21.1.
+    - Version 04.00.03 or older of the IBM i LSAM are not supported for TLS Security. But they can be upgraded to LSAM version 18.1 using the latest version of the 18.1 install file (which can support TLS security), and then the LSAM can be upgraded to version 21.1.
 2. The OpCon server software must be at a version 17.2.x or newer. 
     - For versions of OpCon prior to 18.3.1, it might be necessary to obtain and execute SQL instructions that are used to update the OpCon database (at the location of the SQL Server) to enable new TLS Security settings for IBM i machine records.
-      - As of this publication, these statements were available in a file named "UpdateLSAMTYPES_AUXForSMAFTTLS.sql". Please contact SMA Support for assistance with obtaining and executing this update to the OpCon server's database.
+      - Originally, these statements were available in a file named "UpdateLSAMTYPES_AUXForSMAFTTLS.sql". Please contact SMA Support for assistance with obtaining and executing this update to the OpCon server's database.
 3. Within General Settings for the IBM i LSAM machine record:
     - Enter the Fully Qualified Domain name, for example:
     ![IBM i General Settings](../Resources/Images/IBM-i/IBM-i-General-Settings.png "IBM i General Settings")
@@ -158,8 +158,7 @@ In most cases, set Keep Socket Open = Y. Do not change this value unless instruc
 | Category        | Parameter                        | With Keep socket open  | With Close socket per TX |
 | --------        | ---------                        | ---------------------  | ------------------------ |
 | Buffer Settings | Max Consecutive Send Messages    | 100                    | 1                        |
-| Timer Settings  | Consecutive Send Sleep Time (ms) | 100                    | 200 -- 1000 SMA Technologies recommends testing the
-lowest reliable rate.   |
+| Timer Settings  | Consecutive Send Sleep Time (ms) | 100                    | 200 -- 1000 SMA Technologies recommends testing the lowest reliable rate.   |
 
 ## Character Translation
 
@@ -167,7 +166,7 @@ The function of OpCon controlling jobs in IBM i is managed by the LSAM job sched
 
 The LSAM Parameters are set by default to use IBM i translation tables for U.S. English. But the LSAM also supports an option to use CCSID character set numbers instead, since this translation method may work better in non-U.S. English language environments. Please contact SMA Support for assistance if it is believed that the table names might need to be changed. An SMA technical analyst should evaluate the LSAM's job scheduling communications log in order to help determine whether a change to a different translation table, or the use of CCSID character sets will be required.
 
-To specify a numeric CCSID character set in the Table field, type the special value of "*CCSID" into the Library field. If one table uses a CCSID number, then both tables must use a CCSID number. It is not allowed to mix a translation table name with a CCSID character set number. When specifying CCSID character set numbers, specify the character set that pertains to the set name that is on the right side of the -> arrow character. For example, in the United States, a value of 37 (US EBCDIC) would be specified next to ASCII ->E:, and a value of 819 (US ASCII) would be specified next to EBCDIC->A:.
+To specify a numeric CCSID character set in the Table field, type the special value of "\*CCSID" into the Library field. If one table uses a CCSID number, then both tables must use a CCSID number. It is not allowed to mix a translation table name with a CCSID character set number. When specifying CCSID character set numbers, specify the character set that pertains to the set name that is on the right side of the -> arrow character. For example, in the United States, a value of 37 (US EBCDIC) would be specified next to ASCII ->E:, and a value of 819 (US ASCII) would be specified next to EBCDIC->A:.
 
 The CCSID pair of 37 <-> 819 typically produces the same result on a US EBCDIC machine as using the default translation table names of QEBCDIC and QASCII. But in other countries it is more difficult to identify useful translation tables, and in those sites better results can be obtained by identifying the CCSID character sets that are used by the IBM i operating system for DB2 EBCDIC data and IFS ASCII stream files.
 
@@ -191,20 +190,22 @@ In previous versions of he IBM i LSAM software, it was possible for the server j
 
 ## Job Status for Attempted Job Starts (TX1)
 
-If the IBM i LSAM Parameters switches (SMA0008 or SMA0007) are set to "Y" = Yes, allowing job queue error conditions to be bypassed, the LSAM will return a special job status to the OpCon Schedule, rather than rejecting the job request. The job will appear to be active, however, it will show the special status message "JOBQ HELD" as illustrated in the example below. When this status appears, the job will not start executing until an operator intervenes and manually releases the held job queue. Once the job queue is released, the job should run normally and OpCon and the LSAM will continue normal operations automatically.
+If the IBM i LSAM Parameters switches (SMA0008 or SMA0007) are set to "Y" = Yes, allowing job queue error conditions to be bypassed, the LSAM will return a special job status to the OpCon Schedule, rather than rejecting the job request. The job will appear to be active, however, it will show the special status message "Job running - JOBQQ HELD". (See the next section about the TX2 transaction for an illustration of where the following messages appear in one of the OpCon user interfaces.)
 
-This example illustrates how OpCon notifies when a job has been allowed to bypass error code SMA0008 and enter a job queue in HELD status:
+1. The Schedule job status will show: "Job Running - JOBQ HELD"
+    - This status means, "The job queue is held, not allowing the job to enter a  subsystem where it can become active."
+2. The message sent to the SAM Log will read (possibly with a different job queue name):
+    - "Job queue HELD: QGPL/QBATCH preventing job: jobname #1234567890"
 
-Bypassed Job Start Error SMA0008
+When this status appears, the job will not start executing until an operator intervenes and manually releases the held job queue. Once the job queue is released, the job should run normally and OpCon and the LSAM will continue normal operations automatically.
 
-![Bypassed Job Start Error SMA0008](../Resources/Images/IBM-i/Bypassed-Job-Start-Error-SMA0008.png "Bypassed Job Start Error SMA0008")
-
-When a job has been allowed to bypass error code SMA0007 and enter a job queue that is not attached to an IBM i subsystem, the report from the OpCon Schedule works the same as in the example above, but with the following different text:
+When a job has been allowed to bypass error code SMA0007 and enter a job queue that is not attached to an IBM i subsystem, the report from the OpCon Schedule works the same as for error SMA0008, but with the following different text:
 
 1. The Schedule job status will show: Job Running -- JOBQ NO SBS
     - This status means, "the job queue is not attached to a subsystem."
 2. The message sent to the SAM Log will read:
-    - "JOBQ not linked to SBS: library/jobq preventing job: jobname #1234567890"\ (The SAM job name and job number are shown at the end of the message.)
+    - "JOBQ not linked to SBS: library/jobq preventing job: jobname #1234567890"
+        - (The SAM job name and job number are shown at the end of the message.)
 
 ## Job Status After OpCon Status Request (TX2)
 
