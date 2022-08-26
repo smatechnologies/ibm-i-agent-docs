@@ -21,9 +21,11 @@ When the SCANSPLF command is included in the job Call command line after the sep
 When the SCANSPLF command is used along with additional SBMJOB job parameters, the SCANSPLF command and its own parameters must follow any job description parameters. That is, the SCANSPLF command string must be the last string of non-blank characters in the Call information field, following the Job parameters separator character. Using the same example as in the previous section, the Call command line might look like this:
 ```
 WRKJOB JOB(*) OUTPUT(*PRINT) OPTION(*ALL)|CCSID(297) SCANSPLF
-APP(ChkJobLog1)
+APPKEY(123456789)
 ```
-Remember that the APP() keyword of the SCANSPLF command is case-sensitive.
+:::warning
+The APP() keyword of the SCANSPLF command is no longer the primary key to reference a Scan Application ID.  It has been replaced by the APPKEY keyword which accepts from 1 to 9 digits.  The APPKEY is a permanent key to identify a Scan Application, whereas the APP keyword references the 30-character description that can now be changed at will without affecting the linkage between the Scan Rules and any Captured Data Response Rules.  Therefore, the APP text field is not a reliable value (not permanent) for specifying which Application to use, so it should not be used in the OpCon automation configurations such as this extension to the Call command line.
+:::
 
 Refer to the following Note to learn about ways to diagnose this special
 use of the SCANSPLF utility included with a Call command.
@@ -41,12 +43,14 @@ Here are some rules for using one of the LDA keyword formats shown below:
 1. More than one LDA() keyword may be included in the Call command line.
 2. Blanks are not allowed, except within quoted strings.
 3. Numeric values can be shorter than their full length, but not longer.
-4. The length of 1024 for the value string may be constrained by the available length of the Call command field.
-5. Remember that the whole content of the LDA for the job will be replaced by these LDA() keywords. Therefore, it may be necessary to include more than one LDA() keyword to insert all of the required values for the LDA. However, format 2 of this LDA() keyword can be used so that a group of LSAM Dynamic Variables can be used to format   the entire LDA, while only one LDA() keyword value is put into the OpCon job master call command line.
+4. The length of 1024 for the value string may be constrained by the available length of the Call command field, that is, if the primary command string is very long.
+5. Remember that the whole content of the LDA for the job will be replaced by these LDA() keywords. Therefore, it may be necessary to include more than one LDA() keyword to insert all of the required values for the LDA. However, format 2 of this LDA() keyword can be used so that a group of LSAM Dynamic Variables can be used to format the entire LDA, while only one LDA() keyword value is put into the OpCon job master call command line.
 
 Choose one of the following formats for the LDA keyword:
 
-**LDA(start_nbr_4.0:length_nbr_4.0:'value string 1024.A')**
+#### LDA() Keyword Format 1
+
+    LDA(start_nbr_4.0:length_nbr_4.0:'value string 1024.A')
 
 :::info example
 LDA(225:14:'14-char string')
@@ -65,16 +69,21 @@ LDA(225:14:{DYNVARNAM1})
 :::
 
 :::tip
-The special characters that denote a Dynamic Variable token {} may be different on your system, depending on the native character sets used in your workstation and in your IBM i operating system. The appearance of the character may vary, but the hexadecimal value is what is important. This value is controlled by the LSAM Job Tracking Configuration (menu 1, option 7).
+Starting with LSAM version 21.1, Dynamic Variable values can be up to 1024 characters in length.  Therefore, it is now possible for a single {TOKEN} to represent the entire content of a local data area.  Accordingly, using more than one Dynamic Variable token would only be useful if the local data area content must be updated in pieces by concatenating values that are collected from different sources.
+:::
+:::tip
+The special characters that denote a Dynamic Variable token {} may be different on your system, depending on the native character sets used in your workstation and in your IBM i operating system. The appearance of the character may vary, but the hexadecimal value is what is important. This value is controlled by the LSAM Utilities Configuration (menu 3, option 7).
 :::
 
 :::danger
-Do not change this special character without assistance from a technical support person. It cannot be changed once Dynamic Variables are defined, unless a custom data conversion procedure is used.
+Do not change the special character that denotes a Dynamic Variable {TOKEN} without assistance from a technical support person. It cannot be changed once Dynamic Variables are defined, unless a custom data conversion procedure is used.
 :::
+
+#### LDA() Keyword Format 2
 
 Notice that the value string for the LDA would be comprised of the results of one or more Type 'V' (NOT Type 'L') Dynamic Variables in this case. The Type 'L' Dynamic Variable is used only for variation 2., below. You cannot use both a single-quoted string and a Type 'V' Dynamic Variable together - choose one format or the other. However, since more than one LDA() keyword is supported, it's easy to see how quoted strings and Dynamic Variables of Type 'V' could be combined for one Call command.
 
-**LDA(DynVarName)**
+    LDA(DynVarName)
 
 :::info example
 LDA(DYNVARNAM2)
@@ -91,6 +100,6 @@ Here is an example of an OpCon job master record for an IBM i job, showing all t
 :::info example
 ```
 CALL PROGRAM|CCSID(000297) LDA(215:9:'new value') SCANSPLF
-APP(APPID01) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)
+APPKEY(123456789) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)
 ```
 :::
