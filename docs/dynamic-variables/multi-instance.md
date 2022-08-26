@@ -71,7 +71,7 @@ IU.<VARNAME>."<SkdName=JobName10+JobUser10+JobNbr6+JobDate8+JobTime6>"
 
 The following diagram may make this Unit of Work concept easier to understand and utilize.  The IBM i operating system stores the “Submitted For” (= submitted by) Job ID for jobs B and C in this diagram.  Job A, having no submitter, is usually the Anchor job for this unit of work, so its IBM i Job ID is the key value that qualifies any IU.VARIABLES referenced by any of the jobs that are part of this unit of work.
 
-![Unit of Work Job Chain](../Resources/Images/IBM-i/Dynvar-Unit-Of-Work-Chain.png "Unit of Work Job Chain")
+![Unit of Work Job Chain](../Resources/Images/IBM-i/dynvar-unit-of-work-chain.png "Unit of Work Job Chain")
 
 In the diagram above, notice that the Job C box refers to a “SKDNAME” (Schedule Name) field.  There is never an actual OpCon Schedule Name associated with the IU.instance, so that field is re-used to designate the full IBM i Job ID of the anchor Job ID.  The IBM i Job ID fields for Job A comprise the full key value for the variable, and those fields are organized as shown above in the template for this instance.
 
