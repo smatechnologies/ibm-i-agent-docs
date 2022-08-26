@@ -144,10 +144,6 @@ Main Menu > LSAM Management (#6) > Display LSAMsubmit job log (CALL LSALOGR31) (
 - **Log Date**: The date (month/day/year) when the log entry was recorded in the database.
 - **Log Time**: The time (hours:minutes:seconds) when the log entry was recorded in the database.
 - **Typ**: The log entry Type code (from a set of values that are unique to this log file).
-
-:::info
-The next LSAM version 21.1 introduces an advanced version of this log file and the details displays include interpretations of the log entry Type codes.  See the description of the Select/Omit by Type window (LSALOGW1) below for examples of the entry Type codes.
-:::
 - **Log entry text**: The first several characters of each log entry appear in the list display.  To see the entire text of each log entry, press <**F10=Fold/Unfold**> to change the list display so that entire log text is visible, or use option 5=Display to view a single log entry and its entire text in the Entry Details display.
 
 #### Functions
@@ -167,9 +163,7 @@ The next LSAM version 21.1 introduces an advanced version of this log file and t
 
 Choose to either select or omit up to six Type codes and refresh the list.  To cancel this subsetting function, use F15 to return to this window and change the Select/Omit code field to blank, then press <**Enter**>.
 
-:::info
-The next LSAM version 21.1 introduces an advanced version of this log file and this window will show a summary of all unique codes currently stored in the file.  Until the upgrade from 18.1 to 21.1, it is necessary to study the list display to discover which Type codes are useful for Select/Omit.
-:::
+
 
 ##### Menu Pathways
 

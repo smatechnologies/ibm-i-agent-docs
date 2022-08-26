@@ -49,9 +49,9 @@ Here are some rules for using one of the LDA keyword formats shown below:
 Choose one of the following formats for the LDA keyword:
 
 #### LDA() Keyword Format 1
-
+```
     LDA(start_nbr_4.0:length_nbr_4.0:'value string 1024.A')
-
+```
 :::info example
 LDA(225:14:'14-char string')
 :::
@@ -61,9 +61,9 @@ The maximum length supported for each parameter of the LDA() keyword is shown as
 - Start Number = up to 4 digits locate the starting position within the LDA data area.
 - Length = up to 4 digits specify how much of the LDA data area is updated by the string that follows.
 - value string' = up to 1024 characters can be included to specify the entire LDA contents in one string. However, considering using OpCon properties or LSAM Dynamic Variables (shown below) to make construction of the LDA contents more flexible.
-
-**LDA(start_nbr_4.0:length_nbr_4.0:{DynVarNam1}{DynVarNam2}...)**
-
+```
+    LDA(start_nbr_4.0:length_nbr_4.0:{DynVarNam1}{DynVarNam2}...)
+```
 :::info example
 LDA(225:14:{DYNVARNAM1})
 :::
@@ -82,9 +82,9 @@ Do not change the special character that denotes a Dynamic Variable {TOKEN} with
 #### LDA() Keyword Format 2
 
 Notice that the value string for the LDA would be comprised of the results of one or more Type 'V' (NOT Type 'L') Dynamic Variables in this case. The Type 'L' Dynamic Variable is used only for variation 2., below. You cannot use both a single-quoted string and a Type 'V' Dynamic Variable together - choose one format or the other. However, since more than one LDA() keyword is supported, it's easy to see how quoted strings and Dynamic Variables of Type 'V' could be combined for one Call command.
-
+```
     LDA(DynVarName)
-
+```
 :::info example
 LDA(DYNVARNAM2)
 :::

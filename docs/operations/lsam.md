@@ -38,6 +38,12 @@ SMAGPL/STRSMA SMADEFAULT
 ```shell
 SMAGPL/STRSMA <alternate_environment>
 ```
+:::
+
+:::tip
+When specifying an alternate LSAM environment it may be necessary to use an alternate name for the SMAGPL library, unless the alternate environment's library list has been stored in the LSAM Environment master files in the SMADEFAULT LSAM environment (which uses library name SMAGPL).
+:::
+
 ### The LSAMENU Command
 
 There are two optional parameters associated with the LSAMENU command. In order to view the parameters and change their values, press <**F4**> (Prompt) after typing the command (and before pressing <**Enter**>). The parameters may also be typed as in the example below.
@@ -47,10 +53,10 @@ There are two optional parameters associated with the LSAMENU command. In order 
 SMAGPL/LSAMENU ENV(my_environment_name) MENUNBR([0])
 ```
 - **ENV**: This parameter is the LSAM Environment name. This parameter specifies the library list that will be used by the LSAM. 
-  - The default value is *CURRENT. This special value means that if the current job already has its library list set to the LSAM environment, the command driver program will assume that the request for an LSAM menu applies to the environment indicated by the job's library list. If this default value is used with the LSAMENU command in a batch job, it will be replaced by the special value *DEFAULT, therefore, it may be better to specify n LSAM environment name when using the LSAMENU command in a batch job.
+  - The default value is \*CURRENT. This special value means that if the current job already has its library list set to the LSAM environment, the command driver program will assume that the request for an LSAM menu applies to the environment indicated by the job's library list. If this default value is used with the LSAMENU command in a batch job, it will be replaced by the special value \*DEFAULT, therefore, it may be better to specify n LSAM environment name when using the LSAMENU command in a batch job.
   - Other values that can be used for this parameter include:
-    - *DEFAULT = the LSAM environment that was indicated as the default environment by the SMALIBMGT command function.
-    - *SELECT = a list of LSAM environments will be presented asthe command is executed so that the user may select the desired LSAM environment.
+    - \*DEFAULT = the LSAM environment that was indicated as the default environment by the SMALIBMGT command function.
+    - \*SELECT = a list of LSAM environments will be presented asthe command is executed so that the user may select the desired LSAM environment.
     - IBM i LSAM patch instructions
     - Name = a specific LSAM environment may be indicated by its name, such as SMADEFAULT.
 - **MENUNBR**: Specifies the LSAM main menu when the default value of zero (0) is used, otherwise, values 1 - 6 and 8 may be used to enter directly to one of the LSAM sub-menus.
@@ -74,7 +80,8 @@ SMAGPL/LSAMENU <alternate_environment> 3
 ```
 
 If the environment value is not specified, the current library list will be used to determine the LSAM environment, or in a batch job the *DEFAULT environment will be used. If the current library list of an interactive job does not support an LSAM environment, the command will assume *SELECT for the environment and will present a list of available LSAM environments.
-SMAGPL/LSAMENU
+
+##### SMAGPL/LSAMENU
 
 When no menu number is specified, the LSAM Main Menu will be shown. It is not necessary to use the SMAGPL/ library qualifier if the current library list includes the LSAM libraries.
 :::
@@ -83,7 +90,7 @@ When no menu number is specified, the LSAM Main Menu will be shown. It is not ne
 
 1. In the command line, enter **SMAGPL/STRSMA**. The LSAM Menu system welcome screen appears.
 :::tip
-This display will show Load source: LI181027U PTF181027 when the LI181027U install file is used.
+This display will show Load source: LI211043A PTF211043 when the LI211043A install file is used.
 :::
 
 #### LSAM Welcome Screen
@@ -107,11 +114,11 @@ This display will show Load source: LI181027U PTF181027 when the LI181027U insta
                          p                                                      
                                by SMA Technologies                                 
                                                                                 
-                                                            Version: 18.1       
- Load source:  LI181027U PTF181027                          PTF LVL: 109        
+                                                            Version: 21.1       
+ Load source:  LI211043A PTF211043                          PTF LVL: 043        
                                                              DB LVL: 003        
  F3=Exit   F5=Animate   F12=Cancel   Enter=Menu                                 
- Copyright (C) SMA Technologies 1995, 2018. ARR.                                
+ Copyright (C) SMA Technologies 2005, 2021. ARR.                                
 ```
 
 1. Press the <**Enter**> key to continue to the IBM i LSAM Main Menu.
@@ -154,20 +161,20 @@ Begin processing OpCon jobs by starting the LSAM using either of the two followi
 1. Log in to the IBM i as **QSYSOPR** or a user profile with privileges to access the LSAM menu and to use the LSAM startup program.
 2. Start the LSAM through the menu system with the following steps.
 
-    a.  At the command line, enter **SMAGPL/STRSMA**.
+    - At the command line, enter **SMAGPL/STRSMA**.
     :::tip
     If using multiple environments, refer to The STRSMA Command.
     :::
 
-    b.  Enter **6** to choose the **LSAM management menu**.
+    - Enter **6** to choose the **LSAM management menu**.
 
-    c.  Enter **1** to choose the **Start LSAM (STRSMASYS)** option.
+    - Enter **1** to choose the **Start LSAM (STRSMASYS)** option.
 
 #### Option Two: Start the LSAM Manually
 
-1. To start the LSAM manually, enter **SMAGPL/STRSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter. If ENV is specified, the job's library list does not matter.
+1. To start the LSAM manually, enter **SMAGPL/STRSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter.
 :::tip
-Log in to the LSAM menu system or set the interactive library list to match the LSAM environment that will be managed. Use the command SMASETLIBL to view a list of choices for automatically setting the library list when using command entry outside of the LSAM menu system. For more information on the SMASETLIBL command, refer to SMASETLIBL. If the library list is set, the ENV parameter default value of *CURRENT may be used.
+The STRSMASYS command driver program temporarily sets the job's library list to match the specified LSAM environment, so it is not necessary to manually manage the job's library list when using this command.
 :::
 2. The optional ENV parameter enables the copy of the command in library SMAGPL to be used from the IBM iSeries Navigator to start the LSAM without having to log on to a green screen workstation.
 
@@ -195,10 +202,9 @@ For either option, please verify the Subsystem SMASBS has ended. Do this by usin
 
 #### Option Two: Stop the LSAM Manually
 
-1. To end the LSAM manually, enter **SMAGPL/ENDSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter. If ENV is specified, the job's library list does not  matter.
+1. To end the LSAM manually, enter **SMAGPL/ENDSMASYS** in the command line. Optionally, specify the name of the LSAM environment in the ENV parameter. 
 :::tip
-Log in to the LSAM menu system or set the interactive library list to match the LSAM environment to be managed. Use the command SMASETLIBL to see a list of
-choices for automatically setting the library list when using command entry outside of the LSAM menu system. Refer to [Commands and Utilities](../commands-utilities/commands.md) for more information about the SMASETLIBL command. If the library list is set, the ENV parameter default value of *CURRENT may be used.
+The ENDSMASYS command driver program temporarily sets the job's library list to match the specified LSAM environment, so it is not necessary to manually manage the job's library list when using this command.
 :::
 2. The ENDSMASYS command supports an optional parameter that may be used to specify the LSAM environment name. This parameter enables the copy of the command in library SMAGPL to be used from the IBM iSeries Navigator to stop the LSAM without having to log on to a green screen workstation.
 
@@ -354,7 +360,13 @@ This is the same function that is documented in detail in the Configuration topi
 
 ### Alternate Job Notify Menu
 
-This option provides access to a sub-sub-menu of functions that support a different method for the LSAM to detect when any jobs in the IBM i system have started or ended. The Alternate Job Notify feature is provided for special purposes only, including supporting the True Passive mode of Job Tracking and for use by SMA Support to perform exceptional diagnostic procedures. User instructions are provided in the following section of this document.
+This option provides access to a sub-sub-menu of functions that support a different method for the LSAM to detect when any jobs in the IBM i system have started or ended. User instructions are provided next in this document: [Alternate Job Notify Service](#alternate-job-notify-service).
+
+The Alternate Job Notify feature is provided for special purposes only, including:
+- supporting the True Passive mode of Job Tracking
+- for use by SMA Support to perform exceptional diagnostic procedures
+- for use by client sites with a unique IBM i partition configuration that consistently makes the default Agent management of job completion messages ineffective
+- supporting the "IU." instance of LSAM Dynamic Variables
 
 ## Alternate Job Notify Service
 
@@ -378,6 +390,11 @@ The Job End message processing of the JOBNFY server is also critical for Passive
 
 More information about Passive Job Tracking may be found in [Job Tracking and Queuing](../job-tracking/overview).
 
+### Job Notify Service Support for IU. Dynamic Variable Instances
+The JOBNFY server job performs a critical function of registering a new IBM i job into the Agent's database just as soon as the job arrives in an IBM i job queue.  This rapid registration procedure is necessary to established the boundaries of a new Dynamic Variable "IBM i unit of work" instance, so that each job can be registered as a potential boundary for a unit of work and can set a Dynamic Variable value as the first job in a series of submitted jobs.
+
+More information about Dynamic Variable instances may be found in [Dynamic Variables](/dynamic-variables/overview.md#introduction-to-dynamic-variables).
+
 ### Flow Chart of Alternate Job Notify Processing
 
 The Alternate Job Notify server job processes transactions put into the data queue specified in the Exit Program Register. The Job Start message management works similar to the following Job End process.
@@ -397,7 +414,7 @@ permission.
 2. Execute option 7: Job notify configuration, to set the control values for this new feature. Do NOT set the first flag, "Use Alt Job Notify Server" on at this time, leave it set to 'N' = No. Refer to Screens and Windows, below, for more information.
 3. Execute option 1 from the Alternate Job Notify Menu and then use F6=Add to create one or more Job Notify Subsystem control records. Add one record for each IBM i subsystem where a job may start that has demonstrated a problem with notifying OpCon about the job end. Do not add more subsystems than are needed to solve the job end notification problem. Refer to Screens and Windows, below, for more information about using this function.
 
-    **Authority:** *This function requires data authority to add records to the file JOBNFYF00 in the SMADTA library. Prompting with function key F4 in the subsystem name field also requires read authority to all the subsystem descriptions in the IBM i partition. However, F4 is not required, as long as the user knows the exact subsystem name and the library location of each subsystem description.
+    ***Authority:*** This function requires data authority to add records to the file JOBNFYF00 in the SMADTA library. Prompting with function key F4 in the subsystem name field also requires read authority to all the subsystem descriptions in the IBM i partition. However, F4 is not required, as long as the user knows the exact subsystem name and the library location of each subsystem description.
 4. From the same Work with function, type option 1 next to each subsystem control record in order to add its Exit Program number to the IBM i exit point registry.
 
     ***Authority:*** This function requires authority to the IBM i command ADDEXITPGM and to the exit point registry.

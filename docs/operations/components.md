@@ -55,3 +55,10 @@ flags, set in various LSAM menu functions.
 #### SMARGZ
 - This optional job may appear for a brief period in the LSAM subsystem shortly after the LSAM Maintenance Hour on scheduled days. This is the job that performs an automatic backup of the SMADTA database library and then reorganizes the LSAM master files. It also purges the LSAM debug log files after the save step is completed.
 - During the file reorganization step, this may be the only job active in the LSAM subsystem. This task suspends all other LSAM server jobs in order to free the master files for reorganization. When the file reorganization is completed, this job restarts the other LSAM server jobs.
+
+#### ALTNFY, ALTNFY4
+- This pair of optional jobs may appear if the LSAM Alternate Job Notify server feature has been configured and activated.  Access to the LSAM controls for managing this feature is from the LSAM menu 6, option 8: Alternate Job Notify menu.  Information about when and how to use this feature is found in [Alternate Job Nofify Service](/operations/lsam.md#alternate-job-notify-service)
+- Uses for this service include:
+    - Supporting "true-passive Job Tracking."
+    - Supporting "IU.Dynamic variable" instances.
+    - Supplementing Agent management of job completion reporting in some IBM i partitions where the Agent's normal detection of job completion messages in the SMADTAQ data queue is not working correctly.
