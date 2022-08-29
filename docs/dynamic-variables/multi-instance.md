@@ -327,8 +327,8 @@ It is important to understand the two different ways that Dynamic Variable {TOKE
 
 1. The most common use of Dynamic Variables is contained within the Operator Replay Script Steps and any associated Captured Data Response Rules.
 - The Script Step records may use Dynamic Variable {TOKENS} as part of the "string to send" data that is virtually typed on the workstation keyboard.  They can also use Dynamic Variable tokens to make the Script Branching rules variable, for example.
-- The Response Rules can store data captured from the workstation display, and they often set Dynamic Variables based on the content of captured data.  Then, these Dynamic Variable settings are often fed back to the Script Step, to be used as mentioned just above.
-- By default, the keys for Mult-Instance Dynamic Variables that are managed by the Script driver program and any linked Response Rules will use the IBM i Job ID of the Script driver job itself, and NOT the Job ID of the interactive workstation job.
+- The Response Rules can store data captured from the workstation display, and they set Dynamic Variables based on the content of captured data.  Then, these Dynamic Variable settings are often fed back to the Script Step, to be used as mentioned just above.
+- By default, the keys for Multi-Instance Dynamic Variables that are managed by the Script driver program and any linked Response Rules will use the IBM i Job ID of the Script driver job itself, and NOT the Job ID of the interactive workstation job.
 
 2.  The virtual workstation usually receives the data it needs as the Script driver program transmits the keyboard "string to send."  However, if an interactive session ever tries to execute the Agent's Multi-Step Job Scripts, then the Mult-Step Script driver program might need to access multi-instance Dynamic Variables that are isolated to the virtual workstation Job ID and not to the Script driver Job ID.
     - **This would be a rare instance, but this is the use case that is being explained in this section of documentation.**
