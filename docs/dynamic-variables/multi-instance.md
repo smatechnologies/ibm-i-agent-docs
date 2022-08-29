@@ -322,6 +322,18 @@ The following illustration identifies a new Agent utility command SMAJOBDTL whic
 
 The diagram above shows two different IBM i jobs.  One is the Script Driver Job (typically started by an OpCon Schedule and Job) and the other is the Interactive Job which is a virtual workstation job that the Script Driver has initiated.  
 
+:::tip
+It is important to understand the two different ways that Dynamic Variable {TOKENS} might be used with Operator Replay.
+
+1. The most common use of Dynamic Variables is contained within the Operator Replay Script Steps and any associated Captured Data Response Rules.
+- The Script Step records may use Dynamic Variable {TOKENS} as part of the "string to send" data that is virtually typed on the workstation keyboard.  They can also use Dynamic Variable tokens to make the Script Branching rules variable, for example.
+- The Response Rules can store data captured from the workstation display, and they often set Dynamic Variables based on the content of captured data.  Then, these Dynamic Variable settings are often fed back to the Script Step, to be used as mentioned just above.
+- By default, the keys for Mult-Instance Dynamic Variables that are managed by the Script driver program and any linked Response Rules will use the IBM i Job ID of the Script driver job itself, and NOT the Job ID of the interactive workstation job.
+
+2.  The virtual workstation usually receives the data it needs as the Script driver program transmits the keyboard "string to send."  However, if an interactive session ever tries to execute the Agent's Multi-Step Job Scripts, then the Mult-Step Script driver program might need to access multi-instance Dynamic Variables that are isolated to the virtual workstation Job ID and not to the Script driver Job ID.
+    - **This would be a rare instance, but this is the use case that is being explained in this section of documentation.**
+:::
+
 Since there is no way that an IBM i service can report back to the Script Driver Job the IBM i Job ID of the virtual workstation’s interactive job, the Script Driver is relying on a Script Step that executes just after logging in to the workstation and starting the interactive job, to execute the Agent’s SMAJOBDTL command.  This command presents a workstation display that reports the full set of IBM i Job Details:
 ```
  JOBDTLR1                   SMA Display Job Detail                      2/09/22 
