@@ -15,8 +15,6 @@ With the introduction of the XML formatting syntax for External Event Commands (
 
 Users of the original Client eMail feature should carefully consider the discussion of [Instructions for Users of Original Client eMail](#instructions-for-users-of-original-client-email).
 
-**Agent version 21.1:** Not included in this Agent version 18.1 documentation are additional improvements and extensions that will become available after upgrading to the Agent version 21.1.
-
 ### Retained with the Simplified Client Email Feature
 
 - The Client Master file and system of Client Acronyms (as keys) are retained, and no changes are required.
@@ -26,7 +24,7 @@ Users of the original Client eMail feature should carefully consider the discuss
 ### Changes to the Former Client eMail Feature
 
 - Uses the XML format of the OpCon $NOTIFY:EMAIL External Event command instead of a separate communications path between the IBM i Agent and the OpCon server.
-- A large nuyarn mber of feature control fields, matching similar GENEMLREQ command parameters, are eliminated.
+- A large number of feature control fields, matching similar GENEMLREQ command parameters, are eliminated.
   - This change implies that some Agent automation rules or scripts would need updating to eliminate command parameters that are no longer supported. See the list of deleted command parameters, below.
 - This Agent email feature can no longer provide its own FROM email address for each email, since the OpCon $NOTIFY:EMAIL External Event command does not support this as one of its command parameters.
   - The TO, CC and BCC addresses are still supported as before.
@@ -34,18 +32,26 @@ Users of the original Client eMail feature should carefully consider the discuss
   - SMA also suggests that any custom REPLY TO email address could be embedded within the message body as a work-around for this limitation.
 - The IBM i Agent communications programs that connect with the OpCon server have their internal transaction buffers enlarged to accommodate up to 3,840 bytes (expanded from 1,280) to support an ample length for the aggregated parameters of the $NOTIFY:EMAIL command.
   - The email message body could contain up to 3,000+ characters, however, the total size of the event command must be considered, allowing for the message title and the message addresses, plus any optional characters for the path to one or two attachments.
+- The Agent added support for using the IBM i simple editor EDTF as the default for working with email message body text source members in the source file EMLTXTSRC.  For sites that have the Programmer Development Manager tools installed, the WRKMBRPDM command is still offered from the Client eMail menu functions.
+  - Previously, only WRKMBRPDM was supported from the LSAM menu functions, but many client production computers do not have the Programmer Development Manager tools installed.
+  - With Agent version 21.1, it became necessary to offer an option for the EMLTXTSRC message body source file to contain much longer source records, allowing for one possible way to type a long character string defining a specifically qualified multi-instance Dynamic Variable.
+  - The Client eMail request generation program (for command GENEMLREQ) can now support any record length for the EMLTXTSRC source physical file.  Instructions are provided for changing the EMLTXTSRC file record length while preserving any existing source member content for email message bodies.
+
+- A new message body formatting control is added, to change the method used to concatenate IBM i source file record strings into the message body:  **&/STRNOSPACE** and **&/ENDNOSPACE** are the control characters that can be added into their own separate source member records. But the actual text of these control characters can be redefined by the user in the LSAM Client eMail Configuration (under LSAM menu 3, option 11, then select option 7).
+  - This optional formatting capability can be used instead of changing the record length of the EMLTXTSRC source file.
+
 
 ### Instructions for Users of Original Client eMail
 
-Users who have started using the Client eMail feature at or after LSAM version 18.1.112 (LSAM version 18.1, PTF level 112) can skip this section of documentation.  It is provided as a guide only for users of the original Client eMail feature. New users should continue with the [Client eMail Process Overview](#client-email-process-overview).
+Users who have started using the Client eMail feature at or after LSAM version 18.1.112 (LSAM version 18.1, PTF level 112), or beginning with LSAM version 21.1 and newer, can skip this section of documentation.  It is provided as a guide only for users of the original Client eMail feature. New users should continue with the [Client eMail Process Overview](#client-email-process-overview).
 
-Revising the introduction to Client eMail Management in the IBM i LSAM Administration Guide (18.1.055), this eMail management tool now does depend on the OpCon External Event command $NOTIFY:EMAIL. This Agent’s adoption of the XML format for OpCon External Event commands makes it much easier and simpler to continue producing nicely formatted email messages. For example, the XML format supports properly edited financial amounts, with no restrictions on the use of the comma as a grouping separator.
+Revising the introduction to Client eMail Management in the IBM i LSAM Administration Guide (18.1.055), this eMail management tool now depends on the OpCon External Event command $NOTIFY:EMAIL. (This Agent's XML formatting command is XNTYEMAIL.) This Agent’s adoption of the XML format for OpCon External Event commands makes it much easier and simpler to continue producing nicely formatted email messages. For example, the XML format supports properly edited financial amounts, with no restrictions on the use of the comma as a grouping separator.
 
 The CAUTION in the previous user instructions no longer applies. After version 18.1.112 cumulative LSAM PTFs for the OpCon Agent for IBM i are installed, there is no need to maintain the old, retired stand-alone OpCon utility “SMASendMail.exe”.
 
 Another important change that must be made is to any OpCon Schedules that were previously required to manage the IBM i Agent’s Client eMail requests. Consider the following new procedure for using the Agent’s existing (revised, simplified) GENEMLREQ command.
 
-1. No OpCon Schedule is required.
+1. No OpCon Schedule is required (except if desired for scheduling a single job that executes The GENEMLREQ command itself).
 2. No file transfer jobs are required to send email request parameters or the email message content file.
 3. There is no need for a job to execute the retired “SMASendMail” utility.
 4. All that is required to get an email message sent is to execute the Agent’s GENEMLREQ.  This command engages the IBM i Agent XNTYEMAIL External Event email command. The external event command will be automatically configured by the GENEMLREQ command processor program (GENEMLREQR).
@@ -58,7 +64,7 @@ The former flow chart is no longer useful. The only parts of the chart that are 
 
 The processing of the XNTYEMAIL External Event command is now handled entirely by the OpCon application server’s normal management of incoming External Event commands.
 
-**Changes to Prepararion for eMail Tasks**
+**Changes to Preparare for eMail Tasks**
 
 All of the previously published steps are replaced.
 
@@ -73,9 +79,10 @@ If a new OpCon security token for the OpCon External Event user is not captured 
 The following command parameters were deleted from, or added to the GENEMLREQ command.
 
 :::warning
-If any of the deletede command parameters were used as the GENEMLREQ command was registered in the Agent’s automation tools (including Response Rules and/or the Multi-Step Job script steps), they must be removed from the registered commands to avoid a failure of the command.  Contact SMA Support if assistance is desired for locating all instances of the GENEMLREQ command.  It is possible to use SQL queries against certain Agent master files to quickly discover a list of all instances, such as files OPRRPYF50 (Captured Data Response Rules) and MLTJOBF10 (Multi-Step Job Step master records).
+If any of the deleted command parameters were used as the GENEMLREQ command was registered in the Agent’s automation tools (including Response Rules and/or the Multi-Step Job script steps), they must be removed from the registered commands to avoid a failure of the command.  Contact SMA Support if assistance is desired for locating all instances of the GENEMLREQ command.  It is possible to use SQL queries against certain Agent master files to quickly discover a list of all instances, such as in files OPRRPYF50 (Captured Data Response Rules) and MLTJOBF10 (Multi-Step Job Step master records).
 :::
 
+##### GENEMLREQ parameters deleted
 - MSGTXTFILE
 - MSGDYNVAR
 - EMLMSGPROI
@@ -92,6 +99,10 @@ If any of the deletede command parameters were used as the GENEMLREQ command was
 - EMLSECURE
 - FROMADDR
 
+##### GENEMLREQ parameters added
+- ATTACHMNT1
+- ATTACHMNT2
+
 **Changed Support for a FROM eMail Address**
 
 The original Client eMail feature provided support for specifying a FROM email address from multiple sources.  However, since the new GENEMLREQ command now relies on the XML formatted External Event command XNTYEMAIL, this event command does not support specifying an email FROM address. 
@@ -100,15 +111,15 @@ Now, the email FROM address can be allowed, by default, to use the universal FRO
 
 Another alternative is to add text to the email message body that instructs the recipient what email address to use if it is necessary to reply to the email message.
 
-**New Support for eMail Attachments**
+### New Support for eMail Attachments
 
 Following are new, optional command parameters that have been added to the GENEMLREQ command, based on optional parameters that the OpCon server supports for the $NOTIFY:EMAIL External Event command.
 
 - ATTACHMNT1 – The path name within the OpCon application server where a document or other file type is located, which object should be included as an attachment to the final email that will be sent.
-This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.
+  - This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.
 
 - ATTACHMNT2 – The path name within the OpCon application server where a document or other file type is located, which object should be included as a second attachment to the final email that will be sent.
-This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.
+  - This parameter supports inclusion of Agent Dynamic Variable {TOKENS}. The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.
 
 ## Client eMail Process Overview
 
@@ -142,17 +153,19 @@ Users of the original Client eMail feature should review existing executions of 
 
 ## How to Configure an eMail Task
 
-1. Create one or more Client eMail Data master records. Refer to the Screens and Windows section of this document for detailed information about this function.
-2. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (*The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7.*) The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: {DYNVAR1}
+1. Create one or more Client eMail Data master records. Refer to the Screens and Windows section, below within this section, for detailed information about this function.
+2. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (*The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7.*) The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: **{DYNVAR1}**
+
 :::tip
 Any LSAM Dynamic Variables that will be used within a message source text member must be manually registered in the LSAM Dynamic Variables table efore they can be used by the GENEMLREQ command during run-time e-mail message formatting. Numeric variable formatting rules of any type are permitted for Dynamic Variables used in the context of an e-mail message.
 :::
+
 3. The final step in preparing for execution of the GENEMLREQ command is to determine the proper settings for each of the command's parameter keywords. These are fully documented in the next section of this document. It is helpful to pay close attention to the following possible sources for some of these parameters, where the table of parameter values below identifies which sources are appropriate for each keyword, and what keyword value tells the command to use each source:
     - Client eMail configuration values (sub-menu option 7)
     - Client eMail Data master record values (sub-menu option 1)
     - GENEMLREQ command parameters that specify their own values
   
-4. Following execution of the GENEMLREQ command, diagnostic information about any failures will be found using the LSAM sub-menu options 4 and 5. Additional information about problems with LSAM Dynamic Variable replacement can also be found the LSAM submitted job log file, LSALOGF30, viewed using LSAM sub-menu 6, option 5, log viewer 4.
+4. Following execution of the GENEMLREQ command, diagnostic information about any failures will be found using the LSAM Client eMail sub-menu options 4 and 5. Additional information about problems with LSAM Dynamic Variable replacement can also be found the LSAM submitted job log file, LSALOGF30, viewed using LSAM sub-menu 6, option 5, log viewer 4.
 
 ## Client eMail Utility Commands
 
