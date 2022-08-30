@@ -182,7 +182,7 @@ In the following example of the GENEMLREQ command, the command default value is 
   ```
   GENEMLREQ SUBJECT('Subject text string') ACRONYM(*CMD) SEQ(0) USECODE(*NONE) 
   MSGMBR(*ACRONYM) MESSAGE(*ACRONYM) TOADDR(*DEFAULT) CCADDR(*NONE) BCCADDR(*NONE) 
-  OPCONJOB('1')
+  ATTACHMNT1('\\server1\file1') ATTACHMNT2('\\server1\file2') OPCONJOB('1')
   ```
 :::
 
@@ -263,6 +263,15 @@ If a blind carbon copy of the message is desired, specify one or more e-mail add
 When the command is used from a Captured Data Response Rule command line, this value might typically be specified as a Dynamic Variable, so that the cc. address can be conveniently changed from a single location (the Variable value), affecting multiple instances of the command execution.
 
 \*NONE = do not include a cc. address in the mail task parameters.
+
+**ATTACHMNT1, ATTACHMNT2**:
+
+- UNC path to attachment file:  '\\\\server1\file1'
+- {DYNVAR}
+
+The path name within the OpCon application server where a document or other file type is located, which object should be included as an attachment to the final email that will be sent.
+
+This parameter supports inclusion of Agent Dynamic Variable {TOKENS}.  The tokens will be replaced by the GENEMLREQ command before their value is included in the Agent’s XNTYEMAIL External Event command.  Tokens can be a convenient way to store all or part of a UNC path name, and they can be used as a convenient single-source to record changes that would then be automatically referenced by multiple different Client eMail configurations.
 
 **OPCONJOB**:
 
@@ -492,7 +501,7 @@ When F6=Create is pressed from the WRKMBRPDM display, a prompt appears requestin
 
 ##### IBM i WRKMBRPDM Member Edit Display
 ```
-Columns . . . :    1  71            Edit                      SMADTA/EMLTXTSRC    
+ Columns . . . :    1  71            Edit                      SMADTA/EMLTXTSRC    
  SEU==> __________________________________________________           TSTMSGTXT1
  FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7
           *************** Beginning of data *************************************
