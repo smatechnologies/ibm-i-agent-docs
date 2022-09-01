@@ -5,9 +5,15 @@ sidebar_label: 'Client eMail Management'
 
 ## Client eMail Feature Replacement
 
-The IBM i LSAM continues to support an auxiliary automation feature that facilitates composition of email messages to be sent to clients of OpCon user sites. As of Agent version 18.1.112, this feature has been greatly simplified, but generally without losing its capabilities or requiring immediate changes to existing message configurations.  Changes might be required in command lines that execute the GENEMLREQ command because several command parameters were removed.
+The IBM i LSAM continues to support an auxiliary automation feature that facilitates composition of email messages to be sent to clients of OpCon user sites. As of Agent version 18.1.112, this feature has been greatly simplified, but generally without losing its capabilities.  Changes might be required in command lines that execute the GENEMLREQ command because several command parameters were removed.
 
-(*See notes below about possible exceptions that might require review. These include attention to the From email address, elimination of some GENEMLREQ command parameters, and some new limits on the size of the email message body.*)
+:::note
+See notes below about possible exceptions that might require review. These include:
+  - Attention to the "From" email address
+  - Elimination of some GENEMLREQ command parameters
+    - Parameters that are no longer needed might need to be deleted from existing automation
+  - Some new limits on the size of the email message body
+:::
 
 The original version of this feature was complicated due to the constraints of the original OpCon External Events command syntax, which relied on commas to separate the parameters of an Event command. This prevented the $NOTIFY:EMAIL event command from including financial currency amounts that used a comma as a grouping separate, such as $123,456.78. It was necessary to send email message text content to the OpCon server (which provides a centralize link to email services) by a separate and complex path of events.
 
@@ -396,11 +402,11 @@ F13=Information Assistant   F16=System main menu
 **View 2**
 
 - **Use Code**: A code used to create sub-groups of records within a single Acronym, such as when there are different e-mail addresses used for different types of communication.
-- **Use Description**: An optional field that describes the Use Code. There is no separate table of Use Codes, so the Description field is repeated on each master record, but it only needs to be specified once, and only exists for the convenience of system users, as documentation. (The Use Codes are not a normalized in the database at this time.)
+- **Use Description**: An optional field that describes the Use Code. There is no separate table of Use Codes, so the Description field is repeated on each master record, but it only needs to be specified once, and only exists for the convenience of system users, as documentation. (The Use Codes are not normalized in the database at this time.)
 
 **View 3**
 
-- **MsgSrcMbr**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not a normalized in the database at this time.)
+- **MsgSrcMbr**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not normalized in the database at this time.)
 - **Client Name**: An optional description of the Acronym. Since there can be multiple records per Acronym, the client name is repeated on each record, but this name field is only for internal documentation purposes. (The Client Acronym is not normalized in the database at this time.)
 
 ##### Options
@@ -442,12 +448,6 @@ F13=Information Assistant   F16=System main menu
  time.)
 - **eMail Address**: A 128-character string of one or more email addresses, where a semi-colon is used to separate the addresses.
   - The Use Code can group together multiple records in order to extend the list of e-mail addresses that would be used at one time for a message.
-
-##### Options
-
-- **2=Change**: The key fields of Acronym and Sequence Number cannot be changed, so use option 3=Copy then option 4=Delete to accomplish a change in the key fields.
-- **3=Copy**: This format of the display allows changes to the Acronym and Sequence number, and new values must be typed for one or both of the fields, but the new values cannot already exist in the master file.
-- **5=Display**: This format of the display does not support any changes to the data.
 
 ##### Functions
 

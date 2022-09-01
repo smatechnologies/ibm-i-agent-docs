@@ -5,9 +5,15 @@ sidebar_label: 'Client eMail Management'
 
 ## Client eMail Feature Replacement
 
-The IBM i LSAM continues to support an auxiliary automation feature that facilitates composition of email messages to be sent to clients of OpCon user sites. As of Agent version 18.1.112, this feature has been greatly simplified, but generally without losing its capabilities or requiring immediate changes to existing message configurations.  Changes might be required in command lines that execute the GENEMLREQ command because several command parameters were removed.
+The IBM i LSAM continues to support an auxiliary automation feature that facilitates composition of email messages to be sent to clients of OpCon user sites. As of Agent version 18.1.112 and newer, this feature has been greatly simplified, but generally without losing its capabilities.  Changes might be required in command lines that execute the GENEMLREQ command because several command parameters were removed.
 
-(*See notes below about possible exceptions that might require review. These include attention to the From email address, elimination of some GENEMLREQ command parameters, and some new limits on the size of the email message body.*)
+:::note
+See notes below about possible exceptions that might require review. These include:
+  - Attention to the "From" email address
+  - Elimination of some GENEMLREQ command parameters
+    - Parameters that are no longer needed might need to be deleted from existing automation
+  - Some new limits on the size of the email message body
+:::
 
 The original version of this feature was complicated due to the constraints of the original OpCon External Events command syntax, which relied on commas to separate the parameters of an Event command. This prevented the $NOTIFY:EMAIL event command from including financial currency amounts that used a comma as a grouping separate, such as $123,456.78. It was necessary to send email message text content to the OpCon server (which provides a centralize link to email services) by a separate and complex path of events.
 
@@ -154,11 +160,13 @@ Users of the original Client eMail feature should review existing executions of 
 ## How to Configure an eMail Task
 
 1. Create one or more Client eMail Data master records. Refer to the Screens and Windows section, below within this section, for detailed information about this function.
-2. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (*The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7.*) The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: **{DYNVAR1}**
+2. *(Optional)* Create one or more Message Text Source Members, using the LSAM sub-menu option for this function. The LSAM menu options for Client eMail assist with the choice to use EDTF (a simple file editor) or WRKMBRPDM (part of the separately licensed Program Development Manager from IBM) to compose messages that are too long to include in the message text parameter of the GENEMLREQ command.
 
-:::tip
-Any LSAM Dynamic Variables that will be used within a message source text member must be manually registered in the LSAM Dynamic Variables table efore they can be used by the GENEMLREQ command during run-time e-mail message formatting. Numeric variable formatting rules of any type are permitted for Dynamic Variables used in the context of an e-mail message.
-:::
+    - Remember that this special type of source member supports translation of LSAM Dynamic Variable values. This means that the name of a Dynamic Variable can be inserted anywhere into the message text by typing the token enclosure characters around the Dynamic Variable name. (*The Dynamic Variable Token Start/End characters are specified in the LSAM Job Tracking menu, option 7.*) The default value used to create tokens is a pair of curly brackets, such as in this example where the registered Dynamic Variable name is DYNVAR1: **{DYNVAR1}**
+
+      :::tip
+      Any LSAM Dynamic Variables that will be used within a message source text member must be manually registered in the LSAM Dynamic Variables table efore they can be used by the GENEMLREQ command during run-time e-mail message formatting. Numeric variable formatting rules of any type are permitted for Dynamic Variables used in the context of an e-mail message.
+      :::
 
 3. The final step in preparing for execution of the GENEMLREQ command is to determine the proper settings for each of the command's parameter keywords. These are fully documented in the next section of this document. It is helpful to pay close attention to the following possible sources for some of these parameters, where the table of parameter values below identifies which sources are appropriate for each keyword, and what keyword value tells the command to use each source:
     - Client eMail configuration values (sub-menu option 7)
@@ -373,6 +381,31 @@ F13=Information Assistant   F16=System main menu
 - **F13=Information Assistant**: Takes you to the IBM i general help screen.
 - **F16=System main menu**: This is always shown on any system-generated menu screen. It takes you to the general command entry menu for the operating system. Return to the previous menu by pressing <**F3**> or  <**F12**>. This function is not commonly used and can be restricted for certain user profiles.
 
+### Client eMail Configuration
+
+- **Screen Title**: Client eMail Utility Configuration
+- **Screen ID**: CLTEMLD301
+
+##### Menu Pathways
+
+- "Main Menu > Events and Utilities Menu (#3) > Client eMail Menu (# 11) > option 7
+- "Main Menu > Operator Replay Menu (#4) > Client eMail Menu (# 11) > option 7
+
+##### Fields
+
+- **Log GENEMLREQ activity?**: **0** = No, **1** = Yes.
+- **Default editor fo rmsge text**: 
+  - **0** = User choice.  This allows both the EDTF editor utility and the IBM WRKMBRPDM editor to be displayed in the Client eMail file maintenance functions.  However, the WRKMBRPDM function will not be offered if it is not installed, or if the EMLTXTSRC source file record size is greater than 240 bytes (because WRKMBRPDM is limited to this maximum record length by IBM design).
+  - **1** = Only the EDTF utility will be offered for direct access from the Client eMail file maintenance functions.
+  - **2** = Only the WRKMBRPDM utility will be offered for direct access from the Client eMail file maintenance functions.  But note that if the WRKMBRPDM command is not installed, or the EMLTXTSRC file has a record length greater than 240, using this display control option 2 would result in NO direct link to any source file editors from the LSAM menu system (since option 2 prevents the offering of the EDTF utility).
+- **Start NOSPACE control characters** ,
+- **End NOSPACE control characters**:  These two character strings can be changed to any unique sequence that the OpCon site would want to use to help manage the formatting of final email messages during the reformatting of a message text source file member.  For more information, see the discussion below about [Message Text Line Formatting](#message-text-line-formatting).
+
+##### Functions
+
+- **F3=Exit**: Do not update the data, return to the LSAM menu.
+- **F12=Cancel**: Do not update the data, return to the LSAM menu.
+
 ### Work with Client eMail Data
 
 - **Screen Title**: Work with Client eMail
@@ -402,11 +435,11 @@ F13=Information Assistant   F16=System main menu
 **View 2**
 
 - **Use Code**: A code used to create sub-groups of records within a single Acronym, such as when there are different e-mail addresses used for different types of communication.
-- **Use Description**: An optional field that describes the Use Code. There is no separate table of Use Codes, so the Description field is repeated on each master record, but it only needs to be specified once, and only exists for the convenience of system users, as documentation. (The Use Codes are not a normalized in the database at this time.)
+- **Use Description**: An optional field that describes the Use Code. There is no separate table of Use Codes, so the Description field is repeated on each master record, but it only needs to be specified once, and only exists for the convenience of system users, as documentation. (The Use Codes are not normalized in the database at this time.)
 
 **View 3**
 
-- **MsgSrcMbr**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not a normalized in the database at this time.)
+- **MsgSrcMbr**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not normalized in the database at this time.)
 - **Client Name**: An optional description of the Acronym. Since there can be multiple records per Acronym, the client name is repeated on each record, but this name field is only for internal documentation purposes. (The Client Acronym is not normalized in the database at this time.)
 
 ##### Options
@@ -429,8 +462,8 @@ F13=Information Assistant   F16=System main menu
 
 ### Display/Change/Copy Client eMail Data
 
-- **Screen Title**: Display Client Record
-- **Screen ID**: CLTEMLR5
+- **Screen Title**: Display Client Record, Maintain Client Record
+- **Screen ID**: CLTEMLR5, CLTEMLR2
 
 ##### Menu Pathways
 
@@ -442,26 +475,60 @@ F13=Information Assistant   F16=System main menu
 - **Acronym**: The 1-10 character key representing an eMail Client
 - **Record sequence**: The sequence number used to identify separate e-mail address records within a single Acronym.
 - **Record use code**: A code used to create sub-groups of records within a single Acronym, such as when there are different e-mail addresses used for different types of communication.
-- **Record use description**: An optional field that describes the Use Code. There is no separate table of Use Codes, so the Description field is repeated on each master record, but it only needs to be specified once, and only exists for the convenience of system users, as documentation. (The Use Codes are not a normalized in the database at this time.)
+- **Record use description**: An optional field that describes the Use Code. There is no separate table of Use Codes, so the Description field is repeated on each master record, but it only needs to be specified once, and only exists for the convenience of system users, as documentation. (The Use Codes are not normalized in the database at this time.)
 - **Client Name**: An optional description of the Acronym. Since there can be multiple records per Acronym, the client name is repeated on each record, but this name field is only for internal documentation purposes. (The Client Acronym is not normalized in the database at this time.)
-- **Default msg txt SrcMbr**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not a normalized in the database at this
- time.)
+- **Default msg txt SrcMbr**: The name of the source physical file member in file MSGTXTSRC that contains the message content. For records that may be grouped by a Use Code, only the first record in the group (the lowest sequence number) needs to contain this member name. (The Use Codes are not normalized in the database at this time.)
 - **eMail Address**: A 128-character string of one or more email addresses, where a semi-colon is used to separate the addresses.
   - The Use Code can group together multiple records in order to extend the list of e-mail addresses that would be used at one time for a message.
-
-##### Options
-
-- **2=Change**: The key fields of Acronym and Sequence Number cannot be changed, so use option 3=Copy then option 4=Delete to accomplish a change in the key fields.
-- **3=Copy**: This format of the display allows changes to the Acronym and Sequence number, and new values must be typed for one or both of the fields, but the new values cannot already exist in the master file.
-- **5=Display**: This format of the display does not support any changes to the data.
 
 ##### Functions
 
 - **F3=Exit**: Do not update the data, return to the LSAM menu.
+- **F4=Prompt**: Displayed only in Add, Change or Copy mode, F4 branches to a list of currently registered source members in the EMLTXTSRC source file, from which option 1 can be used to select the member name and import it into the Client eMail Data master record.  If a useful member is not already registered, the list display also supports maintenance of the message text source members.
 - **F5=Refresh**: Restore the display to its original condition, removing any changes that were typed but not yet committed with the Enter key.
-- **F10=WRKMBRPDM**: This function key is displayed only in Add, Change or Copy mode, and not in Display mode. When F10 is pressed, the program exits to the IBM i list display of members in the source physical file called MSGTXTSRC, permitting addition of new text members and/or changes to existing text members. This function may also be used just to identify the name of an existing source member that would then be typed into the Default msg txt SrcMbr field. For details about F10=WRKMBRPDM, refer to the display for menu option 2.
+- **F9=EDTF**: This function key branches to a "Work with" Agent program that assists with managing source members by providing many of the most commonly used options as does the IBM command WRKMBRPDM.  From this list display the content of the Client eMail master record's can be viewed or maintained using the IBM i simple text editor command EDTF.
+- **F10=WRKMBRPDM**: This function key is displayed only when the WRKMBRPDM command is installed in the IBM i partition, and also only when the record length of the EMLTXTSRC source file is no greater than 240 characters.  From this display the message text source member can be viewed or maintained.
 
 ### Work with Message Text Source Members
+
+- **Screen Title**: EMLTXTSRC Member List
+- **Screen ID**: EDTEMLR1
+
+##### Menu Pathways
+
+- Main Menu > Events and Utilities Menu (#3) > Client eMail Menu (# 11) > option 2
+- Main Menu > Operator Replay Menu (#4) > Client eMail Menu (# 11) > option 2 
+
+##### Fields
+
+- **MemberName**: The source file (EMLTXTSRC) member name where longer email message text is stored.
+- **Description**: The source file member description.  Although an Agent program offers a prompt to change this description, the text string is actually stored within the EMLTXTSRC source file for each message text source member.
+- **CrtDte**: The date when the source member was created in the EMLTXTSRC source file.
+
+##### Options
+
+- **2=EDTF**: Type this option and press <**Enter**> to view and/or update the message text source member using IBM's simple text editor command EDTF.
+- **3=Copy**: Type this option and press <**Enter**> to branch to a single-record display where the source member be copied to a new member name, keeping the original text (until it can be edited later).
+- **4=Delete**: Type this option and press <**Enter**> to delete a source member from file EMLTXTSRC.
+- **5=Change description**: Type this option and press <**Enter**> to branch to a single-record display where only the source member text can be updated. The text is retrieved from, and stored as one of the source file member attributes and not in the LSAM database.
+- **8=WRKMBRPDM**: Access to this IBM program development manager is offered only when the separately licensed PDM tools from IBM are installed, and also only when the source file EMLTXTSRC has a record length no longer than 240 characters.  The Client Email control file can be used to present or prevent the display of this list option.
+
+##### Functions
+
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Clear any remaining options that were typed and rebuild the list display from a new read through the database.
+- **F6=Add**: Use this function key to add a new message text source member to file EMLTXTSRC, along with its descriptive text.
+- **F12=Cancel**: Cancel any previously entered list options and return to the LSAM menu.
+- **F16=Search Next**: When data was typed into the Search content field and pressing Enter resulted in a match, press <**F16**> to continue the search on to the next matching record. F16 can also be pressed to start a new search when a new value has been typed into the Search Content field.
+- **F17=Top, F18=Bottom**: These function keys are used to reposition the list display to the beginning or the end of the master file.
+- **F23=WRKMBRPDM**: If the display instructions on line 5 indicate that the WRKMBRPDM command is supported, either due to the physical constraints of the IBM i software or due to the Client eMail control file settings, then function key F23 causes the display to leave the Agent's own source member management list so that the more powerful IBM PDM list display can be used to manage message text source members.
+
+#### Using the Agent's Own Source Member Management Program
+The Client eMail sub-menu option 2: EMLTXTSRC Member List always starts with access to the Agent's own source member management program, at display format EDTEMLR1 (described above).  This list display shows all the existing message text source members.
+
+IBM's PDM command WRKMBRPDM would generally be more useful due to its broader array of tools and options, but many OpCon user sites to not have the PDM toolkit installed.  This command can also not be used if the site has expanded the record length of the EMLTXTSRC source file to a size larger than 240 bytes.  Finally, the Client eMail Configuration function (LSAM menu 3, sub-menu 11, option 7) allows the site to control which source file editing tool(s) will be displayed in these Client eMail menu functions.
+
+#### Using the IBM Program Development Manager
 
 ##### IBM i WRKMBRPDM List Display
 ```
@@ -488,14 +555,16 @@ F9=Retrieve      F10=Command entry     F23=More options      F2
 
 ##### Menu Pathways
 
-- Main Menu > Events and Utilities Menu (#3) > Client eMail Menu  (# 11) > option 2
-- Main Menu > Operator Replay Menu (#4) > Client eMail Menu (# 11) > option 2
+- Main Menu > Events and Utilities Menu (#3) > Client eMail Menu  (# 11) > option 2 > F23
+- Main Menu > Operator Replay Menu (#4) > Client eMail Menu (# 11) > option 2 > F23
 
 ##### Function Notes
 
 The function of the WRKMBRPDM display is found in IBM i documentation and not repeated here. Refer to the following example of a member edit display for additional notes about how to format message text source members.
 
-### Edit Message Text Source Members
+## Function Notes for Message Text Source Members
+
+### Editing Message Text Source Members
 
 When F6=Create is pressed from the WRKMBRPDM display, a prompt appears requesting the member name and description of the new source member. After that data is typed, the following display appears for both Create and option 2=Change in order to update the lines of a message source member.
 
@@ -506,48 +575,125 @@ When F6=Create is pressed from the WRKMBRPDM display, a prompt appears requestin
  FMT **  ...+... 1 ...+... 2 ...+... 3 ...+... 4 ...+... 5 ...+... 6 ...+... 7
           *************** Beginning of data *************************************
   0001.00 Verify that the Dyn Var name DVAR is translated here: {DVAR}
-  0002.00
-  0003.00
+  0002.00   [blank line]
+  0003.00   [blank line]
   0004.00 Two blank lines above result in one blank line in the final formatted
   0005.00 e-mail message. A single blank line results in a new paragraph but no
-  0006.00 space will appear between the paragraphs.
-  0007.00
-  0008.00
-  0009.00 Sincerely,
-  0010.00
-  0011.00 SMA Support
+  0006.00 space will appear between the paragraphs, such as in the signature 
+  0007.00 line below.
+  0008.00   [blank line]
+  0009.00   [blank line]
+  0010.00 Sincerely,
+  0011.00   [blank line]
+  0012.00 SMA Support
           ****************** End of data ****************************************
 
 F3=Exit   F4=Prompt   F5=Refresh   F9=Retrieve   F10=Cursor   F11=Toggle
 F16=Repeat find       F17=Repeat change          F24=More keys
                           (C) COPYRIGHT IBM CORP. 1981, 2005.
 ```
+The IBM rules and the workstation display for using the EDTF simple text editor utility are different, but the message text source lines should appear the same as in the PDM example above.
 
-##### Function Notes
+The GENEMLREQ rendering of the message text source member above is illustrated below at [A Message Formatting Example](#a-message-formatting-example).
 
-The GENEMLREQ command processor program reformats the content of message text source members in a way that makes it easy for mail browsers to display message text in a format that is appealing and easy to read. Therefore, no special care is required when composing message text using the WRKMBRPDM (SEU) editor from IBM.
+### Message Text Line Formatting
 
-The only rule that applies while typing is to never type partial words on a line. If a word will not fit on one line, start that word on the next source member line. The final formatting will take care of the spacing between words, although, only one space will be inserted between the last word of one line and the first word of the next line.
+The GENEMLREQ command processor program reformats the content of message text source members in a way that makes it easy for mail browsers to display message text in a format that is appealing and easy to read. Therefore, when composing message text using either the WRKMBRPDM (SEU) editor from IBM or the IBM simple file editor EDTF, please be aware of the following rules that the Agent message formatting routines will follow when composing the final email message text. 
 
-Keep in mind the following two features of the message text formatting logic in order to achieve the desired final format of the message:
+- Whenever the message body formatting routine is reading source records, as long as it keeps reading non-blank source records, it will trim any trailing blanks from the previous source record, and then it will insert one space character before concatenating the content from the next non-blank source record.  In other words, the person who is preparing the message body source file must assume that one blank character will separate the text of each contiguous non-blank source record.
 
-1. GENEMLREQ will replace LSAM Dynamic Variable tokens.
-2. Leave a source member line blank to insert a Carriage Return + Line  Feed.\ One "New Line" function will be inserted into the message text for each blank source line, marking the end of a paragraph. Leave two (or more) lines blank in order to force a blank line between paragraphs in the final message format. When it is desired to have no blank space, but to only start a new line, such as in the signature lines at the end of a memo, leave only one source line blank.
+- Never type partial words on a line. If a word will not fit on one line, start that word on the next source member line. The final formatting will take care of the spacing between words, according to the next rule.
 
-Following is an example of how the message illustrated above would appear in a typical e-mail message browser, given that the Dynamic Variable was replaced by an numeric value of 1234567 that had Dynamic Variable numeric formatting rules applied.
+- One space will always be inserted between the last word of one line and the first word of the next line.  This is why trying to use a hyphen will not work to split a word between two lines.
+  - However, see the next topic for a way to override this rule: [Client eMail "NO SPACE" formatting controls](#client-email-no-space-formatting-controls).
+
+- Leave one source member line blank to insert a Carriage Return + Line Feed. One "New Line" function will be inserted into the message text for each blank source line.
+  - A single blank line in the message text source member will NOT become a blank line in the final message text.  The single blank line is a signal to the Agent's message formatter to start a new line that is part of, for example, a list of lines in a list.
+    - When building a list, if no blank line appears in the source member for each list entry, then the lines of the list will be concatenated with one space between them.
+  - Another example for using a single blank line is formatting signature lines at the end of a memo, where a new line is required for each signature element, but no blank lines should appear between them in the final message format.
+
+- Leave two (or more) lines blank in order to force a blank line between paragraphs in the final message format. Three blank lines in the source member would result in two blank lines in the final email message.
+
+- GENEMLREQ will replace LSAM Dynamic Variable tokens.
+  - The character string that replaces the Dynamic Variable {TOKEN} will be inserted into the message body and then it will be processed just like the rest of the message text that the source member contains.
+  - Using Dynamic Variable tokens is one way to insert up to 1024 characters that require special formatting.
+    - For example, if ever a multi-instance Dynamic Variable must be fully qualified with a long string of key values, a Dynamic Variable token might be a good way to insert that (maximum of 435 characters) keyed variable string into a message without the key string being interrupted by the automatic insertion of space characters that would happen if the long key string were typed into multiple source member records.
+      - Keep in mind that Dynamic Variables can be nested, so the processing of a fully-qualified multi-instance Dynamic Variable token can be manged by nested Dynamic Variable tokens before the final value string is delivered to the Client eMail message text formatting module.
+
+- Hexadecimal Dynamic Variable tokens can be defined (using the function code *HEX) that represent text formatting options such as Carriage Return, Line Feed and Tab, to achieve specialized formatting of the eMail message.  These three hex codes will be translated from EBCDIC to ASCII, as the IBM i Agent sends email content to the OpCon application server.
+  - For example, the Tab character can be used at the beginning of new paragraph text to indent the first line of a paragraph.  Multiple Tabs can be used to indent one or more source lines to form a table of values, and Tab tokens can be used to create matching columns for each row in a table.
+
+
+### A Message Formatting Example
+
+Following is an example of how the message illustrated above in the [IBM i WRKMBRPDM Member Edit Display](#ibm-i-wrkmbrpdm-member-edit-display) would appear in a typical e-mail message browser, given that the Dynamic Variable was replaced by a numeric value of 1234567 that had Dynamic Variable numeric formatting rules applied.
 
 :::note Email Message Example
 ```
-Verify that the Dyn Var name DVAR is translated here: $12,345.00
+Verify that the Dyn Var name DVAR is translated here: $12,345.67
 
 Two blank lines above result in one blank line in the final formatted
 e-mail message. A single blank line results in a new paragraph but no
-space will appear between the paragraphs.
+space will appear between the paragraphs, such as in the signature line 
+below.
 
 Sincerely,
 SMA Support
 ```
 :::
+
+### Client eMail "NO SPACE" formatting controls
+
+The Agent supports an override to the rule above that one space character will be inserted between the last character of message line "A" and the first character of the next message line "B".  The Client eMail Configuration function (LSAM menu 3, sub-menu 11, option 7) allows the OpCon site to choose their own character strings (up to 20 characters each) that will be meaningful to the site staff who compose Client eMail message text source members.
+
+The default control strings provided by SMA with the LSAM software are these:
+```
+Start NOSPACE control chars  : &/STARTNOSPACE______
+End NOSPACE control chars  . : &/ENDNOSPACE________  
+```
+Here is an example of message text that uses these control strings to mark a block of text that will NOT have any spaces inserted between the trimmed text extracted from each source member.  Note that pairs of these START/END controls can be used multiple times within a message text source member.
+
+:::note eMail Message Text Source Member
+```
+This is line 1 with a blank line following.
+  [blank line]
+  [blank line]
+This is line 2 with a partial character string: abcd
+efghijk, showing a space between "d" and "e".
+  [blank line]
+  [blank line]
+&/STARTNOSPACE
+This is line 3 with the same character string: abcd
+efghijk, but the space between these parts has been
+suppressed.
+&/ENDNOSPACE
+  [blank line]
+  [blank line]
+END OF EXAMPLE TEXT.
+```
+:::
+
+The next example shows how the final email message body will appear.  (In this example, the length of the text in each line with a paragraph will vary depending on the type of email viewer program being used.)
+
+:::note Formatted eMail Message Text
+```
+This is line 1 with a blank line following.
+
+This is line 2 with a partial character string: abcd efghijk, showing a space between "d" 
+and "e".
+
+This is line 3 with the same character string: abcdefghijk, but the space between these 
+parts has been suppressed.
+
+END OF EXAMPLE TEXT.
+```
+:::
+
+The formatting example above shows how a rarely used, very long, fully-qualified multi-instance Dynamic Variable {LONG_TOKEN} (up to 435 characters) could be typed directly into the message text source member while being protected against the default rule of having a space character inserted between the trimmed character string extracted from each source member record.
+
+
+
+## Client eMail Activity Log
 
 ### Display Mail Activity Logs
 
@@ -568,9 +714,9 @@ This function also provides convenient access to the Display of Error Log inform
 - **Opt**: Type one of the option numbers listed near the top of the display into an Opt field and press <**Enter**> to perform that function on the selected record.
 - **DD-HH.MM.SS**: A truncated form of the record logging date and time, showing the day of the month and the hours, minutes and seconds of the entry. A primary record key (shown on the details display) assures that records will appear in DESCENDING date+time sequence, where the most recent record appears at the top of the display.
 - **TP**: The record entry type. Values are:
-  - E = an error log, where the TP value and the Status code on the far right will show in red to highlight a failed job.
-  - U = the updated GENEMLREQ job parameters, after the mail task definition sources have all been reconciled. More than one U record will appear when multiple Client Acronym records were used to obtain an extended To-Address list.
-  - Q = the original job request parameters, logging the actual values that were supplied via the GENEMLREQ command parameters, before defaults and cross-reference codes are replaced from other sources.
+  - **E** = an error log, where the TP value and the Status code on the far right will show in red to highlight a failed job.
+  - **U** = the updated GENEMLREQ job parameters, after the mail task definition sources have all been reconciled. More than one U record will appear when multiple Client Acronym records were used to obtain an extended To-Address list.
+  - **Q** = the original job request parameters, logging the actual values that were supplied via the GENEMLREQ command parameters, before defaults and cross-reference codes are replaced from other sources.
 - **Acronym**: The 1-10 character key representing an eMail Client
 - **Seq**: The sequence number used to identify separate e-mail address records within a single Acronym.
 - **Use Code**: A code used to create sub-groups of records within a single Acronym, such as when there are different e-mail addresses used for different types of communication.
@@ -764,3 +910,35 @@ F3=Exit   F12=Cancel   F19=Left   F20=Right   F24=More keys
 
 - Refer to the description of the formatted Error Log display, above, for an interpretation of the raw log file entries. The log entry text begins at display column 98.
 - The format and use of the DSPPFM command output is documented by IBM. Use the function keys F19/F20 or the control field at the top of the display to change the position of the display window.
+
+## How to Extend the Length of the EMLTXTSRC Record
+
+Another option for supporting long text strings in email messages that must not have blank spaces inserted is to extend the record length of the EMLTXTSRC source physical file.  The GENEMLREQ command driver program has been updated to accommodate any source record length up to 1036 characters.  This length supports actual text content up to 1024 characters.  (The other 12 bytes of record length hold the data and sequence number of each source record.)
+
+Use the following IBM i commands to change the size of the record length in source physical file EMLTXTSRC.  SMA recommends using the QSECOFR or an equivalent user profile, or a user profile with *ALLOBJ authority to complete the following actions.  Remember to change the name of library SMADTA if necessary when working with a Test or alternative LSAM environment.
+
+- Rename the existing source file:  
+```
+RNMOBJ OBJ(SMADTA/EMLTXTSRC) OBJTYPE(*FILE) NEWOBJ(EMLTXTSRCB)
+```
+- Create the new source file.  This example shows the largest possible record length that is supported by the IBM i Agent GENEMLREQ program, which can then support character strings up to 1024 characters.
+```
+CRTSRCPF FILE(SMADTA/EMLTXTSRC) RCDLEN(1036)
+TEXT('SMA LSAM Client eMail message source')
+```
+
+:::note
+For the purpose of supporting a fully-qualified multi-instance Dynamic Variable token, this Agent has established 435 characters as the calculated longest possible qualified variable character string.  Therefore, using the email message formatting rules (listed above), a source record length of 435 + 12 = 447 would be sufficient to accommodate an uninterrupted qualified Dynamic Variable token.  For some applications, when Agent $-System variables or other Dynamic Variables are used to comprise the fully-qualified Dynamic Variable, a longer source file record length might be useful.
+:::
+
+- Copy all the source members from the old file to the new file.
+```
+CPYSRCF FROMFILE(SMADTA/EMLTXTSRCB) TOFILE(SMADTA/EMLTSTSRC) FROMMBR(*ALL) TOMBR(*FROMMBR)
+```
+
+- Set the expected Agent database object authority (taking into account any user-defined authorities assigned to the EMLTXTSRC source file).
+```
+SETOBJAUT OBJECT(SMADTA/EMLTXTSRC) TYPE(*FILE) ATTR(PF)
+```
+
+- The old source file could be backed up and then deleted from the disk storage.
