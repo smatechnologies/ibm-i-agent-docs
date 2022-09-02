@@ -4,51 +4,56 @@ sidebar_label: 'Maintain Dynamic Variables'
 
 # Maintain Dynamic Variables
 
-Explanations of how Dynamic Variables may be used are offered above. There are also references to using Dynamic Variables within the
-description of many of the LSAM functions documented in other topics.
+Explanations of how Dynamic Variables may be used are offered above. There are also references to using Dynamic Variables within the description of many of the LSAM functions documented in other topics.
 
 The fields available in the menu function are mostly the same as the fields available for use in the SETDYNVAR command (documented above, in this topic).
 
 ### LSAVARR1 - Work with Dynamic Variables
 
-
 #### Menu Pathways
 
-Main Menu > Job track menu (#1) > Maintain dynamic variables (#6)
+Main Menu > Events and Utilities (#3) > Maintain dynamic variables (#6)
+
+Many of the LSAM menus support access to this function, since it is used everywhere among the Agent automation tools.
 
 #### Options
 
 - **2=Change**: Select a record for update. Press <**Enter**> to continue to the individual record maintenance screen.
 - **3=Copy**: Select a record to copy into a new dynamic variable. Press <**Enter**> to continue to the Copy record screen where all the record fields, including the key values, may be updated, starting with the values from the original record.
-- **4=Delete**: Select a dynamic variable to be added to a pending list of records to be deleted. When <**Enter**> is pressed, all     records select with option 4 will appear on a confirmation list before records are actually deleted.
+- **4=Delete**: Select a dynamic variable to be added to a pending list of records to be deleted. When <**Enter**> is pressed, all records select with option 4 will appear on a confirmation list before records are actually deleted.
 - **5=Display**: View the details of a dynamic variable.
-- **6-DSPDYNVAR(V)**: Option 6 executes the LSAM testing command called DSPDYNVAR (display dynamic variable value). This option only works on Dynamic Variables of type V; it cannot be used on variables of type L. The current value of the Dynamic Variable appears in a completion message at the bottom of the screen, along with the date of last update. The value is formatted according to the current rules, making this a useful way to prove that numeric formatting is producing the desired result.
+- **6-DSPDYNVAR(V)**: Option 6 executes the LSAM testing command called DSPDYNVAR (display dynamic variable value). This option only works on Dynamic Variables of type V; it cannot be used on variables of type L. The current value of the Dynamic Variable appears in a completion message at the bottom of the screen, along with the date of last update; or it might be displayed using a full-screen format, depending on the setting within the LSAM Utility Configuration (LSAM menu 3, option 7). The value is formatted according to the current rules, making this a useful way to prove that the master record formatting options are producing the desired result.
+- **8=Export**: Available only from the main, master records list, this option initiates adding one or more Dynamic Variable master definitions (and any accompanying auxiliary records) to a batch of data that can be exported to another instance of the LSAM software that is at the same database level (DBLVL).
 
 #### Fields
 - **Search content**: Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
-- **Variable Name**:  The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
-- **Seq**: This record sequence number may be zeros for records of type V because it has no meaning for this record type. For records of type L, this sequence number is used to create unique records keys when there is more than one dynamic variable assigned to the same Variable Name (there may be multiple updates specified for the LDA content of a single job).
-- **Typ**: The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.
-- **Description**: Any text used to describe the dynamic variable. This text is useful mostly for this list of variables, so that each can be easily identified. When the command SETDYNVAR is used to add a new dynamic variable, the Description will be the IBM i job ID (number/user/name) of the job that executed the SETDYNVAR command.
+- **Variable Name**:  The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters (which limits the Captured Job ID used as a variable name), but a variable names can use up to the 12 characters allowed for this field.
+- **Seq**: This record sequence number should be zeros for records of type V because it has no meaning for this record type. For records of type L, this sequence number is used to create unique records keys when there is more than one dynamic variable assigned to the same Variable Name (there may be multiple updates specified for the LDA content of a single job).
+- **T (Type)**: The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.
+- **MI**: This column shows a value only for the Instance History views, while the master records leave this value blank.  The MI column shows the two letters that identify the instance type of history records appearing in the alternate list views.
+- **Nu**: Numeric indicator.  Value "C" indicates the variable value is Character, meaning it can support any character string.  Value "N" indicates the variable value is Numeric, meaning it can only store actual digits (0 - 9), except that it is valid to have one or more Dynamic Variable {TOKENS} in the Value field since variable nesting is supported.
+- **Description**: Any text used to describe the dynamic variable. This text is useful mostly for this list of variables, so that each can be easily identified. When the command SETDYNVAR is used to add a new dynamic variable automatically during some automated process, the Description will be the IBM i job ID (number/user/name) of the job that executed the SETDYNVAR command...unless the DESC( ) parameter is included within the command string.
 
 #### Functions
 
-- **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
+- **F3=Exit**: Quits list the display and returns to the menu.
 - **F5=Refresh**: Reload the list display with data from the master file.
 - **F6=Add**: Branches to the display where a new dynamic variable master record is defined.
-- **F8=DynVar**: Brings up a list of available Dynamic Variable names that can be selected and inserted into the VALUE field. These will be inserted using the {TOKEN} format.
-- **F12=Cancel**: Quits the display of the LDA Content view and returns to the Job Track Log Detail summary display.
+- **F7=Sched Inst**: Switch the list to show instance history records at the Schedule level.  This list will include instance types of SI. (OpCon Schedule Instance) or IU. (IBM i Unit of Work, which instance uses the Schedule field to store the IBM i Job ID of the Unit's anchor job as the primary key for all jobs connected with the same Unit of Work).
+- **F8=Job Inst**: Switch the list to show instance history records at the Job level.  This list will include instance types of JI. (OpCon Job) and IJ. (IBM i Job).
+- **F9=Master recs**: Switches the list back to show only master records, returning from either instance history list.
+- **F11=Alt view**: Available only from the instance history lists, this key changes the columns of data displayed for the list entries, showing different sort orders.  The column headings turn to pink with an underline to indicate which data is being used to control the sorted order of the list.
+- **F12=Cancel**: Quits the current list display.  From instance history lists, the display returns to the master records list.  From the master records list the display exits to the LSAM menu that launched this program.
 - **F16=Search next**: Press to start a new search based on the value entered in the Search input field, or to continue a search from the last record found.
 - **F17=Top**: Causes the list to display from the first record. The list is sorted in order of the Variable Name and Sequence within name.
 - **F18=Bottom**: Causes the list to display the last record in the file.
+- **F24=More keys**: Rotates the function key legend at line 23 to show more function keys supported by the current list on display.
 
 ## F6 = Add (Create) Dynamic Variable
 
 ### LSAVARR5 - Create Dynamic Variable
 
 #### Menu Pathways
-
-Main Menu > Job track menu (#1) > Maintain dynamic variables (#6) > F6=Add
 
 Main Menu > Events and Utilities menu (#3) > Maintain dynamic variables (#6) > F6=Add
 
@@ -61,12 +66,16 @@ The variable name cannot be changed when the screen format is shown in Change mo
 | Variable name  | Any characters |                | The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.|
 | Sequence number | 000 -- 999     | 000            | This record sequence number should be zeros for records of type V because it has no meaning for this record type. For records of type L, this sequence number is used to created unique records keys when there is more than one dynamic variable assigned to the same Variable Name (there may be multiple updates specified for the LDA content of a single job).  |
 | Variable type  | L, V           | V              | The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.|
-| LDA pos start (start position in LDA)  | 0 -- 1024      | 0000           | Required for record type L, not valid for type V. This  number specifies the cardinal position (1-1024) where substitution of the dynamic variable's value will begin in the image of the local data area (LDA) content for a job.   |
+| Description    | Any printable character text | IBM i job ID, when the SETDYNVAR command was used and the DESC keyword is not specified. | IBM i job ID, when the SETDYNVAR command was used and the DESC keyword is not specified.  | 
+| LDA pos start (start position in LDA)  | 0 -- 1024      | 0000           | Required for record type L, not valid for type V. This number specifies the cardinal position (1-1024) where substitution of the dynamic variable's value will begin in the image of the local data area (LDA) content for a job.   |
 | LDA pos length (Length of LDA update) | 0 -- 1024      | 0000           | Required for record type L, not valid for type V. This number specifies how many characters in the LDA content image will be updated by the value of the dynamic variable. If the supplied variable value is longer than this length, the value will be truncated to this length. If the value is shorter than this length, the remaining length will be padded with space characters (blanks).   |
-| Value calc program | A valid IBM i  | Blanks         | The name of an optional IBM i program supplied by the user that will calculate the dynamic variable's value at the moment just before the actual substitution will take place. The LSAM supports any length character string up to 128 characters in length. The content of this character string is not limited, since a local data area may contain any hexadecimal value in any position. |
+| Char trim start (start position in LDA)  | 0 -- 1024      | 0000           | This number specifies the cardinal position (1-1024) where substitution of the dynamic variable's value will begin in the value returned to replace the token. If this value is zero, then the start position will be the first non-blank character in the stored or calculated value string.  A non-zero start value would include any leading space characters that are part of the stored or calculated value string, so that the leading spaces would be inserted where the token is replaced.|
+| Char trim length (Length of LDA update) | 0 -- 1024      | 0000           | This number specifies how many characters from the stored or calculated value will be returned to replace the token. If this value is zero, then the length of the returned value will be through the last non-blank of the stored or calculated value character string.  If the non-zero length is greater than the actual value character string, the remaining positions of the returned value will be space characters that will be included in the target position where the token is replaced.  |
+|                    |                |                | **Note**: Use F1=Help from a display of a Dynamic Variable master record (or a variable maintenance display) to see detailed examples of combinations of Character Trim Start/Length values and how they can be used to include or eliminate space characters from before or after non-blank characters of the value string. |
+| Value calc program/Fn Code | A valid IBM i program name, or ... | Blanks         |    The name of an optional IBM i program supplied by the user that will calculate the dynamic variable's value at the moment just before the actual substitution will take place. The LSAM supports any length character string up to 1024 characters in length. The content of this character string is not limited, since a local data area may contain any hexadecimal value in any position. |
+| |One of the supported Function Codes | | Instead of a user-defined program, one of the displayed Function Codes can be typed into this field.  Details about each Function Code, including identification of when the "LIB" input field would be used to send parameters to the function codes, can be found in [Dynamic Variable Function Codes](./function-codes.md#what-is-a-function-code-for-lsam-dynamic-variables). |
 |                    |                |                | **Note**: The LSAM passes the current value of the variable to the program, but uses whatever value is returned by the program to replace a variable token at run time. There is also a second parameter of 12 characters passed to the program that contains the Variable Name. |
 | Value calc Lib | A valid IBM i library name  | Blanks         | The DB2/400 (DB2 UDB) library name where the userdefined value calculate program is found. |
-| Description    | Any printable character text | IBM i job ID, when the SETDYNVAR command was used and the DESC keyword is not specified. | IBM i job ID, when the SETDYNVAR command was used and the DESC keyword is not specified.  | 
 | Current/default value | Any keyboard character | Blanks         | To specify a fixed value for a dynamic variable, when a value calculate program is not being used, type in the value. If the required value cannot be typed on a workstation keyboard, then a value calculate program must be used to supply the value at run time. If a value calculate program is specified, but the program cannot be found at run time, then any value specified in this field will be used as the default. However, if a value calculate program is found, and the program returns blanks, then blanks will be used for the variable value. For type V tokens, a blank value will cause the token to be removed from the string where it was found and the string will be compressed to remove as many spaces as were occupied by the token. For type L variables, a final result of blanks for the variable will cause the LDA to be updated with space characters in the specified location/length. |
 | Numeric field size | 0 - 63         | 0              | A non-zero value in this field designates that the dynamic variable will always be handled as a numeric field, capable of numeric operations and also optionally subject to numeric edit codes to prepare the value for output when it is requested. |
 | Numeric field dec | 0 - 63         | 0              | A non-zero value in this field specifies the number of digits (included in the total size value, above) that are handled as right of the decimal point, that is, part of the numeric value that is less than 1, such as tenths, hundredths, etc. This field only applies if the size field is also not zero. The number of decimals cannot exceed the total

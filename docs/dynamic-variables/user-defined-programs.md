@@ -11,10 +11,10 @@ Following is the RPG program logic used by the LSAM to call a user-defined value
 ```
 Eval UsrLibPgm = %trim(VUSRLIB) + '/' + %trim(VUSRPGM)
 Call UsrLibPgm
-Parm VTOKVAL UsrValue (128 characters)
+Parm VTOKVAL UsrValue (1024 characters)
 Parm WkVarNam UsrVarNam (12 characters)
 ```
-A model CL program that conforms to these requirements is provided in an example box below, under the topic of fetching DB2 database values.
+A model CL program that conforms to these requirements is provided in an example box under the topic of [Using the DYNVARSQLR Utility Program to Fetch Database File Fields](./old-method.md#using-the-dynvarsqlr-utility-program-to-fetch-database-file-fields).
 
 The technical definition for developing a compatible user-defined program is simple: The program must be able to accept at least one non-constant parameter that is 128 characters in length, but best practice indicates that both parameters should be defined. The program interface may be described either as an ILE prototype procedure call or as an OPM external program call with parameters.
 

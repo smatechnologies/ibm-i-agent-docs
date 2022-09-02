@@ -14,6 +14,26 @@ Regardless of the purpose of the dynamic variable, the value inserted to replace
 
 It is possible, for example, to use a separately scheduled OpCon job or the pre-run command line of an OpCon job for IBM i to execute the SETDYNVAR command just before another job is executed that will depend on that dynamic variable. It is also possible to include OpCon property tokens in the VALUE parameter of the SETDYNVAR command so that a value calculated by OpCon can be passed along to the LSAM, and the final result is that a job executing under IBM i can have its behavior controlled by virtually any OpCon property.
 
+### Recent Enhancements to Dynamic Variables
+
+#### Dynamic Variable Values extended to 1024 characters
+
+The previous maximum length of a value returned for a Dynamic Variable token was 128 characters.  Now the Agent supports up to 1024 characters for character string values.
+
+One of the benefits of this extension is that a single Dynamic Variable token can contain the entire contents of an IBM i job's "Local Data Area" (\*LDA).
+
+The long value string also better supports the Multi-Instance Dynamic Variable feature because a single variable value can contain the maximum supported string of key values in rare cases when the instance of a variable must be fully qualified with key values such as IBM i Job IDs and/or OpCon Schedule and Job names.
+
+#### Separation of Character Trimming from LDA Value Trimming
+
+Previously, trimming of Dynamic Variable values was implemented by re-using the Local Data Area Start and Length parameters.  Now a separate set of Character Start and Length parameters are used to specify how the stored (or produced) value from a Dynamic Variable should be trimmed as it is inserted in place of the variable’s {TOKEN}.  This makes it possible to do value trimming for type ‘L’ Dynamic Variables (see [Dynamic Variable Type Code](#dynamic-variable-type-code) below) that require the LDA Start/Length fields to identify which part of a job’s Local Data Area should be updated by the value.
+
+#### Improved Separation of Numeric from Character Value Types
+
+Previously, a Dynamic Variable was classified as having a numeric data type simply by having a non-zero value in the Numeric Size field.  Now there is a separate flag for each Dynamic Variable that indicates ‘C’ = character string or ‘N’ = numeric value.  The main purpose of introducing this flag was to support the recently extended multi-page display format that is used to build or maintain Dynamic Variable master records.
+
+For OpCon sites that upgrade to LSAM version 21.1 or newer, from version 18.1 or older, the install/upgrade procedures will automatically convert existing Dynamic Variable master records to the new designation of Character or Numeric.
+
 ### Dynamic Variable Type Code
 
 Separate from the value controls that apply to all dynamic variables,the dynamic variable type field determines how the value is applied to attributes of a job.
@@ -30,7 +50,7 @@ The special characters used to make tokens out of type V dynamic variables are s
 
 ### Multi-Instance Dynamic Variables
 
-Similar to the multi-instance Property support provided by the OpCon central server application, the Agent for IBM i can now support true parallel processing as variable values are isolated to any of the following optional instances.
+Similar to the multi-instance Property support provided by the OpCon central server application, the Agent for IBM i can support true parallel processing as variable values are isolated to any of the following optional instances.
 
 - **SI.** = OpCon Schedule Instance.  This scope matches the same scope used by the OpCon Job Scheduler, applied to any IBM i jobs started by OpCon.
 

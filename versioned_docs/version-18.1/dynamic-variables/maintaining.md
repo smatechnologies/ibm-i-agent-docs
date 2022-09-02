@@ -4,40 +4,40 @@ sidebar_label: 'Maintain Dynamic Variables'
 
 # Maintain Dynamic Variables
 
-Explanations of how Dynamic Variables may be used are offered above. There are also references to using Dynamic Variables within the
-description of many of the LSAM functions documented in other topics.
+Explanations of how Dynamic Variables may be used are offered above. There are also references to using Dynamic Variables within the description of many of the LSAM functions documented in other topics.
 
 The fields available in the menu function are mostly the same as the fields available for use in the SETDYNVAR command (documented above, in this topic).
 
 ### LSAVARR1 - Work with Dynamic Variables
 
-
 #### Menu Pathways
 
 Main Menu > Job track menu (#1) > Maintain dynamic variables (#6)
+
+Many of the LSAM menus support access to this function, since it is used everywhere among the Agent automation tools.
 
 #### Options
 
 - **2=Change**: Select a record for update. Press <**Enter**> to continue to the individual record maintenance screen.
 - **3=Copy**: Select a record to copy into a new dynamic variable. Press <**Enter**> to continue to the Copy record screen where all the record fields, including the key values, may be updated, starting with the values from the original record.
-- **4=Delete**: Select a dynamic variable to be added to a pending list of records to be deleted. When <**Enter**> is pressed, all     records select with option 4 will appear on a confirmation list before records are actually deleted.
+- **4=Delete**: Select a dynamic variable to be added to a pending list of records to be deleted. When <**Enter**> is pressed, all records select with option 4 will appear on a confirmation list before records are actually deleted.
 - **5=Display**: View the details of a dynamic variable.
-- **6-DSPDYNVAR(V)**: Option 6 executes the LSAM testing command called DSPDYNVAR (display dynamic variable value). This option only works on Dynamic Variables of type V; it cannot be used on variables of type L. The current value of the Dynamic Variable appears in a completion message at the bottom of the screen, along with the date of last update. The value is formatted according to the current rules, making this a useful way to prove that numeric formatting is producing the desired result.
+- **6-DSPDYNVAR(V)**: Option 6 executes the LSAM testing command called DSPDYNVAR (display dynamic variable value). This option only works on Dynamic Variables of type V; it cannot be used on variables of type L. The current value of the Dynamic Variable appears in a completion message at the bottom of the screen, along with the date of last update. The value is formatted according to the current rules, making this a useful way to prove that master record formatting options are producing the desired result.
 
 #### Fields
 - **Search content**: Type in a value that can be found anywhere in the record represented by each line on the list. The entire record will be searched, not just the fields displayed in the list. Use option 5=Display to see the matching detail that satisfied the search when the cursor appears in the Opt field next to a line on the display. The <**Enter**> key or <**F16**> may be used to start a search, and <**F16**> is used to continue the search from the last record found.
-- **Variable Name**:  The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters, but a Captured Job ID or token ID can use up to the 12 characters allowed for this field.
+- **Variable Name**:  The key identifier of each record. For records of type L, this name must be the Captured Job ID or the Job Name of a tracked or queued job. For records of type V, this may be any meaningful name that will be used to create a token ID. Job names are limited to 10 characters (which limits the Captured Job ID used as a variable name), but a variable names can use up to the 12 characters allowed for this field.
 - **Seq**: This record sequence number may be zeros for records of type V because it has no meaning for this record type. For records of type L, this sequence number is used to create unique records keys when there is more than one dynamic variable assigned to the same Variable Name (there may be multiple updates specified for the LDA content of a single job).
-- **Typ**: The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.
-- **Description**: Any text used to describe the dynamic variable. This text is useful mostly for this list of variables, so that each can be easily identified. When the command SETDYNVAR is used to add a new dynamic variable, the Description will be the IBM i job ID (number/user/name) of the job that executed the SETDYNVAR command.
+- **T (Type)**: The record type is L for a dynamic variable that will be used to update the LDA content of a job. Type V records are dynamic variable tokens that can be inserted into job parameters or the job's call command line.
+- **Description**: Any text used to describe the dynamic variable. This text is useful mostly for this list of variables, so that each can be easily identified. When the command SETDYNVAR is used to add a new dynamic variable automatically during some automated process, the Description will be the IBM i job ID (number/user/name) of the job that executed the SETDYNVAR command...unless the DESC( ) parameter is included within the command string.
 
 #### Functions
 
-- **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
+- **F3=Exit**: Quits the list display and returns to the menu.
 - **F5=Refresh**: Reload the list display with data from the master file.
 - **F6=Add**: Branches to the display where a new dynamic variable master record is defined.
 - **F8=DynVar**: Brings up a list of available Dynamic Variable names that can be selected and inserted into the VALUE field. These will be inserted using the {TOKEN} format.
-- **F12=Cancel**: Quits the display of the LDA Content view and returns to the Job Track Log Detail summary display.
+- **F12=Cancel**: Quits the list display and returns to the Job Track Log Detail summary display.
 - **F16=Search next**: Press to start a new search based on the value entered in the Search input field, or to continue a search from the last record found.
 - **F17=Top**: Causes the list to display from the first record. The list is sorted in order of the Variable Name and Sequence within name.
 - **F18=Bottom**: Causes the list to display the last record in the file.
