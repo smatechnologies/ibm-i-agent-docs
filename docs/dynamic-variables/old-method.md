@@ -49,7 +49,7 @@ WHERE ... + other optional SQL clauses...
 The utility program is capable of handling a multi-value data set, if that is the result of the SELECT statement and the WHERE clause. However, in any case, the utility program will return only one value. This means that if the WHERE clause (whether amplified by other clauses or not) defines a set of data, only the first value in the set will be returned. This logic could be used to good advantage. For example, if the WHERE clause cannot determine what is the lowest or highest value in the current data set, then an ORDER BY clause will assure that either the lowest or the highest value will be returned. (The current style of the utility program does not allow for specialty SQL keywords such as MAX( ) on the field name. In part, this fixed format of the SELECT statement helps prevent hacking with UPDATE statements.)
 
 If the utility program fails, it will log messages in the LSALOGF30 LSAM log file (viewed from LSAM sub-menu 6, option 5, log viewer 4) and to the QSYSOPR message queue. It will also return an error code in the ERROR parameter. When an error occurs, the utility program will leave the Value field untouched; that is, the Value parameter will be returned without any change to its initial value.
-
+### Example of Parameter Passing for User-Defined Value Calculator Program
 :::info example
 ```
 /*****************************************************************/
@@ -105,7 +105,7 @@ If the utility program fails, it will log messages in the LSALOGF30 LSAM log fil
 /*****************************************************************/
 /* Program DYNVARSQLR parameters:                                */
 /*                                                               */
-/* &DVVALUEX (129) = The 128-character value followed by 'X'.    */
+/* &DVVALUEX (1025) = The 1024-character value followed by 'X'.  */
 /* &DVNAME (12) = The Dynamic Variable name asking for a value.  */
 /* (LIBRARY) (10) = The library where a DB2 file is located.     */
 /* (FILE) (10) = The name of the file to query with SQL.         */
@@ -142,11 +142,12 @@ If the utility program fails, it will log messages in the LSALOGF30 LSAM log fil
 /* DYNVARSQLC                                                    */
 /*                                                               */
 /*****************************************************************/
-PGM     PARM(&DVVALUE  &DVNAME)
+PGM     PARM(&DVVALUEX  &DVNAME)
 
-          DCL VAR(&DVVALUE)  TYPE(*CHAR) LEN(128)
+          DCL VAR(&DVVALUEX) TYPE(*CHAR) LEN(1025)
+          DCL VAR(&DVVALUE)  TYPE(*CHAR) LEN(1024) STG(*DEFINE) DEFVAR(&DVVALUEX)
+
           DCL VAR(&DVNAME)   TYPE(*CHAR) LEN(12)
-          DCL VAR(&DVVALUEX) TYPE(*CHAR) LEN(129)
           DCL VAR(&DVWHERE)  TYPE(*CHAR) LEN(256)
           DCL VAR(&DVWHEREX) TYPE(*CHAR) LEN(257)
           DCL VAR(&QQCMPNUM) TYPE(*CHAR) LEN(1) VALUE('N')
@@ -174,8 +175,6 @@ PGM     PARM(&DVVALUE  &DVNAME)
 
             WHEN COND(&DVNAME *EQ 'LSAMAXJOB') THEN(DO)
 
-            CHGVAR VAR(&DVVALUEX) VALUE(&DVVALUE *CAT 'X')
-
             CHGVAR VAR(&DVWHERE) VALUE('WHERE LSAPAR1 = +
                              ''LSAMAXJOB''')
             CHGVAR VAR(&DVWHEREX) VALUE(&DVWHERE *CAT 'X')
@@ -202,8 +201,6 @@ PGM     PARM(&DVVALUE  &DVNAME)
 /* To return only part of a field value, use the %SST function, */
 /* for example: VALUE(%SST(&DVVALUEX 10 45)) returns 45         */
 /* characters starting at position 10 of the &DVVALUEX variable.*/
-
-          CHGVAR VAR(&DVVALUE) VALUE(&DVVALUEX)
 
         ENDDO
 /*--------------------------------------------------------------*/
@@ -238,8 +235,6 @@ PGM     PARM(&DVVALUE  &DVNAME)
 /* the special value of '*COMPRESS', then call DYNVARSQLR. After*/
 /* the program returns, if &QQERROR is blank, reload the value  */
 /* back to &DVVALUE.                                            */
-
-              CHGVAR VAR(&DVVALUEX) VALUE(&DVVALUE *CAT 'X')
 
 /* If LIBRRARY will rely on *LIBL, pass blanks to RPG program...*/
 
