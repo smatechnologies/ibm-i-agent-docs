@@ -17,7 +17,7 @@ Parm WkVarNam UsrVarNam (12 characters)
 ```
 A model CL program that conforms to these requirements is provided in an example box at the topic [Example of Parameter Passing for User-Defined Value Calculator Program](old-method.md#example-of-parameter-passing-for-user-defined-value-calculator-program).
 
-The technical definition for developing a compatible user-defined program is simple: The program must be able to accept at least one non-constant parameter that is 128 characters in length, but best practice indicates that both parameters should be defined. The program interface may be described either as an ILE prototype procedure call or as an OPM external program call with parameters.
+The technical definition for developing a compatible user-defined program is simple: The program must be able to accept at least one non-constant parameter that is 1025 characters in length, but best practice indicates that both parameters should be defined. The program interface may be described either as an ILE prototype procedure call or as an OPM external program call with parameters.
 
 The first parameter is for the value of the Dynamic Variable. The LSAM will pass the existing value of the Dynamic Variable in this first parameter. The called program may choose to ignore the initial value, or it may be designed to manipulate the input value that was provided. Regardless of the input value, the LSAM will process whatever value is contained within this same parameter after the user-defined program ends. Remember the rules described for the VALUE field in the table above that apply if blanks are returned by the called program.
 

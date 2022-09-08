@@ -150,14 +150,30 @@ Before the official designation of multiple Function Codes for Dynamic Variables
 
 When \*DTAARA is specified for the Dynamic Variable Function Code, the second display format will be format R7, with fields that can be used to name the data area and its library location. The only other values that can be defined for data areas are the trim control numbers. A starting location and a length value can be typed. If both fields are left at zero, the value returned for the Dynamic Variable token will be the first 128 characters of the data area.
 
-:::tip Hint
-To fetch more than 128 characters from a big data area, use additional Dynamic Variables with the \*DTAARA function code, then enter a Trim Start number that is higher than 128 for the additional Dynamic Variables. To utilize the longer total string of data, enter two or more {TOKENS} in any LSAM automation tool fields that can support more than 128 characters.
-:::
-
 If either of the Trim control fields is set to a non-zero value, the other field could be left set to zero with the following results:
 
-- Start = 1, Length = 0: The whole data area, up to 128 bytes.
+- Start = 1, Length = 0: Up to 128 bytes from the start of the data area.
 - Start = 0, Length = >0: The trim will start with byte 1, then include only as many characters as the Length specifies.
+
+:::tip
+To protect and retain blank characters in leading or trailing positions of the trimmed (or all) data retrieved from a data area, also set the Character Trim values in the main variable maintenance page. See F1=Help from the first maintenance page for more information about Character Trim values. 
+
+It is important to understand that the Data Area Trim controls will be performed first, before the retrieved data area content is returned to the main Agent Dynamic Variable value calculation routines.  That value will then be subject to additional trimming, if specified in the primary Dynamic Variable Character Trim Start and Length fields.
+:::
+
+### Special Rules for the Local Data Area
+
+The IBM i operating system automatically defines a "Local Data Area" (referred to as LDA, or in command parameters as \*LDA) which is like a one-record file with a record length of 1024 bytes, stored in the DB2 database.  Local data areas are only shared between jobs whenever one job submits another job (using the SBMJOB command, or a spawn() function).
+
+Traditionally, many legacy software applications relied on the local data area to preset parameter values according to application requirements just before submitting a job.
+
+The OpCon Agent of IBM i enables sharing of local data areas between jobs by supporting retrieval of the local data area contents and storing them into Agent Dynamic Variables that can be retrieved by any job.  This same technique may also be useful when automating support for restarting a job.
+
+Retrieving data from a local data area is similar to working with any other data area, but with the following exceptions:
+- The Data area name on page 2 of Dynamic Variable auxiliary fields must be set to the special name of "\*LDA".
+- The Library location field is ignored whenever the name is \*LDA.
+- Through Agent version 18.1, Agent Dynamic Variable values have a maximum length of 128 bytes.  Therefore, to store and later rebuild a local data area, it would be necessary to use 8 Dynamic Variables, each assigned to a different Data Area Trim Start position, with a length of 128 bytes each.  (Starting with Agent version 21.1 and newer, Dynamic Variable values can be up to 1024 bytes long.)
+- It is important to remember the hint above about preserving any leading and trailing characters of data blocks that are retrieved from the LDA by specifying the Character Trim values on the first page of Dynamic Variable maintenance.  For example, when retrieving the first 128 bytes from the LDA use the values START(1), LENGTH(128) to keep all the LDA data in its exact position and prevent the Agent from trimming off leading or trailing blanks.
 
 ## \*DB2 Function Code
 
