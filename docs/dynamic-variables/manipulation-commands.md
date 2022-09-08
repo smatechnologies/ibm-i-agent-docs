@@ -27,23 +27,29 @@ The VALUE keyword of the SETDYNVAR command cannot be used to set a dynamic varia
 :::
 
 Consider the following examples of using the SETDYNVAR command wherever IBM i commands are supported by the LSAM:
-**EXAMPLE:**
+
+:::info EXAMPLE
+**EXAMPLE 1: SETDYNVAR command with CMPNUM**
 ```
-SETDYNVAR command with CMPNUM
-SETDYNVAR VARNAM(VARNAME1) VALUE('$123,456.78') VARTYP(V)
-USRPGM(PGMLIB/USRDFNPGM) CMPNUM(Y) DESC('my description')
+SETDYNVAR VARNAM(VARNAME1) VALUE('$123,456.78') VARTYP(V) VALTYP(N)
+NUMSIZ(8) NUMDEC(2) USRPGM(PGMLIB/USRDFNPGM) CMPNUM(Y) DESC('my description')
 ```
-The example above shows a command that will add a new Dynamic Variable named "VARNAME1" to the LSAM table, if there is not already a variable with this name. The type of variable is 'V' meaning a general-use variable. A user-defined program named (example provided is "USRDFNPGM") in the IBM i DB2 library PGMLIB will be called before the LSAM will replace the variable's {TOKEN} with an actual value.
+:::
+
+The example above shows a command that will add a new Dynamic Variable named "VARNAME1" to the LSAM table, if there is not already a variable with this name. The type of variable is 'V' meaning a general-use variable, and the value type is 'N' indicating numeric, which means only digits 0 - 9 can be stored into the Value. The maximum number of digits supported is 8, and 2 of those positions are to the right of the decimal point.  A user-defined program named (example provided is "USRDFNPGM") in the IBM i DB2 library PGMLIB will be called before the LSAM will replace the variable's {TOKEN} with an actual value.
 
 As this example command is executed, an initial value is set. The example shows a value string enclosed in quotes that represents a monetary amount string of $US with six whole numbers (dollars) and two decimal places (cents). This string value might have been provided by an OpCon Property or by a different LSAM Dynamic Variable, depending on where this example command was actually being executed. But the value that will be stored as the initial value of the variable is only the eight digits, like this: 12345678 because the CMPNUM (compress numeric) parameter is set to 'Y' = Yes.
 
 Refer to additional information above about how to create and use user-defined programs to calculate Dynamic Variable token values at run time. User-defined programs receive the Dynamic Variable name and the current variable value as input parameters.
+
+
 :::info example
-SETDYNVAR command increases a numeric value.
+**EXAMPLE 2: SETDYNVAR command increases a numeric value.**
+
 - Step 1: A numeric Dynamic Variable is added to the LSAM table:
 ```
 SETDYNVAR VARNAM(VARNAME2) VALUE(0) 
-VARTYP(V) NUMSIZ(7) NUMDEC(0)
+VARTYP(V) VALTYP(N) NUMSIZ(7) NUMDEC(0)
 POSSYM(B) DESC('Threshold counter')
 ```
 - Step 2: A later procedures decides to increase the value by 1.
@@ -54,51 +60,76 @@ SETDYNVAR VARNAM(VARNAME2) VALUE('+1')
 
 The example 2 above illustrates the procedure for creating and using a Dynamic Variable as a numeric field that can later have its value change up or down by using a plus (+) or minus (-) sign in the first position of the VALUE keyword of the SETDYNVAR command. This is the technique that is used by LSAM programs to manage threshold counters for LSAM Message Management Parameters. Threshold counters stored in Dynamic Variables that are defined as numeric could also be used by the Compare Data fields of any Captured Data Response Rule (used by Operator Replay screen data capture, SCANSPLF report data capture and Message data capture) to control when a Response Command should be executed.
 
-In the example above, Step 1 shows a command that will add a new Dynamic Variable named "VARNAME2" to the LSAM table, if there is not already a variable with this name. (If the variable did exist, it could have its attributes changed by this command.) The type of variable is 'V' meaning a general-use variable. The keyword NUMSIZ is set to 7, and that is what tells the LSAM that this variable should be handled as a numeric variable instead of just being a plain character string. Numeric variables may be increased or decreased in value as explained above, and the LSAM uses special rules when returning a value to replace the Dynamic Variable Token when the variable is defined as numeric. The NUMDEC keyword indicates that there are no decimal places, and this is the correct indication for creating a numeric value that will be used as a counter because counter or threshold fields should only contain whole numbers (integers) without any decimal places. The default for the POSSYM (positive symbol) keyword is 'B' = none, but that is shown here to illustrate that no positive sign should be returned by the LSAM when a numeric variable is being used as a threshold counter.
+In the example above, Step 1 shows a command that will add a new Dynamic Variable named "VARNAME2" to the LSAM table, if there is not already a variable with this name. (If the variable did exist, it could have its attributes changed by this command.) The type of variable is 'V' meaning a general-use variable. The keyword VALTYP is set to 'N', and that is what tells the LSAM that this variable should be handled as a numeric variable instead of just being a plain character string. Numeric variables may be increased or decreased in value as explained above, and the LSAM uses special rules when returning a value to replace the Dynamic Variable Token when the variable is defined as numeric. The NUMDEC keyword indicates that there are no decimal places, and this is the correct indication for creating a numeric value that will be used as a counter because counter or threshold fields should only contain whole numbers (integers) without any decimal places. The default for the POSSYM (positive symbol) keyword is 'B' = none, but that is shown here to illustrate that no positive sign should be returned by the LSAM when a numeric variable is being used as a threshold counter.
 
 :::tip
 Use the LSAM command DSPDYNVAR to display the value string that will be returned by the LSAM to replace a Dynamic Variable token. This tool is helpful for experimenting with different Dynamic Variable definitions to discover which definition will return the value string that is required for a given application.
 :::
 
-Example 2 continues with a second step that illustrates the syntax of the SETDYNVAR command that can be used whenever it is desired to increase the value of a threshold counter (or any other numeric Dynamic Variable). To decrease the value, use a minus sign (-) as the first character of the VALUE keyword. Remember, though, that values cannot be increased or decreased unless a Dynamic Variable has been defined as numeric, using the NUMSIZ keyword. If a VALUE keyword includes a plus or minus sign when the variable is not numeric, this will actually replace the variable's current value to include the sign character and any other characters, exactly as typed in the VALUE keyword.
+Example 2 continues with a second step that illustrates the syntax of the SETDYNVAR command that can be used whenever it is desired to increase the value of a threshold counter (or any other numeric Dynamic Variable). To decrease the value, use a minus sign (-) as the first character of the VALUE keyword. Remember, though, that values cannot be increased or decreased unless a Dynamic Variable has been defined as numeric, using the VALTYP(N). If a VALUE keyword includes a plus or minus sign when the variable is not numeric, this will actually replace the variable's current value to include the sign character and any other characters, exactly as typed in the VALUE keyword.
 
 ### F4 = Prompted SETDYNVAR Command
 
 When preparing a SETDYNVAR command line, it is useful to start at IBM i command entry and use the prompting function key <**F4**> to see all the command parameters. Most of the IBM i LSAM functions that support a response command also support prompting, although the function key may be different, depending on the LSAM feature being updated. Following are examples of the prompted command, with and without the command keywords. An explanation of the command parameter keywords appears in a table below the prompt screen figures.
 
-#### Prompted SETDYNVAR Command - 1 of 2
+#### Prompted SETDYNVAR Command - 1 of 3
 ```
                           Set/Add Dynamic Variable (SETDYNVAR)
 
 Type choices, press Enter.
 
-Name of new/existing variable  .   _______________ Variable name            
-Value string, +n, -n . . . . . .   __________________________________________________
-_______________________________________________________________________________________
-_____
- Variable type  . . . . . . . . .   V             L=LDA change, V=general use                    
- Sequence for same LDA variable     0             Sequence number: 0 - 999
- Char trim/LDA: start position  .   0             LDA start position: 0-1024, Trim: 1-128              
- Char trim/LDA change: length . .   0             LDA change length: 0-1024, Trim: 1-128
- Value calc. pgm./function code .                 Name, *DB2, *DTAARA, *DATE...                      
-   Library  . . . . . . . . . . .     *LIBL       Name,*LIBL,*CURLIB
- Unload command program at end  .   *YES
- Compress numeric value . . . . .   N             Y = yes, N = no
- Numeric field size . . . . . . .                 Zero = non-numeric                       
- Decimal places, if numeric . . .                 Zero = whole number
- Decimal point symbol . . . . . .   '.'           (.), other, B=change to none                
- Group separator; Comma/Quote ed    [',']           (,),alt,B=change to none;CQDEF
-                                                                       More            ...
+Name of new/existing variable  .   _____________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+_
+
+*BLANK, Value string, +n, -n . .   _____________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+____________________________________________________________________ ...
+ Value type: Char or Numeric  . .   ' '           C=Char, N=Numeric, Blank=noUPD
+ Variable type  . . . . . . . . .   V             L=LDA change, V=general use 
+                                                                        More...
 ```
 
-#### Prompted SETDYNVAR Command - 2 of 2
+#### Prompted SETDYNVAR Command - 2 of 3
+```
+                          Set/Add Dynamic Variable (SETDYNVAR)
+
+Type choices, press Enter.
+
+ Variable description . . . . . .   ____________________________________________
+______                    
+ Sequence for same LDA variable     0____         Sequence number: 0 - 999
+ LDA update start position  . . .   ____          0 - 1024. (F1 = instructions)
+ LDA update length  . . . . . . .   ____          0 - 1024. (F1 = instructions)
+ Character string trim start  . .   ____          0 - 1024. (F1 = instructions)
+ Character string trim length . .   ____          0 - 1024. (F1 = instructions)
+ Value calc pgm/func code (F1)  .   __________    Name, *HEX, *SYSVAL                      
+   Library  . . . . . . . . . . .     *LIBL_____  Name, *LIBL, *CURLIB
+ Compress numeric value . . . . .   N             Y = yes, N = no
+ Numeric field size . . . . . . .   __            Zero = non-numeric                       
+ Decimal places, if numeric . . .   __            Zero = whole number
+ Decimal point symbol . . . . . .   _             (.), other, B=change to none                
+ Group separator; Comma/Quote ed    _             (,),alt,B=change to none;CQDEF
+ Suppress numeric leading zeros     _             0 = no (DFT), 1 = yes        
+ Negative value symbol  . . . . .   __            B=none, -, CR, DR, other
+                                                                        More...
+```
+
+#### Prompted SETDYNVAR Command - 3 of 3
 ```
                     Set/Add Dynamic Variable (SETDYNVAR)
 
 Type choices, press Enter.
 
-Suppress numeric leading zeros     _             0 = no (DFT), 1 = yes        
-Negative value symbol  . . . . .   __            B=none, -, CR, DR, other
 Negative symbol before/after . .   _             B = before, A = after       
 Negative symbol position . . . .   ___           Position: 1-9, 0=no change
 Positive value symbol  . . . . .   __            B=none, +, DR, CR, other          
@@ -107,8 +138,9 @@ Positive symbol position . . . .   ___           Position: 1-9, 0=
 Currency symbol, if numeric  . .   _             $, other, B=change to none
 Currency symbol position (L) . .   ____          Position: 1-99, 0=no change       
 Currency symbol relative loc . .   __            F=float, (.)=fixed from dec
-
-Variable description . . . . . .   ____________________________________________
+Change all instance attributes     *NO           *YES, *NO                   
+IU.DYNVAR anchor job keys  . . .   *DEFAULT      *DEFAULT, *THISJOB, *PREVJOB
+Unload command program at end  .   *YES
 
                                                                       Bottom
 ```
