@@ -297,8 +297,8 @@ In the following example of the WAITDYNVAR command, the optional parameter for k
 
 :::info example
 ```
-WAITDYNVAR VARNAM(dyn_var_name) VALUE1(value_string)
-VALUE2(value_string) DELAY(10) NBRLOOPS(360) WAITVARNAM('WAITDYNVAR')
+WAITDYNVAR VARNAM(dyn_var_name) VALUE1('value_string')
+VALUE2('value_string') DELAY(10) NBRLOOPS(360) WAITVARNAM('WAITDYNVAR')
 ```
 :::
 
@@ -324,7 +324,7 @@ The Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Typ
 
 This command could be used in any software running under IBM i, as long as the LSAM library list is in effect. Any program using this command must be able to retrieve and test the value of the variable specified in the WAITVARNAM command parameter (whose default value is variable name "WAITDYNVAR") in order to determine if this command has returned a value of '**PASS**' (either Value string was found) or '**FAIL**' (neither Value string was found within the specified time limits).
 
-Additional rules and guidance for using multi-instance Dynamic Variables with the WATIDYNVAR command is provided at [Supporting WAITDYVAR Utility with Multi-Instance Dynamic Variables](./multi-instance.md#supporting-waitdynvar-utility-with-multi-instance-dynamic-variables).
+Additional rules and guidance for using multi-instance Dynamic Variables with the WATIDYNVAR command is provided at [Supporting WAITDYNVAR Utility with Multi-Instance Dynamic Variables](./multi-instance.md#supporting-waitdynvar-utility-with-multi-instance-dynamic-variables).
 
 ### Methods Available for Retrieving Dynamic Variables
 
@@ -420,12 +420,12 @@ Set initial values of variables using Captured Data Response Rules that execute 
 
   - Set the Dynamic Variable Token BTOLBL1 value to 'SBMJOBFAIL'
 ```
-SETDYNVAR VARNAM(BTOLBL1) VALUE(SBMJOBFAIL)
+SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBFAIL')
 ```
 
 2. Register an LSAM Dynamic Variable that will be used to store the pass/fail result of the submitted job. The example Dynamic Variable used here will be JOBSTS1. The initial value of this variable should be the negative result value: Assume for this example it will be '**JOBFAIL**':
 ```
-SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBFAIL)
+SETDYNVAR VARNAM(JOBSTS1) VALUE('JOBFAIL')
 ```
 
 3. Add two IBM i LSAM Message Management Parameters (rules). These rules will both monitor the user message queue for the user that will submit the new job. In this example, that would be the user message queue USER1 located in library QUSRSYS. Also specify the submitted job name. There will be one Message Management Parameter record for each possible job completion message, and each Message Management Parameter will set the value of the Dynamic Variable named JOBSTS1 to either '**JOBPASS**' or '**JOBFAIL**'. Consider the following representation of these two Parameter configurations: 
@@ -456,7 +456,7 @@ SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBFAIL)
   ```
 9. The next Captured Data Response Rule must test whether the WAITDYNVAR command itself may have failed, or more likely, if it is reporting a timeout, meaning that the submitted job must be stuck and no job completion message was ever detected. 
 
-    - This Rule compares the reserved dynamic variable named WAITDYNVAR (assuming the default value for the command parameter WAITVARNAM) to a value of 'FAIL'. If that value is matched, the response command sets the Dynamic Variable token to the value that will force the Script to end abnormally:
+    - This Rule compares the dynamic variable named WAITDYNVAR (assuming the default value for the command parameter WAITVARNAM) to a value of 'FAIL'. If that value is matched, the response command sets the Dynamic Variable token to the value that will force the Script to end abnormally:
     ```
     SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBFAIL')
     ```
@@ -512,40 +512,43 @@ Values captured from messages, reports and workstation displays can be easily st
 
 Here is the layout of the LOGDYNVAR table:
 
-| Field       |    Type     | Length   | Description
-| ----------- | ----------- | -------- | -----------------------------------------------
-| DVRECDATE   | TIMESTAMP   |  26      | Automatically assigned
-| DVPRIMARY   | NUMERIC     |   9      | Automatically assigned
-| DVNAME      | CHARACTER   |  12      | Dynamic Variable name or other name
-| DVVALUE     | CHARACTER   | 128      | Current (or any) captured value
-| DVCODE      | CHARACTER   |  20      | User-defined category, for SQL Select
-| DVDESC      | HARACTER    |  32      | User-defined description, opt also for Select
+| Field       |    Type     | Length  | Description
+| ----------- | ----------- | ------: | -----------------------------------------------
+| DVRECDATE   | TIMESTAMP   |   26    | Automatically assigned
+| DVPRIMARY   | NUMERIC     |    9    | Automatically assigned
+| DVNAME      | CHARACTER   |   12    | Dynamic Variable name or other name
+| DVNAMEQ     | CHARACTER   |  435    | MI.Qualified Variable Name
+| DVVALUE     | CHARACTER   | 1024    | Current (or any) captured value
+| DVCODE      | CHARACTER   |   20    | User-defined category, for SQL Select
+| DVDESC      | CHARACTER   |   32    | User-defined description, opt also for Select
 
 Here is the syntax of the LOGDYNVAR command:
 ```
 SMAPGM/LOGDYNVAR DVNAME(DVORKEYNAME1) +
-VALUE('Any value string contained within a pair of single quotes.') +
+VALUE('Any value string up to 1024 characters contained within a pair of single quotes.') +
 CODE('MY-CODEA-CPU-UTIL') +
 DESC('CPU utilization from DSPSYSSTS')
+DVNAMEQ('Optional multi-instance qualified variable name contained within single quotes.')
 ```
 
 :::tip
 Any value can be used for the DVNAME key value, but if it contains special characters or spaces, or it begins with a non-alpha character, then it must be contained within a pair of single quotes in the LOGDYNVAR DVNAME( ) keyword.
 :::
 
-After one or more values has been stored in association with the same key value (which could be the Dynamic Variable name), then another Dynamic Variable can be used to query the series of values by using the User Program special value of \*DB2. This allows a  predefined SQL SELECT statement to be executed whenever the new Dynamic Variable token will be replaced. Following is an example of the SQL syntax that can be used to produce a single average value for the new Dynamic Variable:
+After one or more values has been stored in association with the same key value (which could be the Dynamic Variable name), then another Dynamic Variable can be used to query the series of values by using the User Program special value of \*DB2. This allows a predefined SQL SELECT statement to be executed whenever the new Dynamic Variable token will be replaced. Following is an example of the SQL syntax that can be used to produce a single average value for the new Dynamic Variable:
 
-**EXAMPLE:**
+:::info **EXAMPLE**
 ```
 SELECT 'CPU avg: ' CONCAT AVG(DEC(DVVALUE,4,1))
   FROM SMADTA/LOGDYNVAR
   WHERE DVNAME LIKE 'CPU%'
     AND DVRECDATE >= '2017-07-10-00.00.00.000'
-   AND DVRECDATE <= '2017-07-12-23.59.59.000'
+    AND DVRECDATE <= '2017-07-12-23.59.59.000'
 
 EXAMPLE RESULT:
 CPU avg: 15.2
 ```
+:::
 
 **EXAMPLE NOTES**:
 

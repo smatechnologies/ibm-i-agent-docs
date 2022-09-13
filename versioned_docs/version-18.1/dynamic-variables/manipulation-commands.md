@@ -231,8 +231,8 @@ In the following example of the WAITDYNVAR command, the optional parameter for k
 
 :::info example
 ```
-WAITDYNVAR VARNAM(dyn_var_name) VALUE1(value_string)
-VALUE2(value_string) DELAY(10) NBRLOOPS(360)
+WAITDYNVAR VARNAM(dyn_var_name) VALUE1('value_string')
+VALUE2('value_string') DELAY(10) NBRLOOPS(360)
 ```
 :::
 
@@ -254,7 +254,7 @@ The Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Typ
 
 ## WAITDYNVAR Example Applications
 
-This command could be used in any software running under IBM i, as long as the LSAM library list is in effect. Any program using this command must be able to retrieve and test the value of the IBM i LSAM reserved Dynamic Variable named WAITDYNVAR (the same as the command name) in order to determine if this command has returned a value of '**PASS**' (either Value string was found) or '**FAIL**' (neither Value string was found within the specified time limits).
+This command could be used in any software running under IBM i, as long as the LSAM library list is in effect. Any program using this command must be able to retrieve and test the value of the reserved variable named "WAITDYNVAR" in order to determine if this command has returned a value of '**PASS**' (either Value string was found) or '**FAIL**' (neither Value string was found within the specified time limits).
 
 ### Methods Available for Retrieving Dynamic Variables
 
@@ -266,7 +266,7 @@ This is the method illustrated in a WAITDYNVAR application example, below.
 
 #### A User Program Executes the LSAM GETDYNVAR Command
 
-A program can call the LSAM program GETDYNVAR, using the following syntax, where the value of the Dynamic Variable will be returned in the third parameter, or a non-blank error code may be returned in the first parameter. Consider the following example from a Control Language program:
+A program can call the LSAM program GETDYNVARR (the command driver for the GETDYNVAR command) using the following syntax, where the value of the Dynamic Variable will be returned in the third parameter, or a non-blank error code may be returned in the first parameter. Consider the following example from a Control Language program:
 
 **EXAMPLE:**
 ```
@@ -280,8 +280,8 @@ DCL VAR(&CMPVAL) TYPE(*CHAR) LEN(129)
 CALL PGM(GETDYNVARR) PARM(&RETURN &DYNVAR &DYNVAL &TMESTP)
 
 IF COND(&RETURN *EQ ' ') THEN(DO)
-CHGVAR VAR(&CMPVAL) VALUE(%SST(&DYNVAL 1 128))
-CHGVAR VAR(%SST(&CMPVAL 129 1)) VALUE('X')
+  CHGVAR VAR(&CMPVAL) VALUE(%SST(&DYNVAL 1 128))
+  CHGVAR VAR(%SST(&CMPVAL 129 1)) VALUE('X')
 ENDDO
 ```
 
@@ -305,35 +305,37 @@ These can be used to fetch the field VTOKVAL from file SMADTA/LSAVARF00 where th
 
 The ability to test the contents of a Dynamic Variable can be used to implement decision logic, where the two different values determine the program's logical progress forward. A good example is using this command to cause an Operator Replay script to wait for the results of a job that may be submitted during the Script execution, where the Script must know the results of the submitted job in order to choose which job steps to execute at the end of the Script.
 
-Consider the case where an Operator Replay script executes a green screen menu option that causes a new job to be submitted. In this case, the submitted job is not configured for monitoring by OpCon (that is, Job Tracking is not being used). Instead, the human operator would previously wait for a minute or two until the completion message of the submitted job was reported to the user's message queue, as either a successful job or a failed job.
+Consider the case where an Operator Replay script executes a green screen menu option that causes a new job to be submitted. In this case, assume that the submitted job is not configured for monitoring by OpCon (that is, Job Tracking is not being used). Instead, the human operator would previously wait for a minute or two until the completion message of the submitted job was reported to the user's message queue, as either a successful job or a failed job.
 
-To fully automate this process, the name of the submitted job must be known. In this example, we will assume that the Script user name is USER1. One way to automate this whole process would be to use the following tools and steps.
+Included in this Operator Replay script there must exist two labelled Script Steps, following the Step that executed the menu option, and these two Step labels must be located at strategic locations within the Script where green screen automation will continue based on whether (1) the submitted job succeeded or (2) the submitted job failed.  Separate blocks of Script Steps will begin at these two different locations in the Script.
 
-1. Register (create) an Operator Replay Token/Variable that will be used as a variable Branch-To Label value. The example token name used here will be BTOLBL1. The initial value should be the name of the script label where the script should branch if the submitted job fails: Assume for this example that it will be 'SBMJOBFAIL'. 
+To fully automate this process, the name of the submitted job must be known, and it is also important to know the user name assigned to the submitted job. In this example, we will assume that the Script user name is USER1. One way to automate this whole process would be to use the following tools and steps.
+
+1. Register (create) an Dynamic Variable {TOKEN} that will be used as a variable Branch-To Label value. The example token name used here will be BTOLBL1. The initial value should be the name of the script label where the script should branch if the submitted job fails: Assume for this example that it will be 'SBMJOBFAIL'. 
 :::tip Hint 
 Set initial values of variables using Captured Data Response Rules that execute at or near the first steps of an Operator Replay script, in order to avoid any possible timing issues later in the script execution.
 :::
 
-  a.  Set the Operator Replay Token BTOLBL1 value to 'SBMJOBFAIL'
+  - Set the Dynamic Variable Token BTOLBL1 value to 'SBMJOBFAIL'
 ```
-SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBFAIL)
-```
-  b.  Set the LSAM Dynamic Variable JOBSTS1 value to 'JOBFAIL'.
-```
-SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBPASS)
+SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBFAIL')
 ```
 
 2. Register an LSAM Dynamic Variable that will be used to store the pass/fail result of the submitted job. The example Dynamic Variable used here will be JOBSTS1. The initial value of this variable should be the negative result value: Assume for this example it will be '**JOBFAIL**'.
 
-3. Add two IBM i LSAM Message Management Parameters (rules). These rules will both monitor the user message queue for the user that will submit the new job. In this example, that would be message queue USER1 located in library QUSRSYS. Also specify the submitted job name. There will be one Message Management Parameter record for each possible job completion message, and each Message Management Parameter will set the value of the Dynamic Variable named JOBSTS1 to either '**JOBPASS**' or '**JOBFAIL**'. Consider the following representation of these two Parameter configurations: 
+```
+SETDYNVAR VARNAM(JOBSTS1) VALUE('JOBFAIL')
+```
 
-    a.  For message ID CPF1240, respond with the command:
+3. Add two IBM i LSAM Message Management Parameters (rules). These rules will both monitor the user message queue for the user that will submit the new job. In this example, that would be the user message queue USER1 located in library QUSRSYS. Also specify the submitted job name. There will be one Message Management Parameter record for each possible job completion message, and each Message Management Parameter will set the value of the Dynamic Variable named JOBSTS1 to either '**JOBPASS**' or '**JOBFAIL**'. Consider the following representation of these two Parameter configurations: 
+
+    - For message ID CPF1240, respond with the command:
     ```
-    SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBFAIL)
+    SETDYNVAR VARNAM(JOBSTS1) VALUE('JOBFAIL')
     ```
-    b.  For message ID CPF1241, respond with the command:
+    - For message ID CPF1241, respond with the command:
     ```
-    For SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBPASS)
+    For SETDYNVAR VARNAM(JOBSTS1) VALUE('JOBPASS')
     ```
 
 4. Add a step to the Operator Replay script before the new job will be submitted where a command can be executed from an IBM i command entry line. Use the following command to turn off *BREAK delivery of messages to this user, not only simplifying the Operator Replay script but also making sure that Message Management will handle these messages:
@@ -345,30 +347,30 @@ SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBPASS)
 
 6. The next step (assume step # 150) of the Operator Replay script is assumed to handle the view of the menu screen from which the job start option was selected. Regardless of what command text or function key would be executed at this point, any associated Screen  Data Capture Rules will be executed first. This step # 150 will also perform the conditional script branching logic defined below, using an Operator Replay Token in the Branch-to Label field.
 
-7. Associated with the post-submit job step # 150, create a Screen Capture Rule. It is not important what is captured from the screen, so just capture all 1920 bytes starting at row 1, column 1. This Screen Capture Rule is actually being used as a link to a series of Captured Data Response Rules that are all associated with the same Capture Rule, and therefore with the same Operator Replay Script Step. The sequence of these Captured Data Response Rules is important.
+7. Linked to the post-submit job step # 150, create a Screen Capture Rule. It is not important what is captured from the screen, so just capture all 1920 bytes starting at row 1, column 1. This Screen Capture Rule is actually being used as a link to a series of Captured Data Response Rules that are all associated with the same Capture Rule, and therefore with the same Operator Replay Script Step. The sequence of these Captured Data Response Rules is important.
 
 8. The first Captured Data Response Rule to create is the one that must wait for the job completion message. This wait function will be performed by the WAITDYNVAR command. For this example, the command should be specified similar to the following:
   ```
-  WAITDYNVAR VARNAM(JOBSTS1) VALUE1(JOBPASS) VALUE2(JOBFAIL) DELAY(10) NBRLOOPS(360)
+  WAITDYNVAR VARNAM(JOBSTS1) VALUE1('JOBPASS') VALUE2('JOBFAIL') DELAY(10) NBRLOOPS(360)
   ```
 9. The next Captured Data Response Rule must test whether the WAITDYNVAR command itself may have failed, or more likely, if it is reporting a timeout, meaning that the submitted job must be stuck and no job completion message was ever detected. 
 
-    a.  This Rule compares the reserved dynamic variable named WAITDYNVAR to a value of 'FAIL'. If that value is matched, the response command sets the Operator Replay token/variable to the value that will force the Script to end abnormally:
+    - This Rule compares the reserved dynamic variable named WAITDYNVAR to a value of 'FAIL'. If that value is matched, the response command sets the Operator Replay token/variable to the value that will force the Script to end abnormally:
     ```
-    ADDRPYTOK TOKNAM(SBMJOBFAIL/BTOLBL1)
+    SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBFAIL')
     ```
 
 10. The next two Captured Data Response Rules will set the Operator Replay token/variable value, depending on the result returned by the WAITDYNVAR command via the Dynamic Variable named WAITDYNVAR. 
 
-    a.  Note that each of these rules must include a second, separate  Rule record that will perform a test of the dynamic variable  named WAITDYNVAR to be sure it equals 'PASS'. Use the continuation field value of 'AND' to link this test to each of the following Rules records.
+    - Note that each of these rules must include a second, separate  Rule record that will perform a test of the dynamic variable  named WAITDYNVAR to be sure it equals 'PASS'. Use the continuation field value of 'AND' to link this test to each of the following Rules records.
 
-    b.  The first Rule compares the {JOBSTS1} token value to 'JOBPASS' and if so, it executes the command that sets the Operator Replay Branch-to Label token value to the Script Step label where logic continues if the submitted job completed normally: 
+    - The second Response Rule compares the {JOBSTS1} token value to 'JOBPASS' and if so, it executes the command that sets the Operator Replay Branch-to Label token value to the Script Step label where logic continues if the submitted job completed normally: 
     ```
-    ADDRPYTOK TOKNAM(SBMJOBPASS/BTOLBL1)
+    SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBPASS')
     ```
-    c.  The second Rule compares the {JOBSTS1} token value to 'JOBFAIL' and if so, it executes the command that sets the Operator Replay Branch-to Label token value to the Script Step label where logic continues if the submitted job failed.
+    - The third Response Rule compares the {JOBSTS1} token value to 'JOBFAIL' and if so, it executes the command that sets the Operator Replay Branch-to Label token value to the Script Step label where logic continues if the submitted job failed.
     ```
-    ADDRPYTOK TOKNAM(SBMJOBFAIL/BTOLBL1)
+    SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBFAIL')
     ```
 
 11. Good "programming practice" suggests that one extra pair of Captured Data Response Rules is recommended to produce a controlled outcome in case the Dynamic Variable {JOBSTS1} does not contain either of the expected values. Use the Captured Data Response Rule Continue field value of 'AND' to combine these two rules in order to perform the following tests:
@@ -381,14 +383,16 @@ SETDYNVAR VARNAM(JOBSTS1) VALUE(JOBPASS)
     If these two conditions are met, then one of the two Rules records must contain the following Response command in order to force the
     Operator Replay Script to branch to the job failure steps. 
     ```
-    ADDRPYTOK TOKNAM(SBMJOBFAIL/BTOLBL1)
+    SETDYNVAR VARNAM(BTOLBL1) VALUE('SBMJOBFAIL')
     ```
 
     Note that this Response Rule pair could also specify a third Branch-to Label, if the Script is designed to do something special in this case of unexpected failure, or, another Rules record using CMD in the continuation field could be used to specify a message generation command that would notify operations about this unexpected error condition.
 
 12. Remember to add at least two steps to the Operator Replay Script that will include the two Branch-to Label values of SBMJOBFAIL and SBMJOBPASS. It might also be preferred to put either of these labels into separate Scripts, for example, if job failure logic is a reusable Script that can be shared by other primary Scripts.
 
-At the SBMJOBFAIL labeled step, one technique that is helpful is to force the Operator Replay Script to fail, so that the job shows up as a failed job on the OpCon schedule. A good way to do this is to define a TOP or BOTTOM condition on the SBMJOBFAIL step where the value string specified will never be found on the screen (for example, specify a control string value of "This will never match"), and set the option for handling the forced mismatch to 'F' = force script to fail.
+At the SBMJOBFAIL labeled step, one technique that is helpful is to force the Operator Replay Script to fail, so that the job shows up as a failed job on the OpCon schedule. One way to do this is to define a TOP or BOTTOM condition on the SBMJOBFAIL step where the value string specified will never be found on the screen (for example, specify a control string value of "This will never match"), and set the option for handling the forced mismatch to 'F' = force script to fail.
+
+An alternative way to force an Operator Replay Script to report a failure to the OpCon schedule and then abort the script, is to cause the LSAM utility command "SMAFAILJOB" to be executed whenever one or more Response Rules has detected any of the failure conditions discussed above.
 
 ## LOGDYNVAR: Log and Analyze Dynamic Variable Values
 
@@ -437,7 +441,7 @@ SELECT 'CPU avg: ' CONCAT AVG(DEC(DVVALUE,4,1))
   FROM SMADTA/LOGDYNVAR
   WHERE DVNAME LIKE 'CPU%'
     AND DVRECDATE >= '2017-07-10-00.00.00.000'
-   AND DVRECDATE <= '2017-07-12-23.59.59.000'
+    AND DVRECDATE <= '2017-07-12-23.59.59.000'
 
 EXAMPLE RESULT:
 CPU avg: 15.2
