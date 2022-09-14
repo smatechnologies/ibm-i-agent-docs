@@ -1,7 +1,7 @@
 ---
-sidebar_label: 'Dynamic Variables'
+sidebar_label: 'Dynamic Variable Concepts'
 ---
-# Dynamic Variables
+# Dynamic Variable Concepts
 ## Introduction to Dynamic Variables
 
 The LSAM database includes a variable field definition table file with two variable types that can be used for many purposes. Dynamic variables of type L are used to update the stored LDA content for tracked, queued or captured jobs. Dynamic variables of type V are used to update the job parameters of any job submitted to the LSAM by OpCon. The type V variables are also supported by various fields of Spool File Scan Rules and of Captured Data Response Rules, as well as by other LSAM functions (documented within other topics of this documentation). Each of these variable field definitions has a token name to identify them, but the token name of type L variables must match either the job name of tracked and queued jobs or the captured job ID of captured jobs.
@@ -69,3 +69,9 @@ It is normally very simple to engage variable instance isolation by simply addin
 The Agent supports up to 435 characters for a Dynamic Variable {TOKEN} to allow for circumstances when a Dynamic Variable instance must be fully qualified by, for example, the complex string of parameters that identify an OpCon Job.  However, fully qualified variables are usually only used internally by the Agent software.  Special use cases where the LSAM Administrator might expect to need instance qualifying keys are explained in this documentation.
 
 Detailed instructions for multi-instance Dynamic Variables and use cases are provided in the last part of this Dynamic Variables chapter.
+
+### Maintaining Dyanmic Variables
+
+Dynamic Variables can be created during run time by using the LSAM utility command SETDYNVAR which is described at [SETDYNVAR: Set LSAM Dynamic Variable](./manipulation-commands.md#setdynvar-set-lsam-dynamic-variable).  
+
+However, many advanced functions supported by Dynamic Variables can only be defined using the green screen workstation LSAM menu function "Maintain Dynamic Variables." The screens and windows for this type of maintenance are described under [Maintain Dynamic Variables](./maintaining.md#lsavarr1---work-with-dynamic-variables), which follows all of the background information that may be necessary to understand before attempting to build advance features for the variables.
