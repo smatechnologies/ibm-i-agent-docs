@@ -128,12 +128,12 @@ Next, make sure that the SMANET user profile has been granted privileges to use 
 5. Enter **1** to choose **User management** in the Operator Replay Menu.
 6. Press <**F6**> on the User management menu.
 7. On the Add User screen, <**Tab**> to the following fields and type data for each:
-    a.  In the **User Name** field, type the User Profile to use when running Operator Replay scripts (up to 10 characters - a longer name could be entered, but Operator Replay is restricted to 10).
-    b.  In the **Password** field, type the user profile's password (up to 10 characters, unless the IBM i password option has been set to allow longer passwords to be used).
-    c.  In the **Password (to verify)** field, retype the user profile's password to verify the password.
-    d.  In the **Description** field, type a text description for the user (up to 40 characters).
-    e.  In the **Device Name** field, optionally assign this user to a specific virtual display device.
-    f.  In the **IP Address** field, if a Device Name was specified, also enter here the IP Address that will be associated with this device. (The LSAM's Telnet exit program uses the IP Address to force selection of the device. SMA recommends using a \*LOOPBACK type of Interface for this IP Address, which avoids having to create a line description.)
+    - a. In the **User Name** field, type the User Profile to use when running Operator Replay scripts (up to 10 characters - a longer name could be entered, but Operator Replay is restricted to 10).
+    - b. In the **Password** field, type the user profile's password (up to 10 characters, unless the IBM i password option has been set to allow longer passwords to be used).
+    - c. In the **Password (to verify)** field, retype the user profile's password to verify the password.
+    - d. In the **Description** field, type a text description for the user (up to 40 characters).
+    - e. In the **Device Name** field, optionally assign this user to a specific virtual display device.
+    - f. In the **IP Address** field, if a Device Name was specified, also enter here the IP Address that will be associated with this device. (The LSAM's Telnet exit program uses the IP Address to force selection of the device. SMA recommends using a \*LOOPBACK type of Interface for this IP Address, which avoids having to create a line description.)
 8. Press <**Enter**> to complete the process of adding a new user.
 
 ## Creating an Operator Replay Script
@@ -152,23 +152,23 @@ There are two ways to create new scripts: Either create a new script from scratc
 
 5. On the Operator replay script screen, <**Tab**> to the following fields and enter the following data:
 
-    a.  In the **Name** field, type the script name (up to 10 characters).
+    - a. In the **Name** field, type the script name (up to 10 characters).
 
-    b.  In the **User** field, type the user profile created to use when running Operator Replay scripts (up to 10 characters).  This field can be set to a value of "**\*JOB**" to allow the OpConjob master or the STROPRRPY command to specify a registered User name at run time.
+    - b. In the **User** field, type the user profile created to use when running Operator Replay scripts (up to 10 characters).  This field can be set to a value of "**\*JOB**" to allow the OpConjob master or the STROPRRPY command to specify a registered User name at run time.
 
-    c.  In the **Description** field, type a text description for the script (up to 40).
+    - c. In the **Description** field, type a text description for the script (up to 40).
 
 6. Press <**Enter**> to complete the process of registering a new script.
 
-7. The **Operator Replay Script Step** screen appears.
+7. From te Operator Replay list of Scripts, type "**1**" next to the new Script Name and press **Enter** to display the list of Steps.
 
 8. Press <**F6**> to create a new step on the Operator Replay Script Step screen.
 
 9. On the Operator Replay Step detail screen, <**Tab**> to the following fields and enter the following data:
 
-    a.  In the **Step description** field, type a text description for the script (up to 40 characters).
+    - a. In the **Step description** field, type a text description for the script (up to 40 characters).
 
-    b.  Under the String and function to send heading, in the **String to send** field, type a string to send. Press <**F4**> for a list of cursor control characters that can be added to the string, or <**F6**> for a list of Operator Replay variable tokens that can be inserted into the string, or <**F8**> to get help selecting and formatting an IBM i command.
+    - b. Under the String and function to send heading, in the **String to send** field, type a string to send. Press <**F4**> for a list of cursor control characters that can be added to the string, or <**F6**> for a list of Operator Replay variable tokens that can be inserted into the string, or <**F8**> to get help selecting and formatting an IBM i command.
     :::info example
     Entering the string SMAGPL/STRSMA takes the Replay job to the LSAM Main Menu.
     :::
@@ -180,28 +180,28 @@ There are two ways to create new scripts: Either create a new script from scratc
     ```
     :::
 
-    c.  Under the String and function to send heading, in the **Function to send** field, type a function name, or press <**F4**>. When <**F4**> is pressed, move the cursor to the preferred item and press <**Enter**>. A commonly used function to send is the **ENTER** function.
+    - c. Under the String and function to send heading, in the **Function to send** field, type a function name, or press <**F4**>. When <**F4**> is pressed, move the cursor to the preferred item and press <**Enter**>. A commonly used function to send is the **ENTER** function.
 
-    d.  Under the Script branching logic, optionally, specify a **Branch Type**, if this step may cause a branch in script logic. Branching only takes place if the (following) Control Strings qualify this step for execution. If a Branch Type is specified, also type the **Branch-to script** and **Branch-to label** field values. When <**F6**> is pressed from either of these fields, an available Operator Replay Token name may be selected in place of an actual script or label name. From the F6 window, move the cursor to the preferred token name and press <**Enter**>. The selected value will be placed into the field where the cursor is located. (Refer to the discussion below about Script Branching Rules for more information.)
+    - d. Under the Script branching logic, optionally, specify a **Branch Type**, if this step may cause a branch in script logic. Branching only takes place if the (following) Control Strings qualify this step for execution. If a Branch Type is specified, also type the **Branch-to script** and **Branch-to label** field values. When <**F6**> is pressed from either of these fields, an available Operator Replay Token name may be selected in place of an actual script or label name. From the F6 window, move the cursor to the preferred token name and press <**Enter**>. The selected value will be placed into the field where the cursor is located. (Refer to the discussion below about Script Branching Rules for more information.)
     :::tip
     Control strings are optional. They are used to verify characters in certain parts of the screen. If verification fails, the script may optionally fail, or the step may be skipped.
     :::
 
-    e.  Under the Control Strings heading, if any control strings will be used to quality the step, choose one of the values for **If no match**: S=Skip the step when either control string rule is not satisfied, or F=Fail the whole job.
+    - e. Under the Control Strings heading, if any control strings will be used to quality the step, choose one of the values for **If no match**: S=Skip the step when either control string rule is not satisfied, or F=Fail the whole job.
 
-    f.  *(Optional)* Both of the control strings may use numeric value rules instead of character string comparison rules. To specify that the comparison should be done by compressing out only the numeric values from the control string location(s), type Y=yes in the **Comp numeric** field.
+    - f. *(Optional)* Both of the control strings may use numeric value rules instead of character string comparison rules. To specify that the comparison should be done by compressing out only the numeric values from the control string location(s), type Y=yes in the **Comp numeric** field.
 
-    g.  The **Top** string is one of two optional control strings. To activate a control string, type one of the allowed **Rule** values (EQ, NE, GT, LT, GE, LE). If the **Value** of the reference string will not be blanks, type in the expected string value. Function key <**F6**> may also be used to select an Operator Replay Token if a variable reference value should be used. The **Row** and **Column** fields show the coordinates of the control string.
+    - g. The **Top** string is one of two optional control strings. To activate a control string, type one of the allowed **Rule** values (EQ, NE, GT, LT, GE, LE). If the **Value** of the reference string will not be blanks, type in the expected string value. Function key <**F6**> may also be used to select an Operator Replay Token if a variable reference value should be used. The **Row** and **Column** fields show the coordinates of the control string.
 
-    h.  A string **Length** may optionally be specified (useful if the comparison value must be a certain number of space characters). If the Length is not specified, the system ignores trailing space characters in the Value field and only compares the number of positions up to the last non-blank character. If an Operator Replay Token variable will be used as the Value and its value length may vary, it may be useful to leave the Length field blank, but if the Length field is specified, any Value characters beyond the specified length will be ignored.
+    - h. A string **Length** may optionally be specified (useful if the comparison value must be a certain number of space characters). If the Length is not specified, the system ignores trailing space characters in the Value field and only compares the number of positions up to the last non-blank character. If an Operator Replay Token variable will be used as the Value and its value length may vary, it may be useful to leave the Length field blank, but if the Length field is specified, any Value characters beyond the specified length will be ignored.
 
-    i.  The **Bottom** string is simply another control string rule that must also be satisfied if specified. It works like the Top string. If both rules are specified, both must be satisfied for any function of this step to be executed.
+    - i. The **Bottom** string is simply another control string rule that must also be satisfied if specified. It works like the Top string. If both rules are specified, both must be satisfied for any function of this step to be executed.
 
-    j.  Press <**Enter**> to save the step data.
+    - j. Press <**Enter**> to save the step data.
 
 10. The system returns to the **Operator Replay Script Step** list display.
 
-    a.  Repeat the instructions in step 9 to add additional Steps to a Script.
+    - Repeat the instructions in step 9 to add additional Steps to a Script.
 
 ### Copy an Operator Replay Script
 
@@ -341,7 +341,8 @@ Optionally, rules may be defined externally to the Operator Replay script that s
 
 :::info example
 Data Capture and Response Rules can be used to dynamically vary the way an Operator Replay script responds to screen formats! An explanation follows...
-An important example of how these features may be used is when an Operator Replay script step String to send includes a token for a variable. A captured data response rule can be created that will update the value of the variable before it is used. This makes it possible to dynamically vary the response of the Operator Replay script to each screen that is presented, based on the content of the screen format at execution time.
+
+An important example of how these features may be used is when an Operator Replay script step String to Send includes a token for a variable. A captured data response rule can be created that will update the value of the variable before it is used. This makes it possible to dynamically vary the response of the Operator Replay script to each screen that is presented, based on the content of the screen format at execution time.
 :::
 
 More detail about how Captured Data Response Rules function may be found in [Events and Utilities: Captured Data Response Rules](../events-utilities/captured-data-response-rules).
@@ -352,7 +353,7 @@ More detail about how Captured Data Response Rules function may be found in [Eve
 - Press F10=Capt Defn while adding, copying or changing a script Step record to branch to screens that will automatically be linked to that Step record.
 
 :::tip
-Introduced with the newer Agent version 21.1, the Captured Data Rules are linked to Script Step master records using the primary key of the Capture Rules master file.  This change removed storage of the Capture Rules key fields from within the Script Step master records.  As a result of this change, Screen Data Capture Applications and their Rules can be re-used with any number of different Step master records, regardless of the Script Name or Step number.  To use this improvement it is necessary to perform an Agent upgrade from version 18.1 to the 21.1 (or newer) version of the Agent software.
+Introduced with the newer Agent version 21.1, the Captured Data Rules are linked to Script Step master records using the primary key of the Capture Rules master file.  This change removed storage of the Capture Rules data fields from within the Script Step master records, and it removed the Script Name and Step Number of an Operator Replay Step from the Capture Data Rules master file.  As a result of this change, Screen Data Capture Applications and their Rules can be re-used with any number of different Step master records, regardless of the Script Name or Step number.  To use this improvement it is necessary to perform an Agent upgrade from version 18.1 to the 21.1 (or newer) version of the Agent software.
 :::
 
 #### Adding a Data Capture Rule from the LSAM Menu System
@@ -376,7 +377,7 @@ The remaining steps for building Capture Data Rules and their associated Respons
 
 #### Adding a Data Capture Rule from Within Operator Replay Script Step Maintenance
 
-1. Press <**F10=Capt Defn**> to branch to the Work with Screen Capture Definitions function in the Operator replay script step screen.
+1. Press <**F10=Capt Defn**> to branch to the **Work with Screen Capture Definitions** function from the Operator replay script step screen.
 2. The **Work with Screen Capture Definition** screen appears, listing any existing records that apply only to the current Operator Replay script name and Step Sequence number. The Script name and the Sequence number show in the screen heading lines.
 3. Press <**F6**> to add a new Data Capture definition record.
 4. The **Create Screen Capture Definition** screen appears, showing the Operator Replay script name and step Sequence number in the heading lines.
@@ -543,11 +544,11 @@ USERNAME                    Starting Script: TESTONE    
    |..                            WARNING: Cannot analyze branch Token
    |..            EXSR            Script: SCRIPT7890  Label:
    +SCRIPT7890                  Description - this script nested at level 2
-   \||..TARGETLBL0   0010          COMMEND SYNTAX 10
-   \||..             0020          COMMAND SYNTAX 20
-   \||..             GOTO          Script: SCRIPTABCD Label: TARGETLBL1
-   \||..             --->          (See analysis of GOTO Script/Label below)
-   \|-             RETURN
+   ||..TARGETLBL0    0010          COMMEND SYNTAX 10
+   ||..              0020          COMMAND SYNTAX 20
+   ||..              GOTO          Script: SCRIPTABCD Label: TARGETLBL1
+   ||..              --->          (See analysis of GOTO Script/Label below)
+   |-             RETURN
    TESTONE                     Demo
    |..              0050          SIGNOFF~FE\`  \<F-Key:ENTER\>
    END
@@ -694,6 +695,8 @@ The Operator Replay Display Log example below shows an artificially extended exa
 - Blue = Script navigation entries (Script name, sequence number and optional label value), logging of Operator Replay Token/Variable replacement actions.
 
 - Pink = Script branching, such as GOTO, EXSR and RETURN (from EXSR).
+
+- Cyan (turquois) = If there is a "**CaptID:**" entry appearing in the log, it is possible to put the screen cursor on this type of line and then press <**F13**> to branch to a view of the Captured Data (and Response Rules) Log entries in a different Agent log file.
 
 - Red = Script error messages.
 
