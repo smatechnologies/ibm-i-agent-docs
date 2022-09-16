@@ -35,7 +35,7 @@ Main Menu > Operator replay menu (#4) > Operator Replay user (#1)
 
 #### Functions
 
-**F6=Add**: Press <**F6**> to proceed to the Add User screen.
+- **F6=Add**: Press <**F6**> to proceed to the Add User screen.
 
 ## Add User Screen
 
@@ -51,7 +51,7 @@ None
 
 #### Functions
 
-**F12=Cancel**: Quits the Add User window without adding new data to the system.
+- **F12=Cancel**: Quits the Add User window without adding new data to the system.
 
 #### Fields
 

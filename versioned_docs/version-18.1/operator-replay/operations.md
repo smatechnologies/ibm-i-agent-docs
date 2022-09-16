@@ -418,22 +418,22 @@ The basic steps for implementing branching logic are these:
 4. Add branching instructions to any script step that will refer to the registered step labels.
 5. If a Token name was specified in any field, decide how the tokenvalue must be set.
 
-    a.  The Token value could be set by a String to send command in a previous script step.
+    - The Token value could be set by a String to send command in a previous script step.
 
-    b.  The Token value might have been set by a job that ran previously, or it can be set manually.
+    - The Token value might have been set by a job that ran previously, or it can be set manually.
 
-    c.  The Token value can be determined at the time this step is being executed by adding Screen Capture Definitions for this screen format and assigned a Captured Data Response rule that will execute the SETDYNVAR command (explicitly, or implicitly using the Store To-> field) to set the Token value. (Refer to a description of Captured Data Response Rules above.)
+    - The Token value can be determined at the time this step is being executed by adding Screen Capture Definitions for this screen format and assigned a Captured Data Response rule that will execute the SETDYNVAR command (explicitly, or implicitly using the Store To-> field) to set the Token value. (Refer to a description of Captured Data Response Rules above.)
 
 6. Go back, as necessary, and apply labels to any additional steps that will be used as branch-to points, taking note of each Script Name and Label.
 7. Audit the resulting logic using option 9=flow chart from the Operator Replay Script list display.
 8. Make sure the Operator Replay configuration parameters are set for "Script job logging" = Y (yes) in the test environment. (It is also a good idea to log scripts in the live environment, especially just after they are first installed for live operation.)
 9. Test the combined scripts in a safe, test environment.
 
-    a.  One method for testing is to use the STROPRRPY command directly from a 5250 green screen workstation session command line. To use this method, start a new interactive job for each test to keep test sessions separated in the Operator Replay debug log member file. For interactive testing, the STROPRRPY command parameter JOBTYPE must be set to a value of "**A**" or "**T**".
+    - One method for testing is to use the STROPRRPY command directly from a 5250 green screen workstation session command line. To use this method, start a new interactive job for each test to keep test sessions separated in the Operator Replay debug log member file. For interactive testing, the STROPRRPY command parameter JOBTYPE must be set to a value of "**A**" or "**T**".
     ```
     STROPRRPY JOBNAME(script_name) JOBTYPE(T)
     ```
-    b.  It may also be useful, or even required, to use a test OpCon schedule to perform the script test. This might be necessary if any value from the OpCon environment will be communicated to the IBM i LSAM in order that the value will be available for Dynamic Variable tokens.
+    - It may also be useful, or even required, to use a test OpCon schedule to perform the script test. This might be necessary if any value from the OpCon environment will be communicated to the IBM i LSAM in order that the value will be available for Dynamic Variable tokens.
 
 10. Use the Operator Replay menu function 3, Operator Replay logs, to examine the log detail of the test script job. Use the Search function in the view of the log content (F10=Log detail) to scan for each Label value and for each Token name that was specified in the test script(s). Make sure that the branching resulted in the correct work flow and that appropriate values were supplied for all Tokens.
 11. Repeat the Script test job for each possible branching option, to make sure that expected results are obtained.

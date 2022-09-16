@@ -176,27 +176,10 @@ Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2)
 
 ## Windows and Sub-Screens
 
-### Add (Copy) Script Screen
-
+### OPRRPYR10-3 - Add/Change/Copy  Operator Replay Script
 This screen appears the same for both the Add and Copy functions. The mode is indicated by the pink subtitle on line 2 of the screen. The Copy function also copies all Steps associated with the from-script.
 
-#### Add (Copy) Operator Replay Script Screen 
-```
-
-OPRRPYR10-3               Operator Replay Script                 00/00/00   
-USERNAME                           ADD                           04:43:59
-
-   Name  . . . . :  __________    User  . . . . :  __________
-   Description . :  ________________________________________
-
-  F3=Exit   F4=Prompt   F9=Flow chart   F12=Cancel
-```
-## Change Script Screen
-
-This screen is similar to the Add/Copy screen, but with an informational
-field added and the Name field cannot be changed.
-
-### OPRRPYR10-3 - Operator Replay Script
+The Change screen is similar to the Add/Copy screen, but with an informational field added and the Name field cannot be changed.
 
 #### Fields
 
@@ -206,7 +189,7 @@ field added and the Name field cannot be changed.
 |               |               |          | Any Alphabetic characters may be used to identify a script.            |
 |               |               |          | This field cannot be updated in Change mode.       |
 | User          | None          | Y        | The name of an IBM i user profile that is registered in the Operator Replay user table.                 |
-|               |               |          | Press <**F4**> (Prompt) from this field to view and select from a list of names.                 |
+|               |               |          | Press <**F4**> (Prompt) from this field to view and select from a list of registered User names.                 |
 | Description   | None          | N        | Enter text describing what this script does. |
 | Int record ID | output only   |          | In Change mode, this field is displayed for technical support purposes only. The hidden, internal record number has no meaning at the level of Script maintenance or flow analysis.      |
 
@@ -217,26 +200,20 @@ field added and the Name field cannot be changed.
 - **F9=Flow chart**: Produces a display of the logic flow of this script and any scripts that it may branch to. This function key produces no results during Add mode because no script record exists to analyze. (Refer to option 9=Flow chart on the list of Scripts display, above, for more information.)
 - **F12=Cancel**: Quits the Script maintenance function and returns to the list of scripts without adding or updating a record.
 
-#### Delete Script Window
-```
-                     Delete Script
+### OPRRPYR10W1 - Delete Script
+The list Scripts display format is presented to show the collected options 4=Delete. Press **F14** to confirm the deletion, or press **F12** to go back to the main Script list, where choices for deletion can then be modified or abandoned.
 
-   Name          Description
-   ACCOUNTING    Test Operator Replay
-   CHGMAXJOBS    Change the Max Jobs to 175
-
-                                            Bottom
-  Enter=Confirm   F12=Cancel
-```
 #### Fields
-- **Name**: The name of the script(s) that is deleted.
-- **Description**: A description of the script(s) that is deleted.
+- **ScriptName**: The name of the script(s) that is being deleted.
+- **User Name ...**: The name of the Script User, if assigned at this Script master file level.
+- **Description**: A description of the Script that is being deleted.
 
 #### Functions
 
 **F12=Cancel**: Quits the Delete Script confirmation window and returns to the list of scripts without deleting any records.
+**F14=Confirm**: Press to complete the delete action for all listed Scripts.
 
-### Copy/Delete Script Window (Options 3 and 4)
+### Copy/Delete Script Windows (Options 3 and 4)
 
 #### Manage Capture Rules Window (Copy)
 ```
@@ -268,11 +245,11 @@ Copy? **- or -** Delete?
 
 **F12=Cancel**: Quits the opt ion window and returns to the list control display. (The copy or delete option remains incomplete and must be restarted, if desired.)
 
-## Operator Replay Capture Chart (opt 7)
+### OPRR10R7 - Capture Screen Data Chart (5 Views)
 
 Option 7 from the list of Scripts will present a read-only list that documents all Capture Data Rules, Response Rules and variables (Dynamic Variables or the older Operator Replay token variables). Use function key <**F11**> to rotate the list details among 5 different views. The explanation of each data field in this list may be found in the Screens and Windows documentation for each record type. Use option 5=Display from this list to view the entire detail of any record, for additional help understanding what appears in this summary list.
  
-### OPRR10R7 - Capture Screen Data Chart (5 Views)
+#### Views 4 and 5 Details
 
 In View 4, for each Step there is a profile of the Top Control String. (View 5 shows the Bottom Control String.) The control string rules use these labels:
 
@@ -350,8 +327,6 @@ Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 
 strings, etc.). After a search is started, when there is a previous search content value shown in pink under the search input field, <**F16**> is used to continue the search on to the next step record that matches the search content value.
 
 ### Delete Step Window
-
-### Delete Step Window
 ```
                Delete Step
 
@@ -371,9 +346,10 @@ Enter=Confirm   F12=Cancel
 
 **F12=Cancel**: Returns to the list of step records without completing the delete action.
 
-## Operator Replay Step Detail Screen
+## Operator Replay Step Detail Screens
 
-### OPRRPYR10-4 - Change Operator Replay Step Detail
+### OPRRPYR10-4A/-4B - Add/Change/Copy Operator Replay Step
+Two display formats are used to build or maintain a Script Step record.  Press **Enter** or **PageDown** to move from display format **A** to **B**, and **F12** or **PageUp** to move back from fomrat **B** to **A**.  Moving between the two displays does not update master record data.  The database update is completed only when **Enter** is pressed from the **B** display format.  When moving between the two display formats, any data that is entered on either screen is preserved, so that the two formats work together as if they were just pages of a single interaction with the operator.
 
 :::tip
 The screen denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal "Rec ID" does not appear in the Add or Copy modes.
@@ -393,6 +369,7 @@ The screen denotes the functions Add, Change, Copy or Display in the title line.
 
 | Field            | Default Value  | Required        | Description    |
 | -----            | -------------  | --------        | -----------    |
+| **Format 4A**  |   |  | **Display Format A Fields**    |
 | Step description | None           | N (recommended) | Type a Text Description for the script (up to 40characters)    |
 | Rec ID           | System assigned |               | Not shown for Add or Copy mode, this internal number is for technical support use only.          |
 | Step sequence number | Auto-assigned, | Y             | The next available sequence number is autoassigned when the Add or Copy function is being used. This number can be changed to reposition a step to a different relative position among all the sequence steps. |
@@ -400,18 +377,27 @@ The screen denotes the functions Add, Change, Copy or Display in the title line.
 | Step label     | None           | N             | Optional value used as the target of a branching operation from another step and/or script.|
 | Receive timer override (in seconds)  | Zero           | N             | A response wait timeout value that overrides the global wait timeout value set for all Operator Replay Scripts, optionally allowing this step of the Script to take as long as the specified number of seconds before the session control program logs a timeout failure of the Script. (Refer to discussion above about using this override field with branching logic.) |
 | Loopback OVR   | Zero           | N             | This field allows a script to loop back to this same step more times than are allowed by the Operator Replay Configuration global setting for the Script Loop Detect Limit. A value of blank or zero means that there is no override to the global loop limit.
-|                |                |               | A value of all 9s (99999) will mean *NOMAX, that is, there is no limit.
-|                |                |               | CAUTION: Using the *NOMAX value of all 9's might allow a script driver program to run endlessly, possibly consuming system resources until the system reaches a critical resources limit (depending on the script actions that are repeated). |
-| String to send | None supports Dyn- Var  | N             | In this field, type all the characters and spaces that an operator would type. Stop right before the next press of a Function key or <**Enter**>. |
-|                |                |               | Dynamic Variable tokens may be used in this field (use F9 to select from list and format tokens), but care must be taken that after all Tokens are replaced, the String to send will not exceed 250 characters in total length. |
-|                |                |               | If it is necessary to type more than 250 characters into a single display format, extra steps may be added to type the additional data. (Do not use the Function to send until the last step record.) |
-|                |                |               | Press <**F4**> to use a prompt window to select any required cursor movement keys. When a cursor movement key is selected from the pop-up window, the correct control sequence of characters will be inserted into the String to send field (at the current cursor location). |
-|                |                |               | This field may be left blank, such as when the step record only executes a function key (refer to next field). |
-| Function to send (function key mnemonic)  | None supports **DynVar** | N             | -  A Function to send is required to execute the String to send. However, a given Step record does not have to include this field value, depending on the purpose of the step record.  |
-|                |                |               | A Dynamic Variable token (with a short name length) may be used in this field, similar to the way a token may be inserted into the String To Send field. |
+|                |                |               | A value of all 9s (99999) will mean *NOMAX, that is, there is no limit. |
+|                |                |               | CAUTION: Using the \*NOMAX value of all 9's might allow a script driver program to run endlessly, possibly consuming system resources until the system reaches a critical resources limit (depending on the script actions that are repeated). |
+| Capture App ID / Key| None | N     | To connect a Capture Screen Data Application to this Step record, press **F10** to branch to the **Select Capture Application** display. For more information about using this display see [Data Capture and Response Rules](./operations.md#data-capture-and-response-rules).  Build a new Capture Application, if necessary, with Capture Rules and linked Response Rules.  From the Select Capture Application display type **1** and press **Enter** to store the Key of the Capture Application into the Step record.  The current description text from the Capture Application is reported on this display, but the text is not stored into the Step master record. |
+| String to send | None supports DynVar  | N             | In this field, type all the characters and spaces that an operator would type. Stop right before the next press of a Function key or **Enter**. |
+|                |                |               | Dynamic Variable tokens may be used in this field (use **F8** to select from list and format tokens), but care must be taken that after all Tokens are replaced, the String to send will not exceed 250 characters in total length. |
+|                |                |               | If it is necessary to type more than 250 characters into a single display format, extra steps may be added to type the additional data. (Do not use the Function to send until the last step record.)  Use **F13** to branch to a display with a larger data entry field.  But remember that the larger field is provided to support long key-qualified Dynamic Variable tokens, and the size of the data entry field is not related to the limit of 250 characters to Send. |
+|                |                |               | **NOTE**: When long multi-instance Dynamic Variable qualifying keys must (rarely) be used, the multi-instance key values do not count as part of the 250 characters to send.  However, it might be necessary to concantenate two or more Step records just to provide space for a long multi-instance Dynamic Variable with keys, because the key string cannot be broken up into separate Step records. |
+|                |                |               | Press **F9** to use a prompt window to select any required cursor movement keys. When a cursor movement key is selected from the pop-up window, the correct control sequence of characters will be inserted into the String to send field (at the current cursor location). |
+|                |                |               | This field may be left blank, such as when the step record only executes a function key (refer to next field), or when a Step record could be used just to insert a Step Label for Script branching, or if more than two Top/Bottom string comparisons might be required to qualify the display on the screen. |
+| Function to send (function key mnemonic)  | None supports **DynVar** | N             | A Function to send is required to execute the String to send. However, a given Step record does not have to include this field value, depending on the purpose of the step record. Use **F11** to view a window that supports selecting one of the valid Function Key mnemonic names. |
+|                |                |               | A Dynamic Variable token may be used in this field, similar to the way a token may be inserted into the String to Send field.  To enter a longer or key-qualified Dynamic Variable token, press **F13** to branch to a larger data entry field on a separate display. |
 |                |                |               | However, before this Step is executed, the Token must be set to one of the valid mnemonic values for a function key, as appear on the prompt Window when F4=Prompt is pressed from this field. |
 |                |                |               | A Step record may have only a function key (and no String To Send). There are also uses for Step records that have no Function to send. |
-|                |                |               | **Example:**  No String to send is required when the intention of pressing <**Enter**> is to bypass a display that does not require any data input.    |
+|                |                |               | **Example:**  No String to send is required when the intention of pressing **Enter** is to bypass a display that does not require any data input.    |
+| **Format 4B** |   |  | **Display Format B Fields**    |
+| Page header fields  |   |  | The header fields on the B display format remind the user of which Step record is being maintained.  These fields are described among the A display format fields, just above in this table.  |
+| Branch type | Blank | N | **GOTO** = Redirect the control of the virtual workstation to a different Step within the current Script, or to a different Script (and, optionally, to a specific Step within that other Script). |
+|  |   |   | **EXSR** = "EXecute SubRoutine" (an imitation of the RPG operation code).  This Branching Type causes Script logic in a separate, utility Script to be executed, and then after that Script completes, the virtual workstation control program returns to the next Step in the Script of origin, just after the step that performed the EXSR Branching action. The EXSR Branch type requires that a different Script name be provided in the to-script field.|
+| Branch to script | Blank | N | Specify a Script Name as the target of the Branching action.  The value can be a Dynamic Variable {TOKEN} which might have its value set by a Captured Data Response Rule.  When this field is blank, the program assumes that the Branching action refers to the current Script. |
+| Branch to label | Blank | N | Specify the label of a Script Step as the target of the Branching action.  The value can be a Dynamic Variable {TOKEN} which might have its value set by a Captured Data Response Rule.  When this field is blank, the program assumes that the Branching action refers to the first Step in the target Script. |
+| | | | **Note**: If the Branch Type is not blank, it is not logical to leave both of the Branch-to fields blank. |
 | Top/Bottom Control strings   |                |               | Either or both of the control string rules may be specified. Both control rules, when specified, must be met in order to perform any operation on a Step record. String to send, Function to send and branching operations are controlled by these control string rules.  |
 | If no match: Skip/Fail  | F              | Y             | **F** = fail the Script job if a rule is not matched. |
 |                         |                |               | **S** = skip this Step only if a rule is not matched. When the Skip option is specified there must be another Step record following this one that will process the current display format in the Script execution program's buffer, otherwise the Script Steps will be out of synchronization with the sequence of display formats. The Skip option does not include any means of responding to a display format by itself. |
@@ -426,7 +412,7 @@ The screen denotes the functions Add, Change, Copy or Display in the title line.
 |                 |               |               | **LE** = Less or Equal  |
 | Val: (value) character | blank supports **DynVar** | N             | Type a character string that will be compared to the location specified on the current  display format. |
 |                 |               |               | This field can be left blank so that blanks will be used for the comparison if the Length is specified. The Length field determines how many blank characters will be compared. |
-|                 |               |               | This field supports a Dynamic Variable token. |
+|                 |               |               | This field supports a Dynamic Variable token.  Press **F13** to work with a larger data entry display if a long key-qualified multi-intance Dynamic Variable token is required. |
  | R: (row)       |                | N             | Type a value from 1 to 24 to designate the vertical row of the display that should be searched for the Control string. |
 |                 |               |               | **Note**: There may be row numbers higher than 24 when alternate display formats are being used, however, screen formats other that *DS3 (24 rows by 80 columns) are not supported at this time. Contact SMA Technologies Support if support for 27 X 132 formats is required. |
 | C: (column)    |                | N             | Type a value from 1 to 80 to designate the horizontal column position where the Top string must begin. |
@@ -435,20 +421,24 @@ The screen denotes the functions Add, Change, Copy or Display in the title line.
 |                 |               |               | When the control string is not blank, this value is optional and the system assumes the length is equal to the last non-blank character. |
 |                 |               |               | However, if trailing blanks must be included, or if the whole control string must be a certain number of blanks, then the length specifies exactly how long the control string is and how many characters in the display format location specified must match.  |
 
-#### Functions
+#### Functions - common to both display formats A and B
 
 - **F3=Exit**: (Not shown, but supported.) Quits maintenance function without completing any data changes and return to the menu.
-- **F4=Prompt**: View the list of values for certain fields and allow one value from the list to be selected and inserted into the prompted field.
-    - **String to send**: <**F4**> shows a list of cursor control commands that may be inserted.
-    - **Function to send**: <**F4**> shows a list of valid function keys that may be specified.
-    - **Rule**: <**F4**> shows a list of valid Rules.
-- **F6=Variable**: Shows the list of the Token/Variable data fields that are registered for use with Operator Replay (refer to [Tokens/Variables Management](../operator-replay/screens.md#tokensvariables-management)). When variables are inserted into supported fields, the Operator Replay function substitutes the currently registered value in place of the token at the time the script is executed.
-- **F7=DSPLBLWU**: Display Label Where Used. If a Step label value has been assigned to this step, a script analysis utility will search for all Scripts that reference this label value in a branch operation and then show a list of the Scripts that use this label value.
-- **F8=Cmd prompt**: When the cursor is positioned in the String to send field, press <**F8**> to branch into IBM i command prompting. The selected command and any parameter values prepared during this branch will be returned to the string to send field (unless the prompting is exited using <**F3**> or <**F12**>.) 
-  - **Hint**: It helps to type in a command name first before pressing <**F8**>, since the access to command entry using this function key is intentionally restricted.
-- **F9=DynVar**: Shows a list of Dynamic Variables, when the cursor is in a supported field (refer to table of fields, above). When a Dynamic Variable is selected from the pop-up window, a formatted token is inserted at the current cursor location. The Dynamic Variable token will be replaced with its value at run time. Captured Data Response Rules (linked to the same step, or to prior steps) can be used to set Dynamic Variable values just before they are used.
-- **F10=Capt Defn**: After the Step Sequence (number) field has been specified, it is possible to press <**F10**> to branch into the Work with Screen Capture Definitions screen. (Refer to [OR Script Operations](../operator-replay/operations.md) for an outline of how to use this function key. Also refer to the [Work with Screen Capture Definitions](#work-with-screen-capture-definitions) below for more information about Screen Capture definitions.) Remember to press <**Enter**> after returning from this branch in order to complete the creation or change of the Operator Replay Step detail record.
+- **F6=OldVar**: Shows the list of the Token/Variable data fields that are registered for use with Operator Replay (refer to [Tokens/Variables Management](../operator-replay/screens.md#tokensvariables-management)). When variables are inserted into supported fields, the Operator Replay function substitutes the currently registered value in place of the token at the time the script is executed.
+- **F8=DynVar**: Shows a list of Dynamic Variables, when the cursor is in a supported field (refer to table of fields, above). When a Dynamic Variable is selected from the pop-up window, a formatted token is inserted at the current cursor location. The Dynamic Variable token will be replaced with its value at run time. Captured Data Response Rules (linked to the same step, or to prior steps) can be used to set Dynamic Variable values just before they are used.  Full instructions for multi-instance Dynamic Variable configuration prompting is found at [Prompt Dynamic Variable list](/dynamic-variables/maintaining.md#f8dynvar-prompt-dynamic-variable-list).
 - **F12=Cancel**: (Not shown, but supported.) Quits the maintenance function without completing any data changes and returns to the list of step records.
+- **F13=More+**: Fields that are supported by an alternate, larger data entry display format are marked with a plus sign (+) at the end of the field.  When there is more data stored in this field than can be shown in the display formats A or B, these fields will appear in cyan color and will be protected from input.  In this case, put the cursor over the protected field and then press **F13** to branch to the alternate data entry display.
+
+#### Functions - unique to display format A
+- **F4=Cmd prompt**: When the cursor is positioned in the String to send field, press **F4** to branch into IBM i command prompting. The selected command and any parameter values prepared during this branch will be returned to the string to send field (unless the prompting is exited using **F3** or **F12**.) 
+  - **Hint**: It helps to type in a command name first before pressing **F4**, since the access to command entry using this function key is intentionally restricted.
+- **F7=DSPLBLWU**: Display Label Where Used. If a Step label value has been assigned to this step, a script analysis utility will search for all Scripts that reference this label value in a branch operation and then show a list of the Scripts that use this label value.
+- **F9=Cursor cmd**: View the list of values that represent cursor movement actions.  The values shown in the prompting window could be manually typed into the String to Send field, but errors can be avoided by positioning the cursor over the desired value and then pressing **Enter** to insert the control sequence into the String to Send field where the cursor was located as **F9** was pressed.  Do not add space characters before or after the cursor movement characters, unless space characters are desired in either of the data entry fields (or field locations) that surround the cursor movement instruction. (Function key **F9** has a different purpose on display format B.)
+- **F10=Capt Defn**: This function key causes a branch into the Agent master file maintenance where a Capture Data Application can be selected.  During this logic branching it is possible to register new Capture Data Application IDs and the Capture Data and Response Rules that are linked to that Application ID. (Refer to [Data Capture and Response Rules](./operations.md#data-capture-and-response-rules) for instructions about creating and linking Screen Capture defintions.)
+- **F11**: View the list of supported Function Key mnemonic names that are valid for the Function to Send key.  It is allowed to manually type these (mostly) obvious Function Key names.
+
+#### Functions - unique to display format B
+- **F9=Comp rule**: View the list of values that are supported for the Top/Bottom Control strings comparison rule.  These are boolean comparison operators.  They may be typed into the "Compare rule" fields, or they can be selected from the prompting window.  (Function key **F9** has a different purpose on display format A.)
 
 ### Discussion of Receive Timer Override
 
@@ -557,9 +547,12 @@ If these special characters are changed in the control file, then every existing
 
 SMA recommends using these Dynamic Variables instead of the older Operator Replay Token variables in Operator Replay Script Steps. The fields that support Dynamic Variables are marked in the table of screen format fields, above. When the DynVar function key is pressed, the following window overlays the display. Position the cursor to the desired variable name, then press <**Enter**> to insert the variable name surrounded by the token special characters into the field at the current cursor location.
 
+Full instructions for multi-instance Dynamic Variable configuration prompting is found at [Prompt Dynamic Variable list](/dynamic-variables/maintaining.md#f8dynvar-prompt-dynamic-variable-list).
+
 #### Dynamic Variable Selection Window
 ```
 Select Dynamic Var
+F4=Instance Tempates
 
 Dynamic Var.   Seq
 
@@ -577,18 +570,21 @@ Enter=Select   F12=Cancel
 - **Cursor up/down**: Moves the cursor down or back up to select the variable that should be inserted into the supported Step field.
 - **Page Up/Page Down**: When the window shows "More..." at the bottom, right-hand corner, use the Paging keys to show other valid values from the entire list.
 - **Enter**: Returns the currently highlighted variable as a token and inserts it into the supported field where the cursor was last positioned.
+- **F4=Instance Templates**: Branches into a helpful series of prompts for building the keys that may rarely be required for multi-instance Dynamic Variables.
 - **F12=Cancel**: Quits the window.
 
 ## Operator Replay Log
 
-### Operator Replay Log Selection Screen
+### OPRLOGR00-1 - Operator Replay Log Selection Screen
+
+##### Column headings view 2 (Use F10 to rotate among 3 views)
 ```
 OPRLOGR00-1             Operator Replay Log Selection               00/00/00
 QSECOFR                                                             00:00:00
 
   Position to Script Name...   _________
   Type options, press Enter.
-     5=Display   8=RpyUsrJob   9=WRKJOB
+     5=Display  7=VrtWsJob  8=RpyUsrJob  9=WRKJOB
                                                    - IBM i Replay Control Job -
   Opt Script      Rpy User       Date      Time    Name       User       Number       
    _  TSTOPRPY02  TSTOPR      03/12/0000 10:06:06  TSTJOBNM   QSECOFR    109972
@@ -598,10 +594,26 @@ QSECOFR                                    �
 
                                                                          More...
 
-F3=Exit   F5=Refresh   F11=Sort date   F12=Cancel
+F3=Exit   F5=Refresh   F10=Alt view   F11=Sort date   F12=Cancel
+```
+##### Column headings view 3 
+
+Data identifying the Virtual Workstation Job may not always be avaiable.  This depends on which of four modes of virtual workstation device management was in effect as each job executed.  To force registration of the virtual workstation job, see the instructions about using the Operator Replay utility command **SMAJOBDTL** explained at [Operator Replay Sharing Variable Values with an Interactive Job](/dynamic-variables/multi-instance.md#operator-replay-sharing-variable-values-with-an-interactive-job).
+```
+OPRLOGR00-1             Operator Replay Log Selection               00/00/00
+ 
+                                                   - IBM i Virstual Wrkstn Job -
+  Opt Script      Rpy User       Date      Time    Name       User       Number 
+```
+##### Column headings view 1 (this is the initial view of the log entries list)
+```
+OPRLOGR00-1             Operator Replay Log Selection               00/00/00
+ 
+                                                   
+  Opt Script      Rpy User       Date      Time    Device     IP Address 
 ```
 
-In the example above the list of log index entries uses the following colors on an IBM i  color workstation display that uses default colors, to indicate the status of each job:
+In the examples above the list of log index entries uses the following colors on an IBM i  color workstation display that uses default colors, to indicate the status of each job:
 - Red highlights any jobs that completed (failed) with a non-zero completion code. 
 - Blue indicates that the Script job is still active.
 - Green indicates a normally completed job.
@@ -620,15 +632,22 @@ Main Menu > Operator replay menu (#4) > Operator Replay logs (#3)
 - **Rpy User**: The name of the IBM i User ID that was specified to run the script.
 - **Date**: The date when this Script was executed.
 - **Time**: The time when this Script was executed.
+
+The following IBM i Job ID values will appear in list views 2 and 3.  The jobs they identify will be either the Script Control Job ID (always available) or the Virtual Workstation Job ID (not always available, as described above).
 - **Job Name**: The name of the IBM i job that controlled the script execution.
 - **Job User**: The name of the IBM i user that controlled the script execution.
 - **Job Number**: The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
 
+The following technical data columns only appear in list view 1:
+- **Device**: The name of the virtual workstation device will appear depending on which of the four virtual device selection modes were in effect when the Script job was executing.
+- **IP Address**: The IP address used by the Script driver program to access the virtual workstation display device.
+
 #### Options
 
-- **5=Display**: To view the log entry details and access the log entry content, type 5 next to the selected script name and date/time. Press <**Enter**> to proceed to the log content viewer. 
-- **8=RpyUsrJob**: (View Replay User Jobs) To view all the jobs that have been run by the specified replay script user, type 8 next to the selected script name and date/time. Press <**Enter**> to proceed to a list of jobs that were run with this user name. This option is useful for locating the printed output of the actual emulated interactive job that was executed by the script. Since it is not easily possible to identify the actual emulated job number while a script is running, the log entry does not contain this information. The user name used for the job is known, so a list of all jobs associated with this user provides a limited list of jobs that may be reviewed.
-- **9=WRKJOB**: (Work with Job) To view any information remaining in the system about the job that controlled execution of the replay script, type 9 next to the selected script name and date/time. Press <**Enter**> to proceed to the IBM i Work with Job menu. Just in case any problems require research, this option can be used to find a job log from the job that controlled script execution. This is NOT the actual virtual workstation interactive job. It is the job that launched the virtual workstation and emulates operator interaction according to the Script Steps that it reads.  This job is also the one that executes data capture operations and then also any connected Captured Data Response Rules.
+- **5=Display**: To view the log entry details and access the log entry content, type 5 next to the selected script name and date/time. Press **Enter** to proceed to the log content viewer.
+- **7=VrtWsJob**: (View Virtual Workstation Job) Access to the IBM i Work with Job menu is only available if the virtual workstation Job ID was registered for this execution of a Script job.  The data is available depending on (1) the virtual workstation mode that was in effect as the job executed, or (2) if the Script executed the SMAJOBDTL command to force a display of the IBM i Job ID for the workstation job. 
+- **8=RpyUsrJob**: (View Replay User Jobs) To view all the virtual workstation jobs that have been run by the specified replay script user, type 8 next to the selected script name and date/time. Press **Enter** to proceed to a list of jobs that were run with this user name. This option is useful for locating the printed output of the actual emulated interactive job that was executed by the script whenever the Virtual Workstation Job ID was not stored in the log entry. Since it is not easily possible to identify the actual virtual workstation job number while a script is running, the log entry does not always contain this information. The user name used for the job is known, so a list of all jobs associated with this user provides a limited list of jobs that may be reviewed.
+- **9=WRKJOB**: (Work with Job) To view any information remaining in the system about the Replay Control Job that executed the replay script, type **9** next to the selected script name and date/time. Press **Enter** to proceed to the IBM i Work with Job menu. Just in case any problems require research, this option can be used to find a job log from the job that controlled script execution. This is NOT the actual virtual workstation interactive job. It is the job that launched the virtual workstation and emulates operator interaction according to the Script Steps that it reads.  This job is also the one that executes data capture operations and then also any connected Captured Data Response Rules.
 
 #### Functions
 
@@ -646,17 +665,24 @@ USERNAME                                    
 
   Press F10=Log detail to see captured dialog.
 
-  Script name................: TSTOPRPY02
-  Replay job user name.......: TSTOPR
-  Replay job return code.....: 0  Normal end of job
-  OPRLOGF10 data member name.: O234567890
-  Job date...................: 03/12/0000
-  Job time...................: 10:06:06
-  IBM i control job name.....: JOBNAME
-  IBM i control job user.....: QSECOFR
-  IBM i control job number...: 109972
+Script name . . . . . . . : OOOOOOOOOO                                         
+Device selection mode . . : OOOOO       1:*DFT 2:*CTL 3:*USER 4:*CMD 3+4:*U/*C 
+IP address selected . . . : OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+Designated virtual display: OOOOOOOOOO                                         
+Replay job user name  . . : OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO   
+Replay job return code  . : O  OOOOOOOOOOOOOOOOOOOOOOOOOO                      
+OPRLOGF10 data member name: OOOOOOOOOO                                         
+Log entry date/time . . . : OOOOOOOOOO  OOOOOOOO                               
+                                                                               
+            Script Driver   Virtual Workstation  ...if SMAJOBDTL command used  
+Job name..: OOOOOOOOOO      OOOOOOOOOO                                                   
+Job user..: OOOOOOOOOO      OOOOOOOOOO                                                   
+Job number: OOOOOO          OOOOOO                                                   
+Job date..: OOOOOOOO        OOOOOOOO                                                           
+Job time..: OOOOOO          OOOOOO                                                         
 
-  F3=Exit   F8=RpyUsrJob   F9=WRKJOB   F10=Log detail   F12=Cancel
+  F3=Exit  F7=VrtDevJob  F8=RpyUsrJob  F9=WRKJOB  F10=Log detail  F12=Cancel
 ```
 
 #### Menu Pathways
@@ -666,19 +692,30 @@ Main Menu > Operator replay menu (#4) > Operator Replay logs (#3) > Option (#5)
 #### Fields
 
 - **Script name**: The name of the Script that was executed at each date and time.
-- **Replay job user name**: The name of the IBM i User ID that was specified to run the script.
+- **Device selection mode**: The symbolic mode abbreviation documented on the display records which virtual device select mode was used.  Modes 1 - 4 can be used individually, but there is an Operator Replay Configuration option that supports either mode 3 or 4, depending on the virtual device configuration options recorded in the User Management function (LSAM menu 4, option 1).
+**IP address selected**: Records the IP address used by the Script driver program as it requested a virtual workstation device.  For modes 2 through 4, this IP address is registered in the User Management master file, which file is then consulted by the SMA Telnet Exit program in order to select the desired virtual workstation device.
+- **Designated virtual display**: Reports the virual workstation device used, if that information is made available via the device selection mode or by the Script Step execution of the SMAJOBDTL command.
 - **Replay job return code**: The code returned by the script control job. The interpretation of the code appears to the right of the code in pink text.
 - **OPRLOGF10 data member name**: For technical support use, this is the name of the data member that was added to the script log file OPRLOGF10, in which the actual script logging data was stored. The member name is comprised of an initial letter "O" followed by digits 2 through 10 of the SAM job name (if OpCon executed the job in normal mode "O") or all 6 digits of the IBM i controlling job (if the job was executed in the debug mode "A").
-- **Job date**: The date when this Script was executed.
-- **Job time**: The time when this Script was executed.
-- **IBM i control job name**: The name of the IBM i job that controlled the script execution.
-- **IBM i control job user**: The name of the IBM i user that controlled the script execution.
-- **IBM i control job number**: The number of the IBM i job that controlled the script execution (NOT the number of the script's emulated job).
+- **Log entry date/time**: From the IBM i system time stamp at the moment when the log record was first registered.  (It can be updated later during the Script job initiation process.)
+
+##### Table of IBM i Job IDs
+The Script Driver job ID will always be known.  The Vritual Workstation job ID will be displayed if it was recorded during the Script job execution either by the device selection mode or by the Script Step execution of the SMAJOBDTL command.
+
+The job entry date and time components of the Job ID information are reserved for implementation in the next pending IBM i Agent release.
+
+- **Job name**: IBM i Job ID component identifying the Job Name
+- **Job user**: IBM i Job ID component identifying the Job User
+- **Job number**: IBM i Job ID component identifying the Job Number
+- **Job date**: The date when the Script driver job entered a job queue
+- **Job time**: The time when the Script driver job entered a job queue
+
 
 #### Functions
 
 - **F3=Exit**: Quits the list of log files and returns to the menu.
-- **F8=RpyUsrJob**: (view Replay User Jobs) To view all the jobs that have been run by the specified replay script user, type 8 next to the selected script name and date/time. Press <**Enter**> to proceed to a list of jobs that were run with this user name. This option is useful for locating the printed output of the actual emulated interactive job that was executed by the script. Since it is not easily possible to identify the actual emulated job number while a script is running, the log entry does not contain this information. The user name used for the job is known, so a list of all jobs associated with this user provides a limited list of jobs that may be reviewed.
+- **F7=VrtDevJob**: Only when the virtual workstation device ID is recorded, this function key is displayed to provide access to the IBM i Work with Job menu for the virtual workstation job.
+- **F8=RpyUsrJob**: (view Replay User Jobs) To view all the jobs that have been run by the specified replay script user, type 8 next to the selected script name and date/time. Press **Enter** to proceed to a list of jobs that were run with this user name. This option is useful for locating the printed output of the actual virtual workstation job that was executed by the script. Since it is not easily possible to identify the actual emulated job number while a script is running, the log entry does not always contain this information. The user name used for the job is known, so a list of all jobs associated with this user provides a limited list of jobs that may be reviewed.
 - **F9=WRKJOB**: (Work with Job) To view any information remaining in the system about the job that controlled execution of the replay script, type 9 next to the selected script name and date/time. Press <**Enter**> to proceed to the IBM i Work with Job menu. This option can be used to find a job log from the job that controlled script execution, in case any problems require research. This is NOT the actual script emulation job, but the job that launched the operator emulation script.
 - **F10=Log detail**: View the actual log content to see the recorded system output and the automated script input.
 - **F12=Cancel**: Quits the list of log files and return to the menu.

@@ -308,7 +308,7 @@ SMA recommends surveying each of these different sources, until a pattern of use
         - One technique for learning how to use a subset list by job is to type option 5  next to every list entry, and then press Enter to start viewing the details of each entry.  Continue pressing Enter to move sequentially through all the selected log entries.
         - Study the Entry_Code for each log detail view to learn which codes are most helpful during an error diagnostic process.
 
-### Operator Replay sharing Variable Values with an Interactive Job
+### Operator Replay Sharing Variable Values with an Interactive Job
 
 This discussion is supported by an illustration below.
 

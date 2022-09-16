@@ -268,11 +268,11 @@ Copy? **- or -** Delete?
 
 **F12=Cancel**: Quits the opt ion window and returns to the list control display. (The copy or delete option remains incomplete and must be restarted, if desired.)
 
-## Operator Replay Capture Chart (opt 7)
+### OPRR10R7 - Capture Screen Data Chart (5 Views)
 
 Option 7 from the list of Scripts will present a read-only list that documents all Capture Data Rules, Response Rules and variables (Dynamic Variables or the older Operator Replay token variables). Use function key <**F11**> to rotate the list details among 5 different views. The explanation of each data field in this list may be found in the Screens and Windows documentation for each record type. Use option 5=Display from this list to view the entire detail of any record, for additional help understanding what appears in this summary list.
- 
-### OPRR10R7 - Capture Screen Data Chart (5 Views)
+
+#### Views 4 and 5 Details
 
 In View 4, for each Step there is a profile of the Top Control String. (View 5 shows the Bottom Control String.) The control string rules use these labels:
 
@@ -350,8 +350,6 @@ Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 
 strings, etc.). After a search is started, when there is a previous search content value shown in pink under the search input field, <**F16**> is used to continue the search on to the next step record that matches the search content value.
 
 ### Delete Step Window
-
-### Delete Step Window
 ```
                Delete Step
 
@@ -373,7 +371,7 @@ Enter=Confirm   F12=Cancel
 
 ## Operator Replay Step Detail Screen
 
-### OPRRPYR10-4 - Change Operator Replay Step Detail
+### OPRRPYR10-4 - Add/Change/Copy Operator Replay Step Detail
 
 :::tip
 The screen denotes the functions Add, Change, Copy or Display in the title line. The field values are all the same, except the internal "Rec ID" does not appear in the Add or Copy modes.
@@ -412,6 +410,11 @@ The screen denotes the functions Add, Change, Copy or Display in the title line.
 |                |                |               | However, before this Step is executed, the Token must be set to one of the valid mnemonic values for a function key, as appear on the prompt Window when F4=Prompt is pressed from this field. |
 |                |                |               | A Step record may have only a function key (and no String To Send). There are also uses for Step records that have no Function to send. |
 |                |                |               | **Example:**  No String to send is required when the intention of pressing <**Enter**> is to bypass a display that does not require any data input.    |
+| Branch type | Blank | N | **GOTO** = Redirect the control of the virtual workstation to a different Step within the current Script, or to a different Script (and, optionally, to a specific Step within that other Script). |
+|  |   |   | **EXSR** = "EXecute SubRoutine" (an imitation of the RPG operation code).  This Branching Type causes Script logic in a separate, utility Script to be executed, and then after that Script completes, the virtual workstation control program returns to the next Step in the Script of origin, just after the step that performed the EXSR Branching action. The EXSR Branch type requires that a different Script name be provided in the to-script field.|
+| Branch to script | Blank | N | Specify a Script Name as the target of the Branching action.  The value can be a Dynamic Variable {TOKEN} which might have its value set by a Captured Data Response Rule.  When this field is blank, the program assumes that the Branching action refers to the current Script. |
+| Branch to label | Blank | N | Specify the label of a Script Step as the target of the Branching action.  The value can be a Dynamic Variable {TOKEN} which might have its value set by a Captured Data Response Rule.  When this field is blank, the program assumes that the Branching action refers to the first Step in the target Script. |
+| | | | **Note**: If the Branch Type is not blank, it is not logical to leave both of the Branch-to fields blank. |
 | Top/Bottom Control strings   |                |               | Either or both of the control string rules may be specified. Both control rules, when specified, must be met in order to perform any operation on a Step record. String to send, Function to send and branching operations are controlled by these control string rules.  |
 | If no match: Skip/Fail  | F              | Y             | **F** = fail the Script job if a rule is not matched. |
 |                         |                |               | **S** = skip this Step only if a rule is not matched. When the Skip option is specified there must be another Step record following this one that will process the current display format in the Script execution program's buffer, otherwise the Script Steps will be out of synchronization with the sequence of display formats. The Skip option does not include any means of responding to a display format by itself. |
