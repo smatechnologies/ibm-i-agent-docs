@@ -62,6 +62,43 @@ This is a generalized outline that can be applied to any of the three Agent auto
 17. Press <**Enter**> to record the new Capture Response Rule record.
 18. The system returns to an updated list of existing Capture Response Rule records.
 
+## Work with Data Capture Application IDs
+
+### LSAJ50R1 - Select Capture Application
+
+The title of this display shows **Select** when it is accessed using **F10=Capt Defn** from an Agent automation tool's master records maintenance.  The title shows **Work with Capture Applications** when it is accessed directly from an LSAM Menu.  The sub-title of "Application type:" shows the Agent automation tool that has its own data capture definitions, such as "**OPERATOR REPLAY**".
+
+#### Menu Pathways
+
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script step list (Opt 1) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy > F10=Capt Defn.
+
+- Main Menu > Operator replay menu (#4) > Work with Screen Capture Definitions (#5)
+
+Using the F10 pathway is always required when linking a Screen Capture Application to an Operator Replay Script Step.  While it is possible to define Screen Capture Applications starting from the LSAM menu system, the same maintenance can be done after accessing Screen Capature Applications from the Select screen that appears when F10 is pressed.
+
+#### Fields
+
+- **Application ID**: This field is a description of the purpose of any set of data capture rules.  Application IDs are always assigned to only one of three Agent automation tools (Operator Replay, Message Management and the SCANSPLF report scanning tool).  The current Application Type is indicated in the screen sub-title.  In past Agent software releases, the Application ID itself served as a key linking Capture Rules to the elemental master records of Agent automation tools.  Now, however, the text of this field can be change at will following the introduction of the App Key number.
+- **App Key #**: The permanent key value that links Capture Applications to the master records of Agent automation tools.
+
+#### Functions
+
+- **F3=Exit**: Return to the LSAM menu or to the Operator Replay Step maintenance screen.
+- **F5=Refresh**: Reload the list display with the latest data from the master file.
+- **F6=Add**: Branch to the screen for creating a new Application ID.
+- **F11=Sort**: Alters the list sort order between the Application ID text field and the App Key number field.
+- **F12=Cancel**: Return to the LSAM menu, or to the Operator Replay Step maintenance screen.
+- **F16=Search next**: Starts a new search, or continues searching after the last found record.
+
+#### Options
+
+- **1=Select**:  When this list display shows **Select** in the screen title, type option **1** to return the App Key # value back to the Agent automation tool's master record.
+- **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press **Enter** to proceed to the Change detail screen.
+- **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press **Enter** to proceed to the Copy detail screen.
+- **4=Delete**: To delete one or more records, type 4 next to each record. Press **Enter** to proceed to the Delete confirmation window.
+- **6=Work with Rules**: Advance to Work with Capture Definitions for the data capture rules that belong to the selected Application ID.  Working with data capture rules is described within the Screens and Windows section of Operator Replay, Message Management or the SCANSPLF report scanning utility under Events and Utilities.  That maintenance links to the next topic here about Working with Capture Response Rules.
+- **8=Export**: Select an Application ID and all its associated Data Capture Rules for export to a different LSAM installation (that has the same database level, that is, the same LSAM PTF DBLVL).
+
 ## Work with Capture Response Rules
 
 - **Screen Title**: Work with Capture Response Rules

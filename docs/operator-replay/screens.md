@@ -304,6 +304,7 @@ Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 
 - **Opt**: Use the <**Tab**> key to move the cursor to the line of a Step record and type an option number. Press <**Enter**> to perform the option function.
 - **Seq**: Sequence number controls the order in which steps are performed as part of a script.
 - **Label**: An optional label assigned to a step that becomes the target of a branching operation.
+- **CPT**: 'X' marks the spot where a Script Step is connected to a Screen Capture Application by storing the APP KEY value into the Step master record.
 - **Comments/String to send + F-Key**: A description of what each step in a script accomplishes. When <**F11**> is pressed, the list display rotates between Comments and the String to send data plust its Function key.
 
 #### Options
@@ -807,28 +808,34 @@ Enter=Confirm   F12=Cancel
 
 The LSAM utility command ADDRPYTOK can be used from IBM i command entry or from within a job submitted by OpCon to complete the same Create or Change maintenance of the Operator Replay Tokens as the LSAM screens above. This command is able to add new variables to the LSAM table when the do not already exist, or to update the value of an existing token.
 
-Also refer to the discussion under [Captured Data Response Rules](../events-utilities/captured-data-response-rules) about how the response rules can also be used to create or set the value of Operator Replay Token Variables.
+Also refer to the discussion under [Captured Data Response Rules](../events-utilities/captured-data-response-rules) about how the response rules can be used to create or set the value of Operator Replay Token Variables.
 
 ## Work with Screen Capture Definitions
+
+### LSAJ50R1 - Select Capture Application
+
+The title of this display shows to **Work with Capture Applications** when it is accessed directly from an LSAM Menu.  The sub-title of "Application type:" shows the Agent automation tool that has its own data capture definitions, such as "**OPERATOR REPLAY**".
+
+Details about working with Application IDs are provided at [Work with Data Capture Application IDs](/events-utilities/captured-data-response-rules.md#work-with-data-capture-application-ids).  
+
+After optionally creating or maintaining an appropriate Application ID, use the Application ID list display option 6 to Work with Capture Definitions for the currently selected Agent automation tool, as described next for the Operator Replay feature.
 
 ### OPRR40R1 - Work with Screen Capture Definitions
 
 #### Menu Pathways
 
-- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script step list (Opt 1) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy > F10=Capt Defn.
-- Main Menu > Operator replay menu (#4) > Work with Screen Capture Definitions (#5)
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script step list (Opt 1) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy > F10=Capt Defn. > Select Capture Application > 6=Work with Rules.
 
-Using the F10 pathway offers the advantage of carrying the Script Name and Step Sequence number from the current Step record and automatically loading it into new Capture Rules, or it will subset a list of existing Capture Rules already linked to the Step master record.
+- Main Menu > Operator replay menu (#4) > Work with Capture Applications > option 6 = Work with Rules.
+
+Using the F10 pathway is always required when linking a Screen Capture Application to an Operator Replay Script Step.  While it is possible to define Screen Capture Applications starting from the LSAM menu system, the same maintenance can be done after accessing Screen Capature Applications from the Select screen that appears when F10 is pressed.
 
 #### Fields
 
-- **Script**: When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the name of the Operator Replay script is fixed and it appears in the heading of this list display.
-- **(Script) Seq**: When this Work With list has been called using function key F10 from the Operator Replay Step record screen, the sequence number of the Operator Replay Step is fixed and it appears in the heading of this list display.
 - **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
 - **Opt**: Type option from list displayed near the top of this screen. Refer to options definitions, below.
-- **Rpy Script**: Replay Script name: Each screen capture definition is associated with a specific Operator Replay script name.
-- **Seq**: Replay Script Step Sequence number: Each screen capture definition is associated with a specific Operator Replay script step Sequence number. The screen capture operation is performed after the screen format is received, but before the string to send or the function key is executed.
-- **Application ID**: A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
+- **App Key**: The link to a data capture Application ID that represents a collection of data capture rules.
+- **Application ID**: A label that describes groups of the data capture rules that are linked to an Operator Replay script step Sequence number.
 - **Seq**: The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
 - **Row**: For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
 - **Col**: The column within the Row (above) where the data capture starts.
@@ -866,15 +873,18 @@ Using the F10 pathway offers the advantage of carrying the Script Name and Step 
 
 ###### Fields
 
-- **Application ID**:                      When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. This field does not appear for Add or Change.
-- **Capt Seq**:                            When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. This field does not appear for Add or Change.
-- **Script name**:                          Operator Replay Script name: Each screen capture definition is associated with a specific Operator Replay script name. When this screen is accessed using F10 from the Operator Script Step, the value for this field is supplied and protected. When this screen is accessed directly from the LSAM menu, a valid Script Name must be manually entered.
-- **Script Sequence**:                     Replay Script Step Sequence number: Each screen capture definition is associated with a specific Operator Replay script step Sequence number. When this screen is accessed using F10 from the Operator Step, the value for this field is supplied and protected. When this screen is accessed directly from the LSAM menu, a valid Script Sequence number must be manually entered.
-- **Application ID**:                       A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
-- **Capture sequence**:                     The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
-- **Screen row start pos(-ition)**:        For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
-- **Screen col(-umn) start pos(-ition)**:   The column within the Row (above) where the data capture starts.
-- **Length of data string**:                The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
+- **Copy-from record keys**: When Copying from one definition to another, the labels of the source record appear near the top of the screen as heading information. These fields do not appear for Add or Change.
+  - Application ID
+  - App Key
+  - Capture Sequence Number
+
+- **Application Key**: The key number used to link an Application ID to an Operator Replay Script Step record.
+- **Application ID**: A label that groups together all of the data capture rules that apply to a single Operator Replay script step Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
+- **Capture sequence**: The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
+- **Screen row start pos(-ition)**: For screen data capture, this is the row where the data capture operation starts. (For the SCANSPLF command, this is the report line, within a page, where data is found and captured.)
+- **Screen col(-umn) start pos(-ition)**: The column within the Row (above) where the data capture starts.
+- **Length of data string**: The length of data that should be captured, starting at the Row and Col specified. For Operator Replay screen data, up to 1920 characters of displayable data may be captured by a single capture rule. (For display formats larger than 24 X 80, more than one screen capture rule would be required to capture more than 1920 characters of data. For the SCANSPLF command, the capture length is normally limited to 132 characters, or one print line of data.)
+- **Capt Seq Description**: Text describing the content expected from the data capture parameters.
 
 #### Functions
 
@@ -889,11 +899,11 @@ Using the F10 pathway offers the advantage of carrying the Script Name and Step 
 
 The same data capture response functions support Screen data capture for Operator Replay, message data capture from the Message Management server job, and report data capture for the SCANSPLF utility command. 
 
-Refer to [Captured Data Response Rules](../events-utilities/captured-data-response-rules) for detailed information about managing Respose Rules.
+Refer to [Captured Data Response Rules](../events-utilities/captured-data-response-rules) for detailed information about managing Response Rules.
 
 #### Menu Pathways
 
-- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script steps (Opt 1) > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F10=Capt Defn > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > **F11=Response rules**.
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script steps (Opt 1) > F6=Add *- or -* option 2=Change *- or -* option 3=Copy > F10=Capt Defn > F6=Add *- or -* option 2=Change > **F11=Response rules**.
 - Main Menu > Operator replay menu (#4) > Work with Captured Data Response Rules (#6).
 
 Using the F11 function key to branch into Response Rules from the Capture Data definition display offers the advantage of automatically carrying the key data that links from the Capture Data Rule and inserting it into new Response Rule records.  F11 is also useful for automatically presenting a subsetted list of existing Response Rules that are connected to the screen data Capture Rule.
