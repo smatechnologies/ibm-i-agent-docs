@@ -381,14 +381,12 @@ Details about steps for building Capture Data Rules and their associated Respons
 5. Type **6** next to the Application ID and press **Enter** to continue to **Work with Screen Capture Definitions**.
 6. Press**F6=Add** to open the **Create Screen Capture Definition**.
   - Type the Capture Rule definition values, then press **Enter** to store a new Screen Capture Rule.
-  - After repeating this Step 6 to add any additional Capture Rules, press **F3** to return to the **Select Capture Appplication** list display.
   - Instructions for adding Response Rules to each Capture Rule are found in the unified topic  [Events and Utilities: Captured Data Response Rules](../events-utilities/captured-data-response-rules).
+  - After repeating this Step 6 to add any additional Capture Rules, press **F3** to return to the **Select Capture Appplication** list display.
 7. Type **1** next to the newly added Application ID, then press **Enter** to return to the Script Step maintenance display.
 
-Additional details about building Capture Data Rules and their associated Response Rules are described in the shared, unified topic [Events and Utilities: Captured Data Response Rules](../events-utilities/captured-data-response-rules).
-
 :::caution
-When working with the function key <**F10**> to add Data Capture Rules and Response Rules, it is easy to forget to press <**Enter**> after completing additions or updates at any of these lower levels of stacked programs.  Remember to record new data with the Enter key before exiting each maintenance function to return to a higher level in the program stack.
+When working with the function key **F10** to add Data Capture Rules and Response Rules, it is easy to forget to press **Enter** after completing additions or updates at any of these lower levels of stacked programs.  Remember to record new data with the Enter key before exiting each maintenance function to return to a higher level in the program stack.
 :::
 
 ### Ways to Add Captured Data <u>Response Rules</u>

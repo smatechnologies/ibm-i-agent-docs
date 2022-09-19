@@ -156,16 +156,20 @@ The Add, Change, Copy and Display screens are similar. The following examples gi
 
 #### Menu Pathways
 
--   Main Menu > Message management menu (#2) > Message management parameters (#1) > F6=Add
--   Main Menu > Message management menu (#2) > Message management parameters (#1) > 2=Change
--   Main Menu > Message management menu (#2) > Message management parameters (#1) > 3=Copy
--   Main Menu > Message management menu (#2) > Message management parameters (#1) > 5=Display
+- Main Menu > Message management menu (#2) > Message management parameters (#1) > F6=Add
+- Main Menu > Message management menu (#2) > Message management parameters (#1) > 2=Change
+- Main Menu > Message management menu (#2) > Message management parameters (#1) > 3=Copy
+- Main Menu > Message management menu (#2) > Message management parameters (#1) > 5=Display
 
-#### TRPMSGR2A (Format A), TRPMSGR2B (Format B) or TRPMSGR2C (Format C) - Message Management Parameters
+#### Four display formats:
+- TRPMSGR2A (Format A): Message filtering parameters and primary response actions.
+- TRPMSGR2B (Format B): A full screen display accommdates the optional Event (or Command) string.
+- TRPMSGR2C (Format C): Optional display for Effective Date/Time message filtering rules.
+- TRPMSGR2DC (Format D): Optional display for Threshold management rules.
 
 #### F6 = Add
 
-There are three display pages used to define Message Management parameters.  Use the <**Enter**> key to advance to the next page, or use function key <**F12**> to go back to the previous page. Pressing <**Enter**> on the last page completes updates for Add, Change and Copy, or continues to the next option processing for Display. Pressing <**F12**> at the first page returns to the list display (retaining the last option that was being processed).
+There are four display pages used to define Message Management parameters.  Use the **Enter** key to advance to the next page, or use function key **F12** to go back to the previous page. Pressing **Enter** on the last page completes updates for Add, Change and Copy, or continues to the next option processing for Display. Pressing **F12** at the first page returns to the list display (retaining the last option that was being processed).
 
 #### Option 2 = Change, 3 = Copy
 
@@ -176,6 +180,9 @@ The same screens as for F6=Add, TRPMSGR2A - C, appear for options 2=Change and 3
 The screens for option 5 = Display are labeled TRPMSGR5A - C, but they appear the same as the screens for F6=Add. The exception is that there are no prompting function keys such as F4=Prompt appearing in the R5 formats.
 
 #### Fields
+
+##### Format A
+**SELECT -**
 - **Message Queue**: The message queue to be examined for messages. 
 - **Message Queue Library**: The library in the DB2 UDB (DB2/400) database where the message queue is located.
 - **Status**: A = active, I = inactive. Records marked with a status of I = inactive will not be processed by Message Management.
@@ -195,6 +202,8 @@ The screens for option 5 = Display are labeled TRPMSGR5A - C, but they appear th
 :::tip
 This field must not be confused with the Rec Key #, which is a number that is unique within the entire Parameters master file. The Rec Key # is an easy way to uniquely identify a Parameters record, such as in  the SETMSGTHR (set message threshold) command, instead of having to type all seven of the character key fields.            
 :::
+
+**FILTER -**
 - **Compare Text** (variable in message): 
   -   Use this field to specify a text string that will be compared to the trapped message primary text (or secondary text, or both texts in a combined buffer) in order to qualify the message for handling by the LSAM Message Management server. Using Dynamic Variables, up to 999 characters can be specified as the Compare Text, or up to 30 characters can be typed directly into this field. Typed text can also be combined with Dynamic Variables. 
   -   Normally this field is set to blanks, meaning that no checking of message content is performed. Dynamic Variable tokens can be used in this field, so that the tokens will be replaced at run time with a value to search for in the message text.                        
@@ -221,6 +230,8 @@ In earlier LSAM versions, a special value of *NOVAR was used to mean that no che
   - This field specifies the length of the character strings that are used to evaluate the Compare Text versus the message text buffer.
   - When this field is left at zeros, the length is assumed to be through the last non-blank character of the Compare Text field.
   - This same rule applies to the value that replaces one or more Dynamic Variable token(s). This Length value (or the assumed length) will determine the size of the character string extracted from the message text buffer, starting from the Start Position.
+
+**REACT -**
 - **Answer Type** (R, E, B, N): 
   -   R = Reply to message 
   -   E = Event: IBM i command, or OpCon Event sent to SAM 
@@ -241,13 +252,28 @@ In earlier LSAM versions, a special value of *NOVAR was used to mean that no che
   -   When the Message Reply field is set to one of these special values, type into the first field the name of an alternate message queue, or the name of a user-defined program that may be used to retrieve or calculate the message reply string.                     
   -   Type into the second field the library location of either type of object.       
   -   Refer to the discussion of How Message Management Works for more information about these two fields.
-- **Event Command** (F13=More): 
-  - This field contains the first several characters of the optional command to be executed when the message is detected. The command can be an OpCon event command name and its parameters, or it can be any IBM i command and parameters. Use the function keys <**F4**>, <**F6**>, <**F8**>, and <**F10**> as desired for assistance in formatting the commands and Dynamic Variable or $VAR tokens that may be entered in this field.
-  - To enter more command characters, press function key <**F13**> or PageDown. Function keys **F4** or **F8** can also be used to prompt a command. After the command string is returned to this display, if the command string is longer than 210 characters, this field will be protected and displayed in cyan blue. In that case, it will become possible to press the **PageDown** function key to branch to a full screen display where long commands may be modified and extended. 
+- **Capture App ID / Key**:
+  - The descriptive text for the Application ID is followed by the numeric APP KEY value that links this parameters record to Message Data Capture Definitions. Function key **F10** can be used to show a list of existing Capture Rules, from  which one may be selected with option **1** and returned to this field. During the branch to the Capture Rules function, a new Application ID may be defined and then selected for use with this Parameters record.
+- **Before/After Evt, Reply**:
+  - This option controls whether the Application's Capture Data Rules and any associated Response Rules will be executed before the Event Command and/or Reply action of this Parameters record will be completed. Older versions of the Agent did not provide this option, so the default behavior was that Capture Applications would always execute After the Parameters actions were completed. This would sometimes require that two Parameters records be created in order to set and utilize Dynamic Variable values required by either the Event Command or by the Reply field. Now, however, the Before option allows the Dynamic Variable values to be computed and set first, so that only one Parameters record is usually required to manage a message and it can rely on settings for the Event command or Reply code that could vary based on the content of the message.
+
+**OPTIONS -**
+These two options control which additional display formats might appear as **Enter** is pressed during the view or maintenance of a Message Management Parameters master record.
+
+- **Effective Times or Dates**: 1=Yes, 0 (zero) or blank = No.
+- **Threshold**: 1=Yes, 0 (zero) or blank = No.
+
+##### Format B
+
+**COMMAND -**
+- **Event Command**: This field contains the entire command to be executed when the message Paramters **Answer Type** field value is E=Event or B=Both. The command can be an OpCon event command name and its parameters, or it can be any IBM i command and parameters. Use various function keys **F4**, **F8**, **F9**, and **F23** as desired for assistance in formatting the commands and Dynamic Variable or $VAR tokens that may be entered in this field.
   :::tip
-  Also refer to the discussion below about predefined OpCon Event Command variables that are supported by the LSAM in this field. 
+  Also refer to the discussions just below about predefined OpCon Event Commands and $-System Variables (F23=$VAR) that are supported by the LSAM in this field. 
   :::
 
+##### Format C
+
+**EFFECTIVE DATE/TIME -**
 - **Effective start date**: 
 This is an ISO-standard date field. The default value for this field which means "not used" is 0001-01-01, where te digits are CCYY-MM-DD (century, year, month, day). When the date is set to an actual value, a message will not be processed unless the message issue date occurs on or after this date.
 - **Effective end date**:
@@ -264,7 +290,7 @@ This is an ISO-standard date field. The default value for this field which means
    - The format of this time field is HH:MM:SS (hours, minutes, seconds), and the default value that means "not used" includes the colons, as "00:00:00". To indicate midnight, use the value of 24:00:00.
 
     :::tip
-    The function of this field varies depending on the setting of the Link option (listed below), as follows
+    The function of this field varies depending on the setting of the Link option (listed below), as follows...
     :::
    - When the time field is NOT linked to the date field.
    - When the time is set to a valid value (00:00:01 - 24:00:00), a message will not be processed unless its issue time is less than, or equal to this time on a given day. However, if the start time is greater than the end time (and the end time is not zeros), this  indicates that the time frame crosses the midnight boundary into the next day, so the comparison logic is opposite, and the message time must be greater than or equal to this start time.    
@@ -284,6 +310,10 @@ This is an ISO-standard date field. The default value for this field which means
 - **End Effective DOM** (day of month):
    - This field indicates which day of the month ends the window of time within the month that a message may be processed by this Parameters rule. If the Start Effective DOM is zeros, then a message will be processed from the first day of the month until (through) this day. The special value of 32 is used to indicate the last day of any month, regardless of the number of days in that month. 
    - If the End DOM is less than the Start DOM, this indicates that the effective processing time crosses the boundary between months, so the comparison logic is opposite and the message issue date must be greater than or equal to this day of the month.
+
+##### Format d
+
+**TRHESHOLD -**
 - **Threshold DynVar, Count**: 
    - The first field holds the name of an LSAM Dynamic Variable where the activity count for this Parameters record is maintained. When this display format is presented for an existing Parameters record, the current count found in the Dynamic Variable is shown in the cyan blue field to the right of the Dynamic Variable name. 
    - When this field is blank, there will be no threshold controls. But when a threshold is specified, the count of message activity for a Parameters record is always stored in a Dynamic Variable that has been defined as numeric, with 7 digits and no decimal places. 
@@ -303,73 +333,66 @@ This is an ISO-standard date field. The default value for this field which means
 
     This option controls which date is compared to the message issue date to determine if the Duration period for the counter has expired. Using the Message Management Parameters date of  the last time this message was processed allows for the Dynamic Variable counter value to be  changed from outside of Message Management without affecting the date. However, if changes to the Dynamic Variable counter should be considered as valid activity within the duration period, then use the value V. Both current date values appear on the Change and Display formats, regardless of the setting of this control value.
 
-- **Capture Application ID**:
-  - The key value that links this parameters record to one or a group of Message Data Capture Definitions. Function key F10 can be used to show a list of existing Capture Rules, from  which one may be selected with option 1 and returned to this field. During the branch to the Capture Rules function, a new Capture ID may be defined and then selected for use with this Parameters record. The Capture ID does not have to exist to enter its value in this field, but if an exact match does not exist at run time, then no message data will be captured. Using the F10 prompting function helps to avoid the potential of keystroke errors when typing a long ID name. Space characters are allowed within the Capture ID string.
-- **Before/After Evt, Reply**:
-  - This option controls whether the Capture Application and any associated Response Rules will be executed before the Event Command and Reply action of this Parameters record will be completed. Older versions of the Agent did not provide this option, so the default behavior was that Capture Applications would always execute After the Parameters actions were completed. This would sometimes require that two Parameters records be created in order to set and utilize Dynamic Variable values required by either the Event Command or by the Reply field. Now, however, the Before option allows the Dynamic Variable values to be computed and set first, so that only one Parameters record is usually required to manage a message.
+
 
 #### Functions
 
--   **F3=Exit**: Quits the window and returns to the list of trapped  messages without completing any updates.
--   **F4=Prompt Evt**: When the cursor is positioned in the Event command field, <**F4**> causes a window of OpCon Event commands to appear from which a value may be selected and returned to this field.
+- **F3=Exit**: Quits the window and returns to the list of trapped  messages without completing any updates.
+- **F5=Refresh**: Resets the current display page, replacing any new data that was typed, or re-fetching the view-only display of master file data.
+- **F9=Prompt Evt**: When the cursor is positioned in the Event command field, <**F4**> causes a window of OpCon Event commands to appear from which a value may be selected and returned to this field.
     :::tip
     Using <**F4**> for this field is especially helpful, because after an Event is selected from the event list, the program uses the IBM i command prompting to show the parameters that are appropriate for each Event. When <**Enter**> is pressed from the command prompting window, the Event command string is then inserted into the Event command field with all the correct formatting and punctuation. When CPYTOMSGIN is selected from the list of Event commands, a second prompt window will appear from which may be selected the raw OpCon Event command syntax.
     :::
--   **F5=Refresh**: This function key will restore the current display format (TRPMSGR2A, 2B or 2C) to its original state that was first presented when the Add, Change or Copy function was started. Using F5=Refresh is isolated to the current display, for example, using F5 on display format 2B does not affect format 2A. However, it is
-    possible to use F12 to go back to format 2A and then press F5 to restore format 2A to its original state.
--   **F6=DynVar**: This function key, when pressed while the cursor is positioned in a supported field, causes a window listing available Dynamic Variables to appear. PageDown as necessary, then position the cursor over the desired variable name and press <**Enter**> to select that variable so that it will be inserted as a token into the supported field. The token will be inserted at the position where the cursor was when <**F6**> was pressed. Supported fields include: Compare Text, Threshold Counter and Event Command.
--   **F8=Prompt CMD**: When the cursor is positioned in the Event command field, <**F8**> causes the job to branch into IBM i command prompting. If an IBM i command name was typed before <**F8**> was pressed, then that specific command will be prompt. Otherwise, a general command search window will appear to help find the desired command. (Note that this IBM command prompting will not allow a command to be executed.)
--   **F10=Capture**: This function key causes a branch to Work with Message Data Capture Definitions. From the list of existing Capture Definitions, option 1=Select may be used to return a Capture ID into the field on the Message Management Parameters record. Using F10 is recommended for this field because of the increased possibility of keystroke errors when long ID names may be used. It is possible to add new Capture Definitions while branching with this function key, and then to select the new ID for use.
--   **F10=$VAR (TRPMSGR2A, TRPMSGR6)**: When the cursor is positioned within a field that supports the Agent's $-System variables, F10 causes a window of supported $VARs to pop up. Position the cursor over the desired $VAR name and press Enter to insert that variable into the location where the cursor was located on the screen format A display.
+- **F8=DynVar**: This function key, when pressed while the cursor is positioned in a supported field, causes a window listing available Dynamic Variables to appear. PageDown as necessary, then position the cursor over the desired variable name and press <**Enter**> to select that variable so that it will be inserted as a token into the supported field. The token will be inserted at the position where the cursor was when <**F6**> was pressed. Supported fields include: Compare Text, Threshold Counter and Event Command.
+- **F4=Prompt (IBM i) CMD**: When the cursor is positioned in the Event command field, **F4** causes the job to branch into IBM i command prompting. If an IBM i command name was typed before **F4** was pressed, then that specific command will be prompt. Otherwise, a general command search window will appear to help find the desired command. (Note that this IBM command prompting will not allow a command to be executed.)
+- **F10=AppID**: This function key causes a branch to the Select Capture Application list display. From the list, option **1=Select** may be used to return an Application Key into the field on the Message Management Parameters record (and to display the descriptive text for the Application ID). While using **F10** it is possible to registere a new Application and then build Message Data Capture Rules and any associated Response Rules.  After new data has been entered, the new Application ID can be selected to link it to the Message Management Parameters master record.
+- **F23=$VAR**: When the cursor is positioned within a field that supports the Agent's $-System Variables, F10 causes a window of supported $VARs to pop up. Position the cursor over the desired $VAR name and press Enter to insert that variable $TEXT STRING into the location where the cursor was located on the display.
+
+- **F12=Prev page, Cancel**: From display formats TRPMSGR2B and 2C, this function key returns the display to the previous display format (2A or 2B). Use the Enter key and F12 to move among the three display formats. However, F12 pressed from display format 2A will cause an exit from the maintenance function (without updating any data) and the display returns to the "Work with" list display. F3=Exit can be used to cancel all updates and return to the list display from any of the display formats.
     :::tip
-    F10=$VAR is also supported in the same way after using PageDown or F13=More to work with a longer Event command in screen format TRPMSGR6.
-    :::
--   **F10=Capt AppID (TRPMSGR2C)**: This function key causes a branch to Work with Message Data Capture Definitions. From the list of existing Capture Definitions, option 1=Select may be used to return a Capture ID into the field on the Message Management Parameters record. Using F10 is recommended for this field because of the
-    increased possibility of keystroke errors when long ID names may be used. It is possible to add new Capture Definitions while branching with this function key, and then to select the new ID for use.
--   **F12=Prev page, Cancel**: From display formats TRPMSGR2B and 2C, this function key returns the display to the previous display format (2A or 2B). Use the Enter key and F12 to move among the three display formats. However, F12 pressed from display format 2A will cause an exit from the maintenance function (without updating any data) and the display returns to the "Work with" list display. F3=Exit can be used to cancel all updates and return to the list display from any of the display formats.
-    :::tip
-    Using the Enter key from display format 2C will commit all changes from all three display formats to the database.
+    Using the Enter key from display format 2D will commit all changes from all four display formats to the database.
     :::
 -   **F20=Reset Thr**: Similar to the SETMSGTHR command, this function key can be used to force the threshold count (stored in an LSAM Dynamic Variable) to be reset to zeros. Resetting the threshold count to zeros makes the dates of last activity have no meaning; the dates are only used when the threshold count is 1 or greater.
 
-### $-System Variables Supported in Event Commands
+### $-System Variables Supported for Message Management
 
 Event commands that are processed by Message Management may include many of the same token variables as are supported by OpCon. However, there is a difference in the syntax. OpCon requires that variables begin with a dollar sign ($) and that the whole variable name be enclosed in double square brackets, for example, \[\[$JOB NAME\]\]. The IBM i green screen workstation does not support the square brackets, so they are not required when inserting variables into the Event command, for example, $JOB NAME. The following table lists the variables that the LSAM Message Management facility can detect and replace when responding to a
 message.
 
 #### $-System Variables
--  **$FREQUENCY NAME**:   The name of the OpCon frequency table that was assigned to the job that issued the message.
--  **$IBM JOB ID**:       The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME.
--  **$IBM JOB NAME**:     The IBM i current Job Name.
--  **$IBM JOB NBR**:      The IBM i current Job Number (always 6 digits, but handled as characters).
--  **$IBM JOB USER**:     The IBM i current job User Name (IBM i User Profile that started the job).
--  **$JOBID**:            The OpCon job identifier, a 10-digit number.
--  **$JOBID CMP**:        The OpCon job name and job identifier, joined into a single string with blanks compressed out.
--  **$JOBID LONG**:       The OpCon job name followed by the job identifier, with all blanks retained in the string.
--  **$JOB NAME**:         The OpCon job name.
--  **$JOB LONG NAME**:    The long format of the complete OpCon job name.
--  **$MACHINE NAME**:     The OpCon name for the LSAM job scheduler, normally the same as the LSAM Name specified in the LSAM Parameters (but the value supplied by OpCon with job start requests is used here).
--  **$MSG**:              The actual primary text from the message that was trapped. (Refer to note below about editing the content of the captured message text.)
--  **$MSGID**:            The IBM i message ID currently being processed, in a format like CPF1234.
--  **$MSGQ**:             The name of the message queue where the current message was found.
--  **$MSGQ LIB**:         The library location of the message queue.
--  **$SCHEDULE DATE**:    The date of the OpCon schedule under which the job that issued the message was started, in the (*ISO0) format of CCYYMMDD.
--  **$SCHEDULE NAME**:    The name of the OpCon schedule under which the job that issued a message was started.
+
+| Variable Name        | Description          |
+| ---------------------| -----------          |
+| **$FREQUENCY NAME**  | The name of the OpCon frequency table that was assigned to the job that issued the message. |
+| **$IBM JOB ID**      | The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME. |
+| **$IBM JOB NAME**    | The IBM i current Job Name. |
+| **$IBM JOB NBR**     | The IBM i current Job Number (always 6 digits, but handled as characters). |
+|  **$JOBID**          | The OpCon job identifier, a 10-digit number. |
+| **$JOBID CMP**       | The OpCon job name and job identifier, joined into a single string with blanks compressed out. |
+| **$JOBID LONG**      | The OpCon job name followed by the job identifier, with all blanks retained in the string. |
+| **$JOB NAME**        | The OpCon job name. |
+| **$JOB LONG NAME**   | The long format of the complete OpCon job name. |
+| **$MACHINE NAME**    | The OpCon name for the LSAM job scheduler, normally the same as the LSAM Name specified in the LSAM Parameters (but the value supplied by OpCon with job start requests is used here). |
+| **$MSG**             | The actual primary text from the message that was trapped. (Refer to note below about editing the content of the captured message text.) |
+| **$MSGID**           | The IBM i message ID currently being processed, in a format like CPF1234. |
+| **$MSGQ**            | The name of the message queue where the current message was found. |
+| **$MSGQ LIB**        | The library location of the message queue. |
+| **$SCHEDULE DATE**   | The date of the OpCon schedule under which the job that issued the message was started, in the (*ISO0) format of CCYYMMDD. |
+| **$SCHEDULE NAME**   | The name of the OpCon schedule under which the job that issued a message was started. |
 
 :::tip 
-The content of the $MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of $MSG is used in LSAM and IBM i commands. Use the Message Management Performance Parameters (described above) to control the edit of the $MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.
+The content of the $MSG variable may be edited to eliminate or escape any single quote or comma characters. This prevents possible errors when the value of $MSG is used in LSAM and IBM i commands. Use the Message Management <u>Performance</u> Parameters (described above) to control the edit of the $MSG content. Additional discussion of the edit codes for single quotes and commas may be found in Events and Utilities Menu, under the subject of Captured Data Response Rules.
 
 To use OpCon token variables, other than the variables listed above, include them in the Event Command text by surrounding them with braces (curly brackets) {{ }}. OpCon will recognize the braces (curly brackets) in the same way as it recognizes square brackets \[\[ \]\]. This rule was established to support operating systems such as IBM i where the native EBCDIC character set does not support typing of square brackets. Do not use any brackets when using one of the variable names in the table above, because the LSAM Message Manager will replace the
 variable with its value and leave the brackets in the text. This could cause a problem with the OpCon token substitution logic.
 
-However, to have OpCon replace any of the other token variables that it
-can manage use the braces (curly brackets) to surround the token name.
+However, to have OpCon replace any of the other token variables that it can manage use the doubled braces (curly brackets) to surround the token name.
 :::
 
 :::info Example
-Syntax for circular OpCon Token variables in an background LSAM Message Management Event command.
+Syntax for OpCon Token variables in an LSAM Message Management: External Event command.
 ```
-{{$SCHEDULE DATE}} 
+$CONSOLE:DISPLAY,'Ready to process jobs for this Schedule Date: {{$SCHEDULE DATE}}'
 ```
 :::
 

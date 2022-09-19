@@ -101,6 +101,32 @@ comparisons. If it is necessary to compare to blanks, use a Dynamic Variable in 
 
 One or more LSAM Dynamic Variables may be specified in the Compare Text field. In this case, each Dynamic Variable is first replaced with a character string produced by the LSAM Dynamic Variable read routine. Then, the resulting text string is subjected to the same rules about length as if the string were typed directly in the Compare Text field. Using more than one Dynamic Variable makes it possible to specify up to the full length of 999 characters as the Compare Text value. (Each Dynamic Variable can produce a value up to 128 characters in length.)
 
+### Message Management Parameters -- Link to Capture Application
+
+Message Management Parameter master records can be connected to an optional Message Data Capture Application record. Message Data Capture Applications are defined separately, and they can be re-used for multiple different Parameter records. 
+
+Use the following maintenance fields on the maintenance display to connect a Capture Application to the Parameters master record, and to define when the Capture Application will execute.
+
+### Capture Application ID
+
+Use the F10 function key to branch to the Select Capture Application list display. From this display type option **1** next to the Application ID that should be linked to the Parameters record, then press Enter to complete the link and return to the Parameters maintenance display. 
+
+Details about working with Application IDs are provided at [Work with Data Capture Application IDs](/events-utilities/captured-data-response-rules.md#work-with-data-capture-application-ids).
+
+The Select Capture Application list display offers option 6=Work with rules to link to the Work with Message Data Capture Definitions where new Capture Definitions can be immediately maintained, if nessary.  When an appropriare Application ID has been registered it can then be selected for a link to the Parameters record.  Details about this procedure are provided below under [Work with Message Data Capture Definitions](./screens.md#work-with-message-data-capture-definitions).
+
+### Before/After Evt, Reply
+
+Type either a 'B' or an 'A' into this field to control when the Message Data Capture Application will execute. Before this field existed, the default was to always execute a Capture Application after the Parameters record Reply and/or Event Command were executed. Therefore, when this field is blank, the default is the same as entering an 'A' in this field.
+
+It is sometimes very important that the Capture Data Application be performed Before the Parameters Reply and/or Event command. Using this method makes it possible to compute a Dynamic Variable value that can be used as the Reply value and/or as a part of the Event Command.
+
+When the Before/After option did not exist, it was often necessary to create two Parameters records, where the first Parameter record did nothing but link to the Capture Application, so that the Response Rules could be executed. Then, a second Parameters record would be able to utilize the Dynamic Variable tokens. But with the Before/After field, the strategy is much easier to recognize and configure.
+
+Sometimes it is not important that the Capture Application execute After the Parameters record has already done its job, such as when the Capture Application is linking to Response Rules that are simply notifying OpCon about the message action that was already taken.
+
+If an older set of Message Management Parameters is being updated with a specific setting of 'B' for the Before/After option, be sure to carefully evaluate the linked Application and its Response Rules. Also look for any secondary Parameters records that have all the same six primary message filter keys, but a unique sequence number. Sometimes, the additional rules with higher sequence numbers may no longer be needed.
+
 ### Message Management Parameters -- Date and Time Constraints
 
 Following qualification by the message profile fields above, an individual message may be further qualified for processing, or bypassing, according to the date and time the message was issued. 
@@ -135,34 +161,6 @@ Dynamic Variables are used to hold the Threshold count (that is compared to the 
 Similarly, the option of choosing the last activity date from either the Parameters record itself or from the Dynamic Variable record makes it possible to either include or exclude activity outside of Message Management that might change the Dynamic Variable value. 
 
 The command SETMSGTHR (set message threshold) can be used, for example, as a Captured Data Response Rule command, to force a threshold count to a different number or to reset it to zeros. Similarly, the command ADDMSGTHR (increase message threshold count) can be used to increase the threshold count stored in a Dynamic Variable that is associated with the Message Management Parameters record identified in the command's parameters.
-
-### Message Management Parameters -- Link to Capture Application
-
-The last fields of the Message Management Parameter master record maintenance are used to connect an optional Message Data Capture Application to the Parameter record. Message Data Capture Applications are defined separately, and they can be re-used for multiple different Parameter records. (This is different from how Capture Data works for the Operator Replay green screen capture, or the SCANSPLF utility where the Scan Rules are the capture rules.)
-
-Use the following maintenance fields on the maintenance display to connect a Capture Application to the Parameters master record, and to define when the Capture Application will execute.
-
-### Capture Application ID
-
-It is possible to type a known Message Capture Application ID into this field; however, the text must match exactly (at this time - this method will change to a more flexible method with LSAM version 21.1), so it is critical that the text be a perfect match to the Application ID text string. This is made easy by using the F10 function key to branch to the Work with Message Data Capture Definitions list display.
-
-From the Capture Definitions list display, type option 1 next to the Definition that should be linked to the Parameters record, then press Enter to complete the link and return to the Parameters maintenance display. 
-
-The Work with Capture function can be used to build a new Capture Definition immediately, so that it can then be selected for a link to the Parameters record; however, when using this technique, be careful to commit the Parameters record maintenance with the Enter key after selecting the link.
-
-Usually, it is safer to first complete the Parameters maintenance, then define the Message Data Capture Definition from the LSAM menu option, and finally re-enter the Parameters Maintenance with option 2=Change. After that, pressing Enter twice navigates back to the Parameters maintenance page where function key F10 can be used to access the Capture Definition list, so that option 1=Select can be used to complete the link and assure that the Application ID of the Capture Definition is correctly named in the Parameters record.
-
-### Before/After Evt, Reply
-
-Type either a 'B' or an 'A' into this field to control when the Message Data Capture Application will execute. Before this field existed, the default was to always execute a Capture Application after the Parameters record Reply and/or Event Command were executed. Therefore, when this field is blank, the default is the same as entering an 'A' in this field.
-
-It is sometimes very important that the Capture Data Application be performed Before the Parameters Reply and/or Event command. Using this method makes it possible to compute a Dynamic Variable value that can be used as the Reply value and/or as a part of the Event Command.
-
-When the Before/After option did not exist, it was often necessary to create two Parameters records, where the first Parameter record did nothing but link to the Capture Application, so that the Response Rules could be executed. Then, a second Parameters record would be able to utilize the Dynamic Variable tokens. But with the Before/After field, the strategy is much easier to recognize and configure.
-
-Sometimes it is not important that the Capture Application execute After the Parameters record has already done its job, such as when the Capture Application is linking to Response Rules that are simply notifying OpCon about the message action that was already taken.
-
-If an older set of Message Management Parameters is being updated with a specific setting of 'B' for the Before/After option, be sure to carefully evaluate the linked Application and its Response Rules. Also look for any secondary Parameters records that have all the same six primary message filter keys, but a unique sequence number. Sometimes, the additional rules with higher sequence numbers may no longer be needed.
 
 ## Message Management Technical Support Tools
 
@@ -362,16 +360,16 @@ order expected. In other words, a task that should have set the Dynamic Variable
 
 ### OpCon IBM i Job Master Message Event Command Options
 
-The OpCon job master record format for IBM i jobs supports a tab where one or more messages may be registered that could occur during the job execution. Job-level message management takes priority over the LSAM's own global Message Management server, but both types of message management are handled by the same LSAM server job. Therefore, the same capabilities as are available to the LSAM's own global Message Management server are also available to the job-level message management definitions.
+The OpCon job master record format for IBM i jobs supports a tab where one or more messages may be registered that could occur during the job execution. Job-level message management takes priority over the LSAM's own global Message Management server, but both types of message management are handled by the same LSAM server job. Therefore, many of the capabilities as are available to the LSAM's own global Message Management server are also available to the job-level message management definitions.
 
-However, the OpCon job master record maintenance routine (as of the date of this publication) is not currently programmed to directly handle the registration of IBM commands or LSAM Dynamic Variables. Instead, special syntax and rules for the OpCon Event command $CONSOLE:DISPLAY have been defined. These special rules only work for the IBM i LSAM and they are not supported by any other LSAM.
+However, the OpCon job master record maintenance routine is not currently programmed to directly handle the registration of IBM commands. Instead, special syntax and rules for the OpCon Event command $CONSOLE:DISPLAY have been defined. These special rules only work for the IBM i LSAM and they are not supported by any other LSAM.
 
 #### Using IBM Commands for Event Response
 
 OpCon job master maintenance only supports the prompting and updating of OpCon $-commands as Event commands that may be executed in response to messages generated by IBM i jobs. However, the following work-around has been developed for this restriction in the OpCon User Interface data entry rules, so that it is possible to register an IBM-format command that will be executed by the IBM i LSAM, instead of sending an Event command back to OpCon. 
 
 ##### Work-around for specifying IBM i commands as Message Management Events:
-To register an IBM-format command in the OpCon job master record, select the OpCon Event command named $CONSOLE:DISPLAY. Then, when replacing the <**message**> parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
+To register an IBM-format command in the OpCon job master record, select the OpCon Event command named $CONSOLE:DISPLAY. Then, when replacing the **message** parameter for this command, insert the reserved character string: 'QCMD:' followed by any IBM-format command that is desired. Following is an example of how the final Event command would look:
 
 :::info Example
 ```
@@ -394,6 +392,10 @@ $CONSOLE:DISPLAY,QCMD:{DYNVAR1}
 :::
 In the example above, after the required special character sequence QCMD: there appears only the LSAM Dynamic Variable name (surrounded by the required special characters that are registered in the LSAM environment to denote a Dynamic Variable token; some environments may use different characters to mark the start and end of a Dynamic Variable token). The LSAM Message Manager retrieves the character string that appears after the QCMD: sequence, then it checks for and replaces the Dynamic Variable token with its current value. In this example, the token must be replaced by a complete IBM-format command string in order for the event response to occur.
 
+:::tip
+This special convention for using "QCMD:" to insert IBM i commands could be used to insert one of the IBM i Agent's XML-formatted External Event comamnds, such as XNTYEMAIL.  The XML format of the "Notify by eMail" command is especially useful because it allows comma characters to be included in the email subject line or message body.
+:::
+
 ## Message Data Capture and Response Rules
 
 This section explains how to configure Message Data Capture. Agent features that can capture data are supported by a cental reference to the universal [Captured Data Response Rules](../events-utilities/captured-data-response-rules.md) documentation.
@@ -404,90 +406,48 @@ The universal Response Rule capability provided with the IBM i LSAM enables a fl
 
 ### How to Configure Message Data Capture
 
-1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on STRSMA and LSAMENU command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
-2. Enter **2** to choose the **Message management menu** in the LSAM Main Menu.
-3. Enter **10** to choose **Work with Message Data Capture Definitions** in the Message management menu.
-4. Viewing the Work with Message Data Capture Definitions list, take note of existing Application Identifiers (if any) so that a unique name may be chosen for the new Application.
-5. From Work with Message Data Capture Definitions, press function key **F6** to branch to the Create Message Data Capture Definition screen.
-6. Type a new value in the Application Identifier field. Use words that represent the type of data to be captured or the purpose of this capture rule.
-7. More than one record may be added for the same Application Identifier rule, such as when multiple data elements should be captured from the same message text, so type a unique Capture Sequence value, or just use the default value of 10 if there is only one record for this Application.
-8. Complete the other message capture definition fields. (Refer to the section below about Message Management Screens and Windows for more information about these fields.)
-9. Before pressing **Enter** to complete writing the new Capture Definition record to the LSAM database file, consider using function key **F11=Response rules** to link one or more response rules (commands to execute and other functions) to this Capture Definition. (Creating Response Rules is outlined next.)
+#### Adding a Data Capture Rule from the LSAM Menu System
 
-    - If **F11** was used to branch to Captured Data Response rules, remember to complete the process of entering the Capture Definition after returning to this screen by pressing **Enter**.
+1. In the command line, enter **SMAGPL/STRSMA**. For more information on STRSMA command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
+2. Enter **2** to choose the **Message Management menu** in the SMA Main Menu.
+3. Enter **10** to choose **Work with Message Data Capture Definitions**.
+4. Press **F6** to Add Capture Application ID if the desired Application does not already exist.
+  - Notice that the Application type value in the line 2 title line restricts the Application ID list to only Message Management.
+  - Type the Application ID text, then press **Enter** to store the new Application ID.
+5. Type **6** next to the Application ID and press **Enter** to continue to **Work with Message Data Capture Definitions**.
+6. Press**F6=Add** to open the **Create Message Data Capture Definition**.
+  - Type the Capture Rule definition values, then press **Enter** to store a new Capture Rule.
 
-10. After completing the entry of one or more Message Data Capture Definitions, press **F3** to exit this function.
+Details about steps for building Capture Data Rules and their associated Response Rules are described in the shared, unified topic [Events and Utilities: Captured Data Response Rules](../events-utilities/captured-data-response-rules).
 
-    - If this function was entered using **F10** from Message Management Parameters, this will return the screen to that maintenance function, so skip the next two steps of this process.
+#### Adding a Data Capture Rule from Within Operator Replay Script Step Maintenance
 
-11. Enter **1** to choose the **Message management parameters** option.
-12. Type option **2** to select the appropriate Message Management  Parameters record that will use the Message Data Capture definition.
-13. Use the **TAB** key to move the cursor into the field named **Captured Application ID**. Type in the same name of the Application Identifier as was just added above.
-
-    :::tip
-    It is possible to press the function key F10=Capture to display a list of existing capture Application IDs and then type option 1=Select, after which the Enter key may be pressed to return that value to the Message Management Parameters record. This helps prevent typing errors on long names.
-    :::
-
-14. After typing or selecting the Capture Application ID, press **Enter** to update the Message Management Parameters record.
-
-After a Message Data Capture Definition has been created and registered to a Message Management Parameter record, it is possible to also register Captured Data Response Rules that are executed whenever the Message Data Capture function is being executed (during processing of a real message by the LSAM Message Management server job).
-
-Remember that Captured Data Response Rules can also be created for Operator Replay Scripts and for the SCANSPLF command - spool file scan rules. However, Captured Data Response Rules cannot be shared among these three LSAM features that use them. They are specially categorized to match each LSAM function that is performing data capture. This is why there is a separate entry for Work with Capture Response Rules found on each of the LSAM function sub-menus. This is also why the convenience function key **F11=Response rules** has been added to the maintenance function where each type of data capture is defined, making it easy to avoid confusion about where the Captured Data Response Rule will be used.
-
-#### Adding a Response Rule from the LSAM Menu System
-
-1. In the command line, enter **STRSMA** or **LSAMENU**. For more information on command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) and the [LSAMENU Command](../operations/lsam.md#the-lsamenu-command).
-2. Enter **2** to choose the **Message management menu** in the LSAM Main Menu.
-3. Enter **11** to choose **Work with Captured Data Response Rules** in the Message management menu.
-
-    :::tip
-    This same function may be accessed using function key F11=Capture from the Work with Message Data Capture Definitions function, outlines above.
-    :::
-
-4. In the Work with Capture Response Rules screen, first, notice that the screen title indicates the rules are Subset to Type: MESSAGE.
-5. Press <**F6**> to Add a new Capture Response Rule record.
-6. The **Create Capture Response Rule** screen appears.
-7. On the Create Capture Response Rule screen, type the Capture Identifier and Capture Sequence number, using an existing Message Data Capture Application ID and the appropriate sequence number.
-
-    - Since there is no prompting key available to find the Message Data Capture Application ID and Sequence number, it may be more convenient to enter this Captured Data Response Rule maintenance using function key **F11** from the Work with Message Data Capture Definitions function. This method of access causes the Capture Identifier and Capture Sequence fields to be filled automatically.
-
-8. Type a value of 'M' (= Message Capture) for the Type field.
-9. Assign a unique Response Sequence number to each response rule. The order of the sequence number determines which response rule will be executed first.
-10. Type a Continuation field value if more than one comparison rule must apply. Otherwise, leave this field blank to specify one, simple response rule. Refer to more information under [Captured Data Response Rules - Work with Response Rules](../events-utilities/captured-data-response-rules.md\#work-with-capture-response-rules).
-11. Type a value for the Compress numeric field. Specify Y = yes if the captured and compare data values are numeric, otherwise specify N = no. This flag must correspond to the similar flag found on the associated Message Data Capture Rule.
-12. *(Optional)* Specify the names of a Dynamic Variable and/or an Operator Replay Token variable that will be used to store the captured data value.
-
-    :::tip
-    If Compress numeric is set to "Y" = yes on the Response Rule, then the data stored in the optional Dynamic Variable will also be stored as only the digits of the number.
-    :::
-
-13. Type the Response Cmd (command) to execute if the compare data rule is matched. Use function key <**F13=Full CMD**> if the command string is longer than will fit in the (part 1) input field.
-14. Type values for the Compare rules that decide when this response rule should be executed (refer to more information under [Captured Data Response Rules - Work with Response Rules](../events-utilities/captured-data-response-rules.md\#work-with-capture-response-rules).
-
-    - A simple value set that allows a response rule to always execute is created by setting the Compare Rule to "EQ" (equal) and specifying the Compare Data Lines special value of *ANY.
-        
-    - In the Compare data lines 1-5 field, use function key <**F8**> if the data is longer than will fit into lines 1 to 5, but first type the first 5 lines into this field before pressing <**F8**>. The special values of *ANY, *PARM, or "DynVar" may be used. (Refer to more information under [Captured Data Response Rules - Work with Response Rules](../events-utilities/captured-data-response-rules.md\#work-with-capture-response-rules).)
-
-15. The value for the Capture length field (a display-only field near the bottom, right) is supplied automatically once a Capture Identifier and Capture Sequence number have been specified.
-16. Press <**Enter**> to record the new Capture Response Rule record.
-17. The system returns to an updated list of existing Capture Response Rule records.
-18. If the Captured Data Response Rule maintenance was entered by using a function key from a Work with Message Data Capture Definitions record screen, remember to also press **Enter** to complete any pending update of the Message Data Capture Rule.
+1. Press **F10=Capt Defn** to branch to the **Select Capture Application** function from the Operator replay script step screen.
+2. If an appropriate Application ID exists, type **1** next to that ID and press **Enter** to link it to the Script Step record.
+  - The display will return to the Message Management Parameters maintenance screen.
+3. Press **F6=Add** from the **Select Capture Application** screen to branch to the **Add Capture Application ID** if the desired Application ID does not already exist.
+  - Notice that the Application type value in the line 2 title line restricts the Application ID list to only Operator Replay.
+  - Type the Application ID text, then press **Enter** to store the new Application ID.
+5. Type **6** next to the Application ID and press **Enter** to continue to **Work with Message Data Capture Definitions**.
+6. Press**F6=Add** to open the **Create Message Data Capture Definition**.
+  - Type the Capture Rule definition values, then press **Enter** to store a new Screen Capture Rule.
+  - Instructions for adding Response Rules to each Capture Rule are found in the unified topic  [Events and Utilities: Captured Data Response Rules](../events-utilities/captured-data-response-rules).
+  - After repeating this Step 6 to add any additional Capture Rules, press **F3** to return to the **Select Capture Appplication** list display.
+7. Type **1** next to the newly added Application ID, then press **Enter** to return to the Script Step maintenance display.
 
 ### How Message Data Capture and Response Work
 
-As previously explained, the Captured Data Response Rules work the same for Message Data as they do for Operator Replay captured screen data and for SCANSPLF captured report data. However, some additional notes are provided in this section to illustrate some strategies that are unique to Message Management. One point of focus is on the management of message response by LSAM message management thresholds.
+Captured Data Response Rules work the same for Message Data as they do for Operator Replay captured screen data and for SCANSPLF captured report data. However, some additional notes are provided in this section to illustrate some strategies that are unique to Message Management. One point of focus is on the management of message response by LSAM message management thresholds.
 
 The general rule for message data capture is that the data capture rule will only be executed when an associated Message Management Parameters rule qualifies for processing a specific message. However, the message capture rule itself may be prevented from executing if a Scan Label is used to help identify the location of the data element to be captured. In this case, if the Scan Label is not found at all, or if the Scan Label is not found as many times as indicated in the Incidence count (#), then the Capture Rule will be skipped. 
 
 Skipping a Message Data Capture Rule means that none of its associated Captured Data Response Rules will be executed. This could become important in case a critical Dynamic Variable is being loaded by the Captured Data Response Rules record.
 
-Whenever a Message Data Capture Rule is  executed the LSAM will check for any Captured Data Response Rules to be executed. Each Response Rule may be qualified by a potentially complex Compare Data rule definition. It is possible for one Message Data Capture Rule to have many different Response Rules associated with it, but that only certain of those Response Rules would actually be executed. An example of how to use this capability is provided below in the Examples section.
+Whenever a Message Data Capture Rule is executed the LSAM will check for any Captured Data Response Rules to be executed. Each Response Rule may be qualified by a potentially complex Compare Data rule definition. It is possible for one Message Data Capture Rule to have many different Response Rules associated with it, but that only certain of those Response Rules would actually be executed. An example of how to use this capability is provided below in the Examples section.
 
 #### Message Data Capture Applications
 
-The Application ID used for capturing message data is handled differently than Operator Replay or SCANSPLF. A single Application ID could be created for each separate Message Management Parameters record that might need to use captured data. However, since it is possible to have many different Management Parameters qualified to handle a single message by Job Name, Job User and date and time parameters, it might sometimes be convenient for all those different Message Management Parameters to share the same Application ID for capturing message data, since the Message ID will always be the same.
-
-Therefore, the Message Management Parameters master record has a field that points to an Application ID, but the Message Data Capture Rules that belong to that Application ID do not point back to a Message Management Parameters record.
+The Message Management Parameters master record has a field (Capture App Key) that points to an Application ID, but the Message Data Capture Rules that belong to that Application ID do not point back to a Message Management Parameters record.
 
 A single Application ID may have more than one message data capture rule. In that case, each rule is assigned a unique sequence number. This allows for the possibility of capturing more than one data element from a single message. All of the records belonging to the same Application ID will be executed whenever their associated Message Management Parameters record qualifies for handling a specific message. The sequence number also controls the order in which message data capture rules are executed, although the sequence of events is not critical unless any associated Captured Data Response Rules must be executed in a certain specific order.
 
@@ -513,8 +473,7 @@ The LSAM Message Management Menu includes a number of functions that help identi
 
 #### Message Management Parameters Record Key Number
 
-The first useful tool is a data element: Each Message Management Parameters record is identified by a unique numeric key. This numeric key can be observed when viewing option 5=Display details of a Parameters record, but it may also be viewed directly from the list of all Message Management Parameters records by pressing function key
-**F1=Alt view**. The alternate view of the Message Management Parameters records shows a column on the right side labeled **MmRecKey#** (which means Message Management Record Key Number). It is sometimes helpful to take note of this record key when analyzing message responses.
+The first useful tool is a data element: Each Message Management Parameters record is identified by a unique numeric key. This numeric key can be observed when viewing option 5=Display details of a Parameters record, but it may also be viewed directly from the list of all Message Management Parameters records by pressing function key **F1=Alt view**. The alternate view of the Message Management Parameters records shows a column on the right side labeled **MmRecKey#** (which means Message Management Record Key Number). It is sometimes helpful to take note of this record key when analyzing message responses.
 
 For example, menu function 2, Message management logs, shows activity records that always include the MmRecKey# value (sometimes with a different, though obvious label). If a processing error is found among the log records, it will be important to note the MmRecKey# value in order to find the exact Message Management Parameters record from the separate list of the Parameters records (using menu function 1). (Note: This number is not the same as the SQ#, the sequence number assigned when more than one Parameters record references all the same message profile fields (ID, Job Name, etc.).)
 
