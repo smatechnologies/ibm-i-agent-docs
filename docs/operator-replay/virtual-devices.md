@@ -659,7 +659,7 @@ Mode 1 (\*DFT - QAUTOCFG) is the only device selection mode that cannot anticipa
 
 Implementing the Agent's Telnet Exit Program requires two steps. First, the exit program must be registered, just as with any other IBM i exit program. This registration step could be performed manually using the IBM i command WRKREGINF, or ADDEXITPGM. However, SMA recommends only using the IBM i command to view the registration status of exit point QIBM-QTG-DEVINIT because the Agent software relies on a very specific configuration of the information included in the Description field of the exit registration to interface with the Agent database in the correct LSAM environment.
 
-## Operator Replay Configuration: F22=SMATELSVR Manage Telnet Exit Program
+### F22=SMATELSVR Manage Telnet Exit Program
 
 From the Operator Replay Configuration main display pages (1 or 2), use function key F22 to configure and then register the Agent's Telnet Exit program.
 
