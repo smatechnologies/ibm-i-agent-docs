@@ -478,7 +478,7 @@ This display format is used only to register a device name and an IP address. Th
 
 More detailed information about using the Device Name and IP Address for Operator Replay is presented in the following topics.
 
-## Virtual Device & IP Address Configuration - Help
+### Virtual Device & IP Address Configuration
 
 Use the Operator Replay menu function 7 to configure the Telnet exit program. Press F23 to configure the LOOPBACK TCP/IP Interface and the virtual device.
 

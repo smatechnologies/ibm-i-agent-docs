@@ -414,11 +414,7 @@ File OPRLOGF40 is where captured data is stored by either the SCANSPLF command o
 
 An Operator Replay script screen data capture rule always stores data in the data capture log file. But the SCANSPLF command can only store data in this log file when it finds a match to a SPLF Scan Rule. The reason that the SCANSPLF command does not store captured data for mismatched rules is that there is no guarantee that the desired scan rule data would ever be found in the report, and it is not possible to compute the actual page, line and row where the scan data was located.
 
-:::tip TECHNICAL NOTE
-The execution of optional Captured Data Response Rules could have been implemented as the result of a trigger added to the Data Capture log file. Instead, the search and execution of Response Rules has been implemented in a single, centralized program module that is shared (compiled by copy) by all programs that write to this log file. This choice was made due to its relative efficiency, its ease of maintenance and to keep database maintenance simpler.
-:::
-
-The data capture log file may be viewed from either LSAM menu 3: Events and Utilities, or from LSAM menu 4: Operator Replay, using function 8 on either menu. Each menu call to the inquiry function sets a parameter that causes the initial list display to be filtered by data type, so that only SCANSPLF records appear from menu 3 and only Operator Replay records appear from menu 4. However, function key <**F15**\> may be used from either starting point to change the subset rule in effect for 
+The data capture log file may be viewed from either LSAM menu 3: Events and Utilities, or from LSAM menu 4: Operator Replay, using function 8 on either menu. Each menu call to the inquiry function sets a parameter that causes the initial list display to be filtered by data type, so that only SCANSPLF records appear from menu 3 and only Operator Replay records appear from menu 4. However, function key **F15**\> may be used from either starting point to change the subset rule in effect for 
 the display.
 
 ### Debug Logging of Captured Data Response Rules
