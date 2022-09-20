@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'SBMDBFCMD -- Submit Database File Command'
+sidebar_label: 'SBMDBFCMD: Submit Database File Command'
 ---
 
-# SBMDBFCMD -- Submit Database File Command
+# SBMDBFCMD: Submit Database File Command
 
 A symbolic command SBMDBFCMD can be used in an OpCon job master record to support extra long command lines in a SBMJOB command, up to the maximum of 20,000 characters supported by IBM i.
 

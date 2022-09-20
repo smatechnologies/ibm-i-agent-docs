@@ -137,6 +137,18 @@ module.exports = {
     },
     {
       type: 'category', 
+      label: 'Restricted Mode and Multi-Step Jobs',
+      collapsed: true,
+      items: [
+        'restricted-mode/menu',
+        'restricted-mode/operations',
+        'restricted-mode/screens',
+        'restricted-mode/multi-step-scripting',
+        'restricted-mode/multi-step-screens',
+      ], 
+    },
+    {
+      type: 'category', 
       label: 'Events and Utilities',
       collapsed: true,
       items: [
@@ -146,18 +158,6 @@ module.exports = {
         'events-utilities/captured-data-response-rules',
         'events-utilities/system-variables',
         'events-utilities/client-email',
-      ], 
-    },
-    {
-      type: 'category', 
-      label: 'Restricted Mode and Multi-Step Jobs',
-      collapsed: true,
-      items: [
-        'restricted-mode/menu',
-        'restricted-mode/operations',
-        'restricted-mode/screens',
-        'restricted-mode/multi-step-scripting',
-        'restricted-mode/multi-step-screens',
       ], 
     },
     {
@@ -173,7 +173,7 @@ module.exports = {
           items: [
             'commands-utilities/lsam-operations',
             'commands-utilities/sbmdbfcmd',
-            'commands-utilities/events',
+            'commands-utilities/smafailjob',
             'commands-utilities/dynamic-variable-management',
             'commands-utilities/translation-tables',
             'commands-utilities/smargz',

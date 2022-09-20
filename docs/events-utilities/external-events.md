@@ -408,7 +408,7 @@ There is another example, just below, of using an Agent Dynamic Variable token t
 
 In the example above, Agent prompting for Event commands was used to select the CPYTOMSGIN command from the initial prompting list of XML commands.  Then the Agent offered a second prompting list of just the XML Event commands so that the XCONDSP command could be selected.  But as the results of this layered prompting were returned to the Agent function data entry, the CPYTOMSGIN command was formatted to include the raw XML <TAGS\>, which allows the user to then prompt for, or type, a Dynamic Variable {TOKEN} into any of the Event command parameters.  The Agent processing of the CPYTOMSGIN command scans the whole command for any Dynamic Variable tokens, and these are replaced by the token's current value at run time before the whole XML-formatted Event command string is transmitted to the OpCon server.
 
-## Application Example: Sending IBM i values to OpCon Properties
+### Application Example: Sending IBM i values to OpCon Properties
 
 IBM i values can be sent to OpCon Properties using the $PROPERTY:SET CSV-format Event command, or the XML-format command XPROPSET, from anywhere that the IBM i LSAM supports OpCon Events. OpCon Property tokens can then be used to reference these IBM i values as part of OpCon automation, wherever Property tokens are supported. 
 
@@ -438,6 +438,195 @@ Dynamic Variables are called "dynamic" because they can do more than just store 
 
 The LSAM software includes both a pre-compiled SQL utility program and a model Control Language program that can be adapted as one of these Dynamic Variable user-defined programs, so that any Field value from an IBM i DB2 database file can be fetched as the Dynamic Variable at run time. The field value can also be trimmed down to use any part of the field value as the replacement for the Dynamic Variable token. The same model CL program also illustrates how to fetch a partial or complete value from an IBM i DB2 data area.
 
+### CPYTOMSGIN Command Prompting Window
+
+The general-purpose Event command CPYTOMSGIN is supported by an additional prompting window that lists all available OpCon Event commands.  This type of prompting the CPYTOMSGIN command is supported from within Agent automation tool master file maintenance displays.
+
+The External Event Command prompting window supports function keys that help with choosing between CSV (Comma Separated Values) and XML (Extensible Markup Language) command formatting.  The XML format is recommended for any commands that have parameters which would benefit from being able to include commas within their data, such as the NOTIFY:EMAIL Event Command ($NOTIFY:EMAIL versus XNTYEMAIL).
+
+```
+............... Event Selection ................
+:                                              :
+:  Position to desired Event, press Enter      :
+:     for command or F2 for CSV command.       :
+:     Press F10 for raw XML format.            :
+:  Event      Description                      :
+:  CPYTOMSGIN Send any Event command           :
+:  XCALADD    XML Calendar Add                 :
+:  XCALDEL    XML Calendar Delete              :
+:  XCONDSP    XML Console Display              :
+:  XJOBADD    XML Job Add                      :
+:  XJOBADDHLD XML Job Add Hold                 :
+:  XJOBBAD    XML Job Bad                      :
+:  XJOBCNL    XML Job Cancel                   :
+:  XJOBDEL    XML Job Delete                   :
+:  XJOBGOD    XML Job Good                     :
+:                                      More... :
+:                                              :
+: F12=Cancel ..................................:
+```
+
+#### Fields
+
+- **Event**:         The OpCon Event to be generated.
+- **Description**:   A description of the action that is performed by the OpCon Event.
+
+#### Functions
+
+- **F2=Switch format**: Press F2 to switch the prompt window list display between XML and CSV formatted commands.
+- **F10=Raw XML format**: When XML format commands are listed, position the cursor to the desired command and press **F10** to return just the raw XML command string back to the master file maintenance display field.
+  - **NOTE**: In most cases a raw XML-formatted Event command must be sent through the Agent's communications program to the OpCon server by using the CPYTOMSGIN wrapper commmand.  This is because the raw XML command syntax does not engage the LSAM operations required to queue and forward External Event commands through the TCP/IP communications link with the OpCon server.  In contrast, the IBM-formatted XML Event command shells such as XNTYEMAIL do engage the LSAM-OpCon communications protocol.  Raw XML command syntax is normally only useful when it is (rarely) necessary to insert a long, qualifying key string as part of a multi-instance Dynamic Variable token, into one of the XML command tagged fields.
+- **F12=Cancel**: Quits the prompt window and returns to the Trapped Messages Parameters window without completing any updates.
+- **Enter**: Pressing the **Enter** key after selecting the CPYTOMSGIN command from the initial prompting window causes a second prompting window to appear that supports selecting either a CSV external event command template string, or else one of the LSAM's IBM-style commands that are used to format an XML event command.
+
+#### CPYTOMSGIN Event Selection Window
+```
+.............. CPYTOMSGIN Events ...............
+:                                              :
+:  Position to desired Event, press Enter.     :
+:  Press F12 to return without a selection.    :
+:                                              :
+:  OpCon/xps Event Command                     :
+:  XCALADD    XML Calendar Add                 :
+:  XCALDEL    XML Calendar Delete              :
+:  XCONDSP    XML Console Display              :
+:  XJOBADD    XML Job Add                      :
+:  XJOBADDHLD XML Job Add Hold                 :
+:  XJOBBAD    XML Job Bad                      :
+:  XJOBCNL    XML Job Cancel                   :
+:  XJOBDEL    XML Job Delete                   :
+:  XJOBGOD    XML Job Good                     :
+:                                      More... :
+:                                              :
+: F12=Cancel ..................................:
+```
+
+When the cursor is positioned over one the available commands, pressing **Enter** causes the appropriate OpCon Event Command syntax model to be inserted into the Message parameter on a prompt screen for the CPYTOMSGIN command, as illustrated below.
+
+#### Prompted CPYTOMSGIN Command Syntax Model (XML)
+```                        Copy to Message-In (CPYTOMSGIN)                        
+                                                                               
+Type choices, press Enter.                                                     
+                                                                               
+Message  . . . . . . . . . . . . > 'CPYTOMSGIN CPYMSGIN('<EVENT><TYPE>CONSOLE</
+TYPE><ACTION>DISPLAY</ACTION><MSG></MSG></EVENT>'______________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_____________________________________________________________________ ...        
+Environment name . . . . . . . .   *DEFAULT      *CURRENT,*DEFAULT,*SELECT,name
+LSAM General Purpose Library . .   *DEFAULT      Character value               
+                                                                               
+                                                                        Bottom 
+F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
+```
+
+In the XML syntax model illustrated above do not remove the XML \<TAGS\> that surround the value positions. The example above shows that the TYPE and ACTION tags have the required values for the selected XCONDSP command, but that the MSG tags should be filled in with a message text string. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon that the null value should be applied to that field.
+
+#### Prompted CPYTOMSGIN Command Syntax Model (CSV)
+```                        Copy to Message-In (CPYTOMSGIN)                        
+                                                                               
+Type choices, press Enter.                                                     
+                                                                               
+Message  . . . . . . . . . . . . > '$JOB:CANCEL,<schedule date>,<schedule name>
+<job name>'____________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_______________________________________________________________________________
+_____________________________________________________________________ ...        
+Environment name . . . . . . . .   *DEFAULT      *CURRENT,*DEFAULT,*SELECT,name
+LSAM General Purpose Library . .   *DEFAULT      Character value               
+                                                                               
+                                                                        Bottom 
+F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
+```
+
+In the CSV syntax model illustrated above, the < > characters are used only to mark the description of each field. When the actual data is typed in place of the field description, the < > characters must be removed, just as the field description must also be removed. However,
+the commas are a critical part of the command syntax. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon that the null value should be applied to that field.
+
+#### Completing Prompted Event Command Insertion
+
+Press <**Enter**> after the command has been modified (if desired) to cause the final command format for CPYTOMSGIN to be inserted into the Agent master file maintenance display field. The command syntax may still be modified, once it has been inserted into the Event command
+field.  This means that other types of prompting, such as inserting Dynamic Variable {TOKENS} or a $-System Variable string, can be accomplished after the Event command is in place.
+
+:::tip
+When selecting an XML format Event command from the initial prompt window, using **F10** to select an X* command produces the same CPYTOMSGIN command wrapper syntax as when the CPYTOMSGIN command is selected.  The CPYTOMSGIN command is redundant within the prompting window that lists XML commands, but it was included for convenience so that the XML command processing could work and feel the same as the CSV command prompting has always worked.
+:::
+
+### Event Command Prompting
+
+Aside from the CPYTOMSGIN prompting sequence, the IBM i LSAM offers two sets of IBM i styled commands that represent most of the External Event Commands supported within the OpCon server.  These commands can be prompted conveniently only from within an Agent master file data entry function, or from the LSAM menu 3, option 1, where all supported Event commands are listed and are available for test executions.
+
+Here are the constraints when using the individual External Event Commands:
+- Prompting of these commands only works when the workstation session is using the LSAM library list.
+- Execution of these commands only works when the job is using the LSAM library list.
+  - It is possible for any IBM i job to use the LSAM command SMAGPL/SMAADDLIBL to modify the library list just before using an External Event Command.
+  - Following execution of the Event command, it is possible to use the LSAM command SMAGPL/SMARMVLIBL to remove the LSAM libraries from the job's library list and restore its former state.
+
+:::tip
+SMA recommends that any uses of the LSAM External Event commands from outside of the LSAM library list is more easily supported by enclosing the Event command within the LSAM command SMAGPL/CPYTOMSGIN.  This command is able to manage the LSAM library list during execution of the command, based on the LSAM environment associated with the actual name of the SMAGPL library, or based on settings of this wrapper commands's ENV( ) and GPL( ) parameters:
+
+    SMAGPLTST/CPYTOMSGIN CPYMSGIN('XCONDSP MESSAGE(''message text'')') ENV(TESTLSAM) GPL(SMAGPLTST)
+
+:::
+
+Following are examples of prompted LSAM External Event commands, when they are used within an LSAM environment.
+
+#### Event Command Prompting Window (CSV)
+```                      
+                      LSAM EVENTS:Console display (CONDSP)                      
+                                                                                
+ Type choices, press Enter.                                                     
+                                                                                
+ Message  . . . . . . . . . . . .   ____________________________________________
+ __________________________________
+                                                                                
+                                                                                
+                                                                         Bottom 
+ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
+ F24=More keys  
+
+ ENTER --->
+
+ After entering message text, the final command syntax from this prompted command appears as:
+
+    CONDSP MESSAGE('message text')
+
+ ```
+
+Many of the CSV-supported commands are outdated.  They were generally not recommended for use.  Some of the commands have parameters that are limited in size to fewer characters than are currently supported by the OpCon server.  However, they can still be used as long as they appear to function correctly.  SMA advises to use the CPYTOMSGIN command prompting, outlined above, when preparing CSV-format External Event commands.  Remember, also, that the CPYTOMSGIN command supports embedded Dynamic Variable {TOKENS}, no matter where it is used.
+
+#### Event Command Prompting Window (XML)
+
+```                      
+                          XML Console display (XCONDSP)                         
+                                                                                
+ Type choices, press Enter.                                                     
+                                                                                
+ Message  . . . . . . . . . . . .   ____________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________                                                               ____________________________________________________________________ ...                                                                              
+            
+                                                                         Bottom 
+ F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
+ F24=More keys                                                                  
+                                                                                
+ ENTER --->
+
+ After entering message text, the final command syntax from this prompted command appears as:
+
+    XCONDSP MESSAGE('message text')
+
+ ```
+
+For any special cases when the LSAM's prepared XML Event commands need special attention, the work-around solution is to embed the raw XML format of the Event command within the CPYTOMSGIN command's CPYMSGIN parameter.  The raw XML format has the advantage of supporting, for example, a very long (rarely used) multi-instance Dynamic Variable token that requires an instance-qualifying key values string.
 
 ## Events Screens and Windows
 

@@ -47,7 +47,7 @@ The LSAM Message Management server start routine responds to the COLDSTART param
 
     - A technical support person can use the undocumented LSAM tools to force the LSAM Message Management control file record to contain a valid key for any message that is currently found in the message queue. Refer to the next section about Undocumented Tools for hints to technical support personnel.
 
-## Message Management Parameters -- Qualification Fields
+## Message Management Parameters Qualification Fields
 
 Many different Parameters records could be created to respond to a single message intercepted by the LSAM Message Management server. This section explains the different groups of fields in the Parameters master record that are used to qualify whether each record's response will be executed.
 

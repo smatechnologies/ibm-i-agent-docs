@@ -53,6 +53,87 @@ Main Menu > Message management menu (#2) > Message management performance parame
 -   **F3=Exit**: Quits the maintenance display and returns to the menu without completing any changes.
 -   **F12=Cancel**: Quits the maintenance display and returns to the menu without completing any changes.
 
+## Message Management Operations Screens
+
+### Start Message Management -- Start Mode Window
+
+#### Start Message Management - Start Mode Prompt
+```
+                      Start Message Management
+
+Server start mode (warm/cold): 0    0 = warm start, 1 = cold start
+
+
+Press Enter to continue, or F3 or F12 to cancel.
+```
+
+#### Menu Pathways
+
+Main Menu > Message management menu (#2) > Start message management (#3)
+
+#### Fields
+
+| Field                | Values               | Description          |
+| -----                | ------               | -----------          |
+| Server start mode (warm/cold) | 0 = warm start| **0** = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed. |
+|                      | 1 = cold start       | **1** = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue. |
+|                      | The default value is retrieved from the Message Management performanceparameters. | Refer to additional discussion above about Starting Message Management. |
+
+### Check Message Management Status - Window
+
+#### Check Message Management Status Window
+```
+  
+  Message management status: STOPPED
+
+  -- or --                   STARTED
+
+       Press Enter to continue
+
+```
+#### Menu Pathways
+
+Main Menu > Message management menu (#2) > Check message management status (#5)
+
+### View Job Completion Message Table
+
+This function displays the contents of a table file distributed by SMA that is not normally updated by LSAM users. The message IDs displayed in this table are recognized by the LSAM job completion message management server (job MSGMNG) as representing the completion status of jobs. Since these unique messages server only this special purpose, the message IDs in this table are not allowed for management by the LSAM Message Management facility. This means that when the LSAM Parameters (LSAM main menu, option 7) are set to use Message Management rules for messages arriving in the LSAM's dedicated job completion message file, SMAMSGF, the message IDs in this table cannot be specified for general message management. The responses to these messages must be managed from OpCon, according to the job status that each message may generate.
+
+#### Job Completion Messages Control Table View
+```
+
+                                        Display Physical File Member
+
+File . . . . . . :   LSAMSGF00           Library  . . . . :   SMADTA            
+
+Member . . . . . :   LSAMSGF00           Record . . . . . :   1
+
+Control  . . . . .   ____________        Column . . . . . :   1    
+
+Find . . . . . . .   _________________________________________
+*...+....1....+..
+CPC1217JOBNOK
+CPC1218JOBNOK
+CPC1219JOBNOK
+CPC1220JOBNOK
+CPC1224JOBNOK
+CPC1225JOBNOK
+CPC1226JOBNOK
+CPC1232JOBNOK
+CPC1234JOBNOK
+CPC1235JOBNOK
+CPF1240JOBNOK
+CPF1241JOBOK
+CPI2404MSGW
+                           ****** END OF DATA ******
+
+                                                                 Bottom
+F3=Exit   F12=Cancel   F19=Left   F20=Right   F24=More keys
+```
+In the table illustration above, notice that many message IDs, such as CPC1217, are followed by the characters JOBNOK. This symbol means "job not OK" and it indicates a message ID that signals an IBM i job failure. In contrast, the message ID CPF1241 shows JOBOK and indicates a normally complete IBM i job.
+
+The message ID CPI2404 is a special case: If a job is in Message Waiting status (MSGW), this will be detected by the LSAM transaction manager server job, where a sub-procedure calls an IBM i API (application program interface) to fetch the actual status of a job, which would be MSGW in this case. But this message ID appears in this table to indicate that it also is a reserved message ID that is not eligible for LSAM Message Management handling.
+
 ## Message Management Parameters
 
 #### Message Management Parameters - View 1 of 2
@@ -165,7 +246,7 @@ The Add, Change, Copy and Display screens are similar. The following examples gi
 - TRPMSGR2A (Format A): Message filtering parameters and primary response actions.
 - TRPMSGR2B (Format B): A full screen display accommdates the optional Event (or Command) string.
 - TRPMSGR2C (Format C): Optional display for Effective Date/Time message filtering rules.
-- TRPMSGR2DC (Format D): Optional display for Threshold management rules.
+- TRPMSGR2D (Format D): Optional display for Threshold management rules.
 
 #### F6 = Add
 
@@ -181,7 +262,7 @@ The screens for option 5 = Display are labeled TRPMSGR5A - C, but they appear th
 
 #### Fields
 
-##### Format A
+##### <u>Format A</u>
 **SELECT -**
 - **Message Queue**: The message queue to be examined for messages. 
 - **Message Queue Library**: The library in the DB2 UDB (DB2/400) database where the message queue is located.
@@ -257,13 +338,13 @@ In earlier LSAM versions, a special value of *NOVAR was used to mean that no che
 - **Before/After Evt, Reply**:
   - This option controls whether the Application's Capture Data Rules and any associated Response Rules will be executed before the Event Command and/or Reply action of this Parameters record will be completed. Older versions of the Agent did not provide this option, so the default behavior was that Capture Applications would always execute After the Parameters actions were completed. This would sometimes require that two Parameters records be created in order to set and utilize Dynamic Variable values required by either the Event Command or by the Reply field. Now, however, the Before option allows the Dynamic Variable values to be computed and set first, so that only one Parameters record is usually required to manage a message and it can rely on settings for the Event command or Reply code that could vary based on the content of the message.
 
-**OPTIONS -**
+**OPTIONS -**  
 These two options control which additional display formats might appear as **Enter** is pressed during the view or maintenance of a Message Management Parameters master record.
 
 - **Effective Times or Dates**: 1=Yes, 0 (zero) or blank = No.
 - **Threshold**: 1=Yes, 0 (zero) or blank = No.
 
-##### Format B
+##### <u>Format B</u>
 
 **COMMAND -**
 - **Event Command**: This field contains the entire command to be executed when the message Paramters **Answer Type** field value is E=Event or B=Both. The command can be an OpCon event command name and its parameters, or it can be any IBM i command and parameters. Use various function keys **F4**, **F8**, **F9**, and **F23** as desired for assistance in formatting the commands and Dynamic Variable or $VAR tokens that may be entered in this field.
@@ -271,7 +352,7 @@ These two options control which additional display formats might appear as **Ent
   Also refer to the discussions just below about predefined OpCon Event Commands and $-System Variables (F23=$VAR) that are supported by the LSAM in this field. 
   :::
 
-##### Format C
+##### <u>Format C</u>
 
 **EFFECTIVE DATE/TIME -**
 - **Effective start date**: 
@@ -311,7 +392,7 @@ This is an ISO-standard date field. The default value for this field which means
    - This field indicates which day of the month ends the window of time within the month that a message may be processed by this Parameters rule. If the Start Effective DOM is zeros, then a message will be processed from the first day of the month until (through) this day. The special value of 32 is used to indicate the last day of any month, regardless of the number of days in that month. 
    - If the End DOM is less than the Start DOM, this indicates that the effective processing time crosses the boundary between months, so the comparison logic is opposite and the message issue date must be greater than or equal to this day of the month.
 
-##### Format d
+##### <u>Format D</u>
 
 **TRHESHOLD -**
 - **Threshold DynVar, Count**: 
@@ -367,7 +448,7 @@ message.
 | **$IBM JOB ID**      | The IBM i current job ID, in this format: 123456/JOBUSER/JOBNAME. |
 | **$IBM JOB NAME**    | The IBM i current Job Name. |
 | **$IBM JOB NBR**     | The IBM i current Job Number (always 6 digits, but handled as characters). |
-|  **$JOBID**          | The OpCon job identifier, a 10-digit number. |
+| **$JOBID**           | The OpCon job identifier, a 10-digit number. |
 | **$JOBID CMP**       | The OpCon job name and job identifier, joined into a single string with blanks compressed out. |
 | **$JOBID LONG**      | The OpCon job name followed by the job identifier, with all blanks retained in the string. |
 | **$JOB NAME**        | The OpCon job name. |
@@ -396,169 +477,11 @@ $CONSOLE:DISPLAY,'Ready to process jobs for this Schedule Date: {{$SCHEDULE DATE
 ```
 :::
 
-### Windows 
+### Windows: 
 
-#### Event Selection Pop-up Window
-```
-............... Event Selection ................
-:                                              :
-:  Position to desired Event, press Enter      :
-:     for command or F2 for CSV command.       :
-:     Press F10 for raw XML format.            :
-:  Event      Description                      :
-:  CPYTOMSGIN Send any Event command           :
-:  XCALADD    XML Calendar Add                 :
-:  XCALDEL    XML Calendar Delete              :
-:  XCONDSP    XML Console Display              :
-:  XJOBADD    XML Job Add                      :
-:  XJOBADDHLD XML Job Add Hold                 :
-:  XJOBBAD    XML Job Bad                      :
-:  XJOBCNL    XML Job Cancel                   :
-:  XJOBDEL    XML Job Delete                   :
-:  XJOBGOD    XML Job Good                     :
-:                                      More... :
-:                                              :
-: F12=Cancel ..................................:
-```
+### External Event command prompt
 
-#### Fields
-
-- **Event**:         The OpCon Event to be generated.
-- **Description**:   A description of the action that is performed by the OpCon event.
-
-#### Functions
-
-**F12=Cancel**: Quits the prompt window and returns to the Trapped Messages Parameters window without completing any updates.
-
-##### Event Command Prompting Window
-
-After an Event is selected from the event list window, the program uses the IBM i command prompting to show the parameters that are appropriate for each Event. When <**Enter**> is pressed from the command prompting window, the Event command string is inserted into the Event command field with all the correct formatting and punctuation.
-
-The general-purpose Event command CPYTOMSGIN is supported by an additional prompting window (when selected from within the context of prompting for Message management parameters) that lists all available OpCon Event commands. When one of these OpCon Event Commands is selected, a template of the OpCon Event command is inserted into the Event command field of the Message management parameter record as an aid to the correct formatting of the command. This secondary window is further described below. SMA recommends using the CPYTOMSGIN command instead of the individual IBM i commands provided by the LSAM to emulate certain OpCon Event commands. The CPYTOMSGIN command is able to automatically accommodate changes in OpCon Event command syntax, such as field sizes, and future additions to the OpCon Event command sent.
-
-For all other Event commands from the original prompting window, the following discussion explains how specific LSAM commands can assist with the correct formatting of the command syntax. The command CONDSP is shown as an example.
-
-### Event Command Prompting Window
-```                      
-                      LSAM EVENTS:Console display (CONDSP)                      
-                                                                                
- Type choices, press Enter.                                                     
-                                                                                
- Message  . . . . . . . . . . . .   ____________________________________________
- __________________________________
-                                                                                
-                                                                                
-                                                                         Bottom 
- F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
- F24=More keys                                                                  
- ```
-
-The number and type of fields that are displayed vary depending on the Event command. More information on Event parameters may be found in the topic on Event Management. There is also a table, above, of variables that may be embedded within an Event command. Additional Information can also be found in
-[Introduction](https://help.smatechnologies.com/opcon/core/latest/Files/OpCon-Events/Introduction.md#top)  in the **OpCon Events** documentation.
-
-#### Functions
-
--   **F3=Exit**: Abandons all changes and returns to the menu.
--   **F4=Prompt**: Shows all valid values for a parameter field.
--   **F5=Refresh**: Resets all the command parameters to their default values.
--   **F12=Cancel**: Abandons all changes and returns to the Manage LSAM Logging status display.
--   **F13=How to use this display**: The IBM default information that applies to all command prompting displays.
--   **F24=More keys**: Shows other function keys that may be used.
--   **Enter=Next page, Update**: Use the Enter key to advance from screen format A to B, and then from format B to C. When format C is completed, pressing Enter commits the screen updates to the database master record. Using function key F12 to return to a previous screen format does NOT update the database, so if F3=Exit is pressed before using the Enter key from format C, no additions or changes are committed to the database.
--   **PgDn=PageDown (TRPMSGR2A)**: The PageDown (or Scroll Up) function key works the same as F13=More CMD. Both keys may be used while the cursor is positioned anywhere within display format TRPMSGR2A in order to switch to screen format TRPMSGR6 where the Event command is supported by a much larger data entry field. Upon completing screen format TRPMSGR6, press Enter to update the command and return to screen format TRPMSGR2A.
-
-#### More Keys
-
--   **F9=All parameters**: This function key has no effect on this  display.
--   **F11=Keywords**: Toggles the display between the parameter key words and the prompting text that describes each parameter.
--   **F14=Command string**: Shows the command and its parameters in the form that would be used if the command were typed manually. This command appears with a question mark in front of it because it was forced into prompt mode by a program call.
--   **F15=Error messages**: Shows any error messages that a command validation program has produced, but this command has no command validation program.
--   **F16=Command complete**: Has the same effect as pressing <**Enter**> to initiate the command action. Verify that the parameter values are set correctly before using this command key or <**Enter**>.
-
-#### Event Command Field Size Constraints
-
-Refer to the examples of Event Command prompting above and below to understand how the LSAM software commands help to define the limits of fields that apply to each OpCon Event. At one time, OpCon had a constraint that no single field of an Event command could exceed 80 characters. Most of the LSAM commands used to format an Event command show fields that would permit more characters to be entered because within OpCon those fields have mostly been defined as longer than 80 characters.
-
-In the compressed example above, the CONDSP command prompt is used to enter message data that will become part of the OpCon Event $CONSOLE:DISPLAY. This command prompting screen limits the message data to only 80 characters. (Since OpCon now allows much longer messages to be sent via OpCon Event command processing, command prompting will be revised accordingly.) When used for an LSAM Message Management Event command, the fields of OpCon Events support Event Command Variable field
-substitution, as documented above in this topic.
-
-##### SCGBLD Command Prompt
-```
-                     LSAM EVENTS: Schedule Build (SCHBLD)                      
-                                                                               
-Type choices, press Enter.                                                     
-                                                                               
-Schedule Name  . . . . . . . . .   ____________________________________________
-_______________________________________________________________________________
-                                                                               
-Schedule Date  . . . . . . . . .   CURRENT                                     
-Overwrite existing schedule? . .   N             Y or N                        
-Log file (\path\) name . . . . .   ____________________________________________
-___________________________________
-                                                                               
-
-                                                                        Bottom 
-F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
-F24=More keys                                                                  
-```
-
-The Schedule Build command prompt example above shows that the Schedule Name field allows up to 128 characters and the Log file path name is limited to 80 characters at this time. OpCon allows for Schedule names to be up to 128 characters long, and path names could easily extend to
-beyond 80 characters. To accommodate longer OpCon Event command field sizes (as OpCon is able to handle them), use the CPYTOMSGIN general Event command with the IBM i LSAM.
-
-### CPYTOMSGIN Command Prompting Window
-
-The general-purpose Event command CPYTOMSGIN is supported by an additional prompting window (when selected from within the context of prompting for Message management parameters) that lists all available OpCon Event commands.
-
-#### CPYTOMSGIN Event Selection Window
-```
-.............. CPYTOMSGIN Events ...............
-:                                              :
-:  Position to desired Event, press Enter.     :
-:  Press F12 to return without a selection.    :
-:                                              :
-:  OpCon Event Command                     :
-:  $CALENDAR:ADD                               :
-:  $CALENDAR:DEL                               :
-:  $CONSOLE:DISPLAY                            :
-:  $JOB:ADD                                    :
-:  $JOB:ADDHLD                                 :
-:  $JOB:BAD                                    :
-:  $JOB:CANCEL                                 :
-:  $JOB:DELETE                                 :
-:  $JOB:GOOD                                   :
-:  $JOB:HOLD                                   :
-:                                      More... :
-:                                              :
-: F12=Cancel ..................................:
-```
-
-When the cursor is positioned over one the available commands, the OpCon Event Command syntax model will be inserted into the Message parameter on a prompt screen for the CPYTOMSGIN command, as illustrated below.
-
-#### Event Command Syntax Model
-```                        Copy to Message-In (CPYTOMSGIN)                        
-                                                                               
-Type choices, press Enter.                                                     
-                                                                               
-Message  . . . . . . . . . . . . > '$JOB:CANCEL,<schedule date>,<schedule name>
-<job name>'____________________________________________________________________
-_______________________________________________________________________________
-_______________________________________________________________________________
-_______________________________________________________________________________
-_______________________________________________________________________________
-_______________________________________________________________________________
-_____________________________________________________________________ ...        
-Environment name . . . . . . . .   *DEFAULT      *CURRENT,*DEFAULT,*SELECT,name
-LSAM General Purpose Library . .   *DEFAULT      Character value               
-                                                                               
-                                                                        Bottom 
-F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display    
-```
-
-In the syntax model illustrated above, the < > characters are used only to mark the description of each field. When the actual data is typed in place of the field description, the < > characters must be removed, just as the field description must also be removed. However,
-the commas are a critical part of the command syntax. If a field value is allowed to be left out of any particular command, the comma that marked that field location must still be retained. In this case, two consecutive commas would indicate to OpCon that the null value should be applied to that field.
-
-Press <**Enter**> after the command has been fully formatted to causethe final command format  for CPYTOMSGIN to be inserted into the Message management parameters, Event command field. (The command syntax may still be modified, once it has been inserted into the Event command
-field.)
+Complete details about prompting for External Event command processing, including recommended uses for the CPYTOMSGIN Event command wrapper utility can be found under [Events and Utilities: Event Command Syntax](/events-utilities/external-events.md#external-event-command-syntax-csv-vs-xml) and the following topic about [Events and Utilities: CPYTOMSGIN](/events-utilities/external-events.md#cpytomsgin).
 
 ### Delete Message Management Parameters
 
@@ -626,57 +549,62 @@ The Monitor Queue type of record shows the following characteristics that are di
 
 ## Work with Message Data Capture Definitions
 
-Rules for capturing message data elements are assembled into logical groups identified by an Application ID (similar to screen data captures by Operator Replay scripts and report data captures by the SCANSPLF utility). One or more message data capture rules may be associated with each Application ID, where multiple rules are  identified by a sequence number. The Application ID may be entered into the field of that name on the Message Management Parameters master record, as explained above in
-that screen documentation. A single Application ID may be shared by more than one Message Management Parameters record.
+Rules for capturing message data elements are assembled into logical groups identified by an Application ID (similar to screen data captures by Operator Replay scripts and report data captures by the SCANSPLF utility). One or more message data capture rules may be associated with each Application ID, where multiple rules are identified by a sequence number. The Application ID is linked to a Message Management Parameters record by the APP KEY numeric value. The APP KEY is entered into the record by using the F10=Capture function key from the Message Management Parameters Create, Copy or Change screens. An Application ID may be shared by more than one Message Management Parameters record.
 
-:::tip
-It may be easier to use the F10=Capture function key from the Message management parameters Create, Copy or Change screens when selecting an Application ID because this helps avoid keystroke errors when long IDs are used. As noted in Menu Pathways here, this same Work With function may be used via that F10 function key.
-:::
+### LSAJ50R1 - Select Capture Application
 
-#### TRPM30R1 - Work with Message Data Capture Definitions
+The title of this display shows to **Work with Capture Applications** when it is accessed directly from an LSAM Menu.  The sub-title of "Application type:" shows the Agent automation tool that has its own data capture definitions, such as "**MESSAGE MANAGEMENT**".
+
+Details about working with Application IDs are provided at [Work with Data Capture Application IDs](/events-utilities/captured-data-response-rules.md#work-with-data-capture-application-ids).  
+
+After optionally creating or maintaining an appropriate Application ID, use the Application ID list display option 6 to Work with Capture Definitions for the currently selected Agent automation tool, as described next for the Message Management feature.
+
+Type **1** next to the desired Application ID and press **Entery** to return the APP KEY and Application ID to the Message Management Parameters display.
+
+### TRPM30R1 - Work with Message Data Capture Definitions
 
 #### Menu Pathways
 
 -   Main Menu > Message management menu (#2) > Work with Message Data Capture Definitions (# 10)
--   Main Menu > Message management menu (#2) > Message management parameters (#1) > F10
+-   Main Menu > Message management menu (#2) > Message management parameters (#1) > F10=Capt Defn. > Select Capture Application > 6=Work with Rules
 
 #### Fields
 
-- Search Content: 
-  -   Type a value in this field and press <**Enter**> or <**F16**> to find a record in the list that contains the characters typed. The content may exist anywhere within the master record, so the list may not show the value when a record is identified. Type 5=Display to view the record details and verify the matched content.
-  -   A search may be continued beyond the first ecord, using the same search value that now appears in pink below this field, by pressing <**F16**> to continue the search to the next matching record.
-- Application ID: The character string that labels the message data capture definition.
-- Seq: A sequence number that is used to support multiple capture definitions within the same Application ID.
-- P/S:  This flag field indicates which message text field is used by the capture definition. Values include: P = primary text, S = secondary (Help) text, or B = both. When both are used, they are assembled into a single message text buffer for the purpose of applying the From/To capture positions.
-- From/To: These two fields show the starting and ending locations of the message text buffer that will be captured by this definition.
-- Length: This field shows the length of data that will be captured from the message text buffer, starting at the From position. 
+- **Search Content**: 
+  -   Type a value in this field and press **Enter** or **F16** to find a record in the list that contains the characters typed. The content may exist anywhere within the master record, so the list may not show the value when a record is identified. Type 5=Display to view the record details and verify the matched content.
+  -   A search may be continued beyond the first ecord, using the same search value that now appears in pink below this field, by pressing **F16** to continue the search to the next matching record.
+- **Application ID**: The character string that labels the message data capture definition.
+- **Seq**: A sequence number that is used to support multiple capture definitions within the same Application ID.
+- **P/S**:  This flag field indicates which message text field is used by the capture definition. Values include: P = primary text, S = secondary (Help) text, or B = both. When both are used, they are assembled into a single message text buffer for the purpose of applying the From/To capture positions.
+- **From/To**: These two fields show the starting and ending locations of the message text buffer that will be captured by this definition.
+- **Len**: This field shows the length of data that will be captured from the message text buffer, starting at the From position. 
+- **Capt Seq Desc...**: The description assigned at the Sequence number level for each Data Capture Rule.
 
 #### Functions
 
--   **F3=Exit**: Quits the list and returns to the menu.
--   **F5=Refresh**: Reads the message capture definitions file again and reloads the list display.
--   **F6=Add**: Proceeds to the Create Message Data Capture Definition screen.
--   **F12=Cancel**: Quits the list and returns to the menu.
--   **F16=Search next:** When a value is entered in the Search content field, or a value shows in pink below this field from the last search request, pressing <**F16**> finds the next (or first)    occurrence of the value specified. F16 is useful for finding each desired list entry when there is more than one list entry that
+- **F3=Exit**: Quits the list and returns to the menu.
+- **F5=Refresh**: Reads the message capture definitions file again and reloads the list display.
+- **F6=Add**: Proceeds to the Create Message Data Capture Definition screen.
+- **F12=Cancel**: Quits the list and returns to the menu.
+- **F16=Search next:** When a value is entered in the Search content field, or a value shows in pink below this field from the last search request, pressing <**F16**> finds the next (or first)    occurrence of the value specified. F16 is useful for finding each desired list entry when there is more than one list entry that
     satisfies the search request. When a value is first typed into the Search content field, <**F16**> works the same as the <**Enter**> key for starting a new search. However, only <**F16**> may be used to continue a search past the first entry that satisfies the search criteria.
--   **F17=Top**: Repositions the list display to the first record.
--   **F18=Bottom**: Repositions the list display to the last record.
+- **F17=Top**: Repositions the list display to the first record.
+- **F18=Bottom**: Repositions the list display to the last record.
 
 #### Options
 
--   **1=Select**: This option is only displayed when this screen is displayed after using F10=Capture from the Message Management Parameters maintenance. Type 1 next to the desired Application ID to return that ID to the field on the source display.
--   **2=Change**: To change an Application ID, type 2 next to the ID line and press <**Enter**> to proceed to the Change record screen.
--   **3=Copy**: To copy one Application ID record's definition to a new Application ID, type 3 next to the ID line and press <**Enter**> to proceed to the Copy record screen. During the copy process, the program will display a pop-up window offering an option to also copy all related Response Rules.
--   **4=Delete**: To delete an Application ID, type 4 next to the Msg ID line(s) and press <**Enter**> to proceed to the Confirm Delete of Records screen. During the delete process, the program will display a pop-up window offering an option to also delete all related Response Rules.
--   **5=Display**: To view details of an Application ID, type 5 next to the ID line and press <**Enter**> to proceed to the Display Details screen.
--   **6=Response**: To view any associated Captured Data Response Rules, type 6 next to the ID line and press <**Enter**> to proceed to a list display of Response Rules.
--   **7=Capt chart**: Type option 7 next to any Capture Definition to view a chart of related Response Rules and Dynamic Variables.
+- **2=Change**: To change a Capture Rule, type 2 next to the ID line with the desired Sequence number and press **Enter** to proceed to the Change record screen.
+- **3=Copy**: Type **3** next to the desired Sequnce number and press **Enter** to copy a Capture Rule. During the copy process, the program will display a pop-up window offering an option to also copy all related Response Rules.
+- **4=Delete**: To delete a Capture Rule, type 4 next to the Msg ID line(s) and press **Enter** to proceed to the Confirm Delete of Records screen. During the delete process, the program will display a pop-up window offering an option to also delete all related Response Rules.
+- **5=Display**: To view details of a Capture Rule, type 5 next to the ID line and press **Enter** to proceed to the Display Details screen.
+- **6=Response**: To view any associated Captured Data Response Rules, type 6 next to the ID line and press **Enter** to proceed to a list display of Response Rules.
+- **7=Capt chart**: Type option 7 next to any Capture Definition to view a chart of related Response Rules and Dynamic Variables for the whole Application ID.
 
 ### Add/Change/Copy Message Data Capture Definition
 
-#### TRPM30R2 - Copy Message Data Capture Definition
+#### TRPM30R2 - Add/Change/Copy Message Data Capture Definition
 
-Refer to the How To discussion earlier in this topic for more information about the meaning and purpose of the fields on this display, as well as recommendations and examples for using Message Data Capture. Refer to details about the rules and effect of each field in the fields table, below.
+Refer to the discussion of [Message Management Parameters](./details.md#message-management-parameters-qualification-fields) for more information about the meaning and purpose of the fields on this display, as well as recommendations and examples for using Message Data Capture. Refer to details about the rules and effect of each field in the fields table, below.
 
 #### Menu Pathways
 
@@ -684,55 +612,56 @@ Main Menu > Message Management menu (#2) > Work with Message Data Capture Defini
 
 #### Fields
 
-- From fields:    
-  -   Application ID       
-  -   Capt Seq
+- **From fields**:    
+  - Application ID, App Key       
+  - Capt Seq
 
-  When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. A new value must be assigned to the Sequence of the Capture Definition record being created in Copy mode, using the Capture Sequence input field, below. (The Application ID field may remain the same in the new, copied record, since more than one scan rule is allowed per Application ID.)
+  When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. A new value must be assigned to the Sequence of the Capture Definition record being created in Copy mode, using the Capture Sequence input field, below. The App Key (with its Application ID description) field may remain the same in the new, copied record, since more than one scan rule is allowed per Application ID.
 
-- Application Identifier: This field is used to group one or more Capture Definitions into a single task that will be executed whenever an associated Message Management Parameters record is selected for processing a message.
-- Capture sequence: The order in which the Capture Definition will be processed, relative to other records under the same Application. The value must be unique within the Application ID.
-- Primary/Secondary text: Data may be captured from a text buffer created from any of these sources:
-  -   P = primary message text only
-  -   S = secondary message (Help) text only
-  -   B = both: primary and secondary text are assembled into a single buffer, with one space character between the last non-blank character of the primary text and the start of the     secondary text
--  Message data from pos.: The start position in the message text buffer where data capture will begin. (The first position is 1, not 0.)
+- **Application Key / ID**: This field is used to group one or more Capture Definitions into a single task that will be executed whenever an associated Message Management Parameters record is selected for processing a message.  In the Add or Copy mode the function key **F10** can be used to set or change the assignment of the new Capture Rule to a different App Key (Application ID).
+- **Capture Seq# / Desc**: The order in which the Capture Definition will be processed, relative to other records under the same Application. The value must be unique within the App Key.  Type a Description that identifies the data element being captured.
+- **Primary/Secondary text**: Data may be captured from a text buffer created from any of these sources:
+  - **P** = primary message text only
+  - **S** = secondary message (Help) text only
+  - **B** = both: primary and secondary text are assembled into a single buffer, with one space character between the last non-blank character of the primary text and the start of the     secondary text
+- **Message data from pos.**: The start position in the message text buffer where data capture will begin. (The first position is 1, not 0.)
 :::tip
 If the Scan Label is used, then this From-position marks the location where the search will  start for the Scan Label.
 :::
-- Message data to pos.: The end position of the data capture; may be used instead of Length.
+- **Message data to pos.**: The end position of the data capture; may be used instead of Length.
 :::tip 
 If the Scan Label is used, then this To-position marks the position within the text buffer where the search for the Scan Label will end.
 :::
-- Length of data string: The length of data, starting with the From-position, that will be captured from the text buffer.
+- **Length of data string**: The length of data, starting with the From-position, that will be captured from the text buffer.
 :::tip
 This field is required when the Scan Label is used, in order to determine how much data to capture, starting with the "Data position from LBL."
 :::
-- Scan label string:
-  -   A character string that will be used as a Label to identify where data capture should start. If this label is found, then the data capture will begin from the "Data position from LBL" and continue until the specified "Length" is reached.
-  -   If the Scan Label is not found, no data will be captured.
-  -   An LSAM Dynamic Variable token may be  used in this field (refer to **F6**).
-- Scan label length: Specifies the length of the character string entered in the "Scanlabel string" field. If this value is left at zero, the length of the label is assumed to be the last non-blank character in the Scan label string field. Specify a non-zero value in this field in order to include any trailing blanks as part of the Scan label string.
-- Scan label incidence: This is the number of times that the Scan Label String must be found before starting the data capture. If the Scan Label is not found this number of times, no data capture will be performed. The "Data position from LBL" is computed from this incidence of the Scan Label. If this field is left at zeros, a value of 1 is assumed.
-- Data position from LBL:
-  -   This field specifies the position of the data to be captured, relative to the start of the Scan Label String.
-  -   +n (a positive number) = start the data capture at this position relative to the start of the Scan Label, where 1 is the first byte of the Scan Label itself. In other words, it is possible to include the Scan Label as part or all of the captured data.
-  -   -n (a negative number) = start the data capture this number of characters before the Scan Label, where (-1) is the character position immediately preceding the Scan Label. The data capture may overlap the Scan Label itself.
-  -   0 = Capture data beginning with the "Message data from pos." specified above. Using this value, it is possible to let the Scan Label be used only as means of qualifying whether or not any data should be captured from the message text buffer. If the scan label is not found, then no data will be captured.
-- Compress numeric data:
-  -   0 = not numeric
-  -   1 = yes, compress numeric data
-  -   This flag indicates whether the captured data should be a simple character string, exactly as it appears in the message text buffer, or whether the data should be scrubbed to remove all except the digits. This flag is useful when a numeric value may be found in the message data, but the number included some formatting characters as it appeared in the message text. Setting this flag to 1 allows the real numeric value to be saved and later used in numeric computations.
+- **Scan label string**:
+  - A character string that will be used as a Label to identify where data capture should start. If this label is found, then the data capture will begin from the "Data position from LBL" and continue until the specified "Length" is reached.
+  - If the Scan Label is not found, no data will be captured.
+  - An LSAM Dynamic Variable token may be  used in this field (refer to **F6**).
+- **Scan label length**: Specifies the length of the character string entered in the "Scanlabel string" field. If this value is left at zero, the length of the label is assumed to be the last non-blank character in the Scan label string field. Specify a non-zero value in this field in order to include any trailing blanks as part of the Scan label string.
+- **Scan label incidence**: This is the number of times that the Scan Label String must be found before starting the data capture. If the Scan Label is not found this number of times, no data capture will be performed. The "Data position from LBL" is computed from this incidence of the Scan Label. If this field is left at zeros, a value of 1 is assumed.
+- **Data position from LBL**:
+  - This field specifies the position of the data to be captured, relative to the start of the Scan Label String.
+  - **+n** (a positive number) = start the data capture at this position relative to the start of the Scan Label, where 1 is the first byte of the Scan Label itself. In other words, it is possible to include the Scan Label as part or all of the captured data.
+  - **-n** (a negative number) = start the data capture this number of characters before the Scan Label, where (-1) is the character position immediately preceding the Scan Label. The data capture may overlap the Scan Label itself.
+  - **0** = Capture data beginning with the "Message data from pos." specified above. Using this value, it is possible to let the Scan Label be used only as means of qualifying whether or not any data should be captured from the message text buffer. If the scan label is not found, then no data will be captured.
+- **Compress numeric data**:
+  - **0** = not numeric
+  - **1** = yes, compress numeric data
+  - This flag indicates whether the captured data should be a simple character string, exactly as it appears in the message text buffer, or whether the data should be scrubbed to remove all except the digits. This flag is useful when a numeric value may be found in the message data, but the number included some formatting characters as it appeared in the message text. Setting this flag to 1 allows the real numeric value to be saved and later used in numeric computations.
   :::tip
   When numeric data is compressed, the number is saved as a whole number. There is no record of any decimal positions, so those are only implied. To preserve the number of decimal positions in captured data, use a Captured Data Response Rule to store the captured numeric data into an LSAM Dynamic Variable, having created the Dynamic Variable as a numeric field with a number of decimal places specified. (Refer to the SETDYNVAR command or the "Maintain dynamic variables" function from LSAM menus (on many LSAM menus) in Events and Utilities.)
 
 #### Functions
 
--   **F3=Exit**: Return to the LSAM menu.
--   **F5=Refresh**: Reload the maintenance display with the original default values for Add, Copy or Change, discarding any new typed input.
--   **F6=DynVar**: When the cursor is positioned in the Scan Label String field, use this function key to view a window of registered Dynamic Variable values and select a value to be inserted into the field.
--   **F11=Response rules**: Use this function key to branch directly to the Work with Capture Response Rules list display. This function key helps by carrying forward the Application ID and Sequence Number that are required to label any related Response Rules. After returning from that function, remember to press the <**Enter**> key to complete any pending updates of the Message Data Capture Definition record.
--   **F12=Cancel**: Return to the Work with Message Data Capture Definition list.
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the maintenance display with the original default values for Add, Copy or Change, discarding any new typed input.
+- **F6=DynVar**: When the cursor is positioned in the Scan Label String field, use this function key to view a window of registered Dynamic Variable values and select a value to be inserted into the field.
+- **F10=Capture App**: 
+- **F11=Response rules**: Use this function key to branch directly to the Work with Capture Response Rules list display. This function key helps by carrying forward the Application ID and Sequence Number that are required to label any related Response Rules. After returning from that function, remember to press the <**Enter**> key to complete any pending updates of the Message Data Capture Definition record.
+- **F12=Cancel**: Return to the Work with Message Data Capture Definition list.
 
 ### Copy/Delete Message Data Capture Rule (options 3 and 4)
 
@@ -760,11 +689,10 @@ Enter=Select   F12=Cancel
 Enter=Select   F12=Cancel
 ```
 #### Fields
-- Copy *- or -* Delete?   
-  -   0=No, 1=Yes 
-  -   When either option 3=Copy or option 4=Delete is selected, the program offers the option to perform either a copy or a delete of all Response Rules tht are related to each Capture Rule.
-  -   For option 0=No, the copy or delete action is completed, but any associated Response rules are ignored.
-
+- **Copy** *- or -* **Delete**?   
+  - 0=No, 1=Yes 
+  - When either option 3=Copy or option 4=Delete is selected, the program offers the option to perform either a copy or a delete of all Response Rules tht are related to each Capture Rule.
+  - For option 0=No, the copy or delete action is completed, but any associated Response rules are ignored.
 
 #### Functions
 
@@ -785,85 +713,5 @@ The Work with Capture Response Rules function is identical to the description pr
 -   Main Menu > Message Management menu (#2) > Work with Capture Data Response Rules (# 11)
 -   Main Menu > Message Management menu (#2) > Work with Message Data Capture Definitions (# 10) > F11=Response rules.
 
-Capture Response Rules for message data must be assigned an existing Application ID and Sequence Number from the list that can be viewed in the Work with Message Data Capture Definition, documented above in this topic. It is possible to use function 11 from the Message Management Menu to directly update Response Rules. However, it may be more convenient to use the function key <**F11**> from within the Work with Message Data Capture Definitions function, available from the Create, Change or Copy screen formats. Using function key <**F11**> limits the list display of Captured Data Response rules to only those rules related to the current Message Data Capture Definition application ID and sequence number.
+Capture Response Rules for message data must be assigned an existing Application ID and Sequence Number from the list that can be viewed in the Work with Message Data Capture Definition, documented above in this topic. It is possible to use menu option **11** from the Message Management Menu to directly update Response Rules. However, it may be more convenient to use the function key **F11** from within the Work with Message Data Capture Definitions function, available from the Create, Change or Copy screen formats. Using function key **F11** limits the list display of Captured Data Response rules to only those rules related to the current Message Data Capture Definition application ID and sequence number.
 
-## Message Management Operations Screens
-
-### Start Message Management -- Start Mode Window
-
-#### Start Message Management - Start Mode Prompt
-```
-                      Start Message Management
-
-Server start mode (warm/cold): 0    0 = warm start, 1 = cold start
-
-
-Press Enter to continue, or F3 or F12 to cancel.
-```
-
-#### Menu Pathways
-
-Main Menu > Message management menu (#2) > Start message management (#3)
-
-#### Fields
-
-| Field                | Values               | Description          |
-| -----                | ------               | -----------          |
-| Server start mode (warm/cold) | 0 = warm start| **0** = keep the content of the Message Management message key control file. This allows the server to perform a warm start, attempting to resume message queue reading from after the last message that was previously processed. |
-|                      | 1 = cold start       | **1** = clear the content of the Message Management message key control file. This tells the server to first clear the control file before starting the server processing, and it instructs the server to start at the beginning of each message queue. |
-|                      | The default value is retrieved from the Message Management performanceparameters. | Refer to additional discussion above about Starting Message Management. |
-
-### Check Message Management Status - Window
-
-#### Check Message Management Status Window
-```
-  
-  Message management status: STOPPED
-
-  -- or --                   STARTED
-
-       Press Enter to continue
-
-```
-#### Menu Pathways
-
-Main Menu > Message management menu (#2) > Check message management status (#5)
-
-### View Job Completion Message Table
-
-This function displays the contents of a table file distributed by SMA that is not normally updated by LSAM users. The message IDs displayed in this table are recognized by the LSAM job completion message management server (job MSGMNG) as representing the completion status of jobs. Since these unique messages server only this special purpose, the message IDs in this table are not allowed for management by the LSAM Message Management facility. This means that when the LSAM Parameters (LSAM main menu, option 7) are set to use Message Management rules for messages arriving in the LSAM's dedicated job completion message file, SMAMSGF, the message IDs in this table cannot be specified for general message management. The responses to these messages must be managed from OpCon, according to the job status that each message may generate.
-
-#### Job Completion Messages Control Table View
-```
-
-                                        Display Physical File Member
-
-File . . . . . . :   LSAMSGF00           Library  . . . . :   SMADTA            
-
-Member . . . . . :   LSAMSGF00           Record . . . . . :   1
-
-Control  . . . . .   ____________        Column . . . . . :   1    
-
-Find . . . . . . .   _________________________________________
-*...+....1....+..
-CPC1217JOBNOK
-CPC1218JOBNOK
-CPC1219JOBNOK
-CPC1220JOBNOK
-CPC1224JOBNOK
-CPC1225JOBNOK
-CPC1226JOBNOK
-CPC1232JOBNOK
-CPC1234JOBNOK
-CPC1235JOBNOK
-CPF1240JOBNOK
-CPF1241JOBOK
-CPI2404MSGW
-                           ****** END OF DATA ******
-
-                                                                 Bottom
-F3=Exit   F12=Cancel   F19=Left   F20=Right   F24=More keys
-```
-In the table illustration above, notice that many message IDs, such as CPC1217, are followed by the characters JOBNOK. This symbol means "job not OK" and it indicates a message ID that signals an IBM i job failure. In contrast, the message ID CPF1241 shows JOBOK and indicates a normally complete IBM i job.
-
-The message ID CPI2404 is a special case: If a job is in Message Waiting status (MSGW), this will be detected by the LSAM transaction manager server job, where a sub-procedure calls an IBM i API (application program interface) to fetch the actual status of a job, which would be MSGW in this case. But this message ID appears in this table to indicate that it also is a reserved message ID that is not eligible for LSAM Message Management handling.
