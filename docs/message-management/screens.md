@@ -213,7 +213,7 @@ Main Menu > Message management menu (#2) > Message management parameters (#1)
 -   **3=Copy**: To copy a Msg ID to a similar record (perhaps using a different sequence number and other response rules), type a 3 next to the Msg ID line and press <**Enter**> to proceed to the Copy Message Management Parameters screen.
 -   **4=Delete**: To delete a Msg ID, type 4 next to the Msg ID line(s) and press <**Enter**> to proceed to the Confirm Delete of Records screen for message trapping.
 -   **5=Display**: To view a Msg ID, type 5 next to the Msg ID line and press <**Enter**> to proceed to the Display Message Management Parameters screen.
--   **7=Capt chart**: To view a flow chart of associated Message Data Capture Rules and Captured Data Response Rules, type a 7 next to the MSD ID line and press <**Enter**> to proceed to the Capture Message Data Chart list display. A detailed explanation of the displays for the Capture Chart may be found in Operator Replay Scripts, within the Screens and Windows section, under the title "Operator Replay Capture Chart (opt 7)."
+-   **7=Capt chart**: To view a flow chart of associated Message Data Capture Rules and Captured Data Response Rules, type a 7 next to the MSD ID line and press <**Enter**> to proceed to the Capture Message Data Chart list display. A detailed explanation of the displays for the Capture Chart may be found in Operator Replay Scripts, within the Screens and Windows section, under the title [Operator Replay Capture Chart (opt 7)](/operator-replay/screens.md#oprr10r7---capture-screen-data-chart-5-views).
 -   **8=Export**: Select one or more Message Management Parameters that will be copied to a save file collection for exporting to a different LSAM environment. The Export option includes all related records such as Capture Rules and Response Rules, as well as any Dynamic Variable definitions. Detailed instructions for Export and Import of data are found in Copy Files from Test to Production.
 -   **9=Chg Sts**: Type option 9 next to any master record line and press <**Enter**> to change the record status from A to I, or from I to A, where A = active and I = inactive.
 
@@ -413,8 +413,6 @@ This is an ISO-standard date field. The default value for this field which means
    - **V** = use the LSAM Dynamic Variable date of last update activity.
 
     This option controls which date is compared to the message issue date to determine if the Duration period for the counter has expired. Using the Message Management Parameters date of  the last time this message was processed allows for the Dynamic Variable counter value to be  changed from outside of Message Management without affecting the date. However, if changes to the Dynamic Variable counter should be considered as valid activity within the duration period, then use the value V. Both current date values appear on the Change and Display formats, regardless of the setting of this control value.
-
-
 
 #### Functions
 

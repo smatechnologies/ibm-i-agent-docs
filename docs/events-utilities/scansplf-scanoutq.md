@@ -31,73 +31,166 @@ Previous versions of the LSAM used the Application ID text as the primary key fi
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) and the [LSAMENU Command](../operations/lsam.md#the-lsamenu-command).
 2. Enter **3** to choose the **Events and Utilities menu** in the SMA Main Menu.
-3. Enter **3** to choose **Work with SCANSPLF Applications** in the Events and Utilities menu.
-4. Press <**F6**> to Add a new SCANSPLF Applicaiton ID.
+3. Enter **3** to choose **Work with SCANSPLF Applications** in the Events and Utilities menu.  A list display will be presented titled "Wor with Capture Applications."
+4. Press **F6** to Add a new Capture Application ID.  For the SCANSPLF utility, the Scan Rules ARE the report capture rules.  One or more report data capture rules may be collected within a single Application ID.
 5. Type the new Application ID text, then press <**Enter**> and allow the system to assign a new App Key number to this application.
-6. Press <**F3**> to return to the menu.
+6. Press **F3** to return to the menu. Or, type **6** next to a new or existing Application ID and press **Enter** to procede to the list of Scan Rules.  When using option 6=Work with rules, skip to step 8.
 7. Enter **4** to choose **Work with SPLF Scan Rules** in the Events and Utilities Menu.
-8. Press <**F6**> to Add a new spool file scanning rule.
-9. The **Select Capture Application** screen appears:  Type option **1** to select the desired Application ID, then press <**Enter**>.
-10. The **Create SPLF Scan Rule** screen appears.
+8. Press **F6** to Add a new spool file scanning rule.
+9. The **Create SPLF Scan Rule** screen appears.
+10. When Adding or Copying SPLF Scan Rules, use **F10** to branch to the **Select Capture Application** screen, if the Appplication ID field is not already correct. Type option **1** to select the desired Application ID, then press **Enter** to return the new Application ID into the SPLF Scan Rule.
 11. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and a description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about how these field values may be used.
 12. Press <**Enter**> to record the new SPLF Scan Rule record.
 
-### SCANSPLF Application Screens and Windows
+## SCANSPLF Application Screens and Windows
 
-#### Work with SCANSPLF Applications
+### Work with SCANSPLF Applications
 
-- **Screen Title**: Work with SCANSPLF Applications
-- **Screen ID**: LSAUTLD301
+Rules for capturing message data elements are assembled into logical groups identified by an Application ID (similar to screen data captures by Operator Replay scripts and Message Maagement data captures). One or more report data capture (= SPLF Scan) rules may be associated with each Application ID, where multiple rules are identified by a sequence number. The Application ID is linked to a Spool File Scan Rule record by the APP KEY numeric value. The APP KEY is entered into the record by using the F10=Capture function key from the Scan Rule Create, Copy or Change screens. An Application ID may be shared by more than one set of SPLF Scan rules, especially when the Application ID is intended for use with the companion SCANOUTQ command.
 
-##### Menu Pathways
+### LSAJ50R1 - Select Capture Application
 
-Main Menu \> Events and Utilities (#3) \> Work with SCANSPLF Applications (#3)
+The title of this display shows to **Work with Capture Applications** when it is accessed directly from an LSAM Menu.  The sub-title of "Application type:" shows the Agent automation tool that has its own data capture definitions, such as "**SCANSPLF**".
 
-##### Fields
+Details about working with Application IDs are provided at [Work with Data Capture Application IDs](/events-utilities/captured-data-response-rules.md#work-with-data-capture-application-ids).  
 
--  Search content:   To quickly search for a particular job, enter the first characters of the job name, or any other tracked job log content value, and press <**Enter**>. Any value that appears on the log detail display may be searched for, even though not all values appear in the list display.
--  Opt:              Enter one of the options listed at the top of the display and press <**Enter**> to execute that option for the selected line in the list.
+After optionally creating or maintaining an appropriate Application ID, use the Application ID list display option 6 to Work with Capture Definitions for the currently selected Agent automation tool, as described next for the SCANSPLF report scanning feature.
 
-##### Options
+Type **1** next to the desired Application ID and press **Entery** to return the APP KEY and Application ID to the Work with Spool File Scan Rules display.
 
-- **1=Select**: Select an Application ID and then branch into the Work with Scan Rules function, which will be limited to only the Scan Rules that belong to the selected Application.
-- **3=Copy**: Select an Application and copy all of its Scan Rules to a new Application ID. A pop-up window will appear offering an option to also copy any associated Response Rules.
-- **4=Delete**: Select one or more Application IDs from the list for deletion. All records selected for deletion are presented in a confirmation list after <**Enter**> is pressed, and no records are deleted until the confirmation display is acknowledged. Remember that this Delete function actually deletes all the Scan Rules that were assigned to the selected Application ID(s). A pop-up window  will appear offering an option to also delete all associated Response Rules.
-- **7=Capt chart**: Type option 7 next to any Application line to view a chart of related Capture and Response Rules and Dynamic Variables.
-- **8=Export**: Select one or more Applications that will be copied to a save file collection for exporting to a different LSAM  environment. The Export option includes all related records such as Capture Rules and Response Rules, as well as any Dynamic Variable definitions.
+### Work with SPLF Scan Rules
 
-##### Functions
+The SCANSPLF utility differs from Operator Replay Script and Message Management Parameter management in that there is no separate "capture rule" for the SCANSPLF command.  Rather, the Scan Rules ARE the capture data rules, and the Scan Rules support additional parameters that are focused on navigation of report lines.  But then Scan Rules can be connected to Response Rules, similar to the other two Agent automation tools that can capture data.
 
-- **F3=Exit**: Quits the list display and returns to the menu.
-- **F5=Refresh**: Retrieves the latest list information and updates the display.
-- **F12=Cancel**: Quits the list display and returns to the menu.
-- **F16=Search next**: When a value is entered in the Search content field, or a value shows in pink below this field from the last search request, pressing <**F16**> finds the next (or first) occurrence of the value specified. F16 is useful for finding each desired log entry when there is more than one log entry that satisfies the search request. When a value is first typed into the Search content field, <**F16**> works the same as the <**Enter**> key for starting a new search. However, only <**F16**> may be used to continue a search past the first entry that satisfies the search criteria.
-- **F17=Top**: Causes the display to jump to the top of the list. This is the equivalent of the first record in the file, but the sort order controls which records are listed first.
-- **F18=Bottom**: Causes the display to jump to the last entry in the list. This is the equivalent of the last record in the log file, but the sort order controls which records are listed last. This function key is very helpful when the file is big.
+- **Screen Title**: Work with Spool File Scan Rules
+- **Screen ID**: LSAJ40R1
 
-#### Copy SCANSPLF Application
+For each Application there are one or more Scan Rules that tell the SCANSPLF utility how to search the report spool file(s). Some or all of the Scan Rules may be required to match the input PARAMETERS values supplied by the SCANSPLF command, and there must be a Scan Rule for each possible input parameter. There may also be additional Scan Rules that are not associated with the input PARAMETERS. After defining these Scan Rules it will be possible to associate one or more Captured Data Response Rules, as described below, in order to perform operations on the data that is found by these Scan Rules or to respond with some command as each Scan Rule is satisfied.
 
-Option 3=Copy supports copying all of the Scan Rules from one Application ID to a new Application ID. After the bulk copy is completed, use option 1=Select from the list of Applications to Work with Scan Rules for the new Application ID.
+Refer to the How To discussion earlier in this topic for more information about ways to apply Spool File Scan Rules to specific tasks.
 
-- **Screen Title**: Copy SCANSPLF Application
-- **Screen ID**: LSAJ50R2
+#### Menu Pathways
 
-##### Menu Pathways
+Main Menu \> Events and Utilities menu (#3) \> Work with SPLF Scan Rules (#4).
+Main Menu \> Events and Utilities menu (#3) \> Work with SCANSPLF Applications \> option 6=Work with rules \> Work with SPLF Scan Rules.
 
-Main Menu \> Events and Utilities (#3) \> Work with SCANSPLF Applications (#3) \> Option 3=Copy
+#### Fields
 
-##### Fields
+- **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
+- **Opt**: Type option from list displayed near the top of this screen. Refer to options definitions, below.
+- **Application**: The Application ID is used to group one or more Scan Rules into a single task that can produce a pass or fail outcome of a job. The Application ID, along with the Sequence number, is critical for identifying data in the Captured Data Log file (which can also hold data from Operator Replay screen capture).
+- **SEQ**: The sequence of the Scan Rule, within an Application. This number determines the order in which data Scan Rules are processed. The order of the Scan Rules is critical for rules that are defined to match the input PARAMETERS of the SCANSPLF command. Rules that are not assigned to an input PARAMETER of the SCANSPLF command can be in any order or interspersed among the other rules. However, the order of the Scan Rules may also be governed by the desired outcome of any associated Captured Data Rules, because those responses are also processed within the order of the Sequence number of Scan Rules. The Sequence number will be unique within an Application ID, regardless of how many SPLF Names and/or Job Names are included within an Application.
+- **SPLF Name**: The actual name of the IBM i report spool file.
+- **Job Name**: The name of the IBM i job that produces the report spool file.
+- **SPLNBR**: The spool file number within the Job Name.
+- **Description**: Text that helps to identify the purpose of each Scan Rule.
 
--  From Application:   The From Application field only appears when option 3=Copy has been used.
--  (to) Application:   If option 3=Copy was used, the "to Application" input field is shown, otherwise, a simple "Application" field appears on the next line. Enter the new Application ID that will be used. The Application ID may remain the same, as long as any one of the other three fields will be changed to create a new record. The Application ID field is used for coordinating with Captured Data Response Rules.
+#### Functions
 
-##### Functions
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the list display with the latest data from the master file.
+- **F6=Add**: Branch to the screen for creating a new Scan Rule record.
+- **F11=Sort SPLF/JOB, Sort APP/SEQ\#, Sort APP/SPLF**: Pressing F11 rotates among these three different sorting options for the list display. In each sort mode, the primary sort field heading is colored pink and underlined, and secondary sort fields are also underlined.
+- **F12=Cancel**: Return to the LSAM menu.
+- **F16=Search next**: When a search argument has been entered in the Search content field, pressing F16 can either start a new search (if the content value was changed) or it can continue a search to look for the next list entry that matches the search argument, starting with the first record after the last match found.
+- **F17=Top**: Reposition the list display to show the first record in the list.
+- **F18=Bottom**: Reposition the list display to show the last record in the list.
+- **F24=More keys**: Use this function key to change the function key legend displayed at the bottom of the screen. All function keys remain active, even if they do not appear in the currently displayed function key legend.
 
-- **F3=Exit**: Quits the maintenance function without update and returns to the list display.
-- **F5=Refresh**: Restores the original field values that were presented when the maintenance display format first appeared, replacing any data that may have been typed.
-- **F12=Cancel**: Quits the maintenance function without update and returns to the menu.
+#### Options
 
-#### Copy/Delete SCANSPLF Application (options 3 and 4)
+- **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press **Enter** to proceed to the Change detail screen.
+- **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press **Enter** to proceed to the Copy detail screen. During the copy process, a pop-up window will offer an option to also copy any Response Rules that are associated with the Scan Rule being copied.
+- **4=Delete**: To delete one or more records, type 4 next to each record. Press **Enter** to proceed to the Delete confirmation window. During the delete process, a pop-up window will offer an option to also delete any Response Rules that are associated with the Scan Rule being deleted.
+- **5=Display**: To display record details, type 5 next to each record. Press **Enter** to proceed to the display details screen. Typing option 5 next to many or all records at once before pressing **Enter** is a convenient way to review all the definition details at once. Press **Enter** to advance as each detail screen is presented.
+
+### Add/Change/Copy/Display SPLF Scan Rule
+
+- **Screen Title**: Add/Change/Copy/Display SPLF Scan Rule
+- **Screen ID**: OPRR50R2
+
+Refer to the How To discussion earlier in this topic for more information about the meaning and purpose of the fields on this display. Refer to details about the rules and effect of each field in the fields table, below.
+
+#### Menu Pathways
+
+Main Menu \> Events and Utilities menu (#3) \> Work with SPLF Scan Rules (#4) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
+
+#### Fields
+
+Refer to the following subjects that describe [Using the SCANSPLF Utility](./scansplf-scanoutq.md#using-the-scansplf-utility) for examples of how the following field rules can be used.  Additional information is available at [Case Examples of SCANSPLF Applications](./scansplf-scanoutq#case-examples-of-scansplf-applications)
+
+:::tip
+The order of the fields listed in the table below will vary, depending on the setting of the "Scan Rule maint fmt 1- or 2-page" option in the "LSAM Utilities Configuration" screen (documented in previous pages of this section).
+:::
+
+- **From fields**: 
+  - Application 
+  - Sequence 
+  - SPLF Name 
+  - Job Name 
+  - SPLNBR 
+
+    When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. A new value must be assigned to the Sequence of the Scan Rule record being created in Copy mode, using the Rule Sequence input field, below. (The other key fields may remain the same in the new, copied record, since more than one scan rule is allowed per SPLF Name + Job Name + SPLNBR.)
+
+- **Application Key / ID**: The Application Key field is used to group one or more Scan Rules into a single task that can be configured to end normally or abnormally, depending on the setting of the Required Rule field in any of its rules. The field permits spaces and special characters.  The Application ID text is display-only, as copied from the Application ID master file (described above).
+- **Rule sequence**: The order in which the scan rule will be processed, relative to other scan rules under the same Application. The value must be unique within the Application ID, even for a different SPLF Name, Job Name or SPLNBR. 
+- **Rule description**: Text that identifies the purpose of the scan rule, helpful on the Work with SPLF Scan Rules list display.
+- **SPLF name**: The name of the spool file to be scanned. 
+- **Job name**: The IBM i 10-character job name. The special value of \*CMD may be used to indicate that the actual job name will be provided at execution time by the SCANSPLF command.
+- **SPLF number**: \*ANY, or optionally, a specific spool file number within the Job name, used when more than one spool file of the same name is produced by a single job.
+- **From/To page**:
+  - The scan may optionally be limited to one or more specific pages of a report.  The special value *STR means "from the start," and the special value \*END means "to the end."
+  - The special value \*END may be used in the From-page field to cause the SCANSPLF command to work backwards from the last line of the report to the first line.  Working from the end of the report combines well with the Incidence count, for example, if it is important to find the second-to-last TOTALS label on a financial report.
+  - When \*END is used for the From-page, it is possible to specify a Positive number for the To-page. A Positive number indicates the limit of pages to scan, starting backwards from the end of the report. For example, (**-1**) means scan only the last page, (**-2**) means scan only the last two pages, and so forth. A Positive number in this character field is indicated by type a dash (**-**) either before or after a number: **-1** or **1-**.
+- **From/To line (record)**: The scan may optionally be limited to specific lines on each page of the report. The line counter is reset at the top of each page. This feature might be useful, for example, when a label or value should only be found in the heading line of a report page (keeping in mind that the first heading line 
+might actually be printed on line 2 of the page, in which case it would be necessary to specify 2 as the From and the To lines).
+- **From/To position (column)**:
+  - The scan may optionally be limited to specific positions on each scanned line of the report. For example, in IBM i job log reports, the severity code of logged messages always appears in positions 36-37.
+  - This pair of control fields has a different effect depending on other fields on the scan rule:
+    - If a scan label is specified, the scan label must be found within the From/To positions on the report line. When the scan label is specified, the From/To positions have no effect on the scan value itself - the scan value may be found anywhere within the report line where the scan label was located.
+    - If a scan label is not specified, then the scan value can only be found starting with the first non-blank character after the From-position, and it cannot extend past the To-position.
+    - When the special value of *CAPT is specified for the scan value and the scan label is not specified and a scan value length greater than zero is entered, then the To-position will be ignored. Only the From-position will be used to find the scan value to be captured, and the captured data will be limited to the specified scan value length.
+- **Start scan label**: Optionally, specify a predictable string of characters that can be found by the scan program in order to locate the scan value within a report line.
+- **Position after label**: When the scan label is specified, indicate where the scan program should look for the scan value. There are four possible value types for this field that each cause a different result:
+  - **0 (zero)** = start with the first non-blank character AFTER the end of the scan label.
+  - **Positive number** = start at the specified column number AFTER the end of the scan label. If the scan label ends at column 27 and the position-after value is 6, then the scan value to be compared will begin at column 33. 
+  - **(-1)** = start with column 1 on the report and use the first non-blank character that appears BEFORE the scan label. This value is not valid if the scan label begins at column 1. The search for a scan value will stop with the last character before the start of the scan label, but the scan value can overlap the scan label. If no non-blank characters are found before the scan label starts, then the scan program assumes there is no scan value at the location of the scan label and this scan value will be marked as not found (not matched).
+  - **Negative number** = start at the specified number of columns BEFORE the start of the scan label. Remember that (-1) has a special meaning, so it cannot be used in this context. If the scan label starts at column 27 and the position-after value is (-15), then the scan value to be compared will begin at column 12.
+- **(scan) Value, \*PARM, \*CAPT, DVar**: This field is used to specify or describe the scan value. The scan value will be the captured data value stored in the Captured Data Log file and referenced by any captured data response rules. When applicable, this scan value will be compared to the value found in the report at the specified location in order to determine if the scan rule has been matched or not matched. The scan values that may be specified include:
+  - **A specific value** = Any character string may be specified as the value that should be compared to the scan value found at the specified location in the report. For example, this type of rule can be used to find a flag in a financial report that may say "OUT OF BALANCE" in order to cause the SCANSPLF command to fail, so that the OpCon job that executed the SCANSPLF command will show up on the OpCon Schedule as a failed job, triggering an operator response. Leading blank characters may be left in the scan value field if they must be included in the scan rule match. Use the scan value length to also include trailing blank characters.
+    :::tip
+    Special values \*PARM and \*CAPT must be all capital letters.
+    :::
+  - **\*PARM** = Use the value specified in one of the input PARAMETERS values of the SCANSPLF command. When the SCANSPLF command supplies input values (that is, the *RULES option for PARAMETERS was not used), there must be the same number of scan rules that use this *PARM special value as there are input parameter values separated by colons (:) in the PARAMETERS keyword of the SCANSPLF command.
+  - **\*CAPT** = This special value indicates that the scan rule will not generate a match or nomatch (pass/fail) result. Instead, this type of scan rule will be used only for the purpose of capturing a value at the specified location in the report and then storing that value in the Captured Data Log file. Captured data values can be used to trigger any number of Captured Data Response rules, and the Response rule records may specify that the captured data should also be stored as an LSAM Dynamic Variable or as an LSAM Operator Replay token variable value.
+  - **DVar** = An LSAM Dynamic Variable may be specified in the scan value field. If the Dynamic Variable has already been defined in the LSAM table (remembering that Dynamic Variables may be defined at run-time, in which case they must be anticipated before they appear in the LSAM table), then function key F4=DynVar may be used to select from a list of available Dynamic Variables. The Dynamic Variable name is recognized by the scan program because it is enclosed within the pair of characters registered for this purpose in the LSAM Utility Configuration function (LSAM menu 3, option 7). The default Dynamic Variable enclosure characters are a pair of curly brackets: {var_name}. It is possible to combine a Dynamic Variable with other text that is entered directly into the scan value field, for example: 'Leading characters {var_nam} trailing text'. When the scan rule is executed, the scan program will replace the Dynamic Variable with the value found in the LSAM table at the moment of execution. A Dynamic Variable value may have just been set by a preceding scan rule's Captured Data Response rule.
+- **Scan value length**: When the scan value length is left at zero, the scan program assumes that the length of the scan value is equal to the last non-blank character in the scan value string (that is, the scan value is assumed to be trimmed of trailing blanks, and then the scan value is measured). The scan value length has a different effect depending on the setting of other scan rule fields:
+  - Leave set to be left at zero when using the *PARM scan value. The length of the input PARAMETER value supplied in the SCANSPLF command will determine the length of the character string extracted from the report.
+  - When a specific value is entered into the scan value field, the scan value length can be set to a value longer than the number of trailing non-blank characters in the value in order to tell the scan program that trailing blanks should be considered in the match (pass/fail) rule. For example, if a scan value is entered with two leading blank characters, as: 'VALUE', then the default trimmed length of this scan value used by the scan program would be 7 (2 leading blanks and 5 non-blank characters). If the scan value length is set to 9, then the scan value found in the report must also have 2 blank characters after the non-blank characters.
+  - For the special scan value of *CAPT, use the scan value length combined with the From-position to specify the data that should be captured from the report. For *CAPT, if the scan value length is zeros, the the To-position must also be specified with the From-position in order to determine how much data to capture.
+  - Dynamic Variables are handled the same as typed scan values. The scan program first replaces a Dynamic Variable token with the variable's value at run time, then it subjects the scan value to the scan value length, as described above for specific values. Leave the scan value length at zero to allow the scan program to adapt to the actual length of the Dynamic Variable's value at run time. If a scan value length is specified, then the possible values of the Dynamic Variable must be well understood in advance in order to predict the results of the SCANSPLF match rules.
+- **Bypass parm value**: This field is used only when the SCANSPLF command will provide input values in its PARAMETERS keyword. If the specified bypass value is found in the input PARAMETERS position corresponding to this scan rule sequence number, then the input parameter will be considered matched by default and the report will not actually be scanned in order to set this scan rule to a status of matched.
+:::info Example
+For a given application, such as a financial report balancing task, the SCANSPLF command might be assembled by an automatic routine executing on the OpCon server. In this example, assume that there are four input parameter values: debit item count, debit total amount, credit item count, credit total amount. If any of these values is not found in the source data used by the SCANSPLF command assembly routine, then that routine is allowed to insert a place-holder value that indicates, "thisvalue is not supplied today - ignore this parameter position." An example of such a value might be *empty*. In this case, the Bypass parm value should be set to this same value, *empty*. To make the bypass value work, the administrator configuring the LSAM SPLF Scan Rules must coordinate this special value with the programmer responsible for building the automated routines that will assemble the SCANSPLF command string for the OpCon job. 
+:::
+- **Bypass value length**: Optionally, specify the length of the characters string used for the Bypass parm value. If this length is left at zeros, the scan program will assume that the Bypass parm value length ends with the last non-blank character. Leaving this value as zeros is the usual practice.
+- **Compress numeric**: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits.  Compressed monomeric do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the reference value (which may be an input PARAMETER from the SCANSPLF command) and the scan value found in the report when the option for compressing numeric data will be used. 
+- **Required rule**: This field is used to indicate that a scan rule is required, and it will affect the pass/fail outcome of the scan task:
+  - **Y** = yes, the rule must be matched as part of the overall outcome of the SCANSPLF job.
+  - **N** = no, this rule may be ignored; whether it matches or not, it does not affect the overall outcome of the SCANSPLF job.                
+  - This field MUST be set to **Y** when the scan value is \*PARM.
+  - This rule at the individual scan rule level must be coordinated with the SCANSPLF command setting in its FAILOPT (fail option) keyword. The scan program itself keeps track of all rules that have their "Required rule" field set to Y=yes. At the end of the scan job, if all required rules were matched, then the SCANSPLF command would end normally. If any of the required rules were not matched, then the SCANSPLF command would end abnormally. The SCANSPLF command FAILOPT can be used to reverse the logic of this outcome (or to ignore the pass/fail outcome of rule matching). If the FAILOPT is set to (2) = fail on match, then the SCANSPLF command  will signal a failure only when all required rules are matched. For FAILOPT(2), if any required scan rule is not matched, the SCANSPLF command will appear to end     normally.
+  - The FAILOPT(2) technique may be most useful for single-rule Applications. For example, if the Application is searching for a failure message in a job log report, finding a match for any one failure message should generate an abnormal end of the SCANSPLF command. If two different failure message rules were specified, it is unlikely that both failure messages would be found, therefore, the SCANSPLF using FAILOPT(2) would typically end normally because not all rules were  matched.
+
+#### Functions
+
+- **F3=Exit**: Return to the LSAM menu.
+- **F5=Refresh**: Reload the maintenance display with the original default values for Add, Copy or Change, discarding any new typed input.
+- **F8=DynVar**: When the cursor is positioned in the Scan Value field, use this function key to view a window of registered Dynamic Variable values and select a value to be inserted into the Scan Value field.
+- **F12=Cancel**: Return to the Work with SPLF Scan Rules list display.
+- **PageDown/PageUp**: When the LSAM Utilities Configuration option is set to use the 2-page format for this maintenance display, the PageDown and PageUp keys can be used to move between the two pages. NOTE: If Enter is pressed while page 1 is on display, the master record will be added or updated, without displaying the optional fields on page 2. Use PageDown to view the page 2 fields, if desired, before pressing the Enter key.
+
+### Copy/Delete SPLF Scan Rule Windows (options 3 and 4)
 
 Whenever the options 3=Copy or 4=Delete are being processed, the program will present a window that offers an opportunity to also copy or delete any Response Rules associated with the Scan Rules that belong to the Application.
 
@@ -121,168 +214,30 @@ Delete response rules also?   1  0=No, 1=Yes
 
 Enter=Select   F12=Cancel
 ```
-##### Fields
+#### Fields
 
-- Copy? - or - Delete?:
-  -   0=No, 1=Yes                                      
-  -   When either option 3=Copy or option 4=Delete is selected, the program offers the option to perform either a copy or a delete of all Response Rules that are related to each Scan Rule that is associated with an Application.
-  -   For option 0=No, the copy or delete action is completed, but any associated Response Rules are ignored.  
-  -   When this window is presented from the maintenance of individual Scan Rules, it applies only to the Scan Rule(s) being copied and not to the whole Application. 
+- **Copy?** - or - **Delete?**:
+  - **0**=No, **1**=Yes                                      
+  - When these windows are presented from the maintenance of individual Scan Rules, they apply only to the Scan Rule(s) being copied (or deleted) and not to the whole Application ID. 
+  - When either option 3=Copy or option 4=Delete is selected for a SCANSPLF Application ID, the program offers the option to perform either a copy or a delete of all Response Rules that are related to each Scan Rule that is associated with that Application ID.
+  - For option 0=No, the copy or delete action is completed, but any associated Response Rules are ignored.
 
-##### Functions
+
+#### Functions
 
 **F12=Cancel**: Quits the option window and returns to the list control display. (The copy or delete option remains incomplete and must be  restarted, if desired.)
 
-### Display Capture Rules/Response Rules Chart (option 7)
-
-The Capture and Response Rules chart displays are explained in detail under Operator Replay, within the Screens and Windows section, under the title "Operator Replay Capture Chart (opt 7)."
-
-### Export Message Management Parameters (option 8)
-
-Detailed instructions about the data Export and Import functions is provided in Copy Files from Test to Production.
-
-## Work with SPLF Scan Rules
-
-- **Screen Title**: Work with Spool File Scan Rules
-- **Screen ID**: LSAJ40R1
-
-For each Application there are one or more Scan Rules that tell the SCANSPLF utility how to search the report spool file(s). Some or all of the Scan Rules may be required to match the input PARAMETERS values supplied by the SCANSPLF command, and there must be a Scan Rule for each possible input parameter. There may also be additional Scan Rules that are not associated with the input PARAMETERS. After defining these Scan Rules it will be possible to associate one or more Captured Data
-Response Rules, as described below, in order to perform operations on the data that is found by these Scan Rules or to respond with some command as each Scan Rule is satisfied.
-
-Refer to the How To discussion earlier in this topic for more information about ways to apply Spool File Scan Rules to specific tasks.
-
-##### Menu Pathways
-
-Main Menu \> Events and Utilities menu (#3) \> Work with SPLF Scan Rules (#4).
-
-##### Fields
-
--  Search content:   Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
--  Opt:              Type option from list displayed near the top of this screen. Refer to options definitions, below.
--  Application:      The Application ID is used to group one or more Scan Rules into a single task that can produce a pass or fail outcome of a job. The Application ID, along with the Sequence number, is critical for identifying data in the Captured Data Log file (which can also hold data from Operator Replay screen capture).
--  SEQ"              The sequence of the Scan Rule, within an Application. This number determines the order in which data Scan Rules are processed. The order of the Scan Rules is critical for rules that are defined to match the input PARAMETERS of the SCANSPLF command. Rules that are not assigned to an input PARAMETER of the SCANSPLF command can be in any order or interspersed among the other rules. However, the order of the Scan Rules may also be governed by the desired outcome of any associated Captured Data Rules, because those responses are also processed within the order of the Sequence number of Scan Rules. The Sequence number will be unique within an Application ID, regardless of how many SPLF Names and/or Job Names are included within an Application.
--  SPLF Name:        The actual name of the IBM i report spool file.
--  Job Name:         The name of the IBM i job that produces the report spool file.
--  SPLNBR:           The spool file number within the Job Name.
--  Description:      Text that helps to identify the purpose of each Scan Rule.
-
-##### Functions
-
-- **F3=Exit**: Return to the LSAM menu.
-- **F5=Refresh**: Reload the list display with the latest data from the master file.
-- **F6=Add**: Branch to the screen for creating a new Scan Rule record.
-- **F11=Sort SPLF/JOB, Sort APP/SEQ\#, Sort APP/SPLF**: Pressing F11 rotates among these three different sorting options for the list display. In each sort mode, the primary sort field heading is colored pink and underlined, and secondary sort fields are also underlined.
-- **F12=Cancel**: Return to the LSAM menu.
-- **F16=Search next**: When a search argument has been entered in the Search content field, pressing F16 can either start a new search (if the content value was changed) or it can continue a search to look for the next list entry that matches the search argument, starting with the first record after the last match found.
-- **F17=Top**: Reposition the list display to show the first record in the list.
-- **F18=Bottom**: Reposition the list display to show the last record in the list.
-- **F24=More keys**: Use this function key to change the function key legend displayed at the bottom of the screen. All function keys remain active, even if they do not appear in the currently displayed function key legend.
-
-##### Options
-
-- **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press <**Enter**> to proceed to the Change detail screen.
-- **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press <**Enter**> to proceed to the Copy detail screen. During the copy process, a pop-up window will offer an option to also copy any Response Rules that are associated with the Scan Rule being copied.
-- **4=Delete**: To delete one or more records, type 4 next to each record. Press <**Enter**> to proceed to the Delete confirmation window. During the delete process, a pop-up window will offer an option to also delete any Response Rules that are associated with the Scan Rule being deleted.
-- **5=Display**: To display record details, type 5 next to each record. Press <**Enter**> to proceed to the display details screen. Typing option 5 next to many or all records at once before pressing <**Enter**> is a convenient way to review all the definition details at once. Press <**Enter**> to advance as each detail screen is presented.
-
-### Add/Change/Copy SPLF Scan Rule
-
-- **Screen Title**: Copy SPLF Scan Rule
-- **Screen ID**: OPRR50R2
-
-Refer to the How To discussion earlier in this topic for moreinformation about the meaning and purpose of the fields on this display. Refer to details about the rules and effect of each field in the fields table, below.
-
-##### Menu Pathways
-
-Main Menu \> Events and Utilities menu (#3) \> Work with SPLF Scan Rules (#4) \> F6=Add *- or -* option 2=Change *- or -* option 3=Copy.
-
-##### Fields
-
-Refer to the How To section of this topic for examples of how the following field rules can be used.
-
-:::tip
-The order of the fields listed in the table below will vary, depending on the setting of the "Scan Rule maint fmt 1- or 2-page" option in the "LSAM Utilities Configuration" screen (documented in previous pages of this section).
-:::
-
-- **From fields:**
-  -   Application 
-  -   Sequence 
-  -   SPLF Name 
-  -   Job Name 
-  -   SPLNBR 
-
-    When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. A new value must be assigned to the Sequence of the Scan Rule record being created in Copy mode, using the Rule Sequence input field, below. (The other key fields may remain the same in the new, copied record, since more than one scan rule is allowed per SPLF Name + Job Name + SPLNBR.)                       |
-
-- **Application**: This field is used to group one or more Scan Rules into a single task that can be configured to end normally or abnormally, depending on the setting of the Required Rule field in any of its rules. The field permits spaces and special characters.                                 |
-  - **Revision Note**: In previous LSAM versions, this field was stored in a separate master file, however, now it is simply the primary key field assigned to each Scan Rule.
-- Rule sequence: The order in which the scan rule will be processed, relative to other scan rules under the same Application. The value must be unique within the Application ID, even for a different SPLF Name, Job Name or SPLNBR. 
-- **Rule description**: Text that identifies the purpose of the scan rule, helpful on the Work with SPLF Scan Rules list display.
-- **SPLF name**: The name of the spool file to be scanned. 
-- **Job name**: The IBM i 10-character job name. The special value of \*CMD may be used to indicate that the actual job name will be provided at execution time by the SCANSPLF command.
-- **SPLF number**: \*ANY, or optionally, a specific spool file number within the Job name, used when more than one spool file of the same name is produced by a single job.
-- **From/To page**:
-  -   The scan may optionally be limited to one or more specific pages of a report.  The special value *STR means "from the start," and the special value \*END means "to the end."
-  -   The special value \*END may be used in the From-page field to cause the SCANSPLF command to work backwards from the last line of the report to the first line.  Working from the end of the report combines well with the Incidence count, for example, if it is important to find the second-to-last TOTALS label on a financial report.
-  -   When \*END is used for the From-page, it is possible to specify a Positive number for the To-page. A Positive number indicates the limit of pages to scan, starting backwards from the end of the report. For example, (-1) means scan only the last page, (-2) means scan only the last two pages, and so forth. A Positive number in this character field is indicated by type a dash (-) either before or after a number: -1 or 1-
-- **From/To line (record)**: The scan may optionally be limited to specific lines on each page of the report. The line counter is reset at the top of each page. This feature might be useful, for example, when a label or value should only be found in the heading line of a report page (keeping in mind that the first heading line 
-might actually be printed on line 2 of the page, in which case it would be necessary to specify 2 as the From and the To lines).
-- **From/To position (column)**:
-  -   The scan may optionally be limited to specific positions on each scanned line of the report. For example, in IBM i job log reports, the severity code of logged messages always appears in positions 36-37.
-  -   This pair of control fields has a different effect depending on other fields on the scan rule:
-    -   If a scan label is specified, the scan label must be found within the From/To positions on the report line. When the scan label is specified, the From/To positions have no effect on the scan value itself - the scan value may be found anywhere within the report line where the scan label was located.
-    -   If a scan label is not specified, then the scan value can only be found starting with the first non-blank character after the From-position, and it cannot extend past the To-position.
-    -   When the special value of *CAPT is specified for the scan value and the scan label is not specified and a scan value length greater than zero is entered, then the To-position will be ignored. Only the From-position will be used to find the scan value to be captured, and the captured data will be limited to the specified scan value length.
-- **Start scan label**: Optionally, specify a predictable string of characters that can be found by the scan program in order to locate the scan value within a report line.
-- **Position after label**: When the scan label is specified, indicate where the scan program should look for the scan value. There are four possible value types for this 
-field that each cause a different result:
-  -   **0 (zero)** = start with the first non-blank character AFTER the end of the scan label.
-  -   Positive number = start at the specified column number AFTER the end of the scan label. If the scan label ends at column 27 and the position-after value is 6, then the scan value to be compared will begin at column 33. 
-  -   **(-1)** = start with column 1 on the report and use the first non-blank character that appears BEFORE the scan label. This value is not valid if the scan label begins at column 1. The search for a scan value will stop with the last character before the start of the scan label, but the scan value can overlap the scan label. If no non-blank characters are found before the scan label starts, then the scan program assumes there is no scan value at the location of the scan label and this scan value will be marked as not found (not matched).
-  -   **Positive number** = start at the specified number of columns BEFORE the start of the scan label. Remember that (-1) has a special meaning, so it cannot be used in this context. If the scan label starts at column 27 and the position-after value is (-15), then the scan value to be compared will begin at column 12.
-- **(scan) Value, \*PARM, \*CAPT, DVar**: This field is used to specify or describe the scan value. The scan value will be the captured data value stored in the Captured Data Log file and referenced by any captured data response rules. When applicable, this scan value will be compared to the value found in the report at the specified location in order to determine if the scan rule has been matched or not matched. The scan values that may be specified include:
-  - **A specific value** = Any character string may be specified as the value that should be compared to the scan value found at the specified location in the report. For example, this type of rule can be used to find a flag in a financial report that may say "OUT OF BALANCE" in order to cause the SCANSPLF command to fail, so that the OpCon job that executed the SCANSPLF command will show up on the OpCon Schedule as a failed job, triggering an operator response. Leading blank characters may be left in the scan value field if they must be included in the scan rule match. Use the scan value length to also include trailing blank characters.
-    :::tip
-    Special values \*PARM and \*CAPT must be all capital letters.
-    :::
-
-  - **\*PARM** = Use the value specified in one of the input PARAMETERS values of the SCANSPLF command. When the SCANSPLF command supplies input values (that is, the *RULES option for PARAMETERS was not used), there must be the same number of scan rules that use this *PARM special value as there are input parameter values separated by colons (:) in the PARAMETERS keyword of the SCANSPLF command.
-  - **\*CAPT** = This special value indicates that the scan rule will not generate a match or nomatch (pass/fail) result. Instead, this type of scan rule will be used only for the purpose of capturing a value at the specified location in the report and then storing that value in the Captured Data Log file. Captured data values can be used to trigger any number of Captured Data Response rules, and the Response rule records may specify that the captured data should also be stored as an LSAM Dynamic Variable or as an LSAM Operator Replay token variable value.
-  - **DVar** = An LSAM Dynamic Variable may be specified in the scan value field. If the Dynamic Variable has already been defined in the LSAM table (remembering that Dynamic Variables may be defined at run-time, in which case they must be anticipated before they appear in the LSAM table), then function key F4=DynVar may be used to select from a list of available Dynamic Variables. The Dynamic Variable name is recognized by the scan program because it is enclosed within the pair of characters registered for this purpose in the LSAM Utility Configuration function (LSAM menu 3, option 7). The default Dynamic Variable enclosure characters are a pair of curly brackets: {var_name}. It is possible to combine a Dynamic Variable with other text that is entered directly into the scan value field, for example: 'Leading characters {var_nam} trailing text'. When the scan rule is executed, the scan program will replace the Dynamic Variable with the value found in the LSAM table at the moment of execution. A Dynamic Variable value may have just been set by a preceding scan rule's Captured Data Response rule.
-- **Scan value length**: When the scan value length is left at zero, the scan program assumes that the length of the scan value is equal to the last non-blank character in the scan value string (that is, the scan value is assumed to be trimmed of trailing blanks, and then the scan value is measured). The scan value length has a different effect depending on the setting of other scan rule fields:
-  -   Leave set to be left at zero when using the *PARM scan value. The length of the input PARAMETER value supplied in the SCANSPLF command will determine the length of the character string extracted from the report.
-  -   When a specific value is entered into the scan value field, the scan value length can be set to a value longer than the number of trailing non-blank characters in the value in order to tell the scan program that trailing blanks should be considered in the match (pass/fail) rule. For example, if a scan value is entered with two leading blank characters, as: 'VALUE', then the default trimmed length of this scan value used by the scan program would be 7 (2 leading blanks and 5 non-blank characters). If the scan value length is set to 9, then the scan value found in the report must also have 2 blank characters after the non-blank characters.
-  -   For the special scan value of *CAPT, use the scan value length combined with the From-position to specify the data that should be captured from the report. For *CAPT, if the scan value length is zeros, the the To-position must also be specified with the From-position in order to determine how much data to capture.
-  -   Dynamic Variables are handled the same as typed scan values. The scan program first replaces a Dynamic Variable token with the variable's value at run time, then it subjects the scan value to the scan value length, as described above for specific values. Leave the scan value length at zero to allow the scan program to adapt to the actual length of the Dynamic Variable's value at run time. If a scan value length is specified, then the possible values of the Dynamic Variable must be well understood in advance in order to predict the results of the SCANSPLF match rules.
-- **Bypass parm value**: This field is used only when the SCANSPLF command will provide input values in its PARAMETERS keyword. If the specified bypass value is found in the input PARAMETERS position corresponding to this scan rule sequence number, then the input parameter will be considered matched by default and the report will not actually be scanned in order to set this scan rule to a status of matched.
-:::info Example
-For a given application, such as a financial report balancing task, the SCANSPLF command might be assembled by an automatic routine executing on the OpCon server. In this example, assume that there are four input parameter values: debit item count, debit total amount, credit item count, credit total amount. If any of these values is not found in the source data used by the SCANSPLF command assembly routine, then that routine is allowed to insert a place-holder value that indicates, "thisvalue is not supplied today - ignore this parameter position." An example of such a value might be *empty*. In this case, the Bypass parm value should be set to this same value, *empty*. To make the bypass value work, the administrator configuring the LSAM SPLF Scan Rules must coordinate this special value with the programmer responsible for building the automated routines that will assemble the SCANSPLF command string for the OpCon job. 
-:::
-- **Bypass value length**: Optionally, specify the length of the characters string used for the Bypass parm value. If this length is left at zeros, the scan program will assume that the Bypass parm value length ends with the last non-blank character. Leaving this value as zeros is the usual practice.
-- **Compress numeric**: This flag field tells the LSAM data comparison rule engine how to handle the comparison data and the captured data. If numeric data was edited using a currency sign and decimal point, it may be preferable to match the whole character string exactly, without compression. But if the absolute numeric value is important and the numeric field editing cannot be predicted, then it may work better to compress out all non-numeric characters and compare only the numeric digits.  Compressed monomeric do not keep track of how many digits fall to the right of the decimal point, so it is important that the number of decimal places be the same in both the reference value (which may be an input PARAMETER from the SCANSPLF command) and the scan value found in the report when the option for compressing numeric data will be used. 
-- **Required rule**: This field is used to indicate that a scan rule is required, and it will affect the pass/fail outcome of the scan task:
-  - **Y** = yes, the rule must be matched as part of the overall outcome of the SCANSPLF job.
-  - **N** = no, this rule may be ignored; whether it matches or not, it does not affect the overall outcome of the SCANSPLF job.                
-  -   This field MUST be set to Y when the scan value is \*PARM.
-  -   This rule at the individual scan rule level must be coordinated with the SCANSPLF command setting in its FAILOPT (fail option) keyword. The scan program itself keeps track of all rules that have their "Required rule" field set to Y=yes. At the end of the scan job, if all required rules were matched, then the SCANSPLF command would end normally. If any of the required rules were not matched, then the SCANSPLF command would end abnormally. The SCANSPLF command FAILOPT can be used to reverse the logic of this outcome (or to ignore the pass/fail outcome of rule matching). If the FAILOPT is set to (2) = fail on match, then the SCANSPLF command  will signal a failure only when all required rules are matched. For FAILOPT(2), if any required scan rule is not matched, the SCANSPLF command will appear to end     normally.
-  -   The FAILOPT(2) technique may be most useful for single-rule Applications. For example, if the Application is searching for a failure message in a job log report, finding a match for any one failure message should generate an abnormal end of the SCANSPLF command. If two different failure message rules were specified, it is unlikely that both failure messages would be found, therefore, the SCANSPLF using FAILOPT(2) would typically end normally because not all rules were  matched.
-
-##### Functions
-
-- **F3=Exit**: Return to the LSAM menu.
-- **F5=Refresh**: Reload the maintenance display with the original default values for Add, Copy or Change, discarding any new typed input.
-- **F8=DynVar**: When the cursor is positioned in the Scan Value field, use this function key to view a window of registered Dynamic Variable values and select a value to be inserted into the Scan Value field.
-- **F12=Cancel**: Return to the Work with SPLF Scan Rules list display.
-- **PageDown/PageUp**: When the LSAM Utilities Configuration option is set to use the 2-page format for this maintenance display, the PageDown and PageUp keys can be used to move between the two pages. NOTE: If Enter is pressed while page 1 is on display, the master record will be added or updated, without displaying the optional
-    fields on page 2. Use PageDown to view the page 2 fields, if desired, before pressing the Enter key.
-
-## Work with Capture Response Rules 
-### (cross reference)
+### Work with Capture Response Rules
 
 See the centralized [Capture Data and Response Rules](./captured-data-response-rules.md) topic in this document for details about creating and attaching Response Rules to SCANSPLF Scan Rules.
 
 Remember that for the SCANSPLF utility, the Scan Rules are the Captured Data Rules.  This feature is different from Operator Replay and Message Management which require separate Captured Data Rules be optionally attached to the primary master records of those features.
 
-## The SCANSPLF Utility
+### Display Capture Rules/Response Rules Chart (option 7)
+
+The Capture and Response Rules chart displays are explained in detail under Operator Replay, within the Screens and Windows section, under the title [Operator Replay Capture Chart (opt 7)](/operator-replay/screens.md#oprr10r7---capture-screen-data-chart-5-views).
+
+## Using the SCANSPLF Utility
 
 The SCANSPLF(Scan spool file) is an LSAM utility command that can find and read spool (report) files from an IBM i output queue. As the command executes, it stores found scan values into the LSAM's data capture log file. Captured data can optionally be associated with Captured Data Response Rules. As the command completes, it evaluates whether all the required scan values were found and it reports about any scan values that were not matched. A parameter of the SCANSPLF command controls how
 the command reports its ending status. It can finish with a forced abnormal termination or a normal termination, based on the result of the scan values evaluation and on the option selected for the command's FAILOPT parameter.

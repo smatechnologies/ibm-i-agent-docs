@@ -1,16 +1,14 @@
 ---
-sidebar_label: 'Events and Utilities Menu'
+sidebar_label: 'Events and Utilities Menu and Configuration'
 ---
 
-# Events and Utilities Menu
+# Events and Utilities Menu and Configuration
 
 :::tip
 Before OpCon event commands can be sent, a user id and password must be defined. Please refer to the section below describing the External Event Password.
 :::
 
 ## Events and Utilities Menu
-
-  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ```
   SYSTEMNAME                  EVENTS AND UTILITIES MENU                   00/00/00
@@ -107,21 +105,22 @@ Main Menu \> Events and Utilities (#3) \> LSAM Utilities configuration (#7)
 |                            |          | This control file value forces the JOBLOGMSG to the desired logging option when the SCANSPLF command  has been appended to the OpCon Job Master: Call (command or program) line. This special purpose use for the SCANSPLF command (as described in "Extended Discussion of Parameters" under Chapter 3: IBM I LSAM Configuration) would usually not need to add a large number of IBM i Job Log messages to the single IBM i LSAM Server Job that processes all of these special-request executions of SCANSPLF.               |
 |                            |          | Sending the SCANSPLF progress and error messages to the IBM i Job Log can be useful for debugging unexpected behavior of the SCANSPLF command. |
 |                            |          | VALUES: Y or 1 = Yes, do send LSAM log messages also to the IBM i Job Log of the LSAM Server job. N or 0 (zero) = No, do not copy the LSAM log messages  to the IBM i Job Log.      |
+| Dynamic variable activity log | 1 | **Y/1** = Yes, **N/0** = No.  Controls whether detailed logging of Dynamic Variable token management events will be recorded in the LSAM general purpose (Submit Job) log file (LSALOGF30).  This log is viewed from LSAM menu 6, option 5, log viewer 4. |
+| DSPDYNVAR output option | LINE24MSG | Using the default value of **LINE24MSG** retains the original displayed test output of a Dynamic Variable's stored or computed value in the error message subfile, which is line 24 of a green screen workstation display.  SMA recommends changing this value to **FULLSCREEN** to enable a display of the full 1024 character string that is the maximum size of a variable value string (introduced in LSAM version 21.1). Using the full screen display might often be important to discover how Dynamic Variable value character trimming rules are retaining or trimming either leading or trailing space characters.|
+| **Dynamic Variable Control Characters** | |**NOTE**: These hexadecimal character settings can only safely be changed during a new, clean installation of the LSAM software.  There is no conversion tool to replace these characters once any Dynamic Variable {TOKEN} has been recorded for use with IBM i automation.  Contact SMA Support for assistance in case the client environment requires a change to these control characters. |
+| | | The input fields are each followed by a display of the last recorded value that was stored in the LSAM control file (in cyan or turquoise color), and then by a screen display character (in pink or magenta) that is produced by the local IBM i partition showing what should be the keyboard character produced by the recorded hexadecimal value.  This pink character would also be the character that is displayed when viewing LSAM activity log files where Dynamic Variable {TOKENS} are recorded before they are replaced with their run-time values. |
 | Dynamic variable start character   | C0       | The IBM i internal EBCDIC character, in hexadecimal format, that marks the start of a Dynamic Variable token.|
-|                            |          | The first field is the data entry field where a new value can be typed. However, please note the CAUTION text near the top of this display!|
-|                            |          | To the right of the data entry fields are (1) the current value stored in the master file, and (2) the IBM i 5250 screen character that can be typed and will display when the current value is being used.|
 | Dynamic variable end character      | D0       | The IBM i internal EBCDIC character, in hexadecimal format, that marks the end of a Dynamic Variable token.   |
-|                                     |          | Also refer to also notes for the Start Character, above. |
+| DynVar external start      | C0       | The EBCDIC character, in hexadecimal format, that will result when an external ASCII machine, such as a Windows PC, has typed the Dynamic Variable token start character (e.g., { ), but then that value is translated from ASCII to EBCDIC as the transaction data arrives at the IBM i LSAM data communications program. This value will be replaced by the IBM i internal EBCDIC Dynamic Variable start character that is identified in the previous pair of control values. |
+|                            |          | **Note**: The external start/end characters usually only need attention in non-U.S. environments. Please contact SMA Technologies Support for assistance in case Dynamic Variable tokens used in OpCon job master records for IBM i jobs are not working correctly.  An example of a pair of characters used in some non-English IBM i partitions would be:  X'**4A**' (start) and X'**5A**' (end).  |
+| DynVar external end character       | D0       | The EBCDIC character, in hexadecimal format, that marks a the end of a Dynamic Variable token | 
 | | | |
 | **OpCon File Arrival $@Variables** | |The File Arrival parm ID characters are used to replace the default $@ characters.  Refer to the description below this table for more information about these two fields. |
 | | | |
 | File Arrival parm ID character 1      | 5B  | Hexadecimal value X'5B' represents the US dollar sign ($). Type a pair of characters that are the hexadecimal value of a different special character to be used by the local IBM i site. |
 | File Arrival parm ID character 2      | 7C | Hexadecimal value X'7C' represents an "at sign" (@). Type a pair of characters that are the hexadecimal value of a different special character to be used by the local IBM i site. |
 |                            |          | **NOTE**: Some non-English sites have discovered that their IBM i workstation keyboards can use a US dollar sign (X’5B’) also for this character 2 value, so that a KEYWORD variable name example would be: $$RECHKFREQ |
-| DynVar external start      | 4A       | The EBCDIC character, in hexadecimal format, that will result when an external ASCII machine, such as a Windows PC, has typed the Dynamic Variable token start character (e.g., { ), but then that value is translated from ASCII to EBCDIC as the transaction data arrives at the IBM i LSAM data communications program. This value will be replaced by the IBM i internal EBCDIC Dynamic Variable start character that is identified in the previous pair of control values. |
-|                            |          | **Note**: The external start/end characters usually only need attention in non-U.S. environments. Please contact SMA Technologies Support for assistance in case Dynamic Variable tokens used in OpCon job master records for IBM i jobs are not working correctly.  |
-| DynVar external end character       | 5A       | The EBCDIC character, in hexadecimal format, that marks a the end of a Dynamic Variable token | 
-|                                     |          | Also refer to notes for the External Start Character, above. |  
+
 
 **OpCon File Arrival $@Variables**
 
