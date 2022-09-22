@@ -75,11 +75,11 @@ Clients of SMA Technologies are strongly recommended to refer to the latest avai
 
 #### How to Obtain the LSAM PTF Save Files
 
-As of the date of this publication, the directory location in the SMA Technologies secure ftp server for this Agent's software patches and enhancements is called "/IBMiLSAMptf". 
+As of the date of this publication, the directory location in the SMA Technologies secure ftp server for this Agent's software patches and enhancements is called "/IBMiLSAMptf". This sub-directory name is located within the higher-level directory for each Agent release:
 ```
-/OpCon Releases/Agents/IBMi/18.1/IBMiLSAMptf
+/OpCon Releases/Agents/IBMi/21.1/IBMiLSAMptf
 ```
-Please carefully note the directory path to this folder. It is important to select the hosting  sub-directory that matches the Version of the IBM i LSAM in use at the client site.  
+Please carefully note the directory path to this folder. It is important to select the hosting sub-directory that matches the Version of the IBM i LSAM in use at the client site.  
 
 Do not use the old "/IBMiLSAMptf" directory that is found at the root of the files.smatechnologies.com web location, since this directory is now restricted for use by SMA Support and Development during direct interaction with OpCon Support clients and beta test sites.  LSAM PTF resources that were previously located in this root-level directory have been moved, and a simple text document in the old directory reminds clients of where the current LSAM PTF support files can be found.
 
