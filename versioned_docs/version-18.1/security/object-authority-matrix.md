@@ -59,8 +59,8 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 ### LSAM Menu Functions
 
 | Menu/Function | Description | Program or Command |
-| --- | ----------- | ---------------|
-| LSAM Main Menu       | LSAM menus have \*USE authority granted to \*PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function. The STRSMA command in library SMAGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system. The same applies to the alternate direct access command to the LSAM menu system: LSAMENU. (See [LSAMENU Command](docs/commands-utilities/lsam-operations.md#lsamenu-command).)   | LSAMNUE0 (menu) |
+| ---: | ----------- | ---------------|
+| **LSAM Main Menu** | LSAM menus have \*USE authority granted to \*PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function. The STRSMA command in library SMAGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system. The same applies to the alternate direct access command to the LSAM menu system: LSAMENU. (See [LSAMENU Command](docs/commands-utilities/lsam-operations.md#lsamenu-command).)   | LSAMNUE0 (menu) |
 | 1.                  | Job track menu       | LSAMNUE1 (menu)      |
 | 2.                  | Message management menu  | LSAMNUE2 (menu)      |
 | 3.                  | Events menu          | LSAMNUE3 (menu)      |
@@ -70,7 +70,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 7.                  | LSAM Parameters      | CALL LSAPARR00       |
 | 8.                  | SMA File Transfer menu   | LSAMNUE8 (menu)      |
 | 9.                  | PTF and Security menu    | LSAMNUE9 (menu)      |
-| Job Track Menu       |                      | LSAMNUE1 (menu)      |
+| **Job Track Menu**  |                      | LSAMNUE1 (menu)      |
 | 1.                  | Job track parameters | CALL TRKPARR00       |
 | 2.                  | Job track logs (WRKTRKJOB)        | CALL LSALOGR00       |
 | 3.                  | Start job track (STRJOBTRK)     | STRJOBTRK            |
@@ -82,7 +82,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 9.                  | End job capture (ENDCAPJOB)   | ENDCAPJOB            |
 | 10.                 | Display captured jobs (DSPCAPJOB) | DSPCAPJOB            |
 | 11.                 | Work with captured jobs (WRKCAPJOB) | WRKCAPJOB            |
-| Message Management Menu|                      | LSAMNUE2 (menu)      |
+| **Message Management Menu** |                      | LSAMNUE2 (menu)      |
 | 1.                  | Message management parameters | CALL TRPMSGR03       |
 | 2.                  | Message management logs  | CALL LSALOGR10       |
 | 3.                  | Start Message management (STRMSGMNG) | STRMSGMNG            |
@@ -95,7 +95,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 10.                 | Work with Message Data Capture Definitions | CALL TRPMSGR30       |
 | 11.                 | Work with Captured Data Response Rules  | CALL OPRRPYR50 PARM('M') |
 | 12.                 | Maintain Dynamic Variables | CALL LSAVARR00       |
-| Events and Utilities Menu |                      | LSAMNUE3 (menu)      |
+| **Events and Utilities Menu** |                      | LSAMNUE3 (menu)      |
 | 1.                  | Event Management     | CALL LSAEVTR02       |
 | 2.                  | External Event Password | CALL LSACONR00       |
 | 3.                  | Work with SCANSPLF Applications | CALL LSAJORR50       |
@@ -107,7 +107,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 9.                  | Display data capture debug log | CALL CAPLOGR10       |
 | 10.                 | Data Export/Import Utilities menu | GO LSAMNUEA          |
 | 11.                 | Client eMail Management menu  | GO LSAMNUEB          |
-| Data Export/Import Utilities Menu |                      | LSAMNUEA (menu)      |
+| **Data Export/Import Utilities Menu** |                      | LSAMNUEA (menu)      |
 | 1.                  | Work with Export batchesv| CALL EXIEXPR00       |
 | 2.                  | Export a data set (LSAEXPDTA) | LSAEXPDTA            |
 | 3.                  | Display Export Activity/Error Log | CALL EXILOGR00 PARM('E') |
@@ -115,17 +115,18 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 5.                  | Import new data set (LSAIMPDTA) | LSAIMPDTA            |
 | 6.                  | Display Import Activity/Error Log | CALL EXILOGR00 PARM('I') |
 | 7.                  | Export/Import options configuration | CALL EXICFGR30       |
-| Client eMail Management Menu |                      | LSAMNUEB (menu)      |
+| **Client eMail Management Menu** |                      | LSAMNUEB (menu)      |
 | 1.                  | Work with Client eMail Data (WRKCLTEML) | WRKCLTEML            |
-| 2.                  | Work with Message Text Source Members | WRKMBRPDM FILE(*LIBL/EMLTXTSRC) |
-| 3.                  | Generate eMail Request (GENEMLREQ)       | ?GENEMLREQ           |
-|                      |  | ??OPCONJOB('0')    |
+| 2.                  | Work with Message Text Source Members | CALL EDTEMLTXTC PARM('*LIST') |
+| 3.                  | Generate eMail Request (GENEMLREQ)       | ?GENEMLREQ  ??OPCONJOB('0') |
 | 4.                  | Display eMail Activity Logs | CALL EMLLOGR00       |
 | 5.                  | Display Error Log (DSPPFM EMLLOGF10) | DSPPFM EMLLOGF10     |
 | 6.                  | Maintain Dynamic Variables | CALL LSAVARR00       |
 | 7.                  | Client eMail Configuration | CALL CLTEMLR30       |
-| There is no menu 7. Main menu function 7 is a call to the LSAM Parameters function: CALL LSAPARR00 |                      |
-| Operator Replay Menu |                      | LSAMNUE4 (menu)      |
+| | | |
+| **There is no menu 7**| Main menu function 7 is a call to the LSAM Parameters function. | CALL LSAPARR00 | 
+| | | | 
+| **Operator Replay Menu** |                      | LSAMNUE4 (menu)      |
 | 1.                  | User management      | CALL LSAUSRR00       |
 | 2.                  | Operator Replay scripts | CALL OPRRPYR10       |
 | 3.                  | Operator Replay logs | CALL OPRLOGR00       |
@@ -137,7 +138,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 9.                  | Display data capture debug log | CALL CAPLOGR10       |
 | 10.                 | Maintain Dynamic Variables | CALL LSAVARR00       |
 | 11.                 | Client eMail Management menu | GO LSAMNUEB          |
-| Restricted Mode and Multi-step Job Menu |                      | LSAMNUE5 (menu)      |
+| **Restricted Mode and Multi-step Job Menu** |                      | LSAMNUE5 (menu)      |
 | 1.                  | Maintain scripts     | CALL SAVRSTR20       |
 | 2.                  | Setup environment    | CALL SAVRSTR21       |
 | 3.                  | History of the last use | CALL SAVRSTR05       |
@@ -145,7 +146,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 5.                  | Maintain Multi-step job scripts | CALL MLTJOBR10       |
 | 6.                  | View Multi-step job log | DSPPFM MLTLOGF00     |
 | 7.                  | Maintain dynamic variables | CALL LSAVARR00       |
-| LSAM Management Menu |                      | LSAMNUE6 (menu)      |
+| **LSAM Management Menu** |                      | LSAMNUE6 (menu)      |
 | 1.                  | Start LSAM (STRSMASYS)  | STRSMASYS            |
 | 2.                  | End LSAM (ENDSMASYS) | ENDSMASYS            |
 | 3.                  | Check LSAM subsystem status | CALL CHKLSAC00       |
@@ -154,14 +155,14 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 6.                  | Work with LSAM Servers (WRKSMASVR) | WRKSMASVR            |
 | 7.                  | LSAM Parameters configuration | CALL LSAPARR00       |
 | 8.                  | Alternate Job Notify menu | GO LSAMENUEC         |
-| Alternate Job Notify Menu |                      | LSAMNUEC (menu)      |
+| **Alternate Job Notify Menu** |                      | LSAMNUEC (menu)      |
 | 1.                  | Work with job notify subsystems | CALL JOBNFYR10       |
 | 2.                  | View job notify message log | CALL JOBNFYR20       |
 | 3.                  | Start job notify server | STRSMASVR SERVER(JOBNFY)  |
 | 4.                  | End job notify server | CALL JOBNFYC02       |
 | 5.                  | Check LSAM subsystem status | CALL CHKLSAC00       |
 | 7.                  | Job notify configuration | CLAL JOBNFYR30       |
-| SMA File Transfer Menu |                      | LSAMNUE8 (menu)      |
+| **SMA File Transfer Menu** |                      | LSAMNUE8 (menu)      |
 | 1.                  | Start SMAFT Server (STRSMAFT) | STRSMAFT             |
 | 2.                  | End SMAFT Server (ENDSMAFT) | ENDSMAFT             |
 | 3.                  | Work with SMAFT jobs (WRKSFTJOB) | WRKSFTJOB            |
@@ -170,7 +171,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 | 6.                  | View SMAFT logs      | CALL SFTMNGLOGR PARM('VIEW')|
 | 7.                  | SMAFT Parameters     | CALL SFTPARR00       |
 | 8.                  | Work with SMAFT Network Address Translation | CALL SFTNATR00       |
-| PTF and Security Menu |                      | LSAMNUE9 (menu)      |
+| **PTF and Security Menu** |                      | LSAMNUE9 (menu)      |
 | 1.                  | Work with LSAM PTFs  | WRKPTFCTL            |
 | 2.                  | Master PTF request, load and apply (SMAPTFINS) | SMAPTFINS            |
 | 3.                  | Request PTF information or save files (SMAPTFREQ) | SMAPTFREQ            |
