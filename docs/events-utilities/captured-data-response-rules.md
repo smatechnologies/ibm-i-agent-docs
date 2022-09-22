@@ -741,11 +741,12 @@ However, in case it might be useful, these two commands can be used outside of t
 
 Type choices, press Enter.
 
-Capture Identifier . . . . . . . CAPID          _____________________________
-Capture sequence number  . . . . CAPSE         0    
+Capture Identifier . . . . . . . CAPID         *CAPKEY______________________
+Capture Key  . . . . . . . . . . CAPKEY        0________
+Capture sequence number  . . . . CAPSEQ        0____
 Capture date . . . . . . . . . . DATE          *CURRENT                 
 First/Last time, or \*ANY date  . TIME         *LAST  
-Name of new/existing variable  . VARNAM        _____________                      
+Name of new/existing variable  . VARNAM        ______________________________ +                      
 Variable type  . . . . . . . . . VARTYP        V
 Sequence for same LDA variable   VARSEQ        0                   
 Start position in LDA  . . . . . LDASTR        0
@@ -758,7 +759,8 @@ Length of LDA change . . . . . . LDALEN        0
 
 Type choices, press Enter.
 
-Capture Identifier . . . . . . . CAPID          _____________________________                     
+Capture Identifier . . . . . . . CAPID         *CAPKEY______________________
+Capture Key  . . . . . . . . . . CAPKEY        0________                
 Capture sequence number  . . . . CAPSEQ        0    
 Capture date . . . . . . . . . . DATE          *CURRENT
 First/Last time, or \*ANY date  . TIME         *LAST  
@@ -769,7 +771,9 @@ Name of new/existing variable  . TOKNAM        ____________
 
 | Keyword | Size | Type   | Description                             |
 | ------- | ---- | ----   | -----------                             |
-| CAPID   | 30   | \*CHAR | Value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters instead of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3. |
+| CAPID   | 30   | \*CHAR | Since LSAM version 21.1, SMA recommends leaving this key value set to its default of *CAPKEY, or not specifying this parameter.  But to support historical implementation of these commands, the CAPID can still be used without the CAPKEY value, as long as the Application ID descriptive text string is not changed in any of the three Data Capture Definition files.  When specified, the CAPID value will cause the CAPKEY numeric key to be ignored.  When used, the value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters instead of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3. |
+| CAPKEY  | 9.0  | \*DEC  | A numeric key value, accompanied by a descriptive Capture Identifier label, that groups together all of the data capture rules that apply to a single data capture application (as defined by Operator Replay, Message Management or the SCANSPLF report scanning utility). 
+| **WARNING:** | | |Agent software versions prior to 21.1 used the Capture Identifier (Application ID) text string as the actual key to organize data capture rules.  Since version 21.1, the APPKEY value is the only permanent key value, and the ID text string could be updated at will.  However, any Agent automation configurations constructed before version 21.1 would still be using the Application ID text string in its former record key mode, so before changing the Application ID text, be sure that executions of the LSAM commands SCANSPLF, SCANOUTQ, SETCAPVAR and SETCAPTOK have been updated to use the APPKEY() or CAPKEY() command parameter instead of the APP() or CAPID() parameter.|
 | CAPSEQ  | 3.0  | \*DEC  | The sequence number of the SPLF Scan Rule or the Operator Replay screen capture rule: Refer to the sequence number assigned to the captured data in the LSAM view of the Captured Data Log (LSAM menu 3, option 8) to obtain or verify this number.                    |
 | DATE    | 8    | \*CHAR | \*CURRENT = (default) use the current system date. 
 |         |      |        | \*ANY = use any available date, based on the setting of the TIME parameter, that is, the \*FIRST or \*LAST date available. |
@@ -777,3 +781,6 @@ Name of new/existing variable  . TOKNAM        ____________
 | TIME    | 6    | \*CHAR | \*LAST = (default) find the last instance of this captured data on the specified date. |
 |         |      |        | \*FIRST = find the first instance of this captured data on the specified date.                     |
   
+:::tip
+These commands are seldom, if ever used because they were introduced before the Data Capture Rules had been expanded to include a built-in ability to store captured data directly to Dynamic Variables or to the deprecated, original Operator Replay token variables.
+:::
