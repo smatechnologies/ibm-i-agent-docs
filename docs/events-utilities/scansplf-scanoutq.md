@@ -324,15 +324,16 @@ Regardless of the type of Scan Value (registered in the Scan Rules), the SCANSPL
 The CMDMODE parameter keyword is provided for LSAM internal use only. This keyword must be left at the default value of \*CMD whenever the SCANSPLF command is used in a stand-alone mode, that is, from the IBM i command entry screen or from within any batch job. There is an alternate value supplied for this parameter by the LSAM job completion message server job to support the option of appending the SCANSPLF command to the OpCon Call command line, so that the final job completion status
 reported to the OpCon SAM will be determined by the results of the scan command.
 
-Prompted SCANSPLF Command - Page 1 of 2
+#### Prompted SCANSPLF Command - Page 1 of 2
 ```
 
                          Scan Spool File (SCANSPLF)
                                                                 
 Type choices, press Enter.
                                                                 
-Application (Capture ID) . . . . APP            ______________________________
-Date, as CCYYMMDD  . . . . . . . DATE           _________
+Application (Capture ID) . . . . APP            *APPKEY_______________________
+APPKEY instead of APP text . . . APPKEY         0__________
+Date, as CCYYMMDD  . . . . . . . DATE           __________
 OpCon/xps job? Y=yes, N=no . . . OPCONJOB       Y
 *RULES, or parms (P1:P2:...Pn)   PARAMETERS     *RULES________________________
 ______________________________________________________________________________ 
@@ -344,14 +345,13 @@ ______________________________________________________________________________
   ...    
  Job number (123456), optional  . JOBNBR         _____________________________
  Command fail behavior option . . FAILOPT        1               
- Spool file name or \*APP  . . . . SPLF          *APP
                                                                        More...
 F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display
 F24=More keys
 
 ```
 
-Prompted SCANSPLF Command - Page 2 of 2.
+#### Prompted SCANSPLF Command - Page 2 of 2.
 
 ```
 
@@ -359,9 +359,10 @@ Prompted SCANSPLF Command - Page 2 of 2.
                                                                
 Type choices, press Enter.
 
-Spool file number,if Rule *ANY   SPLNBR          *APP
-User data  . . . . . . . . . . . USRDTA          *ALL
-Command mode (always *CMD) . . . CMDMODE         *CMD
+Spool file name or *APP  . . . . SPLF            *APP______
+Spool file number,if Rule *ANY   SPLNBR          *APP______
+User data  . . . . . . . . . . . USRDTA          *ALL______
+Command mode (always *CMD) . . . CMDMODE         *CMD______
 User-Defined Data (*generic*)  . USRDFNDATA      *ALL________________________
 ______________________________________________________________________________
 ______________________________________________________________________________
@@ -374,11 +375,12 @@ Scan condition (OpCon job log)   SCANCOND        O
 F3=Exit   F4=Prompt   F5=Refresh   F12=Cancel   F13=How to use this display
 F24=More keys
 ```
-##### Fields
+#### Fields
 
 | Keyword    | Size    | Type   | Description                       |
 | -------    | ----    | ----   | -----------                       |
-| APP        | 30      | \*CHAR  | Value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters insted of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3.                       |
+| APP        | 30      | \*CHAR  | This field is carried over from previous versions of this command, and it no longer serves as a reliable identifying key to a collection of Spool File Scan Rules, though it may still be used.  The recommended and most reliable way to identify a SCANSPLF Application is to use the permanently assigned Application Key number (APPKEY).  Therefore, it is recommended to leave this field set to its default value of *APPKEY (or do not specify the APP() keyword), and to convert existing automation applications of the SCANSPLF tool to use the new APPKEY instead of the Appplication ID (which is now only descriptive text that could be changed at any time.)  But, when this value is used, it will take priority over the APPKEY value (in order to grandfather-in SCANSPLF command implementations from past versions of the LSAM), and it must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed - the value is case-sensitive. This value, when used, must match an Application ID that has been registered using the LSAM Menu 3, function 3. |
+| APPKEY     | 9.0    | \*DEC   | The permanent identifying key of any Data Capture Application (which is a collection of Data Capture Rules). SMA strongly recommends always specifying the APPKEY value instead of using the Application ID (APP) text string to identify the Application for this command.  The APPKEY can be found in the list display of "Work with SCANSPLF Applications" at LSAM menu 3, option 3. |
 | DATE       | 8.0     | \*DEC   | Optionally, specify a date in CCYYMMDD format, to identify the processing date of the target spool file. This value limits the list of jobs that the SCANSPLF command will search for the spool file. It is also used to specify the Capture Date in the captured data log file (OPRLOGF40) where found values are stored. If this value is left at zeros or not specified, the current IBM i system date is assumed. |
 |            |         |        | The command processor also supports using the name of an LSAM Dynamic Variable in this  field.                        |
 | OPCONJOB   | 1       | \*CHAR  | Y=yes (default), N=no. Set this parameter to Y when the SCANSPLF command will be used in an OpCon scheduled job. Set this parameter to N when the command will be used from IBM i command entry or called by a job originating outside of OpCon.                    |
@@ -437,8 +439,7 @@ This discussion extends the How-To down to real applications of the SPLF Scan Ru
 
 ### Using the SCANSPLF PARAMETERS Keyword
 
-The original application of the SCANSPLF command was as a tool for automating the balancing functions of a financial institution. OpCon and the IBM i LSAM can be used to fully automate the process of posting transaction batches that originate from systems and networks outside of IBM i. After the transaction batches are posted, the control totals from the outside source are compared to the totals produced by the IBM i batch posting programs. Without OpCon, this balancing process requires
-some hours of operator time and the process is frequently subject to human error. The SCANSPLF command reduces the process to just seconds and improves accuracy to 100%.
+The original application of the SCANSPLF command was as a tool for automating the balancing functions of a financial institution. OpCon and the IBM i LSAM can be used to fully automate the process of posting transaction batches that originate from systems and networks outside of IBM i. After the transaction batches are posted, the control totals from the outside source are compared to the totals produced by the IBM i batch posting programs. Without OpCon, this balancing process requires some hours of operator time and the process is frequently subject to human error. The SCANSPLF command reduces the process to just seconds and improves accuracy to 100%.
 
 For the application of financial report balancing, the control totals from an outside source are assembled into a character string inside the PARAMETERS keyword of the SCANSPLF command. A typical balancing function includes four numeric totals: debit item count, debit total amount, credit item count, credit total amount. The control totals input parameter string looks like the example below, taking into account the following exception.
 
@@ -452,19 +453,33 @@ Example control totals:
 - Credit item count = 296
 - Credit total amount = $ 13,719.22
 
-Here is the command string generated by a MS Windows application program executing on the OpCon server. The application program was responsible for obtaining the control totals that had been stored into OpCon properties by an previous job in the OpCon schedule:
+Here is the command string configured to manage the control totals from a batch of transactions received in an MS Windows server or workstation. A step in an OpCon Schedule is responsible for extracting the control totals and storing them into OpCon properties.
 ```
 SCANSPLF APP('ACH-A') PARAMETERS('385:1371922:296:1371922') FAILOPT(1)
+
+- or -
+
+SCANSPLF APPKEY(12) PARAMETERS('385:1371922:296:1371922') FAILOPT(1)
 ```
 Notice how the numeric data has been compressed into only the digits. The entire PARAMETERS string must be enclosed in a pair of single quotes. The FAILOPT (fail option) has been set to (1), indicating that the SCANSPLF command should end abnormally if any of the input parameters are not found to match, or end normally if all the input parameters do match.
 
-Before examining the LSAM SPLF Scan Rules required to support this form of the SCANSPLF command, consider that sometimes the item count might not be available from the source. In that case, a convention must be established for signaling that on any given day, one input parameter might not be available and so it should not be used to complete the balancing function. The MS Windows programmer comes to agreement with the IBM i LSAM Administrator that a special value of **\*empty\*** will be used as a place-holder whenever any of the four expected input parameter values is not available. If no credit item count is available, the command string looks like this:
+When the example SCANSPLF command, above, is registered in an OpCon Job master record, the four control totals values will be represented by OpCon property tokens.  Here is a representation of how the actual OpCon Job command line might look when the OpCon Properties are inserted:
+```
+SCANSPLF APPKEY(12) PARAMETERS('[[DRCNT]]:[[DRAMT]]:[[CRCNT]]:[[CRAMT]]') FAILOPT(1)
+```
+
+Before examining the LSAM SPLF Scan Rules required to support this form of the SCANSPLF command, consider that sometimes the item count might not be available from the source, a transaction batch file that contains the control totals. In that case, a convention must be established for signaling that on any given day, one input parameter might not be available and so it should not be used to complete the balancing function. The MS Windows administrator who manages the task of extrating the control totals from the batch file comes to agreement with the IBM i LSAM Administrator that a special value of **\*empty\*** will be used as a place-holder whenever any of the four expected input parameter values is not available. If no credit item count is available, the command string looks like this (after the OpCon Property tokens are replaced, just before the command is submitted by OpCon for processing by the IBM i Agent):
 ```
 SCANSPLF APP('ACH-A') PARAMETERS('385:1371922:*empty*:1371922') FAILOPT(1)
+
+- or -
+
+SCANSPLF APPKEY(12) PARAMETERS('385:1371922:*empty*:1371922') FAILOPT(1)
 ```
+
 To process this SCANSPLF that will be executed in an IBM i job submitted from an OpCon schedule, the LSAM master files must be configured as follows.
 
-First, an Application ID must be defined. The Application ID can be up to 30 characters long. In the example of the financial institution, there were several batch posting jobs to be completed. Each job had its own Application ID, and the long text allowed the name of the application to be easily recognized by all personnel. In the example above, the application ID is short: ACH-A. In the LSAM Scan Rules maintenance function (LSAM menu 3, option 4), the Application ID is registered along with the name of the IBM i job that runs to post the transaction batch and the name of the batch balancing report spool file produced by this job, as one or more Scan Rules are created, grouped together by these key fields. For this example, the job name will be POSTACHA and the spool file name will be QSYSPRT.
+First, an Application ID must be defined. The APPKEY value of the new Application ID is generated by the IBM i Agent maintenance program that is used to register the new Application ID. In the example above, the APPKEY value of 12 is the key linked to a short application ID of: ACH-A. In the LSAM Scan Rules maintenance function (LSAM menu 3, option 4), the name of the IBM i job that runs to post the transaction batch and the name of the batch balancing report spool file produced by this job are the key fields that can group together the four Scan Rules (that are part of this example balancing job). For this example, the job name will be POSTACHA and the spool file name will be QSYSPRT.
 
 After the application ID is registered, it is then possible to create the four SPLF Scan Rules required to match each of the SCANSPLF input PARAMETERS. This discussion cannot anticipate how the report totals will be recognized, so an assumption will be made that the last page of the QSYSPRT report will look like this:
 
@@ -479,7 +494,7 @@ Assuming that there may be General Ledger account sub-totals throughout the repo
 
 According to this definition of the report, these are the required values for each of the four SPLF Scan Rules in the LSAM database:
 
-- **Application**: ACH-A
+- **Application**: ACH-A, is assigned the permanent APPKEY numeric value of 000000012 (or simply 12).
 
 - **Rule sequence**: 10, 20, 30, 40 (one for each rule; the sequence numbers could be 1, 2, 3, 4, up to 999). Rule sequence numbers must be unique within an Application, even if different SPLF names are included within one Application.
 
@@ -513,8 +528,7 @@ When the SCANSPLF command is executed in this example it is expected to end abno
 
 When the OpCon job definition includes response events upon detection of a failed job, an operator or supervisor can be immediately signaled by any number of means, including an eMail message or a text message that gets routed to their cell phones (by outside facilities).
 
-The IBM i LSAM SCANSPLF command includes a feature of reporting its scan rule match results to the OpCon Job Configuration window. Job Detail Messages list the exact values that were mismatched. The OpCon operator can use a right mouse click on the OpCon job line to access (as in OpCon User Interface): Job Information -\> Configuration tab -\> Operations Related Information -\> (+) Job Detail Messages, and instantly the problem of the credit total amount being out of balance
-will become visible. This makes it possible for the financial institution's staff to learn nearly instantly about the out of balance condition and to jump directly to the cause of the problem without having to find and study the actual balancing report to look for report totals.
+The IBM i LSAM SCANSPLF command includes a feature of reporting its scan rule match results to the OpCon Job Configuration window. Job Detail Messages list the exact values that were mismatched. The OpCon operator can use a right mouse click on the OpCon job line to access (as in OpCon User Interface): Job Information -\> Configuration tab -\> Operations Related Information -\> (+) Job Detail Messages, and instantly the problem of the credit total amount being out of balance will become visible. This makes it possible for the financial institution's staff to learn nearly instantly about the out of balance condition and to jump directly to the cause of the problem without having to find and study the actual balancing report to look for report totals.
 
 ### Using the SCANSPLF Fail Option 2
 
@@ -523,10 +537,9 @@ The previous example explained how the SCANSPLF command can be used to cause a f
 An example of this application is found at a site where there is a long IBM i Control Language program that executes multiple sub-program calls. No matter what happens to the sub-programs, the long CL program always ends normally. Due to the inaccessibility of the third-party software program source code, the site cannot easily use OpCon and the IBM i LSAM to monitor each sub-program of the big job. But the OpCon schedule must not be allowed to continue until it can be verified that
 no steps in the big job have actually failed.
 
-In this example situation, one solution is to use the SCANSPLF command to scan the job log report that is produced by the job running the big CL program. In the job log report, there will be an error message with a severity code of 40 any time one of the sub-programs has failed. Without the SCANSPLF tool, the IBM i system operator had to find the job log report and manually read through all the pages of the report, looking for any severity code of 40. Not only did this take a long time but it
-was obviously subject to oversight on the part of the operator. Using the SCANSPLF command provided nearly instant results and also improved the accuracy of the search to 100%. As a result, on most days when there was no problem, the OpCon schedule was allowed to continue with almost no delay.
+In this example situation, one solution is to use the SCANSPLF command to scan the job log report that is produced by the job running the big CL program. In the job log report, there will be an error message with a severity code of 40 any time one of the sub-programs has failed. Without the SCANSPLF tool, the IBM i system operator had to find the job log report and manually read through all the pages of the report, looking for any severity code of 40. Not only did this take a long time but it was obviously subject to oversight on the part of the operator. Using the SCANSPLF command provided nearly instant results and also improved the accuracy of the search to 100%. As a result, on most days when there was no problem, the OpCon schedule was allowed to continue with almost no delay.
 
-To implement the SCANSPLF command for this application, the OpCon Call command line within the IBM i job was modified to include the IBM i special separator character after the main Call command syntax, and then the SCANSPLF command with its parameters was added to the Call command line.
+To implement the SCANSPLF command for this application, the OpCon Call command line within the IBM i job was modified to include the IBM i special separator character (a pipe character: \| ) after the main Call command syntax, and then the SCANSPLF command with its parameters was added to the Call command line.
 
 As documented in IBM i LSAM Configuration, under the Extended Discussion section, inserting the user-defined special character (typically a vertical pipe character: \| ) after the primary command signals the IBM i LSAM job scheduler that additional job parameters may follow, and that the LSAM should look for a SCANSPLF command at the end of the line. When the SCANSPLF command is found, the LSAM sets up special controls so that whenever it detects that the original IBM i job has completed normally,
 it will not report the job completion status to OpCon SAM until after the SCANSPLF command has been used to survey the job log report that was produced by the job. Then, the results of the SCANSPLF command will be used to report the final job completion status to OpCon SAM. (The scan of the job log will not be conducted if the actual IBM i job failed.)
@@ -535,11 +548,11 @@ In this case, there is no input data that must be provided by the SCANSPLF comma
 
 One of the key ingredients for this solution is to set the FAILOPT parameter of the SCANSPLF command to (2), so that the command will report a failure if the Scan Rule (finding an error message) is matched, but it will report normal termination if the Scan Rule is not matched. So the command syntax for the SCANSPLF job looks like this:
 ```
-SCANSPLF APP('ERR2') PARAMETERS('\*RULES') FAILOPT(2)
+SCANSPLF APPKEY(13) PARAMETERS('*RULES') FAILOPT(2)
 ```
 Note that the \*RULES special value for PARAMETERS must still be enclosed in a pair of single quotes, and of course the FAILOPT is set to a value of (2).
 
-This application is defined in the IBM i LSAM database with the name "ERR2" and for this example the job name will be BIGCLJOB. In all cases, the report spool file that contains the job log information will be called QPJOBLOG. So these are the three key parameter values required to define the SCANSPLF Scan Rules using the LSAM menu 3, option 4.
+This application is defined in the IBM i LSAM database with any name, assigned to the APPKEY numeric value of 12, and for this example the job name will be BIGCLJOB. In all cases, the report spool file that contains the job log information will be called QPJOBLOG. So these are the three key parameter values required to define the SCANSPLF Scan Rules using the LSAM menu 3, option 4.
 
 Here is an example of a segment of a fake job log report showing how it appears just after a heading line, where the target severity code will be found:
 
@@ -562,7 +575,7 @@ Here is an example of a segment of a fake job log report showing how it appears 
 Only one SPLF Scan Rule is required for this application. A rule must be defined that will discover the message severity code of 40 on any line of the job log report. The IBM i QPJOBLOG report always lists message severity codes in columns 36 - 37 of the report, and since there is very little other data (only heading data) that will appear in these columns of the report, it is easy to define the scan rule. The following SPFL Scan Rule field values include some extras that will be added in this
 case in order to make the results of the SCANSPLF job more useful to the operators whenever a sub-program error is found. The extra data is explained below, along with an example of how to use Captured Data Response rules.
 
-- **Application**: ERR2
+- **APPKEY**: 000000013
 
 - **Rule sequence**: 10
 
@@ -604,22 +617,20 @@ can be automatically resumed.
 
 #### Finding Scan Values in a Report
 
-For the SCANSPLF command, all matched Scan Rules have their scan values stored in the LSAM's Captured Data Log file. The contents of this file may be viewed using the LSAM menu 3, option 8. This file also contains data that may be captured from Operator Replay scripts, whenever a screen data capture rule is defined. But by default, when the log viewer program is started from the LSAM menu 3, the list is limited by a subset rule to only data captured by the SCANSPLF command. (Use F15=Subset to
-change the subset rule in effect for the list display.)
+For the SCANSPLF command, all matched Scan Rules have their scan values stored in the LSAM's Captured Data Log file. The contents of this file may be viewed using the LSAM menu 3, option 8. This file also contains data that may be captured from other Agent automation tools. But by default, when the log viewer program is started from the LSAM menu 3, the list is limited by a subset rule to only data captured by the SCANSPLF command. (Use F15=Subset to change the subset rule in effect for the list display.)
 
 Each Scan value in the Captured Data Log file is labeled with the report page, line and column where the data was found. This means that in the example application above for scanning the QPJOBLOG report, the location of the failing sub-program could be found very quickly if the operator would use the Captured Data Log file viewer to find this SCANSPLF Application (labeled as the Capture ID on the list display), and then find the record(s) associated with the correct date and time.
 
 The primary purpose of the example QPJOBLOG application described above was to report a failed job on an OpCon schedule if any severity code of 40 is found. The single Scan Rule described above finds only the first instance of a severity 40 code. But it could be equally important to find ALL of the severity 40 codes that appear in the job log report. To make sure all errors are found and reported, more than one Scan Rule could be specified for this Application. Only the first Scan Rule needs to be marked as required (Required rule = Y). To find more similar codes, an estimated number of additional Scan Rules could be created based on the greatest number of severity 40 codes that might ever be expected. Each of the additional Scan Rules would be marked as not required. Each of the additional Scan Rules would use the Start Scan Label to find the string '40' in From/To positions 36-37, but each succeeding Scan Rule would have a higher Incidence count. The additional
-Scan Rules would be numbered 2 and higher. If only 2 severity codes were found, then the remaining Scan Rules would be ignored and they would not affect the outcome of the SCANSPLF job.
+Scan Rules would be numbered with an Incidence count of 2 and higher. If only 2 severity codes were found, then the remaining Scan Rules would be ignored and they would not affect the outcome of the SCANSPLF job.
 
 Using the LSAM menu function to view the Captured Data Log file, each severity 40 code that was found could be quickly located by the report page and line. This would make the process of analyzing all the points of failure more efficient. As well, each found severity 40 code could trigger another Captured Data Response Rule in order to initiate automated reporting and recovery procedures.
 
-Additional assistance could be provided to the application operator for every severity 40 code was found if each of the Scan Rules would specify the same \*CAPT option in the Scan value field. Using the Position after label value of (-1) and a Scan value length of 7, the CPF message ID for each severity 40 error would become the actual captured data that appears in the Captured Data Log file. This ability to capture and report data associated with a severity 40 error code could be extended
-even farther, as described next.
+Additional assistance could be provided to the application operator for every severity 40 code was found if each of the Scan Rules would specify the same \*CAPT option in the Scan value field. Using the Position after label value of (-1) and a Scan value length of 7, the CPF message ID for each severity 40 error would become the actual captured data that appears in the Captured Data Log file. This ability to capture and report data associated with a severity 40 error code could be extended even farther, as described next.
 
 #### Using Captured Data Response Rules
 
-In the Scan Rule defined above for the example BIGCLJOB the special value of \*CAPT was specified in the Scan Value field. As mentioned just above, every matched Scan Value is logged into the LSAM's Captured Data Log file. Instead of just logging the severity 40 error code, the Scan Rule was constructed so that the severity 40 code was found as a Scan label, leaving the Scan Value field free for capturing any helpful data related to the severity 40 code. In the example above, it is proposed that it might be helpful to capture and share the CPF message ID that describes each severity 40 error code. (Additional Scan Rules, set as not required, could be created for the purpose of capturing other data elements from the same report line.)
+In the Scan Rule defined above for the example BIGCLJOB the special value of \*CAPT was specified in the Scan Value field. As mentioned just above, every matched Scan Value is logged into the LSAM's Captured Data Log file. Instead of just logging the severity 40 error code, the Scan Rule was constructed so that the severity 40 code was found as a Scan label, leaving the Scan Value field free for capturing any helpful data related to the severity 40 code. In the example above, it is proposed that it might be helpful to capture and share the CPF message ID that describes each severity 40 error code. (Additional Scan Rules, set as "not required," could be created for the purpose of capturing other data elements from the same report line.)
 
 In addition to the Captured Data Log file viewer, the LSAM offers more tools that can be used to respond to any matched Scan Rule, based on the Captured Data Log record. On LSAM menu 3, option 5 supports entry of one or more Captured Data Response Rules (described in the Screens and Windows section below) that can be linked to each Scan Rule.
 
@@ -631,23 +642,21 @@ This section explains how to make that happen. It describes how to combine these
 - Storing captured data in an LSAM Dynamic Variable
 - Using the LSAM's SAMJOBMSG command to communicate with OpCon, using the value in the Dynamic Variable
 
-The reason for sending Job Detail Messages to OpCon is that it is very easy for an OpCon operator to find the Job Detail Messages. This is done, for example, by using a right mouse click on the job, such as it may appear in a list of jobs for an OpCon schedule. The right mouse context menu that appears in OpCon User Interface offers access to Job Information. When that is selected, a window opens with tabs that can be navigated as follows: Configuration tab -\> Operations Related
-Information -\> (+) Job Detail Messages. Job Detail Messages that can be sent by the IBM i LSAM will appear here. It would probably be very helpful to an operator to get an immediate list of any/all CPF message IDs that are associated with the severity 40 error codes found by the SCANSPLF job. The operator would be automatically signaled that the SCANSPLF job has failed, and then the CPF message IDs - or any other information captured and sent by the LSAM - would be just a mouse click
+The reason for sending Job Detail Messages to OpCon is that it is very easy for an OpCon operator to find the Job Detail Messages. This is done, for example, by using a right mouse click on the job, such as it may appear in a list of jobs for an OpCon schedule. The right mouse context menu that appears in OpCon User Interface offers access to Job Information. When that is selected, a window opens with tabs that can be navigated as follows: Configuration tab -\> Operations Related Information -\> (+) Job Detail Messages. Job Detail Messages that can be sent by the IBM i LSAM will appear here. It would probably be very helpful to an operator to get an immediate list of any/all CPF message IDs that are associated with the severity 40 error codes found by the SCANSPLF job. The operator would be automatically signaled that the SCANSPLF job has failed, and then the CPF message IDs - or any other information captured and sent by the LSAM - would be just a mouse click
 away. 
 
-To deliver Job Detail Messages to OpCon, there is an LSAM command called SMAJOBMSG. This command is only valid for use within a job that was started by OpCon, such as the job executing the SCANSPLF command. The SMAJOBMSG command can be used to send the CPF message IDs to the OpCon Job Detail Messages. A Captured Data Response Rule that executes when a severity 40 error code is found can name the SMAJOBMSG command in its response command line. The Captured Data Response Rule command line
-supports LSAM Dynamic Variables, so if the CPF message ID was stored as a Dynamic Variable, it could be inserted into the SMAJOBMSG text parameter. Fortunately, the Captured Data Response Rule also has the option of naming a Dynamic Variable in which to store the captured data, and the module that executes the Captured Data Response Rule always performs the storage of captured data to variables before it attempts to execute the response command. Following is more detail about how to set
+To deliver Job Detail Messages to OpCon, there is an LSAM command called SMAJOBMSG. This command is only valid for use within a job that was started by OpCon, such as the job executing the SCANSPLF command. The SMAJOBMSG command can be used to send the CPF message IDs to the OpCon Job Detail Messages. A Captured Data Response Rule that executes when a severity 40 error code is found can name the SMAJOBMSG command in its response command line. The Captured Data Response Rule command line supports LSAM Dynamic Variables, so if the CPF message ID was stored as a Dynamic Variable, it could be inserted into the SMAJOBMSG text parameter. Fortunately, the Captured Data Response Rule also has the option of naming a Dynamic Variable in which to store the captured data, and the module that executes the Captured Data Response Rule always performs the storage of captured data to variables before it attempts to execute the response command. Following is more detail about how to set
 up this link between the LSAM and OpCon. 
 
 The link between the scanning process and OpCon is defined in the Captured Data Response Rule master record. Here is a list of the fields in that file showing the settings required to complete the example task. The field values listed here are based on the example SPLF Scan Rule described above.
 
-- **Capture identifier**: ERR2
+- **Application Key / ID**: 000000013  ERR2
 
 - **Capture sequence**: 10 (if there are additional scan rules, use the correct sequence number for each in separate Response Rules)
 
-- **Response sequence*8: 10 (multiple Response Rules can be assigned to the same capture identifier and sequence; this number governs the order in which response rules are executed)
+- **Response sequence**: 10 (multiple Response Rules can be assigned to the same APPKEY and Capture Sequence; this Response Sequence number governs the order in which response rules are executed)
 
-- **Compare rule**: EQ (this example does not qualify the response rule, so it is set up as "equal \*ANY compare data")
+- **Compare rule**: EQ (this example does not qualify the response rule, so it is set up as "equal to \*ANY compare data")
 
 - **Continuation**: (blank) (not used in this example)
 
@@ -661,7 +670,11 @@ The link between the scanning process and OpCon is defined in the Captured Data 
   ```
   SMAJOBMSG TEXT('Found error ID is: {CPFERR1} ') MSGSEQ(0)
   ```
-  - Notice that the Dynamic Variable name is inserted into the TEXT parameter surrounded by the pair of curly brackets { }, which are the default separators for Dynamic Variables. (The separator characters could be changed from the LSAM's Job Tracking menu \# 1, using the Job Tracking Configuration function \# 7.) The MSGSEQ must be unique within any one job, so if other Captured Data Rules also use the SAMJOBMSG command, make sure each rule gets a unique number for the MSGSEQ, preferably in order of their execution. (HINT: Always leave the MSGSEQ parameter set to zero, its defaut value, so that OpCon can automatically assign a unique number to each separate Job Detail message and avoid overlaying any previous message that was sent.)
+  - Notice that the Dynamic Variable name is inserted into the TEXT parameter surrounded by the pair of curly brackets { }, which are the default separators for Dynamic Variables. The MSGSEQ must be unique within any one job, so if other Captured Data Rules also use the SAMJOBMSG command, each rule must get a unique number for the MSGSEQ, preferably in order of their execution. 
+  
+  :::tip 
+  Leaving the MSGSEQ parameter set to zero, its defaut value, tells OpCon to automatically assign a unique number to each separate Job Detail message, avoiding overlaying any previous message that was sent.
+  :::
 
 - **Compare data**: \*ANY (this rule is not qualified by any comparison to thecaptured value)
 
@@ -677,8 +690,7 @@ The Captured Data Response Rule defined above will only execute if the example S
 - The response rule replaces the Dynamic Variable token in the response command with the latest value for that variable, which in this case is the CPF message ID.
 - The response rule program executes the revised response command, causing a Job Detail Message to be sent through the LSAM communications channel to the OpCon SAM, and the message is logged to the current job.
 - Since there is only one scan rule and one response rule, after they are processed the SCANSPLF command program is finished. According to the FAILOPT parameter of the SCANSPLF command, finding a match on the scan rule means that the job should be forced to end abnormally.
-- The OpCon operator sees that the LSAM has signaled a failure for the OpCon job. The operator views the Job Configuration information
-    about that job and finds the Job Detail Message sent by the LSAM.
+- The OpCon operator sees that the LSAM has signaled a failure for the OpCon job. The operator views the Job Configuration information     about that job and finds the Job Detail Message sent by the LSAM.
 - Perhaps the OpCon operator contacts the IBM i operator and reports that it will be necessary to examine the BIGCLJOB job log to analyze why there was a failure.
 - The IBM i operator uses the LSAM menu system's viewer of the Captured Data Log to locate the captured data for the last execution of the BIGCLJOB job and finds the exact page and line of the job log where the error was reported.
 - The IBM i operator is able to use an IBM i tool to open and view the BIGCLJOB job log report and position the viewer to the correct page and line, from which point the preceding messages are studied to learn the cause of the failure.
@@ -690,13 +702,12 @@ The last few summary steps above assume that the error condition is unique and r
 
 The purpose of the SCANOUTQ command is to search among spool files found in a single IBM i output queue and then to execute the SCANSPLF command for each spool file that qualifies, according to the SCANOUTQ command parameters and the Scan Rules of the named Application.
 
-SCANOUTQ is not limited in the number of spool files it qualifies for scanning, except by the selection rules of the SCANOUTQ command and by the number of different spool file + job name combinations that have been registered under the Application. The documented limits of the SCANSPLF command above do not apply in terms of how many different spool files and job names may be included in the same Application, because when the SCANOUTQ command calls the SCANSPLF command, it has already
-selected just one spool file and one job. Thus, out of all the Scan Rules registered to the Application, only the Scan Rules that match the selected spool file name will be loaded into the SCANSPLF command processor.
+SCANOUTQ is not limited in the number of spool files it qualifies for scanning, except by the selection rules of the SCANOUTQ command and by the number of different spool file + job name combinations that have been registered under the Application. The documented limits of the SCANSPLF command above do not apply in terms of how many different spool files and job names may be included in the same Application, because when the SCANOUTQ command calls the SCANSPLF command, it has already selected just one spool file and one job. Thus, out of all the Scan Rules registered to the Application, only the Scan Rules that match the selected spool file name will be loaded into the SCANSPLF command processor.
 
 The PARAMETERS keyword of the SCANOUTQ command is supported so that its value can be passed along to each execution of the SCANSPLF command. That is, if a PARAMETERS string value is provided instead of using the default value of *RULES, then that set of PARAMETERS must be matched by each execution of the SCANSPLF according to the rules of the SCANSPLF command, documented above.
 
-It may be important to note that there are four parameters of the SCANOUTQ command that can be used to temporarily store the IBM i job ID and the spool file number of each spool file selected for processing. The parameters support entry of the name of an LSAM dynamic variable ([without] the special characters that make a dynamic variable into a replaceable token). The SCANOUTQ command stores values into one or more of these dynamic variables so that they are available to any captured data response rules that are linked to the Scan Rules for a spool file. This makes it possible to perform extended processing of spool files found in an output queue, such as creating an application to re-route or delete spool files that meet certain selection criteria. Refer to the example application for the SCANOUTQ command, below, to
-learn how these dynamic variable parameters can be used. 
+It may be important to note that there are four parameters of the SCANOUTQ command that can be used to temporarily store the IBM i job ID and the spool file number of each spool file selected for processing. These parameters support entry of the name of an LSAM Dynamic Variable (**without** the special characters that make a Dynamic Variable into a replaceable token). The SCANOUTQ command stores values into one or more of these Dynamic Variables so that they are available to any captured data response rules that are linked to the Scan Rules for a spool file. This makes it possible to perform extended processing of spool files found in an output queue, such as creating an application to re-route or delete spool files that meet certain selection criteria. Refer to the example application for the SCANOUTQ command, below, to
+learn how these Dynamic Variable parameters can be used. 
 
 Since the SCANOUTQ command is a driver to select spool files to be scanned by the SCANSPLF command, then the functions of this SCANOUTQ command can be understood by studying the syntax and the parameter fields table that follows.
 
@@ -710,7 +721,8 @@ The SCANOUTQ command entered in an IBM i command line, either from IBM i or from
 :::info Example
 ```
 SCANOUTQ OUTQ(MYLIB/MYOUTQ)
-   APP('App ID: lower case and spl chars')
+   APP(*APPKEY)
+   APPKEY(14)
    DATE(20130301) DATECOMP(EQ)
    OPCONJOB(N) FAILOUTQ(3) FAILSPLF(3)
    PARAMETERS('*RULES') JOBNAME( ) USER(*ALL)
@@ -732,7 +744,8 @@ The SCANOUTQ parameter values that are the same as those supported by the SCANSP
 | Keyword    | Size    | Type   | Description                       |
 | -------    | ----    | ----   | -----------                       |
 | OUTQ       | 10 + 10 | *CHAR | The output queue name, followed by the library location of the output queue. If the special value *LIBL is used for the location of the output queue, then the queue must be found in the library list of the job where the SCANOUTQ command is executing.                        |
-| APP        | 30      | *CHAR | Value must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed. Spaces are allowed but not recommended; use underline characters instead of spaces. This value must match an Application ID that has been registered using the LSAM Menu 3, function 3. |
+| APP        | 30      | \*CHAR  | This field is carried over from previous versions of this command, and it no longer serves as a reliable identifying key to a collection of Spool File Scan Rules, though it may still be used.  The recommended and most reliable way to identify a SCANSPLF Application is to use the permanently assigned Application Key number (APPKEY).  Therefore, it is recommended to leave this field set to its default value of *APPKEY (or do not specify the APP() keyword), and to convert existing automation applications of the SCANSPLF tool to use the new APPKEY instead of the Appplication ID (which is now only descriptive text that could be changed at any time.)  But, when this value is used, it will take priority over the APPKEY value (in order to grandfather-in SCANSPLF command implementations from past versions of the LSAM), and it must be enclosed in single quotes. Type up to 30 characters. Upper and lower case letters, numeric digits and special characters are allowed - the value is case-sensitive. This value, when used, must match an Application ID that has been registered using the LSAM Menu 3, function 3. |
+| APPKEY     | 9.0    | \*DEC   | The permanent identifying key of any Data Capture Application (which is a collection of Data Capture Rules). SMA strongly recommends always specifying the APPKEY value instead of using the Application ID (APP) text string to identify the Application for this command.  The APPKEY can be found in the list display of "Work with SCANSPLF Applications" at LSAM menu 3, option 3. |
 | DATE       | 8.0     | *DEC  | Optionally, specify a date in CCYYMMDD format, to identify the processing date of the target spool file. This value limits the list of jobs that the SCANOUTQ command will search for the spool file.    |
 |            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
 | DATECOMP   | 2       | *CHAR | Include spool files with this relationship to the DATE value specified:              |
@@ -798,11 +811,9 @@ The SCANOUTQ command driver program is designed to force an abnormal termination
 
 The SCANOUTQ command itself will generate its own failure conditions if there is an illogical setting of the command parameters, if system limits are exceeded by an excessively large spool file selection set, or if no spool files qualify for scanning. Otherwise, the intended function of the SCANOUTQ command is to evaluate the results of one or more SCANSPLF commands in order to determine if the command should end normally or abnormally.
 
-When the SCANOUTQ command driver program determines that the command should end abnormally, the driver program ends with escape message code RNX9001 (the standard message from an RPG program *PSSR subroutine that has ended at the *CANCL exit point). This message is reported with the job termination message code CEE9901. The job detail messages shown under the OpCon Job Information context menu tabs Configuration -> Operations Related Information -> Job Detail Messages, will indicate
-when this error message condition is expected, or if an unexpected program error occurred.
+When the SCANOUTQ command driver program determines that the command should end abnormally, the driver program ends with escape message code RNX9001 (the standard message from an RPG program \*PSSR subroutine that has ended at the \*CANCL exit point). This message is reported with the job termination message code CEE9901. The job detail messages shown under the OpCon Job Information context menu tabs Configuration -> Operations Related Information -> Job Detail Messages, will indicate when this error message condition is expected, or if an unexpected program error occurred.
 
-The FAILSPLF parameter of the SCANOUTQ command is passed along to become the value of the FAILOPT parameter for each execution of the SCANSPLF command. Since there is only this one way to set the SCANSPLF parameter FAILOPT this means that all the spool file scans belonging to one SCANOUTQ Application must be configured to work the same way. It is not possible at this time for one execution of SCANOUTQ to combine different FAILTOPT values within a single job. (Hint: When different FAILOPT
-values are required, configure two different OpCon jobs that run separate SCANOUTQ Applications and then test the results of both jobs to create subsequent dependencies in OpCon schedules.)
+The FAILSPLF parameter of the SCANOUTQ command is passed along to become the value of the FAILOPT parameter for each execution of the SCANSPLF command. Since there is only this one way to set the SCANSPLF parameter FAILOPT this means that all the spool file scans belonging to one SCANOUTQ Application must be configured to work the same way. It is not possible at this time for one execution of SCANOUTQ to combine different FAILTOPT values within a single job. (Hint: When different FAILOPT values are required, configure two different OpCon jobs that run separate SCANOUTQ Applications and then test the results of both jobs to create subsequent dependencies in OpCon schedules.)
 
 The FAILOUTQ parameter of the SCANOUTQ command specifies how the SCANOUTQ job should respond based on the combination of results from one or more SCANSPLF commands. It is important to understand that the individual SCANSPLF command failures will not cause a SCANOUTQ job to fail, as they would when the SCANSPLF command is executed directly by a job. Instead, the SCANOUTQ command driver program collects the results from all the spool file scan tasks and then evaluates those results according to the FAILOUTQ option value. The possible values for the FAILOUTQ keyword are defined above in the Fields table for the command.
 
@@ -834,7 +845,7 @@ The example starts with some one-time configuration steps to create components t
   ```
   CRTPF FILE(QGPL/REPORT80) RCDLEN(80) SIZE(*NOMAX)
   ```
-2. LSAM Dynamic Variables will be registered in advance, even though the SETDYNVAR command in the Response Rules (below) could create them on-the-fly. This makes it easier to prompt for the Dynamic Variable names during the configuration of the Response Rules. The LSAM menu function for maintaining Dynamic Variables, for example,  option 6 on the LSAM sub-menu 3: Events and Utilities, could be used to perform this maintenance. But the SETDYNVAR command is shown here for illustration purposes. The parameters defining the Dynamic Variables are the same in either method.
+2. LSAM Dynamic Variables will be registered in advance, even though the SETDYNVAR command in the Response Rules (below) could create them on-the-fly. This makes it easier to prompt for the Dynamic Variable names during the configuration of the Response Rules. The LSAM menu function for maintaining Dynamic Variables, for example, option 6 on the LSAM sub-menu 3: Events and Utilities, could be used to perform this maintenance. But the SETDYNVAR command is shown here for illustration purposes. The parameters defining the Dynamic Variables are the same in either method.
   ```
   SETDYNVAR VARNAM(EXSPLNBR) VARTYP(V) DESC('Spool file Number from
   SCANOUTQ')
@@ -849,7 +860,9 @@ The example starts with some one-time configuration steps to create components t
   SCANOUTQ')
   ```
   :::tip
-  The use of these Dynamic Variables implies that the spool file processing must handle only one spool file at a time, otherwise another job could overlay the Dynamic Variable values. The SCANOUTQ command is designed to perform serial processing of one spool file at a time. SMA Technologies has a design objective to implement multi-instance dynamic variable support, which would then make it possible to support multi-threaded processing of the same job definition, that is, it would be possible to have OpCon execute multiple copies of the same job or schedule (using the multi-instance flag?) at the same time. Please contact SMA Technologies Support if you have an immediate need for this enhancement.
+  The example commands above show one way to register Dynamic Variable master records.  Within the jobs of the OpCon Schedule that is used to execute this SCANOUTQ Application Example, notice below that multi-instance qualifers have been appended to these Dynamic Variable names.
+  
+  The use of unqualified Dynamic Variables implies that the spool file processing could handle only one spool file at a time, otherwise another job could overlay the Dynamic Variable values. Starting with LSAM version 21.1, this Agent supports multi-instance Dynamic Variables which make it possible to support multi-threaded processing of the same job definition, that is, it would be possible to have OpCon execute multiple copies of the same job or schedule (e.g., using the Schedule multi-instance qualifier?) at the same time. For more details see [Multi-Instance Dynamic Variables](/dynamic-variables/multi-instance.md#overview).
   :::
 
 #### LSAM Scan and Response Rule Configuration for the Example
@@ -858,8 +871,7 @@ The example starts with some one-time configuration steps to create components t
 
     The SCANOUTQ command has only its command parameters to define how it will search for and select spool files to be processed by the SCANSPLF command. The SCANSPLF command parameters are assembled by the SCANOUTQ command processor, but some of the SCANSPLF command parameters may be allowed to depend on Scan Rules. Therefore, the LSAM master file configuration must start with creating new Scan Rules.
     
-    The LSAM Scan Rules maintenance display is illustrated in the SPLF Scan Rule Example figure. The effect of this Scan Rule, itself, is only to capture the first line on the first page, up to 80 characters. This captured data is not useful for this example, but some Scan Rule must be specified to provide a link between the
-    SCANOUTQ command and the Response Rule(s) defined below. The practice of storing some identifying information about the report being processed may prove useful in the future, in case this automation is being audited, for example, for diagnostic purposes.
+    The LSAM Scan Rules maintenance display is illustrated in the SPLF Scan Rule Example figure. The effect of this Scan Rule, itself, is only to capture the first line on the first page, up to 80 characters. This captured data is not useful for this example, but some Scan Rule must be specified to provide a link between the SCANOUTQ command and the Response Rule(s) defined below. The practice of storing some identifying information about the report being processed may prove useful in the future, in case this automation is being audited, for example, for diagnostic purposes.
 
     :::tip
     The Required Rule flag is set to 'N' = no. This flag is not being used in this application. This example employs the options that both the SCANOUTQ command and the SCANSPLF command should always end normally. These ending options are useful only when the report content is being compared to some reference value, and the SCANOUTQ job must report a positive or negative scan outcome to OpCon as a job completion status.
@@ -869,8 +881,8 @@ The example starts with some one-time configuration steps to create components t
     LSAJ40R5                   Display SPLF Scan Rule                   00/00/00 
     USERNAME
     
-    Application . . . . . : Get BLDPTFP01 Job ID
-    Rule sequence/descrip.: 10
+    Application Key / ID  : 000000014       Get BLDPTFP01 Job ID
+    Rule sequence/descrip.: 10              Description of Response Rule 
     SPLF name . . . . . . : BLDPTFP01       Job name: *CMD name, *CMD
     SPLF number . . . . . : *ANY            number, *ONLY, *LAST, *ANY
     From/To page  . . . . : 1       1       *STR, *END, number, -n=before *END
@@ -890,35 +902,38 @@ The example starts with some one-time configuration steps to create components t
     Last changed user/time: USERNAME        2013-02-26-16.42.17.736000
     F3=Exit F5=Refresh F12=Cancel
     ```
-    The Application ID (or Capture identifier, as it is labeled in the Response Rule below) indicates that this example will be searching for a spool file named BPDPTFP01. The actual spool file name in this example is being registered in the Scan Rule. Remember when using the SCANOUTQ command that there can be multiple spool file names detected by that command and qualified for processing. But there must be at least one Scan Rule found in the Scan Rules file for each spool file discovered, otherwise the spool file that SCANOUTQ discovered will be ignored.
+    The Application ID indicates that this example will be searching for a spool file named BPDPTFP01. The actual spool file name in this example is being registered in the Scan Rule. Remember when using the SCANOUTQ command that there can be multiple spool file names detected by that command and qualified for processing. But there must be at least one Scan Rule found in the Scan Rules file for each spool file discovered, otherwise the spool file that SCANOUTQ discovered will be ignored.
 
-    One additional note about Scan Rules may be helpful. There is an LSAM menu option called Work with SCANSPLF Applications. However, application IDs are created by definition whenever a Scan Rule is registered using a new Application ID. It is not necessary to separately create the Application ID itself. The separate menu option now serves only as a convenience tool for certain operations not discussed in this document.
 2. Create Captured Data Response Rule(s): LSAM sub-menu 3, option 5.
-
-    When creating a Captured Data Response Rule, it is of course critical that the Application ID (labeled as the "Capture identifier" field) and the Capture sequence number match the Scan Rule exactly. To ensure this match, use the function key F4=Prompt and select the desired Scan Rule from the prompt window.
     
     In this example, the Comp reference value, Compare rule and Compare data lines are set to the values that mean "always execute this rule." (The default values that imply this meaning are "\*CAPT EQ *ANY".)
     
     The illustration below shows that the IBM i command CPYSPLF will be executed. An easy way to format this command is to type the command name into the Response cmd field and then press F4=Prompt to get help from the IBM i command prompting program. However, do not attempt to include the Dynamic Variable token characters until after the command prompting returns the correctly formatted command syntax into this field.
 
     ```
-    OPRR50R5                Create Capture Response Rule                  00/00/00
-    USERNAME                                                              00:00:00
+    OPRR51R2                Create Capture Response Rule                  00/00/00
+    USERNAME          Capt Type: S  C=Screen, S=SPLF, M=Message           00:00:00
 
-    Capture identifier . : Get BLDPTFP01 Job ID                C=Screen Capture
-    Capture sequence . . : 010            Capture Type . : S   S=SPLF Scan
-                                                               M=Message Capture
-    Response sequence . . : 10
-    Continue (AND/OR/CMD) : ___           Compress numeric: N  Y=yes, N=no
-    Store CAPT to-> DynVar: ______________ -> Oper Rply Var: __________
-    Response cmd (part 1) : CPYSPLF FILE(BLDPTFP01) TOFILE(QGPL/REPORT80)
-    JOB({EXJOBNBR}/{EXJOBUSR}/{EXJOBNAM}) SPLNBR({EXSPLNBR}) MBROPT(*REPLACE)____
-    _____________________________________________________________________________
-    Comp reference value : *CAPT                               *CAPT,DynVar,char
-    Comp reference length : 0             Compare rule: EQ  EQ,NE,GT,LT,GE,LE,**
-    Compare data lines 1-5: *ANY, *PARM, DynVar, char       Capture length: 0000
+    Application Key / ID  : 000000014     Get BLDPTFP01 Job ID
+    Capture sequence/Desc : 010           Desc text for Capt Seq # 10
+    Response sequence . . : 010           Desc text for Resp Rule 10
+    Continue (AND/OR/CMD) : ___           
+    Store CAPT to-> DynVar: __________________________________________________  +  
+     ...to-> Oper Rply Var:               CompNum/CharEdit: N  Num:Y,N / Edit:CQDEF
+    Response cmd (part 1) : CPYSPLF FILE(BLDPTFP01) TOFILE(QGPL/REPORT80)__________
+    JOB({EXJOBNBR}/{EXJOBUSR}/{EXJOBNAM}) SPLNBR({EXSPLNBR}) MBROPT(*REPLACE)______
+    ____________________________________________________________________________
+    Comp reference value  : *CAPT_____________________________________________  +
+    Cmp length-keep spaces: ___0 0=trim   Comp ref values: *CAPT, DynVar, char   
+    Compare rule  . . . . : EQ   **,EQ,NE,GT,LT,GE,LE,=,<>,>,<,>=,<=             
+    Compare data lines 1-3: *ANY, *PARM, DynVar, char       Capture length: 0000
     ...5...10....5...20....5...30....5...40....5...50....5...60....5...70....5...8
-    ```
+    *ANY___________________________________________________________________________
+    _______________________________________________________________________________
+    __________________________________________________________________________  +
+
+    ```  
+
     In the Response cmd (command) field, the Dynamic Variables that were specified above are being used with the Dynamic Variable token characters. To get those Dynamic Variables formatted correctly, the easiest way is to position the cursor in the correct parameter location and then press F8=DyynVar. Select the desired Dynamic Variable name from the prompt list and then the program will format the name with the token characters and insert it into the command field. During the actual execution of the Response Command, the Response Rule Engine (illustrated in the flow chart above) will replace the Dynamic Variable tokens with their current value. The current values will have been set by the SCANOUTQ command as it selects each spool file for processing by the SCANSPLF command.
      
     The example screen above also names the IBM i DB2 physical file that was created during the preliminary configuration steps.
@@ -931,15 +946,14 @@ Note also that the library location of the command is specified here. This is no
 locate the command in order to qualify its syntax. 
 ```
 SMAPGM/SCANOUTQ OUTQ(MYLIB/MYOUTQ)
-APP('Get BLDPTFP01 Job ID')
-DATE(20130301) DATECOMP(EQ)
+APPKEY(14) DATE(20130301) DATECOMP(EQ)
 OPCONJOB(N) FAILOUTQ(3) FAILSPLF(3)
 PARAMETERS('*RULES') JOBNAME( ) USER(*ALL)
 SPLF(BLDPTFP01) USRDTA(*ALL) FORMTYPE(*ALL)
-DVSPLNBR(EXSPLNBR) DVJOBNBR(EXJOBNBR)
-DVJOBUSR(EXJOBUSR) DVJOBNAM(EXJOBNAM)
+DVSPLNBR(SI.EXSPLNBR) DVJOBNBR(SI.EXJOBNBR)
+DVJOBUSR(SI.EXJOBUSR) DVJOBNAM(SI.EXJOBNAM)
 ```
-The Dynamic Variables that were configured in a previous step of this example are named in the appropriate new SCANOUTQ parameters. Note that the special token character is not included here because the purpose of the Dynamic Variable name is not to have a value put in its place, but to name the Dynamic Variable that should be used by the SCANOUTQ command processor program as it is storing identifying information about each spool file selected for processing.
+The Dynamic Variables that were configured in a previous step of this example are named in the appropriate new SCANOUTQ parameters. Note that the special token characterd do not surround the Dynamic Variable names because the purpose of the Dynamic Variables name is not to have values put in their place, but to name the Dynamic Variables that should be used by the SCANOUTQ command processor program as it is storing identifying information about each spool file selected for processing.
 
 
 

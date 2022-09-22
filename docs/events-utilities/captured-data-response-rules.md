@@ -78,7 +78,7 @@ Using the F10 pathway is always required when linking a Screen Capture Applicati
 
 #### Fields
 
-- **Application ID**: This field is a description of the purpose of any set of data capture rules.  Application IDs are always assigned to only one of three Agent automation tools (Operator Replay, Message Management and the SCANSPLF report scanning tool).  The current Application Type is indicated in the screen sub-title.  In past Agent software releases, the Application ID itself served as a key linking Capture Rules to the elemental master records of Agent automation tools.  Now, however, the text of this field can be change at will following the introduction of the App Key number.
+- **Application ID**: This field is a description of the purpose of any set of data capture rules.  Application IDs are always assigned to only one of three Agent automation tools (Operator Replay, Message Management and the SCANSPLF report scanning tool).  The current Application Type is indicated in the screen sub-title.  In Agent software versions prior to version 21.1, the Application ID itself served as a key linking Capture Rules to the elemental master records of Agent automation tools.  Now, however, the text of this field can be change at will following the introduction of the App Key number as the permanent record key.
 - **App Key #**: The permanent key value that links Capture Applications to the master records of Agent automation tools.
 
 #### Functions
@@ -102,7 +102,7 @@ Using the F10 pathway is always required when linking a Screen Capture Applicati
 ## Work with Capture Response Rules
 
 - **Screen Title**: Work with Capture Response Rules
-- **Screen ID**: OPRR50R1
+- **Screen ID**: OPRR50R1, OPRR51R1
 
 The same data capture response functions support both Screen data capture for Operator Replay and report data capture for the SCANSPLF utility command. Some of the following description includes information that is useful in distinguishing between the two different types of data capture. Each actual data capture definition and the captured data record are labeled by their Type field, where "C" = screen capture and "S" = spool file capture. The list column headings will change depending on the subset rule that is currently in effect. 
 
@@ -120,7 +120,11 @@ Refer to the How To discussion earlier in this topic for more information about 
 - **Subset to Type**: When this Work With list has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
 - **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time or press <**F5=Refresh**> to start a new search.
 - **Opt**: Type option from list displayed near the top of this screen. Refer to options definitions, below.
-- **Capture ID (APP)**: A label that groups together all of the data capture rules that apply to a single SCANSPLF Scan Rule (or to an Operator Replay script Sequence number). In the SCANSPLF command, the Capture ID is known as the Application.
+- **APPKEY**: The permanent numeric key value that identifies each unique Application.  This key value groups together all of the data capture rules that apply to a capture Application, as used by Operator Replay, Message Management, or the SCANSPLF report scanning utility.
+- **App ID**: A label that describes the Data Capture Application. 
+  :::warning
+  Agent software versions prior to 21.1 used the Application ID text string as the actual key to organize data capture rules.  Since version 21.1, the APPKEY value is the only permanent key value, and the ID text string could be updated at will.  However, any Agent automation configurations constructed before version 21.1 would still be using the Application ID text string in its former record key mode, so before changing the Application ID text, be sure that executions of the LSAM commands SCANSPLF and SCANOUTQ have been updated to use the APPKEY() command parameter instead of the APP() parameter.
+  :::
 - **SEQ**: The sequence of the source Application Scan Rule (or Operator Replay data capture rule). This number determines the order in which spool file scan rules (or  Operator Replay data capture rules) are executed. The effect of this sequence number is that it imposes a higher level of control over the sequence of response rules, and the Response Sequence number (below) operates within this higher level.
 - **T**: Type: C = Operator Replay screen data capture, S = SCANSPLF Scan Rule data capture, M = Message Management message data capture.
 - **RS#**: Response Sequence Number: The order in which each response rule will be executed (that is, within the higher order data capture SEQuence order).
@@ -157,7 +161,7 @@ Refer to the How To discussion earlier in this topic for more information about 
 ### Add/Change/Copy Capture Response Rules
 
 - **Screen Title**: Add/Change/Copy Capture Response Rule
-- **Screen ID**: OPRR50R2
+- **Screen ID**: OPRR50R2, OPRR51R2
 
 Refer to [How Captured Data Response Rules Work](#how-captured-data-response-rules-work) for more information about the meaning and purpose of the fields on this display, especially how the Continuation field works.
 
@@ -168,7 +172,10 @@ Main Menu \> (sub-menu per Agent automation feature) \> Work with Captured Data 
 ##### Fields
 
 - **From fields (Resp Seq)**: When this screen appears in Copy mode, the key fields of the source record being copied are shown in this heading area. When this program is called from the Operator Replay Sequence maintenance, only the Response Sequence appears in the From field list. A new value must be assigned to the new Response Rule record being created in Copy mode, using the Response Sequence input field (below).
-- **Capture Identifier**: A label that groups together all of the data capture rules that apply to a single Operator Replay script Sequence number. For Copy and Change operations, this key field is protected from update. This field and the Capture Seq field (next) identify the rule to which this response record will react.
+- **Application Key / ID**: A numeric key value, accompanied by a descriptive Application ID label, that groups together all of the data capture rules that apply to a single data capture application (as defined by Operator Replay, Message Management or the SCANSPLF report scanning utility). For Copy and Change operations, the APP Key field is protected from update. This field and the Capture Seq field (next) identify the rule to which this response record will react.
+  :::warning
+  Agent software versions prior to 21.1 used the Application ID text string as the actual key to organize data capture rules.  Since version 21.1, the APPKEY value is the only permanent key value, and the ID text string could be updated at will.  However, any Agent automation configurations constructed before version 21.1 would still be using the Application ID text string in its former record key mode, so before changing the Application ID text, be sure that executions of the LSAM commands SCANSPLF and SCANOUTQ have been updated to use the APPKEY() command parameter instead of the APP() parameter.
+  :::
 - **Seq**: The sequence of the data capture rule to which this response will react. For Copy and Change operations, this key field is protected from update. This number determines the order in which data capture rules are executed.
 - **Type**: Type: C = screen capture, S = SCANSPLF report data capture, M = Message Management message text capture. This must be the type of the data capture definition. For Copy and Change operations, this field is protected from update.
 - **Response sequence**: Response Sequence Number: The order in which each response rule will be executed. When changing an existing rule's sequence number, pay close attention to the Continuation field value, because the order of records is critical when the Continuation field is used to group multiple response qualifications (using Compare data) and commands.
@@ -191,26 +198,26 @@ The setting of this flag also controls how captured data will be stored into a D
   The format of the captured data that is stored in the Dynamic Variable is affected by the Compress numeric option, above.
   :::
   - To create or update a type-L Dynamic Variable, insert a SETDYNVAR command into the response command line. This could be done on a separate response rule record that is associated with the same SPLF Scan Rule or Operator Replay screen capture rule.
-- **Store CAPT to> Oper Rply Var** (Operator Replay Variable): 
+- **Store CAPT to-> Oper Rply Var** (Operator Replay Variable): 
   - Typing a name into this field causes the captured data response rule module to create or update an LSAM Operator Replay token variable in the LSAM table.
   - When Captured Data Response Rules are associated with an Operator Replay script's Screen Capture Rule, the setting of the Operator Replay token variable value is completed before the script step responds to the current screen on display. This means that the content of the screen can be used to set the variable and the same variable name can then be used in the command line of the script step's response to the screen format.
 - **Response cmd** (part 1); F13=Full CMD: 
-  - The first 214 characters of the response command string may be entered in this field. If the command is longer than 214 characters, press <**F13=Full CMD**> to branch to a screen where a much longer command string may be entered. Function key <**F4=Prompt**> may be used to get IBM i help with command prompting. Unlike the Compare data lines, the entire command string will appear in the F13=Full CMD screen. Be careful if a partial command shows in this field in Change mode; in this case it is recommended that F13=Full CMD be used to be sure that the final command syntax is correct after any changes.
+  - The first 214 characters of the response command string may be entered in this field. If the command is longer than 214 characters, press **F13=Full CMD** to branch to a screen where a much longer command string may be entered. Function key **F4=Prompt** may be used to get IBM i help with command prompting. Unlike the Compare data lines, the entire command string will appear in the F13=Full CMD screen. Be careful if a partial command shows in this field in Change mode; in this case it is recommended that F13=Full CMD be used to be sure that the final command syntax is correct after any changes.
   - Dynamic Variables may be used in place of all or part of the command line syntax. (For more information about Dynamic Variables, refer to Job Tracking and Queuing.)
   - Also refer to the discussion below about how LSAM Event commands can be used in this field, and how OpCon property (variable) tokens can also be supported when an Event command is used. (Any other IBM i command may also be used in this field, but only Event commands are supported for replacing OpCon property tokens.
 - **Comp reference value**: 
-  - The compare reference value is a field containing a character string or a reference to a value store in another file, for use in qualifying this Rule for execution. If the referenced value does not match the Compare data according to the Compare rule, then the Capture Response Rule Response command will not be executed.
+  - The compare reference value is a field containing a character string or a reference to a value store in another file, for use in qualifying this Rule for execution. If the referenced value does not match the Compare data according to the Compare rule, then the Capture Response Rule Response command will not be executed.  Following are the **Comp ref values** meanings shown in the display value prompting:
   - \*CAPT = Use the captured data as the reference data (this is the original default for comparing data, in prior versions).
   - DynVar = The LSAM Dynamic Variable named in this field will be compared to the Compare data. (Do not type 'DynVar' but instead type the name of a Dynamic Variable. Use function key F8 to select from a list of existing dynamic variables.) 
   - char = a specific string typed in this field will be compared to the Compare data.
-- **Comp reference length**: Specifies the length of data to be used from the Comp reference value, starting at position 1 of the reference value. If this field is zero, then the trimmed length of the reference value will be used. (Trimming means that any trailing blanks will not be considered, only data from position 1 through the last non-blank character will determine the length of the Comp reference value.)
+- **Cmp length-keep spaces**: (Compare reference length) Specifies the length of data to be used from the Comp reference value, starting at position 1 of the reference value. If this field is zero, then the trimmed length of the reference value will be used. (Trimming means that any trailing blanks will not be considered, only data from position 1 through the last non-blank character will determine the length of the Comp reference value.)  Specifying a non-zero length could either cut off extra characters, or it could indicate that a short value will include enough trailing spaces to fill in the specified reference value string to this length.
 - **Compare rule**: 
   - Specifies the type of compare to use between the Comp reference value (which will be factor 1) and the Compare data (which will be factor 2). For example, if GT is specified, then the Comp reference value must be greater than the Compare data in order for this Capture Response Rule to be executed.                 |
   - EQ = equal, NE = not equal, GT = greater than, LT = less than, GE = greater than or equal, LE = less than or equal, ** = contains (as in, the Comp reference value contains the Compare data anywhere within the Comp reference value string).
 - **Capture length**: This is a protected field that shows the length specified for the captured data. The value will appear in Copy and Change mode. In Add (Create) mode, a value will be supplied if the F4=Prompt key is used to select a valid Capture ID and Sequence. Use this field as a reference when defining the Compare data.
-- **Compare data lines 1- 5; PagDown=6-24**:
-  - The compare data is used to match with the original capture data according to the compare rule. The compare data may be typed directly into this field. Use PageDown to show and update lines 6-24; lines 1-5 only appear on the main maintenance screen. Up to 1920 characters may be specified.
-  - If it should be desired to compare an entire 24 X 80 screen, that is, all 1920 characters, it would be possible to copy and paste the reference screen image (lines 1-5 separately from lines 6-24) into this field. However, keep in mind that only the displayable characters are compared. That is, field attributes such as color (and any EBCID character value less than X'40') will not be considered; a space character is used in place of non-display values.
+- **Compare data lines 1- 3**:
+  - The compare data is used to match with the original capture data according to the compare rule. The compare data may be typed directly into this field. Use **F13** to show or enter more data than will fit in the first lines 1 - 3. Up to 1920 characters may be specified.
+  - **CAUTION**: If an attempt is made to copy data from a live workstation display and then past it into the Compare Data entry fields, remember that non-displayable characters, such as field display attributes including color and any EBCIDC character value less than X'40' could be included within the pasted data. The Agent data capture rules will capture all the data sent to a virtual workstation display, including the display attributes.  But those display attributes might not be included in the Compare Data lines of the Capture Response Rule master record.  Therefore, use care to copy/paste only the contents of marked input/output fields, or other text display area such as field prompts that are all part of a single string of characters, without spanning other data elements on the screen.  In case the compare data is suspect, the Data Capture Debug Log file, OPRLOGF40, can be examined using the IBM i command DSPPFM in order to reveal the hexadecimal content of the actual captured data, and that can be compared to the DSPPFM hex view of the Captured Data Definitions master file, OPRRPYF40. 
   - Special values may be typed into this field, instead of actual compare data:
   - \*ANY = No comparison will be performed. A command or group of commands associated with compare data value of *ANY will always be executed.
   - \*PARM = Reserved for the SCANSPLF command. This means that the compare data to be used is the same as the parameter value supplied with the SCANSPLF command, except that the Compare rules supplied with this response record will apply. If this value is used with an Operator Replay screen data capture, it has the same effect as \*ANY. 
@@ -255,16 +262,20 @@ Main Menu \> Operator replay menu (#4) \> Display Captured Data log (#8).
 
 ##### Fields
 
--  **Subset to Type**: When this list display has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
--  **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
--  **Opt**: Type option from list displayed near the top of this screen. Refer to options definitions, below.
--  **Capture ID**: A label that groups together all of the data capture rules that apply to a single Operator Replay script Sequence number. (This field is more important when data capture is used with the SCANSPLF command, and only serves Operator Replay screen capture as a useful means of labeling captured data when it appears in the captured data debug log file list, or when prompting for a Capture ID from Response Rules.)
--  **Seq**: The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
--  **MM-DD-HH.MM**: A portion of the time stamp of the log entry, showing the month, day, hours and minutes.
--  **T**: Type: C = screen capture, S = SCANSPLF data capture, M - Message Management
--  **Script/SPLF**: The name of the Operator Replay Script, or the name of the spool file that was processed by the SCANSPLF command. The value shown here is defined by the value in the T (Type) field.
--  **Number**: For an Operator Replay Script, the Sequence number of the step when the screen data was captured. For a spool file, the spool file number within the job where the spool file was found.
--  **JobNbr**: The IBM i Job Number of the job that executed the Operator Replay script or the SCANSPLF command. This number helps to distinguish among list entries that belong to the same, or to different jobs.
+- **Subset to Type**: When this list display has been called directly from the menu, the LSAM menu passes a parameter to signal the program whether the call came from the Operator Replay menu (Type = Screen), or from the Events and Utilities Menu (Type = SCANSPLF). Function key F15 can be used to force a change to the Subtype, or to remove subsetting and show all Response rules of both types.
+- **Search content**: Type a value in this field and press <**Enter**> or <**F16**> to initiate a search for a record that has matching data anywhere in the record, including data that might not appear on the list display (but the matching data would appear in the display of the detail of the record). When <**F16**> is pressed a second time, the search continues from after the last matching record, using the same Search content data. Press <**Enter**> a second time (with no options typed), or press <**F5=Refresh**> to start a new search.
+- **Opt**: Type option from list displayed near the top of this screen. Refer to options definitions, below.
+- **APPKEY**: The permanent numeric key value that identifies a Data Capture Application and groups together a set of Data Capture Rules.
+- **Capture ID**: A label that describes the Data Capture Application.  
+  :::warning
+  Agent software versions prior to 21.1 used the Application ID text string as the actual key to organize data capture rules.  Since version 21.1, the APPKEY value is the only permanent key value, and the ID text string could be updated at will.  However, any Agent automation configurations constructed before version 21.1 would still be using the Application ID text string in its former record key mode, so before changing the Application ID text, be sure that executions of the LSAM commands SCANSPLF and SCANOUTQ have been updated to use the APPKEY() command parameter instead of the APP() parameter.
+  :::
+- **Seq**: The sequence of the data capture rule. This number determines the order in which data capture rules are executed. The effect of this sequence number is more noticeable when there are captured data response rules associated with each data capture definition, in that it imposes a high level of control over the sequence of response rules that might apply to a given screen format (or to a SCANSPLF spool file).
+- **MM-DD-HH.MM**: A portion of the time stamp of the log entry, showing the month, day, hours and minutes.
+- **T**: Type: C = screen capture, S = SCANSPLF data capture, M - Message Management
+- **Script/SPLF**: The name of the Operator Replay Script, or the name of the spool file that was processed by the SCANSPLF command. The value shown here is defined by the value in the T (Type) field.
+- **Number**: For an Operator Replay Script, the Sequence number of the step when the screen data was captured. For a spool file, the spool file number within the job where the spool file was found.
+- **JobNbr**: The IBM i Job Number of the job that executed the Operator Replay script or the SCANSPLF command. This number helps to distinguish among list entries that belong to the same, or to different jobs.
 
 ##### Functions
 
@@ -298,8 +309,8 @@ Main Menu \> Events and Utilities menu (#3) \> Display Captured Data log (#8) \>
   - C = Operator Replay screen data capture
   - S = SCANSPLF report spool file scanning 
   - M = Message data capture 
-- **Capture ID**: The identifier assigned to a group of data capture rules. For Captured Message Data, this is the Application ID.
-- **(Capture) Seq**: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
+- **AppKey/ID**: The key and description of the Data Capture Application that groups Data Capture Rules together.
+- **Capt Seq#**: The sequence number assigned to the data capture definition, representing the order of capture within the Capture ID.
 - **Page**: This field is not used by Operator Replay screen data capture. For the SCANSPLF command, this documents the page of the report where the captured data was found.
 - **Rpt Line**: For the SCANSPLF command, this is the report line, within a page, where data was found and captured.
 - **Col(-umn)**: The column within the Row where the data capture started.
@@ -307,9 +318,24 @@ Main Menu \> Events and Utilities menu (#3) \> Display Captured Data log (#8) \>
 - **Capture Job ID**: The IBM i full job name that made the Captured Data log entry. This is the job that will be shown if the function key F9=WRKJOB is pressed.
 - **Date**: The log file entry date, in CCYYMMDD format. Used to purge the log file, based on the LSAM log file retention days (refer to LSAM Parameters).
 - **Time stamp**: The IBM i system time when the log entry was written.
+
+##### SCANSPLF data capture log data
 - **SPLF Name**: The spool file name scanned by the SCANSPLF command.
 - **SPLF number**: The Spool File Number of the spool file named within the job that qualified for the SCANSPLF command.
 - **SPLF SrcJob**: The name of the job specified for the SCANSPLF command. When the SCANSPLF command was executed by the LSAM for the special purpose of evaluating an OpConrequested job completion status, this field will show a value of '\*JORS.'
+
+##### Message Management data capture log data
+- **MmRecKey**: The internal key of the Message Management Parameters record, to which a Capture Application has been linked.
+- **Msg Queue**: The name of the message queue that was scanned
+- **Message ID**: The IBM i message ID (if any, not present for text-only messages) that was captured
+- **MSGQ LIB**: The IBM i DB2 library where the message queue was located.
+- **MSGF**: The name of the IBM i message file object where the message ID was defined (seldom used)
+
+##### Operator Replay data capture log data
+- **Script Name**: The Operator Replay Script name that was being executed as the log entry was made
+- **Step Nbr**: The Step Number of the Scrip that was being executed as the log entry was made.
+
+##### Subsequent common log entry fields
 - **Numeric**: Y = yes, N = No: Indicates whether numeric data compression was specified for the captured data.
 - **Rows 1-12**: Rows 13-24: 2..5...10....5...20: The row and columns of the capture data are labeled. Press PageDown or PageUp to toggle between the display of rows 1-12 and 13-24. Either eye vision, or manipulation of the cursor may be used to help identify the exact column for each character of captured data, based on the numbered ruler line just above the first line of captured data. The ruler starts with number 2 and ends with number 78 (due to 5250 workstation display constraints), however, the actual captured data occupies columns 1 to 80 on the lines below the ruler. Thus, workstations that display the column location of the cursor should match the character location in the ruler line.
 
