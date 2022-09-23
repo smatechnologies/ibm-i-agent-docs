@@ -39,12 +39,12 @@ Automated Export/Import would be especially helpful for service bureaus who oper
 
 1. Choose one of the LSAM features for data export in the SMA Main Menu. For example, enter **2** to choose the **Message management** menu.
 2. Enter **1** to choose the **Message Management Parameters** maintenance function in the Message management menu.
-3. Enter **8** (= Export) to choose one or more of the Message management parameter records for export. Press <**Enter**> to start the actual export process. The Work with Export Batches program is called directly from within the Work with function.
+3. Enter **8** (= Export) to choose one or more of the Message management parameter records for export. Press **Enter** to start the actual export process. The Work with Export Batches program is called directly from within the Work with function.
 4. If there is already an export batch that has a matching Group ID for this LSAM feature, skip the next two steps and proceed to step 8) to select an existing open batch.
-5. If there is no matching or open Export batch control press <**F6**> to add a new Export batch control record. The Group ID for a new batch control record is forced to match the current LSAM feature.
-6. Complete the definition of the new Export batch by typing a descriptive name for the batch. Press <**Enter**> to complete registration of the new batch control record. The display returns to the list of Export batch control records.
-7. Type a **1** next to the desired (or new) Export batch control record to select it, then press <**Enter**> to continue with the  process of exporting the (next) selected LSAM master record (and all dependent file data) to the temporary library that was automatically created for the batch control record.
-8. After the data is exported to the temporary library, the screen shows a definition of the Export data batch and it offers an option to immediately close out the batch and create the Export save file by pressing function key <**F14**>. Do not press F14 if more records will be selected from the same LSAM feature and they should be included in the same Export batch. (Closing out a batch is explained below under Manage Export Batches.)
+5. If there is no matching or open Export batch control press **F6** to add a new Export batch control record. The Group ID for a new batch control record is forced to match the current LSAM feature.
+6. Complete the definition of the new Export batch by typing a descriptive name for the batch. Press **Enter** to complete registration of the new batch control record. The display returns to the list of Export batch control records.
+7. Type a **1** next to the desired (or new) Export batch control record to select it, then press **Enter** to continue with the  process of exporting the (next) selected LSAM master record (and all dependent file data) to the temporary library that was automatically created for the batch control record.
+8. After the data is exported to the temporary library, the screen shows a definition of the Export data batch and it offers an option to immediately close out the batch and create the Export save file by pressing function key **F14**. Do not press F14 if more records will be selected from the same LSAM feature and they should be included in the same Export batch. (Closing out a batch is explained below under Manage Export Batches.)
 9. If multiple LSAM primary master records were selected for exporting, repeat steps 8) and 9) in this segment of instructions. When all record exporting has completed, the screen will return to the list of the LSAM master records in the original Work with list for this LSAM feature.
 
 ### Manage Export batches
@@ -56,9 +56,9 @@ Automated Export/Import would be especially helpful for service bureaus who oper
 5. Enter **8** (= Export) to choose one or more of the Message management parameter records for export. Press <**Enter**> to start the actual export process. The Work with Export Batches program is called directly from within the Work with function.
 6. Enter **1** to choose the **Message Management Parameters** maintenance function in the Message management menu.
 7. Enter **8** (= Export) to choose one batch that has a status code of "**A**" to begin the export process.
-8. The screen to Initiate Data Export Batch appears. This is the same screen that will appear if an immediate export was selected using function key <**F14**> above. Review the parameters that define how the export process will work. Refer to the Screens and Windows section of this topic, below, for detailed information about the fields on this screen.
-9. [Take note of the export save file name] and the library where     the export save file will be stored, then press <**Enter**> to start the export batch preparation process.
-10. The program edits the batch export control values, then presents the same display with a red instruction line that says to press <**F14**> to confirm the values and start the export process.
+8. The screen to Initiate Data Export Batch appears. This is the same screen that will appear if an immediate export was selected using function key **F14** above. Review the parameters that define how the export process will work. Refer to the Screens and Windows section of this topic, below, for detailed information about the fields on this screen.
+9. [Take note of the export save file name] and the library where     the export save file will be stored, then press **Enter** to start the export batch preparation process.
+10. The program edits the batch export control values, then presents the same display with a red instruction line that says to press **F14** to confirm the values and start the export process.
 11. If the option to Submit job to batch? was set to **0**, the export process will be completed by the interactive job and a completion message will appear at the bottom of the screen. If the Submit option was left at **1** the export process will be submitted to a batch job and the name of the job will be displayed in a message at the bottom of the screen.
 12. Review the Export batch report. This report will either be a spool file belonging to the current interactive job, or it may be found under the name of the job that was submitted to batch.
 
@@ -70,24 +70,24 @@ Automated Export/Import would be especially helpful for service bureaus who oper
 4. Enter **3** to select the Events and Utilities sub-menu in the SMA Main Menu.
 5. Enter **10** to choose the Data Export/Import Utilities Menu in the Events and Utilities Menu.
 6. Enter **4** to choose **Work with Import Batches** in the Data Export/Import Utilities menu.
-7. Typically, there will be no import batches listed. Press function key <**F6**> to start the process of searching for export batches brought to the local IBM i partition.
-8. The display will show a list of save files that are not already imported in the default library (named in the Export/Import options configuration). If a different library should be searched, press the <**Shift+Tab**> keys to move up to the "Search new library" field and then press <**Enter**> to display a new list.
-9. Type a **1** next to one save file that should be imported, then press <**Enter**> to being the Import process.
+7. Typically, there will be no import batches listed. Press function key **F6** to start the process of searching for export batches brought to the local IBM i partition.
+8. The display will show a list of save files that are not already imported in the default library (named in the Export/Import options configuration). If a different library should be searched, press the **Shift+Tab** keys to move up to the "Search new library" field and then press **Enter** to display a new list.
+9. Type a **1** next to one save file that should be imported, then press **Enter** to being the Import process.
 10. The display shows the "Add Import Batch" control screen. If the import save file exists within the same IBM i partition as the export environment, warning messages and override options are offered. Refer to Screens and Windows later in this topic for detailed information about each field and option. In this case the default option set suggests Replace option "**A**" to use an existing export work library for the import process.
-11. When the selected save file has been accepted for import, the display shows instructions to press <**Enter**> to continue.
-12. The display will return to the list of save files available for importing. Either repeat steps 8) and 9) to set up additional import batches, or press <**Enter**> (with no options typed) or <**F12**> to return to the list of batches available for import.
-13. Type **8** next to the batch that should be imported, then press <**Enter**> to continue.
+11. When the selected save file has been accepted for import, the display shows instructions to press **Enter** to continue.
+12. The display will return to the list of save files available for importing. Either repeat steps 8) and 9) to set up additional import batches, or press **Enter** (with no options typed) or **F12** to return to the list of batches available for import.
+13. Type **8** next to the batch that should be imported, then press **Enter** to continue.
     :::tip 
     If the target (import) LSAM environment does not match the LSAM version and DB (database) level of the source (export) LSAM environment, an error message is displayed and the import process is not allowed. In this case it is possible to exit the import process and complete cumulative PTF application to bring the target LSAM environment up to the same level as the source environment. Then it is possible to return to this procedure and complete importing the batch.
     :::
-14. When the import is performed within the same IBM i partition as the export, a warning will appear on the display for Initiate Data Import Batch. In this case, choose an option for the field label "RSTLIB (1) or Skip (0)?" Typically, option **0** is a good choice because it avoids the unnecessary step of restoring the import work library from the save file, since that library already exists on the system. Type any other processing option changes, then press <**Enter**> to continue.
-15. The system displays a final confirmation screen for the import batch after editing the batch control details. If the values appear acceptable, press <**F14**> to start the actual import process.
+14. When the import is performed within the same IBM i partition as the export, a warning will appear on the display for Initiate Data Import Batch. In this case, choose an option for the field label "RSTLIB (1) or Skip (0)?" Typically, option **0** is a good choice because it avoids the unnecessary step of restoring the import work library from the save file, since that library already exists on the system. Type any other processing option changes, then press **Enter** to continue.
+15. The system displays a final confirmation screen for the import batch after editing the batch control details. If the values appear acceptable, press **F14** to start the actual import process.
     :::tip
     The import process performs updates to the target IBM i LSAM database. During this process, a backup save file will be created to contain any data records that will be replaced by the import process. It is possible to rollback an import batch using option 9 from the Work with Import Batches display, in case the import causes any problems or appears to corrupt data.
     :::
 16. If the import process was submitted to batch, a message appears at the bottom of the display naming the submitted job. Use this job name to find and review the import posting report.
 17. If the import process was allowed to run in the interactive job, a message appears at the bottom of the display reporting the Group, Batch and SAVF that were successfully imported; or else, an error message could be displayed if the import failed. In either case, work with the current interactive job to find and review the import posting report, to assure the results are as expected.
-18. After the export and import processes are completed, the list of batches available in lists from the Export/Import sub-menu functions will not show the completed batches, unless function key <**F15**> is used to change the list subset rules.
+18. After the export and import processes are completed, the list of batches available in lists from the Export/Import sub-menu functions will not show the completed batches, unless function key **F15** is used to change the list subset rules.
 
 ## Data Export/Import Process Explanation
 
@@ -148,44 +148,61 @@ A good way to prevent disaster is to make a backup of the LSAM database library 
 ### List of Exported File Names and Descriptions per Export Group
 
 #### Fields name
-**OPRRPY**     **Operator Replay file group**
--  OPRRPYF00      Operator Replay script master file
--  OPRRPYF10      Operator Replay script steps
--  OPRRPYF20      Operator Replay variables (tokens) table file
--  OPRRPYF40      Screen data capture rules
--  OPRRPYF50      Captured data response rules
--  LSAVARF00      Dynamic Variables table file
-
-**TRPMSG**     **LSAM Global Message Management**
-- TRPMSGF00:      Message Queue and Message ID response master file
-- TRPMSGF30:      Message Data Capture rules
-- OPRRPYF20:      Operator Replay variables (token) table file - may be loaded by response rules
+**OPRRPY**     Operator Replay file group
+- OPRRPYF00:      Operator Replay script master file
+- OPRRPYF10:      Operator Replay script steps
+- OPRRPYF20:      Operator Replay variables (tokens) table file
+- LSAJORF50:      Capture Application Key and Description
+- OPRRPYF40:      Screen data capture rules
 - OPRRPYF50:      Captured data response rules
 - LSAVARF00:      Dynamic Variables table file
 
-**SCANSPLF**   **Scan Spool File Utility**
+**OPRRPYCAPT** Operator Replay Screen Capture Apps
+- LSAJORF50:      Capture Application Key and Description
+- OPRRPYF40:      Screen data capture rules
+- OPRRPYF50:      Captured data response rules
+- OPRRPYF20:      Operator Replay variables (tokens) table file
+- LSAVARF00:      Dynamic Variables table file
+
+**TRPMSG**     LSAM Global Message Management
+- TRPMSGF00:      Message Queue and Message ID response master file
+- OPRRPYF20:      Operator Replay variables (token) table file - may be loaded by response rules
+- LSAJORF50:      Capture Application Key and Description
+- TRPMSGF30:      Message Data Capture rules
+- OPRRPYF50:      Captured data response rules
+- LSAVARF00:      Dynamic Variables table file
+
+**TRPMSGCAPT** Messsage Data Capture Application
+- LSAJORF50:      Capture Application Key and Description
+- TRPMSGF30:      Message Data Capture rules
+- OPRRPYF50:      Captured data response rules
+- OPRRPYF20:      Operator Replay variables (tokens) table file
+- LSAVARF00:      Dynamic Variables table file
+
+**SCANSPLF**   Scan Spool File Utility
+- LSAJORF50:      Capture Application Key and Description
 - LSAJORF40:      Scan Spool File Scan Rules master file
 - OPRRPYF50:      Captured data response rules
 - LSAVARF00:      Dynamic Variables table file
 
-**CAPJOB**     **Capture Job Feature**
+**CAPJOB**     Capture Job Feature
 - TRKJOBF00:      Job Tracking Parameters master file
 - JOBLDAF00:      IBM i Job Local Data Area contents
 - DBFCMDSRC:      Command line source members
 - LSAVARF00:      Dynamic Variables table file
 
-**TRKJOB**     **Job Tracking and Queuing**
+**TRKJOB**     Job Tracking and Queuing
 - TRKPARF10:      Job Tracking parameters master file
 - LSAVARF00:      Dynamic Variables table file
 
-**RSTMOD**     **Restricted Mode feature**
+**RSTMOD**     Restricted Mode feature
 - SAVRSTF20:      Restricted Mode script master file
 
-**MLTJOB**     **Multi-Step Job Scripting feature**
+**MLTJOB**     Multi-Step Job Scripting feature
 - MLTJOBF00:      Multi-Step Script master file
 - MLTJOBF10:      Multi-Step Script Step master file
 
-**DYNVAR**     **LSAM Dynamic Variables (when exported individually)**
+**DYNVAR**     LSAM Dynamic Variables (when exported individually)
 - LSAVARF00:      Dynamic Variables table file
 - LSAVARF10:      Dynamic Variables AUX Table file
 
@@ -326,13 +343,15 @@ This function is used to create new export batch controls and also to complete t
 
 Select subset:  9                                   
  1. OPRRPY
+ A. OPRRPYCAPT
  2. TRPMSG                                  
+ B. TRPMSGCAPT
  3. SCANSPLF
  4. CAPJOB                                   
  5. TRKJOB
  6. RSTMOD                                   
  7. DYNVAR
-
+ 8. MLTJOB
  9. Show all
 
 F12=Cancel
@@ -343,12 +362,15 @@ F12=Cancel
 
 - **Group values**: The list of LSAM master record groups supported includes:
   - **OPRRPY** = Operator Reply scripts, steps and related files
+  - **OPRRPYCAPT** = Operator Reply screen capture applications and rules
   - **TRPMSG** = Message Management Parameter records and related files
+  - **TRPMSGCAPT** = Message cata capture applications and rules
   - **SCANSPLF** = Scan Spool File rules and related records
   - **CAPJOB** = Captured Job definitions and related files
   - **TRKJOB** = Job Tracking and Queuing definitions and related files
   - **RSTMOD** = Restricted Mode script records 
   - **DYNVAR** = LSAM Dynamic Variable table records (these will also appear as a related file to most of the other Groups)Show all = remove Group ID filtering of the control records list
+  - **MLTJOB** = Multi-Step Job Scripts
 
 #### Functions
 
@@ -758,28 +780,33 @@ Subset Import Control Records by Group
 Subset by Group
 
  Select subset: 9
-  1. OPRRPY
-  2. TRPMSG                                                      
-  3. SCANSPLF
-  4. CAPJOB                                                       
-  5. TRKJOB
-  6. RSTMOD                                                       
-  7. DYNVAR
-
- 9. Show all
+ 1. OPRRPY
+ A. OPRRPYCAPT
+ 2. TRPMSG                                  
+ B. TRPMSGCAPT
+ 3. SCANSPLF
+ 4. CAPJOB                                   
+ 5. TRKJOB
+ 6. RSTMOD                                   
+ 7. DYNVAR
+ 8. MLTJOB
+ 9. Show all
 
 F12=Cancel
 ```
 #### Fields
 - **Select subset**: Type a number from the list below and press <**Enter**> to change the subset rule for the list of import Batch control records. 
 - **Group values**: The list of LSAM master record groups supported includes:
-  -   **OPRRPY** = Operator Reply scripts, steps and related files
-  -   **TRPMSG** = Message Management Parameter records and related files
-  -   **SCANSPLF** = Scan Spool File rules and related records
-  -   **CAPJOB** = Captured Job definitions and related files
-  -   **TRKJOB** = Job Tracking and Queuing definitions and related files
-  -   **RSTMOD** = Restricted Mode script records
-  -   **DYNVAR** = LSAM Dynamic Variable table records (these will also appear as a related file to  most of the other Groups)Show all = remove Group ID filtering of the control records list
+  - **OPRRPY** = Operator Reply scripts, steps and related files
+  - **OPRRPYCAPT** = Operator Reply screen capture applications and rules
+  - **TRPMSG** = Message Management Parameter records and related files
+  - **TRPMSGCAPT** = Message cata capture applications and rules
+  - **SCANSPLF** = Scan Spool File rules and related records
+  - **CAPJOB** = Captured Job definitions and related files
+  - **TRKJOB** = Job Tracking and Queuing definitions and related files
+  - **RSTMOD** = Restricted Mode script records 
+  - **DYNVAR** = LSAM Dynamic Variable table records (these will also appear as a related file to most of the other Groups)Show all = remove Group ID filtering of the control records list
+  - **MLTJOB** = Multi-Step Job Scripts
 
 #### Functions
 

@@ -4,6 +4,8 @@ sidebar_label: 'IBM i LSAM Messages'
 
 # IBM i LSAM Messages
 
+## Table of Job Completion Messages
+
 The table below presents LSAM status messages forwarded to the SAM. The message descriptions are displayed in Operations in the OpCon User Interface following the job status.
 
 | Status         | Return Code | Meaning 
@@ -89,6 +91,12 @@ The table below presents LSAM status messages forwarded to the SAM. The message 
 | 7 | SMA0106    | Operator Replay failed: Replay script timeout|
 | 7 | SMA0107    | Operator Replay failed: Error in script control definitions|
 | 7 | SMA0109    | Operator Replay failed: Script has no sequence records|
+| 7 | SMA010A    | Operator Replay failed: Technical failure at startup, see driver job log|
+| 7 | SMA010B    | Operator Replay failed: STROPRRPY command incorrect DEVICE or IPADDR|
+| 7 | SMA010C    | Operator Replay failed: OpCon job master not found|
+| 7 | SMA010D    | Operator Replay failed: Script user not provided to driver program|
+| 7 | SMA010E    | Operator Replay failed: Dynamic Variable replacement error, see Script log|
+| 7 | SMA010F    | Operator Replay failed: SMAFAILJOB command in response rules, or general failure - see program dump report and driver job log|
 | 7 | SMA0135    | SMAFT Agent failed to grant authority to new backup file in SMABAK library|
 | 7 | SMA0136    | SMAFT Agent detected non-numeric record length in pre-pended data before first received data record|
 | 7 | SMA0137    | SMAFT Agent detected non-numeric record length embedded between variable records in received data|
@@ -111,3 +119,26 @@ The table below presents LSAM status messages forwarded to the SAM. The message 
 | 8 | SMA0018    | (LSAM internal job status: Pre-run job completed normally)|
 | 9 | SMA0038    | Job completed with no error|
 | 9 | SMA0039    | Job completed with status not equal 0 |
+
+## Table of Return Codes
+
+These return codes are sent from the IBM i Agent to the OpCon server.  Although these codes are for OpCon product internal use, they are useful for understanding the implication of the various job completion Message IDs in the table above.
+
+| Value	| Short Description	| Long Description |
+| ----- | ----------------- | ---------------- |
+| N |	GLBSTS = S Job pre-start Definition | This is an internal status for the LSAM, applied to the initial job status master file as the skeleton profile record is first established.  There should always be SAM key fields on this record, but no indication of Pre-run or Main Call command. |
+| 0	| Job not found | This status indicates that the job in question is not currently executing on the specified machine.  This could occur in response to a Job Status request.  The SAM will treat this as an error termination if the job was in a running status; otherwise, if the job is still in a Start Attempted status, the SAM will resend TX1 (job start reqeust) for the job. |
+| 1 | Job Initiation Error | This status indicates that an error has occurred which prevents the job in question from being initiated.  The Scheduling System will post an error message describing the error, and the job will be treated as a failed job, including the processing of Event records.  Examples of the kind of errors which require this status response are:  |
+| | | + Prerun Image Not Found |
+| | | + Job Start Image Not Found |
+| | | + Security Check Failure |
+| | | + Invalid User ID, etc. |
+| | | The specific errors will vary form machine to machine, and the Scheduling System will post whatever message is returned in the Platform-Specific Completion Code.  This type of error typically requires some action to be taken to correct the error condition. |
+| 2 | Job to be Re-Queued | This status indicates that some temporary condition exists which prevents this job from being executed at this time.  The Scheduling System may post a message describing the condition, and will reschedule the job.  This type of error typically does not require any action to be taken to correct the condition that necessitated the re-queuing, other than attempting to restart the job.  The specific errors will vary from machine to machine, and the Scheduling System will post whatever message is returned in the Platform-Specific Completion Code. |
+| 3 | Prerun Active	| |
+| 4	| Prerun Failed	| |
+| 5	| Job Running	| |
+| 6 | Job Finished OK, Completion Notice Pending | |
+| 7 | Job Errored, Completion Notice Pending | |
+| 8 | Job finished OK, closed in tracking file | |
+| 9	| Job errored, closed in tracking file | |

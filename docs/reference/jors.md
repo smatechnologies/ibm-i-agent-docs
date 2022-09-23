@@ -16,6 +16,19 @@ Both the primary communications program and the spawned data retrieval program p
 
 However, if an analysis of system performance suggests that these JORS server communications programs should be adjusted for (1) reduced impact on IBM i system performance or (2) improved response time to the viewer of JORS output, then the JORS communication performance parameters may be adjusted. These parameters are described in IBM i LSAM Configuration, [Communication Performance Parameters](../configuration/configuration.md).
 
+### Managing JORS Retrieval Requests
+
+This Agent supports an option (its default mode) to limit JORS retrieval to just IBM i job log reports (spol file QPJOBLOG), which is referred to as "secure JORS list" because it prevents retrieval of other job reports that might contain personally identifiable information that must be secured.
+
+But client sites that wish to include IBM i job diagnostic reports, such as a formatted program dump report (QPPGMDMP) or an IBM i job details report (QPDSPJOB) can change the report retrieval restrictions to also allow these spool files to be listed and retrieved.  The control for this option is found in the LSAM main menu option 7, on the last page of LSAM Parameters, under the title **JORS Communications Performance Parameters**:
+```
+Secure JORS list SPLFs : 1            1=Yes (default), 0 = No
+```
+
+When this control option is set to 0 (not secure), the Agent's JORS service will still not allow any application reports to be sent to the OpCon user interface for viewing.
+
+Remember, when changing LSAM Parameters, that the LSAM server jobs must be stopped and restarted before new performance parameter values will take effect.  The server jobs can be managed from LSAM menu 6, using options 1 and 2.
+
 ## LSAM Spool File Server
 
 The IBM i LSAM includes a server job that is dedicated to managing the spool file (report) output of all jobs that were submitted by the LSAM in response to OpCon job start requests. As a job completion message is detected by the LSAM server task assigned to monitor job messages, this other server task presents a request to the LSAM's spool file server job: LSAJOR (program LSAJORR00).
