@@ -26,15 +26,15 @@ Enable the LSAM Job Tracking functions by using the two following procedure.
 2. Enter the LSAM menu system by entering the command **SMAGPL/STRSMA**.
 3. Enter **1** to choose the **Job Tracking menu**.
 4. Enter **3** to **Start job track (STRJOBTRK)**.
-5. Enter **5** to **Check job track status (JOBTRKSTS)**.
-    a.  A window will display either STARTED or STOPPED. The status must show STARTED in order for Job Tracking to work.
+5. Enter **5** to **Check job track status (JOBTRKSTS)**.  
+    - A window will display either STARTED or STOPPED. The status must show STARTED in order for Job Tracking to work.
 
 #### Option Two: Start Job Tracking Using a Manual Command
-1. Log on to IBM i from a workstation or start a job with command entry access with a user profile that has LSAM Administrator privileges.
-    a.  It is possible for a user-written CL program to perform this manual procedure.
+1. Log on to IBM i from a workstation or start a job with command entry access with a user profile that has LSAM Administrator privileges.  
+    - It is possible for a user-written CL program to perform this manual procedure.
 2. Ensure that the LSAM environment library list is in effect for the command entry session.
 3. To start Job Tracking manually, enter **STRJOBTRK** in the command line.
-4. The ability to use this command from iSeries Navigator will depend on environmental controls. It is required that the LSAM library list be in effect as the STRJOBTRK command is used.
+4. To use this command from the IBM Navigator for i, wrap the STRJOBTRK command in the CMD() parameter of the Agent command SMAGPL/LSAMCMD.  Changing the name of the library SMAGPL to match an alternate LSAM environment is all that is necessary to direct the command action to that LSAM.  (Only one LSAM can control Job Tracking at a time.)
 
 For instructions about starting the Alternate Job Notify service of the LSAM, required only when True Passive tracking will be used, refer to the instructions under [Alternate Job Notify Service](../operations/lsam.md#alternate-job-notify-service).
 
@@ -47,15 +47,15 @@ Disable the LSAM Job Tracking functions by using one of the two following proced
 2. Enter the LSAM menu system by entering the command **SMAGPL/STRSMA**.
 3. Enter **1** to choose the **Job Tracking menu**.
 4. Enter **4** to **End job track (ENDJOBTRK)**.
-5. Enter **5** to **Check job track status (JOBTRKSTS)**.
-    a.  A window will display either STARTED or STOPPED. The status will show STOPPED if the Job Tracking function has been successfully disabled.
+5. Enter **5** to **Check job track status (JOBTRKSTS)**.  
+    - A window will display either STARTED or STOPPED. The status will show STOPPED if the Job Tracking function has been successfully disabled.
 
-#### Option Two: Start Job Tracking Using a Manual Command
-1. Log on to IBM i from a workstation or start a job with command entry access with a user profile that has LSAM Administrator privileges.
-    a.  It is possible for a user-written CL program to perform this manual procedure.
+#### Option Two: End Job Tracking Using a Manual Command
+1. Log on to IBM i from a workstation or start a job with command entry access with a user profile that has LSAM Administrator privileges.  
+    - It is possible for a user-written CL program to perform this manual procedure.
 2. Ensure that the LSAM environment library list is in effect for the command entry session.
-3. To start Job Tracking manually, enter **STRJOBTRK** in the command line.
-4. The ability to use this command from iSeries Navigator will depend on environmental controls. It is required that the LSAM library list be in effect as the STRJOBTRK command is used.
+3. To end Job Tracking manually, enter **ENDJOBTRK** in the command line.
+4. To use this command from the IBM Navigator for i, wrap the ENDJOBTRK command in the CMD() parameter of the Agent command SMAGPL/LSAMCMD.  Changing the name of the library SMAGPL to match an alternate LSAM environment is all that is necessary to direct the command action to that LSAM.  (Only one LSAM can control Job Tracking at a time.)
 
 For instructions about stopping the Alternate Job Notify service of the LSAM, required only when True Passive tracking will be used, refer to the instructions in [IBM i Components and Operation](../operations/components.md).
 
