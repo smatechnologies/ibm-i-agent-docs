@@ -36,7 +36,7 @@ The details about the SCANSPLF command that was assigned to evaluate a job's com
 
 ## Setting an IBM i Job's LDA Value
 
-A new option has been added to the IBM i LSAM job scheduler server program that supports building a job's local data area (LDA) by adding one or more **LDA()** keywords after the separator character. When used, this special keyword must follow any job description parameters, but it must precede the special use of the SCANSPLF command, as explained above.
+An additional option is available for extending the Call command line that supports building a job's local data area (LDA) by adding one or more **LDA()** keywords after the separator character. When used, this special keyword must follow any job description parameters, but it must precede the special use of the SCANSPLF command, as explained above.
 
 Here are some rules for using one of the LDA keyword formats shown below:
 
@@ -46,9 +46,13 @@ Here are some rules for using one of the LDA keyword formats shown below:
 4. The length of 1024 for the value string may be constrained by the available length of the Call command field, that is, if the primary command string is very long.
 5. Remember that the whole content of the LDA for the job will be replaced by these LDA() keywords. Therefore, it may be necessary to include more than one LDA() keyword to insert all of the required values for the LDA. However, format 2 of this LDA() keyword can be used so that a group of LSAM Dynamic Variables can be used to format the entire LDA, while only one LDA() keyword value is put into the OpCon job master call command line.
 
+### Formats for the LDA() Keyword Parameters
+
 Choose one of the following formats for the LDA keyword:
 
-#### LDA() Keyword Format 1
+#### LDA() Keyword Format 1.a.
+
+This format supports hard-coded value strings.  It could also contain one or more OpCon Property [[Tokens]] within the single quotes where the example value string is shown.  The OpCon server will replace OpCon Property tokens before the whole Call command line is sent to the Agent.
 ```
     LDA(start_nbr_4.0:length_nbr_4.0:'value string 1024.A')
 ```
@@ -61,12 +65,18 @@ The maximum length supported for each parameter of the LDA() keyword is shown as
 - Start Number = up to 4 digits locate the starting position within the LDA data area.
 - Length = up to 4 digits specify how much of the LDA data area is updated by the string that follows.
 - value string' = up to 1024 characters can be included to specify the entire LDA contents in one string. However, considering using OpCon properties or LSAM Dynamic Variables (shown below) to make construction of the LDA contents more flexible.
+
+#### LDA() Keyword Format 1.b.
+
+Format 1.b. replaces a hard-coded character string with one or more Dynamic Variable {TOKENS}.  The Agent's Job Scheduler replaces these tokens with their values before processing the LDA updates requested by this LDA() keyword.  Notice that this format does not use single quotes around the Dynamic Variable {TOKENS}.
 ```
     LDA(start_nbr_4.0:length_nbr_4.0:{DynVarNam1}{DynVarNam2}...)
 ```
 :::info example
 LDA(225:14:{DYNVARNAM1})
 :::
+
+Notice that the value string for the LDA would be comprised of the results of one or more Type-V (NOT Type-L) Dynamic Variables in this case. The Type-L Dynamic Variable is used only for variation 2., below. You cannot use both a single-quoted string and a Type-V Dynamic Variable together - choose one format or the other. However, since more than one LDA() keyword is supported, it's easy to see how quoted strings and Dynamic Variables of Type-V could be combined for one Call command.
 
 :::tip
 Starting with LSAM version 21.1, Dynamic Variable values can be up to 1024 characters in length.  Therefore, it is now possible for a single {TOKEN} to represent the entire content of a local data area.  Accordingly, using more than one Dynamic Variable token would only be useful if the local data area content must be updated in pieces by concatenating values that are collected from different sources.
@@ -81,7 +91,8 @@ Do not change the special character that denotes a Dynamic Variable {TOKEN} with
 
 #### LDA() Keyword Format 2
 
-Notice that the value string for the LDA would be comprised of the results of one or more Type 'V' (NOT Type 'L') Dynamic Variables in this case. The Type 'L' Dynamic Variable is used only for variation 2., below. You cannot use both a single-quoted string and a Type 'V' Dynamic Variable together - choose one format or the other. However, since more than one LDA() keyword is supported, it's easy to see how quoted strings and Dynamic Variables of Type 'V' could be combined for one Call command.
+Format 2 does not require specifying the Start location or Length of data to be updated in a job's LDA.  Instead, this simple format for the LDA() keyword only needs the name of a Type-L Dynamic Variable.  The details about how to update the LDA are stored with the Agent's Type-L Dynamic Variable master record.
+
 ```
     LDA(DynVarName)
 ```
@@ -89,13 +100,13 @@ Notice that the value string for the LDA would be comprised of the results of on
 LDA(DYNVARNAM2)
 :::
 
-Notice that this format for the LDA() keyword does not enclose DynVarName in the Special token characters (refer to above), because it will not be replaced, but will be used as the key value to fetch the LDA update instructions from all Type "L" dynamic variables that match the variable name. Since each Dynamic Variable can only return up to 128 characters, it would be necessary to define 8 sequence numbers for the Type L Dynamic Variable name in order to account for all 1024 positions of the LDA. Of course, more sequence numbers may be used, so that smaller LDA content pieces can be managed more easily.
+When specifying the Type-L Dynamic Variable name do not enclose it in single quotes and do not include the Agent's curly brackets { } that denote a Dynamic Variable {TOKEN}.  However, as shown in the example, do use all CAPITAL letters for the variable name.
 
-When using the LDA() keyword in an OpCon IBM i job Call command line, remember that LSAM Dynamic Variables are able to call a user-defined program to calculate the value for each Dynamic Variable at run time. This might be a good way to fetch specialized LDA content from a third-party software  application and then feed that content (in 128-character pieces) to the LSAM so that the LDA content will be added to the job that OpCon is starting. 
+For this format, do not use more than one Dynamic Variable name.  Instead, when multiple different values may be required (and pre-loaded with partial LDA content), rely on the Sequence Number of the Dynamic Variable so that all the LDA updates will be stored under just one variable name that is intended to equal the IBM i Job Name.  For this Format 2 of the LDA() keyword, it is not required that the single variable name be equal to the IBM i Job Name (unlike the support provided for Job Tracking), but this is still recommended in order to facilitate research in case an automation strategy might fail.
 
 ### Example of Using the LDA() Keyword with Other Call Command Extensions
 
-Here is an example of an OpCon job master record for an IBM i job, showing all three possible job definition extensions used at once:
+Here is an example of an OpCon job master record for an IBM i job, showing all three possible job definition extensions used at once.  This example is based on the Format 1.a. for the LDA() keyword.  It is required that the LDA() keyword must follow any other keywords that are intended as additions to the IBM i command SBMJOB, and the LDA() keyword must precede the SCANSPLF command - if it is included.
 
 :::info example
 ```
