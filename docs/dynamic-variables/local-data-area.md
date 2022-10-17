@@ -169,7 +169,7 @@ Here is a summary of the steps required to enable this technique.
  Current/default value : ABCDEFGHIJKLMNOPQRSTUVWXYUZ                         
 ```
 
-  - Example variable LDATEST01 will be the Type-L Dynamic Variable used to build the LDA content.
+  - Example variable LDATEST01 (Sequence number 001) will be the Type-L Dynamic Variable used to build the LDA content.
     - The Value of the LDATEST01 variable will be a nested token:  {JI.LDATESTSRC} 
     - The OpCon Job Name component [[$JOB NAME]] of the variable instance keys could have been used, within quotes, instead of the spelled-out job name; this could be useful for OpCon multi-instance jobs.
 ```              
@@ -182,6 +182,20 @@ Here is a summary of the steps required to enable this technique.
  Value calc pgm/Fn Code:                          /*DATE *TIME *SYSVAL:FLD2=Name
  Value type (Char/Num) : C              C/blank=Char, N=Numeric ->(next page)   
  Current/default value : {JI.LDATESTSRC.."Test DynVars at TXMMNG"."LDATEST01"}
+```
+
+  - To prove how Type-L variables are combined when multiple sequence numbers are configured for the same Job Name, here is a second Type-L master record that is pre-configured for this use case.  In this example, the Sequence number 002 record is using a simple text character string as its value.  Notice also that the LDA Start value indicates that this variable's value should be inserted at position 21 of the job's LDA.  The LDA Length value is 24, which in this case means that all the positions of the LDA following the 4 non-blank characters will be set to space characters (that is, LDA positions 25 through 44).
+
+```
+Variable name . . . . : LDATEST01      Sequence: 002                           
+                                                                          
+Variable type . . . . : L              L=LDA, V=general variable               
+Description . . . . . : Test combined LDA updates                              
+LDA start pos, length : 0021  0024     LDA position, length for Type-L only    
+Char trim start,length: 0000  0000                /PGM+LIB, *HEX *DB2 *DTAARA  
+Value calc pgm/Fn Code:                          /*DATE *TIME *SYSVAL:FLD2=Name
+Value type (Char/Num) : C              C/blank=Char, N=Numeric ->(next page)   
+Current/default value : A2B4                                                   
 ```
 
 2. Configure an IBM i batch job (for example) in the OpCon user interface.
@@ -213,6 +227,29 @@ Here is a summary of the steps required to enable this technique.
 
 
 #### Agent documentation of the multi-instance Dynamic Variable for this use case
+
+First, the example Call command line of the OpCon job master for this used case has produced a report to prove the content of the job's LDA.  Following is a partial image of the report created by the DSPDTAARA command.  Notice how the the first value from the tested multi-instance Dynamic Variable appears in LDA position 3, and that the updated portion of the LDA ends after only 8 characters are inserted.  This proves the funtion of the variable LDATEST01 parameters for LDA Start/Length.  But the content of this inserted string is shorter than the value that had been stored into the variable LDATESTSRC because that variable had Character Trim Start and Length values that were applied to the value string when it replaced a {TOKEN}.  Of course, the value string that was used was not the initial all-CAPS value from when the variable was created, but instead it was the VALUE inserted into the JI.instance by the OpCon job's Pre-run command.
+```
+5770SS1 V7R3M0 160422                            Display Data Area     *LDA 
+Data area . . . . . . . . . . . :   DTAARA      *LDA                        
+Type  . . . . . . . . . . . . . :   TYPE        *CHAR                       
+Length  . . . . . . . . . . . . :   LEN         1024                        
+Text description  . . . . . . . :   TEXT        *LDA for Job 031971/USERNAME
+   Offset      Value                                                        
+                *...+....1....+....2....+....3....+....4....+....5          
+    0          '  78cdefgh          A2B4                          '         
+   50          '                                                  '         
+  100          '                                                  '         
+  150          '                                                  '         
+  200          '                                                  '         
+  250          '                                                  '         
+  300          '                                                  '         
+  350          '                                                  '         
+  400          '                                                  '         
+```
+The illustration above also proves that when a Type-L variable is named, ALL of the sequence numbered records for that variable name will be included as a job's LDA is updated.  The value from the sequence 002 record appears in the LDA position 21, as expected.
+
+##### Additional Dynamic Variable research tools
 
 Research about the behavior of Dynamic Variable value setting and {{TOKEN}} replacement results is stored in the Agent's multi-purpose "Submit job log," access from LSAM menu 6, option 5, log viewer 4.  This log will normally contain many different types of log entries and also entries from many different jobs.  Log entries can be isolated by using F15=Subset, so that only Dynamic Variable entry codes will be included. In many cases it could be useful to use F2=Subset by JobID, so that entries belonging to just one job will appear in the list.
 
