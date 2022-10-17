@@ -3,6 +3,7 @@ sidebar_label: 'Nested Dynamic Variable Tokens'
 ---
 
 # Nested Dynamic Variable Tokens
+## Overview of Nested Dynamic Variable Tokens
 
 Dynamic Variables can have their value defined by a Dynamic Variable {TOKEN} stored in the Value field. Dynamic Variable VALUE {TOKENS} can be nested to virtually any level. The LSAM value replacement module will simply continue to call itself over and over until an actual value is discovered that does not include another {TOKEN}. The only limit on the levels of nesting is whatever limit IBM i imposes on recursive calling of \*NEW Activation Groups (which is a programming concept).
 

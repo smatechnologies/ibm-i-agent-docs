@@ -92,6 +92,7 @@ module.exports = {
         'dynamic-variables/old-method',
         'dynamic-variables/nesting',
         'dynamic-variables/multi-instance',
+        'dynamic-variables/local-data-area',
         'dynamic-variables/manipulation-commands',
         'dynamic-variables/maintaining',
       ], 
