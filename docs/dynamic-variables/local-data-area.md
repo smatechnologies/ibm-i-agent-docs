@@ -87,7 +87,7 @@ In this example, the DTAARA() parameter can specify just portions of the LDA dat
 
 2. An OpCon job master record can load OpCon Properties or constant values into the LDA of a Script Driver job as it is submitted by the IBM i Agent, using the procedure documented under IBM i LSAM Configuration -> Extending the IBM i Call Command with Special Parameters -> [Setting an IBM i Job's LDA Value](/configuration/extended-call-cmd.md#setting-an-ibm-i-jobs-lda-value).
     - New with Agent version 21.1, this support for extending a Call command line may now also be used with Operator Replay jobs, where the Call command box is relabelled as the Script Name box.
-    - Use this link to instructions for inserting the [Job Parameters Separator Character](/configuration/extended-call-cmd.MD#job-parameters-separator-character).
+    - Use this link to instructions for inserting the [Job Parameters Separator Character](/configuration/extended-call-cmd.md#job-parameters-separator-character).
 
 
 If the Script driver job's LDA has been updated, a Script Step or any connected Captured Data Response Rules will be able to read data from the Script driver job's LDA using a Dynamic Variable token that is configured with a Fuction Code of \*DTAARA.  The special rules for fetching LDA content are explained on the display of Dynamic Variable \*DTAARA function code maintenance.
