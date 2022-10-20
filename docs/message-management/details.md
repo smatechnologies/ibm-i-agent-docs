@@ -381,6 +381,10 @@ In the example above, the location where the DISPLAY message text would be inser
 
 Be sure to take note of the rules and restrictions explained above, under: LSAM Parameters Event Command Options -> Using IBM commands for Event response -> Using IBM Commands from Third-Party Applications. The same considerations apply for commands registered in OpCon jobs because the message management event commands are processed by the same LSAM Message Management server job.
 
+:::tip
+The IBM i Agent Message Management Parameters used by the Agent's server job can also support the example above of the special convention for executing IBM i commands that are prefixed with "$CONSOLE:DISPLAY,QCMD:".  However, that is unnecessary, since the Agent's master records provide direct support for IBM i commands in the Event field.  If an attempt is made to use the work-around model, it will only work if the Event command line is formatted exactly as in the Example above.  Trying to use CPTOMSGIN to wrap the $CONSOLE:DISPLAY event command will not support the ,QCMD: convention.
+:::
+
 #### LSAM Dynamic Variables in OpCon Event commands
 
 The LSAM Message Management server program supports replacement of LSAM Dynamic Variables. Therefore, any or all of the IBM-format command that is registered in the OpCon job master record for message management could be an LSAM Dynamic Variable token. Consider the following example:
