@@ -25,47 +25,5 @@ New installs of the IBM i LSAM could use the install file named LI181001 (or a n
 
 Clients performing LSAM PTF updates of existing IBM i LSAM installations should download and refer to the "IBM i LSAM Patch Readme" PDF document for special instructions about upgrading to the latest available PTF level.  There is a different LSAM PTF README file for each different LSAM base version (e.g., 18.1 or 21.1).
 
-## Installing IBM i LSAM Patches
-
-Please be careful to distinguish between SMA Technologies software patches for different versions of the IBM i LSAM. At SMA Technologies' secure ftp server there are different sub-directories for all resources pertaining to each version. Although the LSAM PTF save file names are similar (LSCTLDTA and LSCUMPTF), they are NOT interchangeable.
-
-Using the wrong LSAM PTF files for a version will corrupt the LSAM software and require a restoration from the most recent backup of the LSAM libraries. SMA Technologies advises clients to always backup the LSAM libraries before attempting any patching or upgrading of the software.
-
-Instructions for installing software patches (PTFs) to SMA Technologies' IBM i LSAM may be found in two places. There is a stand-alone Installation documentation that explains partially manual procedures that may be necessary after an initial installation or upgrade of the LSAM. There is also a topic in this **IBM i LSAM** documentation with detailed instructions and explanations.
-
-:::tip
-It may be necessary to change one of the system values for the IBM i operating system in order to permit the PTF installation program to restore program objects that use adopted authority. The IBM i LSAM software includes some programs that use adopted authority in order to enable required, specific system management functions to be completed by designated administrators without requiring that those system users have any special authorities. 
-
-This is a common strategy, and IBM provides the following guidelines for managing the installation
-of new software:
-
-The QALWOBJRST system value (Allow restore of security sensitive objects) specifies whether
-or not objects with security-sensitive attributes can be restored. It is important to set the value to
-*ALL before performing the following system activities:
-- Installing a new release of the operating system.
-- Installing new licensed programs.
-- Applying program temporary fixes (PTFs).
-- Recovering your system.
-
-These activities can fail if the value of QALWOBJRST is not set to *ALL. Use this procedure:
-- Use the command DSPSYSVAL to view and record the current setting for the value
-QALWOBJRST. Current value: ___________________ . If the value is already *ALL, skip
-this procedure.
-- If you have previously locked this system value, go to SST (system service tools) and
-unlock it.
-- Use the command CHGSYSVAL to set QALWOBJRST to a value of *ALL.
-- Complete the software installation or upgrade.
-- To ensure system security, return the QALWOBJRST value to your normal setting (recorded
-above) after completing the software installation.
-:::
-
-## SMA IBM i LSAM 18.1 Patches
-
-These release notes list the most recent batch of patches available for installation after the IBM i LSAM version 18.1. 
-
-LSAM PTF numbers are assigned within the LSAM Technical Product Manager's PTF control tools. Support incidents are generated and tracked within SMA Technologies' latest tracking systems, and the incident numbers are associated with the LSAM PTF numbers. There may be more than one support incident associated with a given PTF number. The PTF descriptions below may include a reference to the originating support incident ticket(s).
-
-Instructions for downloading and installing LSAM PTFs are found in a simple form in PDF documents that are stored with the LSAM PTF save files (LSCTLDTA and LSCUMPTF – or a partial content cumulative save file such as LSCUMPTF.044-nnn). The instructions are stored in the same directory named /IBMiLSALMptf/ under the LSAM version-specific subdirectory for /OpCon Releases/Agents/IBMi/(version number)/. Clients should read the **README - IBM i LSAM nn.n. Patch Instructions and List (version number).pdf** document for additional CAUTIONS and other important instructions that may be added when new software patches are developed.
-
 ## Compatibility
 This LSAM version is generally compatible with all supported releases of the OpCon central server application.
