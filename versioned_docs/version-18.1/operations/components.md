@@ -61,3 +61,10 @@ flags, set in various LSAM menu functions.
 - Uses for this service include:
     - Supporting "true-passive Job Tracking."
     - Supplementing Agent management of job completion reporting in some IBM i partitions where the Agent's normal detection of job completion messages in the SMADTAQ data queue is not working correctly.
+
+#### JOBSTS
+- The optional IBM i LSAM Job Status Monitor runs constanly to detect any jobs in selected IBM i subsystems that are stuck in MSGW status. 
+- See the topic of [Monitoring for IBM i Jobs in MSGW Satus](/operations/tips#monitoring-for-ibm-i-jobs-in-msgw-status) under Operation Tips and Techniques for instructions about configuring and using the Job Status Monitor feature.  This Agent server job will generate a message that can be intercepted by the IBM i LSAM Message Management facility, from which many forms of notification and response can be generated, including OpCon Event commands. 
+:::NOTE
+The JOBSTS Agent server job replaces a former IBM Navigator Monitor capability that was dropped from the Navigator when IBM published the newer "Navigator for i."  Previous advice included in this Agent documentation about integrating with IBM Navigator Monitors is replaced by the instructions for using the Agent's JOBSTS server job.
+:::

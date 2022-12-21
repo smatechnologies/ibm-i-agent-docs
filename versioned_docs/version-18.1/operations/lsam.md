@@ -248,11 +248,11 @@ The IBM i LSAM sockets communications program will remain in a state that is rea
       6. Work with LSAM Servers (WRKSMASVR)                                     
       7. LSAM Parameters configuration                                          
       8. Alternate Job Notify menu                                              
+      9. Job Status Monitor menu                                                  
                                                                                 
                                                                                 
                                                                                 
-                                                                                
- Selection or command                                     (C) SMA 1995,2005     
+ Selection or command                                     (C) SMA 1995,2021  
  ===> ________________________________________________________________________
  ___________________________________________________________________________                                                                                
  F3=Exit   F4=Prompt   F9=Retrieve   F12=Cancel                                 
@@ -275,7 +275,8 @@ Selection or command: Type the menu item number and press <**Enter**> to start t
 - 5=View LSAM Logs
 - 6=Work with LSAM Servers (WRKSMASVR)
 - 7=LSAM Parameters configuration *(same as on LSAM Main Menu, option 7)*
-- 8=Alternate Job Notify menu *(not documented here, not for general use; contact SMA Support)*
+- 8=Alternate Job Notify menu 
+- 9=Job Status Monitor menu  
 
 The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options.
 
@@ -360,6 +361,12 @@ This is the same function that is documented in detail in the Configuration topi
 ### Alternate Job Notify Menu
 
 This option provides access to a sub-sub-menu of functions that support a different method for the LSAM to detect when any jobs in the IBM i system have started or ended. The Alternate Job Notify feature is provided for special purposes only, including supporting the True Passive mode of Job Tracking and for use by SMA Support to perform exceptional diagnostic procedures. User instructions are provided in the following section of this document.
+
+### Job Status Monitor Menu
+
+This option provides access to a sub-menu of functions that support the optional LSAM server named JOBSTS.  This server is able to watch for any jobs in IBM i subsystems that the user may select that are stuck in the MSGW (message wait) status.
+
+Details about the purpose and management of this optional server job are found in [Monitoring for IBM i Jobs in MSGW Status](/operations/tips#monitoring-for-ibm-i-jobs-in-msgw-status) under the Operation Tips and Techniques of this chapter about IBM i Components and Operations.
 
 ## Alternate Job Notify Service
 
