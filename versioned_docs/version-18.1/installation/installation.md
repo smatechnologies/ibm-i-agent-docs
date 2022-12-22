@@ -85,6 +85,22 @@ All clients who want new features and future available software fixes must upgra
 
 Versions of i5/OS or OS/400 older than V5R4 are not supported at all, either by IBM or by SMA.
 
+:::warning
+Whenever the IBM i operating system has been upgraded to a new release version (e.g., from i7.3 to i7.4) it is necessary to execute the IBM i LSAM utility command LSAINIT.  This requirement exists as long as the LSAM is still using clones of the IBM i command "SBMJOB."  SMA will notify users if and when the LSAM stops using these cloned commands.  Meanwhile, here are the steps for using LSAINIT.
+:::
+
+  1.  Log into the LSAM menu system.
+  2.  Stop the LSAM server jobs.  
+
+      - A convenient way to do this is from the LSAM sub-menu 6, option 2.  
+      - Automating this step can be accomplished using a batch job that runs in a subsystem other than SMASBS, such as QBATCH, to execute the command SMAGPL/ENDSMASYS SMADEFAULT.  For alternate LSAM environments, replace the name "SMADEFAULT" with the actual LSAM name for that environment.
+
+  3.  From the IBM i command line in the LSAM menu system (or from any IBM i QCMD entry in a job that is set to use the LSAM library list) execute the LSAINIT command as follows, paying close attention to the required two parameter values:
+
+       **LSAINIT ENV(SMADEFAULT) GPL(SMAGPL)**
+      
+      Change the environment name and the SMAGPL library name when updating an alternate LSAM environment.
+
 ### IBM i User Profiles for the LSAM
 
 For new installations, the instructions explain that the IBM i user profiles SMANET and SMASAV can be created manually, before starting execution of the SMASETUP or SMASETUPB installation commands. This would be required to preserve the correct object ownership of LSAM software installation components. This is also good practice because it allows the user to review and approve the authorities granted to these user profiles.

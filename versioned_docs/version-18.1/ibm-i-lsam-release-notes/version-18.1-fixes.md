@@ -213,4 +213,38 @@ A change in the database level implies that two different LSAM environments must
 
 ### LSAM DB LVL # 005
 
-- **Enhanced** (#181112) The Client eMail feature is updated to support simplification and improved flexibility by supporting XML External Event Commands.  Most of the complexity of the original solution for working around the limitations of the older comma-separated-values syntax for External Event commands has been removed.
+- **Enhanced** (# 181112) The Client eMail feature is updated to support simplification and improved flexibility by supporting XML External Event Commands.  Most of the complexity of the original solution for working around the limitations of the older comma-separated-values syntax for External Event commands has been removed.
+
+### LSAM DB LVL # 006
+
+- Fixed (# 181113) Client eMail log display record detail showed fields with no labels.
+
+- Fixed (# 181114)  The Alternate Job Notify Configuration program (JOBPFYC01) could fail due to a required parameter being left blank during the first use of this LSAM feature.  The configuration program has been changed to assure a valid value is displayed and stored.                                                     
+
+- **Enhanced** (# 181115, 181116) Add JOBSTS server support to LSAM auxiliary functions in libraries SMAGPL and SMAPGM.
+
+- Fixed (# 181117) The model for user-defined value calculator programs that users can write to enhance the LSAM's Dynamic Variables had an incorrect format for the parameter used to exchange a variable's value with a user-defined program. See documentation changes.                                                      
+
+- Fixed (# 181118) Dynamic Variables using the function code of *DTAARA were not able to fetch values from a job's local data area.  The user prompt for the *DTAARA function code details is improved, and the token replacement utility is fixed to support data area name *LDA.                                              
+
+- Fixed (# 181119) Prevents error RNQ0301 in LSASCHR00 (the LSAM Job Scheduler server).  In file LSALOGF40 the LIDUNIQ field (numeric sizd 8.0) caused a failure in the IBM i Agent Job Scheduler (at line 9009) when this field reached a count of 99,999,999.  The immediate fix is to clear this file while the LSAM is stopped.  It will be cleared by SMARGZ in a future periodic database reorganization.
+
+- Fixed (# 181120) Add LSALOGF40B to the SMASUP command that extracts Agent log files from the database to a save file. This PTF supports a change to the SMARGZC00 (LSAM database reorganization) program made via PTF # 181119.  Whenthe file has been created, the backup file LSALOGF40B will be included in LSAM log file extracts, depending on the save options selected via the SMASUP command.                                                                                
+
+- **Enhanced** (# 181121, 181122, 181123, 181124, 181126, 181127) These PTFs install the core programs for the Agent server JOBSTS.  This server replaces the IBM Navigator Monitor function that was previously documented in this Agent user help.  The same interface to OpCon via the LSAM Message Management server as previously supported the old Navigator Monitor is still supported in a nearly identical manner. 
+
+- Fixed (# 181125) Fixes LSARESETR CPF4131 on file CMNLOGF00 by recompiling the program. This PTF corrects an incorrect object release sequence among previous PTFs.
+
+- **Enhanced** (# 181128) Fix GETLSASTSR parameters.  Add reorganization of JOBMONF* files. With the addition of the JOBSTS LSAM server job, an extra parameter for this server was accidentally added to the call to GETLSASTSR (Get LSAM status) utility. This PTF also adds the two new LSAM log tables JOBMONF10 and F20 to the SMARGZ file reorganize.
+
+- Fixed (# 181129) Fixes CMNLOGR error CPF4131 on the display file CMNLOGD.  The program CMNLOGR was recompiled and redistributed to remedy an incorrect object release sequence among previous PTFs.
+
+- Fixed (# 181130) SMAFT job starts fail. The SMAFT Agent job start requests were failing with two different error codes.  The cause for this was a change in the IBM program compilers. SMA has adapted the Agent software with a work-around.  PTF also fixes failure
+ to report job statuses to OpCon.                                               
+
+- Fixed (# 181131) Fix JOBSTS testing bugs. QA testing for JOBSTS auxiliary LSAM programs revealed bugs in the SMASUP command extract of JOBSTS files, and also a failure to stop the JOBSTS LSAM Server job during LSAM PTF installation.
+
+- Fixed (# 181132) Suppress reject message if a duplicate connection to the agent is attempted from the same IP address. The LSAM communications program that connects Job Scheduling with the OpCon server now suppresses a warning message about a rejected connecti
+on attempt when an apparent secondary connection request comes from the same IP address as is already active.
+
+- Fixed (# 181133) Correct the IBM i Job ID format in the message ID SMA5802 that is generated by the JOBSTS server when a job is detected stuck in MSGW (message wait) status.

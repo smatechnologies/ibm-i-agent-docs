@@ -42,5 +42,43 @@ The PTF Level is the value that clients and SMA Support will use to confirm the 
 
 - Fixed: (# 211054) The LSAM menu 6, option 6, uses the WRKSMASVR command and program to support a user interface to the Agent tools for starting/stopping parts of the LSAM server jobs.  Option 6=STRGRP for JORS was not working to start that Group's server jobs.
 
+- Fixed (# 211055) The special convention of using this External Event command: “$CONSOLE:DISPLAY,QCMD:" was not being executed when LSAM Message Management was configured to run Event commands in-line with all message management activity (instead of spawning a cmd job).
 
+- Fixed (# 211056) The LSAM menu 6, option 6, uses the WRKSMASVR command and program to support a user interface to the Agent tools for starting/stopping parts of the LSAM server jobs.  Option 6=STRGRP for JORS was not working to start that Group's server jobs.
 
+- **Enhanced** (# 211057, 211058) Add User Env Matrix utility control: A control data area (USRMTXCTL) will be present if the User Environment Matrix maintenance function is installed in an LSAM environment.  This function may be customized and the driver program name changed, depending on SMA client site requirements.                                                    
+
+    Fix Operator Replay menu opt # 12: A control data area (USRMTXCTL) will contain the custom maintenance program name for a User Environment Matrix feature that may be installed and customized for an SMA client site.  PTF211058 adds the proposed DB files and fixes LSAM menu 4, option 12 name.
+
+- Fixed (# 211059) Remove function key F7 from the Operator Replay master file maintenance display format OPRRPYR10-4B, since it is not supported from this display. 
+
+- Fixed (# 211060) Operator Replay Screen Capture definitions display format OPRRPYR40R2 has the function keys F10 and F11 revised to perform as planned, in a standard fashion resembling other Agent functions that perform Data Capture.
+
+- Fixed (# 211061) The Agent workstation prompting window for External Events was not producing correct results when requesting the XML raw format of commands via the CPYTOMSGIN wrapper command.
+
+- Fixed (# 211062) The Message Management – message data capture rule maintenance needed to suppress the display of F10=Capture Application.
+
+- Fixed (# 211063) The Message Management activity log program LSALOGR10 showed incorrect log entry content when F13 was pressed to view more data from the “Log Entry Text” field.
+
+- Fixed (# 211064) The Operator Replay master file maintenance display format OPRRPYR10-R4 was not correctly supporting F8-DynVar to product a prompting list of registered variable names.
+
+- Fixed (# 211065) The multi-purpose Captured Data display program got a spelling correction and an improvement in the flow when it was accessed using function key F10 to branch here from other programs.
+
+- Fixed (# 211066) The Dynamic Variable maintenance function accessed from various locations among the LSAM workstation menus could cause a failure when returning from the Dynamic Variable selection window, usually if F3=Exit was pressed during some phases of he variable selection and formatting process.  (LSAVARR00:MCH1202 error @ F8=DynVar).
+
+- **Enhanced** (# 211067) The GETCLTEML command, part of the Agent’s Client eMail generation feature, was expanded to support up to 435 characters when a command parameter could refer to a fully-qualified Dynamic Variable name.
+
+### LSAM DB LVL # 21.1.005
+
+- **Enhanced** (# 211068, 211069, 211070, 211071, 211072, 211074) a new Job Status monitor server program is added to the Agent software, replacing a function that IBM removed from its Navigator Monitors when the newer Navigator version was introduced.  The Agent’s new ability to monitor any IBM i subsystem for jobs that are stuck in a MSGW (message waiting) status provides a better implementation of this service, and it can still be combined with other Agent features to support alerts and, optionally, automated recovery functions.  Several Agent menu options and programs were enhanced to support this new, optional but standard, Agent server job named “JOBSTS.”
+
+- **Enhanced** (# 211075) The Agent’s feature interconnection utility command, WAITDYNVAR, is enhanced to support value parameters up to the longer length of 1024 that matches the new extended capability of Dynamic Variable values introduced at Agent version 21.1.
+
+- Fixed (# 211076) The Agent’s Job Scheduler communications program no longer sends a warning about a duplicate connection attempt if an OpCon server connection request comes from the same IP address as the Agent believes it was already connected to.  There are only local IBM i Agent communications log file entries that record the reconnection activity, and no longer any messages sent to the IBM i QSYSOPR message queue nor to the OpCon SAM Log.
+
+- **Enhanced** (# 211077, 211078) The old, not-recommended Agent utility command SETCAPVAR is nevertheless upgraded to manage a fully-qualified Dynamic Variable name.  However, this command was not changed to support the improved Agent database normalization of Capture Application IDs, which are now keyed by the 9-digit APPKEY.  The SETCAPVAR command only supports the original method of using a 30-character App ID description field to link captured data from an Agent log file to store the captured value to a Dynamic Variable.  This action is better supported by the newest versions of the Agent’s Capture Data and Response Rules features.
+PTF 211078 enhances this same SETCAPVAR command to support up to 435 characters for the Dynamic Variable name, in case a fully-qualified variable name is required for parallel processing.
+
+- Fixed (# 211079) The Multi-Step Script driver program was failing with a false error code of “NoLVar” and error message text indicated that a Dynamic Variable for updating a job’s Local Data Area was not found.  This happened during the Multi-Step Job’s startup procedures, before Step processing started.  The fix ignores this return code, since it simply means that there are no Dynamic Variables available to update the Script job’s IBM i Local Data Area.
+
+- Fixed (# 211080) Corrects the format of the IBM i Job ID character string reported via a variable in the message ID SMA5802.

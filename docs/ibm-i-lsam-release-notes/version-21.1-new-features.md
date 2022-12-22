@@ -87,6 +87,8 @@ This list shows the enhancements that were added to the OpCon Agent for IBM i as
 | IBMI-778 |The IBM i Agent supports various sets of Agent-defined variable names, similar to the OpCon $System variables.  Previously, these variables were referred to as "$-Special" variables, but this name is now replaced by the term "$-System variables" since many of the variables produce the same value result as do the OpCon $System variables.|
  | | |
 |**IBMI-780** |This project used LSAM PTF sequence # 043 as a marker to separate fixes and enhancements that were included with the first public distribution in the LSAM install file LI211043A.  The LSAM cumulative PTF save files (LSCTLDTA and LSCUMPTF) start with PTF sequence number 044.  PTFs with previous numbers are included in the install/upgrade save file.|
+ | | |
+|IBMI-841 |A new, optional LSAM server job named JOBSTS is added to the Agent.  This system monitor job watches up to 25 IBM i subsystems the user may register for any jobs that are stuck in a MSGW (message wait) status.  The JOBSTS server replaces the IBM i Monitor capability that was discontinued in IBM's latest Navigator for i, which was previously documented in this Agent user help with recommended methods for linking the IBM Monitor output to the OpCon network via this Agent's Message Management feature.  The new JOBSTS server notifications are designed to be compatible with the previously recommended solutions for the interface with OpCon. 
 
 
 
