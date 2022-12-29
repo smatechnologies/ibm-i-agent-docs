@@ -23,7 +23,13 @@ As of the publication of this documentation, the current version of the IBM i LS
 New installs of the IBM i LSAM could use the install file named LI181001 (or a newer version that includes pre-installed patches, such as LI181027U). However, SMA now recommends that new installations should install Agent version 21.1 utilizing the latest LI211043A (or newer LI211* file) install file.
 :::
 
-Clients performing LSAM PTF updates of existing IBM i LSAM installations should download and refer to the "IBM i LSAM Patch Readme" PDF document for special instructions about upgrading to the latest available PTF level.  There is a different LSAM PTF README file for each different LSAM base version (e.g., 18.1 or 21.1).
+## SMA IBM i LSAM 18.1 Patches
+
+These release notes list the most recent batch of enhancements and patches available for application after the installation of the IBM i LSAM version 18.1. 
+
+LSAM PTF numbers are assigned within the SMA internal product management control tools. Support incidents are generated and tracked within SMA Technologies' latest tracking systems, and the incident numbers are associated with the LSAM PTF numbers. There may be more than one support incident associated with a given PTF number. The LSAM PTF numbers assigned to enhancements are associated with the SMA Development department's project tracking system.  The list of LSAM PTFs available from the LSAM menu system documents the connections with support incidents or product enhancement tasks via the detail records listed under each PTF master record.  Type option 7 next to any PTF master record to view the list of details, then notice the "Case ID" column at the far right of the list. 
+
+Instructions for downloading and installing LSAM PTFs are found in a simple form in [Managing LSAM Software Enhancements](./lsam-ptf-readme#introduction-to-ibm-i-agent-software-patches), a topic below in this section. Clients should study the instructions under [Installing IBM i LSAM Patches](./lsam-ptf-readme#installing-ibm-i-lsam-patches) for additional CAUTIONS and other important instructions that may be added when new software patches are developed.
 
 ## Compatibility
 This LSAM version is generally compatible with all supported releases of the OpCon central server application.
