@@ -90,7 +90,7 @@ When no menu number is specified, the LSAM Main Menu will be shown. It is not ne
 
 1. In the command line, enter **SMAGPL/STRSMA**. The LSAM Menu system welcome screen appears.
 :::tip
-This display will show Load source: LI211043A PTF211043 when the LI211043A install file is used.
+This display will show Load source: LI211043B PTF211043 when the LI211043B install file is used.
 :::
 
 #### LSAM Welcome Screen

@@ -144,7 +144,7 @@ The program objects of the basic LSAM server programs require about 9 MB of main
 
 ### Disk Utilization
 
-The installation file LI211043A occupies about 85 MB of disk space. This space will be returned to the system after the installation is completed and the install file (LI211043A, or newer name) is deleted.
+The installation file LI211043B occupies about 85 MB of disk space. This space will be returned to the system after the installation is completed and the install file (LI211043B, or newer name) is deleted.
 
 The initial disk space temporarily occupied by the installation library (LI211043) is 92.4MB.  Adding the restored temporary LSAM environment libraries results in a total of temporarily used disk space of 372 MB.  Adding the original installation save file (85 MB) results in a final total of temporarily used disk space of **457 MB**.
 
@@ -281,9 +281,9 @@ From time to time, SMA may produce updated versions of the LSAM installation sav
 
 A unique name is assigned to each new version of the LSAM installation save file, matching the software patch level (also referred to as the LSAM PTF Level). For example, if the installation save file includes PTF # 211043 (that is, patch level 043 for version 21.1 of the LSAM), then the installation save file will be named LI211043.
 
-Sometimes when the temporary installation programs need updating the LSMA install/upgrade save file may have a letter added to the base name of the file version, such as LI211043A.  However, the content of the installation save file will always be contained in the original version build library name, for example, LI211043.
+Sometimes when the temporary installation programs need updating the LSMA install/upgrade save file may have a letter added to the base name of the file version, such as LI211043B.  However, the content of the installation save file will always be contained in the original version build library name, for example, LI211043.
 
-After the LSAM installation or upgrade is complete, using the Agent command SMAGPL/STRSMA will produce a splash display that shows the "load source" information. The display will show, for example, "LI211043 PTF211043" to represent that the base Agent version was 21.1 and the latest LSAM PTF contained in the install file was PTF # 211043. This is the profile that would be expected when using an IBM i LSAM Installation Save File named LI211043A.
+After the LSAM installation or upgrade is complete, using the Agent command SMAGPL/STRSMA will produce a splash display that shows the "load source" information. The display will show, for example, "LI211043 PTF211043" to represent that the base Agent version was 21.1 and the latest LSAM PTF contained in the install file was PTF # 211043. This is the profile that would be expected when using an IBM i LSAM Installation Save File named LI211043B.
 
 ## Install the LSAM
 
@@ -305,9 +305,9 @@ After the LSAM installation or upgrade is complete, using the Agent command SMAG
 
 4. Create a working save file for use during the installation to the IBM i partition by entering the command:
   ```
-    CRTSAVF QGPL/LI211043A
+    CRTSAVF QGPL/LI211043B
   ```
-  This empty save file should be named to match the latest version of the IBM i LSAM (Agent) Installation save file, such as LI211043A.  Keeping the letter on the save file name could be important for distinguishing this version from future versions that may be published.
+  This empty save file should be named to match the latest version of the IBM i LSAM (Agent) Installation save file, such as LI211043B.  Keeping the letter on the save file name could be important for distinguishing this version from future versions that may be published.
 
 
 ### FTP the LSAM Save File
@@ -342,7 +342,7 @@ D:\Install\LSAM\IBM i LSAM>
 12. Enter **bin** to select a binary transfer type.
 13. Enter the following FTP PUT commands to send the file:
 ```
-  PUT LI211043A QGPL/LI211043A
+  PUT LI211043B QGPL/LI211043B
 ```
 
 14. Enter **quit** to exit the FTP utility.
@@ -364,9 +364,9 @@ Password: <QSECOFR password>
 230 User QSECOFR logged in.
 ftp> bin
 200 Representation type is binary IMAGE.
-ftp> PUT LI211043A QGPL/LI1211043A
+ftp> PUT LI211043B QGPL/LI1211043A
 200 PORT subcommand successful.
-150 Sending file to member LI211043A in file LI211043A in library QGPL.
+150 Sending file to member LI211043B in file LI211043B in library QGPL.
 ________ bytes sent in ______ seconds _____ Kbytes/sec
 ftp> quit
 221 QUIT subcommand received
@@ -398,10 +398,10 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
 :::
 
 ### Prepare the Installation Library
-17. Restore the distribution library, which includes the setup command and its processor program, from the save file QGPL/LI211043A by entering the command:
+17. Restore the distribution library, which includes the setup command and its processor program, from the save file QGPL/LI211043B by entering the command:
 
   ```
-    RSTLIB SAVLIB(LI211043A) DEV(*SAVF) SAVF(QGPL/LI211043A)
+    RSTLIB SAVLIB(LI211043B) DEV(*SAVF) SAVF(QGPL/LI211043B)
   ```
 
   :::tip
@@ -421,7 +421,7 @@ The *ALLOBJ special authority granted to user SMANET is discussed below under th
 19. Add the installation library to the interactive job library list by entering the command:
 
     ```
-    ADDLIBLE LIB(LI211043A) POSITION(*FIRST)
+    ADDLIBLE LIB(LI211043B) POSITION(*FIRST)
     ```
 
 ### Run the Installation Procedure
@@ -499,7 +499,7 @@ SMASETR1              Install/Upgrade IBM i Agent (LSAM)              00/00/00
 USERNAME               Installing version: 21.1                       00:00:00
  Type options and press Enter to continue.                                    
  SMA now recommends to NOT share the SMAGPL or QGPL library.                  
-Installation source library . : LI211043A                                      
+Installation source library . : LI211043B                                      
 Use alternate environment name: *NO           *YES, *NO=use default           
 SMAGPL alternate library name : SMAGPL        For PTF tools (do NOT use QGPL) 
 LSAM environment tools library: SMAGPL        SMAGPL, QGPL, test library      
@@ -661,7 +661,7 @@ Following is an example of the command prompt screens that appear if the SMASETU
 
 Type choices, press Enter.
 
-Installation source library  . . SRCLIB         LI211043A              
+Installation source library  . . SRCLIB         LI211043B              
 SMAGPL alt lib (not QGPL)  . . . SMAUTL         SMAGPL   
 LSAM env tools library (QGPL?)   SMAGPL         SMAGPL                     
 Convert QGPL content (Y/N)?  . . CVTOPT         N
@@ -709,10 +709,10 @@ Detailed information about the LSAM Parameter definition fields shown in the SMA
 
 To use the SMASETUPB command in a batch job, each of the parameter keywords shown in the preceding examples should be specified, although wherever the default command value for a keyword (as shown in the example prompt displays) is acceptable, the keyword need not be specified. The complete command line representing the example screens above would appear as follows.
 
-Here is the command syntax for installing the SMADEFAULT LSAM environment, where the load source is library LI211043A. Note, however, that a valid IP address must be provided, either as a parameter of this command, or after the installation has been completed (using the LSAM main menu function 7: LSAM Parameters). To use SMASETUPB for an upgrade, use library LI211043A, which will cause the default value (required) for SRCLIB to be 'LI211043A':
+Here is the command syntax for installing the SMADEFAULT LSAM environment, where the load source is library LI211043B. Note, however, that a valid IP address must be provided, either as a parameter of this command, or after the installation has been completed (using the LSAM main menu function 7: LSAM Parameters). To use SMASETUPB for an upgrade, use library LI211043B, which will cause the default value (required) for SRCLIB to be 'LI211043B':
 
 ```
-LI2111043A/SMASETUPB SRCLIB(LI211043A) SMAUTL(SMAGPL) 
+LI2111043A/SMASETUPB SRCLIB(LI211043B) SMAUTL(SMAGPL) 
 SMAGPL(SMAGPL) CVTOPT(N) 
 INTADR('111.222.333.444') VLNADR('*EXT') LBINDIP('Y')
 SFTIPADR('*LSAM') SFTVADR('*EXT') SFTBINDIP('Y')
@@ -726,7 +726,7 @@ SMAPGM(SMAPGM)
 To install an alternate LSAM environment, for example an environment named IBMILSAM1, set the ALTENV parameter to (\*YES) and include the ENV() keyword with the name of the alternate LSAM environment, as follows:
 
 ```
-LI211043A/SMASETUPB SRCLIB(LI211043A) SMAUTL(SMAGPL1) 
+LI211043B/SMASETUPB SRCLIB(LI211043B) SMAUTL(SMAGPL1) 
 SMAGPL(SMAGPL1) CVTOPT(N) 
 INTADR('111.222.333.444') VLNADR('*EXT') LBINDIP('Y')
 SFTIPADR('*LSAM') SFTVADR('*EXT') SFTBINDIP('Y')
@@ -754,14 +754,14 @@ Provided here are the steps to follow after installation.
    Delete the installation save file:
 
    ```
-   DLTF FILE(QGPL/LI211043A)
+   DLTF FILE(QGPL/LI211043B)
    ```
 
    ... where "ppp" is the LSAM PTF level of the newest Installation Save file.
 
    Delete the installation objects library:
    ```
-   DLTLIB LIB(LI211043A)
+   DLTLIB LIB(LI211043B)
    ```
 
 2. Restore the original value to the system value QALWOBJRST, if it was changed during the pre-installation checklist.

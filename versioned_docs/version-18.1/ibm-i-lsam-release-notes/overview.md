@@ -20,7 +20,7 @@ The IBM i LSAM was managed as a single version 04.00.03 for as many years as the
 As of the publication of this documentation, the current version of the IBM i LSAM was agent version 18.1. This version of the LSAM software was compiled over IBM i7.1.  (IBM only supports i7.1 under custom, extended support contracts.)  A newer version 21.1 of the LSAM has been published.  LSAM version 21.1 was compiled over IBM i7.2.  (IBM now only supports i7.2 under custom, extended support contracts.)  Please use the newer version of this documentation when working with that newer version of the Agent.  Both versions of the agent have been certified to operate correctly on currently supported versions of the IBM i operating system, through i7.4.
 
 :::tip
-New installs of the IBM i LSAM could use the install file named LI181001 (or a newer version that includes pre-installed patches, such as LI181027U). However, SMA now recommends that new installations should install Agent version 21.1 utilizing the latest LI211043A (or newer LI211* file) install file.
+New installs of the IBM i LSAM could use the install file named LI181001 (or a newer version that includes pre-installed patches, such as LI181027U). However, SMA now recommends that new installations should install Agent version 21.1 utilizing the latest LI211043B (or newer LI211* file) install file.
 :::
 
 ## SMA IBM i LSAM 18.1 Patches

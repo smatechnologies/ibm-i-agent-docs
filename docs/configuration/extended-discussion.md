@@ -62,7 +62,7 @@ The following instructions apply specifically to the data communication connecti
 
 Some of the following steps may require information that originates from the Digital Certificate guidelines, above.
 
-1. New installs of the LSAM (OpCon Agent) for IBM i must use an install file with a name similar to LI211043A (or newer, where the "211" refers to the IBM i Agent version 21.1).
+1. New installs of the LSAM (OpCon Agent) for IBM i must use an install file with a name similar to LI211043B (or newer, where the "211" refers to the IBM i Agent version 21.1).
     - Version 04.00.03 or older of the IBM i LSAM are not supported for TLS Security. But they can be upgraded to LSAM version 18.1 using the latest version of the 18.1 install file (which can support TLS security), and then the LSAM can be upgraded to version 21.1.
 2. The OpCon server software must be at a version 17.2.x or newer. 
     - For versions of OpCon prior to 18.3.1, it might be necessary to obtain and execute SQL instructions that are used to update the OpCon database (at the location of the SQL Server) to enable new TLS Security settings for IBM i machine records.

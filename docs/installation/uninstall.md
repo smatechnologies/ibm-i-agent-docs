@@ -37,8 +37,8 @@ Before attempting to uninstall the LSAM, make sure that the LSAM server jobs and
 1. Sign on to the IBM i operating system as QSECOFR, or as a user with security officer authority to complete these steps. Using the following command, delete the installation's save file and the LSAM installation library, if not already done during the last steps of the installation process:
 
   ```
-  DLTF QGPL/LI211043A (or, a newer version of this file, perhaps named LI211043B)
-  DLTLIB LI211043A (or, a newer version of this library)
+  DLTF QGPL/LI211043B (or, a newer version of this file, perhaps named LI211043B)
+  DLTLIB LI211043B (or, a newer version of this library)
   ```
 
   The following steps 2) or 3) explain how to remove the LSAM utilities, if they were installed in the IBM i system library QGPL. Do not perform these steps if any LSAM environment will remain installed in this IBM i partition (LPAR). These steps 2) or 3) are also not necessary if the LSAM utilities were installed exclusively into the SMAGPL library and library QGPL was not being used by the LSAM.
