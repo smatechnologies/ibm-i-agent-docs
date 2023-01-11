@@ -74,7 +74,7 @@ The Agent supports up to 435 characters for a Dynamic Variable {TOKEN} to allow 
 
 Detailed instructions for multi-instance Dynamic Variables and use cases are provided in the last part of this Dynamic Variables chapter.
 
-### Maintaining Dyanmic Variables
+### Maintaining Dynamic Variables
 
 Dynamic Variables can be created during run time by using the LSAM utility command SETDYNVAR which is described at [SETDYNVAR: Set LSAM Dynamic Variable](./manipulation-commands.md#setdynvar-set-lsam-dynamic-variable).  
 
