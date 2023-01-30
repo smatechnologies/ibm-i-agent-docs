@@ -20,6 +20,9 @@ USERNAME                                    �
         7. Operator Replay configuration          
         8. Display Captured Data log
         9. Display data capture debug log
+       10. Maintain Dynamic Variables                      
+       11. Client eMail Management menu                    
+       12. Work with User Environment Matrix (if available)
 
    Selection or command
    ===> ________________________________________________________________________
@@ -48,8 +51,15 @@ Selection or command
 - 7=Operator Replay configuration
 - 8=Display Captured Data log
 - 9=Display data capture debug log
+- 10=Maintain Dynamic Variables - see [Introduction to Dynamic Variables](/dynamic-variables/overview#introduction-to-dynamic-variables)                     
+- 11=Client eMail Management menu - see [Client eMail Management](/events-utilities/client-email#client-email-feature-replacement)                   
+- 12=Work with User Environment Matrix (if available) - see NOTE below
 
-The options displayed on this menu are explained in the following sections of this document. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options. 
+The options displayed on this menu are explained in the following sections of this chapter, except as noted in the list above. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options. 
+
+:::note
+Menu option 12 is not normally active and available to all clients. This menu option marks access to a customizable utility that can be used to manage the IBM i database environment accessed by Operator Replay scripts when there are multiple different databases from which a choice must be made.  Please contact SMA Support, or your SMA Solutions Consultant for assistance from SMA if you believe you need this type of access control.  Documentation can be provided with instructions for adapting the available utility programs, including how to define the Operator Replay Script Steps that would be synchronized with the database environment selection process and, optionally, with different user profiles for each database.
+:::
 
 #### Functions
 
