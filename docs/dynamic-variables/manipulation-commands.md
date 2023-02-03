@@ -138,7 +138,7 @@ Currency symbol, if numeric  . .   _             $, other, B=c
 Currency symbol position (L) . .   ____          Position: 1-99, 0=no change       
 Currency symbol relative loc . .   __            F=float, (.)=fixed from dec
 Change all instance attributes     *NO           *YES, *NO                   
-IU.DYNVAR anchor job keys  . . .   *DEFAULT      *DEFAULT, *THISJOB, *PREVJOB
+IU.DYNVAR anchor job keys  . . .   *DEFAULT      *DEFAULT, , *PREVJOB
 Unload command program at end  .   *YES
 
                                                                         Bottom
