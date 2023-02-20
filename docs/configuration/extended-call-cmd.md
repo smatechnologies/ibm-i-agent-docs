@@ -114,3 +114,15 @@ CALL PROGRAM|CCSID(000297) LDA(215:9:'new value') SCANSPLF
 APPKEY(123456789) DATE({CURDATE}) OPCONJOB(Y) FAILOPT(2)
 ```
 :::
+
+#### Managing the IBM i Local Data Area for Operator Replay jobs
+
+The IBM i \*LDA (Local Data Area) can be loaded or updated for either the Operator Replay Script driver job or for the virtual workstation interactive job that the script driver has initiated.
+
+This option is enabled by special rules for extending the data entered into the Script Name box of the OpCon Job Master for Operator Replay jobs.  Details about how to enable this option are provided in the following two locations:
+
+- [Setting an IBM i Job's LDA Value](/configuration/extended-call-cmd#setting-an-ibm-i-jobs-lda-value)
+- [Manage the Local Data Area](/dynamic-variables/local-data-area#lda-behaviors)
+  -  Especially at [Procedures for managing Operator Replay LDA Content](/dynamic-variables/local-data-area#procedures-for-managing-operator-replay-lda-content)
+
+Simply put, the LDA can be updated by inserting the pipe character (vertical bar) after a Script Name and any other optional keyword parameters that Operator Replay jobs may support, and after the pipe character inserting the keyword "LDA".  The formats for the LDA keyword are described in the links above.

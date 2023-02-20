@@ -335,6 +335,59 @@ Completing the OpCon job master definition, the LSAM will automatically enforce 
 
 For information on defining an IBM i Job, refer to [IBM i Job Details](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/IBM-i-Job-Details.md#top)  in the **Concepts** documentation.
 
+### Managing the IBM i Local Data Area for Operator Replay jobs
+
+The IBM i \*LDA (Local Data Area) can be loaded or updated for either the Operator Replay Script driver job or for the virtual workstation interactive job that the script driver has initiated.
+
+This option is enabled by special rules for extending the data entered into the Script Name box of the OpCon Job Master for Operator Replay jobs.  Details about how to enable this option are provided in the following two locations:
+
+- [Setting an IBM i Job's LDA Value](/configuration/extended-call-cmd#setting-an-ibm-i-jobs-lda-value)
+- [Manage the Local Data Area](/dynamic-variables/local-data-area#lda-behaviors)
+  -  Especially at [Procedures for managing Operator Replay LDA Content](/dynamic-variables/local-data-area#procedures-for-managing-operator-replay-lda-content)
+
+Simply put, the LDA can be updated by inserting the pipe character (vertical bar) after a Script Name and any other optional keyword parameters that Operator Replay jobs may support, and after the pipe character inserting the keyword "LDA".  The formats for the LDA keyword are described in the links above.
+
+When updating the LDA using the |LDA() extension of the Script Name field, the LDA value will always be set for the Operator Replay Script driver job.  If the virtual workstation interactive job needs the LDA content, then the Script driver job must utilize a Dynamic Variable {TOKEN} that uses the *LDA function code to pull its local LDA value.  That token will then be referenced in a Script Step that sends a command such as the following example, which will be executed from the virtual workstation's interactive job:
+
+```
+CHGDTAARA DTAARA(*LDA *ALL) VALUE('{GETLDA01}')
+```
+
+The example Dynamic Variable is defined as follows, so that when it is replaced by the value character string retrieved from the Script driver's LDA content, that character string is what will actually be delivered to the interactive job for processing by the CHGDTAARA command.
+
+```
+LSAVARR2                 Display Dynamic Variable
+
+Variable name . . . . : GETLDA01       Sequence: 000
+                                                                               
+Variable type . . . . : V              L=LDA, V=general variable               
+Description . . . . . : Get entire LDA content into DynVar                     
+LDA start pos, length : 0000  0000     LDA position, length for Type-L only    
+Char trim start,length: 0000  0000                /PGM+LIB, *HEX *DB2 *DTAARA  
+Value calc pgm/Fn Code: *DTAARA                  /*DATE *TIME *SYSVAL:FLD2=Name
+Value type (Char/Num) : C              C/blank=Char, N=Numeric ->(next page)  
+
+
+LSAVARR7          Display Dynamic Variable DTAARA Access
+                                                                              
+Variable name : GETLDA01       Sequence: 000   Type: V     LDA Pos: 0000  0000
+Description . :                                           CharTrim: 0000  0000
+                                                                              
+Data area name  : *LDA                                                        
+Library location:                                                             
+Trim Strt,Length:    0     0          Optional trim returned value            
+                                                                              
+NOTE: To fetch from the local data area, type *LDA in the name field.         
+  For *LDA the library name is ignored. Use the trim fields to select         
+  up to 1024 bytes from the total LDA size of 1024, else the value            
+  will include all bytes 1 to 1024 of the LDA.                                
+To protect and retain blank characters in leading or trailing positions       
+  of the trimmed (or all) data retrieved from a data area, also set the       
+  Character Trim values in the main variable maintenance page. See F1=Help    
+  from the first maintenance page for more information about Character        
+  Trim values.                                                                
+```
+
 ## Data Capture and Response Rules
 
 Optionally, rules may be defined externally to the Operator Replay script that specify data to be captured from screen formats received by the Operator Replay script execution driver program. For each element of captured data there may be one or more Captured Data Response Rules defined.
