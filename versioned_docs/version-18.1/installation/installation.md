@@ -157,32 +157,7 @@ The installed LSAM libraries occupy the following amounts of disk space before t
 
 If database replication (mirroring) is not being used, then skip to the next checklist item.
 
-These general guidelines will need adapting, depending on the phase of an installation or upgrade process.
-
-During a new installation or an upgrade, SMA recommends implementing a filter in the mirroring software in advance to prevent unnecessary mirror operations as the new LSAM libraries are being installed and manipulated:
-
-- Disable mirroring for all four LSAM libraries that will be created during a new installation or recreated during an upgrade.
-- Similarly, if the LSAM environment cloning process will be used, register in advance a filter to prevent mirroring of the intended new library names.
-- During an upgrade, the following existing libraries will be renamed using a prefix appended to the time of the upgrade. Add mirror filter rules to prevent mirroring of the renamed libraries:
-  - SMAGPL is renamed SMAG112233 (where 11:22:33 is a time stamp of the rename)
-  - SMAPTF is renamed SMAT112233
-  - SMAPGM is renamed SMAP112233
-
-In all cases, SMA recommends adding a filter rule to the database mirroring software configuration, to NOT attempt to replicate the LSAM clones of the IBM i SBMJOB command, since they cannot be successfully saved and restored on the target system. (Replace the SMAPGM library name as necessary, for alternate LSAM environments.)
-
-```
-SMAPGM/SBMJOB
-
-SMAPGM/SBMJOB2
-
-SMAPGM/SMASBMJOB
-```
-
-These commands must be reproduced directly in the mirror database by executing the LSAM's LSAINIT command directly within the mirror target partition. See the Cloning Instructions below for details about how to use the LSAINIT command.
-
-SMA intends to eliminate these clones of IBM i commands in a future version of the LSAM.
-
-When upgrading an existing LSAM library set, disable the replication for the LSAM libraries just before starting the PTF installation process that is optionally used to catch up an existing LSAM environment version 04.0.03 to the latest LSAM PTF level. There is a potential conflict between an aggressive "mirror all" strategy and the repeated process of creating and updating PTF control data areas.
+Please refer to the unified discussion of [Managing Database Mirroring](/reference/database-mirroring#managing-database-mirroring-1).
 
 ### Upgrading from an LSAM Version Older than 04.00.03
 
@@ -223,14 +198,7 @@ Libraries that are utility libraries, currently shared by any/all LSAM environme
 
 As the Installation Strategy suggests, SMA recommends performing an isolated upgrade test. This safety measure will prove if there are any exceptional circumstances in a client's environment that were not anticipated by SMA during the development, internal QA testing or external beta site testing of the newest LSAM version.
 
-Detailed instructions for using the IBM i command CPYLIB to clone an existing LSAM environment and create an isolated test LSAM environment are provided in a separate document that IBM i Agent users may download from SMA's secure ftp server. The use of a separate document was made necessary by late changes required to adapt to the behavior of the IBM i DB2 database. The ftp server directory for authorized IBM i Agent users is named:
-
-- /IBMiLSAMptf/18.1/
-
-Please find the document about Cloning an LSAM Environment under either of these sub-directories at the download site:
-
-- /New installation resources
-- /IBM I LSAM Tips and Techniques
+For details about Cloning an LSAM environment see [Clone an Existing Environment](/reference/multiple-environments-how-to-add-an-lsam-environment#method-2-clone-an-existing-environment) which includes details about how to use the LSAINIT command that is required to complete alignment and configuration of a cloned LSAM environment.
 
 ### Preparing an LSAM Environment for Upgrade
 

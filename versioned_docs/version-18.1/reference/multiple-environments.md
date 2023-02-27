@@ -25,3 +25,5 @@ When using the CPYLIB method, it is necessary to perform two operations in the s
 1. Be sure to install all the latest available PTFs from SMA. One or more of these are required for the CPYLIB procedure to work correctly.
 2. The new environment library list must be predefined using the SMALIBMGT command in the source environment before the CPYLIB process is begun. It is difficult to manage the cloning process correctly without the new library list being defined in advance.
 :::
+
+For further details about creating an LSAM environment with the CPYLIB command see [Clone an Existing Environment](/reference/multiple-environments-how-to-add-an-lsam-environment#method-2-clone-an-existing-environment) which includes details about how to use the LSAINIT command that is required to complete alignment and configuration of a cloned LSAM environment.

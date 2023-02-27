@@ -176,8 +176,11 @@ For the IFS method, the path name recommended within the IBM i root(/) file syst
 5. Enter **7** to choose **PTF options configuration** in the PTF and Security Menu.
 6. <**Tab**> to the following fields and type data for each.
 
-    - **PTF source**: Type "FTP" to select the automatic PTF service provided by SMA. (This FTP option is only useful at sites where firewall rules allow the IBM i partition to access an outside connection to the internet. Or, it may be used when sites will import the PTF save files to a Windows or UNIX ftp server within the firewall of the site LAN.) Other options for this field are discussed in the next section of this document. 
-        - The **IFS** method is recommended for most clients.
+    - **PTF source**:
+        - Type **IFS** into this field to use the method that is recommended for most clients.  See [Configuration for the "IFS" method of obtaining PTFs](./ptf#configuration-for-the-ifs-method-of-obtaining-ptfs) just below.
+        - To select the automatic PTF service provided by SMA, type "**FTP**" into the PTF Source field. 
+            - This FTP option is only useful at sites where firewall rules allow the IBM i partition to access an outside connection to the internet. Or, it may be used when sites will import the PTF save files to a Windows or UNIX ftp server within the firewall of the site LAN. 
+        - Other options for this field are discussed in the next section of this document. 
         
     - **SMA ftp user**: When using the FTP method, type the user profile name provided by SMA (or an alternate source) for its ftp server.
 
@@ -204,6 +207,22 @@ For the IFS method, the path name recommended within the IBM i root(/) file syst
       - **Job queue** and **Job queue libr** (library): The job queue should be set to a queue connected to an IBM i subsystem that will continue to operate even if the PTF application process needs to stop the LSAM subsystem, such as QBATCH.
 
 7. Press <**Enter**> to update the PTF configuration options.
+
+##### Configuration for the "IFS" method of obtaining PTFs
+When site firewall rules prohibit the direct connection of the IBM i partition to any outside server (by automatic means), change the PTF Configuration options to use the IFS method. This method supports manually storing the PTF save files (called LSCTLDTA and LSCUMPTF) into any IFS root(/) file system directory, as binary stream files (with no suffix on the file name). Use a manual procedure, for example, to transfer the PTF save files to this IFS directory (always using a binary file transfer method), after they have been manually downloaded from SMA's client ftp server. Follow these steps to configure the LSAM PTF application tools for the IFS method:
+
+1. From LSAM sub-menu **9**, enter **7** to choose **PTF options configuration**.
+2. <**Tab**> to the following fields and type data for each:
+
+    - In the **PTF source** field, type "IFS".
+     
+    - The **SMA ftp user** field, the **Password** and the **Confirm Pwrd** fields, and the **FTP URL or IP address** field, are not used by this method. They may be ignored. 
+
+    - In the **Source directory or path** field, type the path name of the IFS directory that was created for this specific purpose. For example, if the IFS root directory is used/allowed, the path name might be '\SMA\IBMiLSAMptf\'. Note that the trailing slash character must be typed.
+
+    - Press <**Enter**> to commit the changes to the LSAM Parameters control file.
+
+3. Using this method, there will not be any data communications or ftp messages displayed during the first steps of loading the PTF save files into the SMAGPL library.
 
 #### Request a List of Available PTFs
 
@@ -256,6 +275,10 @@ Whenever one or more PTFs has been requested and loaded to the LSAM PTF control 
 #### Apply Cumulative PTF (SMAPTFCUM)
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF control database, and the review of unapplied PTFs has been completed, the normal procedure would be to apply all unapplied PTFs in a single step (as long as the PTF Post-install instructions present no obstacles). The individual PTF application process and the cumulative PTF application process are essentially similar.
 
+:::info
+Please refer to the necessary list of [PTF Pre-Installation Requirements](/ibm-i-lsam-release-notes/lsam-ptf-readme#installing-ibm-i-lsam-patches) before starting the PTF Apply process.
+::: 
+
 1. Log on to an IBM i interactive workstation session as either QSECOFR or an LSAM Administrator with \*ALLOBJ authority. Normally, PTF application is considered to require QSECOFR authority because any aspect of the LSAM software may require updating, and some LSAM features involve the management of authority assigned to QSECOFR.
 2. In the command line, enter **SMAGPL/STRSMA**. For more information on **STRSMA** command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 3. Enter **9** to choose the PTF and Security menu in the LSAM Main Menu.
@@ -267,19 +290,3 @@ Whenever one or more PTFs has been requested and loaded to the LSAM PTF control 
 9. The PTF application process is performed automatically in the interactive job.
 10. If requested, and the LSAM servers had to be suspended during the PTF application process, the LSAM servers are automatically restarted as soon as the PTF application process.
 11. The cumulative PTF procedure completes by displaying a message on the workstation screen, "Cumulative PTF application to LSAM: <*LSAM_name*> completed normally."
-
-#### Configuration for the "IFS" method of obtaining PTFs
-When site firewall rules prohibit the direct connection of the IBM i partition to any outside server (by automatic means), change the PTF Configuration options to use the IFS method. This method supports manually storing the PTF save files (called LSCTLDTA and LSCUMPTF) into any IFS root(/) file system directory, as binary stream files (with no suffix on the file name). Use a manual procedure, for example, to transfer the PTF save files to this IFS directory (always using a binary file transfer method), after they have been manually downloaded from SMA's client ftp server. Follow these steps to configure the LSAM PTF application tools for the IFS method:
-
-1. From LSAM sub-menu **9**, enter **7** to choose **PTF options configuration**.
-2. <**Tab**> to the following fields and type data for each:
-
-    - In the **PTF source** field, type "IFS".
-     
-    - The **SMA ftp user** field, the **Password** and the **Confirm Pwrd** fields, and the **FTP URL or IP address** field, are not used by this method. They may be ignored. 
-
-    - In the **Source directory or path** field, type the path name of the IFS directory that was created for this specific purpose. For example, if the IFS root directory is used/allowed, the path name might be '\SMA\IBMiLSAMptf\'. Note that the trailing slash character must be typed.
-
-    - Press <**Enter**> to commit the changes to the LSAM Parameters control file.
-
-3. Using this method, there will not be any data communications or ftp messages displayed during the first steps of loading the PTF save files into the SMAGPL library.

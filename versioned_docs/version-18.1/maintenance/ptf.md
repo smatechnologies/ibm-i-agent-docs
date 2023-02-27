@@ -176,8 +176,11 @@ For the IFS method, the path name recommended within the IBM i root(/) file syst
 5. Enter **7** to choose **PTF options configuration** in the PTF and Security Menu.
 6. <**Tab**> to the following fields and type data for each.
 
-    - **PTF source**: Type "FTP" to select the automatic PTF service provided by SMA. (This FTP option is only useful at sites where firewall rules allow the IBM i partition to access an outside connection to the internet. Or, it may be used when sites will import the PTF save files to a Windows or UNIX ftp server within the firewall of the site LAN.) Other options for this field are discussed in the next section of this document. 
-        - The **IFS** method is recommended for most clients.
+    - **PTF source**:
+        - Type **IFS** into this field to use the method that is recommended for most clients.  See [Configuration for the "IFS" method of obtaining PTFs](./ptf#configuration-for-the-ifs-method-of-obtaining-ptfs) just below.
+        - To select the automatic PTF service provided by SMA, type "**FTP**" into the PTF Source field. 
+            - This FTP option is only useful at sites where firewall rules allow the IBM i partition to access an outside connection to the internet. Or, it may be used when sites will import the PTF save files to a Windows or UNIX ftp server within the firewall of the site LAN. 
+        - Other options for this field are discussed in the next section of this document. 
         
     - **SMA ftp user**: When using the FTP method, type the user profile name provided by SMA (or an alternate source) for its ftp server.
 

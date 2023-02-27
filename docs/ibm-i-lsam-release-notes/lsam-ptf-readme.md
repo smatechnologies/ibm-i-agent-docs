@@ -52,15 +52,9 @@ If the value is already *ALL, skip this procedure and continue with LSAM PTF pro
 
 ### Managing Database Mirroring During PTF Installation
 
-If database replication (mirroring) is being used, disable the replication for the LSAM libraries during the PTF installation process.  There is a potential conflict between an aggressive “mirror all” strategy and the repeated process of creating and updating PTF control data areas.  There are two methods that can be used to prevent this recognized potential conflict:
+If database replication (mirroring) is not being used, skip to the next topic.
 
-1.	The safest way to avoid all conflicts with the IBM i LSAM PTF application process is to stop all mirroring for these four LSAM libraries:  SMAGPL, SMADTA, SMAPTF, SMAPGM.
-
-2.	Instead of disabling all database mirroring, the PTF conflict can be avoided by establishing mirror filter rules to NOT replicate data areas (object type *DTAARA) that have names starting with PTF* from libraries SMAGPL and SMADTA, and names starting with RBK* in library SMAPTF (if SMAPTF is being replicated – see further discussion below).
-
-After the PTF installation is complete, remember to restart mirroring.  Upon restart, if all mirroring was stopped for the LSAM libraries, expect a short, high-volume replication of the LSAM software objects that were updated or replaced during LSAM PTF application.  Ensure that the libraries updated by PTFs (SMADTA, SMAGPL and SMAPGM) are fully replicated to the mirror site.  
-
-The contents of library SMAPTF are not critical for daily operation of the LSAM services. This library contains only the rollback save files that can support removal of a recently applied LSAM PTF (if the PTF allows rollback).  However, no SMA client has had to use this feature, since it was created primarily for SMA internal use during development testing.  Therefore, it is not ever necessary to replicate the contents of library SMAPTF to the mirroring target partition.  Any rollback action performed on the source Production partition would be mirrored to the targets, so they would not need or use the rollback save files unless a Disaster Recovery partition would take over as the primary production machine.  In that case, the programs for applying LSAM PTFs will create new rollback save files as necessary during new PTF application.  If there were ever an extreme situation where it would be necessary to rollback a PTF from a mirroring target partition, please contact SMA Support for assistance.  SMA can provide appropriate replacement rollback save files after the situation is analyzed by SMA Support.
+Please refer to the unified discussion of [Managing Database Mirroring](/reference/database-mirroring#managing-database-mirroring-1).
 
 ### Important Notes and Warnings
 

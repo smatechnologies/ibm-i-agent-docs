@@ -233,6 +233,7 @@ module.exports = {
         'reference/multiple-environments-lsam-environment-screens-and-windows',
         'reference/lsam-programs-and-files',
         'reference/copying-files',
+        'reference/database-mirroring',
         'reference/performance',
         'reference/jors',
       ], 
