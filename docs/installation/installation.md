@@ -113,7 +113,9 @@ Please note that the default authority assigned to the LSAM server user profile 
 
 ### IBM i System Value Management
 
-It may be necessary to change one of the system values for the IBM i operating system to permit the installation program to restore program objects that use adopted authority. This is a common strategy, and IBM provides the following guidelines for managing the installation of new software.
+#### QALWOBJRST - Allow Restore of Objects Using Adopted Authority
+
+It may be necessary to change this system value for the IBM i operating system to permit the installation program to restore program objects that use adopted authority. This is a common strategy, and IBM provides the following guidelines for managing the installation of new software.
 
 The Allow Restore of security sensitive Objects (QALWOBJRST) system value specifies whether objects with security-sensitive attributes can be restored. It is important to set the value to *ALL before performing the following system activities:
 
@@ -122,16 +124,62 @@ The Allow Restore of security sensitive Objects (QALWOBJRST) system value specif
 - Applying program temporary fixes (PTFs).
 - Recovering your system.
 
-These activities can fail if the value of QALWOBJRST is not set to *ALL. Use this procedure:
+These activities can fail if the value of QALWOBJRST is not set to \*ALL. 
+
+**Use this procedure:**
 
 - Use the command DSPSYSVAL to view and record the current setting for the value QALWOBJRST. Current value: ___________________. If the value is already \*ALL, skip this procedure.
 - If you have previously locked this system value, go to SST (system service tools) and unlock it.
-- Use the command CHGSYSVAL to set QALWOBJRST to a value of *ALL.
+- Use the command CHGSYSVAL to set QALWOBJRST to a value of \*ALL.
 - Complete the software installation or upgrade.
 - To ensure system security, return the QALWOBJRST value to your normal setting (recorded above) after completing the software installation.
 
 :::tip
 IBM i LSAM administrators must remember to manage this system value also during application of LSAM software patches (PTFs).
+:::
+
+#### QALWUSRDMN - Allow User Domain Objects
+
+Rarely, some IBM i partitions with high security requirements engage the strategy of managing the User Domain of objects.  Information from IBM about this system value is copied below, for convenience.
+
+As it may affect the OpCon Agent for IBM i, this system value must be set to one of the following two configurations:
+
+- The IBM default for this system value is "\*ALL". meaning that there are no domain restrictions that would inhibit the operation of the OpCon Agent for IBM i.
+- IBM i partitions that use this system value to list user libraries where object types that are normally restricted to the System Domain might be stored must be sure to include the QTEMP library in the list.
+  - The IBM i Agent, in previous releases, had been storing a User Space (LSACONU00) in the SMADTA library.  That configuration was removed from the LSAM version 18.1 by LSAM PTFs # 181091 and 181092.  Consequently, LSAM version 21.1 no longer stores *USRSPC objects in the SMADTA library.  If this library had previously been registered in this system value, it can now be removed.
+  - The IBM i Agent includes many programs that retrieve system data via APIs (application program interfaces) that all require a user space for storing retrieved data.  But the Agent always only specifies library QTEMP (a job's temporary library) for storing \*USRSPC objects.  As specified in IBM i documentation (copied below), if this system value is not set to *ALL, then library QTEMP **must** be registered in the library list for system value QALWUSRDMN.
+
+##### IBM i7.2 References about QALWUSRDMN
+
+The URL for IBM i documentation about this system value is:
+
+https://www.ibm.com/docs/en/i/7.2?topic=values-allow-user-domain-objects-qalwusrdmn
+
+IBM i7.2 references are included for Agent version 21.1 because it was compiled to i7.2.
+
+Copied from this URL is the following information from IBM.
+
+:::info
+Allow User Domain Objects (QALWUSRDMN)
+
+Last Updated: 2021-04-14
+
+All objects are assigned a domain attribute when they are created. A domain is a characteristic of an object that controls how programs can access the object. The Allow User Domain Objects (QALWUSRDMN) system value specifies which libraries are allowed to contain user domain objects of type \*USRSPC, \*USRIDX, and \*USRQ.
+
+Systems with high security requirements require the restriction of user \*USRSPC, \*USRIDX, \*USRQ objects. The system cannot audit the movement of information to and from user domain objects. The restriction does not apply to user domain objects of type program (\*PGM), server program (\*SRVPGM), and SQL packages (\*SQLPKG).
+
+Note: This system value is a restricted value. See Security system values for details on how to restrict changes to security system values and a complete list of the restricted system values.
+
+  Table 1. Possible values for the QALWUSRDMN system value:
+  - **\*ALL**	User domain objects are allowed in all libraries and directories on the system. This is the shipped value.
+  - **\*DIR**	User domain objects are allowed in all directories on the system.
+  - **library-name**	The names of up to 50 libraries that can contain user domain objects of type *USRSPC, *USRIDX, and *USRQ. If individual libraries are listed, the library QTEMP must be included in the list.
+
+**Recommended value**: For most systems, the recommended value is *ALL. If your system has a high security requirement, you should allow user domain objects only in the QTEMP library.
+
+Some systems have application software that relies on object types \*USRSPC, \*USRIDX, or \*USRQ. For those systems, the list of libraries for the QALWUSRDMN system value should include the libraries that are used by the application software. The public authority of any library placed in QALWUSRDMN, except QTEMP, should be set to \*EXCLUDE. This limits the number of users that can use MI interface to read or change the data in user domain objects in these libraries without being audited.
+
+**Note:** If you run the Reclaim Storage (RCLSTG) command, user domain objects might need to be moved in and out of the QRCL (reclaim storage) library. To run the RCLSTG command successfully, you might need to add the QRCL library to the QALWUSRDMN system value. To protect system security, set the public authority to the QRCL library to \*EXCLUDE. Remove the QRCL library from the QALWUSRDMN system value when you have finished running the RCLSTG command.
 :::
 
 ### System Resource Requirements

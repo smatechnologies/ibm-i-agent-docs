@@ -26,9 +26,11 @@ Using the wrong LSAM PTF files for a version will corrupt the LSAM software and 
 
 ## PTF Pre-Installation Requirements
 
-### Temporary Change to System Values
+### IBM i System Value Management
 
-It may be necessary to change one of the system values for the IBM i operating system in order to permit the PTF installation program to restore program objects that use adopted authority.  The IBM i LSAM software includes some programs that use adopted authority in order to enable required, specific system management functions to be completed by designated administrators without requiring that those system users have any special authorities.
+#### QALWOBJRST - Allow Restore of Objects Using Adopted Authority
+
+It may be necessary to change this system value for the IBM i operating system in order to permit the PTF installation program to restore program objects that use adopted authority.  The IBM i LSAM software includes some programs that use adopted authority in order to enable required, specific system management functions to be completed by designated administrators without requiring that those system users have any special authorities.
 
 This is a common strategy, and IBM provides the following guidelines for managing the installation of new software:
 The Allow restore of security sensitive objects (QALWOBJRST) system value specifies whether or not objects with security-sensitive attributes can be restored. It is important to set the value to *ALL before performing the following system activities:
@@ -38,17 +40,33 @@ The Allow restore of security sensitive objects (QALWOBJRST) system value specif
 - Applying program temporary fixes (PTFs).
 - Recovering your system.
 
-These activities can fail if the value of QALWOBJRST is not set to *ALL. Use this procedure:
+These activities can fail if the value of QALWOBJRST is not set to \*ALL. 
+
+**Use this procedure:**
+
 - Use the command DSPSYSVAL to view and record the current setting for the value
    QALWOBJRST. 
 
 	Current value: ___________________ . 
 
-If the value is already *ALL, skip this procedure and continue with LSAM PTF procedures.
+If the value is already \*ALL, skip this procedure and continue with LSAM PTF procedures.
 - If you have previously locked this system value, go to SST (system service tools) and unlock it.
 - Use the command CHGSYSVAL to set QALWOBJRST to a value of *ALL.
 - Complete the software installation or upgrade.
 - To ensure system security, return the QALWOBJRST value to your normal setting (recorded above) after completing the software installation.
+
+#### QALWUSRDMN - Allow User Domain Objects
+
+Rarely, some IBM i partitions with high security requirements engage the strategy of managing the User Domain of objects.  Information from IBM about this system value is referenced in the topic link, below.
+
+If the LSAM version 18.1 PTF level is below 091, then this system value must be set to one of the following two configurations because the LSAM software was previously storing a domain-restricted User Space (*USRSPC) named LSACONU00 in the SMADTA library.
+
+- The IBM default for this system value is "\*ALL". meaning that there are no domain restrictions that would inhibit the operation of the OpCon Agent for IBM i.
+- IBM i partitions that use this system value to list user libraries where object types that are normally restricted to the System Domain might be stored must be sure to include the QTEMP library in the list.
+  - The IBM i Agent, in this version 18.1 had been storing a User Space (LSACONU00) in the SMADTA library.  That configuration was removed from the LSAM version 18.1 by LSAM PTFs # 181091 and 181092.  Consequently, LSAM version 18.1 (and later) no longer stores *USRSPC objects in the SMADTA library.  If this library had previously been registered in this system value, it can now be removed.
+  - The IBM i Agent includes many programs that retrieve system data via APIs (application program interfaces) that all require a user space for storing retrieved data.  But the Agent always only specifies library QTEMP (a job's temporary library) for storing \*USRSPC objects.  As specified in IBM i documentation (copied below), if this system value is not set to *ALL, then library QTEMP **must** be registered in the library list for system value QALWUSRDMN.
+
+More details about this system value, including a link to IBM i documentation, may be found at this topic: [QALWUSRDMN - Allow User Domain Objects](/installation/#qalwusrdmn---allow-user-domain-objects).
 
 ### Managing Database Mirroring During PTF Installation
 
