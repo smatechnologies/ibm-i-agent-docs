@@ -132,11 +132,7 @@ Assuming the goal is to combine the features listed above for Operator Replay JO
 
 Using the above implementation method, here is an image of the results in an OpCon Enterprise Manager user interface (where similar data is also accessible from the newer Solution Manager User Interface).
 
-:::example
-
-![Error messages from STROPRRPY via STRMLTJOB](/Resources/Images/IBM-i/STROPRRPY failure in STRMLTJOB.png "Error Messages from STROPRRPY via STRMLTJOB")
-
-:::
+![Error messages from STROPRRPY via STRMLTJOB](/Resources/Images/IBM-i/STROPRRPY-failure-in-STRMLTJOB.png)
 
 In the example abovem notice these results:
 - The main job status shows the general LSAM job failure code of SMA0037.
@@ -188,11 +184,12 @@ Description  . . : Handle failure of STROPRPRY command
 error {GETRPYERR}') STSMSGID('{GETRPYERR}') JOB(*)                              
 
 ```
-Sub-script details
+Sub-script details:
 - **STEP # 10** 
     - The Dynamic Variable token {GETRPYERR} is used both within the the message TEXT( ) and for the STSMSGID( ), although in this example (as illustrated above in the Enterprise Manager user interface image), the Status Message ID is not actually displayed because the Multi-Step Scripting job final status message overrides it.  But this exmaple illustrates a technique that could prove useful for sending a Detailed Job Message to an OpCon IBM i job that is dedicated to an Operator Replay Script.
     - In the JOB(*) parameter the asterisk refers to the current job, which in this example is the same combination job that has executed both the Multi-Step Job script and the Operator Replay job script.
-- ** STEP 20**
+
+- **STEP # 20**
     - The SMAFAILJOB command is useful among many different IBM i Agent automation tools.  Its specific purpose is to support an immediate "stop now" action during the current Agent job and to report the failed job to either the OpCon server or to a higher-level Agent automation tool.
         - Some of the Agent's higher level automation tools are programmed to execute specialized job control actions and logging procedures when an SMAFAILJOB command is detected.
 
