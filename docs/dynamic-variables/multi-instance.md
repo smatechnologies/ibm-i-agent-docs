@@ -3,7 +3,7 @@ sidebar_label: 'Multi-Instance Dynamic Variables'
 ---
 
 # Multi-Instance Dynamic Variables
-## Overview
+## Overview of Multi-Instance Dynamic Variables
 Similar to the multi-instance Property support provided by the OpCon central server application, the Agent for IBM i can now support true parallel processing as variable values are isolated to any of the following optional instances.
 
 - **SI.** = OpCon Schedule Instance.  This scope matches the same scope used by the OpCon Job Scheduler, applied to any IBM i jobs started by OpCon.
