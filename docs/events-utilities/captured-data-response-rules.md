@@ -13,15 +13,17 @@ The "Captured Data" feature of the IBM i LSAM Agent refers to the capability of 
 
 Detailed instructions about capturing these types of data are provided in separate sections of this Agent documentation, under the titles assigned to each of the Agent automation tools listed above.
 
+An overall summary of Data Capture and Response Rules functions can be found at the end of this topic, starting with [How Data Capture Works](#how-data-capture-works).
+
 The Agent is actually able to capture data from other sources in the IBM i partition.  One example is the ability of Dynamic Variables to fetch data from DB2 database tables and data areas.  Dynamic Variables can also fetch IBM i system values directly.  But these alternate data access methods are not supported by the Response Rules scheme explained in this section.
 
-The LSAM Captured Data Log file stores individual data values up to 1920 characters in length. A single Agent file is used to store data captured by the Operator Replay screen data capture function, scan values found by the SCANSPLF command, and message text values captured by Message Management.  Each Captured Data Log file record has a code assigned that indicates the source of the data.  The data capture log file serves as an audit mechanism to prove the outcome of each of those capture functions. The data capture records also function as a connection point to optional Captured Data Response Rules. (Refer to [The Data Capture Logging Functions](#the-data-capture-logging-functions) for more information.)
+The LSAM Captured Data Log file stores individual data values up to 1920 characters in length. Although there are separate master files that store the Capture Data Rules for each of the three Agent functions listed above, there is only a single Agent log file (OPRRPYF40) used to store data captured by the three data capture functions:  workstation display data captured by Operator Replay script steps, report values found by the SCANSPLF command, and message text values captured by Message Management.  Each Captured Data Log file record has a code assigned that indicates the source of the data.  The data capture log file serves as an audit mechanism to prove the outcome of each of those capture functions. The data capture records also function as a connection point to optional Captured Data Response Rules. (Refer to [The Data Capture Logging Functions](#the-data-capture-logging-functions) for more information.)
 
 ### The Function of Response Rules
 
 Captured Data Response Rules provide a way to cause any number of IBM i commands or programs to be executed during the processing of the SCANSPLF command, an Operator Replay script or a Message Management Parameter. The actual Capture Rules are unique to each of these source applications, since the source material is different. But they all put their captured data into the same LSAM Captured Data Log (the multi-purpose log file OPRLOGF40), and this marks their common link to the Response Rules engine. 
 
-The support for Dynamic Variables built into each of the data source features means that Captured Data Response Rules could be used to change Dynamic Variable values as the Agent's automation process runs, allowing the process to change itself depending on data values that are captured and recognized. 
+The support for Dynamic Variables built into each of the data source features means that Captured Data Response Rules could be used to change Dynamic Variable values as the Agent's automation process runs, enabling the Agent's automation process to vary depending on data values that are captured and recognized. 
 
 A common application of capturing data and triggering response rules is to build customized system and application monitors that can be used to trigger, via the response rules, notifications when thresholds are exceeded, or to collect performance data for later evaluation.  Financial applications typically balance batches of transaction data by capturing batch totals and then comparing them to control data that could have been established by any machine or network connection accessible to the OpCon application server.
 
@@ -29,14 +31,13 @@ Captured Data Response Rules also provide an exit program capability, supporting
 
 ### How Captured Data Responses are Triggered
 
-Whenever the system writes a new record to the Captured Data Log file, it also checks for response rules that match the data capture identifying key fields. The identifying key fields include the Application ID associated with each data capture operation and the sequence number of the data capture rule. Captured data is further
-identified by key values that are unique to each capturing application. A Type flag marks captured data as resulting from the SCANSPLF command, from an Operator Replay screen or from Message Data.
+Whenever the system writes a new record to the Captured Data Log file, it also checks for response rules that match the data capture identifying key fields. The identifying key fields include the Application ID associated with each data capture operation and the sequence number of the data capture rule. Captured data is further identified by key values that are unique to each capturing application. A Type flag marks captured data as resulting from the SCANSPLF command, from an Operator Replay screen or from Message Data.
 
-The Captured Data Response Rules appear the same for any data capture source. Only the key values assigned to the rule are different, depending on the data capture source. Details about how to define the Capture Rules are provided in the separate topic for each of the following features.
+The Captured Data Response Rules appear the same for any data capture source. Only the key values assigned to the rule are different, depending on the data capture source. 
 
-### Adding a Data Capture and Response Rules from the LSAM Menu System
+### Adding Data Capture Response Rules from the LSAM Menu System
 
-This is a generalized outline that can be applied to any of the three Agent automation features that support data capture.  Details about defining each type of data capture can be found in the documentation topic assigned to any of the Agent features.
+This is a generalized outline that can be applied to any of the three Agent automation features that support data capture.  Details about defining each type of data capture can be found in the documentation topic assigned to each of the three Agent features.
 
 1. In the command line, enter **STRSMA** or **LSAMENU**. For more information on command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) and the [LSAMENU Command](../operations/lsam.md#the-lsamenu-command).
 2. Choose the sub-menu from the SMA Main Menu applying to the appropriate Agent automation tool.
@@ -44,7 +45,7 @@ This is a generalized outline that can be applied to any of the three Agent auto
 4. Complete the Application ID registration, or choose an existing capture Application ID.
 5. Add new data capture definitions.
 6. Choose the menu number for the **Work with Captured Data Response Rules**.
-    - The system always forces the Work with Captured Data Response Rules function to support only data capture definitions that are matched to the Agent sub-menu:  SCANSPLF (from the Events and Utilities menu), Operator Replay screen data, or Message Management message data.
+    - The system always forces the Work with Captured Data Response Rules function to support only data capture definitions that are matched to the current Agent sub-menu:  SCANSPLF (from the Events and Utilities menu), Operator Replay screen data, or Message Management message data.
     - Each Capture Definition screen also supports function key <**F11**> for direct access to Response Rule maintenance.
 7. Press <**F6**> to Add a new Capture Response Rule record in the Work with Capture Response Rules screen.
 8. As necessary, use function key <**F4**> to choose an Application ID and a Capture Data Rule.
@@ -242,8 +243,7 @@ The setting of this flag also controls how captured data will be stored into a D
 
 The response command line supports execution of LSAM Event commands, just like any other IBM i command. But Event commands have additional support. The function key <**F9**> can be used to select from a list of available Event commands and then to have their keyword fields automatically prompted. When an Event command is placed into the response command line, and only for Event commands, the LSAM programs will support embedded OpCon property (variable) tokens.
 
-The feature of including OpCon property tokens in an LSAM Event command is described in complete detail in the topic about Message Management. Look for references to the Event command line of the Message Management Parameter screen. In that topic there is a complete table of the specific OpCon property (variable) token values that can be supported directly by the LSAM itself, if a certain syntax is used. In general, any OpCon property token could be used because the LSAM
-passes along the Event command string with the OpCon property tokens in tact, signaling the OpCon server programs to translate the tokens into the values that are stored in the OpCon database.
+The feature of including OpCon property tokens in an LSAM Event command is described in complete detail in the topic about Message Management. Look for references to the Event command line of the Message Management Parameter screen. In that topic there is a complete table of the specific OpCon property (variable) token values that can be supported directly by the LSAM itself, if a certain syntax is used. In general, any OpCon property token could be used because the LSAM passes along the Event command string with the OpCon property tokens in tact, signaling the OpCon server programs to translate the tokens into the values that are stored in the OpCon database.
 
 ## Display Captured Data Log
 
@@ -538,47 +538,6 @@ The data capture rules for Operator Replay are separate from the Script Step rec
 
 The data capture rules for Message Management are not linked to only one Message Management Parameter, but are shared because it is so common for a single Capture Application to be reused among many different message management rules. Instead, each Message Management Parameter record stores the Capture Application ID as part of the Parameter record.
 
-## Exceptional Control Options for Captured Data and Response Rules
-
-### Managing Single Quotes and Commas in Captured Data
-
-#### Problem Definition
-
-##### Single Quotes
-
-Single quotes included in captured data, such as message text, green screen workstation displays or reports, can prevent storage of captured data into dynamic variables. The single quote interferes with delimiting character strings in IBM i command parameter values.
-
-##### Commas
-
-If a comma is included in the value of a dynamic variable it can interfere with the syntax of OpCon Event commands whenever that dynamic variable is included as one of the command parameter values. At this time, commas are reserved characters in OpCon Event commands that are used to separate the command parameters.
-
-### Preventing Special Character Errors
-
-#### Captured Data Response Rules
-
-The Compress Numeric field in the Response Rules master record supports additional values (listed in the chart below) that can be specified for character data. This set of field values controls the process of storing captured data into a dynamic variable.
-
-The most important purpose of this control is to prevent single quote characters from interrupting the string of characters that is inserted into the VALUE('value') parameter of the SETDYNVAR command, since that is the method used to store captured data into a dynamic variable. Single quotes may either be replaced by space characters or they can be escaped by doubling the single quote so that just one character will actually be stored as part of the dynamic variable value.
-
-Commas can also be replaced by spaces, optionally, although this is not critical at the time a value is being stored, so it may be preferred to use the character string edit codes that are assigned to the dynamic variable master record.
-
-#### Dynamic Variables
-
-The COMMA parameter of the SETDYNVAR command, and the corresponding "Group Separator" field in the dynamic variable master record, support the same control values as shown in the chart below for non-numeric, that is, character string values. These edit codes control how the value returned for a dynamic variable token will be reformatted in order to prevent potential problems with the way each dynamic variable may be employed.
-
-### Table of Character String Edit Values
-
-These character string edit control values may be used in the Response Rule field: Compress Numeric, or in the Dynamic Variable COMMA control field (which also controls the Grouping Separator value if a dynamic variable is numeric). Note that character string edit rules do not apply when a dynamic variable has been marked as a numeric value only.
-
-The values shown in this table refer to EBCDIC values. Most Latin character sets use the same hexadecimal values for the comma and the single quote. If a client site's IBM i partition uses a CCSID character set with different hex values, please contact SMA Support for assistance.
-
-- C = replace any comma (,) X'6B' with a space (X'40')
-- Q = replace any single quote (') X'7D' with a space (X'40')
-- D = replace both a comma and a single quote with a space
-- E = escape a single quote by inserting an extra single quote
-- F = replace comma with space AND escape a single quote by doubling
-
-The concept of "escaping" the single quote is supported by IBM command editors. When a character string is enclosed with a pair of single quotes, such as the VALUE( ) parameter of the SETDYNVAR command, any single quote that is included within the string would interrupt the string unless there are two single quote characters. If there are two single quotes, IBM command processing will replace them with just one single quote as the character string is being processed, and the characters that follow the doubled single quote will still be part of the character string.
 
 ## How Captured Data Response Rules Work
 
@@ -784,3 +743,45 @@ Name of new/existing variable  . TOKNAM        ____________
 :::tip
 These commands are seldom, if ever used because they were introduced before the Data Capture Rules had been expanded to include a built-in ability to store captured data directly to Dynamic Variables or to the deprecated, original Operator Replay token variables.
 :::
+
+## Exceptional Control Options for Captured Data and Response Rules
+
+### Managing Single Quotes and Commas in Captured Data
+
+#### Problem Definition
+
+##### Single Quotes
+
+Single quotes included in captured data, such as message text, green screen workstation displays or reports, can prevent storage of captured data into dynamic variables. The single quote interferes with delimiting character strings in IBM i command parameter values.
+
+##### Commas
+
+If a comma is included in the value of a dynamic variable it can interfere with the syntax of OpCon Event commands whenever that dynamic variable is included as one of the command parameter values. At this time, commas are reserved characters in OpCon Event commands that are used to separate the command parameters.
+
+### Preventing Special Character Errors
+
+#### Captured Data Response Rules
+
+The Compress Numeric field in the Response Rules master record supports additional values (listed in the chart below) that can be specified for character data. This set of field values controls the process of storing captured data into a dynamic variable.
+
+The most important purpose of this control is to prevent single quote characters from interrupting the string of characters that is inserted into the VALUE('value') parameter of the SETDYNVAR command, since that is the method used to store captured data into a dynamic variable. Single quotes may either be replaced by space characters or they can be escaped by doubling the single quote so that just one character will actually be stored as part of the dynamic variable value.
+
+Commas can also be replaced by spaces, optionally, although this is not critical at the time a value is being stored, so it may be preferred to use the character string edit codes that are assigned to the dynamic variable master record.
+
+#### Dynamic Variables
+
+The COMMA parameter of the SETDYNVAR command, and the corresponding "Group Separator" field in the dynamic variable master record, support the same control values as shown in the chart below for non-numeric, that is, character string values. These edit codes control how the value returned for a dynamic variable token will be reformatted in order to prevent potential problems with the way each dynamic variable may be employed.
+
+### Table of Character String Edit Values
+
+These character string edit control values may be used in the Response Rule field: Compress Numeric, or in the Dynamic Variable COMMA control field (which also controls the Grouping Separator value if a dynamic variable is numeric). Note that character string edit rules do not apply when a dynamic variable has been marked as a numeric value only.
+
+The values shown in this table refer to EBCDIC values. Most Latin character sets use the same hexadecimal values for the comma and the single quote. If a client site's IBM i partition uses a CCSID character set with different hex values, please contact SMA Support for assistance.
+
+- C = replace any comma (,) X'6B' with a space (X'40')
+- Q = replace any single quote (') X'7D' with a space (X'40')
+- D = replace both a comma and a single quote with a space
+- E = escape a single quote by inserting an extra single quote
+- F = replace comma with space AND escape a single quote by doubling
+
+The concept of "escaping" the single quote is supported by IBM command editors. When a character string is enclosed with a pair of single quotes, such as the VALUE( ) parameter of the SETDYNVAR command, any single quote that is included within the string would interrupt the string unless there are two single quote characters. If there are two single quotes, IBM command processing will replace them with just one single quote as the character string is being processed, and the characters that follow the doubled single quote will still be part of the character string.

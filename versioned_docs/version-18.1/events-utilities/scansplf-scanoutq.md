@@ -31,23 +31,23 @@ Previous versions of the LSAM used the Application ID text as the primary key fi
 
 1. In the command line, enter **SMAGPL/STRSMA** or **LSAMENU**. For more information on command parameters, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command) and the [LSAMENU Command](../operations/lsam.md#the-lsamenu-command).
 2. Enter **3** to choose the **Events and Utilities menu** in the SMA Main Menu.
-3. Enter **3** to choose **Work with SCANSPLF Applications** in the Events and Utilities menu.
-4. Press <**F6**> to Add a new SCANSPLF Applicaiton ID.
-5. Type the new Application ID text, then press <**Enter**> and allow the system to assign a new App Key number to this application.
-6. Press <**F3**> to return to the menu.
-7. Enter **4** to choose **Work with SPLF Scan Rules** in the Events and Utilities Menu.
-8. Press <**F6**> to Add a new spool file scanning rule.
-9. The **Select Capture Application** screen appears:  Type option **1** to select the desired Application ID, then press <**Enter**>.
-10. The **Create SPLF Scan Rule** screen appears.
-11. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and a description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about how these field values may be used.
-12. Press <**Enter**> to record the new SPLF Scan Rule record.
+3. Enter **4** to choose **Work with SPLF Scan Rules**.
+4. Use **F6=Add** to define at least one SPLF Scan Rule.
+    - After at least one Scan Rule has been created, this will establish an Application ID.  Each new Application ID requires that one Scan Rule be registered before the LSAM menu option **3** will show that Application ID in the list for **Work with SCANSPLF Applications**.  
+      - (This changes starting with Agent version 21.1, which supports creating a simple Application ID as an anchor for Data Capture and linked Response Rules.  Upgrades from version 18.1 to 21.1 will preserve the Application ID data set that is created using this version 18.1.)
+    - When returning to maintain an existing Application ID, easy access to the Scan Rules for just one Application ID can be managed starting with menu option **3**, which supports these list options:
+      - **1=Select**: Choose this Application ID and branch to the **Work with SPLF Scan Rules**.
+      - See the screen instructions below at [Work with SCANSPLF Applications](#work-with-scansplf-applications) for instructions about other list options.
+5. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and the Application (ID) \* description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about how these field values may be used.
+    - \* **CAUTION**: Type the Application ID text (30 characters) carefully, since Agent version 18.1 does not support changing this text field once the first Scan Rule for an Application has been created.
+6. Press <**Enter**> to record the new SPLF Scan Rule record.
 
 ### SCANSPLF Application Screens and Windows
 
 #### Work with SCANSPLF Applications
 
 - **Screen Title**: Work with SCANSPLF Applications
-- **Screen ID**: LSAUTLD301
+- **Screen ID**: LSAJ50R1
 
 ##### Menu Pathways
 
@@ -55,8 +55,8 @@ Main Menu \> Events and Utilities (#3) \> Work with SCANSPLF Applications (#3)
 
 ##### Fields
 
--  Search content:   To quickly search for a particular job, enter the first characters of the job name, or any other tracked job log content value, and press <**Enter**>. Any value that appears on the log detail display may be searched for, even though not all values appear in the list display.
--  Opt:              Enter one of the options listed at the top of the display and press <**Enter**> to execute that option for the selected line in the list.
+- **Search content**: To quickly search for a particular job, enter the first characters of the job name, or any other tracked job log content value, and press <**Enter**>. Any value that appears on the log detail display may be searched for, even though not all values appear in the list display.
+- **Opt**: Enter one of the options listed at the top of the display and press <**Enter**> to execute that option for the selected line in the list.
 
 ##### Options
 
@@ -280,7 +280,7 @@ For a given application, such as a financial report balancing task, the SCANSPLF
 
 See the centralized [Capture Data and Response Rules](./captured-data-response-rules.md) topic in this document for details about creating and attaching Response Rules to SCANSPLF Scan Rules.
 
-Remember that for the SCANSPLF utility, the Scan Rules are the Captured Data Rules.  This feature is different from Operator Replay and Message Management which require separate Captured Data Rules be optionally attached to the primary master records of those features.
+Remember that for the SCANSPLF utility, the Scan Rules are the Data Capture Rules.  This feature is different from Operator Replay and Message Management which require separate Data Capture Rule Applications be optionally attached to the primary master records of those features.
 
 ## The SCANSPLF Utility
 
