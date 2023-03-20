@@ -86,9 +86,7 @@ These TLS Security Options apply to both Job Scheduling and to the JORS Service.
 
 ### JORS Additional Performance Parameters
 
-By default, the OpCon Agent for IBM i only supported delivering an IBM i job log report in response to the OpCon user interface request   
-to "view job output."  Recently, this Agent's JORS service will also automatically include two other system-generated reports, if they are  
-present:  QPPGMDMP and QPDSPJOB.  If there are multiple instances of these reports or of a QPJOBLOG report, all instances will appear in the
+By default, the OpCon Agent for IBM i only supported delivering an IBM i job log report in response to the OpCon user interface request to "view job output."  Recently, this Agent's JORS service will also automatically include two other system-generated reports, if they are present:  QPPGMDMP and QPDSPJOB.  If there are multiple instances of these reports or of a QPJOBLOG report, all instances will appear in the
 report selection list presented by the OpCon user interface.           
                                                                        
 Not recommended for security reasons, but available to users is the option to allow any and all reports produced by a job to be viewd via the "view job output" feature (JORS):
