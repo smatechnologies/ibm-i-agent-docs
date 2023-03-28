@@ -5,9 +5,11 @@ sidebar_label: 'Using LSAM Job Tracking Functions'
 
 This section provides a simple outline of the steps required to utilize the various functions of the LSAM's job tracking feature. There are important explanations of how these functions work in the following section of this topic. It is important to understand that discussion because the LSAM job tracking feature alters the way IBM i job management behaves. These changes could impact other software that is running under IBM i.
 
-Certain of the following procedure outlines make reference to LSAM maintenance functions that are described in detail in a following section: [Job Tracking and Queuing Screens and Windows](../job-tracking/screens.md) . References to OpCon procedures, such as adding a job to an OpCon schedule, are described in detail in the ...
+Certain of the following procedure outlines make reference to LSAM maintenance functions that are described in detail in a following section: [Job Tracking and Queuing Screens and Windows](../job-tracking/screens.md). References to OpCon procedures and tools related to Job Tracking techniques can be found in the following locations within OpCon core product user help:
 
-*EDITOR'S NOTE: Fix the references to the OpCon Concepts Job-Type (and other?) documentation.*
+- [Job Tracking automation concepts](https://help.smatechnologies.com/opcon/core/automation-concepts/job-tracking)
+- [$JOB:TRACK event command](https://help.smatechnologies.com/opcon/core/events/types#jobtrack)
+- [$JOB:QUEUED event command](https://help.smatechnologies.com/opcon/core/events/types#jobqueued)
 
 ## Operating Job Tracking
 
