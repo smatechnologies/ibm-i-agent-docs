@@ -107,7 +107,7 @@ The table below presents LSAM status messages forwarded to the SAM. The message 
 | 7 | SMA0228    | Dynamic variable separator characters not found in LSAM control file|
 | 7 | SMA0229    | User-defined program for dynamic variable value failed|
 | 7 | SMA0247    | SCANSPLF command requested but not found for post-process job evaluation (typically an LSAM internal programming error) - requires SMA Support to resolve|
-| 7 | SMA0248    | IBM i job completed normally, but post-processing SCANSPLF reports error|
+| 7 | SMA0249    | IBM i job completed normally, but post-processing SCANSPLF reports error|
 | 8 | SMA0018    | (LSAM internal job status: Pre-run job completed normally)|
 | 9 | SMA0038    | Job completed with no error|
 | 9 | SMA0039    | Job completed with status not equal 0 |

@@ -18,6 +18,21 @@ In addition to adding job parameters after the separator character, it is also a
 
 When the SCANSPLF command is included in the job Call command line after the separator character, the IBM i LSAM will withhold a report to OpCon about the job completion status until after it completes the evaluation of the job log. This post-job log evaluation is only performed when the original Call command of the job has completed normally; it will not be performed for jobs that ended abnormally. (The job log of jobs that completed abnormally, if it is available, could be analyzed by a separate OpCon job that executes the SCANSPLF command using a dependency on the original job completion status.) For jobs that did complete normally, the final completion status of the job that is reported to the OpCon schedule will depend on the Scan Rules defined for this job name and the spool file QPJOBLOG, under the Application ID specified with the SCANSPLF command. Many Scan Rule options are available to control whether a job will be reported as completed normally or failed.
 
+In many cases, when the SCANSPLF command overrides the IBM i job completion status, the error message ID reported to OpCon for the job will be SMA0249:
+
+:::info
+Message ID . . . . . . . . . :   SMA0249                                     
+Message file . . . . . . . . :   SMAMSGF                                     
+  Library  . . . . . . . . . :     SMAGPL                                 
+                                                                             
+Message . . . . :   Job finished OK but post-processing determined a Failed status.
+
+The LSAM received a Finished OK job completion message from IBM i, but the   
+  required post-job process has reported a result that requires the job be   
+  reported as Failed to OpCon/xps.  A typical post-job process would include 
+  using the SCANSPLF utility to evaluate the job log report contents.
+:::
+
 When the SCANSPLF command is used along with additional SBMJOB job parameters, the SCANSPLF command and its own parameters must follow any job description parameters. That is, the SCANSPLF command string must be the last string of non-blank characters in the Call information field, following the Job parameters separator character. Using the same example as in the previous section, the Call command line might look like this:
 ```
 WRKJOB JOB(*) OUTPUT(*PRINT) OPTION(*ALL)|CCSID(297) SCANSPLF
@@ -29,7 +44,7 @@ Refer to the following Note to learn about ways to diagnose this special
 use of the SCANSPLF utility included with a Call command.
 
 :::tip
-The details about the SCANSPLF command that was assigned to evaluate a job's completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5; LSAM log viewer utilities are not documented in this documentation). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
+The details about the SCANSPLF command that was assigned to evaluate a job's completion status may be viewed from the IBM i LSAM log viewer for job status (LSAM menu 6, function 5, viewer 5). When a job was assigned to use SCANSPLF the function key F23=SCANSPLF will appear on the LSAM Job Status Details screen. Press F23 to view the LSAM record of the SCANSPLF command.
 :::
 
 ## Setting an IBM i Job's LDA Value
