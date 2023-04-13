@@ -16,15 +16,21 @@ SMA clients who were previously using either of these commands in IBM i Batch Jo
 
 ## Tips and Techniques for the CHKFILE and CHKIFSFIL Commands
 
-- New Optional Command Keywords
+### New Optional Command Keywords
 
-A long list of optional command keywords, documented below, support many new features so that this Agent can perform a File Arrival job type and also support an ongoing File Watcher strategy.
+A long list of optional command keywords, documented below, support many features that enable this Agent to perform a File Arrival job type and also support an ongoing File Watcher strategy.
 
-- Support for the OpCon File Arrival Job Sub-type
+### Support for the OpCon File Arrival Job Sub-type
 
-Starting with OpCon version 17.1, the IBM i job master record offers a new job sub-type called "File Arrival." (The sub-type of jobs for the IBM i Agent is supported by a "Job type" field within the lowerUser Interfacepanel that contains job master data specific to this Agent.) The File Arrival job sub-type supports a data entry panel that makes it easier to define File Arrival job parameters. This technique replaces the former strategy of using the IBM i "Batch Job" sub-type and entering raw command line text with many optional command keywords. But, behind the scenes, the Agent is still using the same CHKFILE and CHKIFSFIL commands as are documented here. The following information helps to decide on appropriate settings for the File Arrival job definition.
+Starting with OpCon version 17.1, the IBM i job master record offers a new job sub-type called "File Arrival." (The sub-type of jobs for the IBM i Agent is supported by a "Job type" field within the lower User Interface panel that contains job master data specific to this Agent.) The File Arrival job sub-type supports a data entry panel that makes it easier to define File Arrival job parameters. This technique replaces the former strategy of using the IBM i "Batch Job" sub-type and entering raw command line text with many optional command keywords. But, behind the scenes, the Agent is still using the same CHKFILE and CHKIFSFIL commands as are documented here. The following information helps to decide on appropriate settings for the File Arrival job definition.
 
-- Extended List of Command Completion Codes
+:::note
+Starting with this Agent's version 21.1.097 (version 21.1 at LSAM PTF level 097), the Agent is able to support five additional data entry fields that are added to the OpCon Solution Manager Job Master and Job Daily views of File Arrival job definitions.  Whenever this Agent version (or newer) is active, it will start notifying the OpCon server that it now supports "fileWatcher.v3" as one of its capabilities that are listed in the OpCon Machine record attributes.  As the OpCon server is updated to a level that includes the new data entry fields, it will show the new File Arrival job defintion fields for any IBM i Agent that has reported it is capable of processing data from the new fields.  
+
+Please also review the "Important" note below about continued support for $@Variables under the topic [Agent Variable Names Support Command Keywords](#-agent-variable-names-support-command-keywords).  
+:::
+
+### Extended List of Command Completion Codes
 
 The Agent File Arrival commands support an extended range of completion codes. These completion codes can be sent to a local Agent's Dynamic Variable, so that they can be tested when the CHKFILE or CHKIFSFIL commands are used from within the Agent's local automation tools, such as the Multi-Step Job Scripting tool.
 
@@ -36,23 +42,40 @@ When an OpCon Schedule submits a File Arrival job, the completion code can be se
 
 The Exit Description and the LSAM Feedback can be used to define Events triggered by the OpCon job.
 
-- New Options to Control the Final Job Status
+A complete description of completion codes is found later in this section under [Command Feedback Methods](#command-feedback-methods).
+
+### Options to Control the Final Job Status
 
 A combination of the Agent's File Arrival command parameters with a drop-down list of Failure Conditions in the OpCon User Interface job definition panel allows the user to decide whether the Agent will report a final job status of Finished OK or Failed, depending on a variety of different circumstances. These options allow the File Arrival job to adapt to the requirements of a software application or of the user's surrounding OpCon Schedule dependencies.
 
 The higher level decision about Finished OK versus Failed can be further refined by using the OpCon job's Events tab to respond to any of the completion codes expected from the IBM i Agent. 
 
-- New $@ Agent Variable Names Support Command Keywords
+### $@ Agent Variable Names Support Command Keywords
 
 As the OpCon general standards for File Arrival jobs evolve, the full capabilities that are unique to the IBM i Agent File Arrival commands can be engaged by setting any command keyword value from the Variables Tab of an OpCon job. This makes it possible to engage any of this Agent's capabilities that are not already supported by the OpCon User Interface job definition panel.
 
 :::tip
-The two variable prefix characters "$@" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of "$@". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the chapter about [Utilities Screens and Windows]../events-utilities/utilities-screens.md) for more information about changing the prefix characters.
+The two variable prefix characters "$@" are used consistently in this documentation to refer to the user-defined prefix characters that are defined in the LSAM Events and Utilities menu (sub-menu 3) using option 7: LSAM Utility Configuration. IBM i partitions using US EBCDIC (CCSID 37) should normally continue using the default values of "$@". Partitions using other national language character sets may need to change the prefix characters because of the way they are translated between the local version of IBM i EBCDIC and the ASCII character set used by the OpCon server. See the Commands and Utilities chapter topic [LSAM Utility Configuration](/events-utilities/menu#update-the-lsam-utility-options-control-parameters) for more information about changing the prefix characters.
 :::
 
-The IBM i Agent now supports a system-reserved naming convention for variables that can be added to the OpCon job Variables tab, where any command keyword can be prefixed with the characters '$@' to designate that the Variable Name is referring to a command keyword. For example, this Agent's command keyword "JOBENDTIME" can have a value set by addin a variable named $@JOBENDTIME to the OpCon job's Variables tab. The value provided for this type of variable name must exactly match the format and type of value that is supported by either command's JOBENDTIME() keyword.
+The IBM i Agent supports a system-reserved naming convention for variables that can be added to the OpCon job Variables tab, where any command keyword can be prefixed with the characters '$@' to designate that the Variable Name is referring to a command keyword. For example, this Agent's command keyword "JOBENDTIME" can have a value set by adding a variable named $@JOBENDTIME to the OpCon job's Variables tab. The value provided for this type of variable name must exactly match the format and type of value that is supported by either command's JOBENDTIME() keyword.
 
-The $@ command keyword convention is supported by this Agent for any IBM i job. However, it should only be used for circumstances documented in this IBM i Agent user help, otherwise unpredictable results could occur. As a general rule, this type of command keyword will be inserted only within the IBM i job's CMD() line, which is a parameter of the IBM i SBMJOB command. Thus, the $@ variable names cannot be used (at this time) to extend the parameters of the SBMJOB command itself.
+:::important
+Starting with Agent version 21.1.097 the following File Arrival job (command) parameters can be entered in the main OpCon Solution Manager job master record definition panel, eliminating the need to use the $@Variables for most uses of the File Arrival job.
+
+- **JOBENDTIME**: When the RECHKFREQ is greater than zero, the Job End Time sets the limit for how long the File Arrival job will perform its File Watcher checks for the file. If the file is not found by this time, then the job will end with a file-not-found completion code.  (If the Job End Time is not specified, then the File Create End Time will be used as the job end time.)
+- **RECHKFREQ**: A zero value makes the File Arrival job perform only a one-time check for the file. When greater than zero, the job will work as a File Watcher until the Job End Time is reached.
+- **FAILCODEDV**: The File Arrival job completion code will be stored into the Agent Dynamic Variable that is named by this field.
+- **NUMRECPROP / FILSIZPROP**:  When the file is found, its size will be reported to the OpCon Property that is named in this field.  DB2 tables searched by the CHKFILE command have their size reported as a number of records.  IBM i file systems outside of the DB2 database will have their size reported as a number of bytes.  Within the Solution Manager job master record data entry/display panels there is only one data entry field where the file size value storage Property is named, regardless of which file system is being searched.
+- **FAILCDPROP**: The File Arrival job completion code will be stored into the OpCon Property that is named by this field.
+
+Many IBM i Agent users will have File Arrival job master records in the OpCon server that are using the $@Variables to define one or more of these long-established File Arrival command parameters.  SMA recommends that, as convenient, users should remove the matching $@variables and instead register the values for those variables in the matching data entry fields that are supported by Solution Manager data entry.  However, whereever $@variables are already registered, they will take precedence over their matching Solution Manager data entry fields, in order to preserve the expected behavior of the existing File Arrival jobs.
+
+There are still a few, less frequently used parameters of the CHKFILE and CHKIFSFIL commands that are not supported by Solution Manager data entry.  Those parameters can still be supported by $@Variables under the job master VARIABLES tab.
+:::
+
+#### Methods for using $@Variables
+The $@ command keyword convention is supported by this Agent for any IBM i job. However, it should only be used for circumstances documented in this IBM i Agent user help, otherwise unpredictable results could occur. As a general rule, this type of command keyword will be inserted only within the IBM i job's CMD() line, which is a parameter of the IBM i SBMJOB command. Thus, the $@Variable names cannot be used (at this time) to extend the parameters of the SBMJOB command itself.
 
 The $@ command keyword variables can be used with IBM i Batch Jobs that are executing the CHK* commands. These Variable tab entries may support greater flexibility in the format of value data entry, as compared to using the raw CHKFILE or CHKIFSFIL command keywords in an IBM i Batch Job. For example, values for time relative to midnight can be expressed in clock time format such as 14:30, or in decimal format such as 14.5 (where both values mean 14 hours and 30 minutes after midnight/start of day).
 
