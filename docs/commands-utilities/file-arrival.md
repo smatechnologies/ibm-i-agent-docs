@@ -4,6 +4,8 @@ sidebar_label: 'File Arrival Jobs using CHKFILE and CHKIFSFIL'
 
 # File Arrival Jobs using CHKFILE and CHKIFSFIL
 
+## Introduction to IBM i File Arrival Jobs
+
 Previously, the IBM i LSAM utility commands CHKFILE and CHKIFSFIL could only be used for a simple, one-time, instant check for the existence of a file. One or two additional parameters were supported to provide feedback about user authority or locked objects. These commands could not easily be used to watch for a file arrival. The current version of IBM i Agent software supports a long list of optional command parameters for these commands, enabling a File Arrival job type along with additional file qualifiers.
 
 Since OpCon introduced the Windows (MSLSAM) job sub-type of a File Arrival job, a new standard was established for integrating file watching directly into OpCon schedules. This replaced many of the functions of the older, separate File Watcher service of the OpCon Windows Resource Monitor -- although there were certain services provided by the File Watcher that are still being replaced as the Windows job sub-type model evolves.
