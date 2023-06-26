@@ -200,7 +200,7 @@ The initial disk space temporarily occupied by the installation library (LI21104
 
 If database replication (mirroring) is not being used, then skip to the next checklist item.
 
-Please refer to the unified discussion of [Managing Database Mirroring](/reference/database-mirroring#managing-database-mirroring-1).
+Please refer to the unified discussion of [Managing Database Mirroring](../reference/database-mirroring#managing-database-mirroring-1).
 
 ### Upgrading from an LSAM Version Older than 18.1
 
