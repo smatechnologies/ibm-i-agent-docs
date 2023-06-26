@@ -177,7 +177,7 @@ For the IFS method, the path name recommended within the IBM i root(/) file syst
 6. <**Tab**> to the following fields and type data for each.
 
     - **PTF source**:
-        - Type **IFS** into this field to use the method that is recommended for most clients.  See [Configuration for the "IFS" method of obtaining PTFs](./ptf#configuration-for-the-ifs-method-of-obtaining-ptfs) just below.
+        - Type **IFS** into this field to use the method that is recommended for most clients.  See [Configuration for the "IFS" method of obtaining PTFs](../ptf#configuration-for-the-ifs-method-of-obtaining-ptfs) just below.
         - To select the automatic PTF service provided by SMA, type "**FTP**" into the PTF Source field. 
             - This FTP option is only useful at sites where firewall rules allow the IBM i partition to access an outside connection to the internet. Or, it may be used when sites will import the PTF save files to a Windows or UNIX ftp server within the firewall of the site LAN. 
         - Other options for this field are discussed in the next section of this document. 
@@ -276,7 +276,7 @@ Whenever one or more PTFs has been requested and loaded to the LSAM PTF control 
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF control database, and the review of unapplied PTFs has been completed, the normal procedure would be to apply all unapplied PTFs in a single step (as long as the PTF Post-install instructions present no obstacles). The individual PTF application process and the cumulative PTF application process are essentially similar.
 
 :::info
-Please refer to the necessary list of [PTF Pre-Installation Requirements](/ibm-i-lsam-release-notes/lsam-ptf-readme#installing-ibm-i-lsam-patches) before starting the PTF Apply process.
+Please refer to the necessary list of [PTF Pre-Installation Requirements](../ibm-i-lsam-release-notes/lsam-ptf-readme#installing-ibm-i-lsam-patches) before starting the PTF Apply process.
 ::: 
 
 1. Log on to an IBM i interactive workstation session as either QSECOFR or an LSAM Administrator with \*ALLOBJ authority. Normally, PTF application is considered to require QSECOFR authority because any aspect of the LSAM software may require updating, and some LSAM features involve the management of authority assigned to QSECOFR.

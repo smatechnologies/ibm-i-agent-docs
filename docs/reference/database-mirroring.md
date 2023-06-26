@@ -81,7 +81,7 @@ SMAPGM/SBMJOB2
 SMAPGM/SMASBMJOB
 ```
 
-These commands must be reproduced directly in the mirror database by executing the LSAM's LSAINIT command directly within the mirror target partition. See [Clone an Existing Environment](/reference/multiple-environments-how-to-add-an-lsam-environment#method-2-clone-an-existing-environment) for details about how to use the LSAINIT command that is required to complete alignment and configuration of a cloned LSAM environment.
+These commands must be reproduced directly in the mirror database by executing the LSAM's LSAINIT command directly within the mirror target partition. See [Clone an Existing Environment](../reference/multiple-environments-how-to-add-an-lsam-environment#method-2-clone-an-existing-environment) for details about how to use the LSAINIT command that is required to complete alignment and configuration of a cloned LSAM environment.
 
 SMA intends to eliminate these clones of IBM i commands in a future version of the LSAM.
 :::

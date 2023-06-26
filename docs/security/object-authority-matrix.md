@@ -60,7 +60,7 @@ In addition to the table of LSAM Menu functions below, the security officer who 
 
 | Menu/Function | Description | Program or Command |
 | ---: | ----------- | ---------------|
-| **LSAM Main Menu**  | LSAM menus have \*USE authority granted to \*PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function. The STRSMA command in library SMAGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system. The same applies to the alternate direct access command to the LSAM menu system: LSAMENU. (See [LSAMENU Command](docs/commands-utilities/lsam-operations.md#lsamenu-command).)   | LSAMNUE0 (menu) |
+| **LSAM Main Menu**  | LSAM menus have \*USE authority granted to \*PUBLIC. Menu system security is enforced at the object level (command or program) of each menu function. The STRSMA command in library SMAGPL and its command processor program are restricted from public use, so that authority can be granted on a per-user basis to control who has access to the LSAM Menu system. The same applies to the alternate direct access command to the LSAM menu system: LSAMENU. (See [LSAMENU Command](../commands-utilities/lsam-operations.md#lsamenu-command).)   | LSAMNUE0 (menu) |
 | 1.                  | Job track menu       | LSAMNUE1 (menu)      |
 | 2.                  | Message management menu  | LSAMNUE2 (menu)      |
 | 3.                  | Events menu          | LSAMNUE3 (menu)      |

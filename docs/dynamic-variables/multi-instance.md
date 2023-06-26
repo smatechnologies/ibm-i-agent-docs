@@ -268,7 +268,7 @@ Whenever it is necessary to introduce multi-instance Dynamic Variables, such as 
 
 ### Multi-Instance DynVar Support for SCANSPLF Evaluation of IBM i Job Completion
 
-For detailed instructions about extensions to the command line of an OpCon job for IBM i, please refer to [Extending the IBM i Call Command with Special Parameters](/configuration/extended-call-cmd#using-scansplf-to-evaluate-an-ibm-i-job-completion-status).
+For detailed instructions about extensions to the command line of an OpCon job for IBM i, please refer to [Extending the IBM i Call Command with Special Parameters](../configuration/extended-call-cmd#using-scansplf-to-evaluate-an-ibm-i-job-completion-status).
 
 The Agent’s job completion message server recognizes when a SCANSPLF (Scan Spool File) command has been appended to the “Call” command line in an OpCon IBM i batch job.  A pipe **( | )** character is placed at the end of the primary call command, and there are multiple, optional job management extensions that can be added to the command line after the pipe.  The last optional addition can be a SCANSPLF command that is configured by the client administrator to evaluate the contents of the IBM i job log report produced by the job.  In this mode, the SCANSPLF command can be used to override the job completion status that the Agent reports to the OpCon server, forcing the final job status to be either “Finished OK” or “Failed”, depending on messages that are found in the job log report.
 

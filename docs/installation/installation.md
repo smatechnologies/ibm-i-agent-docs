@@ -220,7 +220,7 @@ Please refer to this same section of documentation within the Version 18.1 of th
 
 As the Installation Strategy suggests, SMA recommends performing an isolated upgrade test. This safety measure will prove if there are any exceptional circumstances in a client's environment that were not anticipated by SMA during the development, internal QA testing or external beta site testing of the newest LSAM version.
 
-For details about Cloning an LSAM environment see [Clone an Existing Environment](/reference/multiple-environments-how-to-add-an-lsam-environment#method-2-clone-an-existing-environment) which includes details about how to use the LSAINIT command that is required to complete alignment and configuration of a cloned LSAM environment.
+For details about Cloning an LSAM environment see [Clone an Existing Environment](../reference/multiple-environments-how-to-add-an-lsam-environment#method-2-clone-an-existing-environment) which includes details about how to use the LSAINIT command that is required to complete alignment and configuration of a cloned LSAM environment.
 
 ### Preparing an LSAM Environment for Upgrade
 

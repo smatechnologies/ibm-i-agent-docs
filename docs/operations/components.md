@@ -57,7 +57,7 @@ flags, set in various LSAM menu functions.
 - During the file reorganization step, this may be the only job active in the LSAM subsystem. This task suspends all other LSAM server jobs in order to free the master files for reorganization. When the file reorganization is completed, this job restarts the other LSAM server jobs.
 
 #### ALTNFY, ALTNFY4
-- This pair of optional jobs may appear if the LSAM Alternate Job Notify server feature has been configured and activated.  Access to the LSAM controls for managing this feature is from the LSAM menu 6, option 8: Alternate Job Notify menu.  Information about when and how to use this feature is found in [Alternate Job Nofify Service](/operations/lsam.md#alternate-job-notify-service)
+- This pair of optional jobs may appear if the LSAM Alternate Job Notify server feature has been configured and activated.  Access to the LSAM controls for managing this feature is from the LSAM menu 6, option 8: Alternate Job Notify menu.  Information about when and how to use this feature is found in [Alternate Job Nofify Service](../operations/lsam.md#alternate-job-notify-service)
 - Uses for this service include:
     - Supporting "true-passive Job Tracking."
     - Supporting "IU.Dynamic variable" instances.
@@ -65,7 +65,7 @@ flags, set in various LSAM menu functions.
 
 #### JOBSTS
 - The optional IBM i LSAM Job Status Monitor runs constanly to detect any jobs in selected IBM i subsystems that are stuck in MSGW status. 
-- See the topic of [Monitoring for IBM i Jobs in MSGW Satus](/operations/tips#monitoring-for-ibm-i-jobs-in-msgw-status) under Operation Tips and Techniques for instructions about configuring and using the Job Status Monitor feature.  This Agent server job will generate a message that can be intercepted by the IBM i LSAM Message Management facility, from which many forms of notification and response can be generated, including OpCon Event commands. 
+- See the topic of [Monitoring for IBM i Jobs in MSGW Satus](../operations/tips#monitoring-for-ibm-i-jobs-in-msgw-status) under Operation Tips and Techniques for instructions about configuring and using the Job Status Monitor feature.  This Agent server job will generate a message that can be intercepted by the IBM i LSAM Message Management facility, from which many forms of notification and response can be generated, including OpCon Event commands. 
 :::NOTE
 The JOBSTS Agent server job replaces a former IBM Navigator Monitor capability that was dropped from the Navigator when IBM published the newer "Navigator for i."  Previous advice included in this Agent documentation about integrating with IBM Navigator Monitors is replaced by the instructions for using the Agent's JOBSTS server job.
 :::

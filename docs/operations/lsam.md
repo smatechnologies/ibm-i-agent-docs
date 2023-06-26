@@ -373,7 +373,7 @@ The Alternate Job Notify feature is provided for special purposes only, includin
 
 This option provides access to a sub-menu of functions that support the optional LSAM server named JOBSTS.  This server is able to watch for any jobs in IBM i subsystems that the user may select that are stuck in the MSGW (message wait) status.
 
-Details about the purpose and management of this optional server job are found in [Monitoring for IBM i Jobs in MSGW Status](/operations/tips#monitoring-for-ibm-i-jobs-in-msgw-status) under the Operation Tips and Techniques of this chapter about IBM i Components and Operations.
+Details about the purpose and management of this optional server job are found in [Monitoring for IBM i Jobs in MSGW Status](../operations/tips#monitoring-for-ibm-i-jobs-in-msgw-status) under the Operation Tips and Techniques of this chapter about IBM i Components and Operations.
 
 ## Alternate Job Notify Service
 
