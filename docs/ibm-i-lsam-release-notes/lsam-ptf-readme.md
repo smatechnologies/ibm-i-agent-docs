@@ -10,7 +10,7 @@ This sub-chapter explains how to manage the installation of all available PTFs (
 
 This sub-chapter replaces the former stand-alone "PTF README" PDF document that was previously stored with the LSAM PTF cumulative save files in the SMA FILES ftp server under /OpCon Releases/Agents/IBM i/.
 
-In the chapter [LSAM Software Maintenance](/maintenance/ptf.md#lsam-program-temporary-fixes) there are instructions for clients about the different options available for obtaining LSAM PTFs from SMA.  The options include both direct access from the IBM i partition to the SMA ftp server and a variety of indirect access methods.  This document assumes that a client may not be configured for direct access to an SMA ftp server, and that an indirect method will likely be the most convenient and efficient method for applying all the PTFs available just after a new installation of the LSAM has been completed. 
+In the chapter [LSAM Software Maintenance](../maintenance/ptf.md#lsam-program-temporary-fixes) there are instructions for clients about the different options available for obtaining LSAM PTFs from SMA.  The options include both direct access from the IBM i partition to the SMA ftp server and a variety of indirect access methods.  This document assumes that a client may not be configured for direct access to an SMA ftp server, and that an indirect method will likely be the most convenient and efficient method for applying all the PTFs available just after a new installation of the LSAM has been completed. 
 
 SMA recommends the “IFS” method for indirect installs, as explained next in the procedure summary that follows. 
 
@@ -54,7 +54,7 @@ If the value is already *ALL, skip this procedure and continue with LSAM PTF pro
 
 If database replication (mirroring) is not being used, skip to the next topic.
 
-Please refer to the unified discussion of [Managing Database Mirroring](/reference/database-mirroring#managing-database-mirroring-1).
+Please refer to the unified discussion of [Managing Database Mirroring](../reference/database-mirroring#managing-database-mirroring-1).
 
 ### Important Notes and Warnings
 
@@ -88,7 +88,7 @@ If any clients remain at LSAM version 04.00.03, be advised that upgrading to ver
 
 SMA recommends that clients who are planning to perform LSAM PTF Installation for the first time during off hours should contact SMA Support in advance so that SMA can alert the appropriate personnel to be on stand-by in case any error should occur.  The LSAM PTF process is carefully tested and there is seldom any error with the programmed procedures.  Some of the PTF Installation steps can and should be performed in advance during normal business hours.
 
-The following steps represent a summary of the procedure SMA recommands for normal installation of the LSAM PTFs.  The separate chapter about [LSAM Software Maintenance](/maintenance/ptf.md#lsam-program-temporary-fixes) provides extensive detail about LSAM PTF menu options that could prove useful in exceptional circumstances.  But SMA recommends the following summary procedure because it skips all the unnecessary detail and focuses on the minimum required steps for normal LSAM PTF installation.
+The following steps represent a summary of the procedure SMA recommands for normal installation of the LSAM PTFs.  The separate chapter about [LSAM Software Maintenance](../maintenance/ptf.md#lsam-program-temporary-fixes) provides extensive detail about LSAM PTF menu options that could prove useful in exceptional circumstances.  But SMA recommends the following summary procedure because it skips all the unnecessary detail and focuses on the minimum required steps for normal LSAM PTF installation.
 
 ### Essential procedure for applying PTFs to the LSAM just after a new installation or upgrade
 

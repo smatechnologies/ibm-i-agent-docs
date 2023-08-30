@@ -82,7 +82,7 @@ One of the codes in the following table will be displayed as part of the complet
 
 ## Managing Operator Replay Exit Codes via Multi-Step Job Scripts
 
-This topic uses the Agent's [Multi-Step Job Scripting](/restricted-mode/multi-step-scripting#multi-step-job-scripting-1) tool as a likely example of how to detect failures of the Operator Replay start command STROPRRPY and how to retrieve and forward an Operator Replay failure message ID on to the OpCon server that has started the Multi-Step job.
+This topic uses the Agent's [Multi-Step Job Scripting](../restricted-mode/multi-step-scripting#multi-step-job-scripting-1) tool as a likely example of how to detect failures of the Operator Replay start command STROPRRPY and how to retrieve and forward an Operator Replay failure message ID on to the OpCon server that has started the Multi-Step job.
 
 The techniques described in this topic were introduced to the IBM i Agent version 21.1 in LSAM PTF # 211088.
 
@@ -108,9 +108,9 @@ The Operator Replay Script driver job does the work of creating the OPRRPYERR da
 
 So, it is not possible to retrieve an Operator Replay Exit code from the QTEMP/OPRRPYERR data area except from within the same IBM i job.  For example, if a Multi-Step Job Script uses the IBM i command SBMJOB to cause the STROPRRPY command to execute in a separate batch job, the QTEMP library for that job (where the data area will be created) is not accessible to any other job, including the submitting job.
 
-As a result, communication between the interactive workstation job and a completely separate job that has submitted the Operator Replay Script driver job would require a complicated set of user-defined commands and OpCon Agent automation techhniques.  Some of these techniques are more possible with the OpCon Agent for IBM version 21.1 (and newer), optionally by leveraging [Multi-Instance Dynamic Variables](/dynamic-variables/multi-instance#overview-of-multi-instance-dynamic-variables).
+As a result, communication between the interactive workstation job and a completely separate job that has submitted the Operator Replay Script driver job would require a complicated set of user-defined commands and OpCon Agent automation techhniques.  Some of these techniques are more possible with the OpCon Agent for IBM version 21.1 (and newer), optionally by leveraging [Multi-Instance Dynamic Variables](../dynamic-variables/multi-instance#overview-of-multi-instance-dynamic-variables).
 
-If it appears necessary to support communication among these three different jobs, SMA recommends re-evaluating the job flow and possibly separating the Operator Replay jobs from other work, relying on OpCon automation and data sharing techniques such as storing values into OpCon Properties and/or sharing OpCon Property values with the Agent's Dynamic Variables. There is also a more complex technique available for communicating with a virtual workstation job, as explained in [Operator Replay Sharing Variable Values with an Interactive Job](/dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
+If it appears necessary to support communication among these three different jobs, SMA recommends re-evaluating the job flow and possibly separating the Operator Replay jobs from other work, relying on OpCon automation and data sharing techniques such as storing values into OpCon Properties and/or sharing OpCon Property values with the Agent's Dynamic Variables. There is also a more complex technique available for communicating with a virtual workstation job, as explained in [Operator Replay Sharing Variable Values with an Interactive Job](../dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
 :::
 
 ### Configuration of Multi-Step Scripts for Sending Operator Replay Exit Codes to OpCon Detailed Job Messages

@@ -51,8 +51,8 @@ Selection or command
 - 7=Operator Replay configuration
 - 8=Display Captured Data log
 - 9=Display data capture debug log
-- 10=Maintain Dynamic Variables - see [Introduction to Dynamic Variables](/dynamic-variables/overview#introduction-to-dynamic-variables)                     
-- 11=Client eMail Management menu - see [Client eMail Management](/events-utilities/client-email#client-email-feature-replacement)                   
+- 10=Maintain Dynamic Variables - see [Introduction to Dynamic Variables](../dynamic-variables/overview#introduction-to-dynamic-variables)                     
+- 11=Client eMail Management menu - see [Client eMail Management](../events-utilities/client-email#client-email-feature-replacement)                   
 - 12=Work with User Environment Matrix (if available) - see NOTE below
 
 The options displayed on this menu are explained in the following sections of this chapter, except as noted in the list above. Type an option number in the Selection or command line and press <**Enter**> to begin using any of the options. 

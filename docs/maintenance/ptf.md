@@ -276,7 +276,7 @@ Whenever one or more PTFs has been requested and loaded to the LSAM PTF control 
 Whenever one or more PTFs has been requested and loaded to the LSAM PTF control database, and the review of unapplied PTFs has been completed, the normal procedure would be to apply all unapplied PTFs in a single step (as long as the PTF Post-install instructions present no obstacles). The individual PTF application process and the cumulative PTF application process are essentially similar.
 
 :::info
-Please refer to the necessary list of [PTF Pre-Installation Requirements](/ibm-i-lsam-release-notes/lsam-ptf-readme#installing-ibm-i-lsam-patches) before starting the PTF Apply process.
+Please refer to the necessary list of [PTF Pre-Installation Requirements](../ibm-i-lsam-release-notes/lsam-ptf-readme#installing-ibm-i-lsam-patches) before starting the PTF Apply process.
 ::: 
 
 1. Log on to an IBM i interactive workstation session as either QSECOFR or an LSAM Administrator with \*ALLOBJ authority. Normally, PTF application is considered to require QSECOFR authority because any aspect of the LSAM software may require updating, and some LSAM features involve the management of authority assigned to QSECOFR.
