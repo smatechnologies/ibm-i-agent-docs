@@ -224,6 +224,10 @@ For details about Cloning an LSAM environment see [Clone an Existing Environment
 
 ### Preparing an LSAM Environment for Upgrade
 
+:::warning
+An audit program is available that must be executed before strating an upgrade of the LSAM from version 18.1 to 21.1.  This audit checks for an unsupported connection between any Operator Replay Script Step that has been linked to more than one unique Capture Data Applications.  Failing to correct data identified by the audit report will result in corrupted automation rules for the affected Operator Replay Scripts.  Please follow the instructions below to [Auditing the LSAM for Data That Cannot Be Converted](#auditing-the-lsam-for-data-that-cannot-be-converted).
+:::
+
 Both the backup steps and the upgrade steps can be completed much more quickly if the LSAM database in the SMADTA library has been effectively purged using the LSAM Parameters database maintenance values (LSAM main menu, option 7).
 
 Use the IBM i command DSPOBJD to display a list of all objects of type \*FILE in the SMADTA library (or its equivalent in an alternate environment). Search the list for any files that are extremely large.
@@ -288,6 +292,164 @@ It is not necessary to delete any LSAM utility objects that were previously (opt
 If LSAM objects were previously installed in the IBM library QGPL, review the discussion below (following the step-by-step instructions) to evaluate the available options for installing the upgraded LSAM utilities in either the current location of library QGPL, or in the LSAM standard (non-IBM) library called SMAGPL. SMA recommends utilizing the upgrade option that can automatically migrate LSAM objects and environment control data out of the QGPL library, that is, whenever upgrading the Production copy of the LSAM.
 
 Proceed to the New Install Instructions. These instructions include any exceptional steps that might be required when upgrading an existing LSAM environment.
+
+### Auditing the LSAM for Data That Cannot Be Converted
+
+New installations that are not upgrading from a previous release should skip this section and proceed with [New Install Instructions](#new-install-instructions).
+
+An audit program is available that must be executed before starting an upgrade of the LSAM from version 18.1 to 21.1.  This audit checks for an unsupported connection between any Operator Replay Script Step that has been linked to more than one unique Capture Data Application.  Failing to correct data identified by the audit report will result in corrupted automation rules for the affected Operator Replay Scripts. 
+
+#### Locating the Data Audit Program (AUDRPYR40)
+
+The audit report is produced by two program objects:
+- AUDRPYR40:  An RPG program that evaluates the LSAM database
+- AUDRPYP40:  An IBM i printer file that contains the audit report format
+
+As SMA discovered an open door that allowed unexpected multiple data relationships, action was taken to provide an immediate remedy to clients who are ready to upgrade from LSAM version 18.1 to 21.1.  One of the following resources can be used to find the audit report program objects.  These are listed in the chronological order in which they were distributed:
+
+- At the secured SMA ftp server (files.smatechnologies.com), an IBM i save file (in binary stream file format) and a PDF document of instructions can be downloaded from this web location:
+
+  - https://files.smatechnologies.com/files/IBMiLSAMptf/IBM%20i%20LSAM%2018.1%20PTF%20emergency%20releases/AUDRPYR40%20pre-upgrade%20audit%20programs%20and%20instructions?sortColumn=path&sortDirection=desc
+  
+- The program objects will be included in an updated release of the LSAM PTFs for LSAM version 18.1.  (The LSAM PTF number assigned to this update will replace this text when it is released.)
+- The LSAM Install/Upgrade save file (and library within it) will include the audit program objects in an updated version of the file or library named LI181027x (where 'x' is a file version code that will be replaced here when that updated file is ready).
+
+#### Executing and Reviewing the Data Audit Report
+
+If the audit program objects are not installed by the LSAM 18.1 PTFs, then plan to copy them to the SMAPGM library of the LSAM environment that will be upgraded.  (Test environments will typically use a variation of the SMAPGM library name, unless the test environment is isolated within a test IBM i partition.)
+- If downloading the program objects from the SMA FILES server, follow the instructions in the AUDRPY* document provided with the objects.
+- If using the audit program objects provided with the LI181027* install/upgrade library, either:
+  - Add the LI181027* library to the job's existing LSAM library list; or, 
+  - Copy the program objects from the LI181027* library to the SMAPGM library of the LSAM environment.
+
+Execution of the audit program requires access to the SMADTA library to find the file OPRRPYF40. The RPG program must also be able to find the printer file AUDRPYP40 in the SMAPGM library (or in some other library that is part of the library list of the job that executes the audit).
+
+When the audit programs are installed into the SMAPGM library, one easy way to execute the audit is to enter the LSAM menu system and then type the following command on the IBM i command line of the LSAM menu:
+
+    CALL AUDRPYR40
+
+The program will finish very quickly.  An easy way to find the audit report after an interactive execution of the program is to enter the WRKJOB command and then use option 4 to find the spool file named "AUDRPYP40."
+
+When viewing the report, first skip to the last page of the report to see if there are any errors reported.  If the "total errors" count is zero, skip the remainder of the audit process and proceed normally to the [New Install Instructions](#new-install-instructions).
+
+Here is an example of an audit report that shows zero errors in the total lines.  Notice the arrow pointing to the zero count of "Total Illegal App IDs/Step."
+
+```
+AUDRPYP1 Operator Replay Capture App Audit Env: SMAGPL18 Vers: 18.1_027
+08/21/23 11:08:01                                           PAGE:     1
+
+*ERR OR_Script    Step#  Application ID description     SEQ#
+     DEMOSCRIPT   0030   THIS APP ID IS THE 18.1 KEY    010
+     DEMOSCRIPT   0030   THIS APP ID IS THE 18.1 KEY    020
+
+     DEMOSCRIPT   0040   APP ID LINKED TO OTHER STEP    010
+
+     Total Script Steps  . . . : 2
+
+     Total Capture App IDs . . : 2
+
+     Total Illegal App IDs/Step: 0   <<<---
+
+     * * * END OF REPORT * * *
+```
+
+When the total errors are greater than zero, use the following procedure to complete data entry updates that will allow the Operator Replay automation solution to be successfully converted to the new, more flexible solution introduced by LSAM version 21.1.
+
+#### Procedure for Correcting Unsupported Data
+
+When one or more error conditions exist, it will be necessary to perform manual maintenance in order to enable a successful upgrade of the Operator Replay Script and its Capture Data Rules to the new, more flexible database defintions of LSAM Version 21.1.
+
+Here is an example of an audit report that shows zero errors in the total lines.  Notice the arrow pointing to the dount of two "Total Illegal App IDs/Step."
+
+```
+AUDRPYP1 Operator Replay Capture App Audit Env: SMAGPL18 Vers: 18.1_027
+08/21/23 11:08:01                                           PAGE:     1
+
+*ERR OR_Script    Step#  Application ID description     SEQ#
+     DEMOSCRIPT   0030   DIFFERENT APP ID, SAME STEP#   005
+**** DEMOSCRIPT   0030   THIS APP ID IS THE 18.1 KEY    010
+**** DEMOSCRIPT   0030   THIS APP ID IS THE 18.1 KEY    020
+
+     DEMOSCRIPT   0040   APP ID LINKED TO OTHER STEP    010
+
+     Total Script Steps  . . . : 2
+
+     Total Capture App IDs . . : 3
+
+     Total Illegal App IDs/Step: 2   <<<---
+
+     * * * END OF REPORT * * *
+```
+
+The sample audit report above is showing the following condition that cannot be automatically converted from LSAM Version 18.1 to version 21.1:
+
+- The Operator Replay Script named DEMOSCRIPT has a Step # 0030 that has been assigned to two different Capture Data Application IDs.
+
+The LSAM database in version 21.1 supports only one Application Key (newly associated with the former "Application ID" text + key field) that may be linked to an Operator Replay Script Step.  Therefore, the three different Capture Data Rules listed above in the sample report must be merged so that all three belong to the same Application ID.  This can be accomplished by changing (actually, by copying) either the fist Application ID that shows SEQ# 005 to match the other two Capture Date Rules (showing SEQ# 010 and 020), or the other two could be changed (copied) to match the Application ID of the first (SEQ# 005) Capture Data Rule.
+
+The manual procedure outlined below is fairly easy and effective, and it will carry the Response Rules associated with a copied Capture Data Rule, so that only two maintenance operations are required per Captured Data Rule to be changed.  Here is an outline of the maintenance steps required, and it is followed by detailed operational step instructions:
+- First, decide which Capture Data Rule(s) will be changed.  Take note of the Sequence Numbers assigned to each Rule record.  The Sequence Numbers among all the current Capture Data Rules control the order in which the Capture Data Rules and their associated Response Rules are executed.
+- Choose one of the steps below that navigate to the list display where Capture Data Rules can be copied with option 3=Copy.  Navigating to Capture Data Rules from the Operator Replay Step maintenance might be the more obvious and safest way to navigate to that list display.
+- Note that before LSAM 21.1, the Capture Data Application IDs could not be changed.  That means option 2=Change will not work to update the Application ID text in the LSMA 18.1 database.  Instead, the existing Capture Data Rule (along with its attached Response Rules) must be copied using option 3=Copy.
+- After the new copy is made of a Capture Data Rule, then the old version of that Rule must be deleted (along with its attached Response Rules, which are handled as a window opens to offer the option of also deleting them).
+- Following completion of all corrective maintenance, run the audit report again to be sure that there are no mistakes or further errors reported.  Please look closely at the Sequence Numbers assigned to the Capture Data Rules, to make sure that all Rules within a Capture Application appear to be in the correct sequence.
+
+#### Procedure for Accessing the Capture Data Rules List Display
+
+The first step in revising the Capture Data Rules Application IDs is to navigate to the list display that shows the Application ID Text along with the Sequence Number for each Capture Rule within that Application.  Look at the options list at the top of the display to find option 3=Copy in order to be sure this is the correct list display.
+
+##### Access to Capture Data Rules Maintenance via Operator Replay Step Maintenance
+
+SMA recommends this path to Capture Data Rules maintenance because navigating through the Operator Replay Step record(s) assures that only the Capture Data Rules for the Step will appear in the maintenance list.
+
+- From LSAM menu 4, choose option 2 to list Operator Replay Scripts.
+- Use option 1 to select the Script requiring maintenance.
+- Type option 2=Change next to the Script Step that is linked to Capture Data Rules.
+  - Refer to the audit report to identify the Script and Script Step number.
+  - There will be no changes made to the Script Step.
+- From the Step record display, press F10 to directly access the Capture Data Rules list display that shows one or more Capture Data Rules that are connected to the Script Step.
+  - This list display should show option 3=Copy.  
+- Next, see instructions below for executing the Copy process for a Capture Data Rule + Sequence number.
+
+##### Access to Capture Data Rules Maintenance from the LSAM Menu
+
+SMA recommends the previously outlined process for navigating to the Capture Data Rules maintenance list display, since the method that follows requires more careful attention and is less well protected from errors.
+
+- From the LSAM menu 4, select option 5. Work with Screen Capture definitions.
+- The initial list that appears shows all registered Capture Application IDs for the Operator Replay feature.  Only option 7 is available to select the Application ID that should be maintained.  Type 7 next to the Application of choice and press Enter.
+- The next list display shows all the Sequence Numbered Rules that are part of the Application ID selected for maintenance.
+- Next, see instructions below for executing the Copy process for a Capture Data Rule + Sequence number.
+
+##### Copying a Capture Data Rule
+
+Now viewing display format OPRR40R1, in Subset mode, it will be necessary to type option 3=Copy next to each Capture Rule that is associated with the Operator Replay Script requiring maintenance.  Look carefully to be sure to work only with the one or more Capture Data Rules that were selected from the audit report.
+
+Before starting the Copy process, select and copy from the list display the Appication ID text that should be applied to the Rules records selected from the audit list for change.  It is important to be able to paste an exact copy of the desired text string into the records being copied to this unified Application Identifier.
+
+- Type option 3 next to the first (or next) selected "Screen Capture Definition" (= Capture Data Rule).  Press Enter to continue.
+- Display format OPRR40R2 offers a profile of the Capture Definition that allows new characters to be typed into the "Application Identifier" field.  
+  - Replace the text with new text that exactly matches the other Rules records linked to the same Script and Step number.  Use the Paste operation if the unifying Application ID descritive text was copied from the previous list.
+  - Verify that the Capture Definition record being copied has a correct Capture Sequence number, based on the plan devised during the audit report review.  (Do not change the Script Sequence number.)
+  - Press Enter to continue.
+- A window appears asking "Copy response rules also?"  Leave this set to 1 = yes.  It is critical for the attached Response Rules to be automatically copied to the same new Capture Application ID.
+- Press Enter to complete the copy operations.
+
+##### Delete Abandoned Screen Capture Definitions (Data Capture Rules)
+
+It is important to delete the Screen Capture Definitions that have already been copied to a new Capture Application ID.  The abandoned version of each Definition that was copied will confuse the LSAM conversion program during an upgrade to LSAM version 21.1.
+
+- From the LSAM menu 4, select option 5. Work with Screen Capture definitions.
+- The initial list that appears shows all registered Capture Application IDs for the Operator Replay feature.  Only option 7 is available to select the Application ID(s) that should be deleted.  Type 7 next to the Application of choice and press Enter.
+- The next list display shows all the Sequence Numbered Rules that are part of the Application ID selected for maintenance.
+- Type option 4=Delete next to one or more records that show the abandoned "Application ID" text, then press Enter to continue.
+- For each record selected for deletion, a window will pop up asking "Delete response rules also?"  Leave this set to 1 = Yes.  Press Enter to complete the process of deleting the Screen Capture Definition record and any/all Response Rules that are attached to it.
+- When multiple Screen Capture Definition records were selected for deletion, the maintenance program will continue prompting with the "Delete ... also?" window (requiring the same response as above) until all selected Application ID Sequence records are deleted.
+
+##### Repeat the Audit Report after Maintenance
+
+After the copies and deletions are completed, re-run the audit report to assure that there are no more errors encountered.
+
+In case of unexpected results, please contact SMA Support for assistance.  It is important to achieve a clean audit report before proceding with an LSAM Upgrade to release 21.1.
 
 ## New Install Instructions
 
