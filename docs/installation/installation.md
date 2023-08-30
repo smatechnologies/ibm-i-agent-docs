@@ -312,15 +312,11 @@ As SMA discovered an open door that allowed unexpected multiple data relationshi
   - https://files.smatechnologies.com/files/IBMiLSAMptf/IBM%20i%20LSAM%2018.1%20PTF%20emergency%20releases/AUDRPYR40%20pre-upgrade%20audit%20programs%20and%20instructions?sortColumn=path&sortDirection=desc
   
 - The program objects will be included in an updated release of the LSAM PTFs for LSAM version 18.1.  (The LSAM PTF number assigned to this update will replace this text when it is released.)
-- The LSAM Install/Upgrade save file (and library within it) will include the audit program objects in an updated version of the file or library named LI181027x (where 'x' is a file version code that will be replaced here when that updated file is ready).
 
 #### Executing and Reviewing the Data Audit Report
 
 If the audit program objects are not installed by the LSAM 18.1 PTFs, then plan to copy them to the SMAPGM library of the LSAM environment that will be upgraded.  (Test environments will typically use a variation of the SMAPGM library name, unless the test environment is isolated within a test IBM i partition.)
 - If downloading the program objects from the SMA FILES server, follow the instructions in the AUDRPY* document provided with the objects.
-- If using the audit program objects provided with the LI181027* install/upgrade library, either:
-  - Add the LI181027* library to the job's existing LSAM library list; or, 
-  - Copy the program objects from the LI181027* library to the SMAPGM library of the LSAM environment.
 
 Execution of the audit program requires access to the SMADTA library to find the file OPRRPYF40. The RPG program must also be able to find the printer file AUDRPYP40 in the SMAPGM library (or in some other library that is part of the library list of the job that executes the audit).
 
