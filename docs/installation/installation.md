@@ -316,7 +316,7 @@ As SMA discovered an open door that allowed unexpected multiple data relationshi
 #### Executing and Reviewing the Data Audit Report
 
 If the audit program objects are not installed by the LSAM 18.1 PTFs, then plan to copy them to the SMAPGM library of the LSAM environment that will be upgraded.  (Test environments will typically use a variation of the SMAPGM library name, unless the test environment is isolated within a test IBM i partition.)
-- If downloading the program objects from the SMA FILES server, follow the instructions in the AUDRPY* document provided with the objects.
+- If downloading the program objects from the SMA FILES server, follow the instructions in the PDF document provided with the objects.
 
 Execution of the audit program requires access to the SMADTA library to find the file OPRRPYF40. The RPG program must also be able to find the printer file AUDRPYP40 in the SMAPGM library (or in some other library that is part of the library list of the job that executes the audit).
 
