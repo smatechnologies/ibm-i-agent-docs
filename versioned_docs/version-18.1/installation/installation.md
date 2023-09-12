@@ -250,6 +250,8 @@ For details about Cloning an LSAM environment see [Clone an Existing Environment
 
 ### Preparing an LSAM Environment for Upgrade
 
+#### Purging the LSAM database log files and deleted records
+
 Both the backup steps and the upgrade steps can be completed much more quickly if the LSAM database in the SMADTA library has been effectively purged using the LSAM Parameters database maintenance values (LSAM main menu, option 7).
 
 Use the IBM i command DSPOBJD to display a list of all objects of type \*FILE in the SMADTA library (or its equivalent in an alternate environment). Search the list for any files that are extremely large.
@@ -262,6 +264,17 @@ If changes are required to make the LSAM log file purging more effective, it wil
 The other LSAM maintenance process that is critical is to reorganize the LSAM database using the SMARGZ command. This command and its operation are explained in detail in the [Log File and Database Management](../logs-database/overview.md) section.
 
 The SMARGZ command will either be executed automatically during the next Maintenance Hour, if the LSAM Parameters controlling this option are set accordingly, or else the SMARGZ command can be executed either from the IBM i command entry line (within the LSAM menu system so that the LSAM library list is in effect), or by configuring an OpCon IBM i Batch Job with the SMARGZ command in the "CALL" box. Details about how to use these strategies are documented in the [Log File and Database Management](../logs-database/overview.md) section of the **IBM i LSAM** documentation.
+
+#### Suspending LSAM Server Operations Before Starting an Upgrade
+
+The LSAM databsae purging procedures mentioned above may require that the LSAM server jobs remain active at least until the last daily log file purges are completed.  However, before starting the actual execution of the SMASETUP command for upgrading an existing LSAM, it is required to suspend the following LSAM services:
+
+- Stop the LSAM server jobs.
+  - If used, this process will also stop the Alternate Job Notify service.
+  - If used, this process will also stop the LSAM Message Management service.
+- Use LSAM menu 2 to deactivate (stop) the LSAM Job Tracking service.
+  - Job Tracking operations can be interrupted by the upgrade process.
+  - Restarting the Job Tracking service after an upgrade performs a critical check of certain Job Tracking configuration parameters.
 
 ### Backing Up the LSAM Environment
 
