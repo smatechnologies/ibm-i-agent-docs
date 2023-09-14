@@ -88,7 +88,7 @@ The techniques described in this topic were introduced to the IBM i Agent versio
 
 ### STROPRRPY Command Parameter JOBTYPE(L)
 
-A new value has been added to the STROPRRPY parameter JOBTYPE: value ‘L’ = Local.  This value engages enhance routines whenever an Operator Replay script is ending with one of its abnormal exit codes (SMA010*).  
+A new value has been added to the STROPRRPY parameter JOBTYPE: value ‘L’ = Local.  This value engages enhanced routines whenever an Operator Replay script is ending with one of its abnormal exit codes (SMA010*).  
 
 The term "Local" refers to the control point where the STROPRRPY command is executed.  The JOBTYPE value is "O" when an OpCon server job directly starts an Operator Replay Script.  Other JOBTYPE values are used for testing Operator Replay from an IBM i command line or from an IBM i batch job (that was not submitted by the OpCon server).  Some of the new Operator Replay exit code management features are provided for test jobs (JOBTYPE values "A" or "T"), but JOBTYPE(L) is specially tuned to the purpose of redirecting exit codes from a Locally started STROPRRPY command, to return a job failure report and the Operator Replay exit code to an indirectly related OpCon IBM i job.
 
@@ -237,3 +237,41 @@ In the example above, these are the critical field values used to force error SM
 - Row: **1**
 - Column: **1**
 - Length: **1** (this field is optional)
+
+## Capturing the Virtual Workstation ID: SMAGPL/SMAJOBDTL
+
+The Operator Replay feature is comprised of two different jobs: (1) the script driver job, and (2) the virtual workstation interactive job.  When an Operator Replay script driver job is initiated by the OpCon server, the IBM i Agent can report back to the OpCon server many details about the script driver job itself.  However, there is no simple way for the script driver job to learn the actual name assigned to the virtual workstation that the IBM i operating system's workstation manager assigns when the script driver has opened a TCP/IP socket connection to the system's Telnet server.
+
+In order for the script driver job to share multi-instance Dynamic Variable values with the virtual workstation job, it is sometimes be necessary for the script driver job to know the name of the virtual workstation device.  (Interactive jobs use the workstation device name as their job name.)
+
+The LSAM software provides a command SMAGPL/SMAJOBDTL that can be executed by a script driver step, causing the complete IBM i Job ID and the Job Entry Date and Time values to be displayed on a dedicated display format.  The script driver job is able to detect whenever that display has appeared so that it can store the interactive Job ID values within the script driver program, making them available for later reference.
+
+### Requirements for Using the SMAGPL/SMAJOBDTL Command
+
+To use the SMAJOBDTL command:
+- It is necessary that the virtual workstation interactive job allow for access to an IBM i command entry line.
+- The IBM i user profile used to log in to the virtual workstation must have:
+    - Authority to use the IBM i command entry line
+    - Authority to use the LSAM command SMAGPL/SMAJOBDTL 
+        - This should be granted using LSAM menu 9, option 8, to preserve the authority whenever there is an LSAM software update (LSAM PTFs).
+
+### Ways to Use the Virtual Workstation Job ID
+
+Detailed instructions and illustrations for use cases that involve the virtual workstation ID are located under the topic of Dynamic Variables at [Operator Replay Sharing Variable Values with an Interactive Job](/dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
+
+After executing the SMAGPL/SMAJOBDTL display, the next Operator Replay script step can use Screen Data Capture Rules to capture data from the display for testing or storage elsewhere.  However, in most cases it is not necessary to configure Capture Data rules unless the virtual workstation Job ID values need to be shared with other functions outside of the Operator Replay job.
+
+Within the Operator Replay script job, which controls script steps, data capture rules and their attached response rules, the values that were displayed by the SMAGPL/SMAJOBDTL command are available for use as the following $-System variables:
+
+    $VWS JOB ID  
+    $VWS JOB NAME
+    $VWS JOB NBR 
+    $VWS JOB USER
+    $VWS JOB DATE
+    $VWS JOB TIME
+
+LSAM automation configuration tools (maintenance programs) that support these $-System variables will also support the function key F23=$Var.  But it is also allowed to type in the variable name string, which always requires that the variable name use all capital letters.  During automation rule execution, the LSAM programs recognize these $-System variable name strings and replaces them with the actual values that were displayed by the SMAGPL/SMAJOBDTL format.
+
+:::tip HINT
+If it is ever necessary to trim or reformat any of the virtual workstation variable values, use the SETDYNVAR command to store those values into Dynamic Variabvles that support value reformatting function codes, and then insert that Dynamic Variable {TOKEN} into the string that needs the reformatted value.  This could be especially useful when the Job Entry Date might be needed in a different format.
+:::
