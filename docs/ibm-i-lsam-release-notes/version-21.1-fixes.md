@@ -82,3 +82,127 @@ PTF 211078 enhances this same SETCAPVAR command to support up to 435 characters 
 - Fixed (# 211079) The Multi-Step Script driver program was failing with a false error code of “NoLVar” and error message text indicated that a Dynamic Variable for updating a job’s Local Data Area was not found.  This happened during the Multi-Step Job’s startup procedures, before Step processing started.  The fix ignores this return code, since it simply means that there are no Dynamic Variables available to update the Script job’s IBM i Local Data Area.
 
 - Fixed (# 211080) Corrects the format of the IBM i Job ID character string reported via a variable in the message ID SMA5802.
+
+### LSAM PTF release 21.1.123 (DB LVL # 21.1.005)
+
+#### ENHANCEMENTS
+
+**IBMI-495:** PTF211121  Add SMAFT log entry when job denied @ exceed MAX
+
+Add messages that log when a connect request is rejected by the LSAM Job Scheduler as SMAFT Agents jobs would exceed the max allowed jobs.
+
+**IBMI-892:** PTF211088  Add Operator Replay error report for MLTJOB script
+
+An Operator Replay script can be executed from the Agent's Multi-Step Job Scripts, but previously the failure of the Operator Replay Script was not being reported to the OpCon server's job that started the Multi-Step Job Script execution. For more information, see the [Operator Replay user help](/operator-replay/additional-info#managing-operator-replay-exit-codes-via-multi-step-job-scripts).
+
+**IBMI-893:** PTF211097  Add 5 field codes to SM File Arrival job
+
+The Solution Manager user interface for the IBM i File Arrival job sub-type is enhanced with 5 new fields that make it easy to specify frequently used job attributes.  These replace the difficult $@variables registration, though those are still supported.  This enhancement of the Solution Manager web application is available with OpCon version 22.3.1, and later versions.  
+Please refer to the IBM i Agent User Help for information about the new SM data entry fields, and also an update to options for keeping or replacing the optional $@Variable names that previously provided support for these same five parameters.
+
+**IBMI-890:** PTF211090   Display ID of Job Track control LSAM 
+
+The pop-up window that reports the status of Job Tracking (active or inactive) showed a warning message when a different LSAM within the partition already had control of Job Tracking.  This window now shows the LSAM name and its SMAGPL library.
+
+**IBMI-900:** PTF211107  Add "Display Data Capt App where used"
+
+As of LSAM 21.1, Data Capture applications can be reused among multiple Operator Replay Script Steps and also among more than one Message Management Parameters records.  Changes to any Data Capture Rules or Response Rules will now warn about affecting any other OR Script or Msg Mgmt Parm record that share a Capture Application.  Inquiry lists of the Capture Applications now support an option to see every Step or Parameter that shares that same application.
+
+**IBMI-936:** PTF211098  Update SMALOOKUP for File Arrival fields
+
+An extract from the OpCon transaction field codes table SMALOOKUP is refreshed with new data that labels the File Arrival job fields added to the Solution Manager user interface, supporting LSAM detail displays of log file entries showing these fields.
+
+**IBMI-952:**  PTF211117  Suppress false SMA0019 2nd connection attempt messages.
+
+The LSAM communications program connected to the OpCon server will no longer send this message to the OpCon server's SAM log. This prevents a potential LSAM communication program loop that can block recovery of the connection to the OpCon server.
+
+**IBMI-977:**  PTF211111  Removed an attempt to report SMA0019 (rejected 2nd connection attempt)
+
+There is little or no use for attempting to add an error message to the SAM log of an OpCon server
+That is not communicating with the IBM i Agent at the time when error SMA0019 is being handled.
+
+**IBMI-978:**  PTF211114  Add LSAM utility command SMACMDDTL to report the PRDLIB value of a command
+
+Some of the LSAM utility commands in the SMAGPL library are Control Language programs that need 
+to know the SMAGPL library name.  They can now simply call this utility command to quickly fetch the library name.
+
+**IBMI-978S:**  PTF211117  Add new data area SMAGPL/ENVIRONG to the LSAM object authority master file
+
+The new data area SMAGPL/ENVIRONG holds the LSAM environment name, using the same value that has always been stored in SMADTA/ENVIRON.  This copy of that data supports LSAM utility commands to establish the LSAM library list when they have been called from outside of an LSAM environment.
+
+**IBMI-979:**  PTF211112  Add the Response Rules Sequence number to lists of Response Rules.
+
+The description of a Response Rule is not always helpful to identify the specific Rule that might
+need maintenance.
+
+
+#### FIXES
+
+- Fixed (# 211087) IBMI-857:  Update LSAAUTF01 attribute (LSAM Object Authority master file) on type *MENU records with DSPF (display file).
+
+- Fixed (# 211081) IBMI-868: The LSAM object reference utility command REFFLOW is improved with better optional (default) suppression of references to commonly used IBM i modules that have names beginning with the letter Q.  The new command option can be changed to 0 to show them.
+
+- Fixed (# 211082)  IBMI-868: The SMAADDLIBL utility command was adding libraries to the correct position of an existing job's library list, but the order of the libraries added was the reverse of the library priorities registered in the LSAM environment management master file.
+
+- Fixed (# 211083)  IBMI-868: The LSAM object reference tools supporting table PGMREF is updated with corrected and expanded data content.  This replacement fixes some omissions from the original Agent 21.1 release and it adds information from the latest LSAM PTFs as of 211083.
+
+- Fixed (# 211084) IBMI-880: Operator Replay job start requests were being rejected in many cases with a false error SMA0108.  The Script Name was not being properly extracted by the LSAM Job Scheduler program.  Also, a diagnostic dump report from the script driver job is removed.
+
+- Fixed (# 211085) IBMI-882: The Dynamic Variable master record inquiry routines show the wrong variable name in the function code details display (LSAVARR7) when the function code is *DTAARA. This happens only in Inquiry mode, but not Change or Copy modes.
+
+- Fixed (# 211086) IBMI-883: The Multi-Step Script Step maintenance function was reporting a false "duplicate label not allowed" error when using option 2=Change to change a Step record but without changing the Label value.
+
+- Fixed (# 211091) IBMI-895: The new JOBSTS Server Job reported a divide by zero error and another error reporting a receiver field too small. Improved LSAM control data for this new server job and also added a non-zero default value for the server to use at job initiation.
+
+- Fixed (# 211089) IBMI-898: The Operator Replay Steps maintenance sometimes fails to link a selected Data Capture Rule to the Step record.  Also, after leaving the Select Capture Rule program with F3 or F12, the Operator Replay Step record Capt App ID text is blanked out.
+
+- Fixed (# 211092) IBMI-913: The Multi-Step Job Script driver program was failing with error RNQ0121 (array index error) when a Script had more than 99 steps.  This error had been patched in LSAM version 18.1 with PTF# 181100, but 3 lines of the patch were missing in LSAM 21.1.
+
+- Fixed (# 211093) IBMI-915: When adding the |SCANSPLF extension to an OpCon IBM i job Call command line, the IBM i Agent was incorrectly returning job failure code SMA0249 to OpCon. This was caused by a failure of the Capture Data Response module, unmatched to the LSAM 21.1 database.
+
+- Fixed (# 211094) IBMI-920: The LSAM Server job LSAJOR would fail if the SCANSPLF command was appended to an OpCon IBM i job Call command, and the Scan Rules were executing an OpCon External Event command via the CPYTOMSGIN utility. A RCLACTGRP command is removed from CPYTOMSGIC.
+
+- Fixed (# 211095) IBMI-924: Check,rebuild PFF211035 ctrl data area in SMADTA.  This PTF must execute before PTF211086 to avoid a false error about a missing PTF. The PTF was incorrectly named PFF211035, and the control data area for this PTF got removed before PTF distribution.
+
+- Fixed (# 211096) IBMI-927: The LSAM install/update/audit utility progra SMADTAARAC had a weakness in the logic for managing the Job Tracking control data area named SMAXNBR.  The result of running this logic should leave SMAXNBR in library QGPL, moved out of the local LSAM SMAGPL.    
+
+- Fixed (# 211099) IBMI-930: The LSAM Job Scheduler communications program was incorrectly handling warning messages whenever the Agent was not yet updated with an OpCon User ID and Password (or Token) for External Event commands. Comm log entries were all being overridden to type L.
+
+- Fixed (# 211123) IBMI-993:  F4=Prompt on Copy Operator Replay Capture Application fails/not supported.
+
+    Error occurs after staring the operation to copy an Operator Replay Script to a new Script name. If there is one or more linked Capture Data Applications, a prompt show asking if they should also be copied (to a new name). The same capture application could be re-used by the new OR Script, in which case answer Yes to copy the link, but do not change the To-Application on the next window (OPRR10W8):
+
+    When answering Yes to copy the Capture App, a second window shows Old/New Capt App ID, and it allows a new name be assigned to the New copy. It’s possible to link an existing, other Capture Data App, in which case the F4=Prompt function key can be used to access a list of existing Capture Apps, from which one would be selected. However:
+
+    “Function key not allowed” error when attempting to prompt for new APP with F4, within window that requests a new name for an associated Capture Data Application.
+
+- Fixed (# 211110) IBMI-941: SMASETUP fails at SETLIBAUT when no objects in the library. The LSAM install/upgrade program SMASETUPC is fixed by adding additional error message monitoring for the expected condition that a library getting its object authority managed might not have any content.  Adding CPF2123 for the RVKOBJAUT command helps.
+
+- Fixed (# 211100) IBMI-945: The LSAM Work with Import Batches list display showed an incorrect Group subset value because it was missing new Capture Data Rules groups added at LSAM 21.1.  Display SMA0038 when Exp/Imp Config was not updated. Add fetch of DESC for new imp save files.
+
+- Fixed (# 211101) IBMI-948: Fix APPIDN5 error @ SCANSPLF utility. The SCANSPLF and SCANOUTQ utilities failed when old Scan Application IDs converted from LSAM 18.1 contain duplicate ID text as is used for other LSAM applications, including Message Management or Operator Replay. The App Type is added to search for APPKEY.
+
+- Fixed (# 211120) IBMI-950:  Refine authority for SMAMSGQ job completion message queue, to improve the security of LSAM operational details.
+
+- Fixed (# 211119) IBMI-951:  Fix 999999 for Job Start Time on job end log entry and job end status message sent to OpCon.  This initial "no value" string was overlaying the actual job start time during the management of the job end data.
+
+- Fixed (# 211102) IBMI-958:  Bypass “NoLVar” false failure in the LSAM job scheduler program (LSASCHR00).
+
+- Fixed (# 211103) IBMI-959:  Prevent error CPD0078 when restoring the LSAM Job Scheduler server program’s library list.  Each job is supported by the Job Scheduler temporarily setting its own library list to manage all the possible job definition parameters requested by the OpCon job master.
+
+- Fixed (# 211104) IBMI-967:  Prevent possible errors during LSAM upgrades by monitoring for no objects in a library.  Added monitor for this error on DSPOBJD, RVKOBJAUT and DLTOVR commands in program SETLIBAUTC.
+
+- Fixed (# 211106) IBMI-968:  Revise the File Arrival job command CHKFILE to prevent a false file name error CKF0002. When a DB2 library and file are listed in the File Arrival job using the IFS file system format (which directs the LSAM to use the CHKIFSFIL command), the parameters that pass the DB2 library name and the file name to the CHKFILE command were sometimes being passed as parameters in an incorrect format.
+
+- Fixed (# 211105) IBMI-969:  The LSAM data Export tool was incorrectly storing duplicates of a single Dynamic Variable. Exporting duplicate Dynamic Variable names created a “duplicate key” error during the Import process.
+
+- Fixed (# 211109) IBMI-972: Prevent error message MCH1210 (receiver too small to hold value) in the Message Management server job.
+
+- Fixed (# 211108)  IBMI-975:  Prevent failures of the Job Tracking process by correcting the  SMASBMJOB and SBMJOB clone command attributes to use the specific SMAGPL librar of the LSAM environment that is controlling Job Tracking in the partition.  (Leaving the command processor program location set to *LIBL sometimes does not work.)
+
+- Fixed (# 211118) IBMI-976:  Fix the "Capture Data Where Used" maintenance warning to prevent a false return reporting multiple uses for a Capture Data Application that is used in only one place.
+
+- Fixed (# 211122) IBMI-980: Fix the Operator Replay Configuration maintenance of the QGPL/OPRDEVLOG debug data area. This data area is a critical component for managing the LSAM Telnet Exit Program, used primarily to Manage virtual workstation device selection for Operator Replay workstation automation.
+
+
+
