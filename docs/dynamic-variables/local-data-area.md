@@ -142,7 +142,7 @@ In addition, the IBM i command entry display must provide sufficient data entry 
 
 First, remember that a local data area is always assigned to just one IBM i job, although it can be shared with other IBM i jobs - but only when one job uses the SBMJOB command.  Then the submitted job inherits the LDA content of the submitting job.  This is how the native IBM i LDA services function.
 
-The IBM i Agent can take advantage of these rules because it uses the IBM i command SBMJOB to initiate jobs when it has received a Job Start request from the OpCon server.  The IBM i Agent has been using Type-L Dynamic Variables for several years to support various forms of Job Trakcing, including the relates ability to re-submit Captured Jobs.  This and other techniques for feeding LDA content to IBM i jobs that OpCon starts are summarized above under [The Functions of Type-L Variables](#the-functions-of-type-l-variables).
+The IBM i Agent can take advantage of these rules because it uses the IBM i command SBMJOB to initiate jobs when it has received a Job Start request from the OpCon server.  The IBM i Agent has been using Type-L Dynamic Variables for several years to support various forms of Job Tracking, including the relates ability to re-submit Captured Jobs.  This and other techniques for feeding LDA content to IBM i jobs that OpCon starts are summarized above under [The Functions of Type-L Variables](#the-functions-of-type-l-variables).
 
 #### The technique for sharing multi-instance Dynamic Variables with the LDA during job starting
 

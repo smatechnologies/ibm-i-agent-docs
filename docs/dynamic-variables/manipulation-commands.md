@@ -305,9 +305,9 @@ VALUE2('value_string') DELAY(10) NBRLOOPS(360) WAITVARNAM('WAITDYNVAR')
 **KEYWORD DESCRIPTIONS**:
 - **VARNAM:** Dynamic Variable name (refer to Constraint below)\*
   - The name of an existing Dynamic Variable. If the Variable does not exist in the Dynamic Variable table file when the command executes it will return a '**FAIL**' result code.
-- **VALUE1:** Required value string or number, up to 128 characters.
+- **VALUE1:** Required value string or number, up to 1024 characters.
   - At least this first Value string must be specified. The value returned from the Dynamic Variable must match exactly. (Hint: Use the DSPDYNVAR command to see the length and format of a Dynamic Variable.) If a number is specified it must be enclosed within a pair of single quotes, such as: '**1234**'
-- **VALUE2:** Optional additional value string or number, up to 128 characters
+- **VALUE2:** Optional additional value string or number, up to 1024 characters
   - An optional second value string. Leave this parameter blank if a second value is not required.
 - **DELAY**: 1 to 999
   - Used in the IBM i command DLYJOB, the number of seconds to wait between checks of the value of the Dynamic Variable.
@@ -319,7 +319,9 @@ VALUE2('value_string') DELAY(10) NBRLOOPS(360) WAITVARNAM('WAITDYNVAR')
 :::tip Constraint
 The Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Type-L variables (for LDA manipulation) cannot be used.
 :::
-
+:::tip
+Remember that both VALUE1 and VALUE2 parameters are case-sensitive.  For example, the WAITDYNVAR return value that can be tested will always be all capital letters, so "pass" does not equal "PASS".                   
+:::
 ## WAITDYNVAR Example Applications
 
 This command could be used in any software running under IBM i, as long as the LSAM library list is in effect. Any program using this command must be able to retrieve and test the value of the variable specified in the WAITVARNAM command parameter (whose default value is variable name "WAITDYNVAR") in order to determine if this command has returned a value of '**PASS**' (either Value string was found) or '**FAIL**' (neither Value string was found within the specified time limits).

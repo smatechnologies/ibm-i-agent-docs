@@ -10,8 +10,12 @@ The purpose of this discussion is to explain how to control the value that will 
 
 It is possible to create test Dynamic Variables and to experiment with the settings of the variable definition fields using the LSAM command DSPDYNVAR (described in Commands and Utilities). This command returns the value of the named Dynamic Variable as a completion message, so the command is best used from an IBM i interactive workstation session (such as provided by green screen workstation emulation programs on personal computers, for example). To set or change a variable definition, use either the maintenance screens, illustrated in the preceding section of this topic, or the SETDYNVAR command, illustrated in the Utility Commands section of this Dynamic Variables chapter, below.
 
-The user is encouraged to experiment with setting different variable definitions until the DSPDYNVAR command returns a value in the format that is desired for the particular LSAM function where a {DVTOKEN} will be used. This experimentation is especially important when the variable will be defined as numeric. Remember that variables of type V must be used for this type of experiment, but that the variable values will work the same for type L variables that are used to change the LDA (local
-data area) contents of IBM i jobs. 
+The user is encouraged to experiment with setting different variable definitions until the DSPDYNVAR command returns a value in the format that is desired for the particular LSAM function where a {DVTOKEN} will be used. This experimentation is especially important when the variable will be defined as numeric. Remember that variables of type V must be used for this type of experiment, but that the variable values will work the same for type L variables that are used to change the LDA (local data area) contents of IBM i jobs. 
+
+### DSPDYNVAR Support for Type-L Dynamic Variables
+
+Previously, the DSPDYNVAR command refused to display the value of Type-L variables.  Now, however, the DSPDYNVAR command will always show the entire LDA content for all the sequence numbers 
+assigned to a Type-L variable name.  This proves how the LDA will be updated, and it is also useful for proving the use of nested tokens - though testing nested tokens requires some extra preparation if those tokens are instance-qualified.                                        
 
 ## Trimming Character Values of Dynamic Variables
 

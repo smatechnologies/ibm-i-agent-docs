@@ -379,3 +379,23 @@ ____________________________________________________________________________
  Use F13 to update long fields showing + when they are protected.               
  F2=CSVtoXML   F4=IBMiCmd   F8=DynVar   F9=ExtEvents   F23=$Var   F24=More keys 
 ```                                                                                
+## LSAM Global Controls over Multi-Instance Dynamic Variables
+
+### Option to Delete Temporary Dynamic Variable instances
+
+The IBM i LSAM Job Scheduler server program may sometimes write temporary IJ.instances of Dynamic Variables to the variables master table, while processing the OpCon Job Master VARIABLES table contents.
+                                                                       
+These temporary records are sometimes required to pre-process variable values, but they are useless after a job start process is completed. However, for diagnostic purposes, the temporary records can be retained for later study.
+                                                                       
+But the default action of the Job Scheduler is to delete the temporary records after each job is submitted, in order to eliminate confusing histories of variable processing that is not part of a user's automatic processing by the LSAM.
+
+To control this automatic deletion process, use the LSAM Parameters maintenance function (LSAM main menu, option 7) and change the value on page 2 for the following option:
+
+```                                                                      
+     DLT temp IJ.TXMMNG vars: _  Y/N 
+```
+                                                                      
+The default value assumed for this option is 'Y' = yes, do the delete.
+Type 'N' (= No) and press Enter to update this control field.         
+                                                                      
+Remember that the LSAM Job Scheduler server job TXMMNG must be stopped and restarted for changes to this option to take effect.
