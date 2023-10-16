@@ -141,7 +141,7 @@ The message ID CPI2404 is a special case: If a job is in Message Waiting status 
 TRPMSGR1                 Message Management Parameters                MM/DD/YY 
 USERNAME                                                              HH:MM:SS 
                                                                                
-Type options, press Enter.                          Search content:            
+Type options, press Enter.  6=DspCptUse             Search content:            
   2=Change  3=Copy  4=Delete  5=Display                                        
   7=Capt chart  8=Export  9=Chg Sts                                            
  Opt  Msg Queue   MsgQ Lib    Msg ID   Job Name    Job User    SQ#   Sts       
@@ -165,7 +165,7 @@ Copyright (C) SMA Technologies 1995, 2018  ARR
  TRPMSGR1A         Message Management Parameters - Compare Text         3/23/22 
  CLEWIS                                                                10:16:52 
                                                                                 
- Type options, press Enter.                          Search content:            
+ Type options, press Enter.  6=DspCptUse             Search content:            
    2=Change  3=Copy  4=Delete  5=Display                                        
    7=Capt chart  8=Export  9=Chg Sts                                            
 Opt Msg Queue  Msg ID  Job Name   Job User   SEQ Compare Text                 S 
@@ -213,6 +213,7 @@ Main Menu > Message management menu (#2) > Message management parameters (#1)
 -   **3=Copy**: To copy a Msg ID to a similar record (perhaps using a different sequence number and other response rules), type a 3 next to the Msg ID line and press <**Enter**> to proceed to the Copy Message Management Parameters screen.
 -   **4=Delete**: To delete a Msg ID, type 4 next to the Msg ID line(s) and press <**Enter**> to proceed to the Confirm Delete of Records screen for message trapping.
 -   **5=Display**: To view a Msg ID, type 5 next to the Msg ID line and press <**Enter**> to proceed to the Display Message Management Parameters screen.
+-   **6=DspCptUse**: "Display Capture application Uses."  This option shows a list of Message Management Parameters master records that use the same Message Data Capture Application, if the selected record has been linked to a Message Data Capture Appliation.  This option is especially useful when a single Capture Application has been linked to more than one Parameters record, so that any changes planned for the Data Capture Application can be evaluated for possible adverse affects on the sharing Parameter record(s).
 -   **7=Capt chart**: To view a flow chart of associated Message Data Capture Rules and Captured Data Response Rules, type a 7 next to the MSD ID line and press <**Enter**> to proceed to the Capture Message Data Chart list display. A detailed explanation of the displays for the Capture Chart may be found in Operator Replay Scripts, within the Screens and Windows section, under the title [Operator Replay Capture Chart (opt 7)](/operator-replay/screens.md#oprr10r7---capture-screen-data-chart-5-views).
 -   **8=Export**: Select one or more Message Management Parameters that will be copied to a save file collection for exporting to a different LSAM environment. The Export option includes all related records such as Capture Rules and Response Rules, as well as any Dynamic Variable definitions. Detailed instructions for Export and Import of data are found in Copy Files from Test to Production.
 -   **9=Chg Sts**: Type option 9 next to any master record line and press <**Enter**> to change the record status from A to I, or from I to A, where A = active and I = inactive.
@@ -558,6 +559,10 @@ Details about working with Application IDs are provided at [Work with Data Captu
 After optionally creating or maintaining an appropriate Application ID, use the Application ID list display option 6 to Work with Capture Definitions for the currently selected Agent automation tool, as described next for the Message Management feature.
 
 Type **1** next to the desired Application ID and press **Entery** to return the APP KEY and Application ID to the Message Management Parameters display.
+
+:::note
+Option **5=DspAppWU**: "Display capture Application Where Used"  shows a list of Message Management Parameters master records that use the same Message Data Capture Application, if the selected record has been linked to a Message Data Capture Appliation.  This option is especially useful when a single Capture Application has been linked to more than one Parameters record, so that any changes planned for the Data Capture Application can be evaluated for possible adverse affects on the sharing Parameter record(s).
+:::
 
 ### TRPM30R1 - Work with Message Data Capture Definitions
 

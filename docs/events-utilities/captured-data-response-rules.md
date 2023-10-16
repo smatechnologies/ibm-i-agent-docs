@@ -67,13 +67,17 @@ This is a generalized outline that can be applied to any of the three Agent auto
 
 ### LSAJ50R1 - Select Capture Application
 
-The title of this display shows **Select** when it is accessed using **F10=Capt Defn** from an Agent automation tool's master records maintenance.  The title shows **Work with Capture Applications** when it is accessed directly from an LSAM Menu.  The sub-title of "Application type:" shows the Agent automation tool that has its own data capture definitions, such as "**OPERATOR REPLAY**".
+The title of this display shows **Select** when it is accessed using **F10=Capt Defn** from an Agent automation tool's master records maintenance.  The title shows **Work with Capture Applications** when it is accessed directly from an LSAM Menu.  The sub-title of "Application type:" shows the Agent automation tool that has its own data capture definitions: "**OPERATOR REPLAY**" or "**MESSAGE MANAGEMENT**".  (The SCANSPLF command also captures data, but the Scan Rules are also the capture data rules, so they are managed by the Scan Rules maintenance function.)
 
 #### Menu Pathways
 
 - Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script step list (Opt 1) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy > F10=Capt Defn.
 
 - Main Menu > Operator replay menu (#4) > Work with Screen Capture Definitions (#5)
+
+- Main Menu > Message Management menu (#2) > Message Management Parameters (#1) > F6=Add **- or -** option 2=Change **- or -** option 3=Copy > F10=Capt Defn.
+
+- Main Menu > Message Management menu (#2) > Work with Message Data Capture Definitions (#10)
 
 Using the F10 pathway is always required when linking a Screen Capture Application to an Operator Replay Script Step.  While it is possible to define Screen Capture Applications starting from the LSAM menu system, the same maintenance can be done after accessing Screen Capature Applications from the Select screen that appears when F10 is pressed.
 
@@ -97,6 +101,7 @@ Using the F10 pathway is always required when linking a Screen Capture Applicati
 - **2=Change**: To change a record, type 2 in the Opt field next to the record(s). Press **Enter** to proceed to the Change detail screen.
 - **3=Copy**: To copy a record, type 3 in the Opt field next to the record. Press **Enter** to proceed to the Copy detail screen.
 - **4=Delete**: To delete one or more records, type 4 next to each record. Press **Enter** to proceed to the Delete confirmation window.
+- **5=DspAppWU**:  "Display Application Where Used."  This option shows which Operator Replay or Message Management master records are linked to the selected Capture Application.  This option is especially useful when a single Capture Application has been linked to more than one Operator Replay Step, or more than one Message Management Parameters master record.  
 - **6=Work with Rules**: Advance to Work with Capture Definitions for the data capture rules that belong to the selected Application ID.  Working with data capture rules is described within the Screens and Windows section of Operator Replay, Message Management or the SCANSPLF report scanning utility under Events and Utilities.  That maintenance links to the next topic here about Working with Capture Response Rules.
 - **8=Export**: Select an Application ID and all its associated Data Capture Rules for export to a different LSAM installation (that has the same database level, that is, the same LSAM PTF DBLVL).
 
@@ -244,6 +249,26 @@ The setting of this flag also controls how captured data will be stored into a D
 The response command line supports execution of LSAM Event commands, just like any other IBM i command. But Event commands have additional support. The function key <**F9**> can be used to select from a list of available Event commands and then to have their keyword fields automatically prompted. When an Event command is placed into the response command line, and only for Event commands, the LSAM programs will support embedded OpCon property (variable) tokens.
 
 The feature of including OpCon property tokens in an LSAM Event command is described in complete detail in the topic about Message Management. Look for references to the Event command line of the Message Management Parameter screen. In that topic there is a complete table of the specific OpCon property (variable) token values that can be supported directly by the LSAM itself, if a certain syntax is used. In general, any OpCon property token could be used because the LSAM passes along the Event command string with the OpCon property tokens in tact, signaling the OpCon server programs to translate the tokens into the values that are stored in the OpCon database.
+
+### Display Applications Where Used (DspAppWU)
+LSAJ50R1 - Work with Capture Applications : Where Used by App Type
+
+This special-purpose version of the LSAJ50R1 list display is adapted for use by the DSPAPPWU command, executed by option 5=DspAppWU when the R1 display format is initially launched from the LSAM menu.  Details about the LSAJ50R1 list display are found [above](#work-with-data-capture-application-ids).
+
+#### Menu Pathways
+
+- Main Menu > Operator replay menu (#4) > Operator Replay Scripts (#2) > Script step list (Opt 1) > option 5=DspAppWU.
+
+- Main Menu > Operator replay menu (#4) > Work with Screen Capture Definitions (#5) > option 5=DspAppWU.
+
+- Main Menu > Message Management menu (#2) > Message Management Parameters (#1) > option 6=DspCptUse.
+
+- Main Menu > Message Management menu (#2) > Work with Message Data Capture Definitions (#10) > option 5=DspAppWU.
+
+#### Options
+
+- **9=View App ID user**: This option routes the display fromt the list of Agent automation master records to details about a specific master record, that is, to an Operator Replay Script Step or to a Message Management Parameters individual Sequence record.  This option can result in showing the Agent master record where option 5=DspAppWU was executed, or it could show details about one or more other Agent master records that are linked to the same Capture Application ID.
+
 
 ## Display Captured Data Log
 

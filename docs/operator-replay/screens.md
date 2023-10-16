@@ -315,6 +315,7 @@ Main Menu > Operator replay menu (#4) > Operator Replay scripts (#2) > Option 1 
 - **5=Display**: To display the Step record, type 5 next to each Step record. Press <**Enter**> to proceed to the Display Step Details screen. Typing option 5 next to many or all step records at once before pressing Enter is a convenient way to review all the steps in a script. Press <**Enter**> to advance as each detail screen is presented.
 - **6=DSPLBLWU**: Display Label Where Used. If a step is assigned a Label, this script analysis tool will produce a list of all scripts that have a branching operation assigned to this label value.
 - **7=Capt chart**: Type 7 next to a Step and press <**Enter**> to see a list of all Capture Data Rules, Response Rules, and variable tokens used by the step. The list of the Capture Chart appears the same for the whole Script(as desrcibed above), except this option will show data for only one Step.
+- **8=ViewCapt**: "View screen Capture Application."  This option shows a list of Screen Capture Applications used for Operator Replay screen data capture.  If a Script Step is linked to a screen Capture Application, then that single Capture Application will be listed.  Using option 5=DspAppWU (Display Application Where Used) will reveal if that Capture Application is being shared by any other Script Step.  If there is no screen Capture Application linked to the selected Script Step record, then this option 8 will show a list of all available screen Capture Applications.
 
 #### Functions
 
