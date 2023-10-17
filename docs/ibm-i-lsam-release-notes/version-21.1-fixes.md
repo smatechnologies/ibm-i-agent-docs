@@ -93,7 +93,7 @@ Add messages that log when a connect request is rejected by the LSAM Job Schedul
 
 **IBMI-892:** PTF211088  Add Operator Replay error report for MLTJOB script
 
-An Operator Replay script can be executed from the Agent's Multi-Step Job Scripts, but previously the failure of the Operator Replay Script was not being reported to the OpCon server's job that started the Multi-Step Job Script execution. For more information, see the [Operator Replay user help](/operator-replay/additional-info#managing-operator-replay-exit-codes-via-multi-step-job-scripts).
+An Operator Replay script can be executed from the Agent's Multi-Step Job Scripts, but previously the failure of the Operator Replay Script was not being reported to the OpCon server's job that started the Multi-Step Job Script execution. For more information, see the [Operator Replay user help](../operator-replay/additional-info#managing-operator-replay-exit-codes-via-multi-step-job-scripts).
 
 **IBMI-893:** PTF211097  Add 5 field codes to SM File Arrival job
 
