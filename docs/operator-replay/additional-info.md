@@ -110,7 +110,7 @@ So, it is not possible to retrieve an Operator Replay Exit code from the QTEMP/O
 
 As a result, communication between the interactive workstation job and a completely separate job that has submitted the Operator Replay Script driver job would require a complicated set of user-defined commands and OpCon Agent automation techhniques.  Some of these techniques are more possible with the OpCon Agent for IBM version 21.1 (and newer), optionally by leveraging [Multi-Instance Dynamic Variables](../dynamic-variables/multi-instance#overview-of-multi-instance-dynamic-variables).
 
-If it appears necessary to support communication among these three different jobs, SMA recommends re-evaluating the job flow and possibly separating the Operator Replay jobs from other work, relying on OpCon automation and data sharing techniques such as storing values into OpCon Properties and/or sharing OpCon Property values with the Agent's Dynamic Variables. There is also a more complex technique available for communicating with a virtual workstation job, as explained in [Operator Replay Sharing Variable Values with an Interactive Job](../../dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
+If it appears necessary to support communication among these three different jobs, SMA recommends re-evaluating the job flow and possibly separating the Operator Replay jobs from other work, relying on OpCon automation and data sharing techniques such as storing values into OpCon Properties and/or sharing OpCon Property values with the Agent's Dynamic Variables. There is also a more complex technique available for communicating with a virtual workstation job, as explained in [Operator Replay Sharing Variable Values with an Interactive Job](../dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
 :::
 
 ### Configuration of Multi-Step Scripts for Sending Operator Replay Exit Codes to OpCon Detailed Job Messages
@@ -257,7 +257,7 @@ To use the SMAJOBDTL command:
 
 ### Ways to Use the Virtual Workstation Job ID
 
-Detailed instructions and illustrations for use cases that involve the virtual workstation ID are located under the topic of Dynamic Variables at [Operator Replay Sharing Variable Values with an Interactive Job](/dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
+Detailed instructions and illustrations for use cases that involve the virtual workstation ID are located under the topic of Dynamic Variables at [Operator Replay Sharing Variable Values with an Interactive Job](../dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
 
 After executing the SMAGPL/SMAJOBDTL display, the next Operator Replay script step can use Screen Data Capture Rules to capture data from the display for testing or storage elsewhere.  However, in most cases it is not necessary to configure Capture Data rules unless the virtual workstation Job ID values need to be shared with other functions outside of the Operator Replay job.
 
