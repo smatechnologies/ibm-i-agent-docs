@@ -257,7 +257,7 @@ To use the SMAJOBDTL command:
 
 ### Ways to Use the Virtual Workstation Job ID
 
-Detailed instructions and illustrations for use cases that involve the virtual workstation ID are located under the topic of Dynamic Variables at [Operator Replay Sharing Variable Values with an Interactive Job](/dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
+Detailed instructions and illustrations for use cases that involve the virtual workstation ID are located under the topic of Dynamic Variables at [Operator Replay Sharing Variable Values with an Interactive Job](../dynamic-variables/multi-instance#operator-replay-sharing-variable-values-with-an-interactive-job).
 
 After executing the SMAGPL/SMAJOBDTL display, the next Operator Replay script step can use Screen Data Capture Rules to capture data from the display for testing or storage elsewhere.  However, in most cases it is not necessary to configure Capture Data rules unless the virtual workstation Job ID values need to be shared with other functions outside of the Operator Replay job.
 
