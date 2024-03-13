@@ -41,7 +41,12 @@ module.exports = {
             lastVersion: 'current',
             versions: {
             current: {
+              label: '23.1',
+            },
+            '21.1': {
               label: '21.1',
+              path: 'v21.1',
+              banner: 'none',
             },
             '18.1': {
               label: '18.1',
