@@ -52,20 +52,20 @@ The licensing of the Agents (LSAMs) installed under any operating system is mana
 Single LPAR clients may already be operating a Production and a separate Test copy of the LSAM. In this case, it might be acceptable to upgrade the Test copy directly, as long as a complete backup of the Test environment is completed first. However, if the Test environment will still be needed to pre-stage new automation that must be exported to the Production environment, then it would be necessary to clone the Test environment into a separate Test181 environment and use the Test181 environment for a first run of the LSAM 21.1 upgrade procedure.
 
 :::caution
-Whenever executing the LSAM 21.1 upgrade within an LPAR that is also executing the Production copy of an LSAM, be sure to make a complete backup copy of the Production LSAM environment before attempting to upgrade a separate Test environment. This warning recognizes that it is possible for an operator to make a mistake during the execution of the SMASETUP command, causing that procedure to affect the Production environment by accident.
+Whenever executing an upgrade to a Test copy of the LSAM 23.1 within an LPAR that is also executing the Production copy of an LSAM, be sure to make a complete backup copy of the Production LSAM environment before attempting to upgrade a separate Test environment. This warning recognizes that it is possible for an operator to make a mistake during the execution of the SMASETUP command, causing that procedure to affect the Production environment by accident.
 :::
 
 The ideal circumstance is to have a separate IBM i LPAR that is dedicated to Production, keeping all test procedures isolated in a different IBM i LPAR. In this case, the test copy of the IBM i LSAM will often use the same LSAM environment and library names as the production copy of the LSAM, given only that the Test LSAM must use a unique machine name (= the LSAM name in the LSAM Parameters on the green screen maintenance display).
 
-When test operations are isolated in a separate IBM i LPAR, best practice suggests that a complete backup should be made of the test LSAM environment before starting any cloning or upgrade testing. It is possible to proceed with a direct upgrade of the existing test LSAM environment. But if time and resources permit, the safest practice would probably be to clone the 18.1 TEST LSAM to a TEST211 LSAM environment with unique library names and then perform the first test run the upgrade against the TEST211 environment. This strategy would become a requirement as long as the original TEST LSAM is needed to feed updates to the Production LSAM in the other LPAR. It is not possible to use the LSAM Export/Import tools to exchange data between the versions 18.1 and 21.1.
+When test operations are isolated in a separate IBM i LPAR, best practice suggests that a complete backup should be made of the test LSAM environment before starting any cloning or upgrade testing. It is possible to proceed with a direct upgrade of the existing test LSAM environment. But if time and resources permit, the safest practice would probably be to clone the 21.1 TEST LSAM to a TEST231 LSAM environment with unique library names and then perform the first test run the upgrade against the TEST231 environment. This strategy would become a requirement as long as the original TEST LSAM is needed to feed updates to the Production LSAM in the other LPAR. It is not possible to use the LSAM Export/Import tools to exchange data between the versions 21.1 and 23.1.
 
 ## Pre-Installation Checklist
 
 Whether installing a new LSAM or upgrading an existing LSAM, it may be necessary to consider the following comments and the Pre-Installation Checklist that follows. Any of the points in this list of requirements and conditions could prevent a successful installation.
 
-### OpCon Versions Supported by LSAM 21.1
+### OpCon Versions Supported by LSAM 23.1
 
-Good news! IBM i LSAM version 21.1 is compatible with all currently supported versions of OpCon. It is not necessary to upgrade OpCon to take advantage of many of the latest LSAM enhancements, but some of the newest features added to the LSAM may only work (or work best) with OpCon version 17.1.3 or newer. Some of the newer LSAM features might require a manual update to the SQL Server database supporting an older version of OpCon. SMA recommends that clients using versions of OpCon older than 17.1.3 should discuss the circumstances with their SMA Technologies Consultant or contact SMA Support for advice.
+Good news! IBM i LSAM version 23.1 is compatible with all currently supported versions of OpCon. It is not necessary to upgrade OpCon to take advantage of many of the latest LSAM enhancements, but some of the newest features added to the LSAM may only work (or work best) with OpCon version 21.0.25 or newer. SMA recommends that clients using versions of OpCon older than 21.0.5 should discuss the circumstances with their SMA Technologies Consultant or contact SMA Support for advice.
 
 :::tip
 In particular, the configurations for supporting TLS Secured communication links are sensitive to the version of OpCon, and the OpCon database will likely require execution of an SQL update procedure to activate support for TLS security of the SMA File Transfer jobs.
@@ -73,19 +73,18 @@ In particular, the configurations for supporting TLS Secured communication links
 There is a Post-Install Instruction below that explains how to complete this update.
 :::
 
-### IBM i Operating System Versions Supported by 21.1
+### IBM i Operating System Versions Supported by 23.1
 
-The IBM i operating system must be at version V7R2 (i7.2) or higher to use the IBM i LSAM version 21.1. Correct operation of the LSAM version 21.1 is also certified for IBM i7.3, i7.4 and i7.5.
+The IBM i operating system must be at version V7R3 (i7.3) or higher to use the IBM i LSAM version 21.1. Correct operation of the LSAM version 23.1 is also certified for IBM i7.4 and i7.5.
 
-As of the date of this publication, only in rare circumstances will IBM still be supporting IBM i versions V6R1 (i6.1) or V5R4. Clients who are unable to upgrade to i7.2 or newer can still use OpCon to automate their operations within IBM i, but those clients can only use:
+As of the date of this publication, only in rare circumstances will IBM still be supporting IBM i versions older than V7R3, where there are still examples of clients using IBM Extended suppport for V7R2 (i7.2). Clients who are unable to upgrade to i7.3 or newer can still use OpCon to automate their operations within IBM i, but those clients can only use:
 - LSAM version 18.1 can run under i7.1
-- LSAM version 04.00.03 with all the latest LSAM software patches (LSAM PTFs) applied can run under IBM i version V5R4 and newer versions.
+- LSAM version 21.1 can run under i7.2
+- An archived version of this LSAM at 04.00.03 could support older versions of the IBM i operating system, back to V5R4.  However, SMA does not offer support for this retired version of the IBM i Agent and those clients would have to agree to use the unsupported versions of the OS/400 LSAM at their own risk.
 
 IBM i LSAM version 04.00.03 is frozen in its range of features. SMA can no longer provide emergency fixes for this old LSAM version because SMA no longer operates Power Processor partitions that can compile to an operating system level older than i7.1.
 
-All clients who might still be using LSAM version 04.00.03 who want LSAM software support, new features and future available software fixes must first upgrade to LSAM version 18.1.  There is no support for upgrading directly from version 04.00.03 to version 21.1.
-
-Versions of i5/OS or OS/400 older than i7.1 are not supported at all, either by IBM or by SMA.
+All clients who might still be using LSAM version 18.1 are urged to upgrade to LSAM version 21.1 and then upgrade to 23.1.  Version 18.1 is only supported for emergency fixes of critical core operations of OpCon automation, and it is not being further enhanced.  Important and helpful improvements are available from the newer releases.
 
 :::warning
 Whenever the IBM i operating system has been upgraded to a new release version (e.g., from i7.3 to i7.4) it is necessary to execute the IBM i LSAM utility command LSAINIT.  This requirement exists as long as the LSAM is still using clones of the IBM i command "SBMJOB."  SMA will notify users if and when the LSAM stops using these cloned commands.  Meanwhile, here are the steps for using LSAINIT.

@@ -7,8 +7,8 @@ module.exports = {
       collapsed: true,
       items: [
         'ibm-i-lsam-release-notes/overview',
-        'ibm-i-lsam-release-notes/version-21.1-new-features',
-        'ibm-i-lsam-release-notes/version-21.1-fixes',
+        'ibm-i-lsam-release-notes/version-23.1-new-features',
+        'ibm-i-lsam-release-notes/version-23.1-fixes',
         "ibm-i-lsam-release-notes/lsam-ptf-readme",
       ], 
     },
@@ -22,7 +22,7 @@ module.exports = {
     },    
     {
       type: 'category', 
-      label: 'IBM i Agent 21.1 Installation/Upgrade Instructions',
+      label: 'IBM i Agent 23.1 Installation/Upgrade Instructions',
       collapsed: true,
       items: [
         'installation/installation',
