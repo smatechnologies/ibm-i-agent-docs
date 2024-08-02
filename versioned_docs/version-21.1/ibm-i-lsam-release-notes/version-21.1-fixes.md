@@ -204,5 +204,106 @@ need maintenance.
 
 - Fixed (# 211122) IBMI-980: Fix the Operator Replay Configuration maintenance of the QGPL/OPRDEVLOG debug data area. This data area is a critical component for managing the LSAM Telnet Exit Program, used primarily to Manage virtual workstation device selection for Operator Replay workstation automation.
 
+- Fixed (# 211123) IBMI-933: Fix F4=Prompt on OPRRPY10-3, W8: Copy Application.                     
+During the process of copying an Operator Replay Script, if a choice is made to copy an existing link to a Capture Data Application, the window that supports selecting the same, or new Capture Application ID was not supporting the F4=Prompt function key.                                               
 
+### LSAM PTF release 21.1.144 (DB LVL # 21.1.006)
+
+#### ENHANCEMENTS
+##### LSAM DB LVL # 21.1.005
+
+**DE5779:**  PTF211124  Add SMAFT setting file auth @ new files
+
+The SMA File Transfer jobs, both the on-demand Agent job and the inter-LSAM Server job, are enhanced to assign the Destination User Profile authority to new files added to the DB2 database or an IFS stream file system, per the new SMAFT Control option.
+
+**IBMI-997:**  PTF211128  Extend Oper Replay Top/Bottom string
+
+The "Top/Bottom" comparison strings that validate the current display format were extended to 435 bytes to support a fully qualified Dynamic Variable multi-instance token.  Now that full length can also be used for the
+comparison string itself.
+
+**IBMI-998:**  PTF211136  Operator Replay enhance for large data
+
+The Operator Replay Step maintenance display is enhanced to support F8=DYNVAR and to prompt for de facto limit of 30 characters in the Top/Bottom control data field.  Logging of long data entries during Script execution 
+ehanced to show all in log display.
+
+##### LSAM DB LVL # 21.1.006
+
+**IBMI-1006, IBMI-1023:**  PTF211137, PTF211142  Add flex parameters to Job Tracking
+
+The Job Tracking Parameters master file has the OpCon Schedule ID fields expanded to 435 to allow for a long multi-instance qualified Dynamic Variable.  The IBM i Job ID fields now have parallel Prefix/Suffix flag fields, as explained in instructions.
+
+- IBMI-1023  PTF211142  Add LSAM log  “JT:” entry to Job Tracking for $VAR replacement
+
+The LSAM "submitted job log" entry types are expanded to support a new type "JT:" for Job Tracking to record any replacement of an LSAM $-system variable with its actual value.  
+
+The Job Tracking Parameters maintenance display now only shows F10=$VAR if/where the Job Tracking variable tokens are supported.  This PTF also fixes a bug of not selecting the proper qualified Job Tracking Parameters record when more than one record matches the same job name (but has any of the other 5 job filter fields that are unique).
+
+**IBMI-1017:**  PTF211141  Enhance LSAM gen log search to LC:
+
+The LSAM "Submitted Job Log" file, which has become a general purpose log file for LSAM tools that span features, such as Dynamic Variables, has its list of log codes expanded with code LC: which logs any command executed by the LSAM utility LSAMCMD.
+
+
+#### FIXES
+
+- Fixed (# PTF211125) IBMI-991: Prevent dup recs in Export: LSAJORF50
+
+Prevent duplicate records in the LSAM data Export library tables for files LSAJORF50, OPRRPYF40 and OPRRPYF50 (data capture and response rules tables).  The Import process cannot handle exact duplicates of record keys.
+
+- Fixed (# PTF211126) IBMI-994: Fix load of Job Track/Queue INLLIBL
+
+Fix load of Job Track/Queue INLLIBL. There was an incompatible field size in the LSAM Job Scheduler program that could cause a failure to fetch Dynamic Variable values, and this was preventing proper management of the 
+Initial Library List for Tracked Jobs.
+
+- Fixed (# PTF211127) IBMI-996: Show options 7 and 8 @ dsp fmt LSAJ50R1
+
+Options 7=CaptChart and 8=Export were not showing on the display format LSAJORD50:LSAJ50R1.  The options worked, but a recent enhancement that added another list option had overlaid the display position of these two option prompts. Fix = repositioned.
+                                             
+- Fixed (# PTF211129) IBMI-1000: Register files for Job Monitor server
+
+The new files for the "Job Status" monitor server needed to be registered in an Agent control file that keeps all the special file attributes for reference whenever files are updated in their design by LSAM PTFs or LSAM 
+release upgrades.
+
+- Fixed (# PTF211130) IBMI-1002: WAITDYNVAR fix and other DynVar fixes
+
+(1) Fixes the default for WAITDYNVAR command parameter WAITVARNAM to be "WAITDYNVAR" as in LSAM 18.1; 
+(2) Add missing DV: log of simple DynVarvalue change; 
+(3) Display Captured Data Log F8 = access to R6: Response Rule Compares from R5: Entry detail.
+
+- Fixed (# PTF211131) IBMI-1005: Change LSAM User Management to not pre-load passwords
+
+On the LSAM menu 4, option 1 = User Management.  The data entry program is changed to not pre-load any existing password to the data entry fields.  This change helps prevent invalid passwords created by left over characters from a longer previous value.
+
+- Fixed (# PTF211132) IBMI-1010: Fix F10=FOLD on MLTJOB Script flow chart
+
+Fix F10=FOLD on Multi-Step Job Script list option 9=FlowChart where continuation lines showing the whole command were being truncated at the start of each continuation line.
+
+- Fixed (# PTF211133) IBMI-1004: Fix Import Batch reports and library management
+
+The LSAM Data Import processing programs were not showing valid totals.  The Import process when executing within the same IBM i partition as the Export was not always correctly managing the Export-Import library that had been stored in the save file.
+
+- Fixed (# PTF211134) IBMI-1012: Prevent Non-numeric data errors in SMAFT programs
+
+The SMA File Transfer programs would sometimes generate a "Non-numeric data error" when there was a slight pause during the reception of a very long data transaction (near the limit of 32000 bytes).  Controls added 
+to retry once after a read with no data.
+
+- Fixed (# PTF211135) IBMI-1001: Prevent CPF3EC2 error at Job Track exit
+
+Prevent CPF3EC2 error from the Job Tracking feature as it executes a test of every submitted job.  The error is uncommon, but it originated as the LSAM exit program for handling the command QSYS/SBMJOB was using an 
+API to fetch exit program information.
+
+- Fixed (# PTF211138) IBMI-1015: DSPOBJWU rept drops right char:  shift Left
+
+DSPOBJWU report drops right-most character in the list lines. Lines are now shifted Left 3 bytes.
+
+- Fixed (# PTF211139) IBMI-1016: Fix SCHNAM, FRENAM sizes for CHKTRKPAR
+
+The CHGTRKPAR command processor programs did not get the sizes of fields SCHNAM, FRENAM expanded to 435/436 during the Job Tracking enhancement of project IBMI-1006.  This would have caused the utility command processing to fail.
+
+- Fixed (# PTF211140) IBMI-1017: Refine Job Track revised activity management
+
+The Job Tracking revised activity management is updated with one small program change and also a minor revision of one field definition within the Job Tracking Parameters file.
+
+- Fixed (# PTF211143, 211144) IBMI-1009: Update the LSAM utility LSAINIT to manage the LSAM ENV value after cloing an LSAM
+
+When an existing LSAM enironment's libraries are copied to a new LSAM environment, the LSAM PTF control records must be updated to match the new LSAM ENV (environment) name, otherwise the LSAM PTF process in the newly cloned environment cannot correctly process subsequent PTFs.
 

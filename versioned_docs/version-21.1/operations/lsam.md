@@ -808,4 +808,6 @@ Main Menu > LSAM management menu (#6) > Alternate Job Notify menu (#8) > option 
 - **Time job started**: The time stamp when the job became active, such as, when it was released from a job queue and the subsystem allowed job processing to begin.
 - **Time job ended**: The time stamp when the job completed processing. This would be the same time as reported by the normal job completion message. This is also approximately the time when the exit point processing generated the data queue entry which was later converted by the IBM i JOBNFY server into this log entry.
 - **Processing time used**: The number of milliseconds of actual CPU time required to process the job.
+- **SBMFOR job identifier**: The IBM i Job ID (Job Number, Job User, Job Name) of the job that submitted the Job identifier (above) job.
+- **SBMFOR job date,time (keys)**: For the sumitting job, the Job Entry Date (8.0 CCYYMMDD) and Job Entry Time (6.0 HHmmSS), as the job entered a job queue or when a workstation job first started. 
 - **Job end severity code**: The IBM i message ID CPF1164 in the QCPFMSG message file lists the possible values for this field. A zero value is recognized by the LSAM Job Notify server as a normal job completion, in case JOBNFY discovers it must report the job completion status to OpCon. Non-zero values are reported as job failures to OpCon.

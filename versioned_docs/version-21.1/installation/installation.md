@@ -216,6 +216,13 @@ After upgrading to version 04.00.03, it is necessary to apply all of the last cu
 
 Please refer to this same section of documentation within the Version 18.1 of the document for details about upgrading to version 18.1.
 
+### Instructions for Upgrading from 18.1 to 21.1
+
+The general strategies for this level of updates starts with the following:
+
+  - Verify that the LSAM version 18.1 has been upgraded to at least database level (002).  If not, then it is necessary to apply the latest cumulative LSAM PTFs for the LSAM version 18.1 before attempting to upgrade to the next level.
+  - If the LSAM version 18.1 is already at DB LVL(002) then the SMASETUP command for the upgrade to version 21.1 will catch up any database updates that might have been released at a later level.
+
 ### Using Library Cloning to Create a Test Upgrade Environment
 
 As the Installation Strategy suggests, SMA recommends performing an isolated upgrade test. This safety measure will prove if there are any exceptional circumstances in a client's environment that were not anticipated by SMA during the development, internal QA testing or external beta site testing of the newest LSAM version.
@@ -225,7 +232,7 @@ For details about Cloning an LSAM environment see [Clone an Existing Environment
 ### Preparing an LSAM Environment for Upgrade
 
 :::warning
-An audit program is available that must be executed before strating an upgrade of the LSAM from version 18.1 to 21.1.  This audit checks for an unsupported connection between any Operator Replay Script Step that has been linked to more than one unique Capture Data Applications.  Failing to correct data identified by the audit report will result in corrupted automation rules for the affected Operator Replay Scripts.  Please follow the instructions below to [Auditing the LSAM for Data That Cannot Be Converted](#auditing-the-lsam-for-data-that-cannot-be-converted).
+An audit program is available that must be executed before starting an upgrade of the LSAM from version 18.1 to 21.1.  This audit checks for an unsupported connection between any Operator Replay Script Step that has been linked to more than one unique Capture Data Applications.  Failing to correct data identified by the audit report will result in corrupted automation rules for the affected Operator Replay Scripts.  Please follow the instructions below to [Auditing the LSAM for Data That Cannot Be Converted](#auditing-the-lsam-for-data-that-cannot-be-converted).
 :::
 
 #### Purging the LSAM database log files and deleted records
@@ -245,7 +252,7 @@ The SMARGZ command will either be executed automatically during the next Mainten
 
 #### Suspending LSAM Server Operations Before Starting an Upgrade
 
-The LSAM databsae purging procedures mentioned above may require that the LSAM server jobs remain active at least until the last daily log file purges are completed.  However, before starting the actual execution of the SMASETUP command for upgrading an existing LSAM, it is required to suspend the following LSAM services:
+The LSAM database purging procedures mentioned above may require that the LSAM server jobs remain active at least until the last daily log file purges are completed.  However, before starting the actual execution of the SMASETUP command for upgrading an existing LSAM, it is required to suspend the following LSAM services:
 
 - Stop the LSAM server jobs.
   - If used, this process will also stop the Alternate Job Notify service.
@@ -270,7 +277,7 @@ For alternate LSAM environments, change the name of the SMAGPL library and speci
 
 Choose 1) or 2):
 
-1. *EITHER*: Terminate the LSAM by issuing the **ENDSMASYS** command. Newer versions of this command may support an optional ENV parameter that can be used to designate the name of the LSAM environment to be stopped. Use F4=Prompt to determine if the ENV parameter is supported. Otherwise, it is necessary to set the job's library list to the LSAM environment library list. This can be done using the SMASETLIBL command. Refer to [SMASETLIBL](../environment/commands.md#smasetlibl) for more information about LSAM environments and the SMASETLIBL command.
+1. *EITHER*: Terminate the LSAM by issuing the **ENDSMASYS** command. Newer versions of this command (LSAM 18.1 and newer) support an optional ENV parameter that can be used to designate the name of the LSAM environment to be stopped. Use F4=Prompt to determine if the ENV parameter is supported. Otherwise, it is necessary to set the job's library list to the LSAM environment library list. This can be done using the SMASETLIBL command. Refer to [SMASETLIBL](../environment/commands.md#smasetlibl) for more information about LSAM environments and the SMASETLIBL command.
 2. *OR*: From LSAM menus, terminate the LSAM with the following steps:
 
     - From the **LSAM Master Menu**, enter **6**.
@@ -298,7 +305,7 @@ Choose 1) or 2):
     **SAVLIB LIB(SMAGPL) DEV(<***backup device***>) PRECHK(*YES) ACCPTH(*YES)**
   ```
 
-The SMABAK and SMALOG libraries do not require a backup if they exists as a result of installing and using recent versions of the LSAM. These libraries are not updated by the LSAM upgrade procedure. SMABAK exists solely for the purpose of storing backups requested by SMA File Transfer jobs. Similarly, the SMALOG library is used only for temporary storage of save files produced by the SMASUP command and the LSAM log file purge and backup routines. It is also not updated during the LSAM upgrade installation.
+The SMABAK and SMALOG libraries do not require a backup if they exist as a result of installing and using recent versions of the LSAM. These libraries are not updated by the LSAM upgrade procedure. SMABAK exists solely for the purpose of storing backups requested by SMA File Transfer jobs. Similarly, the SMALOG library is used only for temporary storage of save files produced by the SMASUP command and the LSAM log file purge and backup routines. It is also not updated during the LSAM upgrade installation.
 
 It is not necessary to delete any LSAM utility objects that were previously (optionally) installed in QGPL. These utilities will be updated as necessary by the SMASETUP installation procedure.
 
@@ -551,7 +558,7 @@ Password: <QSECOFR password>
 230 User QSECOFR logged in.
 ftp> bin
 200 Representation type is binary IMAGE.
-ftp> PUT LI211043B QGPL/LI1211043A
+ftp> PUT LI211043B QGPL/LI1211043B
 200 PORT subcommand successful.
 150 Sending file to member LI211043B in file LI211043B in library QGPL.
 ________ bytes sent in ______ seconds _____ Kbytes/sec
@@ -944,8 +951,6 @@ Provided here are the steps to follow after installation.
    DLTF FILE(QGPL/LI211043B)
    ```
 
-   ... where "ppp" is the LSAM PTF level of the newest Installation Save file.
-
    Delete the installation objects library:
    ```
    DLTLIB LIB(LI211043B)
@@ -967,7 +972,7 @@ Provided here are the steps to follow after installation.
 
      - The LSAM stores the Password in an encrypted form.
 
-4. The LSAM standard message queue that receives IBM i job completion messages must permit *PUBLIC to have *USE authority. This will be done already for new installs of version 18.1 of the LSAM, but Upgrades may still need attention.
+4. The LSAM standard message queue that receives IBM i job completion messages must permit *PUBLIC to have *USE authority. This will be done already for new installs of version 18.1 and newer of the LSAM, but Upgrades may still need attention.
 
    - Always use the LSAM sub-menu 9, option 8: Work with Object Authority to add or change the authority of any LSAM objects (programs, files, queues, etc.). 
 
@@ -988,7 +993,7 @@ Provided here are the steps to follow after installation.
    - Use the IBM i command DSPSYSVAL to find the name of the system startup program in the system value QSTRUPPGM. This program, or a user replacement for it, must include the LSAM command SMAGPL/STRSMASYS ENV(\<environment name\>), where the default value for the environment name can be (*DEFAULT).
    The ENV parameter of the STRSMASYS command must specify the name of the LSAM environment where the Restricted Mode job was (or could be) executed, if this is not the default LSAM environment.
 
-   - The existing source for the Control Language program used for system startup, unless it has been modified, can usually be retrieved using the IBM i command RTVCLSRC.
+   - The existing source for the Control Language program used for system startup, unless it has been modified, can often be retrieved using the IBM i command RTVCLSRC.
 
      - SMA suggests storing the retrieved source into the source file QGPL/QCLSRC, or a user-designated library can be used instead of QGPL, since the QGPL library gets replaced when the IBM i operating system is upgraded. Use the original program name for the retrieved source member.
 
@@ -1008,7 +1013,7 @@ Provided here are the steps to follow after installation.
         - CPYSRCF
         - ADDPFM (to add a new source file member, if this was not already done by the CPYSRCF command)
         - EDTF (a simple text editor; see the IBM i Knowledge Center or the IBM developerWorks web site for instructions and hints about using EDTF to edit source members).
-     - CRTCLPGM
+        - CRTCLPGM
 
      - SMA recommends not overlaying the original system startup program, but instead creating the new program with a different name (if stored into the QSYS system root library, as IBM did), or storing the new program into the QGPL library (but QGPL contents may be lost during the next IBM i operating system upgrade, so another user library can be used, such as the SMAGPL library).
 

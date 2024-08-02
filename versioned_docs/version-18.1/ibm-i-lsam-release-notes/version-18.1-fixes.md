@@ -288,3 +288,6 @@ re all being overriddent to type L.
 
 - Fixed (# PTF181151)  IBMI-951:  Fix a false value 999999 in a job’s Start Time being reported during the end of job status reporting to the OpCon server.  The initialized value (all 9s) for the job end time was overlaying the original job start time as the job end time and status were being sent to the OpCon server.
 
+- Fixed (# PTF181152, 181153) IBMI-1009: Update the LSAM utility LSAINIT to manage the LSAM ENV value after cloing an LSAM.
+When an existing LSAM enironment's libraries are copied to a new LSAM environment, the LSAM PTF control records must be updated to match the new LSAM ENV (environment) name, otherwise the LSAM PTF process in the newly cloned environment cannot correctly process subsequent PTFs.
+

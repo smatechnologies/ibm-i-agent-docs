@@ -17,9 +17,9 @@ All the instructions for installing a new LSAM environment using the SMASETUP co
 
 The following check list of steps can be used as a guide for planning and as a check list during the process of creating and initiating an extra LSAM environment by copying an existing LSAM environment.
 
-This procedure assumes that all steps required to install and configure the original, source LSAM environment have been completed, as outlined in the Installation and Configuration topics.
+This procedure assumes that all steps required to install and configure the original, source LSAM environment have been completed, as outlined in the Installation and Configuration topics. 
 
-Do not forget the importance of applying all the latest SMA PTFs to the source LSAM environment before starting this procedure!
+**Do not forget the importance of applying all the latest SMA PTFs to the source LSAM environment before starting this procedure!**
 
 This procedure requires that the user is logged on to the IBM i partition as either QSECOFR or as a user profile that has sufficient authority to manage all objects owned by the SMANET user profile. If not QSECOFR, then a user profile that has \*ALLOBJ authority is recommended.
 

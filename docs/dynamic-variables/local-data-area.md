@@ -50,7 +50,7 @@ When using the LDA( ) Call command extension parameter, there is a format that d
 
 #### IBM i Agent's Job Tracking feature support for LDA content:
 
-The IBM i Agent's Job Tracking feature has a built-in capability for pre-loading the LDA before the pre-defined IBM i Job is release to the operating system.  Data for the LDA is provided either by Type-L Dynamic Variables (keyed by the IBM i Job Name) or by storing and retrieving the LDA content of a Captured Job, where the LDA content gets stored in an Agent database file that supports manual maintenance of the LDA conten.  Details about these methods are described in Job Tracking and Queuing -> How LSAM Job Tracking Works -> [Local Data Area (LDA) Support](/job-tracking/details.md#local-data-area-lda-support).
+The IBM i Agent's Job Tracking feature has a built-in capability for pre-loading the LDA before the pre-defined IBM i Job is released to the operating system.  Data for the LDA is provided either by Type-L Dynamic Variables (keyed by the IBM i Job Name) or by storing and retrieving the LDA content of a Captured Job, where the LDA content gets stored in an Agent database file that supports manual maintenance of the LDA conten.  Details about these methods are described in Job Tracking and Queuing -> How LSAM Job Tracking Works -> [Local Data Area (LDA) Support](/job-tracking/details.md#local-data-area-lda-support).
 
 #### IBM i Agent's Operator Replay updating the LDA content of virtual workstation interactive jobs:
 

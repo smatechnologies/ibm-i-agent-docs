@@ -276,7 +276,7 @@ When it is beneficial for a client site to use the smaller partial PTF save file
 
 The goal is to use one or more LSAM partial PTF save files that will catch the client site up to the latest LSAM PTF Level. Look for the smallest partial PTF save file that can upgrade the LSAM from its current PTF level to the latest level.  There might be one partial PTF save file that fits the client site's current status, or the site might need to use two smaller partial PTF save files and run the LSAM PTF installation procedure for each file, until the site is caught up to the currently available LSAM PTF Level.  
 
-:::example
+:::info example
 If a site installs or upgrades the LSAM using the install file named LI211043B, the installation will include PTFs through Level 043.  Therefore, a partial PTF save file LSCUMPTF.044-056 would be an example of a partial PTF save file that might be made available to update the LSAM software from its original patch level to the later PTF Level 056.  To reach a higher PTF Level of 122, the site might find and use another partial PTF save file named LSCUMPTF.057-122.  But if the site can accommodate the larger complete cumulative PTF save file, then the base file named LSCUMPTF can always be used to update an LSAM installation from any previous PTF Level to the last, currently available PTF.
 :::
 

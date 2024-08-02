@@ -267,7 +267,7 @@ This special-purpose version of the LSAJ50R1 list display is adapted for use by 
 
 #### Options
 
-- **9=View App ID user**: This option routes the display fromt the list of Agent automation master records to details about a specific master record, that is, to an Operator Replay Script Step or to a Message Management Parameters individual Sequence record.  This option can result in showing the Agent master record where option 5=DspAppWU was executed, or it could show details about one or more other Agent master records that are linked to the same Capture Application ID.
+- **9=View App ID user**: This option routes the display from the list of Agent automation master records to details about a specific master record, that is, to an Operator Replay Script Step or to a Message Management Parameters individual Sequence record.  This option can result in showing the Agent master record where option 5=DspAppWU was executed, or it could show details about one or more other Agent master records that are linked to the same Capture Application ID.
 
 
 ## Display Captured Data Log
@@ -373,17 +373,50 @@ Main Menu \> Events and Utilities menu (#3) \> Display Captured Data log (#8) \>
 
 ## Display Data Capture Debug Log
 
-The function is not documented in detail because it is meant for use by trained analysts or programmers already familiar with the operation of the Capture Data and Capture Response Rules programs. The log entries that may be observed in this display may seem apparent to users familiar with data capture and response.
+The function for displaying the captured data log is important as an auditing tool. This inquiry provides evidence of the data that was actually captured from a display screen during an Operator Replay script execution, from message text, or from a report line during the use of the SCANSPLF command.
 
-LSAM menu 3. Events and Utilities Menu, contains option 7. LSAM Utility configuration, where a flag may be set to turn on debug logging for allof the LSAM data capture and captured data response actions. This debug logging supports both Operator Replay screen data capture as well as the SCANSPLF command. The debug log entries would prove exactly when the system captured data, when it processed Dynamic Variables and which response rules were executed.
+- **Screen Title**: Display Data Capture Debug Log
+- **Screen ID**: CAPL10R1
+
+The same data capture response functions support (1) Screen data capture for Operator Replay, (2) message text capture for Message Management and (3) report data capture for the SCANSPLF utility command. 
+
+##### Menu Pathways
+
+- Main Menu \> Operator replay menu (#4) \> Display Data Capture Debug log (#9).
+- Main Menu \> Message Management menu (#4) \> Display Data Capture Ddebug log (#9).
+- Main Menu \> Events and Utilities menu (#3) \> Display Data Capture Debug log (#9).
+
+##### Additional Display Formats
+
+- **CAPL10R2**: *R1 - Function key F2.* Select Capture Log Subset by Job
+  - A very important method for isolating the log entries list to show only entries from one job.  Without this option, the master log list will typically show mixed up entries from multiple jobs that would be running at the same time.
+- **CAPL10R5**: *R1 - Option 5.* Display Data Capture Log Detail
+  - Continuation code, Reference data, Compare data, Response Command.
+  - Entry code (see table of entry codes, below) and log entry text.
+- **CAPL10R6**: *R1 - Option 6.* Display Data Capture Response Detail
+  - Log record key values in the top, right data block vary depending on the captured data source.
+- **CAPL10R6A**: *R6 - Function key F14.* Display Data Capture Response Debug Log
+  - Full command line
+- **CAPL10R6B**:  *R6 - Function key F13.* Display Data Capture Response Debug Log
+  - Reference data 321 - 1920        
+
+##### Fields
+
+This function is not documented in detail because it is meant for use by trained analysts or programmers already familiar with the operation of the Capture Data and Capture Response Rules programs. The log entries that may be observed in this display should seem apparent to users familiar with data capture and response.
+
+### Controlling Data Capture Logging
+
+LSAM menu 3. Events and Utilities Menu, contains option 7. LSAM Utility configuration, where a flag may be set to turn on debug logging for all of the LSAM data capture and captured data response actions. 
+
+This debug logging supports Operator Replay screen data capture, Message Management message data capture and report data capture by the SCANSPLF command. The debug log entries would prove exactly when the system captured data, when it processed Dynamic Variables and which response rules were executed.
 
 The debugging feature could be turned off for better performance in systems that do not require extensive audit logging or debugging of any problems. On the other hand, debug logging should be turned on when extensive system audit support is required, because the debug log provides detailed evidence of all automated operations.
 
-If technical support is needed for apparent problems with either capturing data or executing response rules, turn on the debug function in LSAM menu 3. After attempting execution of the Operator Replay script, or the SCANSPLF command that is causing trouble, use the SMASUP log file extract command to retrieve the debug log information and send the resulting save file from library SMALOG to SMA Support for assistance. (Refer to [Operation of Extracting LSAM Log and Master Files](../logs-database/extracting.md) for more information about how to use the SMASUP command.)
-
-Following is a table of Entry_Code values that may be observed in the list of debug log entries. These entry labels help to identify the action that was performed and/or the result of data capture and captured data response rules. Some of the codes reflect a failure in which case the log entry will appear red in color.
+If technical support is needed for apparent problems with either capturing data or executing response rules, turn on the debug function in LSAM menu 3. After attempting execution of the Operator Replay script, or triggering processing of any registered Message ID (or Message Text match), or the SCANSPLF command that is causing trouble, use the SMASUP log file extract command to retrieve the debug log information and send the resulting save file from library SMALOG to SMA Support for assistance. (Refer to [Operation of Extracting LSAM Log and Master Files](../logs-database/extracting.md) for more information about how to use the SMASUP command.)
 
 ### Entry_Code Value Appearing in Captured Data Debug Log Viewer
+
+Following is a table of Entry_Code values that may be observed in the list of debug log entries. These entry labels help to identify the action that was performed and/or the result of data capture and captured data response rules. Some of the codes reflect a failure in which case the log entry will appear red in color.
 
 **SCANSPLF command log entries**                
 - **SCANSPLFST**: The SCANSPLF command has started its function.

@@ -146,11 +146,12 @@ The description for the Add, Copy, Change and Display screens are the same for a
 - Main Menu > Job track menu (#1) > Job track parameters (#1) >     option 3=Copy
 - Main Menu > Job track menu (#1) > Job track parameters (#1) >     option 5=Display
 
-### TRKPARR1 - Maintain Job Tracking Parameters
+### TRKPARR6 - Maintain Job Tracking Parameters
 
 #### Fields
 | Parameter          | Default               | Description           |
 | ---------          | -------------         | -----------------     |
+| P/S (Prefix or Suffix wild cards)  | blank    | When the Job Tracking Configuration (Menu 1, option 7) allows for the use of wild card characters in the IBM i Job ID object names, each field must specify either a "P" or an "S" in its corresponding row under this column in order to engage the wild card search logic for each filter field that uses the question marks as wild cards.  If this field is left blank, any question marks that appear as part of the object name will be managed as if they are only a part of the name and they will not be replaced by the original characters specified in the SBMJOB command that was intercepted. |
 | Job Name           | IBM i Name Rules (Refer to [IBM i NameRules](../configuration/configuration.md#IBM2))  | The name portion of an IBM i job. The IBM i full job names (per instance of a job) include the name, the submitting user name, and a unique job number. The name portion is common to as many instances of the same job  definition as may be executed. The IBM i permits more than one instance of the same job name to be executed concurrently.         |
 | Job user ID        | \*ALL                 | The IBM i User Profile that owns/executes the job.                 |
 | Jobd Name          | \*ALL                 | Job Description - a system object that defines how a job is to be processed. When a specific name is used in this field it qualifies an IBM i job for selection for tracking or queuing.  |
@@ -178,7 +179,7 @@ The description for the Add, Copy, Change and Display screens are the same for a
 Format of Confirm Delete list will vary to match current <**F11**> sort sequence of List display.
 :::
 
-### TRKPARR1 - Job Tracking Parameters
+### TRKPARR3 - Job Tracking Parameters: Confirm Delete of Records
 
 #### Menu Pathways
 
@@ -276,7 +277,9 @@ number.
   - The name portion is common to as many instances of the same job definition as may be executed.
   - The IBM i permits more than one instance of the same job name to be executed concurrently.
 - **Job user**: The User Profile portion of the IBM i job identifier.
+- **Job date**: The Job Entry date (CCYYMMDD)
 - **Job number**: The unique identifying number portion of the IBM i job identifier.
+- **Job time**: The Job Entry time (HHmmSS)
 - **Job Queue**: A system object that stores job requests while they are waiting to be executed, as long as they are in hold status, or until system resources permit the job to be released for execution. 
   - Jobs that match the tracking requirements for queuing, and are recognized by OpCon for tracking, are held in the job queue until SAM scheduling requirements and dependencies permit the job to execute.
   - Jobs that are not defined for queuing are not held in a job queue by the LSAM or OpCon, and would only remain in the job queue until system resources permit the job to be released for execution.
@@ -284,7 +287,9 @@ number.
 - **JOBQ Library**: The library within DB2/400 where the job queue is located.
 - **For job name**: The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
 - **For job number**: The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
+- **For job date**: The Job Entry date of the submitting job (CCYYMMDD)
 - **For job user**: The ID of the submitting job, or an override value specifying which job can refer to this job using the WRKSBMJOB command.
+- **For job time**: The Job Entry time of the submitting job (HHmmSS)
 - **Job description**: A system object that defines how a job is to be processed.
 - **JOBD Library**: The library within DB2/400 where the job description is located.
 - **Library List**: The list of DB2/400 libraries that are searched for any type of object that is required by a job.
@@ -327,6 +332,7 @@ SAM Parameters ...
 - **F13=More CMD**: Proceeds to a display of some Job Track Log Detail with an extended area reserved to show all (or much more of) the Call command text.
 - **F14=More LIBL**: Press \<F14\>, when it is available, to view an extended display of the Library List.
 - **F15=View LDA**: Press \<F15\>, when it is available, to view the content of the job's captured local data area (LDA).
+- **F20=SBMcmd**: Press \<F20\> to view the complete IBM i SBMJOB command and paramters that define the original job start request.
 - **F21=WRKJOB**: Press \<F21\>, when it is available, to go to the IBM i Work with Job menu display. After exiting the Work with Job  menu or any of its functions, the system will return to this log detail display.
 - **F22=RLSJOB**: Press \<F22\>, when it is available, to request the manual release of a queued job from the LSAM Job Tracking master file. After the HOLD window response is given, this program will use the LSAM Job Tracking master file data to construct an IBM i SBMJOB command, and then execute the command. As a result, the actual IBM i job will either be on hold in an IBM i job queue (as specified by the job details), or if not held, the job will immediately begin execution in the specified IBM i subsystem. **F23=CNLJOB**: Press \<F23\> to confirm and complete the action of option 4=Cancel job. When F23 is pressed, the LSAM job tracking     master record status is set to K=killed, preventing any future release of this job, either by OpCon or manually. (A canceled job cannot be recovered. Its task must be submitted as a new job.)
 - **PageDown=More details**: Press \<PageDown\> to see additional internal and IBM i data that define the tracked job.
@@ -429,7 +435,7 @@ Pressing <**F13**> from the Job Track Log Detail display provides a greatly exte
 
 Pressing <**F14**> from the Job Track Log Detail display provides a greatly extended viewing area for longer library lists that could not fit in the primary detail summary display.
 
-### LSALOGR3 - Job Track Log Detail - View LIBL
+### LSALOGR4 - Job Track Log Detail - View LIBL
 
 #### Fields
 
@@ -447,7 +453,7 @@ Pressing <**F14**> from the Job Track Log Detail display provides a greatly exte
 
 Pressing <**F15**> from the Job Track Log Detail display provides access to a display of the captured job's local data area (LDA) content. This screen is a list of the 15 lines (1024 character) of the LDA content, but the screen may show a "no records" message if the LDA was either not captured or is completely blank. Function key \<F10\> may be used to toggle the display between a character-only mode that shows the whole LDA on one screen (but non-display characters in the LDA will appear as blanks), and a hex mode that shows the hexadecimal equivalents for each LDA byte position in over/under mode.
 
-### LSALOGR3 - Job Track Log Detail - LDA Content (2 Views)
+### LSALOGR6 - Job Track Log Detail - LDA Content (2 Views)
 
 #### Fields
 
@@ -460,7 +466,28 @@ Pressing <**F15**> from the Job Track Log Detail display provides access to a di
 - **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
 - **F12=Cancel**: Quits the display of the LDA content view and returns to the Job Track Log Detail summary display.
 - **PageUp**: (not shown) May be used if PageDown was previously used to show more lines while in Hex display mode.
-- **Page Down**: (Not shown) May be used if "More\..." appears at the bottom of the display while in Hex display mode.
+- **PageDown**: (Not shown) May be used if "More\..." appears at the bottom of the display while in Hex display mode.
+
+## Job Track Log Detail - SBMJOB command
+
+### LSALOGR8 - Job Track Log Detail - SBMJOB command
+
+#### Fields
+
+- Log date, time: Date and time when the log entry was stored
+- SAM job name  : The SAM Job Name assigned in the OpCon server
+- SAM job number: The SAM Job Number assigned in the OpCon server
+- IBM i job ID: Job Number/Job User/Job Name
+- IBM i job date, time:  The Job Entry Date and Time, used to keep duplicate IBM i Job IDs unique.
+- SBMJOB cmd ( 66666 - 66666 ):  The two numbers show the character count of the SBMJOB command string, to identify the portion of the command that appears on the display during PageDown and PageUp operations.  Below these heading fields is the text of the original SBMJOB command.
+
+#### Functions
+
+- **Enter=Return**: Returns to the log entry details display
+- **F3=Exit**: Quits the display of the Job Track Log and returns to the menu.
+- **F12=Cancel**: Quits the display of the SBMJOB command view and returns to the Job Track Log Detail summary display.
+- **PageUp**: May be used if PageDown was previously used to show the previous block of characters from the SBMJOB command.
+- **PageDown**: May be used if "More\..." appears at the bottom of the display to show a continuation of characters from the SBMJOB command.
 
 ## Start Job Track (STRJOBTRK)
 
@@ -588,11 +615,13 @@ The required procedure for changing the exit program number is to first stop job
 | Auto-start job tracking | Y=Yes,N=No      | Y          | This option tells the LSAM server start and stop programs whether to also start or stop Job Tracking at the same time as all other LSAM server jobs are managed. |
 | Allow *RQS msg for SBMJOB | 0=No,1=Yes   | 0          | This option controls the behavior of the Job Tracking command processor exit program when processing the SBMJOB command. The default behavior of the LSAM will be to directly call QCMD when submitting jobs that do not qualify for job tracking. When the option is set to '1' = Yes, the LSAM will provide improved support for the IBM i Command Entry screen function keys F9=Retrieve and F4=Prompt, while Job Tracking is started. However, this new option should be turned off (set to '0'=No) in environments where request message processing cannot be used to perform the SBMJOB command. This condition would typically only be discovered by experimentation. |
 | Expand JOBD/JOBQ obj refs | 0=No, 1=Yes           | 1          | Many times the SBMJOB command parameters use cross-references to other IBM i objects in order to identify which job description and/or job queue should be used for a job. In most cases, these cross-references should be resolved by the Job Tracking programs as the tracking process starts, especially because the job start process is typically suspended from its original job, and then resumed from an LSAM server job      |
-| Allow automatic tracking | 0=None, 1=Positive, 2=Negative| 0          | This control field governs how Automatic Job Tracking will decide which jobs in the IBM i partition will be selected for automatic tracking. The impact of this control field is described above in this topic, under "How Job Tracking Works -> Automatic Job Tracking." |
-| Expand JOBD/JOBQ obj refs | 0=No, 1=Yes          | 0          | This option tells the Job Tracking exit program whether to replace \*LIBL in the Job Description Library name and the Job Queue Library name of the intercepted SBMJOB command. It also controls replacing a value of \*JOBD in the Job Queue Name parameter of the SBMJOB command. Replacing these indirect object references may provide more exact control over which jobs are qualified for Job Tracking, and over selection of the OpCon Schedule and Schedule Date that is matched when there is more than one instance of the same IBM i Job Name that could be tracked, such as when a Test environment is present in the same IBM i partition as a Production environment. |
+| | | | This option tells the Job Tracking exit program whether to replace \*LIBL in the Job Description Library name and the Job Queue Library name of the intercepted SBMJOB command. It also controls replacing a value of \*JOBD in the Job Queue Name parameter of the SBMJOB command. Replacing these indirect object references may provide more exact control over which jobs are qualified for Job Tracking, and over selection of the OpCon Schedule and Schedule Date that is matched when there is more than one instance of the same IBM i Job Name that could be tracked, such as when a Test environment is present in the same IBM i partition as a Production environment. |
 | | | | When this option is set to 0=No, the indirect object reference values of \*LIBL and \*JOBD could only be matched by the LSAM Job Tracking Parameter field special value of *ALL. |
 | | | | The SBMJOB parameter values that are managed by the LSAM Job Tracking exit program are the values present in the original SBMJOB command, not the finally resolved job definition parameters that are replaced by IBM i only when the job is actually processed for placement on a job queue - which happens after the LSAM Job Tracking exit program.|
-
+| Allow automatic tracking | 0=None, 1=Positive, 2=Negative| 0          | This control field governs how Automatic Job Tracking will decide which jobs in the IBM i partition will be selected for automatic tracking. The impact of this control field is described above in this topic, under "How Job Tracking Works -> Automatic Job Tracking." |
+| Allow generic filter names | 0=No, 1=Yes          | 0          | This option tells the Job Tracking mainetenance program whether to show options for using generic names in the IBM i Job ID filter section, and then also whether to show F10=$VAR so that the $-system variables $PREFIX or $SUFFIX can be used with the Schedule Name and/or the Frequency Name. |
+| Generic prefix size | 1 - 9, 0 = not applicable | 0          | When support for generic filter names is enabled, this field specifies the size of the first few letters that should be replaced in the IBM i Job Name (or other filter object name) so that question marks can be used instead when searching the Agent's Job Tracking Parameters master file for a match. |
+| Generic suffix size | 1 - 9, 0 = not applicable | 0          | When support for generic filter names is enabled, this field specifies the size of the few trailing letters that should be replaced in the IBM i Job Name (or other filter object name) so that question marks can be used instead when searching the Agent's Job Tracking Parameters master file for a match. |
 
 #### Functions
 

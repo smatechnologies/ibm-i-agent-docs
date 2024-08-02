@@ -65,6 +65,16 @@ Two groups of control values that are optionally available to extend the capabil
 
 The first master record display page now supports the option to connect to a Capture Data Application.  The two fields used for defining this connection have been moved from page 3 to page 1, since they are very frequently used.  This change helped to free and isolate the seldom used threshold definition fields.
 
+### Adding Variables to Job Tracking Parameters
+This enhancement adds support for two categories of variables to the Job Tracking Parameters master records.  This new feature can greatly reduce the number of Job Tracking Parameter records in data centers where multiple copies of the same basic Schedule are then able to run separately, in parallel with each other, but without requiring that a separate set of one or more Tracked Jobs be created for each unique application databaes that is being processed within a single IBM i partition.
+
+*Wild Cards:* 
+The IBM i Job ID filter parameters (six fields at the top of the Parameters maintenance display) can support 1 to 9 question marks (?) as wild card characters, used to assign a single generic job profile for use by multiple similar jobs.  The wild card character parameters can be used as a prefix or a suffix, part of the parameter(s) that use them.
+
+
+*New $-system Variables:* 
+When wild card characters are used for the Job Name, the OpCon Schedule Name and, optionally, the Frequency Name can contain either of the new $-system variables added to the LSAM:  $PREFIX or $SUFFIX.  These variables represent the characters that are stripped off an actual IBM i Job Name (1 to 9 characters) so that unique Schedule Names (and/or Frequency Names) can be specified to match the unique IBM i Job Name.
+
 ## Agent Enhancements by Project ID
 
 This list shows the enhancements that were added to the OpCon Agent for IBM i as LSAM version 21.1 was released, available only after upgrading to version 21.1, plus enhancements that have been added to this Agent version since it was originally released.
@@ -89,6 +99,8 @@ This list shows the enhancements that were added to the OpCon Agent for IBM i as
 |**IBMI-780** |This project used LSAM PTF sequence # 043 as a marker to separate fixes and enhancements that were included with the first public distribution in the LSAM install file LI211043B.  The LSAM cumulative PTF save files (LSCTLDTA and LSCUMPTF) start with PTF sequence number 044.  PTFs with previous numbers are included in the install/upgrade save file.|
  | | |
 |IBMI-841 |A new, optional LSAM server job named JOBSTS is added to the Agent.  This system monitor job watches up to 25 IBM i subsystems the user may register for any jobs that are stuck in a MSGW (message wait) status.  The JOBSTS server replaces the IBM i Monitor capability that was discontinued in IBM's latest Navigator for i, which was previously documented in this Agent user help with recommended methods for linking the IBM Monitor output to the OpCon network via this Agent's Message Management feature.  The new JOBSTS server notifications are designed to be compatible with the previously recommended solutions for the interface with OpCon. 
-
+ | | |
+|IBMI-1006, -1023 |This enhancement adds support for two categories of variables to the Job Tracking Parameters master records: Wild Cards for IBM i Job ID fields, and $-system Variables for Schedule ID fields.  This new feature can greatly reduce the number of Job Tracking Parameter records in data centers where multiple copies of the same basic Schedule are then able to run separately.|
+ 
 
 

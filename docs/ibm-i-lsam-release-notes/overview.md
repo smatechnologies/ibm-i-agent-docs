@@ -6,8 +6,8 @@ sidebar_label: 'Overview & Reader Notes'
 
 These release notes include all enhancements and fixed issues and for the IBM i LSAM, versions:
 
-- [Version 23.1 New Features](./version-23.1-new-features.md)
-- [Version 23.1 Fixes](./version-23.1-fixes.md)
+- [Version 23.1 New Features](./version-23.1-new-features)
+- [Version 23.1 Fixes](./version-23.1-fixes)
 
 ## Reader Notes
 
@@ -35,7 +35,7 @@ Instructions for installing software patches (PTFs) to SMA Technologies' IBM i L
 
 ### Summary of LSAM Enhancements and Fixes
 
-These release notes include lists of the most recent batch of enhancements and patches available for application after the installation of the IBM i LSAM version 21.1. 
+These release notes include lists of the most recent batch of enhancements and patches available for application after the installation of the IBM i LSAM version 23.1. 
 
 LSAM PTF numbers are assigned within the SMA internal product management control tools. Support incidents are generated and tracked within SMA Technologies' latest tracking systems, and the incident numbers are associated with the LSAM PTF numbers. There may be more than one support incident associated with a given PTF number. The LSAM PTF numbers assigned to enhancements are associated with the SMA Development department's project tracking system.  The list of LSAM PTFs available from the LSAM menu system documents the connections with support incidents or product enhancement tasks via the detail records listed under each PTF master record.  Type option 7 next to any PTF master record to view the list of details, then notice the "Case ID" column at the far right of the list. 
 

@@ -287,9 +287,9 @@ Press Enter to update the Dynamic Variable record. Repeat this process for each 
 
 ## WAITDYNVAR: Wait for Dynamic Variable Value
 
-This command is useful for implementing coordination of rules, for example, between Operator Replay Scripts and the LSAM's Message Management feature. The function of this command is to wait up to a maximum length of time, watching for a named Dynamic Variable to be set to one of the Values specified in the command parameters. The command reports its success or failure by setting the reserved Dynamic Variable named "WAITDYNVAR" to a value of either '**PASS**' or '**FAIL**'. The command returns '**PASS**' immediately upon discovering one of the values, otherwise it returns '**FAIL**' after the timed watch cycles expire. The command will also return '**FAIL**' if some other error occurs, such as the referenced Dynamic Variable not being found, in which case the command also generates a non-fatal completion message to report the error condition.
+This command is useful for implementing coordination of rules, for example, between Operator Replay Scripts and the LSAM's Message Management feature. The function of this command is to wait up to a maximum length of time, watching for a named Dynamic Variable to be set to one of the Values specified in the command parameters. The command reports its success or failure by setting the reserved Dynamic Variable named "WAITDYNVAR" (or the user-supplied variable name assigned to the command keyard WAITVARNAM) to a value of either '**PASS**' or '**FAIL**'. The command returns '**PASS**' immediately upon discovering one of the values, otherwise it returns '**FAIL**' after the timed watch cycles expire. The command will also return '**FAIL**' if some other error occurs, such as the referenced Dynamic Variable not being found, in which case the command also generates a non-fatal completion message to report the error condition.
 
-In summary, the results of the WAITDYNVAR should first be tested by comparing the dynamic variable named "WAITDYNVAR" for a value of '**FAIL**'. If the reserved-named dynamic variable returns a value of '**FAIL**', then the value of the application-specific dynamic variable cannot be used. However, if the value is 'PASS', that may be sufficient to control any logic that depends on the results of the WAITDYNVAR command. But if two values were specified in the command, then the application-specific dynamic variable can be tested to see which of the two values was returned. The two-value capability of the WAITDYNVAR command is often used to control branching of logic, for example, among two different control groups of Captured Data Response Rules, or for the branching logic of an Operator Replay script.
+In summary, the results of the WAITDYNVAR should first be tested by comparing the dynamic variable named "WAITDYNVAR" (or the user-supplied variable name assigned to the command keyword WAITVARNAM) for a value of '**FAIL**'. If the reserved-named dynamic variable returns a value of '**FAIL**', then the value of the application-specific dynamic variable cannot be used. However, if the value is 'PASS', that may be sufficient to control any logic that depends on the results of the WAITDYNVAR command. But if two values were specified in the command, then the application-specific dynamic variable can be tested to see which of the two values was returned. The two-value capability of the WAITDYNVAR command is often used to control branching of logic, for example, among two different control groups of Captured Data Response Rules, or for the branching logic of an Operator Replay script.
 
 ### Command Syntax
 
@@ -305,6 +305,7 @@ VALUE2('value_string') DELAY(10) NBRLOOPS(360) WAITVARNAM('WAITDYNVAR')
 **KEYWORD DESCRIPTIONS**:
 - **VARNAM:** Dynamic Variable name (refer to Constraint below)\*
   - The name of an existing Dynamic Variable. If the Variable does not exist in the Dynamic Variable table file when the command executes it will return a '**FAIL**' result code.
+  - This parameter supports up to 435 characters to allow for a multi-instance Dynamic Variable name with long job or schedule qualifiers.
 - **VALUE1:** Required value string or number, up to 1024 characters.
   - At least this first Value string must be specified. The value returned from the Dynamic Variable must match exactly. (Hint: Use the DSPDYNVAR command to see the length and format of a Dynamic Variable.) If a number is specified it must be enclosed within a pair of single quotes, such as: '**1234**'
 - **VALUE2:** Optional additional value string or number, up to 1024 characters
@@ -314,7 +315,8 @@ VALUE2('value_string') DELAY(10) NBRLOOPS(360) WAITVARNAM('WAITDYNVAR')
 - **NBRLOOPS**: 1 to 99999
   - The number of times to check the value of the Dynamic Variable, before each wait period, before the command will report 'FAIL' if the specified values are not found.
 - **WAITVARNAM**: "WAITDYNVAR" or instance-qualified version of this or other variable name.
-  - Starting with Agent version 21.1, the previously pre-defined variable name of "WAITDYNVAR" is now replaced by a user-specified variable name.  This is the critical Dynamic Variable that must first be checked for a value of "PASS" or "FAIL", to determine if the specified VALUE(S) were found, or not found, or a program error occurred.  Adding this option for a user-defined variable name enasbles the option of parallel processing by supporting multi-instance variable qualifiers.
+  - Starting with Agent version 21.1, the previously pre-defined variable name of "WAITDYNVAR" is now replaced by a user-specified variable name.  This is the critical Dynamic Variable that must first be checked for a value of "PASS" or "FAIL", to determine if the specified VALUE(S) were found, or not found, or a program error occurred.  Adding this option for a user-defined variable name enables the option of parallel processing by supporting multi-instance variable qualifiers.
+  - This parameter supports up to 435 characters to allow for a multi-instance Dynamic Variable name with long job or schedule qualifiers.
 
 :::tip Constraint
 The Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Type-L variables (for LDA manipulation) cannot be used.
@@ -322,6 +324,42 @@ The Variable used in the VARNAM parameter must be a type-V Dynamic Variable. Typ
 :::tip
 Remember that both VALUE1 and VALUE2 parameters are case-sensitive.  For example, the WAITDYNVAR return value that can be tested will always be all capital letters, so "pass" does not equal "PASS".                   
 :::
+### Details about the WAITVARNAM Parameter
+
+#### Prior to LSAM Version 21.1                                         
+                                                                        
+The original version of the WAITDYNVAR command required pre-registration of a reserved Dynamic Variable named WAITDYNVAR (same as the command name).  This variable was reserved exclusively for use by the command to report its PASS or FAIL result status.  That variable name could not be overridden by OpCon users.
+                                                                        
+#### After upgrade to LSAM Version 21.1 or newer
+                                                                        
+The new, optional command parameter WAITVARNAM was added with a very long value length that could be used for a fully qualified multi-instance Dynamic Variable name, as would be required in large data centers that implement parallel processing.
+                                                                      
+However, the initial 21.1 release had mistakenly replaced the default for this WAITVARNAM parameter with an incorrect variable named WAITVARNAM.  Thus, users who upgraded from LSAM version 18.1 suddenly lost their dependence upon the default variable name of WAITDYNVAR.
+                                                                      
+Accordingly, early adopters of LSAM Version 21.1 had to update any existing use of the WAITDYNVAR command to specify the WAITVARNAM parameter value.  With that parameter added, the dependence upon the previous default variable name of WAITDYNVAR could be supported by adding to existing command uses this parameter and value:             
+                    
+     WAITVARNAM(WAITDYNVAR)
+                                           
+#### After update to LSAM PTF level 21.1.130
+
+LSAM PTF # 211130 corrected the error that disabled the default Dynamic Variable name of WAITDYNVAR.  After the PTF was applied, the following configurations were supported:                                         
+                                                                       
+ - Uses of the WAITDYNVAR command that was upgraded from LSAM version 18.1 do not need any special attention to continue operating as before in the 18.1 release.                                                         
+                                                                       
+ - These uses of the WAITDYNVAR command may omit the WAITVARNAM command parameter as long as the following are true:
+                                                                       
+    - The Dynamic Variable name of WAITDYNVAR has been manually registered in the LSAM environment database.                        
+                                                                          
+    - The LSAM automation will depend on testing the Dynamic Variable name of WAITDYNVAR to discover a PASS or FAIL completion value.
+                                                                          
+    - The automation using the WAITDYNVAR command will not require multi-instance qualification because the automation will never be executed in parallel with another copy of the same automation at the same time.                                            
+                                                                       
+- The Dynamic Variable named in the WAITVARNAM command parameter may be instance-qualified according to any of the supported multi-instance Dynamic Variable rules.
+                                                                       
+    - For more information, see [Supporting WAITDYNVAR Utility with Multi-Instance Dynamic Variables](../dynamic-variables/multi-instance#supporting-waitdynvar-utility-with-multi-instance-dynamic-variables) 
+                                                                          
+    - When using multi-instance Dynamic Variables, both the VARNAM and the WAITVARNAM should use multi-instance variable names in order to isolate their value management within the same job scope and avoid having either value overlaid by some parallel processing.
+
 ## WAITDYNVAR Example Applications
 
 This command could be used in any software running under IBM i, as long as the LSAM library list is in effect. Any program using this command must be able to retrieve and test the value of the variable specified in the WAITVARNAM command parameter (whose default value is variable name "WAITDYNVAR") in order to determine if this command has returned a value of '**PASS**' (either Value string was found) or '**FAIL**' (neither Value string was found within the specified time limits).
@@ -332,7 +370,7 @@ Additional rules and guidance for using multi-instance Dynamic Variables with th
 
 #### Specify a Dynamic Variable Token within Fields of a Response Rule
 
-Perhaps the most obvious use of the WAITDYNVAR command is to execute it within a group of Captured Data Response Rules. In this case, the values of dynamic variables can be tested by specifying Dynamic Variable Tokens with fields such as Compare Reference or Compare Data.
+Perhaps the most obvious use of the WAITDYNVAR command is to execute it within a group of Captured Data Response Rules. In this case, the values of dynamic variables can be tested by specifying Dynamic Variable Tokens within fields such as Compare Reference or Compare Data.
 
 This is the method illustrated in a WAITDYNVAR application example, below.
 
@@ -398,7 +436,7 @@ The LSAM command DSPDYNVAR can be used to return a completion message that inclu
 ACHCLTMAIL VALUE = "YES" Last updated: 2012-06-08-14.38.49.574000
 :::
 :::note
-Starting with LSAM version 21.1, the output of the DSPDYNVAR command is regulated by the LSAM Utility Configuration at LSAM menu 3, option 7.  The output can be either "FULLSCREEN" or "LINE24MSG".  The method used to capture a Dynamic Variable value from the DSPDYNVAR command would have to be adapted to manage either a full screen display or a message line.  Accordingly, this method of retrieving a Dynamic Variable value may have limited practical application.  But it is presented because it has actually been useful at some OpCon user sites.
+Starting with LSAM version 21.1, the output of the DSPDYNVAR command was regulated by the LSAM Utility Configuration at LSAM menu 3, option 7.  The output can be either "FULLSCREEN" or "LINE24MSG".  The method used to capture a Dynamic Variable value from the DSPDYNVAR command would have to be adapted to manage either a full screen display or a message line.  Accordingly, this method of retrieving a Dynamic Variable value may have limited practical application.  But it is presented because it has actually been useful at some OpCon user sites.
 :::
 
 #### Database Queries or an SQL Statement
@@ -411,11 +449,11 @@ The ability to test the contents of a Dynamic Variable can be used to implement 
 
 Consider the case where an Operator Replay script executes a green screen menu option that causes a new job to be submitted. In this case, assume that the submitted job is not configured for monitoring by OpCon (that is, Job Tracking is not being used). Instead, the human operator would previously wait for a minute or two until the completion message of the submitted job was reported to the user's message queue, as either a successful job or a failed job.
 
-Included in this Operator Replay script there must exist two labelled Script Steps, following the Step that executed the menu option, and these two Step labels must be located at strategic locations within the Script where green screen automation will continue based on whether (1) the submitted job succeeded or (2) the submitted job failed.  Separate blocks of Script Steps will begin at these two different locations in the Script.
+Included in this Operator Replay script there must exist two labelled Script Steps, following the Step that executed the menu option, and these two Step labels must be located strategically within the Script where green screen automation will continue based on whether (1) the submitted job succeeded or (2) the submitted job failed.  Separate blocks of Script Steps will begin at these two different locations in the Script.
 
 To fully automate this process, the name of the submitted job must be known, and it is also important to know the user name assigned to the submitted job. In this example, we will assume that the Script user name is USER1. One way to automate this whole process would be to use the following tools and steps.
 
-1. Register (create) a Dynamic Variable {TOKEN} that will be used as a variable Branch-To Label value. The example variable name used here will be BTOLBL1 (representing the idea "branch-to label"). The initial value should be the name of the script label where the script should branch if the submitted job fails: Assume for this example that it will be 'SBMJOBFAIL'. 
+1. Register (create) a Dynamic Variable {TOKEN} that will be used as a variable Branch-To Label value. The example variable name used here will be BTOLBL1 (representing the idea "branch-to label 1"). The initial value should be the name of the script label where the script should branch if the submitted job fails: Assume for this example that it will be 'SBMJOBFAIL'. 
 :::tip Hint 
 Set initial values of variables using Captured Data Response Rules that execute at or near the first steps of an Operator Replay script, in order to avoid any possible timing issues later in the script execution.
 :::

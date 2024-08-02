@@ -6,10 +6,27 @@ sidebar_label: 'IBM i LSAM Messages'
 
 ## Table of Job Completion Messages
 
+This table documents error messages produced by the SMA File Transfer programs.  These are sometimes reported in an IBM i job log and/or sent to the OpCon user interface as "Detailed Job Messages."
+
+| Message ID | Sev  | Meaning 
+| :-----:    |  --: | ---    
+| SFT0001    |   0  | Unable to open conversion table CD in SMAFTSR10 or SMAFTAR10
+| SFT0002	 |  40  | Destination data type not specified or not recognized; see SMAFT logs
+| SFT0003	 |  40  | Source data type not specified or not recognized; see SMAFT logs
+| SFT0005	 |  40  | iConv_2: converted text data length is zero
+| SFT0099    |  40  | SMAFT EOJ ERROR LOG: &1                            
+| SFT1001    |   0  | Invalid file name                                  
+| SFT1002    |   0  | File does not exist                                
+| SFT1003    |   0  | Unsupported file                                   
+| SFT1004    |   0  | Unknown user                                       
+| SFT1005    |   0  | Security error                                     
+| SFT1006    |   0  | File access error                                  
+| SFT1099    |   0  | Invalid request
+
 The table below presents LSAM status messages forwarded to the SAM. The message descriptions are displayed in Operations in the OpCon User Interface following the job status.
 
 | Status         | Return Code | Meaning 
-| :---:          | :---:       | ---     
+| :---:          | :---        | ---     
 | 0              | SMA0030     | Job not found
 | 1              | SMA0001     | Job Description in run request is invalid
 | 1              | SMA0002     | Job Queue in run request is invalid

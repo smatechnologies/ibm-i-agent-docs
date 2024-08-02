@@ -100,9 +100,24 @@ The IBM i SMA File Transfer function operates according to a basic set of rules 
 The general rules that apply are:
 
 - When an existing file is being replaced or having data added to it, the file will retain the object authority it had previously. Obviously, the user specified for the SMA File Transfer job must have authority to use that file object.
-- When a file will be added to the system, that is, as it is created by the SMA File Transfer job, the file will assume the authorities of the library (DB2) or directory (IFS) in which it is created. Again, the SMA File Transfer job user must have authority to add objects to the file or directory.
+- When a file will be added to the system, that is, as it is created by the SMA File Transfer job, the file will be assigned authority based on the Destination File Authority control option, defined below. Again, the SMA File Transfer job user must have authority to add objects to the file or directory.
 
 When other forms of object authority must be managed, use additional OpCon jobs on the same schedule as the file transfer job that will execute either before or after the file transfer job itself.
+
+#### Destination File Authority
+
+An SMA File Transfer Control option determines how user authority is assigned to new files added to disk storage.  There are two options:
+
+- 0=original default 
+- 1=assign Destination User authority. 
+
+##### Original default authority
+Originally, any new files that were created did not have any special authorities assigned to them, so the designated OpCon Destination File User did not always have an ability to use the file in any subsequent jobs, unless a subsequent, dependent OpCon job was used to assign the desired object authorities. This default was considered acceptable because SMA could not determine the many different unique authority requirements for client data files. 
+
+Without a follow-up job to manage file authority the file will assume the authorities of the library (DB2) or directory (IFS) in which it is created.
+
+##### Assigned destination user authority
+But in answer to client requests, setting this new SMAFT Control option to '1' causes the LSAM File Transfer Agent job or Server job to (1) revoke *PUBLIC authority to a new file and (2) assign *ALL authority to the Destination Job User. If this broad assumption about object authority needs to be revised, the recommended solution is, as in the past, to create a dependent IBM i job in the OpCon schedule that executes object authority management commands.
 
 ### SMA File Transfer Data Character Sets for IBM i
 

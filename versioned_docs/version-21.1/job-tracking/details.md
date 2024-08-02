@@ -9,9 +9,15 @@ Important fundamental definitions of Job Tracking types are provided in the intr
 
 ## Using Dynamic Variables with Job Tracking
 
-Some examples of where dynamic variables may be used are offered in the procedural outlines above. There is more information about dynamic variables in [How Numeric Compression Is Managed for *DB2](../dynamic-variables/function-codes#how-numeric-compression-is-managed-for-db2).
+There are two important applications for Dynamic Variables within the Job Tracking feature.
 
-The type-L Dynamic Variable is especially useful with Tracked and Queued Jobs. It L is used exclusively to update the local data area (LDA) contents associated with any IBM i job. This variable type can be used with any batch job submitted by OpCon to IBM i, and also with tracked, queued or captured jobs. Dynamic variables of type L replace data in the LDA based on the starting position and length fields specified in the dynamic variable master record. These two numeric fields apply only to type-L variables and they cannot be used for type-V variables. For dynamic variables of type L, the Variable Name must be either the Captured Job ID of a captured job, or the IBM i Job Name of an OpCon batch job, a tracked job or a queued job.
+### Type-L Dynamic Variables Automatic Support for Tracked and Queued Jobs
+
+The type-L Dynamic Variable is especially useful with Tracked and Queued Jobs. It is used exclusively to update the local data area (LDA) contents associated with any IBM i job. This variable type can be used with any batch job submitted by OpCon to IBM i, and also with tracked, queued or captured jobs. Dynamic variables of type L replace data in the LDA based on the starting position and length fields specified in the dynamic variable master record. These two numeric fields apply only to type-L variables and they cannot be used for type-V variables. For dynamic variables of type L, the Variable Name must be either the Captured Job ID of a captured job, or the IBM i Job Name of an OpCon batch job, a tracked job or a queued job.
+
+### Dynamic Variables Support Assignment to OpCon Schedules
+
+Dynamic Variable {TOKENS} may be inserted into the following Job Tracking Parameter fields that control the assignment of a Tracked or Queued Job to an OpCon Schedule.  This capability improves the flexibility of support for generic names, as described in [Support for Generic Object Names as Prefix or Suffix](../job-tracking/details#support-for-generic-object-names-as-prefix-or-suffix).
 
 ## IBM i Registered Exit Programs
 
@@ -65,6 +71,122 @@ OpCon would permit the registration of a user ID named "\*" (a single asterisk) 
 to delete it. It could only be disabled to the extent that privileges for the user ID are revoked.
 
 If the fake user IDs are registered in OpCon, then they can be used with a Queued or Captured job, making it simpler to honor various user IDs from IBM i that might be authorized to submit one of the AdHoc (or other named schedule) jobs that will be tracked or queued, as well as any given job definition that has been captured by the LSAM for later execution.
+
+## Support for Generic Object Names as Prefix or Suffix
+
+Using generic object names for the IBM i Job ID filter fields can dramatically reduce the number of Job Tracking Parameter records that must be maintained in large volume environments such as a data center that may serve dozens or hundreds of individual clients, who may all be using the same job profiles but each for a different database within a single IBM i partition.
+
+Generic object names are supported by two categories of variables in the Job Tracking Parameters master records:
+- Wild card characters (question marks: ?) among the IBM i Job ID filter fields.
+- $-system variables ($PREFIX or $SUFFIX) among the Schedule assignment fields.
+
+### IBM i Job ID filters.                                                        
+
+The top six Parameter fields are used to identify any intercepted job by Job Name, Job User, Job Description (and/or its library) and Job Queue (and/or its library). (See the Example 3 of a Job Tracking Parameters maintenance display below.)                                                    
+
+A Job Tracking Configuration value (LSAM menu 1, option 7) may be used to enable or disable a new feature that supports using generic (partial) names for any of the six IBM i Job ID fields.  In addition, there are two sub-values used to specify the fixed size of a Prefix and another fixed size for a Suffix.  If either of the size values are left set to zero, then the associated Prefix or Suffix processing will not be executed.  Therefore, even if the general "allowed" flag is set on, there must also be a non-zero value for either or both size fields.
+
+:::info EXAMPLE 1
+The Job Tracking Configuration display:
+:::
+```
+ TRKJOBD301               Job Tracking Configuration                   4/18/24  
+ USERNAME          Environment: SMAGPL      Version: 21.1             12:16:11  
+                    Control environment: SMAGPL     STOPPED                     
+                                                                                
+ Default exit program numbers may be changed to avoid conflict with other user  
+  assignments.  Exit programs may be numbered from 1 to 2147483647.             
+  To change exit nbr, press F13. Type new values and press Enter to update.     
+                                                                                
+ QSYS/SBMJOB cmd exit nbr. : 2147483444                                         
+                                         Use LSATBLTEST and TESTLSATBL to test  
+ Tracked Job parameter                   what EBCDIC char sends X'7C' to OpCon. 
+  separator character - HEX: 6A  6A  ¦   EBCDIC hexadecimal: 00 - FF            
+                                                                                
+ LSAM server auto-start  . : N           N=No, Y=Yes                            
+ Allow *RQS msg for SBMJOB : 0           0=No, 1=Yes                            
+ Expand JOBD/JOBQ obj refs : 0           0=No, 1=Yes                            
+ Allow automatic tracking  : 0           0=None, 1=Positive, 2=Negative         
+ Allow generic filter names: 1           0=No, 1=Yes                            
+   Generic prefix size . . : 3           1 - 9 (3 = ???XXXXXXX); 0 = N/A        
+   Generic suffix size . . : 3           1 - 9 (3 = XXXXXXX???); 0 = N/A        
+                                                                                
+                                                                                
+ F3=Exit  F5=Refresh  F7=STRJOBTRK  F8=ENDJOBTRK  F12=Cancel  F13=Unlock XNBR   
+ Copyright (C) SMA Technologies 2005, 2024  ARR        
+```                                   
+
+When generic name processing is allowed, then the Job Tracking Parameter IBM i fields can register question marks as either a Prefix value or a Suffix value.  Any of the six IBM i Job ID filter fields will support a Prefix or a Suffix string of question marks only if the field-level flag is set to a 'P' (Prefix) or an 'S' (Suffix).  When that flag is set, then the number of question marks must match the general Prefix or Suffix size that was specified in the Job Tracking Configuration. 
+
+:::tip
+Although any of the six IBM i Job ID filter fields can use generic naming to achieve a match with the Job Tracking Parameters in the master file, the function of the $PREFIX and $SUFFIX system variables depends on the Job Name field being defined as a generic name.  The values substituted for the $-system variable tokens are obtained only from a prefix (type "P") or a suffix (type "S") that is established for the IBM i Job Name field.
+:::
+
+:::info EXAMPLE 2
+IBM i Job ID fields will support a Prefix of size 3:                  
+                                                                                
+For this example, the Job Name field could have its flag set to 'P' and then a generic name would be specified like this: ???JOBNAME. Notice that the Example shows exactly three question marks as the generic prefix value.  So a real IBM i Job Name that has, perhaps, a bank ID value of "A25" (such as a job named "A25GLPOST") would match a Job Tracking Parameter that had a Job Name of "???GLPOST" and then Job Tracking operations would be engaged - IF - the other five Job Tracking Parameters also matched the SBMJOB command values.
+:::
+
+The processing of the Job Tracking general Control and individual Parameter fields for Prefixes and Suffixes is managed by the Job Tracking programs that are triggered when Job Tracking is activated, causing an IBM i Exit Program to be registered for the SBMJOB command from the library QSYS.  The final result of a Prefix or Suffix match would allow the original job name (such as the example "A25GLPOST") to finally be submitted for execution after the OpCon server was notified to start tracking that job.
+
+### OpCon Schedule assignment parameters.                                       
+
+After any job has been selected for tracking, the Job Tracking external event command sent to the OpCon server will include the Job Schedule Name, the Job Schedule Date and, optionally, the Job Schedule Frequency name.                                                                           
+
+These three fields now all three support the insertion of LSAM Dynamic Variable {TOKENS} (use F8 to select registered token names).  But only the Schedule Name and/or the Schedule Frequency can accommodate the insertion of the two $-System Variables ($VAR) supported by the LSAM when F10=$VAR is pressed.
+
+This PTF enhancement does not define any constraints on the user of Dynamic Variable tokens.  Those could be set by various forms of automation that the LSAM supports, although the strategy for setting Dynamic Variable values that might be used by Job Tracking requires detailed understanding of the workflow that controls interception of the IBM i command SBMJOB (from library QSYS).                                   
+
+Two $VAR values are offered when the function key F10 is pressed while the Job Tracking Maintenance display cursor is located within any of the two supported OpCon Schedule definition fields.  These are the two values currently supported by F10=$VAR:                                 
+                                                                                
+- **$PREFIX** = The same prefix value that was specified for the Job Name           
+    (that is, specifically and only for the Job Name) will be inserted          
+    into the field where the cursor is located.  It's also possible to          
+    manually type, and/or adjust the position of the $PREFIX variable           
+    to match a site-specific naming strategy where prefixes of                  
+    Job Names must match a prefix (or other location) of that same              
+    value within the name of the OpCon Schedule.                                
+                                                                                
+- **$SUFFIX** = This variable works the same as the $PREVIX value, except           
+    that the Job Name must have been configured to support a Suffix.            
+    Therefore, both $PREFIX and $SUFFIX cannot be used within the same          
+    Job Tracking Parameters master record in any (or all) of the three          
+    OpCon Schedule identifier fields.                                           
+                                                                                
+A $PREFIX or $SUFFIX value that was specified for the Job Name (that is, specifically and only for the Job Name) will be inserted in place of the $VAR letters.  The replacement area will be adjusted to reduce or expand that portion of the name so that it completely replaces the $VAR name, and it also uses exactly the number of character spaces required by the $VAR replacement value.  Any blanks that precede or follow the $VAR name will be retained, so do not leave blank spaces before or after the $VAR name unless they are required by the name being typed into any of the three fields.  In that case, remember to use single quotes for name values that must include space characters (or other special characters that are not alphabetic or              
+numeric).
+
+:::info EXAMPLE 3
+A Job Tracking record that includes a generic Job Name and a $PREFIX variable in the Schedule name.  Notice that this display format will not show function keys or data entry fields that are only useful for the wild card name processing, as long as the LSAM Job Tracking Control field for this feature is turned off 
+:::
+```
+ TRKPARR6               Maintain Job Tracking Parameters               4/18/24  
+ USERNAME                            UPDATE                           12:40:47  
+                                                                                
+                                      P/S       |``````````````````````````|    
+  IBM i job name   . : ???GENNAME      P        | Type full name, or *ALL, |    
+  IBM i job user name: GLOOSE          _        | or generic object names: |    
+  Job description  . : *ALL            _        |        ???OBJNAME        |    
+    JOBD library . . :   *ALL          _        |        OBJNAME???        |    
+  Job queue  . . . . : *ALL            _        | P/S=Prefix or Suffix     |    
+    JOBQ library . . :   *ALL          _        |,,,,,,,,,,,,,,,,,,,,,,,,,,|    
+                                                                                
+  Schedule name (128): $PREFIX_GenName_Schedule                                 
+                                                                 +  Name, F8/F10
+                                                                                
+  Schedule date (26) : CURRENT               +  CURRENT, EARLIEST, LATEST,      
+                                                CCYY-MM-DD, F8              
+                                                                                
+  Frequency (20) . . :                       +  Name, F8/F10                    
+                                                Blank = latest Schedule on date 
+  Track type . . . . : T  T=tracked, Q=queued, P=passive, A=auto-track only.    
+  Auto-track sub-jobs:    A=allow, P=prevent, blank=not used                    
+                                                                                
+ F3=Exit   F8=DynVar   F10=$Var   F12=Cancel   F13=More data(+)                 
+```                                                                                                                                                                                        
+Either of the $PREFIX or $SUFFIX variable names may be inserted into any position of the Schedule Name (or the Frequency Name).  They are not required to appear at the very beginning (for the $PREFIX) or at the end (for the $SUFFIX).  Even though the IBM i Job Name wild card characters must be located at the very beginning or the very end of the Job Name character string, the Schedule and Frequency Name fields can use the $VAR characters in any position of their character strings. This enables support for complex Schedule Name character strings.
+
 
 ## Execution of Tracked and Queued Jobs
 

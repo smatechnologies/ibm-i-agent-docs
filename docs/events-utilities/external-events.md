@@ -206,7 +206,7 @@ XSCHBLDHLD - Schedule Build on Hold
 *	To process a schedule build, enter an existing OpCon schedule name, schedule date, override existing schedule (Y/N), log file name path and up to 5 properties.
 *	The default Schedule date is CURRENT.
 
-XSCHCHK - Schedule Check (one
+XSCHCHK - Schedule Check (one)
 *	To check a schedule, enter an existing OpCon Schedule's name, date and include circular dependencies.
 *	The default Schedule date is CURRENT.
 *	The default Include circular dependencies is ‘N’.  
@@ -261,15 +261,15 @@ XTHRREN - Threshold Rename
 XTHRSET - Threshold Set
 *	To set a threshold, enter a valid threshold name and value. Refer to Thresholds in the Concepts documentation.
 
-#### Token
-XTOKADD - Add Token     
-*	To add a token, enter a valid token name. Refer to Properties in the Concepts documentation.
+#### Token (OpCon Property)
+TOKADD - Token Add
+*	To add a token, enter a valid token name and value. Refer to Properties in the [OpCon Concepts](https://help.smatechnologies.com/opcon/core/objects/properties#property-types) documentation. 
 
-XTOKDEL - Token Delete
-*	To delete a token, enter a valid token name. Refer to Properties in the Concepts documentation. to Properties in the Concepts documentation.
+TOKDEL – Token Delete
+*	To delete a token, enter a valid token name. Refer to Properties in the [OpCon Concepts](https://help.smatechnologies.com/opcon/core/objects/properties#property-types) documentation.
 
-XTOKSET - Token Set
-*	To set a token, enter a valid token name and value. Refer to Properties in the Concepts documentation.
+TOKSET - Token Set
+*	To set a token, enter a valid token name and value. Refer to Properties in the [OpCon Concepts](https://help.smatechnologies.com/opcon/core/objects/properties#property-types) documentation.
 
 ### CSV Event Management Commands
 

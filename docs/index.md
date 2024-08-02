@@ -5,7 +5,7 @@ sidebar_label: 'IBM i LSAM Administration'
 
 # IBM i LSAM Administration
 
-Copyright © 2022 SMA Technologies
+Copyright © 2024 SMA Technologies
 All rights reserved.
 
 No part of this publication may be reproduced, transmitted, transcribed, stored in retrieval system or translated into any language or computer language, in any form or by any means, electronic, mechanical, optical, chemical, manual or otherwise, without specific prior written permission from SMA Technologies. 
@@ -16,20 +16,20 @@ For further information about SMA Technologies' documentation, please contact:
 
 | SMA Technologies |
 | :--------------: |
-| 1201 Fannin St |
-| Suite #202 |
-| Houston, Texas 77002 |
+| 14237 E.. Sam Houston Pkwy. N. |
+| Suite #200-314 |
+| Houston, Texas 77044 |
 | Tel: 281-446-5000 |
 | Toll Free: 877-762-6584 |
 | Fax: 281-446-7492 |
-| Email: (<a href="mailto:support@smatechnologies.com">Email Support at support@smatechnologies.com</a>) |
+| Email: (<a href="mailto:support@smatechnologies.com">Support@smatechnologies.com</a>) |
 | Website: [smatechnologies.com](https://smatechnologies.com/) |
 
 
-IBM PC is a trademark of International Business Machines.
-INFOConnect is a registered trademark of Attachmate Corp.
-Microsoft, Windows, MS, and MS-DOS are trademarks of Microsoft Corp.
-Crystal Reports is a trademark of Crystal Decisions.
-Unisys is a trademark of Unisys Corporation.
-Episys is a trademark of Jack Henry & Associates Inc.
-Other trademarks appearing in the guide are trademarks of their respective companies.
+
+- IBM PC and IBM i are a trademarks of International Business Machines.
+- INFOConnect is a registered trademark of Attachmate Corp.
+- Microsoft, Windows, MS, and MS-DOS are trademarks of Microsoft Corp.
+- Unisys is a trademark of Unisys Corporation.
+- Episys is a trademark of Jack Henry & Associates Inc.
+- Other trademarks appearing in the guide are trademarks of their respective companies.
