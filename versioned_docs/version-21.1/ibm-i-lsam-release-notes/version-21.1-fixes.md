@@ -307,3 +307,10 @@ The Job Tracking revised activity management is updated with one small program c
 
 When an existing LSAM enironment's libraries are copied to a new LSAM environment, the LSAM PTF control records must be updated to match the new LSAM ENV (environment) name, otherwise the LSAM PTF process in the newly cloned environment cannot correctly process subsequent PTFs.
 
+- Fixed (# PTF211145) IBMI-1017A  Redistribute Job Tracking interception program with late fix from PTF211140.
+
+The Job Tracking program TRKJOBR00 was revised during the beta site testing phase, but after public distribution of the final version of this program there were complications with PTF administration at the beta site.  The easiest remedy for this obstacle was to re-issue the beta site program fix as a new, separate LSAM PTF that can easily be applied at the beta site and all SMA client sites.
+ 
+- Fixed (# PTF211146) IBMI-1027  Fix truncated IBM i Job Entry Date and Time.
+
+The Dynamic Variable Multi-Instance keys were showing a truncated IBM i Job Entry Date and Time in the Dynamic Variable instance log display  and the Instance Key displays from the LSAM Submitted Job (general purpose) Log display.

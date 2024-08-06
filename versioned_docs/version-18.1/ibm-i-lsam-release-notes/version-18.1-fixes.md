@@ -291,3 +291,6 @@ re all being overriddent to type L.
 - Fixed (# PTF181152, 181153) IBMI-1009: Update the LSAM utility LSAINIT to manage the LSAM ENV value after cloing an LSAM.
 When an existing LSAM enironment's libraries are copied to a new LSAM environment, the LSAM PTF control records must be updated to match the new LSAM ENV (environment) name, otherwise the LSAM PTF process in the newly cloned environment cannot correctly process subsequent PTFs.
 
+- Fixed (# PTF181154) IBMI-1001  PTF181154  Fix Job Tracking API retrieve exit program. 
+Fixes a possible error when fetching the Job Tracking exit program information from the exit program register.                        
+
