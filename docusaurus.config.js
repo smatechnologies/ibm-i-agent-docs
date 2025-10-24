@@ -38,22 +38,6 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/smatechnologies/ibm-i-agent-docs/blob/develop',
-            lastVersion: 'current',
-            versions: {
-            current: {
-              label: '23.1',
-            },
-            '21.1': {
-              label: '21.1',
-              path: 'v21.1',
-              banner: 'none',
-            },
-            '18.1': {
-              label: '18.1',
-              path: 'v18.1',
-              banner: 'none',
-            },
-          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -65,11 +49,11 @@ module.exports = {
       },
     ],
   ],
-  plugins: [
-    [
-      require.resolve('@cmfcmf/docusaurus-search-local'), 
-      {
-      }
-    ],
-  ],
+//  plugins: [
+//    [
+//      require.resolve('@cmfcmf/docusaurus-search-local'), 
+//      {
+//      }
+//    ],
+//  ],
 };
