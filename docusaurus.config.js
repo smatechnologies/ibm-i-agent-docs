@@ -6,6 +6,9 @@ module.exports = {
   baseUrl: '/opcon/agents/ibm-i/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    format: 'detect',
+  },
   favicon: 'img/favicon.ico',
   organizationName: 'smatechnologies',
   projectName: 'ibm-i-agent-docs',
