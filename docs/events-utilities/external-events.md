@@ -417,7 +417,7 @@ The CPYTOMSGIN command provides excellent flexibility for the purpose of sending
 Remember that the XML-formatted External Event commands can be specified in their raw format and sent to the OpCon server by enclosing them in the Agent's CPYTOMSGIN command, as illustrated above in this document.
 :::
 
-Remember that OpCon Property names could be global properties, or they could be instance-qualified properties, possibly qualified to a specific schedule name or an OpCon job name within a schedule. It's possible to use Dynamic Variables to represent the OpCon schedule or job names. As well, within the LSAM automation tools, such as Message Management Parameters or their attached Response Rules, it is also possible to use one of the available $-System variable values identified a table in [Message Management Screens and Windows](../message-management/screens.md#-system-variables-supported-in-event-commands).
+Remember that OpCon Property names could be global properties, or they could be instance-qualified properties, possibly qualified to a specific schedule name or an OpCon job name within a schedule. It's possible to use Dynamic Variables to represent the OpCon schedule or job names. As well, within the LSAM automation tools, such as Message Management Parameters or their attached Response Rules, it is also possible to use one of the available $-System variable values identified a table in [Message Management Screens and Windows](../message-management/screens.md#-system-variables-supported-for-message-management).
 
 Here is an example of pushing the value from an IBM i LSAM Dynamic Variable up to an OpCon global property:
 

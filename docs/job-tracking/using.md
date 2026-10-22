@@ -232,14 +232,14 @@ Automatic job tracking uses less specific rules, since it is not necessary to co
 Remember that Automatic job tracking only works for jobs that are started by another job which is already known to OpCon and the IBM i LSAM, or for jobs that match the LSAM Job Tracking Parameter automatic tracking rules. This is because the IBM i LSAM programs must discover the associated OpCon Schedule name of the submitting job in order to automatically assign the submitted job to that same Schedule. But once a job is tracked automatically, this new job becomes known to OpCon and
 the LSAM, therefore any additional jobs that it submits could also be qualified for (or prevented from) automatic tracking.
 
-The following instructions are vague about the Job Tracking Parameter Type and Auto-Track Sub-Programs control fields because there are multiple valid combinations used for varying purposes. More information about these controls may be found in [How LSAM Job Tracking Works](#How).
+The following instructions are vague about the Job Tracking Parameter Type and Auto-Track Sub-Programs control fields because there are multiple valid combinations used for varying purposes. More information about these controls may be found in [How LSAM Job Tracking Works](details.md).
 
 ### Set Up Automatic Job Tracking
 1. Log on to an IBM i workstation with a user profile that has LSAM  Administrator privileges.
 2. Enter the LSAM menu system by entering the command **STRSMA**.
 3. Enter **1** to choose the **Job Tracking menu** in the SMA Main Menu.
 4. Enter **7** to choose **Job Tracking Configuration**.
-5. For the control field **Allow automatic tracking** enter a value of **1** or **2** to specify the automatic job selection method. (Referto [How LSAM Job Tracking Works](#How) for more information about choosing the positive or negative selection method.)
+5. For the control field **Allow automatic tracking** enter a value of **1** or **2** to specify the automatic job selection method. (Referto [How LSAM Job Tracking Works](details.md) for more information about choosing the positive or negative selection method.)
 6. Press \<**Enter**\> to update the Job Tracking Configuration values, and return to the menu.
 7. Enter **1** to maintain **Job track parameters**.
 8. Press \<**F6**\> to open the Add Job tracking parameters window.
@@ -302,7 +302,7 @@ Use these procedures to prepare for job capture, capture a job definition and th
 4. Enter **9** to **End job capture (ENDCAPJOB)**.
     a.  Use the End Capture Job work display to remove the name of the job or workstation where the job capture action was performed.
 5. It is not necessary to stop the general LSAM Job Tracking feature after completing a job capture, unless this is desired for some other reason.
-    a.  Consider the [How LSAM Job Tracking Works](#How) section if there is other software in IBM i that may conflict with the LSAM Job Tracking exit programs. Especially during the conversion process that follows a first installation of the
+    a.  Consider the [How LSAM Job Tracking Works](details.md) section if there is other software in IBM i that may conflict with the LSAM Job Tracking exit programs. Especially during the conversion process that follows a first installation of the
         LSAM, it may be necessary to stop Job Tracking in order to resume normal operations of third-party software after a job capture has been completed.
 
 #### Modifying a captured job definition

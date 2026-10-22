@@ -10,7 +10,7 @@ The LSAM parameters screen contains settings for LSAM communication with SMANetC
 1. In the command line, enter **SMAGPL/STRSMA**. For more information on the STRSMA command, refer to the [STRSMA Command](../operations/lsam.md#the-strsma-command).
 2. Enter **7** to choose the **LSAM Parameters** function in the SMA Main Menu.
 3. <**Tab**> to move between fields on the configuration screen.
-4. Modify relevant configuration fields. Refer to the Configuration Settings table [IBM i LSAM Configuration Settings: Heading Information](#Heading_Information).
+4. Modify relevant configuration fields. Refer to the Configuration Settings table [IBM i LSAM Configuration Settings: Heading Information](configuration-settings.md#heading-information).
 5. After modifying all relevant fields, press <**Enter**>.
 
 

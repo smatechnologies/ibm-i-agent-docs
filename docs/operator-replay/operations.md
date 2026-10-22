@@ -97,7 +97,7 @@ After making the Operator Replay Configuration changes on the first and second d
 
 ### Operator Replay Configuration Control of Logging
 
-A comprehensive view of the interaction between the IBM i Host Workstation Manager, and the LSAM's Operator Replay Script driver program, is accessed from the LSAM sub-menu 4, option 3. Type a 5 next to the Script execution instance desired, and then from the log entry profile display, press F10 to branch to the carefully colored workstation dialog displayed. More information about this log viewer can be found under the topic [OR Script Operations -\> Viewing Operator Replay Logs](#Viewing) elsewhere in this chapter.
+A comprehensive view of the interaction between the IBM i Host Workstation Manager, and the LSAM's Operator Replay Script driver program, is accessed from the LSAM sub-menu 4, option 3. Type a 5 next to the Script execution instance desired, and then from the log entry profile display, press F10 to branch to the carefully colored workstation dialog displayed. More information about this log viewer can be found under the topic [OR Script Operations -\> Viewing Operator Replay Logs](#viewing-operator-replay-logs) elsewhere in this chapter.
 
 Using the IBM i LSAM menu system, sub-menu 4, option 7, the Script driver program logging options support one new value for logging.
 

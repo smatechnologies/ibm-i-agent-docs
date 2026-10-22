@@ -39,7 +39,7 @@ Previous versions of the LSAM used the Application ID text as the primary key fi
 8. Press **F6** to Add a new spool file scanning rule.
 9. The **Create SPLF Scan Rule** screen appears.
 10. When Adding or Copying SPLF Scan Rules, use **F10** to branch to the **Select Capture Application** screen, if the Appplication ID field is not already correct. Type option **1** to select the desired Application ID, then press **Enter** to return the new Application ID into the SPLF Scan Rule.
-11. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and a description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about how these field values may be used.
+11. On the Create SPLF Scan Rule screen, type or accept the Rule sequence number (which must be unique within the Application ID) and a description for this record, the spool file name, the job name, and the spool file number (or one of the special values that choose a spool file number). These (except for the sequence number description) are the key fields that identify each Scan Rule. Type in any of the optional scanning control values to match the report.  Refer to [Add/Change/Copy SPLF Scan Rule](#addchangecopydisplay-splf-scan-rule) for more information about how these field values may be used.
 12. Press <**Enter**> to record the new SPLF Scan Rule record.
 
 ## SCANSPLF Application Screens and Windows
@@ -772,7 +772,7 @@ The SCANOUTQ parameter values that are the same as those supported by the SCANSP
 | PARAMETERS | 1024    | *CHAR | The entire value string must be enclosed in a pair of single quotes, unless the special value of *RULES (which is the default) is  used.  |
 |            |         |       | The command processor also supports using the name of an LSAM Dynamic Variable in this field.                        |
 |            |         |       | This value string is sent to each execution of the SCANSPLF command. Refer to the Fields table, above, for the SCANSPLF command for more information about this keyword.                      |
-|            |         |       | Also refer to the [Add/Change/Copy SPLF Scan Rule](#addchangecopy-splf-scan-rule) for more information about SPLF Scan Rules.        | 
+|            |         |       | Also refer to the [Add/Change/Copy SPLF Scan Rule](#addchangecopydisplay-splf-scan-rule) for more information about SPLF Scan Rules.        | 
 | JOBNAME    | 10      | *CHAR | This field may optionally be used to limit the spool file selected from an output queue to only the files belonging to a job of this name.        |
 |            |         |       | This field may be left blank. |
 |            |         |       | The job name can be an exact IBM i job name, or a partial (also called generic) job name may be specified by entering the first one or more characters of the job name followed by an asterisk: -  JOBNA\* (all job names beginning with JOBNA would match)           |
@@ -862,7 +862,7 @@ The example starts with some one-time configuration steps to create components t
   :::tip
   The example commands above show one way to register Dynamic Variable master records.  Within the jobs of the OpCon Schedule that is used to execute this SCANOUTQ Application Example, notice below that multi-instance qualifers have been appended to these Dynamic Variable names.
   
-  The use of unqualified Dynamic Variables implies that the spool file processing could handle only one spool file at a time, otherwise another job could overlay the Dynamic Variable values. Starting with LSAM version 21.1, this Agent supports multi-instance Dynamic Variables which make it possible to support multi-threaded processing of the same job definition, that is, it would be possible to have OpCon execute multiple copies of the same job or schedule (e.g., using the Schedule multi-instance qualifier?) at the same time. For more details see [Multi-Instance Dynamic Variables](/dynamic-variables/multi-instance.md#overview).
+  The use of unqualified Dynamic Variables implies that the spool file processing could handle only one spool file at a time, otherwise another job could overlay the Dynamic Variable values. Starting with LSAM version 21.1, this Agent supports multi-instance Dynamic Variables which make it possible to support multi-threaded processing of the same job definition, that is, it would be possible to have OpCon execute multiple copies of the same job or schedule (e.g., using the Schedule multi-instance qualifier?) at the same time. For more details see [Multi-Instance Dynamic Variables](/dynamic-variables/multi-instance.md#overview-of-multi-instance-dynamic-variables).
   :::
 
 #### LSAM Scan and Response Rule Configuration for the Example

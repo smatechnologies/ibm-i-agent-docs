@@ -29,7 +29,7 @@ The following sections of this documentation chapter provide details about a use
 ## Use Cases for LDA Content Management
 
 Background for the following use cases can be found in these previous topics within this document chapter:
-- [Multi-Instance Dynamic Variables](./multi-instance.md#overview)
+- [Multi-Instance Dynamic Variables](./multi-instance.md#overview-of-multi-instance-dynamic-variables)
 - [Nested Dynamic Variable Tokens](./nesting.md#overview-of-nested-dynamic-variable-tokens)
 
 ### The Functions of Type-L Variables

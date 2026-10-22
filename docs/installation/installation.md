@@ -426,7 +426,7 @@ CRTUSRPRF USRPRF(SMASAV) PASSWORD(smasav_password) INLPGM(*NONE)
   SPCAUT(*JOBCTL *SPLCTL *SAVSYS)
 ```
 :::tip
-The *ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#Introduc) as well as in the [LSAM Security and Object Authority](../security/strategy.md) section of the **IBM i LSAM** documentation.
+The *ALLOBJ special authority granted to user SMANET is discussed below under the topic of [Introduction to Installation Strategies](#introduction-to-installation-strategies) as well as in the [LSAM Security and Object Authority](../security/strategy.md) section of the **IBM i LSAM** documentation.
 :::
 
 ### Prepare the Installation Library
