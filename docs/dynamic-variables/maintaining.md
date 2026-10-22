@@ -436,7 +436,7 @@ This prompting function supports selecting a Dynamic Variable from a list of reg
 - **F3=Exit, F12=Cancel**: These function keys abandon the prompting function and the display returns to the maintenance format where F8 was pressed without returning any data.
 
 ### LSAVARR15 - Multi-Instance Dynamic Variable Templates
-To understand the templates and the "optional +" key fields that identify a specific IBM i Job, please refer to the [Multi-Instance Dynamic Variables: Overview](./multi-instance.md#overview).
+To understand the templates and the "optional +" key fields that identify a specific IBM i Job, please refer to the [Multi-Instance Dynamic Variables: Overview](./multi-instance.md#overview-of-multi-instance-dynamic-variables).
 
 #### Menu Pathways
 
@@ -458,7 +458,7 @@ To understand the templates and the "optional +" key fields that identify a spec
 > Using **F3=Exit** (not displayed, but always available) has the same effect as F12=Cancel for this display.
 
 ### LSAVARP1 - Prompt Dynamic Variable Formatting
-To understand the multi-instance key values for each of the instance types, please refer to the [Multi-Instance Dynamic Variables: Overview](./multi-instance.md#overview).
+To understand the multi-instance key values for each of the instance types, please refer to the [Multi-Instance Dynamic Variables: Overview](./multi-instance.md#overview-of-multi-instance-dynamic-variables).
 
 When using this display format, first verify (or change) the "Instance type" value.  Then press **Enter** to reveal the correct prompting fields for the selected instance.
 
@@ -486,7 +486,7 @@ This display does not support a nested F8=DynVar prompting function.  However, b
 - **F12=Reset MI type**: Returns the display to previous steps in the instance-key prompting sequence.
 
 ### LSAVARP2 - Display Formatted Dynamic Variable
-To understand the multi-instance key values for each of the instance types, please refer to the [Multi-Instance Dynamic Variables: Overview](./multi-instance.md#overview).
+To understand the multi-instance key values for each of the instance types, please refer to the [Multi-Instance Dynamic Variables: Overview](./multi-instance.md#overview-of-multi-instance-dynamic-variables).
 
 Instructions are provided in the top lines of this display format.
 

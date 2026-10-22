@@ -323,7 +323,7 @@ However, it is not necessary to create new translation tables to overcome this p
 $CONSOLE:DISPLAY,This message text is being sent on **{{$DATE}}**,SYSTEM,MESSAGE
 :::
 
-It is possible that in some environments, the default translation tables involved in certain types of data exchange will prevent a correct translation of the braces (curly brackets){ }. In this case, the ability to specify user-defined translation tables could be helpful. For more information about translation tables, refer to [Discussion of Translation Tables](#Discussi4).
+It is possible that in some environments, the default translation tables involved in certain types of data exchange will prevent a correct translation of the braces (curly brackets){ }. In this case, the ability to specify user-defined translation tables could be helpful. For more information about translation tables, refer to [Discussion of Translation Tables](#discussion-of-translation-tables).
 
 :::tip
 Dynamic Variables, supported by the IBM i LSAM in places such as a job's call command string, are identified by a single pair of braces (curly brackets) {}. OpCon allows these to be passed to the IBM i LSAM without mistaking them for an OpCon Property token because the OpCon token requires that the braces be doubled in order to be recognized, for example: {{property_token}} or \[\[property_token\]\] versus {dynamic_variable}.

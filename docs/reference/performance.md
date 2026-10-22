@@ -88,7 +88,7 @@ Parameters in this group are different from the Job Scheduling Communications Pe
 The Job message idle timer parameter helps to maintain a balance between aggressive system activity monitoring and avoiding an adverse impact on system performance. Its value must be set low enough that the LSAM job completion message monitor program will always stay ahead of any OpCon request for a job status report. This parameter is also discussed in two places in [IBM i LSAM Configuration](../configuration/configuration.md).
 
 It is possible for the IBM i LSAM servers issue a false error message SMA0097. This can happen if the LSAM job completion message monitor job (TXMMNG, program LSARCMR00) has been set with too long of a Job message idle time in the LSAM Parameters. If the LSAM ever does report that a job has failed with error code SMA0097, but it is clear that the job did finish normally, this can be prevented by lowering the Job message idle timer parameter value (refer to [Job message idle timer](../configuration/configuration.md)). In some cases, it might also be necessary to increase the performance of the LSAM server job TXMMNG by changing the active job itself while it is
-active (which could be done with an OpCon job during periods of peak activity) or by revising the LSAM subsystem configuration [Tuning LSAM Performance](#top).
+active (which could be done with an OpCon job during periods of peak activity) or by revising the LSAM subsystem configuration [Tuning LSAM Performance](performance.md).
 
 ## IBM i Configuration for the LSAM Servers
 

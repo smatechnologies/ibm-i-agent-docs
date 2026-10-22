@@ -160,7 +160,7 @@ Main Menu > SMA File Transfer menu (#8) > Manage SMAFT Logging (#5)
 - **F5=Refresh**: Re-displays the most current log control settings.
 - **F7=STRSSFTLOG**: Refer to a full description of the STRSFTLOG command below.
 - **F8=ENDSFTALOG**: Refer to a full description of the ENDSFTLOG command in [ENDSFTLOG -- End SMAFT Logging](#endsftlog-end-smaft-logging).
-- **F9=View logs**: Refer to a full description of the View SMAFT logs function in [View SMAFT Logs](../file-transfer/menu.md#View_SMAFT_Logs).
+- **F9=View logs**: Refer to a full description of the View SMAFT logs function in [View SMAFT Logs](../file-transfer/menu.md#view-smaft-logs).
 - **F12=Cancel**: Return to the menu.
 
 ## STRSFTLOG -- Start SMAFT logging

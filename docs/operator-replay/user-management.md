@@ -62,9 +62,9 @@ Add User Fields table (below) as new data is typed.
 
 | Parameter       | Default Value    | Required | Description      |
 | -------         | ---------------  | -------- | -------          |
-| User Name       | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration.md#ibm_i_name_rules))| Y        |The User Name specified does not have to exist when it isentered in the maintenance functions of this section, but it must be created as a valid IBM i user ID before it can be used by the LSA.|
+| User Name       | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration-settings.md#ibm-i-name-rules))| Y        |The User Name specified does not have to exist when it isentered in the maintenance functions of this section, but it must be created as a valid IBM i user ID before it can be used by the LSA.|
 | | | |Long user names may be entered for other applications, such as an FTP transfer job, but the LSAM Operator Reply function is currently limited to User Names of only 10 characters in length. |
-| Password        | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration.md#ibm_i_name_rules)) | Y        | IBM i may be restricted to 10 Name characters as a user password. The first character must be alphabetic, and the remaining characters must be alphanumeric. |
+| Password        | IBM i Name Rules (Refer to [IBM i Rules](../configuration/configuration-settings.md#ibm-i-name-rules)) | Y        | IBM i may be restricted to 10 Name characters as a user password. The first character must be alphabetic, and the remaining characters must be alphanumeric. |
 | | | |**Note:** The LSAM supports passwords up to 128 characters. However, the password length must be limited to what will be accepted by either the current version of IBM i, or by the target system (as when a User is registered for an FTP transfer job).   |
 | Password (to verify) | None             | Y        | Must be exactly the same as the original password entry above.           |
 | Description     | None             | N        | A description that helps explain the identity and purpose of this user. SMA recommends providing this information.|
